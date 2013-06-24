@@ -1,0 +1,5 @@
+C:\Projects\recipies\RecipiesSite\RecipiesSite\bin\RecipiesSite.dll
+C:\Projects\recipies\RecipiesSite\RecipiesSite\bin\RecipiesSite.pdb
+C:\Projects\recipies\RecipiesSite\RecipiesSite\obj\Debug\RecipiesSite.csprojResolveAssemblyReference.cache
+C:\Projects\recipies\RecipiesSite\RecipiesSite\obj\Debug\RecipiesSite.dll
+C:\Projects\recipies\RecipiesSite\RecipiesSite\obj\Debug\RecipiesSite.pdb
