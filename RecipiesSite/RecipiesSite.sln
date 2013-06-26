@@ -5,6 +5,29 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicApplicationWebApplic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicApplicationModel", "DynamicApplication\DynamicApplicationModel\DynamicApplicationModel.csproj", "{C50145E6-A244-4F1F-B41F-90D1925B4A00}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libs", "Libs", "{7184F0D8-29AD-47C8-89A4-175D1A37F532}"
+	ProjectSection(SolutionItems) = preProject
+		Libs\CecilLicense.txt = Libs\CecilLicense.txt
+		Libs\DynamicApplicationModel.dll = Libs\DynamicApplicationModel.dll
+		Libs\enhancer.exe = Libs\enhancer.exe
+		Libs\enhancer.exe.config = Libs\enhancer.exe.config
+		Libs\Mono.Cecil.dll = Libs\Mono.Cecil.dll
+		Libs\Mono.Cecil.Pdb.dll = Libs\Mono.Cecil.Pdb.dll
+		Libs\OpenAccess.targets = Libs\OpenAccess.targets
+		Libs\Telerik.OpenAccess.35.Extensions.dll = Libs\Telerik.OpenAccess.35.Extensions.dll
+		Libs\Telerik.OpenAccess.Config.dll = Libs\Telerik.OpenAccess.Config.dll
+		Libs\Telerik.OpenAccess.dll = Libs\Telerik.OpenAccess.dll
+		Libs\Telerik.OpenAccess.Runtime.dll = Libs\Telerik.OpenAccess.Runtime.dll
+		Libs\Telerik.OpenAccess.SDK.dll = Libs\Telerik.OpenAccess.SDK.dll
+		Libs\Telerik.OpenAccess.Web.40.dll = Libs\Telerik.OpenAccess.Web.40.dll
+		Libs\Telerik.Web.Design.dll = Libs\Telerik.Web.Design.dll
+		Libs\Telerik.Web.UI.dll = Libs\Telerik.Web.UI.dll
+		Libs\Telerik.Web.UI.Skins.dll = Libs\Telerik.Web.UI.Skins.dll
+		Libs\Telerik.Web.UI.XML = Libs\Telerik.Web.UI.XML
+		Libs\venhance.exe = Libs\venhance.exe
+		Libs\venhance.exe.config = Libs\venhance.exe.config
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
