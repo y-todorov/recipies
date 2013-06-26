@@ -331,15 +331,22 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Content Include="Libs\CecilLicense.txt" />
     <Content Include="Libs\DynamicApplicationModel.dll" />
+    <Content Include="Libs\enhancer.exe" />
+    <Content Include="Libs\Mono.Cecil.dll" />
+    <Content Include="Libs\Mono.Cecil.Pdb.dll" />
     <Content Include="Libs\Telerik.OpenAccess.35.Extensions.dll" />
+    <Content Include="Libs\Telerik.OpenAccess.Config.dll" />
     <Content Include="Libs\Telerik.OpenAccess.dll" />
     <Content Include="Libs\Telerik.OpenAccess.Runtime.dll" />
+    <Content Include="Libs\Telerik.OpenAccess.SDK.dll" />
     <Content Include="Libs\Telerik.OpenAccess.Web.40.dll" />
     <Content Include="Libs\Telerik.Web.Design.dll" />
     <Content Include="Libs\Telerik.Web.UI.dll" />
     <Content Include="Libs\Telerik.Web.UI.Skins.dll" />
     <Content Include="Libs\Telerik.Web.UI.XML" />
+    <Content Include="Libs\venhance.exe" />
     <Content Include="Site.css" />
     <Content Include="Site.master" />
     <Compile Include="Site.master.cs">
@@ -614,6 +621,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Libs\enhancer.exe.config" />
+    <Content Include="Libs\OpenAccess.targets" />
+    <Content Include="Libs\venhance.exe.config" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
