@@ -444,7 +444,7 @@ namespace Telerik.Web.UI.DynamicData
             DynamicGridBoundColumn source = fromColumn as DynamicGridBoundColumn;
             if (source == null)
             {
-                throw new ArgumentException("fromColumn");    
+                throw new ArgumentException("fromColumn");
             }
 
             this.ConvertEmptyStringToNull = source.ConvertEmptyStringToNull;
