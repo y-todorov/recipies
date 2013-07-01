@@ -41,13 +41,15 @@ namespace DynamicApplicationWebApplication
             // The following statements support combined-page mode, where the List, Detail, Insert, and
             // Update tasks are performed by using the same page. To enable this mode, uncomment the
             // following routes and comment out the route definition in the separate-page mode section above.
-            //routes.Add(new DynamicDataRoute("{table}/ListDetails.aspx") {
+            //routes.Add(new DynamicDataRoute("{table}/ListDetails.aspx")
+            //{
             //    Action = PageAction.List,
             //    ViewName = "ListDetails",
             //    Model = DefaultModel
             //});
 
-            //routes.Add(new DynamicDataRoute("{table}/ListDetails.aspx") {
+            //routes.Add(new DynamicDataRoute("{table}/ListDetails.aspx")
+            //{
             //    Action = PageAction.Details,
             //    ViewName = "ListDetails",
             //    Model = DefaultModel

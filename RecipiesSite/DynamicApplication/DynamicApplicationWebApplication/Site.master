@@ -8,34 +8,47 @@
 <head runat="server">
     <title>Recipies web site</title>
     <link href="~/Site.css" rel="stylesheet" type="text/css" />
-    <asp:ContentPlaceHolder id="head" runat="server">
+    <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
     <h1 class="DDMainHeader">Manage recipies/products/categories</h1>
     <div class="DDNavigation">
-        <a runat="server" href="~/"><img alt="Back to all tables page" runat="server" src="DynamicData/Content/Images/back.gif" />Back to all tables page</a>
+        <a runat="server" href="~/">
+            <img alt="Back to all tables page" runat="server" src="DynamicData/Content/Images/back.gif" />Back to all tables page</a>
     </div>
 
     <form id="form1" runat="server">
-    <div>
-        <%-- TODO: Enable partial rendering by setting the EnablePartialRendering attribute to "true" to provide a smoother browsing experience.
+        <div>
+            <%-- TODO: Enable partial rendering by setting the EnablePartialRendering attribute to "true" to provide a smoother browsing experience.
              Leaving partial rendering disabled will provide a better debugging experience while the application is in development. --%>
-      <%--  <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePartialRendering="true"/>--%>
-        
+            <%--  <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePartialRendering="true"/>--%>
 
-         <telerik:RadAjaxLoadingPanel ID="RadAjaxLoadingPanel1" runat="server" Skin="Default">
+
+          <%--  <telerik:RadAjaxLoadingPanel ID="RadAjaxLoadingPanel1" runat="server" Skin="Default">
             </telerik:RadAjaxLoadingPanel>
             <telerik:RadScriptManager ID="RadScriptManager" runat="server">
             </telerik:RadScriptManager>
             <telerik:RadSkinManager ID="RadSkinManager" runat="server" Skin="Sunset">
-            </telerik:RadSkinManager>
-              <telerik:RadAjaxPanel ID="RadAjaxPanel1" runat="server" LoadingPanelID="RadAjaxLoadingPanel1">
+            </telerik:RadSkinManager>--%>
 
-        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
-        </asp:ContentPlaceHolder>
-                  </telerik:RadAjaxPanel>
-    </div>
+            <asp:ScriptManager runat="server" />
+            <asp:UpdatePanel runat="server">
+
+                <ContentTemplate>
+                    <%--<telerik:RadAjaxPanel ID="RadAjaxPanel1" runat="server" LoadingPanelID="RadAjaxLoadingPanel1">--%>
+
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                </ContentTemplate>
+            </asp:UpdatePanel >
+                    <asp:UpdateProgress ID="UpdateProgress1" runat="server" >
+            <ProgressTemplate>
+                Processing...
+            </ProgressTemplate>
+        </asp:UpdateProgress>
+            <%--</telerik:RadAjaxPanel>--%>
+        </div>
     </form>
 </body>
 </html>
