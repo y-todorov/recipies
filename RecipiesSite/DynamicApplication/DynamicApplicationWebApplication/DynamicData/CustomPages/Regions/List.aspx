@@ -1,6 +1,9 @@
 <%@ Page Language="C#" MasterPageFile="~/Site.master" CodeBehind="List.aspx.cs" Inherits="DynamicApplicationWebApplication.Regions.List" %>
-<%@ Register Assembly="Telerik.OpenAccess.Web.40" Namespace="Telerik.OpenAccess.Web" TagPrefix="telerik" %>
+
 <%@ Register src="~/DynamicData/Content/GridViewPager.ascx" tagname="GridViewPager" tagprefix="asp" %>
+<%@ Register TagPrefix="telerik" Namespace="Telerik.OpenAccess.Web" Assembly="Telerik.OpenAccess.Web.40" %>
+<%@ Register TagPrefix="telerik" Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI" %>
+<%@ Register TagPrefix="dynamic" Namespace="Telerik.Web.UI.DynamicData" %>
 
 <asp:Content ID="HeaderContent" runat="server" ContentPlaceHolderID="head"/>
 
@@ -29,31 +32,38 @@
                 <br />
             </div>
 
-            <asp:GridView ID="GridView1" runat="server" DataSourceID="GridDataSource" EnablePersistedSelection="true"
-                AllowPaging="True" AllowSorting="True" CssClass="DDGridView" AutoGenerateColumns="False"
-                RowStyle-CssClass="td" HeaderStyle-CssClass="th" CellPadding="6">
-                <Columns>
-                    <asp:TemplateField>
-                        <ItemTemplate>
-                            <asp:DynamicHyperLink runat="server" Action="Edit" Text="Edit" Visible="True" />
-                                <asp:LinkButton runat="server" CommandName="Delete" Text="Delete" Visible="True"
-                                    OnClientClick='return confirm("Are you sure you want to delete this item?");' />
-							<asp:DynamicHyperLink runat="server" Text="Details" Visible="True" />
-                        </ItemTemplate>
-                    </asp:TemplateField>
-					<asp:DynamicField DataField="RegionID" HeaderText="RegionID"/>
-					<asp:DynamicField DataField="RegionDescription" HeaderText="RegionDescription"/>
-					<asp:DynamicField DataField="Territories" HeaderText="Territories"/>
-				</Columns>
-				<PagerStyle CssClass="DDFooter"/>        
-				<PagerTemplate>
-					<asp:GridViewPager runat="server" />
-				</PagerTemplate>
-				<EmptyDataTemplate>
-					There are currently no items in this table.
-				</EmptyDataTemplate>
-			</asp:GridView>
-			<telerik:OpenAccessLinqDataSource ID="GridDataSource" runat="server" EnableDelete="True" />
+			<dynamic:DynamicRadGrid ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False"
+                DataSourceID="GridDataSource" SelectedItemStyle-BackColor="LightBlue">
+                <MasterTableView>
+                    <Columns>
+                        <telerik:GridTemplateColumn>
+							<ItemTemplate>
+								<asp:DynamicHyperLink runat="server" Action="Edit" Text="Edit" Visible="True" />
+									<asp:LinkButton runat="server" CommandName="Delete" Text="Delete" Visible="True"
+										OnClientClick='return confirm("Are you sure you want to delete this item?");' />
+								<asp:DynamicHyperLink runat="server" Text="Details" Visible="True" />
+							</ItemTemplate>
+						</telerik:GridTemplateColumn>
+						<telerik:GridTemplateColumn HeaderText="RegionID">
+							<ItemTemplate>
+								<asp:DynamicControl runat="server" DataField="RegionID"/>
+							</ItemTemplate>
+						</telerik:GridTemplateColumn>
+						<telerik:GridTemplateColumn HeaderText="RegionDescription">
+							<ItemTemplate>
+								<asp:DynamicControl runat="server" DataField="RegionDescription"/>
+							</ItemTemplate>
+						</telerik:GridTemplateColumn>
+						<telerik:GridTemplateColumn HeaderText="Territories">
+							<ItemTemplate>
+								<asp:DynamicControl runat="server" DataField="Territories"/>
+							</ItemTemplate>
+						</telerik:GridTemplateColumn>
+                    </Columns>
+                </MasterTableView>
+            </dynamic:DynamicRadGrid>
+
+			<telerik:OpenAccessLinqDataSource ID="GridDataSource" runat="server" EnableDelete="True" EnableInsert="True" EnableUpdate="True" />
 			<asp:QueryExtender TargetControlID="GridDataSource" ID="GridQueryExtender" runat="server">
 				<asp:DynamicFilterExpression ControlID="FilterRepeater" />
 			</asp:QueryExtender>

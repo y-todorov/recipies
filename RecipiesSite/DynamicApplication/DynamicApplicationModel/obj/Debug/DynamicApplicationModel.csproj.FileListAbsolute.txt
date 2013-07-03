@@ -13,4 +13,3 @@ C:\Projects\recipies\RecipiesSite\DynamicApplication\DynamicApplicationModel\bin
 C:\Projects\recipies\RecipiesSite\DynamicApplication\DynamicApplicationModel\bin\Debug\Telerik.Web.UI.xml
 C:\Projects\recipies\RecipiesSite\DynamicApplication\DynamicApplicationModel\obj\Debug\DynamicApplicationModel.dll
 C:\Projects\recipies\RecipiesSite\DynamicApplication\DynamicApplicationModel\obj\Debug\DynamicApplicationModel.pdb
-C:\Projects\recipies\RecipiesSite\DynamicApplication\DynamicApplicationModel\obj\Debug\DynamicApplicationModel.csprojResolveAssemblyReference.cache
