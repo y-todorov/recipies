@@ -163,6 +163,22 @@
     <Content Include="DynamicData\CustomPages\Territories\Edit.aspx" />
     <Content Include="DynamicData\CustomPages\Territories\Insert.aspx" />
     <Content Include="DynamicData\CustomPages\Territories\List.aspx" />
+    <Content Include="DynamicData\CustomPages\XCategories\Details.aspx" />
+    <Content Include="DynamicData\CustomPages\XCategories\Edit.aspx" />
+    <Content Include="DynamicData\CustomPages\XCategories\Insert.aspx" />
+    <Content Include="DynamicData\CustomPages\XCategories\List.aspx" />
+    <Content Include="DynamicData\CustomPages\XProducts\Details.aspx" />
+    <Content Include="DynamicData\CustomPages\XProducts\Edit.aspx" />
+    <Content Include="DynamicData\CustomPages\XProducts\Insert.aspx" />
+    <Content Include="DynamicData\CustomPages\XProducts\List.aspx" />
+    <Content Include="DynamicData\CustomPages\XSuppliers\Details.aspx" />
+    <Content Include="DynamicData\CustomPages\XSuppliers\Edit.aspx" />
+    <Content Include="DynamicData\CustomPages\XSuppliers\Insert.aspx" />
+    <Content Include="DynamicData\CustomPages\XSuppliers\List.aspx" />
+    <Content Include="DynamicData\CustomPages\XUnits\Details.aspx" />
+    <Content Include="DynamicData\CustomPages\XUnits\Edit.aspx" />
+    <Content Include="DynamicData\CustomPages\XUnits\Insert.aspx" />
+    <Content Include="DynamicData\CustomPages\XUnits\List.aspx" />
     <Content Include="Global.asax" />
     <Compile Include="DynamicData\CustomPages\Categories\Details.aspx.cs">
       <DependentUpon>Details.aspx</DependentUpon>
@@ -339,6 +355,54 @@
     <Compile Include="DynamicData\CustomPages\Territories\List.aspx.cs">
       <DependentUpon>List.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DynamicData\CustomPages\XCategories\Details.aspx.cs">
+      <DependentUpon>Details.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DynamicData\CustomPages\XCategories\Edit.aspx.cs">
+      <DependentUpon>Edit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DynamicData\CustomPages\XCategories\Insert.aspx.cs">
+      <DependentUpon>Insert.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DynamicData\CustomPages\XCategories\List.aspx.cs">
+      <DependentUpon>List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DynamicData\CustomPages\XProducts\Details.aspx.cs">
+      <DependentUpon>Details.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DynamicData\CustomPages\XProducts\Edit.aspx.cs">
+      <DependentUpon>Edit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DynamicData\CustomPages\XProducts\Insert.aspx.cs">
+      <DependentUpon>Insert.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DynamicData\CustomPages\XProducts\List.aspx.cs">
+      <DependentUpon>List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DynamicData\CustomPages\XSuppliers\Details.aspx.cs">
+      <DependentUpon>Details.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DynamicData\CustomPages\XSuppliers\Edit.aspx.cs">
+      <DependentUpon>Edit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DynamicData\CustomPages\XSuppliers\Insert.aspx.cs">
+      <DependentUpon>Insert.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DynamicData\CustomPages\XSuppliers\List.aspx.cs">
+      <DependentUpon>List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DynamicData\CustomPages\XUnits\Details.aspx.cs">
+      <DependentUpon>Details.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DynamicData\CustomPages\XUnits\Edit.aspx.cs">
+      <DependentUpon>Edit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DynamicData\CustomPages\XUnits\Insert.aspx.cs">
+      <DependentUpon>Insert.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DynamicData\CustomPages\XUnits\List.aspx.cs">
+      <DependentUpon>List.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

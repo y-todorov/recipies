@@ -138,6 +138,38 @@ namespace DynamicApplicationModel
 			}
 		}
 		
+		public IQueryable<XUnit> XUnits 
+		{
+			get
+			{
+				return this.GetAll<XUnit>();
+			}
+		}
+		
+		public IQueryable<XSupplier> XSuppliers 
+		{
+			get
+			{
+				return this.GetAll<XSupplier>();
+			}
+		}
+		
+		public IQueryable<XProduct> XProducts 
+		{
+			get
+			{
+				return this.GetAll<XProduct>();
+			}
+		}
+		
+		public IQueryable<XCategory> XCategories 
+		{
+			get
+			{
+				return this.GetAll<XCategory>();
+			}
+		}
+		
 		public static BackendConfiguration GetBackendConfiguration()
 		{
 			BackendConfiguration backend = new BackendConfiguration();
@@ -190,6 +222,22 @@ namespace DynamicApplicationModel
 			get;
 		}
 		IQueryable<Category> Categories
+		{
+			get;
+		}
+		IQueryable<XUnit> XUnits
+		{
+			get;
+		}
+		IQueryable<XSupplier> XSuppliers
+		{
+			get;
+		}
+		IQueryable<XProduct> XProducts
+		{
+			get;
+		}
+		IQueryable<XCategory> XCategories
 		{
 			get;
 		}
