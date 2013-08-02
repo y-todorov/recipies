@@ -31,16 +31,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="enhancer, Version=2013.2.611.1, Culture=neutral, PublicKeyToken=7ce17eeaf1d59342, processorArchitecture=MSIL">
+    <Reference Include="enhancer">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Libs\enhancer.exe</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Mono.Cecil, Version=0.9.5.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+    <Reference Include="Mono.CecilL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Libs\Mono.Cecil.dll</HintPath>
     </Reference>
-    <Reference Include="Mono.Cecil.Pdb, Version=0.9.5.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+    <Reference Include="Mono.Cecil.Pdb">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Libs\Mono.Cecil.Pdb.dll</HintPath>
     </Reference>
@@ -50,31 +50,31 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="Telerik.OpenAccess, Version=2013.2.611.1, Culture=neutral, PublicKeyToken=7ce17eeaf1d59342, processorArchitecture=MSIL">
+    <Reference Include="Telerik.OpenAccess">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>OpenAccessAssemblies\Telerik.OpenAccess.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.OpenAccess.35.Extensions, Version=2013.2.611.1, Culture=neutral, PublicKeyToken=7ce17eeaf1d59342, processorArchitecture=MSIL">
+    <Reference Include="Telerik.OpenAccess.35.Extensions">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>OpenAccessAssemblies\Telerik.OpenAccess.35.Extensions.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.OpenAccess.Config, Version=1.0.0.0, Culture=neutral, PublicKeyToken=7ce17eeaf1d59342, processorArchitecture=MSIL">
+    <Reference Include="Telerik.OpenAccess.Config">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>OpenAccessAssemblies\Telerik.OpenAccess.Config.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.OpenAccess.Runtime, Version=2013.2.611.1, Culture=neutral, PublicKeyToken=7ce17eeaf1d59342, processorArchitecture=MSIL">
+    <Reference Include="Telerik.OpenAccess.Runtime">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>OpenAccessAssemblies\Telerik.OpenAccess.Runtime.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.OpenAccess.SDK, Version=2013.2.611.1, Culture=neutral, PublicKeyToken=7ce17eeaf1d59342, processorArchitecture=MSIL">
+    <Reference Include="Telerik.OpenAccess.SDK">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>OpenAccessAssemblies\Telerik.OpenAccess.SDK.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.OpenAccess.Web.40, Version=2013.2.611.1, Culture=neutral, PublicKeyToken=7ce17eeaf1d59342, processorArchitecture=MSIL">
+    <Reference Include="Telerik.OpenAccess.Web.40">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>OpenAccessAssemblies\Telerik.OpenAccess.Web.40.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Web.Design, Version=2012.3.1322.45, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
+    <Reference Include="Telerik.Web.Design">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Libs\Telerik.Web.Design.dll</HintPath>
     </Reference>
@@ -84,7 +84,7 @@
     <Reference Include="Telerik.Web.UI.Skins">
       <HintPath>..\..\Libs\Telerik.Web.UI.Skins.dll</HintPath>
     </Reference>
-    <Reference Include="venhance, Version=2013.2.611.1, Culture=neutral, PublicKeyToken=7ce17eeaf1d59342, processorArchitecture=MSIL">
+    <Reference Include="venhance">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Libs\venhance.exe</HintPath>
     </Reference>
