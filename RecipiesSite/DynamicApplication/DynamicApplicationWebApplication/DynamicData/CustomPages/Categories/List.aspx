@@ -1,6 +1,9 @@
 <%@ Page Language="C#" MasterPageFile="~/Site.master" CodeBehind="List.aspx.cs" Inherits="DynamicApplicationWebApplication.Categories.List" %>
-<%@ Register Assembly="Telerik.OpenAccess.Web.40" Namespace="Telerik.OpenAccess.Web" TagPrefix="telerik" %>
+
 <%@ Register src="~/DynamicData/Content/GridViewPager.ascx" tagname="GridViewPager" tagprefix="asp" %>
+<%@ Register TagPrefix="telerik" Namespace="Telerik.OpenAccess.Web" Assembly="Telerik.OpenAccess.Web.40" %>
+<%@ Register TagPrefix="telerik" Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI" %>
+<%@ Register TagPrefix="dynamic" Namespace="Telerik.Web.UI.DynamicData" %>
 
 <asp:Content ID="HeaderContent" runat="server" ContentPlaceHolderID="head"/>
 
@@ -29,33 +32,48 @@
                 <br />
             </div>
 
-            <asp:GridView ID="GridView1" runat="server" DataSourceID="GridDataSource" EnablePersistedSelection="true"
-                AllowPaging="True" AllowSorting="True" CssClass="DDGridView" AutoGenerateColumns="False"
-                RowStyle-CssClass="td" HeaderStyle-CssClass="th" CellPadding="6">
-                <Columns>
-                    <asp:TemplateField>
-                        <ItemTemplate>
-                            <asp:DynamicHyperLink runat="server" Action="Edit" Text="Edit" Visible="True" />
-                                <asp:LinkButton runat="server" CommandName="Delete" Text="Delete" Visible="True"
-                                    OnClientClick='return confirm("Are you sure you want to delete this item?");' />
-							<asp:DynamicHyperLink runat="server" Text="Details" Visible="True" />
-                        </ItemTemplate>
-                    </asp:TemplateField>
-					<asp:DynamicField DataField="CategoryID" HeaderText="CategoryID"/>
-					<asp:DynamicField DataField="CategoryName" HeaderText="CategoryName"/>
-					<asp:DynamicField DataField="Description" HeaderText="Description"/>
-					<asp:DynamicField DataField="Picture" HeaderText="Picture"/>
-					<asp:DynamicField DataField="Products" HeaderText="Products"/>
-				</Columns>
-				<PagerStyle CssClass="DDFooter"/>        
-				<PagerTemplate>
-					<asp:GridViewPager runat="server" />
-				</PagerTemplate>
-				<EmptyDataTemplate>
-					There are currently no items in this table.
-				</EmptyDataTemplate>
-			</asp:GridView>
-			<telerik:OpenAccessLinqDataSource ID="GridDataSource" runat="server" EnableDelete="True" />
+			<dynamic:DynamicRadGrid ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False"
+                DataSourceID="GridDataSource" SelectedItemStyle-BackColor="LightBlue">
+                <MasterTableView>
+                    <Columns>
+                        <telerik:GridTemplateColumn>
+							<ItemTemplate>
+								<asp:DynamicHyperLink runat="server" Action="Edit" Text="Edit" Visible="True" />
+									<asp:LinkButton runat="server" CommandName="Delete" Text="Delete" Visible="True"
+										OnClientClick='return confirm("Are you sure you want to delete this item?");' />
+								<asp:DynamicHyperLink runat="server" Text="Details" Visible="True" />
+							</ItemTemplate>
+						</telerik:GridTemplateColumn>
+						<telerik:GridTemplateColumn HeaderText="CategoryID">
+							<ItemTemplate>
+								<asp:DynamicControl runat="server" DataField="CategoryID"/>
+							</ItemTemplate>
+						</telerik:GridTemplateColumn>
+						<telerik:GridTemplateColumn HeaderText="CategoryName">
+							<ItemTemplate>
+								<asp:DynamicControl runat="server" DataField="CategoryName"/>
+							</ItemTemplate>
+						</telerik:GridTemplateColumn>
+						<telerik:GridTemplateColumn HeaderText="Description">
+							<ItemTemplate>
+								<asp:DynamicControl runat="server" DataField="Description"/>
+							</ItemTemplate>
+						</telerik:GridTemplateColumn>
+						<telerik:GridTemplateColumn HeaderText="Picture">
+							<ItemTemplate>
+								<asp:DynamicControl runat="server" DataField="Picture"/>
+							</ItemTemplate>
+						</telerik:GridTemplateColumn>
+						<telerik:GridTemplateColumn HeaderText="Products">
+							<ItemTemplate>
+								<asp:DynamicControl runat="server" DataField="Products"/>
+							</ItemTemplate>
+						</telerik:GridTemplateColumn>
+                    </Columns>
+                </MasterTableView>
+            </dynamic:DynamicRadGrid>
+
+			<telerik:OpenAccessLinqDataSource ID="GridDataSource" runat="server" EnableDelete="True" EnableInsert="True" EnableUpdate="True" />
 			<asp:QueryExtender TargetControlID="GridDataSource" ID="GridQueryExtender" runat="server">
 				<asp:DynamicFilterExpression ControlID="FilterRepeater" />
 			</asp:QueryExtender>
