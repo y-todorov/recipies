@@ -5,11 +5,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <asp:ScriptManagerProxy ID="ScriptManagerProxy1" runat="server" />
-
-    <h2 class="DDSubHeader">All tables of the recipie site</h2>
-
-    <br /><br />
-
+   All tables of the recipie site
     <asp:GridView ID="Menu1" runat="server" AutoGenerateColumns="false"
         CssClass="DDGridView" RowStyle-CssClass="td" HeaderStyle-CssClass="th" CellPadding="6">
         <Columns>

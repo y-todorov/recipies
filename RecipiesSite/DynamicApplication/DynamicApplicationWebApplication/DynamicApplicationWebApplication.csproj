@@ -114,6 +114,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TestPageToBeDeleted.aspx.cs">
+      <DependentUpon>TestPageToBeDeleted.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TestPageToBeDeleted.aspx.designer.cs">
+      <DependentUpon>TestPageToBeDeleted.aspx</DependentUpon>
+    </Compile>
     <Content Include="Default.aspx" />
     <Content Include="App_Code\DynamicRadGrid.cs" />
     <Compile Include="Default.aspx.cs">
@@ -436,6 +443,7 @@
     <Compile Include="Site.master.designer.cs">
       <DependentUpon>Site.master</DependentUpon>
     </Compile>
+    <Content Include="TestPageToBeDeleted.aspx" />
     <Content Include="web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -707,6 +715,9 @@
       <Project>{c50145e6-a244-4f1f-b41f-90d1925b4a00}</Project>
       <Name>DynamicApplicationModel</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Themes\DefaultTheme\DefaultSkin.skin" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

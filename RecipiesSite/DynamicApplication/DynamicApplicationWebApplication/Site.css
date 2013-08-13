@@ -1,4 +1,4 @@
-﻿/*	Global classes	*/
+﻿	/*Global classes	
 .DDMainHeader
 {
 	font: small-caps bold 1.6em Trebuchet MS, Arial, sans-serif;
@@ -86,7 +86,7 @@ div.DDNoItem
 }
 
 
-/*	Navigation	*/
+	Navigation	
 
 div.DDNavigation
 {
@@ -121,7 +121,7 @@ div.DDNavigation a:hover
 }
 
 
-/*	Details VIEW/EDIT	*/
+	Details VIEW/EDIT	
 table.DDDetailsTable
 {
 	color: #666;
@@ -153,7 +153,7 @@ table.DDDetailsTable .td
 }
 
 
-/*	DDGridView/DDListView	*/
+	DDGridView/DDListView	
 table.DDGridView, table.DDListView
 {
 	width: 100%;
@@ -218,14 +218,14 @@ table.DDGridView .td a:hover, table.DDListView .td a:hover
 	text-decoration: underline;
 }
 
-/*	DataPager	*/
+	DataPager	
 div.DDPager
 {
     padding: 0px 6px;
 }
 
 
-/* Bottom hyperlink design*/
+ Bottom hyperlink design
 div.DDBottomHyperLink
 {	
     font: .75em Tahoma, Arial, Sans-Serif;
@@ -244,4 +244,4 @@ div.DDBottomHyperLink img
 {
     padding-right: 5px;
     border: none;
-}
+}*/

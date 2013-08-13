@@ -33,8 +33,8 @@
             </div>
 
 			<dynamic:DynamicRadGrid ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False"
-                DataSourceID="GridDataSource" SelectedItemStyle-BackColor="LightBlue">
-                <MasterTableView>
+                DataSourceID="GridDataSource" SelectedItemStyle-BackColor="LightBlue" ShowGroupPanel="true" AllowFilteringByColumn="true" >
+                <MasterTableView AllowSorting="true">
                     <Columns>
                         <telerik:GridTemplateColumn>
 							<ItemTemplate>
@@ -49,7 +49,7 @@
 								<asp:DynamicControl runat="server" DataField="CategoryID"/>
 							</ItemTemplate>
 						</telerik:GridTemplateColumn>
-						<telerik:GridTemplateColumn HeaderText="CategoryName">
+						<telerik:GridTemplateColumn HeaderText="CategoryName" Groupable="true">
 							<ItemTemplate>
 								<asp:DynamicControl runat="server" DataField="CategoryName"/>
 							</ItemTemplate>
@@ -73,7 +73,7 @@
                 </MasterTableView>
             </dynamic:DynamicRadGrid>
 
-			<telerik:OpenAccessLinqDataSource ID="GridDataSource" runat="server" EnableDelete="True" EnableInsert="True" EnableUpdate="True" />
+			<telerik:OpenAccessLinqDataSource ID="GridDataSource" runat="server" EnableDelete="True" EnableInsert="True" EnableUpdate="True"  />
 			<asp:QueryExtender TargetControlID="GridDataSource" ID="GridQueryExtender" runat="server">
 				<asp:DynamicFilterExpression ControlID="FilterRepeater" />
 			</asp:QueryExtender>

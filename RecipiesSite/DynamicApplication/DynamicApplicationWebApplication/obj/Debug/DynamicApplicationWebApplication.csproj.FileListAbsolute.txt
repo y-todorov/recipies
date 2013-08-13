@@ -9,7 +9,6 @@ C:\Projects\recipies\RecipiesSite\DynamicApplication\DynamicApplicationWebApplic
 C:\Projects\recipies\RecipiesSite\DynamicApplication\DynamicApplicationWebApplication\bin\Telerik.OpenAccess.Runtime.dll
 C:\Projects\recipies\RecipiesSite\DynamicApplication\DynamicApplicationWebApplication\bin\Telerik.OpenAccess.SDK.dll
 C:\Projects\recipies\RecipiesSite\DynamicApplication\DynamicApplicationWebApplication\bin\Telerik.OpenAccess.Web.40.dll
-C:\Projects\recipies\RecipiesSite\DynamicApplication\DynamicApplicationWebApplication\bin\Telerik.Web.Design.dll
 C:\Projects\recipies\RecipiesSite\DynamicApplication\DynamicApplicationWebApplication\bin\Telerik.Web.UI.dll
 C:\Projects\recipies\RecipiesSite\DynamicApplication\DynamicApplicationWebApplication\bin\Telerik.Web.UI.Skins.dll
 C:\Projects\recipies\RecipiesSite\DynamicApplication\DynamicApplicationWebApplication\bin\DynamicApplicationModel.pdb

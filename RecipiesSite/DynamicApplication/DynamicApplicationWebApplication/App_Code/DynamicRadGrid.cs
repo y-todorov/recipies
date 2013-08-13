@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Web.DynamicData;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Telerik.OpenAccess.Web;
 
 namespace Telerik.Web.UI.DynamicData
 {
@@ -132,6 +133,17 @@ namespace Telerik.Web.UI.DynamicData
             base.OnInit(e);
             this.AllowAutomaticUpdates = true;
             this.AllowAutomaticDeletes = true;
+
+            // I added this
+
+            //this.AllowFilteringByColumn = true;
+            //this.AllowSorting = true;
+
+            //var test = this.DataSource as OpenAccessLinqDataSource;
+               
+
+            //
+
 
             //MetaTable metaTable = DynamicDataRouteHandler.GetRequestMetaTable(this.Context);
             //List<string> list = new List<string>();

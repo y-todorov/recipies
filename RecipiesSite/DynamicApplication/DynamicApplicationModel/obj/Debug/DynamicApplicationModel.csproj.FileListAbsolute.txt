@@ -13,5 +13,6 @@ C:\Projects\recipies\RecipiesSite\DynamicApplication\DynamicApplicationModel\bin
 C:\Projects\recipies\RecipiesSite\DynamicApplication\DynamicApplicationModel\bin\Debug\Telerik.Web.UI.Skins.dll
 C:\Projects\recipies\RecipiesSite\DynamicApplication\DynamicApplicationModel\bin\Debug\venhance.exe
 C:\Projects\recipies\RecipiesSite\DynamicApplication\DynamicApplicationModel\bin\Debug\Telerik.Web.UI.xml
+C:\Projects\recipies\RecipiesSite\DynamicApplication\DynamicApplicationModel\obj\Debug\DynamicApplicationModel.csprojResolveAssemblyReference.cache
 C:\Projects\recipies\RecipiesSite\DynamicApplication\DynamicApplicationModel\obj\Debug\DynamicApplicationModel.dll
 C:\Projects\recipies\RecipiesSite\DynamicApplication\DynamicApplicationModel\obj\Debug\DynamicApplicationModel.pdb

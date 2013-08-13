@@ -32,7 +32,7 @@
                 <br />
             </div>
 
-			<dynamic:DynamicRadGrid ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False"
+			<dynamic:DynamicRadGrid ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" PageSize="50"
                 DataSourceID="GridDataSource" SelectedItemStyle-BackColor="LightBlue">
                 <MasterTableView>
                     <Columns>
