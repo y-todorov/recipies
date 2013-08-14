@@ -39,10 +39,15 @@
                 </telerik:RadMenuItem>
                 <telerik:RadMenuItem runat="server" Text="Production">
                     <Items>
-                        <telerik:RadMenuItem runat="server" Text="Product" NavigateUrl="~/Production/Product.aspx">
+                        <telerik:RadMenuItem runat="server" Text="Product" NavigateUrl="~/Production/Products.aspx">
                         </telerik:RadMenuItem>
-                        <telerik:RadMenuItem runat="server" Text="Category" NavigateUrl="~/Production/Category.aspx">
+                        <telerik:RadMenuItem runat="server" Text="Category" NavigateUrl="~/Production/Categories.aspx">
                         </telerik:RadMenuItem>
+                    </Items>
+                </telerik:RadMenuItem>
+                <telerik:RadMenuItem runat="server" Text="Sales">
+                    <Items>
+                        <telerik:RadMenuItem Text="Orders" NavigateUrl="Sales/Orders.aspx"></telerik:RadMenuItem>
                     </Items>
                 </telerik:RadMenuItem>
                 <telerik:RadMenuItem IsSeparator="true"></telerik:RadMenuItem>

@@ -36,9 +36,9 @@ Default skin template. The following skins are provided as examples only.
             <EditFormSettings>
                 <EditColumn FilterControlAltText="Filter EditCommandColumn column"></EditColumn>
             </EditFormSettings>
-            <PagerStyle AlwaysVisible="True" />
+            <PagerStyle AlwaysVisible="True" PageButtonCount="10"  PageSizes="10;20;50;100;1000" /> 
         </MasterTableView>
-
         <FilterMenu EnableImageSprites="False"></FilterMenu>
-        <PagerStyle AlwaysVisible="True" PageButtonCount="10" />
+            <PagerStyle AlwaysVisible="True" PageButtonCount="10"  PageSizes="10;20;50;100;1000" />
     </telerik:RadGrid>
+
