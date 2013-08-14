@@ -31,7 +31,7 @@
         <telerik:RadFormDecorator ID="RadFormDecorator1" runat="server" Skin="Silk" DecoratedControls="All" />
         <telerik:RadSkinManager ID="RadSkinManager1" runat="server" Skin="Silk">
         </telerik:RadSkinManager>
-        <telerik:RadMenu runat="server" Width="100%">
+        <telerik:RadMenu runat="server" Width="100%" OnItemClick="Unnamed_ItemClick">
             <Items>
                 <telerik:RadMenuItem runat="server" Text="Home" NavigateUrl="~/Default.aspx">
                 </telerik:RadMenuItem>
@@ -53,28 +53,14 @@
                 <telerik:RadMenuItem IsSeparator="true"></telerik:RadMenuItem>
                 <telerik:RadMenuItem Text="Account">
                     <Items>
-                        <telerik:RadMenuItem>
-                            <ItemTemplate>
-                                <asp:LoginView ID="LoginView1" runat="server" ViewStateMode="Disabled">
-                                    <AnonymousTemplate>
-                                        <%--<ul>
-                                    <li><a id="registerLink" runat="server" href="~/Account/Register">Register</a></li>
-                                    <li><a id="loginLink" runat="server" href="~/Account/Login">Log in</a></li>
-                                </ul>--%>
-                                    </AnonymousTemplate>
-                                    <LoggedInTemplate>
-                                        <p>
-                                            Hello, <a id="A1" runat="server" href="~/Account/Manage" title="Manage your account">
-                                                <asp:LoginName ID="LoginName1" runat="server" />
-                                            </a>
-                                            <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" />
-                                        </p>
-                                    </LoggedInTemplate>
-                                </asp:LoginView>
-                            </ItemTemplate>
+                        <telerik:RadMenuItem Text="Manage my account" NavigateUrl="~/Account/Manage">
+                        </telerik:RadMenuItem>
+                        <telerik:RadMenuItem Text="Log off" Value="Log off">
                         </telerik:RadMenuItem>
                     </Items>
-
+                </telerik:RadMenuItem>
+                <telerik:RadMenuItem IsSeparator="true"></telerik:RadMenuItem>
+                <telerik:RadMenuItem OnLoad="Unnamed_Load">
                 </telerik:RadMenuItem>
 
             </Items>

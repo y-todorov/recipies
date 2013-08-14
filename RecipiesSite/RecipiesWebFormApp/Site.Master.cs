@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Telerik.Web.UI;
 
 namespace RecipiesWebFormApp
 {
@@ -68,6 +69,25 @@ namespace RecipiesWebFormApp
         protected void Page_Load(object sender, EventArgs e)
         {
 
+        }
+
+        protected void Unnamed_Load(object sender, EventArgs e)
+        {
+            RadMenuItem rmi = sender as RadMenuItem;
+            rmi.Text = string.Concat("You are logged in as ", Page.User.Identity.Name);
+        }
+
+        protected void Unnamed_ItemClick(object sender, RadMenuEventArgs e)
+        {
+            // We get here only if navigate url is not changed
+            RadMenu rm = sender as RadMenu;
+            if (rm.SelectedItem != null && rm.SelectedItem.Value.Equals("Log off"))
+            {
+                FormsAuthentication.SignOut();
+                FormsAuthentication.RedirectToLoginPage();
+            }
+
+            
         }
     }
 }

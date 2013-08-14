@@ -20,8 +20,6 @@ C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.Web.Infrastru
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\System.Web.Optimization.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\System.Web.Providers.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Telerik.OpenAccess.35.Extensions.dll
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Telerik.OpenAccess.dll
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Telerik.OpenAccess.Runtime.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Telerik.OpenAccess.Web.40.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Telerik.Web.UI.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Telerik.Web.UI.Skins.dll

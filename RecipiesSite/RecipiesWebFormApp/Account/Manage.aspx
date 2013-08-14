@@ -7,11 +7,10 @@
             <p><%: SuccessMessage %></p>
         </asp:PlaceHolder>
 
-        <p>You're logged in as <strong><%: User.Identity.Name %></strong>.</p>
+   
 
 
-        <asp:PlaceHolder runat="server" ID="changePassword" Visible="true">
-            <h3>Change password</h3>
+        <asp:PlaceHolder runat="server" ID="changePassword" Visible="true">          
             <asp:ChangePassword runat="server" CancelDestinationPageUrl="~/" ViewStateMode="Disabled" RenderOuterTable="false" SuccessPageUrl="Manage?m=ChangePwdSuccess">
                 <ChangePasswordTemplate>
                     <p>
