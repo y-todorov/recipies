@@ -7,29 +7,27 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RecipiesWebFormApp.Account
-{
-
-
-    public partial class Login
-    {
-
+namespace RecipiesWebFormApp.Account {
+    
+    
+    public partial class Login {
+        
         /// <summary>
-        /// RegisterHyperLink control.
+        /// ScriptManager1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink RegisterHyperLink;
-
+        protected global::System.Web.UI.ScriptManager ScriptManager1;
+        
         /// <summary>
-        /// OpenAuthLogin control.
+        /// RadFormDecorator1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::RecipiesWebFormApp.Account.OpenAuthProviders OpenAuthLogin;
+        protected global::Telerik.Web.UI.RadFormDecorator RadFormDecorator1;
     }
 }

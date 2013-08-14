@@ -10,7 +10,11 @@
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
     <style type="text/css">
-        * { margin: 0; padding: 0; border: 0; }
+        * {
+            margin: 0;
+            padding: 0;
+            border: 0;
+        }
     </style>
 </head>
 <body>
@@ -29,27 +33,41 @@
         </telerik:RadSkinManager>
         <telerik:RadMenu runat="server" Width="100%">
             <Items>
-                <telerik:RadMenuItem runat="server" Text="Root RadMenuItem1">
-                    <Items>
-                        <telerik:RadMenuItem runat="server" Text="Child RadMenuItem 1">
-                        </telerik:RadMenuItem>
-                        <telerik:RadMenuItem runat="server" Text="Child RadMenuItem 2">
-                        </telerik:RadMenuItem>
-                    </Items>
+                <telerik:RadMenuItem runat="server" Text="Home" NavigateUrl="~/Default.aspx">
                 </telerik:RadMenuItem>
-                <telerik:RadMenuItem runat="server" Text="Root RadMenuItem2">
+                <telerik:RadMenuItem runat="server" Text="About">
                 </telerik:RadMenuItem>
                 <telerik:RadMenuItem runat="server" Text="Production">
                     <Items>
                         <telerik:RadMenuItem runat="server" Text="Product" NavigateUrl="~/Production/Product.aspx">
                         </telerik:RadMenuItem>
-                        <telerik:RadMenuItem runat="server" Text="Child RadMenuItem 2">
-                        </telerik:RadMenuItem>
-                        <telerik:RadMenuItem runat="server" Text="Child RadMenuItem 3">
+                        <telerik:RadMenuItem runat="server" Text="Category" NavigateUrl="~/Production/Category.aspx">
                         </telerik:RadMenuItem>
                     </Items>
                 </telerik:RadMenuItem>
+                <telerik:RadMenuItem>
+                    <ItemTemplate>
+                        <asp:LoginView ID="LoginView1" runat="server" ViewStateMode="Disabled">
+                            <AnonymousTemplate>
+                                <%--<ul>
+                                    <li><a id="registerLink" runat="server" href="~/Account/Register">Register</a></li>
+                                    <li><a id="loginLink" runat="server" href="~/Account/Login">Log in</a></li>
+                                </ul>--%>
+                            </AnonymousTemplate>
+                            <LoggedInTemplate>
+                                <p>
+                                    Hello, <a id="A1" runat="server" href="~/Account/Manage" title="Manage your account">
+                                        <asp:LoginName ID="LoginName1" runat="server" />
+                                    </a>!
+                                <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" />
+                                </p>
+                            </LoggedInTemplate>
+                        </asp:LoginView>
+                    </ItemTemplate>
+                </telerik:RadMenuItem>
+
             </Items>
+
         </telerik:RadMenu>
         <div>
             <asp:ContentPlaceHolder runat="server" ID="MainContent" />
