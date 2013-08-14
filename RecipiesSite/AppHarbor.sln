@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicApplicationWebApplication", "DynamicApplication\DynamicApplicationWebApplication\DynamicApplicationWebApplication.csproj", "{35875BEA-6426-44F9-B63A-6D67EA7EB7F1}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicApplicationModel", "DynamicApplication\DynamicApplicationModel\DynamicApplicationModel.csproj", "{C50145E6-A244-4F1F-B41F-90D1925B4A00}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libs", "Libs", "{7184F0D8-29AD-47C8-89A4-175D1A37F532}"
@@ -36,10 +34,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{35875BEA-6426-44F9-B63A-6D67EA7EB7F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{35875BEA-6426-44F9-B63A-6D67EA7EB7F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{35875BEA-6426-44F9-B63A-6D67EA7EB7F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{35875BEA-6426-44F9-B63A-6D67EA7EB7F1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C50145E6-A244-4F1F-B41F-90D1925B4A00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C50145E6-A244-4F1F-B41F-90D1925B4A00}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C50145E6-A244-4F1F-B41F-90D1925B4A00}.Release|Any CPU.ActiveCfg = Release|Any CPU

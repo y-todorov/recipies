@@ -45,7 +45,9 @@
                         </telerik:RadMenuItem>
                     </Items>
                 </telerik:RadMenuItem>
+                <telerik:RadMenuItem IsSeparator="true"></telerik:RadMenuItem>
                 <telerik:RadMenuItem>
+                    
                     <ItemTemplate>
                         <asp:LoginView ID="LoginView1" runat="server" ViewStateMode="Disabled">
                             <AnonymousTemplate>
