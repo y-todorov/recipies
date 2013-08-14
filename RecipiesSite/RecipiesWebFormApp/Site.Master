@@ -1,0 +1,60 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="RecipiesWebFormApp.SiteMaster" %>
+
+<%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <title>Change this title</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+    <style type="text/css">
+        * { margin: 0; padding: 0; border: 0; }
+    </style>
+</head>
+<body>
+    <form runat="server">
+
+        <telerik:RadScriptManager ID="RadScriptManager1" runat="server">
+            <Scripts>
+            </Scripts>
+        </telerik:RadScriptManager>
+        <telerik:RadStyleSheetManager runat="server" ID="RadStyleSheetManager1">
+            <StyleSheets>
+            </StyleSheets>
+        </telerik:RadStyleSheetManager>
+        <telerik:RadFormDecorator ID="RadFormDecorator1" runat="server" Skin="Silk" DecoratedControls="All" />
+        <telerik:RadSkinManager ID="RadSkinManager1" runat="server" Skin="Silk">
+        </telerik:RadSkinManager>
+        <telerik:RadMenu runat="server" Width="100%">
+            <Items>
+                <telerik:RadMenuItem runat="server" Text="Root RadMenuItem1">
+                    <Items>
+                        <telerik:RadMenuItem runat="server" Text="Child RadMenuItem 1">
+                        </telerik:RadMenuItem>
+                        <telerik:RadMenuItem runat="server" Text="Child RadMenuItem 2">
+                        </telerik:RadMenuItem>
+                    </Items>
+                </telerik:RadMenuItem>
+                <telerik:RadMenuItem runat="server" Text="Root RadMenuItem2">
+                </telerik:RadMenuItem>
+                <telerik:RadMenuItem runat="server" Text="Production">
+                    <Items>
+                        <telerik:RadMenuItem runat="server" Text="Product" NavigateUrl="~/Production/Product.aspx">
+                        </telerik:RadMenuItem>
+                        <telerik:RadMenuItem runat="server" Text="Child RadMenuItem 2">
+                        </telerik:RadMenuItem>
+                        <telerik:RadMenuItem runat="server" Text="Child RadMenuItem 3">
+                        </telerik:RadMenuItem>
+                    </Items>
+                </telerik:RadMenuItem>
+            </Items>
+        </telerik:RadMenu>
+        <div>
+            <asp:ContentPlaceHolder runat="server" ID="MainContent" />
+        </div>
+
+    </form>
+</body>
+</html>
