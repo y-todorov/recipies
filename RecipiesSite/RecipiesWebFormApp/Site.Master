@@ -35,7 +35,7 @@
             <Items>
                 <telerik:RadMenuItem runat="server" Text="Home" NavigateUrl="~/Default.aspx">
                 </telerik:RadMenuItem>
-                <telerik:RadMenuItem runat="server" Text="About">
+                <telerik:RadMenuItem runat="server" Text="About" NavigateUrl="~/About.aspx">
                 </telerik:RadMenuItem>
                 <telerik:RadMenuItem runat="server" Text="Production">
                     <Items>

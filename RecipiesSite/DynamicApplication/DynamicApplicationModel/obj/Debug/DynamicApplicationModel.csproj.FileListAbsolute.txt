@@ -5,8 +5,6 @@ C:\Projects\recipies\RecipiesSite\DynamicApplication\DynamicApplicationModel\bin
 C:\Projects\recipies\RecipiesSite\DynamicApplication\DynamicApplicationModel\bin\Debug\Mono.Cecil.dll
 C:\Projects\recipies\RecipiesSite\DynamicApplication\DynamicApplicationModel\bin\Debug\Mono.Cecil.Pdb.dll
 C:\Projects\recipies\RecipiesSite\DynamicApplication\DynamicApplicationModel\bin\Debug\Telerik.OpenAccess.35.Extensions.dll
-C:\Projects\recipies\RecipiesSite\DynamicApplication\DynamicApplicationModel\bin\Debug\Telerik.OpenAccess.dll
-C:\Projects\recipies\RecipiesSite\DynamicApplication\DynamicApplicationModel\bin\Debug\Telerik.OpenAccess.Runtime.dll
 C:\Projects\recipies\RecipiesSite\DynamicApplication\DynamicApplicationModel\bin\Debug\Telerik.OpenAccess.SDK.dll
 C:\Projects\recipies\RecipiesSite\DynamicApplication\DynamicApplicationModel\bin\Debug\Telerik.OpenAccess.Web.40.dll
 C:\Projects\recipies\RecipiesSite\DynamicApplication\DynamicApplicationModel\bin\Debug\Telerik.Web.UI.dll
