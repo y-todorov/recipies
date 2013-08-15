@@ -48,6 +48,7 @@
                 <telerik:RadMenuItem runat="server" Text="Sales">
                     <Items>
                         <telerik:RadMenuItem Text="Orders" NavigateUrl="Sales/Orders.aspx"></telerik:RadMenuItem>
+                         <telerik:RadMenuItem Text="OrderDetails" NavigateUrl="Sales/OrderDetails.aspx"></telerik:RadMenuItem>
                     </Items>
                 </telerik:RadMenuItem>
                 <telerik:RadMenuItem IsSeparator="true"></telerik:RadMenuItem>
