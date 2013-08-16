@@ -18,6 +18,9 @@ namespace RecipiesWebFormApp
                 details = ex.InnerException.Message;
             }
             lblError.Text = string.Format("Exception: {0}! Details: {1}!", ex.Message, details);
+
+            Uri urlReferrer = Request.UrlReferrer;
+            //Response.Redirect(u.ToString(), false);
             
         }
     }
