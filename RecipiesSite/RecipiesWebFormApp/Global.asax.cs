@@ -11,6 +11,7 @@ using System.Net;
 using Microsoft.SqlServer.Management.Smo;
 using Microsoft.SqlServer.Management.Common;
 using System.IO;
+using System.Text;
 
 namespace RecipiesWebFormApp
 {
@@ -18,7 +19,7 @@ namespace RecipiesWebFormApp
     {
         void Application_Start(object sender, EventArgs e)
         {
-            BackDatabases();
+            //BackDatabases();
 
 
             // Code that runs on application startup
@@ -54,13 +55,13 @@ namespace RecipiesWebFormApp
         private void BackDatabases()
         {
             // test adventure works
-            //Backup backup = new Backup();
-            //string serverName = "2a3247ec-fc2f-4ba5-8560-a21c00fb62d5.sqlserver.sequelizer.com";
-            //string userName = "bmrztolvtyhlfhpr";
-            //string password = "VgTTLZHir8tJLobcykbRBtCaQqoupBRkDjv8o38k3GMVoZoG6pbar3nBLTcvKo2W";
-            //SqlConnectionInfo sci = new SqlConnectionInfo(serverName, userName, password);
-            //ServerConnection sc = new ServerConnection(sci);
-            //Microsoft.SqlServer.Management.Smo.Server svr = new Microsoft.SqlServer.Management.Smo.Server(sc);
+            Backup backup = new Backup();
+            string serverName = "2a3247ec-fc2f-4ba5-8560-a21c00fb62d5.sqlserver.sequelizer.com";
+            string userName = "bmrztolvtyhlfhpr";
+            string password = "VgTTLZHir8tJLobcykbRBtCaQqoupBRkDjv8o38k3GMVoZoG6pbar3nBLTcvKo2W";
+            SqlConnectionInfo sci = new SqlConnectionInfo(serverName, userName, password);
+            ServerConnection sc = new ServerConnection(sci);
+            Microsoft.SqlServer.Management.Smo.Server svr = new Microsoft.SqlServer.Management.Smo.Server(sc);
 
             try
             {
@@ -91,15 +92,50 @@ namespace RecipiesWebFormApp
 
                 //r.SqlRestore(svr);
 
-               
-                
+
+
                 //var scipt = r.Script(svr);
 
-                //ScriptingOptions so = new ScriptingOptions();
-                //so.ScriptData = true;
-                //so.Add(new ScriptOption());
+                ScriptingOptions options = new ScriptingOptions();
+                //options.ScriptData = true;
+                options.ScriptDrops = false;
+                options.EnforceScriptingOptions = true;
+                options.ScriptSchema = true;
+                options.IncludeHeaders = true;         
+                options.Indexes = true;
+                options.DriAll = true;
+                
 
-                //var strColl = svr.Databases[0].Script(so);
+
+                //
+                Scripter scr = new Scripter(svr);
+                scr.Options = options;
+                SqlSmoObject[] objects = new SqlSmoObject[1];
+                objects[0] = svr.Databases[0];
+
+                var testtest = scr.Script(objects);
+
+                //
+
+                StringBuilder sbMain = new StringBuilder();
+
+                foreach (Table table in svr.Databases[0].Tables)
+                {
+                    IEnumerable<string> strColl = table.EnumScript(options);
+                    StringBuilder sb = new StringBuilder();
+                    foreach (string s in strColl)
+                    {
+                        sb.AppendLine(s);
+                    }
+                    sbMain.AppendLine(sb.ToString());
+                }
+
+                string res = sbMain.ToString();
+
+
+
+
+
 
 
 
