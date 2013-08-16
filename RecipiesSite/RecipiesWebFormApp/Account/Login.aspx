@@ -3,10 +3,7 @@
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
 
 
-<asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
-    <asp:ScriptManager ID="ScriptManager1" runat="server">
-    </asp:ScriptManager>
-    <telerik:RadFormDecorator ID="RadFormDecorator1" runat="server" DecoratedControls="All" Skin="Silk" />
+<asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">   
     <section id="loginForm">
         <asp:Login runat="server" ViewStateMode="Disabled" RenderOuterTable="true">
             <LayoutTemplate>

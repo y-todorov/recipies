@@ -8,6 +8,10 @@
 </head>
 <body>
     <form id="form1" runat="server">
+
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+
+         <telerik:RadFormDecorator ID="RadFormDecorator1" runat="server" DecoratedControls="All" Skin="Silk" />
     <div>
         <asp:ContentPlaceHolder ID="MainContent" runat="server">
         
