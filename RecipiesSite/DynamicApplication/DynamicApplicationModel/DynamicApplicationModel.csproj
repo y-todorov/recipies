@@ -31,18 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="enhancer">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Libs\enhancer.exe</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="Mono.Cecil, Version=0.9.5.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>OpenAccessAssemblies\Mono.Cecil.dll</HintPath>
-    </Reference>
-    <Reference Include="Mono.Cecil.Pdb">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Libs\Mono.Cecil.Pdb.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -73,14 +64,6 @@
     <Reference Include="Telerik.OpenAccess.Web.40">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>OpenAccessAssemblies\Telerik.OpenAccess.Web.40.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.Web.Design">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Libs\Telerik.Web.Design.dll</HintPath>
-    </Reference>
-    <Reference Include="venhance">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Libs\venhance.exe</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
