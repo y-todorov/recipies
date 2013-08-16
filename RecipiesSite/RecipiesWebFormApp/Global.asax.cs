@@ -29,22 +29,17 @@ namespace RecipiesWebFormApp
         void timer_Elapsed(object sender, ElapsedEventArgs e)
         {
             WebClient client = new WebClient();
-        
-    //        string baseUrl = Request.Url.Scheme + "://" + Request.Url.Authority + 
-    //Request.ApplicationPath.TrimEnd('/') + "/";
             string res = client.DownloadStringTaskAsync(new Uri("http://recipies.apphb.com/")).Result;
         }
 
         void Application_End(object sender, EventArgs e)
         {
             //  Code that runs on application shutdown
-
         }
 
         void Application_Error(object sender, EventArgs e)
         {
-            // Code that runs when an unhandled error occurs
-
+            // Code that runs when an unhandled error occurs           
         }
     }
 }
