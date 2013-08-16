@@ -1,14 +1,6 @@
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\RecipiesWebFormApp.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\RecipiesWebFormApp.pdb
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Antlr3.Runtime.dll
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\AspNet.ScriptManager.jQuery.dll
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\AspNet.ScriptManager.jQuery.UI.Combined.dll
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\DotNetOpenAuth.AspNet.dll
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\DotNetOpenAuth.Core.dll
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\DotNetOpenAuth.OAuth.Consumer.dll
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\DotNetOpenAuth.OAuth.dll
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\DotNetOpenAuth.OpenId.dll
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\DynamicApplicationModel.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\EntityFramework.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.AspNet.FriendlyUrls.dll
@@ -26,12 +18,6 @@ C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Telerik.Web.UI.Skins.dl
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\WebGrease.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\DynamicApplicationModel.pdb
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\EntityFramework.xml
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\DotNetOpenAuth.Core.xml
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\DotNetOpenAuth.OAuth.xml
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\DotNetOpenAuth.OAuth.Consumer.xml
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\DotNetOpenAuth.OpenId.xml
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\DotNetOpenAuth.AspNet.xml
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.AspNet.Membership.OpenAuth.xml
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Telerik.Web.UI.xml
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.AspNet.FriendlyUrls.xml
