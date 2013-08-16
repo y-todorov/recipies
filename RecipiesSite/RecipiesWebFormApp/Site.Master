@@ -39,16 +39,24 @@
                 </telerik:RadMenuItem>
                 <telerik:RadMenuItem runat="server" Text="Production">
                     <Items>
-                        <telerik:RadMenuItem runat="server" Text="Product" NavigateUrl="~/Production/Products.aspx">
+                        <telerik:RadMenuItem runat="server" Text="Products" NavigateUrl="~/Production/Products.aspx">
                         </telerik:RadMenuItem>
-                        <telerik:RadMenuItem runat="server" Text="Category" NavigateUrl="~/Production/Categories.aspx">
+                        <telerik:RadMenuItem runat="server" Text="Categories" NavigateUrl="~/Production/Categories.aspx">
+                        </telerik:RadMenuItem>
+                        <telerik:RadMenuItem runat="server" Text="xProducts" NavigateUrl="~/Production/xProducts.aspx">
+                        </telerik:RadMenuItem>
+                        <telerik:RadMenuItem runat="server" Text="xCategories" NavigateUrl="~/Production/xCategories.aspx">
+                        </telerik:RadMenuItem>
+                        <telerik:RadMenuItem runat="server" Text="xUnits" NavigateUrl="~/Production/xUnits.aspx">
+                        </telerik:RadMenuItem>
+                        <telerik:RadMenuItem runat="server" Text="xSuppliers" NavigateUrl="~/Production/xSuppliers.aspx">
                         </telerik:RadMenuItem>
                     </Items>
                 </telerik:RadMenuItem>
                 <telerik:RadMenuItem runat="server" Text="Sales">
                     <Items>
                         <telerik:RadMenuItem Text="Orders" NavigateUrl="Sales/Orders.aspx"></telerik:RadMenuItem>
-                         <telerik:RadMenuItem Text="OrderDetails" NavigateUrl="Sales/OrderDetails.aspx"></telerik:RadMenuItem>
+                        <telerik:RadMenuItem Text="OrderDetails" NavigateUrl="Sales/OrderDetails.aspx"></telerik:RadMenuItem>
                     </Items>
                 </telerik:RadMenuItem>
                 <telerik:RadMenuItem IsSeparator="true"></telerik:RadMenuItem>
