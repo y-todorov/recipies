@@ -36,9 +36,9 @@
       <HintPath>..\..\Libs\enhancer.exe</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Mono.CecilL">
+    <Reference Include="Mono.Cecil, Version=0.9.5.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Libs\Mono.Cecil.dll</HintPath>
+      <HintPath>OpenAccessAssemblies\Mono.Cecil.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Cecil.Pdb">
       <SpecificVersion>False</SpecificVersion>
@@ -77,12 +77,6 @@
     <Reference Include="Telerik.Web.Design">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Libs\Telerik.Web.Design.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.Web.UI">
-      <HintPath>..\..\Libs\Telerik.Web.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.Web.UI.Skins">
-      <HintPath>..\..\Libs\Telerik.Web.UI.Skins.dll</HintPath>
     </Reference>
     <Reference Include="venhance">
       <SpecificVersion>False</SpecificVersion>
