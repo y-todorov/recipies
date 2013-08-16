@@ -8,6 +8,9 @@ using System.Web.Security;
 using RecipiesWebFormApp;
 using System.Timers;
 using System.Net;
+using Microsoft.SqlServer.Management.Smo;
+using Microsoft.SqlServer.Management.Common;
+using System.IO;
 
 namespace RecipiesWebFormApp
 {
@@ -15,15 +18,21 @@ namespace RecipiesWebFormApp
     {
         void Application_Start(object sender, EventArgs e)
         {
+            BackDatabases();
+
+
             // Code that runs on application startup
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterOpenAuth();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
             // Yordan, test that site is not asleep after 20 mins. of inactivity
+            // By the way this works very well :)
             Timer timer = new Timer(TimeSpan.FromMinutes(10).TotalMilliseconds); // 10 minutes
             timer.Elapsed += timer_Elapsed;
             timer.Start();
+
+
         }
 
         void timer_Elapsed(object sender, ElapsedEventArgs e)
@@ -39,9 +48,75 @@ namespace RecipiesWebFormApp
 
         void Application_Error(object sender, EventArgs e)
         {
-            // Code that runs when an unhandled error occurs           
-
-            
+            // Code that runs when an unhandled error occurs      
         }
+
+        private void BackDatabases()
+        {
+            // test adventure works
+            //Backup backup = new Backup();
+            //string serverName = "2a3247ec-fc2f-4ba5-8560-a21c00fb62d5.sqlserver.sequelizer.com";
+            //string userName = "bmrztolvtyhlfhpr";
+            //string password = "VgTTLZHir8tJLobcykbRBtCaQqoupBRkDjv8o38k3GMVoZoG6pbar3nBLTcvKo2W";
+            //SqlConnectionInfo sci = new SqlConnectionInfo(serverName, userName, password);
+            //ServerConnection sc = new ServerConnection(sci);
+            //Microsoft.SqlServer.Management.Smo.Server svr = new Microsoft.SqlServer.Management.Smo.Server(sc);
+
+            try
+            {
+                //backup.Database = "db2a3247ecfc2f4ba58560a21c00fb62d5";
+
+                ////BackupDevice bs = new BackupDevice();
+                ////bs.BackupDeviceType = BackupDeviceType.Disk;
+
+
+
+                //backup.Devices.AddDevice("test", DeviceType.File);
+
+                ////backup.Devices.AddDevice("C:\\test.bak", DeviceType.File);
+
+                //backup.Complete += backup_Complete;
+
+
+                //backup.SqlBackup(svr);
+
+
+                //svr.Databases["db2a3247ecfc2f4ba58560a21c00fb62d5"].Drop();
+
+                //Restore r = new Restore();
+
+                //r.Database = "db804b3a50697f4e00b7cca1e6015cf402";
+                //r.NoRecovery = true;
+                //r.Devices.AddDevice("test", DeviceType.File);
+
+                //r.SqlRestore(svr);
+
+               
+                
+                //var scipt = r.Script(svr);
+
+                //ScriptingOptions so = new ScriptingOptions();
+                //so.ScriptData = true;
+                //so.Add(new ScriptOption());
+
+                //var strColl = svr.Databases[0].Script(so);
+
+
+
+            }
+            catch (Exception ex)
+            {
+                string mes = ex.Message;
+            }
+
+
+
+        }
+
+        void backup_Complete(object sender, ServerMessageEventArgs e)
+        {
+
+        }
+
     }
 }
