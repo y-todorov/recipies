@@ -8,7 +8,7 @@
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
 
-     <telerik:RadHtmlChart runat="server" ID="RadHtmlChart1" Width="800px" Height="500px"          >
+     <telerik:RadHtmlChart runat="server" ID="RadHtmlChart1" Width="487px" Height="264px"          >
                <PlotArea>
                     <Series>
                          <telerik:ColumnSeries DataFieldY="UnitsInStock" Name="Units In Stock">

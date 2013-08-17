@@ -62,7 +62,7 @@
                     <Items>
                         <telerik:RadMenuItem Text="Manage my account" NavigateUrl="~/Account/Manage">
                         </telerik:RadMenuItem>
-                        <telerik:RadMenuItem Text="Log off" Value="Log off"  >
+                        <telerik:RadMenuItem Text="Log off" Value="Log off" NavigateUrl="Account/Login.aspx"  >
                         </telerik:RadMenuItem>
                     </Items>
                 </telerik:RadMenuItem>
