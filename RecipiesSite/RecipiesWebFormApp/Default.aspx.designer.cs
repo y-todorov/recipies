@@ -13,12 +13,21 @@ namespace RecipiesWebFormApp {
     public partial class _Default {
         
         /// <summary>
-        /// RadHtmlChart1 control.
+        /// rhcLast10ModifiedProducts control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadHtmlChart RadHtmlChart1;
+        protected global::Telerik.Web.UI.RadHtmlChart rhcLast10ModifiedProducts;
+        
+        /// <summary>
+        /// rhcProductsCountByCategory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadHtmlChart rhcProductsCountByCategory;
     }
 }

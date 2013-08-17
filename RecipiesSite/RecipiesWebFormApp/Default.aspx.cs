@@ -14,7 +14,9 @@ namespace RecipiesWebFormApp
         {
             if (!IsPostBack)
             {
-                RadHtmlChart1.DataSource = ContextFactory.GetContextPerRequest().XProducts.OrderByDescending(pr => pr.ModifiedDate).Take(10);
+                rhcLast10ModifiedProducts.DataSource = ContextFactory.GetContextPerRequest().XProducts.OrderByDescending(pr => pr.ModifiedDate).Take(10);
+
+                rhcProductsCountByCategory.DataSource = ContextFactory.GetContextPerRequest().XCategories.Select(cat => new { CategoryName = cat.Name, ProductCount = cat.XProducts.Count });
             }
         }
     }
