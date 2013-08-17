@@ -17,6 +17,15 @@ namespace RecipiesWebFormApp
 
         protected void Page_Init(object sender, EventArgs e)
         {
+            // This prevents back button after log out 
+
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.Cache.SetExpires(DateTime.UtcNow.AddHours(-1));
+            Response.Cache.SetNoStore();
+
+            //
+
+
             // The code below helps to protect against XSRF attacks
             var requestCookie = Request.Cookies[AntiXsrfTokenKey];
             Guid requestCookieGuidValue;
@@ -80,14 +89,12 @@ namespace RecipiesWebFormApp
         protected void Unnamed_ItemClick(object sender, RadMenuEventArgs e)
         {
             // We get here only if navigate url is not changed
-            RadMenu rm = sender as RadMenu;
-            if (rm.SelectedItem != null && rm.SelectedItem.Value.Equals("Log off"))
-            {
-                FormsAuthentication.SignOut();
-                FormsAuthentication.RedirectToLoginPage();
-            }
-
-            
+            //RadMenu rm = sender as RadMenu;
+            //if (rm.SelectedItem != null && rm.SelectedItem.Value.Equals("Log off"))
+            //{
+            //    FormsAuthentication.SignOut();
+            //    FormsAuthentication.RedirectToLoginPage();
+            //}            
         }
     }
 }
