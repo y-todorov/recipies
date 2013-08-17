@@ -33,7 +33,7 @@
         </telerik:RadSkinManager>
         <telerik:RadMenu runat="server" Width="100%" OnItemClick="Unnamed_ItemClick">
             <Items>
-                <telerik:RadMenuItem runat="server" Text="Dashboard" NavigateUrl="~/Dashboard">
+                <telerik:RadMenuItem runat="server" Text="Dashboard" NavigateUrl="~/Default">
                 </telerik:RadMenuItem>            
                 <telerik:RadMenuItem runat="server" Text="Production">
                     <Items>
