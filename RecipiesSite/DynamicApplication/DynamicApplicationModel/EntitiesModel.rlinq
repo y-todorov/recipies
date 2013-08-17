@@ -562,10 +562,10 @@
           <orm:column name="ModifiedDate" sql-type="datetime" nullable="true" length="0" scale="0" has-default-value="true" ado-type="DateTime" />
         </orm:field>
         <orm:field name="_store" property="Store" behavior="readwrite" uniqueId="978a8690-30d6-4d27-ba14-31638d06c593" type="System.String">
-          <orm:column nullable="true" length="1000" name="Store" scale="0" sql-type="nvarchar" ado-type="UnicodeStringVariableLength" />
+          <orm:column name="Store" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
         </orm:field>
         <orm:field name="_reorderLevel" property="ReorderLevel" behavior="readwrite" uniqueId="b8fb20bb-e7f4-4fac-afb3-6ed3dc8263af" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
-          <orm:column nullable="true" length="0" name="ReorderLevel" scale="0" sql-type="int" ado-type="Int32" />
+          <orm:column name="ReorderLevel" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
         </orm:field>
         <orm:field name="_xUnit" property="XUnit" behavior="readwrite" uniqueId="160d7463-fcfa-4a1d-a81d-1747977107f2" type="DynamicApplicationModel.XUnit">
           <orm:reference uniqueId="3ca328d6-bc85-43f6-921c-546699ffdd70">
@@ -791,8 +791,8 @@
         <orm:column name="UnitsInStock" sql-type="int" nullable="true" length="0" scale="0" has-default-value="true" ado-type="Int32" />
         <orm:column name="UnitsOnOrder" sql-type="int" nullable="true" length="0" scale="0" has-default-value="true" ado-type="Int32" />
         <orm:column name="ModifiedDate" sql-type="datetime" nullable="true" length="0" scale="0" has-default-value="true" ado-type="DateTime" />
-        <orm:column nullable="true" length="1000" name="Store" scale="0" sql-type="nvarchar" ado-type="UnicodeStringVariableLength" />
-        <orm:column nullable="true" length="0" name="ReorderLevel" scale="0" sql-type="int" ado-type="Int32" />
+        <orm:column name="Store" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
+        <orm:column name="ReorderLevel" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
         <orm:constraint name="FK_xProduct_xUnit" destination-table="xUnit">
           <orm:column name="UnitId" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
         </orm:constraint>

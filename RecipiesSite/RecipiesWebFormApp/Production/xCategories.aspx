@@ -12,11 +12,12 @@
                 </ColumnValidationSettings>
             </telerik:GridBoundColumn>
             <telerik:GridBoundColumn DataField="Name" FilterControlAltText="Filter Name column" HeaderText="Name" SortExpression="Name" UniqueName="Name">
-                <ColumnValidationSettings>
-                    <ModelErrorMessage Text="" />
-                </ColumnValidationSettings>
+                <ColumnValidationSettings EnableRequiredFieldValidation="true" EnableModelErrorMessageValidation="true">
+                        <RequiredFieldValidator ForeColor="Red" ErrorMessage="This field is required!"></RequiredFieldValidator>
+                        <ModelErrorMessage BackColor="Red" />
+                    </ColumnValidationSettings>
             </telerik:GridBoundColumn>
-            <telerik:GridBoundColumn DataField="ModifiedDate" DataType="System.DateTime" FilterControlAltText="Filter ModifiedDate column" HeaderText="ModifiedDate" SortExpression="ModifiedDate" UniqueName="ModifiedDate">
+            <telerik:GridBoundColumn DataField="ModifiedDate" DataType="System.DateTime" ReadOnly="true" FilterControlAltText="Filter ModifiedDate column" HeaderText="ModifiedDate" SortExpression="ModifiedDate" UniqueName="ModifiedDate">
                 <ColumnValidationSettings>
                     <ModelErrorMessage Text="" />
                 </ColumnValidationSettings>

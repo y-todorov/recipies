@@ -11,7 +11,7 @@
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
                 </telerik:GridBoundColumn>
-                <telerik:GridDropDownColumn UniqueName="DropDownUnitListColumn" ListTextField="Name"
+                <telerik:GridDropDownColumn UniqueName="DropDownUnitListColumn" ListTextField="Name" EmptyListItemText="" EnableEmptyListItem="true" EmptyListItemValue="" ConvertEmptyStringToNull="true"
                     ListValueField="UnitID" DataSourceID="OpenAccessLinqDataSourceUnit" HeaderText="Unit"
                     DataField="UnitID" DropDownControlType="RadComboBox">
                     <ColumnValidationSettings>
@@ -20,14 +20,14 @@
                 </telerik:GridDropDownColumn>
                 <telerik:GridDropDownColumn UniqueName="DropDownCategoryListColumn" ListTextField="Name"
                     ListValueField="CategoryID" DataSourceID="OpenAccessLinqDataSourceCategory" HeaderText="Category"
-                    DataField="CategoryID" DropDownControlType="RadComboBox">
+                    DataField="CategoryID" DropDownControlType="RadComboBox" EmptyListItemText="" EnableEmptyListItem="true" EmptyListItemValue="" ConvertEmptyStringToNull="true">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text=""></ModelErrorMessage>
                     </ColumnValidationSettings>
                 </telerik:GridDropDownColumn>
-               <telerik:GridDropDownColumn UniqueName="DropDownSupplierListColumn" ListTextField="ContactName"
+                <telerik:GridDropDownColumn UniqueName="DropDownSupplierListColumn" ListTextField="ContactName"
                     ListValueField="SupplierID" DataSourceID="OpenAccessLinqDataSourceSupplier" HeaderText="Supplier"
-                    DataField="SupplierID" DropDownControlType="RadComboBox">
+                    DataField="SupplierID" DropDownControlType="RadComboBox" EmptyListItemText="" EnableEmptyListItem="true" EmptyListItemValue="" ConvertEmptyStringToNull="true">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text=""></ModelErrorMessage>
                     </ColumnValidationSettings>
@@ -73,7 +73,7 @@
     </telerik:RadGrid>
     <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSource1" runat="server" ContextTypeName="DynamicApplicationModel.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="XProducts">
     </telerik:OpenAccessLinqDataSource>
-    <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourceUnit" Runat="server" ContextTypeName="DynamicApplicationModel.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="XUnits" />
-    <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourceSupplier" Runat="server" ContextTypeName="DynamicApplicationModel.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="XSuppliers" />
-    <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourceCategory" Runat="server" ContextTypeName="DynamicApplicationModel.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="XCategories" />
+    <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourceUnit" runat="server" ContextTypeName="DynamicApplicationModel.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="XUnits" />
+    <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourceSupplier" runat="server" ContextTypeName="DynamicApplicationModel.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="XSuppliers" />
+    <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourceCategory" runat="server" ContextTypeName="DynamicApplicationModel.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="XCategories" />
 </asp:Content>

@@ -24,7 +24,7 @@ using DynamicApplicationModel;
 namespace DynamicApplicationModel	
 {
 	public partial class RecipiesModel : OpenAccessContext, IRecipiesModelUnitOfWork
-	{ 
+	{
 		private static string connectionStringName = @"Connection";
 			
 		private static BackendConfiguration backend = GetBackendConfiguration();
