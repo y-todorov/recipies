@@ -179,7 +179,7 @@
     <Content Include="Production\xUnits.aspx" />
     <Content Include="Sales\OrderDetails.aspx" />
     <Content Include="Sales\Orders.aspx" />
-    <Content Include="Default.aspx" />
+    <Content Include="Dashboard.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
@@ -269,12 +269,12 @@
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Default.aspx.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
+    <Compile Include="Dashboard.aspx.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Default.aspx.designer.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
+    <Compile Include="Dashboard.aspx.designer.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
     </Compile>
     <Compile Include="ErrorPages\Error.aspx.cs">
       <DependentUpon>Error.aspx</DependentUpon>

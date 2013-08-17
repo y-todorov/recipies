@@ -33,30 +33,28 @@
         </telerik:RadSkinManager>
         <telerik:RadMenu runat="server" Width="100%" OnItemClick="Unnamed_ItemClick">
             <Items>
-                <telerik:RadMenuItem runat="server" Text="Home" NavigateUrl="~/Default.aspx">
-                </telerik:RadMenuItem>
-                <telerik:RadMenuItem runat="server" Text="About" NavigateUrl="~/About.aspx">
-                </telerik:RadMenuItem>
+                <telerik:RadMenuItem runat="server" Text="Dashboard" NavigateUrl="~/Dashboard">
+                </telerik:RadMenuItem>            
                 <telerik:RadMenuItem runat="server" Text="Production">
                     <Items>
-                        <telerik:RadMenuItem runat="server" Text="Products" NavigateUrl="~/Production/Products.aspx">
+                        <telerik:RadMenuItem runat="server" Text="Products" NavigateUrl="~/Production/Products">
                         </telerik:RadMenuItem>
-                        <telerik:RadMenuItem runat="server" Text="Categories" NavigateUrl="~/Production/Categories.aspx">
+                        <telerik:RadMenuItem runat="server" Text="Categories" NavigateUrl="~/Production/Categories">
                         </telerik:RadMenuItem>
-                        <telerik:RadMenuItem runat="server" Text="xProducts" NavigateUrl="~/Production/xProducts.aspx">
+                        <telerik:RadMenuItem runat="server" Text="xProducts" NavigateUrl="~/Production/xProducts">
                         </telerik:RadMenuItem>
-                        <telerik:RadMenuItem runat="server" Text="xCategories" NavigateUrl="~/Production/xCategories.aspx">
+                        <telerik:RadMenuItem runat="server" Text="xCategories" NavigateUrl="~/Production/xCategories">
                         </telerik:RadMenuItem>
-                        <telerik:RadMenuItem runat="server" Text="xUnits" NavigateUrl="~/Production/xUnits.aspx">
+                        <telerik:RadMenuItem runat="server" Text="xUnits" NavigateUrl="~/Production/xUnits">
                         </telerik:RadMenuItem>
-                        <telerik:RadMenuItem runat="server" Text="xSuppliers" NavigateUrl="~/Production/xSuppliers.aspx">
+                        <telerik:RadMenuItem runat="server" Text="xSuppliers" NavigateUrl="~/Production/xSuppliers">
                         </telerik:RadMenuItem>
                     </Items>
                 </telerik:RadMenuItem>
                 <telerik:RadMenuItem runat="server" Text="Sales">
                     <Items>
-                        <telerik:RadMenuItem Text="Orders" NavigateUrl="Sales/Orders.aspx"></telerik:RadMenuItem>
-                        <telerik:RadMenuItem Text="OrderDetails" NavigateUrl="Sales/OrderDetails.aspx"></telerik:RadMenuItem>
+                        <telerik:RadMenuItem Text="Orders" NavigateUrl="~/Sales/Orders"></telerik:RadMenuItem>
+                        <telerik:RadMenuItem Text="OrderDetails" NavigateUrl="~/Sales/OrderDetails"></telerik:RadMenuItem>
                     </Items>
                 </telerik:RadMenuItem>
                 <telerik:RadMenuItem IsSeparator="true"></telerik:RadMenuItem>
