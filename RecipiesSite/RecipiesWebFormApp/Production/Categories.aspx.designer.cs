@@ -10,7 +10,7 @@
 namespace RecipiesWebFormApp.Production {
     
     
-    public partial class Category {
+    public partial class xCategories {
         
         /// <summary>
         /// RadGrid1 control.

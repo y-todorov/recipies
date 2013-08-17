@@ -173,10 +173,8 @@
     <Content Include="App_Themes\DefaultTheme\DefaultSkin.skin" />
     <Content Include="Production\Categories.aspx" />
     <Content Include="Production\Products.aspx" />
-    <Content Include="Production\xCategories.aspx" />
-    <Content Include="Production\xProducts.aspx" />
-    <Content Include="Production\xSuppliers.aspx" />
-    <Content Include="Production\xUnits.aspx" />
+    <Content Include="Production\Suppliers.aspx" />
+    <Content Include="Production\Units.aspx" />
     <Content Include="Sales\OrderDetails.aspx" />
     <Content Include="Sales\Orders.aspx" />
     <Content Include="Default.aspx" />
@@ -307,33 +305,19 @@
     <Compile Include="Production\Products.aspx.designer.cs">
       <DependentUpon>Products.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Production\xCategories.aspx.cs">
-      <DependentUpon>xCategories.aspx</DependentUpon>
+    <Compile Include="Production\Suppliers.aspx.cs">
+      <DependentUpon>Suppliers.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Production\xCategories.aspx.designer.cs">
-      <DependentUpon>xCategories.aspx</DependentUpon>
+    <Compile Include="Production\Suppliers.aspx.designer.cs">
+      <DependentUpon>Suppliers.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Production\xProducts.aspx.cs">
-      <DependentUpon>xProducts.aspx</DependentUpon>
+    <Compile Include="Production\Units.aspx.cs">
+      <DependentUpon>Units.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Production\xProducts.aspx.designer.cs">
-      <DependentUpon>xProducts.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Production\xSuppliers.aspx.cs">
-      <DependentUpon>xSuppliers.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Production\xSuppliers.aspx.designer.cs">
-      <DependentUpon>xSuppliers.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Production\xUnits.aspx.cs">
-      <DependentUpon>xUnits.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Production\xUnits.aspx.designer.cs">
-      <DependentUpon>xUnits.aspx</DependentUpon>
+    <Compile Include="Production\Units.aspx.designer.cs">
+      <DependentUpon>Units.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sales\OrderDetails.aspx.cs">

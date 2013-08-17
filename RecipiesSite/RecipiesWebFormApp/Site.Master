@@ -16,6 +16,14 @@
             border: 0;
         }
     </style>
+    <script type="text/javascript">
+        function OnClientItemClicking(sender, args) {
+            if (args.get_item().get_items().get_count() != 0 && args.get_item().get_level() == 0) {
+                args.set_cancel(true); // Cancel the event 
+            }
+        }
+</script>   
+
 </head>
 <body>
     <form runat="server">
@@ -31,23 +39,19 @@
         <telerik:RadFormDecorator ID="RadFormDecorator1" runat="server" Skin="Silk" DecoratedControls="All" />
         <telerik:RadSkinManager ID="RadSkinManager1" runat="server" Skin="Silk">
         </telerik:RadSkinManager>
-        <telerik:RadMenu runat="server" Width="100%" OnItemClick="Unnamed_ItemClick">
+        <telerik:RadMenu runat="server" Width="100%" OnItemClick="Unnamed_ItemClick" OnClientItemClicking="OnClientItemClicking">
             <Items>
                 <telerik:RadMenuItem runat="server" Text="Dashboard" NavigateUrl="~/Default">
                 </telerik:RadMenuItem>            
                 <telerik:RadMenuItem runat="server" Text="Production">
-                    <Items>
+                    <Items>                       
                         <telerik:RadMenuItem runat="server" Text="Products" NavigateUrl="~/Production/Products">
                         </telerik:RadMenuItem>
                         <telerik:RadMenuItem runat="server" Text="Categories" NavigateUrl="~/Production/Categories">
                         </telerik:RadMenuItem>
-                        <telerik:RadMenuItem runat="server" Text="xProducts" NavigateUrl="~/Production/xProducts">
+                        <telerik:RadMenuItem runat="server" Text="Units" NavigateUrl="~/Production/Units">
                         </telerik:RadMenuItem>
-                        <telerik:RadMenuItem runat="server" Text="xCategories" NavigateUrl="~/Production/xCategories">
-                        </telerik:RadMenuItem>
-                        <telerik:RadMenuItem runat="server" Text="xUnits" NavigateUrl="~/Production/xUnits">
-                        </telerik:RadMenuItem>
-                        <telerik:RadMenuItem runat="server" Text="xSuppliers" NavigateUrl="~/Production/xSuppliers">
+                        <telerik:RadMenuItem runat="server" Text="Suppliers" NavigateUrl="~/Production/Suppliers">
                         </telerik:RadMenuItem>
                     </Items>
                 </telerik:RadMenuItem>
@@ -67,7 +71,7 @@
                     </Items>
                 </telerik:RadMenuItem>
                 <telerik:RadMenuItem IsSeparator="true"></telerik:RadMenuItem>
-                <telerik:RadMenuItem OnLoad="Unnamed_Load">
+                <telerik:RadMenuItem OnLoad="Unnamed_Load"  NavigateUrl="~/Default">
                 </telerik:RadMenuItem>
 
             </Items>
