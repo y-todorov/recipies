@@ -22,9 +22,10 @@
                             </telerik:ColumnSeries>
                         </Series>
                         <XAxis DataLabelsField="Name" Step="1">
-                            <LabelsAppearance></LabelsAppearance>
+                            <LabelsAppearance RotationAngle="30"></LabelsAppearance>
                             <MajorGridLines Visible="false"></MajorGridLines>
                             <MinorGridLines Visible="false"></MinorGridLines>
+
                         </XAxis>
                         <YAxis>
                             <TitleAppearance Text="Units"></TitleAppearance>
@@ -44,7 +45,7 @@
                             </telerik:ColumnSeries>
                         </Series>
                         <XAxis DataLabelsField="CategoryName" Step="1">
-                            <LabelsAppearance></LabelsAppearance>
+                            <LabelsAppearance RotationAngle="30"></LabelsAppearance>
                             <MajorGridLines Visible="false"></MajorGridLines>
                             <MinorGridLines Visible="false"></MinorGridLines>
                         </XAxis>
