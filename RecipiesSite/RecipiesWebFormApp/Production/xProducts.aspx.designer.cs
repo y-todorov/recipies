@@ -29,5 +29,32 @@ namespace RecipiesWebFormApp.Production {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.OpenAccess.Web.OpenAccessLinqDataSource OpenAccessLinqDataSource1;
+        
+        /// <summary>
+        /// OpenAccessLinqDataSourceUnit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.OpenAccess.Web.OpenAccessLinqDataSource OpenAccessLinqDataSourceUnit;
+        
+        /// <summary>
+        /// OpenAccessLinqDataSourceSupplier control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.OpenAccess.Web.OpenAccessLinqDataSource OpenAccessLinqDataSourceSupplier;
+        
+        /// <summary>
+        /// OpenAccessLinqDataSourceCategory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.OpenAccess.Web.OpenAccessLinqDataSource OpenAccessLinqDataSourceCategory;
     }
 }

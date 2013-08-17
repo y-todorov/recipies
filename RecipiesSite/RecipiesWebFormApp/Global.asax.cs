@@ -97,6 +97,7 @@ namespace RecipiesWebFormApp
                 //var scipt = r.Script(svr);
 
                 ScriptingOptions options = new ScriptingOptions();
+                
                 //options.ScriptData = true;
                 options.ScriptDrops = false;
                 options.EnforceScriptingOptions = true;
@@ -104,8 +105,18 @@ namespace RecipiesWebFormApp
                 options.IncludeHeaders = true;         
                 options.Indexes = true;
                 options.DriAll = true;
-                
 
+                options.DriAllConstraints = true;
+                options.DriAllKeys = true;
+                options.DriChecks = true;
+                options.DriForeignKeys = true;
+
+                options.DriDefaults = true;
+                options.IncludeDatabaseContext = true;
+                options.IncludeDatabaseRoleMemberships = true;
+                
+                   
+                
 
                 //
                 Scripter scr = new Scripter(svr);
@@ -113,7 +124,11 @@ namespace RecipiesWebFormApp
                 SqlSmoObject[] objects = new SqlSmoObject[1];
                 objects[0] = svr.Databases[0];
 
-                var testtest = scr.Script(objects);
+                var tes  = svr.Script();
+
+                var testtest = svr.Databases[0].Script(options); // .Script(objects);
+
+
 
                 //
 

@@ -11,21 +11,27 @@
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
                 </telerik:GridBoundColumn>
-                <telerik:GridBoundColumn DataField="UnitId" DataType="System.Int32" FilterControlAltText="Filter UnitId column" HeaderText="UnitId" SortExpression="UnitId" UniqueName="UnitId">
+                <telerik:GridDropDownColumn UniqueName="DropDownUnitListColumn" ListTextField="Name"
+                    ListValueField="UnitID" DataSourceID="OpenAccessLinqDataSourceUnit" HeaderText="Unit"
+                    DataField="UnitID" DropDownControlType="RadComboBox">
                     <ColumnValidationSettings>
-                        <ModelErrorMessage Text="" />
+                        <ModelErrorMessage Text=""></ModelErrorMessage>
                     </ColumnValidationSettings>
-                </telerik:GridBoundColumn>
-                <telerik:GridBoundColumn DataField="CategoryId" DataType="System.Int32" FilterControlAltText="Filter CategoryId column" HeaderText="CategoryId" SortExpression="CategoryId" UniqueName="CategoryId">
+                </telerik:GridDropDownColumn>
+                <telerik:GridDropDownColumn UniqueName="DropDownCategoryListColumn" ListTextField="Name"
+                    ListValueField="CategoryID" DataSourceID="OpenAccessLinqDataSourceCategory" HeaderText="Category"
+                    DataField="CategoryID" DropDownControlType="RadComboBox">
                     <ColumnValidationSettings>
-                        <ModelErrorMessage Text="" />
+                        <ModelErrorMessage Text=""></ModelErrorMessage>
                     </ColumnValidationSettings>
-                </telerik:GridBoundColumn>
-                <telerik:GridBoundColumn DataField="SupplierID" DataType="System.Int32" FilterControlAltText="Filter SupplierID column" HeaderText="SupplierID" SortExpression="SupplierID" UniqueName="SupplierID">
+                </telerik:GridDropDownColumn>
+               <telerik:GridDropDownColumn UniqueName="DropDownSupplierListColumn" ListTextField="ContactName"
+                    ListValueField="SupplierID" DataSourceID="OpenAccessLinqDataSourceSupplier" HeaderText="Supplier"
+                    DataField="SupplierID" DropDownControlType="RadComboBox">
                     <ColumnValidationSettings>
-                        <ModelErrorMessage Text="" />
+                        <ModelErrorMessage Text=""></ModelErrorMessage>
                     </ColumnValidationSettings>
-                </telerik:GridBoundColumn>
+                </telerik:GridDropDownColumn>
                 <telerik:GridBoundColumn DataField="Name" FilterControlAltText="Filter Name column" HeaderText="Name" SortExpression="Name" UniqueName="Name">
                     <ColumnValidationSettings EnableRequiredFieldValidation="true" EnableModelErrorMessageValidation="true">
                         <RequiredFieldValidator ForeColor="Red" ErrorMessage="This field is required!"></RequiredFieldValidator>
@@ -67,4 +73,7 @@
     </telerik:RadGrid>
     <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSource1" runat="server" ContextTypeName="DynamicApplicationModel.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="XProducts">
     </telerik:OpenAccessLinqDataSource>
+    <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourceUnit" Runat="server" ContextTypeName="DynamicApplicationModel.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="XUnits" />
+    <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourceSupplier" Runat="server" ContextTypeName="DynamicApplicationModel.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="XSuppliers" />
+    <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourceCategory" Runat="server" ContextTypeName="DynamicApplicationModel.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="XCategories" />
 </asp:Content>
