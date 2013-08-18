@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Telerik.OpenAccess;
 
 namespace RecipiesWebFormApp
 {
@@ -14,6 +15,11 @@ namespace RecipiesWebFormApp
         {
             if (!IsPostBack)
             {
+                ISchemaHandler sh = ContextFactory.GetContextPerRequest().GetSchemaHandler();
+
+                string ddl = sh.CreateDDLScript();
+
+
                 rhcLast10ModifiedProducts.DataSource = ContextFactory.GetContextPerRequest().XProducts.OrderByDescending(pr => pr.ModifiedDate).Take(10);
 
                 rhcProductsCountByCategory.DataSource = ContextFactory.GetContextPerRequest().XCategories.Select(cat => new { CategoryName = cat.Name, ProductCount = cat.XProducts.Count });

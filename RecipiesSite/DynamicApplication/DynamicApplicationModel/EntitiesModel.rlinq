@@ -457,7 +457,7 @@
           <orm:collection element-class="DynamicApplicationModel.Product" inverse-field="_category" order-by="" uniqueId="2ba5a1d9-81c7-479c-afa9-1fe287741b43" />
         </orm:field>
       </orm:class>
-      <orm:class name="XUnit" uniqueId="e287a050-4e15-40e5-bbb0-ed1f9544d12d">
+      <orm:class name="XUnit" update-schema="true" uniqueId="e287a050-4e15-40e5-bbb0-ed1f9544d12d">
         <orm:table name="xUnit" />
         <orm:identity>
           <orm:key-generator name="autoinc" />
@@ -477,7 +477,7 @@
           <orm:collection element-class="DynamicApplicationModel.XProduct" inverse-field="_xUnit" order-by="" uniqueId="3ca328d6-bc85-43f6-921c-546699ffdd70" />
         </orm:field>
       </orm:class>
-      <orm:class name="XSupplier" uniqueId="8e1ad6c9-b91f-40bb-9d03-20d5fe1dbcfb">
+      <orm:class name="XSupplier" update-schema="true" uniqueId="8e1ad6c9-b91f-40bb-9d03-20d5fe1dbcfb">
         <orm:table name="xSupplier" />
         <orm:identity>
           <orm:key-generator name="autoinc" />
@@ -527,7 +527,7 @@
           <orm:collection element-class="DynamicApplicationModel.XProduct" inverse-field="_xSupplier" order-by="" uniqueId="43573272-ae55-4e31-b166-58d20ed03ef0" />
         </orm:field>
       </orm:class>
-      <orm:class name="XProduct" uniqueId="49991dbb-9041-4ff9-994b-bf1314c0f93d">
+      <orm:class name="XProduct" update-schema="true" uniqueId="49991dbb-9041-4ff9-994b-bf1314c0f93d">
         <orm:table name="xProduct" />
         <orm:identity>
           <orm:key-generator name="autoinc" />
@@ -586,7 +586,7 @@
           </orm:reference>
         </orm:field>
       </orm:class>
-      <orm:class name="XCategory" uniqueId="590e7b88-e516-4960-b0e6-08144d1cc980">
+      <orm:class name="XCategory" update-schema="true" uniqueId="590e7b88-e516-4960-b0e6-08144d1cc980">
         <orm:table name="xCategory" />
         <orm:identity>
           <orm:key-generator name="autoinc" />
@@ -1191,7 +1191,7 @@
         </classHasNavigationalProperties>
       </navigationalProperties>
     </DomainClass>
-    <DomainClass Id="e287a050-4e15-40e5-bbb0-ed1f9544d12d" name="XUnit" namespace="DynamicApplicationModel" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true">
+    <DomainClass Id="e287a050-4e15-40e5-bbb0-ed1f9544d12d" name="XUnit" namespace="DynamicApplicationModel" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" updateSchema="true" showNavigationCompartment="true" showImplementationCompartment="true">
       <Property Id="9e2e2ccf-d853-4cdd-963c-33265dcb7565" name="UnitId" type="Int32" label="UnitId : Int32" kind="Persistent" identity="true" fieldName="_unitId" />
       <Property Id="d56967e9-b730-40cd-885c-1a05ef91b427" name="ModifiedDate" type="DateTime" label="ModifiedDate : DateTime" nullable="true" kind="Persistent" fieldName="_modifiedDate" />
       <Property Id="42df405d-e67c-4a84-a763-77e2cb0ca79a" name="Name" label="Name : String" kind="Persistent" fieldName="_name" />
@@ -1201,7 +1201,7 @@
         </classHasNavigationalProperties>
       </navigationalProperties>
     </DomainClass>
-    <DomainClass Id="8e1ad6c9-b91f-40bb-9d03-20d5fe1dbcfb" name="XSupplier" namespace="DynamicApplicationModel" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true">
+    <DomainClass Id="8e1ad6c9-b91f-40bb-9d03-20d5fe1dbcfb" name="XSupplier" namespace="DynamicApplicationModel" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" updateSchema="true" showNavigationCompartment="true" showImplementationCompartment="true">
       <Property Id="c1e6fe42-108a-4c3f-b867-0e5dfbd68318" name="SupplierId" type="Int32" label="SupplierId : Int32" kind="Persistent" identity="true" fieldName="_supplierId" />
       <Property Id="c16624e1-9199-41da-b259-b4cce91fcfcd" name="Address" label="Address : String" kind="Persistent" fieldName="_address" />
       <Property Id="d2532f9a-15e0-4e49-9683-bd2d49620826" name="City" label="City : String" kind="Persistent" fieldName="_city" />
@@ -1221,7 +1221,7 @@
         </classHasNavigationalProperties>
       </navigationalProperties>
     </DomainClass>
-    <DomainClass Id="49991dbb-9041-4ff9-994b-bf1314c0f93d" name="XProduct" namespace="DynamicApplicationModel" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true">
+    <DomainClass Id="49991dbb-9041-4ff9-994b-bf1314c0f93d" name="XProduct" namespace="DynamicApplicationModel" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" updateSchema="true" showNavigationCompartment="true" showImplementationCompartment="true">
       <Property Id="355cef61-f2e0-4697-953e-6dc3d76daa44" name="ProductId" type="Int32" label="ProductId : Int32" kind="Persistent" identity="true" fieldName="_productId" />
       <Property Id="9aeda867-f463-4410-9511-055505060c8f" name="CategoryId" type="Int32" label="CategoryId : Int32" nullable="true" kind="Persistent" fieldName="_categoryId" />
       <Property Id="1347cc3b-f20d-4654-86ee-fea647fe9f0b" name="ModifiedDate" type="DateTime" label="ModifiedDate : DateTime" nullable="true" kind="Persistent" fieldName="_modifiedDate" />
@@ -1286,7 +1286,7 @@
         </classHasNavigationalProperties>
       </navigationalProperties>
     </DomainClass>
-    <DomainClass Id="590e7b88-e516-4960-b0e6-08144d1cc980" name="XCategory" namespace="DynamicApplicationModel" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true">
+    <DomainClass Id="590e7b88-e516-4960-b0e6-08144d1cc980" name="XCategory" namespace="DynamicApplicationModel" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" updateSchema="true" showNavigationCompartment="true" showImplementationCompartment="true">
       <Property Id="20838e8a-8fca-47d3-8c2e-293690b7c7d4" name="CategoryId" type="Int32" label="CategoryId : Int32" kind="Persistent" identity="true" fieldName="_categoryId" />
       <Property Id="edde96d9-f1fe-4aee-8182-917d498454c9" name="ModifiedDate" type="DateTime" label="ModifiedDate : DateTime" nullable="true" kind="Persistent" fieldName="_modifiedDate" />
       <Property Id="2050840f-c6ad-43b5-a8a8-0499413aeb5a" name="Name" label="Name : String" kind="Persistent" fieldName="_name" />
