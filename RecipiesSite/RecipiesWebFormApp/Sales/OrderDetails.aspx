@@ -4,6 +4,8 @@
 <%@ Register assembly="Telerik.Web.UI" namespace="Telerik.Web.UI" tagprefix="telerik" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <telerik:RadGrid ID="RadGrid1" runat="server" DataSourceID="OpenAccessLinqDataSource1">
+
+        <HeaderStyle  />
         <MasterTableView AutoGenerateColumns="False" DataKeyNames="OrderID,ProductID" DataSourceID="OpenAccessLinqDataSource1">
             <Columns>
                 <telerik:GridBoundColumn DataField="OrderID" DataType="System.Int32" FilterControlAltText="Filter OrderID column" HeaderText="OrderID" ReadOnly="True" SortExpression="OrderID" UniqueName="OrderID">
