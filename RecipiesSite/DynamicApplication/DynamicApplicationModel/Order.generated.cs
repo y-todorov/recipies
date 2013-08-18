@@ -155,6 +155,32 @@ namespace DynamicApplicationModel
 		    }
 		}
 		
+		private Employee _employee;
+		public virtual Employee Employee 
+		{ 
+		    get
+		    {
+		        return this._employee;
+		    }
+		    set
+		    {
+		        this._employee = value;
+		    }
+		}
+		
+		private Customer _customer;
+		public virtual Customer Customer 
+		{ 
+		    get
+		    {
+		        return this._customer;
+		    }
+		    set
+		    {
+		        this._customer = value;
+		    }
+		}
+		
 		private IList<OrderDetail> _orderDetails = new List<OrderDetail>();
 		public virtual IList<OrderDetail> OrderDetails 
 		{ 

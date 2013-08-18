@@ -6,7 +6,7 @@
 <html lang="en">
 <head runat="server">
     <meta charset="utf-8" />
-    <title>Change this title</title>
+    <title>Inventory management</title>
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
     <style type="text/css">

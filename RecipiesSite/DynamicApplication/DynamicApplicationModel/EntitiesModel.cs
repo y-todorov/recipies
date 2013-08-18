@@ -116,6 +116,14 @@ namespace DynamicApplicationModel
 	    	}
 		}
 		
+		public IQueryable<Customer> Customers 
+		{
+	    	get
+	    	{
+	        	return this.GetAll<Customer>();
+	    	}
+		}
+		
 		public static BackendConfiguration GetBackendConfiguration()
 		{
 			BackendConfiguration backend = new BackendConfiguration();
@@ -163,6 +171,11 @@ namespace DynamicApplicationModel
 		}
 
 		IQueryable<Category> Categories 
+		{ 
+			get;
+		}
+
+		IQueryable<Customer> Customers 
 		{ 
 			get;
 		}

@@ -23,70 +23,44 @@ using DynamicApplicationModel;
 
 namespace DynamicApplicationModel	
 {
-	public partial class Employee
+	public partial class Customer
 	{
-		private int _employeeID;
-		public virtual int EmployeeID 
+		private int _customerID;
+		public virtual int CustomerID 
 		{ 
 		    get
 		    {
-		        return this._employeeID;
+		        return this._customerID;
 		    }
 		    set
 		    {
-		        this._employeeID = value;
+		        this._customerID = value;
 		    }
 		}
 		
-		private string _lastName;
-		public virtual string LastName 
+		private string _companyName;
+		public virtual string CompanyName 
 		{ 
 		    get
 		    {
-		        return this._lastName;
+		        return this._companyName;
 		    }
 		    set
 		    {
-		        this._lastName = value;
+		        this._companyName = value;
 		    }
 		}
 		
-		private string _firstName;
-		public virtual string FirstName 
+		private string _contactName;
+		public virtual string ContactName 
 		{ 
 		    get
 		    {
-		        return this._firstName;
+		        return this._contactName;
 		    }
 		    set
 		    {
-		        this._firstName = value;
-		    }
-		}
-		
-		private DateTime? _birthDate;
-		public virtual DateTime? BirthDate 
-		{ 
-		    get
-		    {
-		        return this._birthDate;
-		    }
-		    set
-		    {
-		        this._birthDate = value;
-		    }
-		}
-		
-		private DateTime? _hireDate;
-		public virtual DateTime? HireDate 
-		{ 
-		    get
-		    {
-		        return this._hireDate;
-		    }
-		    set
-		    {
-		        this._hireDate = value;
+		        this._contactName = value;
 		    }
 		}
 		
@@ -103,45 +77,6 @@ namespace DynamicApplicationModel
 		    }
 		}
 		
-		private string _city;
-		public virtual string City 
-		{ 
-		    get
-		    {
-		        return this._city;
-		    }
-		    set
-		    {
-		        this._city = value;
-		    }
-		}
-		
-		private string _region;
-		public virtual string Region 
-		{ 
-		    get
-		    {
-		        return this._region;
-		    }
-		    set
-		    {
-		        this._region = value;
-		    }
-		}
-		
-		private string _postalCode;
-		public virtual string PostalCode 
-		{ 
-		    get
-		    {
-		        return this._postalCode;
-		    }
-		    set
-		    {
-		        this._postalCode = value;
-		    }
-		}
-		
 		private string _country;
 		public virtual string Country 
 		{ 
@@ -155,42 +90,29 @@ namespace DynamicApplicationModel
 		    }
 		}
 		
-		private string _homePhone;
-		public virtual string HomePhone 
+		private string _phone;
+		public virtual string Phone 
 		{ 
 		    get
 		    {
-		        return this._homePhone;
+		        return this._phone;
 		    }
 		    set
 		    {
-		        this._homePhone = value;
+		        this._phone = value;
 		    }
 		}
 		
-		private string _extension;
-		public virtual string Extension 
+		private string _email;
+		public virtual string Email 
 		{ 
 		    get
 		    {
-		        return this._extension;
+		        return this._email;
 		    }
 		    set
 		    {
-		        this._extension = value;
-		    }
-		}
-		
-		private string _notes;
-		public virtual string Notes 
-		{ 
-		    get
-		    {
-		        return this._notes;
-		    }
-		    set
-		    {
-		        this._notes = value;
+		        this._email = value;
 		    }
 		}
 		

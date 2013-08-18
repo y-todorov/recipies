@@ -229,6 +229,18 @@
         <orm:field name="_orderDetails" property="OrderDetails" behavior="readwrite" uniqueId="7da10ad0-30b4-435d-94e1-ac5233783aed" type="DynamicApplicationModel.OrderDetail">
           <orm:collection element-class="DynamicApplicationModel.OrderDetail" inverse-field="_order" order-by="" uniqueId="e0b4a049-56d8-4e55-9e8a-38296d1acc11" />
         </orm:field>
+        <orm:field name="_employee" property="Employee" behavior="readwrite" uniqueId="3d9be317-7b9c-46e7-8661-fdf40c68fa62" type="DynamicApplicationModel.Employee">
+          <orm:reference uniqueId="d453d901-410d-4908-8c86-18c599c78e19">
+            <orm:sharedfield name="_employeeID" target-class="DynamicApplicationModel.Employee" target-field="_employeeID" />
+            <orm:constraint name="FK_Order_Employee" destination-table="Employee" />
+          </orm:reference>
+        </orm:field>
+        <orm:field name="_customer" property="Customer" behavior="readwrite" uniqueId="3235a94b-70b0-46e2-a83a-8447940d6567" type="DynamicApplicationModel.Customer">
+          <orm:reference uniqueId="e607e51a-796d-4e75-9af6-6f8c63ca2f1c">
+            <orm:sharedfield name="_customerID" target-class="DynamicApplicationModel.Customer" target-field="_customerID" />
+            <orm:constraint name="FK_Order_Customer" destination-table="Customer" />
+          </orm:reference>
+        </orm:field>
       </orm:class>
       <orm:class name="Employee" uniqueId="bdcde562-7d09-4127-896c-79d50a9b10fc">
         <orm:table name="Employee" />
@@ -279,6 +291,9 @@
         <orm:field name="_modifiedDate" property="ModifiedDate" behavior="readwrite" uniqueId="ec2856c0-14ec-4e5b-b891-827d1641b7f6" type="System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
           <orm:column has-default-value="true" nullable="true" length="0" name="ModifiedDate" scale="0" sql-type="datetime" ado-type="DateTime" />
         </orm:field>
+        <orm:field name="_orders" property="Orders" behavior="readwrite" uniqueId="e3ceb824-49cc-44af-b063-c49c6711e689" type="DynamicApplicationModel.Order">
+          <orm:collection element-class="DynamicApplicationModel.Order" inverse-field="_employee" order-by="" uniqueId="d453d901-410d-4908-8c86-18c599c78e19" />
+        </orm:field>
       </orm:class>
       <orm:class name="Category" uniqueId="8d333b7a-4d86-46de-9f7f-c89cc55f29f7">
         <orm:table name="Category" />
@@ -298,6 +313,41 @@
         </orm:field>
         <orm:field name="_products" property="Products" behavior="readwrite" uniqueId="72da30a5-0d9d-4469-b62c-ff3e76964dd9" type="DynamicApplicationModel.Product">
           <orm:collection element-class="DynamicApplicationModel.Product" inverse-field="_category" order-by="" uniqueId="e44f5337-eedb-4374-a882-ea8164dadb41" />
+        </orm:field>
+      </orm:class>
+      <orm:class name="Customer" uniqueId="241f7407-feb2-4c64-972b-c40576bd7a83">
+        <orm:table name="Customer" />
+        <orm:identity>
+          <orm:key-generator name="autoinc" />
+          <orm:single-field field-name="_customerID" />
+        </orm:identity>
+        <orm:concurrency strategy="changed" />
+        <orm:field name="_customerID" property="CustomerID" behavior="readwrite" uniqueId="2ec89520-ff27-4c99-b365-4720b4ba8b46" type="System.Int32">
+          <orm:column nullable="false" primary-key="true" length="0" name="CustomerID" scale="0" sql-type="int" backend-calculated="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_companyName" property="CompanyName" behavior="readwrite" uniqueId="054c98dc-d556-4571-b7f6-d8f6a191e1a9" type="System.String">
+          <orm:column nullable="true" length="1000" name="CompanyName" scale="0" sql-type="nvarchar" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
+        <orm:field name="_contactName" property="ContactName" behavior="readwrite" uniqueId="37e645c8-ff40-4d7f-a618-0adf7b3fba63" type="System.String">
+          <orm:column nullable="true" length="1000" name="ContactName" scale="0" sql-type="nvarchar" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
+        <orm:field name="_address" property="Address" behavior="readwrite" uniqueId="a810453a-9d54-4885-bc98-230db1b4daff" type="System.String">
+          <orm:column nullable="true" length="1000" name="Address" scale="0" sql-type="nvarchar" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
+        <orm:field name="_country" property="Country" behavior="readwrite" uniqueId="7e85d716-837f-4e51-b0b3-be4b6697ceb4" type="System.String">
+          <orm:column nullable="true" length="1000" name="Country" scale="0" sql-type="nvarchar" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
+        <orm:field name="_phone" property="Phone" behavior="readwrite" uniqueId="c915b18f-e69d-4b6c-995c-702cf19a170b" type="System.String">
+          <orm:column nullable="true" length="1000" name="Phone" scale="0" sql-type="nvarchar" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
+        <orm:field name="_email" property="Email" behavior="readwrite" uniqueId="d268a376-48f0-4e38-bbfd-d03d08c746d9" type="System.String">
+          <orm:column nullable="true" length="1000" name="Email" scale="0" sql-type="nvarchar" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
+        <orm:field name="_modifiedDate" property="ModifiedDate" behavior="readwrite" uniqueId="6404ada3-4b8e-46d6-baf8-2234d0f90325" type="System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column has-default-value="true" nullable="true" length="0" name="ModifiedDate" scale="0" sql-type="datetime" ado-type="DateTime" />
+        </orm:field>
+        <orm:field name="_orders" property="Orders" behavior="readwrite" uniqueId="68f5a3df-0b78-4c21-9876-0a422beecaa9" type="DynamicApplicationModel.Order">
+          <orm:collection element-class="DynamicApplicationModel.Order" inverse-field="_customer" order-by="" uniqueId="e607e51a-796d-4e75-9af6-6f8c63ca2f1c" />
         </orm:field>
       </orm:class>
     </orm:namespace>
@@ -374,6 +424,12 @@
         <orm:column nullable="true" length="1000" name="ShipName" scale="0" sql-type="nvarchar" ado-type="UnicodeStringVariableLength" />
         <orm:column nullable="true" length="1000" name="ShipAddress" scale="0" sql-type="nvarchar" ado-type="UnicodeStringVariableLength" />
         <orm:column has-default-value="true" nullable="true" length="0" name="ModifiedDate" scale="0" sql-type="datetime" ado-type="DateTime" />
+        <orm:constraint name="FK_Order_Employee" destination-table="Employee">
+          <orm:column nullable="true" length="0" name="EmployeeID" scale="0" sql-type="int" ado-type="Int32" />
+        </orm:constraint>
+        <orm:constraint name="FK_Order_Customer" destination-table="Customer">
+          <orm:column nullable="true" length="0" name="CustomerID" scale="0" sql-type="int" ado-type="Int32" />
+        </orm:constraint>
       </orm:table>
       <orm:table name="Employee">
         <orm:column nullable="false" primary-key="true" length="0" name="EmployeeID" scale="0" sql-type="int" backend-calculated="true" ado-type="Int32" />
@@ -398,6 +454,16 @@
       </orm:table>
       <orm:table name="__RecipiesDataBase">
         <orm:column nullable="true" length="50" name="databaseName" scale="0" sql-type="nvarchar" ado-type="UnicodeStringVariableLength" />
+      </orm:table>
+      <orm:table name="Customer">
+        <orm:column nullable="false" primary-key="true" length="0" name="CustomerID" scale="0" sql-type="int" backend-calculated="true" ado-type="Int32" />
+        <orm:column nullable="true" length="1000" name="CompanyName" scale="0" sql-type="nvarchar" ado-type="UnicodeStringVariableLength" />
+        <orm:column nullable="true" length="1000" name="ContactName" scale="0" sql-type="nvarchar" ado-type="UnicodeStringVariableLength" />
+        <orm:column nullable="true" length="1000" name="Address" scale="0" sql-type="nvarchar" ado-type="UnicodeStringVariableLength" />
+        <orm:column nullable="true" length="1000" name="Country" scale="0" sql-type="nvarchar" ado-type="UnicodeStringVariableLength" />
+        <orm:column nullable="true" length="1000" name="Phone" scale="0" sql-type="nvarchar" ado-type="UnicodeStringVariableLength" />
+        <orm:column nullable="true" length="1000" name="Email" scale="0" sql-type="nvarchar" ado-type="UnicodeStringVariableLength" />
+        <orm:column has-default-value="true" nullable="true" length="0" name="ModifiedDate" scale="0" sql-type="datetime" ado-type="DateTime" />
       </orm:table>
     </orm:schema>
     <orm:relational-naming-settings>
@@ -591,9 +657,43 @@
       <Property Id="99a4cf47-efe5-449f-8ecc-fd86a90b8914" name="ShipAddress" label="ShipAddress : String" kind="Persistent" fieldName="_shipAddress" />
       <Property Id="e511c56c-0d08-4642-a911-078a732b4abf" name="ShipName" label="ShipName : String" kind="Persistent" fieldName="_shipName" />
       <Property Id="a0e693bf-1dfc-44c6-8d78-111b92f6928d" name="ShippedDate" type="DateTime" label="ShippedDate : DateTime" nullable="true" kind="Persistent" fieldName="_shippedDate" />
+      <AssociationTargets>
+        <Association Id="d453d901-410d-4908-8c86-18c599c78e19" SourceMultiplicity="ZeroOne" name="OrderHasEmployee">
+          <DomainClassMoniker name="/RecipiesModel/Employee" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="85d46998-e89a-45bf-a51f-834cac90a852">
+              <NavigationalPropertyMoniker name="/RecipiesModel/Employee/Orders" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="72352435-b075-4fe8-983d-22395d848a12">
+              <NavigationalPropertyMoniker name="/RecipiesModel/Order/Employee" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+        <Association Id="e607e51a-796d-4e75-9af6-6f8c63ca2f1c" SourceMultiplicity="ZeroOne" name="OrderHasCustomer">
+          <DomainClassMoniker name="/RecipiesModel/Customer" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="4c0a44dd-79a7-44e7-9b91-affa8c541773">
+              <NavigationalPropertyMoniker name="/RecipiesModel/Customer/Orders" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="42748b46-0fee-4240-bffe-e4aeaba5c167">
+              <NavigationalPropertyMoniker name="/RecipiesModel/Order/Customer" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+      </AssociationTargets>
       <navigationalProperties>
         <classHasNavigationalProperties Id="c3115274-a722-405e-881a-2adf96635782">
           <NavigationalProperty Id="7da10ad0-30b4-435d-94e1-ac5233783aed" name="OrderDetails" type="IList&lt;OrderDetail&gt;" label="OrderDetails : IList&lt;OrderDetail&gt;" nullable="true" kind="Persistent" fieldName="_orderDetails" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="ab497741-45e1-45ba-994a-5fcfdd07862d">
+          <NavigationalProperty Id="3d9be317-7b9c-46e7-8661-fdf40c68fa62" name="Employee" type="Employee" label="Employee : Employee" nullable="true" kind="Persistent" fieldName="_employee" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="4f2e53ef-9e84-456b-a2f2-9816d473b4e2">
+          <NavigationalProperty Id="3235a94b-70b0-46e2-a83a-8447940d6567" name="Customer" type="Customer" label="Customer : Customer" nullable="true" kind="Persistent" fieldName="_customer" isDependent="false" isManaged="false" />
         </classHasNavigationalProperties>
       </navigationalProperties>
     </DomainClass>
@@ -612,6 +712,11 @@
       <Property Id="a985a8df-247b-4360-9cf7-b8b13da74bc5" name="Notes" label="Notes : String" kind="Persistent" fieldName="_notes" />
       <Property Id="d47ab73d-4920-4597-bd61-f1238d697298" name="PostalCode" label="PostalCode : String" kind="Persistent" fieldName="_postalCode" />
       <Property Id="07f680dd-ac93-4718-b975-cd9e173abdd7" name="Region" label="Region : String" kind="Persistent" fieldName="_region" />
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="1a222be5-fcb2-4153-8925-352486eb6b46">
+          <NavigationalProperty Id="e3ceb824-49cc-44af-b063-c49c6711e689" name="Orders" type="IList&lt;Order&gt;" label="Orders : IList&lt;Order&gt;" nullable="true" kind="Persistent" fieldName="_orders" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
     </DomainClass>
     <DomainClass Id="8d333b7a-4d86-46de-9f7f-c89cc55f29f7" name="Category" namespace="DynamicApplicationModel" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true">
       <Property Id="bd1012e6-55e4-4916-8758-5558075b6f6e" name="CategoryId" type="Int32" label="CategoryId : Int32" kind="Persistent" identity="true" fieldName="_categoryId" />
@@ -620,6 +725,21 @@
       <navigationalProperties>
         <classHasNavigationalProperties Id="2631741e-d69f-4ff1-8351-c02bc1eeda06">
           <NavigationalProperty Id="72da30a5-0d9d-4469-b62c-ff3e76964dd9" name="Products" type="IList&lt;Product&gt;" label="Products : IList&lt;Product&gt;" nullable="true" kind="Persistent" fieldName="_products" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+    <DomainClass Id="241f7407-feb2-4c64-972b-c40576bd7a83" name="Customer" namespace="DynamicApplicationModel" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true">
+      <Property Id="2ec89520-ff27-4c99-b365-4720b4ba8b46" name="CustomerID" type="Int32" label="CustomerID : Int32" kind="Persistent" identity="true" fieldName="_customerID" />
+      <Property Id="a810453a-9d54-4885-bc98-230db1b4daff" name="Address" label="Address : String" kind="Persistent" fieldName="_address" />
+      <Property Id="054c98dc-d556-4571-b7f6-d8f6a191e1a9" name="CompanyName" label="CompanyName : String" kind="Persistent" fieldName="_companyName" />
+      <Property Id="37e645c8-ff40-4d7f-a618-0adf7b3fba63" name="ContactName" label="ContactName : String" kind="Persistent" fieldName="_contactName" />
+      <Property Id="7e85d716-837f-4e51-b0b3-be4b6697ceb4" name="Country" label="Country : String" kind="Persistent" fieldName="_country" />
+      <Property Id="d268a376-48f0-4e38-bbfd-d03d08c746d9" name="Email" label="Email : String" kind="Persistent" fieldName="_email" />
+      <Property Id="6404ada3-4b8e-46d6-baf8-2234d0f90325" name="ModifiedDate" type="DateTime" label="ModifiedDate : DateTime" nullable="true" kind="Persistent" fieldName="_modifiedDate" />
+      <Property Id="c915b18f-e69d-4b6c-995c-702cf19a170b" name="Phone" label="Phone : String" kind="Persistent" fieldName="_phone" />
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="e5427372-6b63-4ba4-ac26-a7f6234bb3be">
+          <NavigationalProperty Id="68f5a3df-0b78-4c21-9876-0a422beecaa9" name="Orders" type="IList&lt;Order&gt;" label="Orders : IList&lt;Order&gt;" nullable="true" kind="Persistent" fieldName="_orders" isDependent="false" isManaged="false" />
         </classHasNavigationalProperties>
       </navigationalProperties>
     </DomainClass>
@@ -635,6 +755,7 @@
         <entitySetProperty name="Orders" namespace="DynamicApplicationModel" type="Order" label="Orders : IQueryable&lt;DynamicApplicationModel.Order&gt;" />
         <entitySetProperty name="Employees" namespace="DynamicApplicationModel" type="Employee" label="Employees : IQueryable&lt;DynamicApplicationModel.Employee&gt;" />
         <entitySetProperty name="Categories" namespace="DynamicApplicationModel" type="Category" label="Categories : IQueryable&lt;DynamicApplicationModel.Category&gt;" />
+        <entitySetProperty name="Customers" namespace="DynamicApplicationModel" type="Customer" label="Customers : IQueryable&lt;DynamicApplicationModel.Customer&gt;" />
       </domainContainer>
     </domainModelHasDomainContext>
   </domainContext>
