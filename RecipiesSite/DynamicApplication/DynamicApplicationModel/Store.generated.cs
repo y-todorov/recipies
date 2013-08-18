@@ -18,58 +18,48 @@ using Telerik.OpenAccess.Metadata;
 using Telerik.OpenAccess.Data.Common;
 using Telerik.OpenAccess.Metadata.Fluent;
 using Telerik.OpenAccess.Metadata.Fluent.Advanced;
-using DynamicApplicationModel;
 
 
 namespace DynamicApplicationModel	
 {
-	public partial class Shipper
+	public partial class Store
 	{
-		private int _shipperID;
-		public virtual int ShipperID 
+		private int _storeId;
+		public virtual int StoreId 
 		{ 
 		    get
 		    {
-		        return this._shipperID;
+		        return this._storeId;
 		    }
 		    set
 		    {
-		        this._shipperID = value;
+		        this._storeId = value;
 		    }
 		}
 		
-		private string _companyName;
-		public virtual string CompanyName 
+		private string _name;
+		public virtual string Name 
 		{ 
 		    get
 		    {
-		        return this._companyName;
+		        return this._name;
 		    }
 		    set
 		    {
-		        this._companyName = value;
+		        this._name = value;
 		    }
 		}
 		
-		private string _phone;
-		public virtual string Phone 
+		private DateTime? _modifiedDate;
+		public virtual DateTime? ModifiedDate 
 		{ 
 		    get
 		    {
-		        return this._phone;
+		        return this._modifiedDate;
 		    }
 		    set
 		    {
-		        this._phone = value;
-		    }
-		}
-		
-		private IList<Order> _orders = new List<Order>();
-		public virtual IList<Order> Orders 
-		{ 
-		    get
-		    {
-		        return this._orders;
+		        this._modifiedDate = value;
 		    }
 		}
 		

@@ -18,7 +18,6 @@ using Telerik.OpenAccess.Metadata;
 using Telerik.OpenAccess.Data.Common;
 using Telerik.OpenAccess.Metadata.Fluent;
 using Telerik.OpenAccess.Metadata.Fluent.Advanced;
-using DynamicApplicationModel;
 
 
 namespace DynamicApplicationModel	
@@ -61,32 +60,6 @@ namespace DynamicApplicationModel
 		    set
 		    {
 		        this._firstName = value;
-		    }
-		}
-		
-		private string _title;
-		public virtual string Title 
-		{ 
-		    get
-		    {
-		        return this._title;
-		    }
-		    set
-		    {
-		        this._title = value;
-		    }
-		}
-		
-		private string _titleOfCourtesy;
-		public virtual string TitleOfCourtesy 
-		{ 
-		    get
-		    {
-		        return this._titleOfCourtesy;
-		    }
-		    set
-		    {
-		        this._titleOfCourtesy = value;
 		    }
 		}
 		
@@ -207,19 +180,6 @@ namespace DynamicApplicationModel
 		    }
 		}
 		
-		private byte[] _photo;
-		public virtual byte[] Photo 
-		{ 
-		    get
-		    {
-		        return this._photo;
-		    }
-		    set
-		    {
-		        this._photo = value;
-		    }
-		}
-		
 		private string _notes;
 		public virtual string Notes 
 		{ 
@@ -233,69 +193,16 @@ namespace DynamicApplicationModel
 		    }
 		}
 		
-		private int? _reportsTo;
-		public virtual int? ReportsTo 
+		private DateTime? _modifiedDate;
+		public virtual DateTime? ModifiedDate 
 		{ 
 		    get
 		    {
-		        return this._reportsTo;
+		        return this._modifiedDate;
 		    }
 		    set
 		    {
-		        this._reportsTo = value;
-		    }
-		}
-		
-		private string _photoPath;
-		public virtual string PhotoPath 
-		{ 
-		    get
-		    {
-		        return this._photoPath;
-		    }
-		    set
-		    {
-		        this._photoPath = value;
-		    }
-		}
-		
-		private Employee _employee1;
-		public virtual Employee Employee1 
-		{ 
-		    get
-		    {
-		        return this._employee1;
-		    }
-		    set
-		    {
-		        this._employee1 = value;
-		    }
-		}
-		
-		private IList<Territory> _territories = new List<Territory>();
-		public virtual IList<Territory> Territories 
-		{ 
-		    get
-		    {
-		        return this._territories;
-		    }
-		}
-		
-		private IList<Order> _orders = new List<Order>();
-		public virtual IList<Order> Orders 
-		{ 
-		    get
-		    {
-		        return this._orders;
-		    }
-		}
-		
-		private IList<Employee> _employees = new List<Employee>();
-		public virtual IList<Employee> Employees 
-		{ 
-		    get
-		    {
-		        return this._employees;
+		        this._modifiedDate = value;
 		    }
 		}
 		

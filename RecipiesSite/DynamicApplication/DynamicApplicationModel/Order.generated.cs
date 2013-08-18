@@ -38,8 +38,8 @@ namespace DynamicApplicationModel
 		    }
 		}
 		
-		private string _customerID;
-		public virtual string CustomerID 
+		private int? _customerID;
+		public virtual int? CustomerID 
 		{ 
 		    get
 		    {
@@ -61,6 +61,19 @@ namespace DynamicApplicationModel
 		    set
 		    {
 		        this._employeeID = value;
+		    }
+		}
+		
+		private string _accountName;
+		public virtual string AccountName 
+		{ 
+		    get
+		    {
+		        return this._accountName;
+		    }
+		    set
+		    {
+		        this._accountName = value;
 		    }
 		}
 		
@@ -103,32 +116,6 @@ namespace DynamicApplicationModel
 		    }
 		}
 		
-		private int? _shipVia;
-		public virtual int? ShipVia 
-		{ 
-		    get
-		    {
-		        return this._shipVia;
-		    }
-		    set
-		    {
-		        this._shipVia = value;
-		    }
-		}
-		
-		private decimal? _freight;
-		public virtual decimal? Freight 
-		{ 
-		    get
-		    {
-		        return this._freight;
-		    }
-		    set
-		    {
-		        this._freight = value;
-		    }
-		}
-		
 		private string _shipName;
 		public virtual string ShipName 
 		{ 
@@ -155,94 +142,16 @@ namespace DynamicApplicationModel
 		    }
 		}
 		
-		private string _shipCity;
-		public virtual string ShipCity 
+		private DateTime? _modifiedDate;
+		public virtual DateTime? ModifiedDate 
 		{ 
 		    get
 		    {
-		        return this._shipCity;
+		        return this._modifiedDate;
 		    }
 		    set
 		    {
-		        this._shipCity = value;
-		    }
-		}
-		
-		private string _shipRegion;
-		public virtual string ShipRegion 
-		{ 
-		    get
-		    {
-		        return this._shipRegion;
-		    }
-		    set
-		    {
-		        this._shipRegion = value;
-		    }
-		}
-		
-		private string _shipPostalCode;
-		public virtual string ShipPostalCode 
-		{ 
-		    get
-		    {
-		        return this._shipPostalCode;
-		    }
-		    set
-		    {
-		        this._shipPostalCode = value;
-		    }
-		}
-		
-		private string _shipCountry;
-		public virtual string ShipCountry 
-		{ 
-		    get
-		    {
-		        return this._shipCountry;
-		    }
-		    set
-		    {
-		        this._shipCountry = value;
-		    }
-		}
-		
-		private Customer _customer;
-		public virtual Customer Customer 
-		{ 
-		    get
-		    {
-		        return this._customer;
-		    }
-		    set
-		    {
-		        this._customer = value;
-		    }
-		}
-		
-		private Employee _employee;
-		public virtual Employee Employee 
-		{ 
-		    get
-		    {
-		        return this._employee;
-		    }
-		    set
-		    {
-		        this._employee = value;
-		    }
-		}
-		
-		private Shipper _shipper;
-		public virtual Shipper Shipper 
-		{ 
-		    get
-		    {
-		        return this._shipper;
-		    }
-		    set
-		    {
-		        this._shipper = value;
+		        this._modifiedDate = value;
 		    }
 		}
 		

@@ -25,16 +25,16 @@ namespace DynamicApplicationModel
 {
 	public partial class Supplier
 	{
-		private int _supplierID;
-		public virtual int SupplierID 
+		private int _supplierId;
+		public virtual int SupplierId 
 		{ 
 		    get
 		    {
-		        return this._supplierID;
+		        return this._supplierId;
 		    }
 		    set
 		    {
-		        this._supplierID = value;
+		        this._supplierId = value;
 		    }
 		}
 		
@@ -64,19 +64,6 @@ namespace DynamicApplicationModel
 		    }
 		}
 		
-		private string _contactTitle;
-		public virtual string ContactTitle 
-		{ 
-		    get
-		    {
-		        return this._contactTitle;
-		    }
-		    set
-		    {
-		        this._contactTitle = value;
-		    }
-		}
-		
 		private string _address;
 		public virtual string Address 
 		{ 
@@ -100,32 +87,6 @@ namespace DynamicApplicationModel
 		    set
 		    {
 		        this._city = value;
-		    }
-		}
-		
-		private string _region;
-		public virtual string Region 
-		{ 
-		    get
-		    {
-		        return this._region;
-		    }
-		    set
-		    {
-		        this._region = value;
-		    }
-		}
-		
-		private string _postalCode;
-		public virtual string PostalCode 
-		{ 
-		    get
-		    {
-		        return this._postalCode;
-		    }
-		    set
-		    {
-		        this._postalCode = value;
 		    }
 		}
 		
@@ -168,6 +129,19 @@ namespace DynamicApplicationModel
 		    }
 		}
 		
+		private string _email;
+		public virtual string Email 
+		{ 
+		    get
+		    {
+		        return this._email;
+		    }
+		    set
+		    {
+		        this._email = value;
+		    }
+		}
+		
 		private string _homePage;
 		public virtual string HomePage 
 		{ 
@@ -178,6 +152,19 @@ namespace DynamicApplicationModel
 		    set
 		    {
 		        this._homePage = value;
+		    }
+		}
+		
+		private DateTime? _modifiedDate;
+		public virtual DateTime? ModifiedDate 
+		{ 
+		    get
+		    {
+		        return this._modifiedDate;
+		    }
+		    set
+		    {
+		        this._modifiedDate = value;
 		    }
 		}
 		

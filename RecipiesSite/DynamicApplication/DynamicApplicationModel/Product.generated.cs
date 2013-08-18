@@ -25,29 +25,42 @@ namespace DynamicApplicationModel
 {
 	public partial class Product
 	{
-		private int _productID;
-		public virtual int ProductID 
+		private int _productId;
+		public virtual int ProductId 
 		{ 
 		    get
 		    {
-		        return this._productID;
+		        return this._productId;
 		    }
 		    set
 		    {
-		        this._productID = value;
+		        this._productId = value;
 		    }
 		}
 		
-		private string _productName;
-		public virtual string ProductName 
+		private int? _unitId;
+		public virtual int? UnitId 
 		{ 
 		    get
 		    {
-		        return this._productName;
+		        return this._unitId;
 		    }
 		    set
 		    {
-		        this._productName = value;
+		        this._unitId = value;
+		    }
+		}
+		
+		private int? _categoryId;
+		public virtual int? CategoryId 
+		{ 
+		    get
+		    {
+		        return this._categoryId;
+		    }
+		    set
+		    {
+		        this._categoryId = value;
 		    }
 		}
 		
@@ -64,29 +77,16 @@ namespace DynamicApplicationModel
 		    }
 		}
 		
-		private int? _categoryID;
-		public virtual int? CategoryID 
+		private string _name;
+		public virtual string Name 
 		{ 
 		    get
 		    {
-		        return this._categoryID;
+		        return this._name;
 		    }
 		    set
 		    {
-		        this._categoryID = value;
-		    }
-		}
-		
-		private string _quantityPerUnit;
-		public virtual string QuantityPerUnit 
-		{ 
-		    get
-		    {
-		        return this._quantityPerUnit;
-		    }
-		    set
-		    {
-		        this._quantityPerUnit = value;
+		        this._name = value;
 		    }
 		}
 		
@@ -103,8 +103,8 @@ namespace DynamicApplicationModel
 		    }
 		}
 		
-		private short? _unitsInStock;
-		public virtual short? UnitsInStock 
+		private int? _unitsInStock;
+		public virtual int? UnitsInStock 
 		{ 
 		    get
 		    {
@@ -116,8 +116,8 @@ namespace DynamicApplicationModel
 		    }
 		}
 		
-		private short? _unitsOnOrder;
-		public virtual short? UnitsOnOrder 
+		private int? _unitsOnOrder;
+		public virtual int? UnitsOnOrder 
 		{ 
 		    get
 		    {
@@ -129,8 +129,21 @@ namespace DynamicApplicationModel
 		    }
 		}
 		
-		private short? _reorderLevel;
-		public virtual short? ReorderLevel 
+		private string _store;
+		public virtual string Store 
+		{ 
+		    get
+		    {
+		        return this._store;
+		    }
+		    set
+		    {
+		        this._store = value;
+		    }
+		}
+		
+		private int? _reorderLevel;
+		public virtual int? ReorderLevel 
 		{ 
 		    get
 		    {
@@ -142,29 +155,42 @@ namespace DynamicApplicationModel
 		    }
 		}
 		
-		private bool _discontinued;
-		public virtual bool Discontinued 
+		private DateTime? _modifiedDate;
+		public virtual DateTime? ModifiedDate 
 		{ 
 		    get
 		    {
-		        return this._discontinued;
+		        return this._modifiedDate;
 		    }
 		    set
 		    {
-		        this._discontinued = value;
+		        this._modifiedDate = value;
 		    }
 		}
 		
-		private Category _category;
-		public virtual Category Category 
+		private string _code;
+		public virtual string Code 
 		{ 
 		    get
 		    {
-		        return this._category;
+		        return this._code;
 		    }
 		    set
 		    {
-		        this._category = value;
+		        this._code = value;
+		    }
+		}
+		
+		private Unit _unit;
+		public virtual Unit Unit 
+		{ 
+		    get
+		    {
+		        return this._unit;
+		    }
+		    set
+		    {
+		        this._unit = value;
 		    }
 		}
 		
@@ -178,6 +204,19 @@ namespace DynamicApplicationModel
 		    set
 		    {
 		        this._supplier = value;
+		    }
+		}
+		
+		private Category _category;
+		public virtual Category Category 
+		{ 
+		    get
+		    {
+		        return this._category;
+		    }
+		    set
+		    {
+		        this._category = value;
 		    }
 		}
 		

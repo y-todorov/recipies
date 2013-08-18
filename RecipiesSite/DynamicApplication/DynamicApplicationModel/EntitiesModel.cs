@@ -52,11 +52,11 @@ namespace DynamicApplicationModel
 			:base(connection, backendConfiguration, metadataSource)
 		{ }
 			
-		public IQueryable<Territory> Territories 
+		public IQueryable<Unit> Units 
 		{
 	    	get
 	    	{
-	        	return this.GetAll<Territory>();
+	        	return this.GetAll<Unit>();
 	    	}
 		}
 		
@@ -68,19 +68,11 @@ namespace DynamicApplicationModel
 	    	}
 		}
 		
-		public IQueryable<Shipper> Shippers 
+		public IQueryable<Store> Stores 
 		{
 	    	get
 	    	{
-	        	return this.GetAll<Shipper>();
-	    	}
-		}
-		
-		public IQueryable<Region> Regions 
-		{
-	    	get
-	    	{
-	        	return this.GetAll<Region>();
+	        	return this.GetAll<Store>();
 	    	}
 		}
 		
@@ -92,19 +84,19 @@ namespace DynamicApplicationModel
 	    	}
 		}
 		
-		public IQueryable<Order> Orders 
-		{
-	    	get
-	    	{
-	        	return this.GetAll<Order>();
-	    	}
-		}
-		
 		public IQueryable<OrderDetail> OrderDetails 
 		{
 	    	get
 	    	{
 	        	return this.GetAll<OrderDetail>();
+	    	}
+		}
+		
+		public IQueryable<Order> Orders 
+		{
+	    	get
+	    	{
+	        	return this.GetAll<Order>();
 	    	}
 		}
 		
@@ -116,59 +108,11 @@ namespace DynamicApplicationModel
 	    	}
 		}
 		
-		public IQueryable<Customer> Customers 
-		{
-	    	get
-	    	{
-	        	return this.GetAll<Customer>();
-	    	}
-		}
-		
-		public IQueryable<CustomerDemographic> CustomerDemographics 
-		{
-	    	get
-	    	{
-	        	return this.GetAll<CustomerDemographic>();
-	    	}
-		}
-		
 		public IQueryable<Category> Categories 
 		{
 	    	get
 	    	{
 	        	return this.GetAll<Category>();
-	    	}
-		}
-		
-		public IQueryable<XUnit> XUnits 
-		{
-	    	get
-	    	{
-	        	return this.GetAll<XUnit>();
-	    	}
-		}
-		
-		public IQueryable<XSupplier> XSuppliers 
-		{
-	    	get
-	    	{
-	        	return this.GetAll<XSupplier>();
-	    	}
-		}
-		
-		public IQueryable<XProduct> XProducts 
-		{
-	    	get
-	    	{
-	        	return this.GetAll<XProduct>();
-	    	}
-		}
-		
-		public IQueryable<XCategory> XCategories 
-		{
-	    	get
-	    	{
-	        	return this.GetAll<XCategory>();
 	    	}
 		}
 		
@@ -183,7 +127,7 @@ namespace DynamicApplicationModel
 
 	public interface IRecipiesModelUnitOfWork : IUnitOfWork
 	{
-		IQueryable<Territory> Territories 
+		IQueryable<Unit> Units 
 		{ 
 			get;
 		}
@@ -193,12 +137,7 @@ namespace DynamicApplicationModel
 			get;
 		}
 
-		IQueryable<Shipper> Shippers 
-		{ 
-			get;
-		}
-
-		IQueryable<Region> Regions 
+		IQueryable<Store> Stores 
 		{ 
 			get;
 		}
@@ -208,12 +147,12 @@ namespace DynamicApplicationModel
 			get;
 		}
 
-		IQueryable<Order> Orders 
+		IQueryable<OrderDetail> OrderDetails 
 		{ 
 			get;
 		}
 
-		IQueryable<OrderDetail> OrderDetails 
+		IQueryable<Order> Orders 
 		{ 
 			get;
 		}
@@ -223,37 +162,7 @@ namespace DynamicApplicationModel
 			get;
 		}
 
-		IQueryable<Customer> Customers 
-		{ 
-			get;
-		}
-
-		IQueryable<CustomerDemographic> CustomerDemographics 
-		{ 
-			get;
-		}
-
 		IQueryable<Category> Categories 
-		{ 
-			get;
-		}
-
-		IQueryable<XUnit> XUnits 
-		{ 
-			get;
-		}
-
-		IQueryable<XSupplier> XSuppliers 
-		{ 
-			get;
-		}
-
-		IQueryable<XProduct> XProducts 
-		{ 
-			get;
-		}
-
-		IQueryable<XCategory> XCategories 
 		{ 
 			get;
 		}

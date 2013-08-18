@@ -25,8 +25,21 @@ namespace DynamicApplicationModel
 {
 	public partial class OrderDetail
 	{
-		private int _orderID;
-		public virtual int OrderID 
+		private int _orderDetailID;
+		public virtual int OrderDetailID 
+		{ 
+		    get
+		    {
+		        return this._orderDetailID;
+		    }
+		    set
+		    {
+		        this._orderDetailID = value;
+		    }
+		}
+		
+		private int? _orderID;
+		public virtual int? OrderID 
 		{ 
 		    get
 		    {
@@ -38,8 +51,8 @@ namespace DynamicApplicationModel
 		    }
 		}
 		
-		private int _productID;
-		public virtual int ProductID 
+		private int? _productID;
+		public virtual int? ProductID 
 		{ 
 		    get
 		    {
@@ -51,8 +64,8 @@ namespace DynamicApplicationModel
 		    }
 		}
 		
-		private decimal _unitPrice;
-		public virtual decimal UnitPrice 
+		private decimal? _unitPrice;
+		public virtual decimal? UnitPrice 
 		{ 
 		    get
 		    {
@@ -64,8 +77,8 @@ namespace DynamicApplicationModel
 		    }
 		}
 		
-		private short _quantity;
-		public virtual short Quantity 
+		private int? _quantity;
+		public virtual int? Quantity 
 		{ 
 		    get
 		    {
@@ -77,8 +90,8 @@ namespace DynamicApplicationModel
 		    }
 		}
 		
-		private float _discount;
-		public virtual float Discount 
+		private double? _discount;
+		public virtual double? Discount 
 		{ 
 		    get
 		    {
@@ -90,16 +103,16 @@ namespace DynamicApplicationModel
 		    }
 		}
 		
-		private Order _order;
-		public virtual Order Order 
+		private DateTime? _modifiedDate;
+		public virtual DateTime? ModifiedDate 
 		{ 
 		    get
 		    {
-		        return this._order;
+		        return this._modifiedDate;
 		    }
 		    set
 		    {
-		        this._order = value;
+		        this._modifiedDate = value;
 		    }
 		}
 		
@@ -113,6 +126,19 @@ namespace DynamicApplicationModel
 		    set
 		    {
 		        this._product = value;
+		    }
+		}
+		
+		private Order _order;
+		public virtual Order Order 
+		{ 
+		    get
+		    {
+		        return this._order;
+		    }
+		    set
+		    {
+		        this._order = value;
 		    }
 		}
 		

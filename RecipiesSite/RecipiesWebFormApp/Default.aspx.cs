@@ -20,9 +20,9 @@ namespace RecipiesWebFormApp
                 string ddl = sh.CreateDDLScript();
 
 
-                rhcLast10ModifiedProducts.DataSource = ContextFactory.GetContextPerRequest().XProducts.OrderByDescending(pr => pr.ModifiedDate).Take(10);
+                rhcLast10ModifiedProducts.DataSource = ContextFactory.GetContextPerRequest().Products.OrderByDescending(pr => pr.ModifiedDate).Take(10);
 
-                rhcProductsCountByCategory.DataSource = ContextFactory.GetContextPerRequest().XCategories.Select(cat => new { CategoryName = cat.Name, ProductCount = cat.XProducts.Count });
+                rhcProductsCountByCategory.DataSource = ContextFactory.GetContextPerRequest().Categories.Select(cat => new { CategoryName = cat.Name, ProductCount = cat.Products.Count });
             }
         }
     }

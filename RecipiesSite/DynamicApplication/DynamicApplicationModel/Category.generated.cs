@@ -25,55 +25,42 @@ namespace DynamicApplicationModel
 {
 	public partial class Category
 	{
-		private int _categoryID;
-		public virtual int CategoryID 
+		private int _categoryId;
+		public virtual int CategoryId 
 		{ 
 		    get
 		    {
-		        return this._categoryID;
+		        return this._categoryId;
 		    }
 		    set
 		    {
-		        this._categoryID = value;
+		        this._categoryId = value;
 		    }
 		}
 		
-		private string _categoryName;
-		public virtual string CategoryName 
+		private string _name;
+		public virtual string Name 
 		{ 
 		    get
 		    {
-		        return this._categoryName;
+		        return this._name;
 		    }
 		    set
 		    {
-		        this._categoryName = value;
+		        this._name = value;
 		    }
 		}
 		
-		private string _description;
-		public virtual string Description 
+		private DateTime? _modifiedDate;
+		public virtual DateTime? ModifiedDate 
 		{ 
 		    get
 		    {
-		        return this._description;
+		        return this._modifiedDate;
 		    }
 		    set
 		    {
-		        this._description = value;
-		    }
-		}
-		
-		private byte[] _picture;
-		public virtual byte[] Picture 
-		{ 
-		    get
-		    {
-		        return this._picture;
-		    }
-		    set
-		    {
-		        this._picture = value;
+		        this._modifiedDate = value;
 		    }
 		}
 		

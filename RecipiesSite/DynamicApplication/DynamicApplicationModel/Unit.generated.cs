@@ -23,18 +23,18 @@ using DynamicApplicationModel;
 
 namespace DynamicApplicationModel	
 {
-	public partial class XCategory
+	public partial class Unit
 	{
-		private int _categoryId;
-		public virtual int CategoryId 
+		private int _unitId;
+		public virtual int UnitId 
 		{ 
 		    get
 		    {
-		        return this._categoryId;
+		        return this._unitId;
 		    }
 		    set
 		    {
-		        this._categoryId = value;
+		        this._unitId = value;
 		    }
 		}
 		
@@ -64,12 +64,12 @@ namespace DynamicApplicationModel
 		    }
 		}
 		
-		private IList<XProduct> _xProducts = new List<XProduct>();
-		public virtual IList<XProduct> XProducts 
+		private IList<Product> _products = new List<Product>();
+		public virtual IList<Product> Products 
 		{ 
 		    get
 		    {
-		        return this._xProducts;
+		        return this._products;
 		    }
 		}
 		

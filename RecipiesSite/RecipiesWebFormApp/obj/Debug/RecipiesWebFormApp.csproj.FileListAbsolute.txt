@@ -7,6 +7,11 @@ C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.AspNet.Member
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.ScriptManager.MSAjax.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.ScriptManager.WebForms.dll
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.SqlServer.ConnectionInfo.dll
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.SqlServer.Management.Sdk.Sfc.dll
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.SqlServer.Smo.dll
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.SqlServer.SmoExtended.dll
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.SqlServer.SqlEnum.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.Web.Infrastructure.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\System.Web.Optimization.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\System.Web.Providers.dll
@@ -24,8 +29,3 @@ C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Telerik.Web.UI.xml
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\obj\Debug\RecipiesWebFormApp.csprojResolveAssemblyReference.cache
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\obj\Debug\RecipiesWebFormApp.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\obj\Debug\RecipiesWebFormApp.pdb
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.SqlServer.ConnectionInfo.dll
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.SqlServer.Management.Sdk.Sfc.dll
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.SqlServer.Smo.dll
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.SqlServer.SmoExtended.dll
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.SqlServer.SqlEnum.dll
