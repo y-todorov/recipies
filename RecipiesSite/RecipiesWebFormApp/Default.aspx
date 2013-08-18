@@ -14,15 +14,15 @@
                 <telerik:RadHtmlChart runat="server" ID="rhcLast10ModifiedProducts">
                     <PlotArea>
                         <Series>
-                            <telerik:ColumnSeries DataFieldY="UnitsInStock" Name="Units In Stock">
+                            <telerik:ColumnSeries DataFieldY="UnitsInStock" Name="Units In Stock">                                  
                                 <TooltipsAppearance Visible="false"></TooltipsAppearance>
                             </telerik:ColumnSeries>
-                            <telerik:ColumnSeries DataFieldY="UnitsOnOrder" Name="Units On Order">
+                            <telerik:ColumnSeries DataFieldY="UnitsOnOrder" Name="Units On Order">                                
                                 <TooltipsAppearance Visible="false"></TooltipsAppearance>
                             </telerik:ColumnSeries>
                         </Series>
                         <XAxis DataLabelsField="Name" Step="1">
-                            <LabelsAppearance RotationAngle="30"></LabelsAppearance>
+                            <LabelsAppearance RotationAngle="10"></LabelsAppearance>
                             <MajorGridLines Visible="false"></MajorGridLines>
                             <MinorGridLines Visible="false"></MinorGridLines>
 
@@ -33,7 +33,7 @@
                         </YAxis>
                     </PlotArea>
                     <ChartTitle Text="Last 10 modified products">
-                    </ChartTitle>
+                    </ChartTitle>           
                 </telerik:RadHtmlChart>
             </td>
             <td>
@@ -45,7 +45,7 @@
                             </telerik:ColumnSeries>
                         </Series>
                         <XAxis DataLabelsField="CategoryName" Step="1">
-                            <LabelsAppearance RotationAngle="30"></LabelsAppearance>
+                            <LabelsAppearance RotationAngle="-10" ></LabelsAppearance>
                             <MajorGridLines Visible="false"></MajorGridLines>
                             <MinorGridLines Visible="false"></MinorGridLines>
                         </XAxis>
@@ -59,10 +59,36 @@
                 </telerik:RadHtmlChart>
             </td>
         </tr>
+        <tr>
+            <td>
+                <telerik:RadHtmlChart runat="server" ID="rhcProductsForReorder">
+                    <PlotArea>
+                        <Series>
+                            <telerik:ColumnSeries DataFieldY="UnitsInStock" Name="Units In Stock">                                  
+                                <TooltipsAppearance Visible="false"></TooltipsAppearance>
+                            </telerik:ColumnSeries>
+                            <telerik:ColumnSeries DataFieldY="UnitsOnOrder" Name="Units On Order">                                
+                                <TooltipsAppearance Visible="false"></TooltipsAppearance>
+                            </telerik:ColumnSeries>
+                        </Series>
+                        <XAxis DataLabelsField="Name" Step="1">
+                            <LabelsAppearance RotationAngle="10"></LabelsAppearance>
+                            <MajorGridLines Visible="false"></MajorGridLines>
+                            <MinorGridLines Visible="false"></MinorGridLines>
+
+                        </XAxis>
+                        <YAxis>
+                            <TitleAppearance Text="Units"></TitleAppearance>
+                            <MinorGridLines Visible="false"></MinorGridLines>
+                        </YAxis>
+                    </PlotArea>
+                    <ChartTitle Text="Products for reorder">
+                    </ChartTitle> 
+                </telerik:RadHtmlChart>
+            </td>
+            <td>
+
+            </td>
+        </tr>
     </table>
-
-
-
-
-
 </asp:Content>
