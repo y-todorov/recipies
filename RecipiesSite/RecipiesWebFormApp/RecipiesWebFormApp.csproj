@@ -175,6 +175,7 @@
     <Content Include="Production\Products.aspx" />
     <Content Include="Production\Suppliers.aspx" />
     <Content Include="Production\Units.aspx" />
+    <Content Include="Sales\Customers.aspx" />
     <Content Include="Sales\OrderDetails.aspx" />
     <Content Include="Sales\Orders.aspx" />
     <Content Include="Default.aspx" />
@@ -320,6 +321,13 @@
       <DependentUpon>Units.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sales\Customers.aspx.cs">
+      <DependentUpon>Customers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sales\Customers.aspx.designer.cs">
+      <DependentUpon>Customers.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Sales\OrderDetails.aspx.cs">
       <DependentUpon>OrderDetails.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
