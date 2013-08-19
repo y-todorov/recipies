@@ -68,9 +68,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Category.generated.cs">
-      <DependentUpon>EntitiesModel.rlinq</DependentUpon>
-    </Compile>
     <Compile Include="ContextFactory.cs" />
     <Compile Include="Customer.generated.cs">
       <DependentUpon>EntitiesModel.rlinq</DependentUpon>
@@ -92,15 +89,18 @@
     <Compile Include="Product.generated.cs">
       <DependentUpon>EntitiesModel.rlinq</DependentUpon>
     </Compile>
+    <Compile Include="ProductCategory.generated.cs">
+      <DependentUpon>EntitiesModel.rlinq</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecipiesModel.partial.cs" />
     <Compile Include="Store.generated.cs">
       <DependentUpon>EntitiesModel.rlinq</DependentUpon>
     </Compile>
-    <Compile Include="Supplier.generated.cs">
+    <Compile Include="UnitMeasure.generated.cs">
       <DependentUpon>EntitiesModel.rlinq</DependentUpon>
     </Compile>
-    <Compile Include="Unit.generated.cs">
+    <Compile Include="Vendor.generated.cs">
       <DependentUpon>EntitiesModel.rlinq</DependentUpon>
     </Compile>
   </ItemGroup>

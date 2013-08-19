@@ -52,19 +52,19 @@ namespace DynamicApplicationModel
 			:base(connection, backendConfiguration, metadataSource)
 		{ }
 			
-		public IQueryable<Unit> Units 
+		public IQueryable<Vendor> Vendors 
 		{
 	    	get
 	    	{
-	        	return this.GetAll<Unit>();
+	        	return this.GetAll<Vendor>();
 	    	}
 		}
 		
-		public IQueryable<Supplier> Suppliers 
+		public IQueryable<UnitMeasure> UnitMeasures 
 		{
 	    	get
 	    	{
-	        	return this.GetAll<Supplier>();
+	        	return this.GetAll<UnitMeasure>();
 	    	}
 		}
 		
@@ -73,6 +73,14 @@ namespace DynamicApplicationModel
 	    	get
 	    	{
 	        	return this.GetAll<Store>();
+	    	}
+		}
+		
+		public IQueryable<ProductCategory> ProductCategories 
+		{
+	    	get
+	    	{
+	        	return this.GetAll<ProductCategory>();
 	    	}
 		}
 		
@@ -108,14 +116,6 @@ namespace DynamicApplicationModel
 	    	}
 		}
 		
-		public IQueryable<Category> Categories 
-		{
-	    	get
-	    	{
-	        	return this.GetAll<Category>();
-	    	}
-		}
-		
 		public IQueryable<Customer> Customers 
 		{
 	    	get
@@ -135,17 +135,22 @@ namespace DynamicApplicationModel
 
 	public interface IRecipiesModelUnitOfWork : IUnitOfWork
 	{
-		IQueryable<Unit> Units 
+		IQueryable<Vendor> Vendors 
 		{ 
 			get;
 		}
 
-		IQueryable<Supplier> Suppliers 
+		IQueryable<UnitMeasure> UnitMeasures 
 		{ 
 			get;
 		}
 
 		IQueryable<Store> Stores 
+		{ 
+			get;
+		}
+
+		IQueryable<ProductCategory> ProductCategories 
 		{ 
 			get;
 		}
@@ -166,11 +171,6 @@ namespace DynamicApplicationModel
 		}
 
 		IQueryable<Employee> Employees 
-		{ 
-			get;
-		}
-
-		IQueryable<Category> Categories 
 		{ 
 			get;
 		}

@@ -23,18 +23,18 @@ using DynamicApplicationModel;
 
 namespace DynamicApplicationModel	
 {
-	public partial class Unit
+	public partial class ProductCategory
 	{
-		private int _unitId;
-		public virtual int UnitId 
+		private int _categoryId;
+		public virtual int CategoryId 
 		{ 
 		    get
 		    {
-		        return this._unitId;
+		        return this._categoryId;
 		    }
 		    set
 		    {
-		        this._unitId = value;
+		        this._categoryId = value;
 		    }
 		}
 		

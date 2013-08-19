@@ -172,10 +172,10 @@
     <Content Include="Images\orderedList9.png" />
     <Content Include="packages.config" />
     <Content Include="App_Themes\DefaultTheme\DefaultSkin.skin" />
-    <Content Include="Production\Categories.aspx" />
+    <Content Include="Production\ProductCategories.aspx" />
     <Content Include="Production\Products.aspx" />
-    <Content Include="Production\Suppliers.aspx" />
-    <Content Include="Production\Units.aspx" />
+    <Content Include="Production\Vendors.aspx" />
+    <Content Include="Production\UnitMeasures.aspx" />
     <Content Include="Sales\Customers.aspx" />
     <Content Include="Sales\OrderDetails.aspx" />
     <Content Include="Sales\Orders.aspx" />
@@ -301,12 +301,12 @@
     <Compile Include="HumanResources\Employees.aspx.designer.cs">
       <DependentUpon>Employees.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Production\Categories.aspx.cs">
-      <DependentUpon>Categories.aspx</DependentUpon>
+    <Compile Include="Production\ProductCategories.aspx.cs">
+      <DependentUpon>ProductCategories.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Production\Categories.aspx.designer.cs">
-      <DependentUpon>Categories.aspx</DependentUpon>
+    <Compile Include="Production\ProductCategories.aspx.designer.cs">
+      <DependentUpon>ProductCategories.aspx</DependentUpon>
     </Compile>
     <Compile Include="Production\Products.aspx.cs">
       <DependentUpon>Products.aspx</DependentUpon>
@@ -315,19 +315,19 @@
     <Compile Include="Production\Products.aspx.designer.cs">
       <DependentUpon>Products.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Production\Suppliers.aspx.cs">
-      <DependentUpon>Suppliers.aspx</DependentUpon>
+    <Compile Include="Production\Vendors.aspx.cs">
+      <DependentUpon>Vendors.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Production\Suppliers.aspx.designer.cs">
-      <DependentUpon>Suppliers.aspx</DependentUpon>
+    <Compile Include="Production\Vendors.aspx.designer.cs">
+      <DependentUpon>Vendors.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Production\Units.aspx.cs">
-      <DependentUpon>Units.aspx</DependentUpon>
+    <Compile Include="Production\UnitMeasures.aspx.cs">
+      <DependentUpon>UnitMeasures.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Production\Units.aspx.designer.cs">
-      <DependentUpon>Units.aspx</DependentUpon>
+    <Compile Include="Production\UnitMeasures.aspx.designer.cs">
+      <DependentUpon>UnitMeasures.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sales\Customers.aspx.cs">

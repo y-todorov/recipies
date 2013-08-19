@@ -64,16 +64,16 @@ namespace DynamicApplicationModel
 		    }
 		}
 		
-		private int? _supplierID;
-		public virtual int? SupplierID 
+		private int? _vendorID;
+		public virtual int? VendorID 
 		{ 
 		    get
 		    {
-		        return this._supplierID;
+		        return this._vendorID;
 		    }
 		    set
 		    {
-		        this._supplierID = value;
+		        this._vendorID = value;
 		    }
 		}
 		
@@ -181,42 +181,42 @@ namespace DynamicApplicationModel
 		    }
 		}
 		
-		private Unit _unit;
-		public virtual Unit Unit 
+		private UnitMeasure _unitMeasure;
+		public virtual UnitMeasure UnitMeasure 
 		{ 
 		    get
 		    {
-		        return this._unit;
+		        return this._unitMeasure;
 		    }
 		    set
 		    {
-		        this._unit = value;
+		        this._unitMeasure = value;
 		    }
 		}
 		
-		private Supplier _supplier;
-		public virtual Supplier Supplier 
+		private Vendor _vendor;
+		public virtual Vendor Vendor 
 		{ 
 		    get
 		    {
-		        return this._supplier;
+		        return this._vendor;
 		    }
 		    set
 		    {
-		        this._supplier = value;
+		        this._vendor = value;
 		    }
 		}
 		
-		private Category _category;
-		public virtual Category Category 
+		private ProductCategory _productCategory;
+		public virtual ProductCategory ProductCategory 
 		{ 
 		    get
 		    {
-		        return this._category;
+		        return this._productCategory;
 		    }
 		    set
 		    {
-		        this._category = value;
+		        this._productCategory = value;
 		    }
 		}
 		

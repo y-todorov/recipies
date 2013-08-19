@@ -23,21 +23,8 @@ using DynamicApplicationModel;
 
 namespace DynamicApplicationModel	
 {
-	public partial class Supplier
+	public partial class Vendor
 	{
-		private int _supplierId;
-		public virtual int SupplierId 
-		{ 
-		    get
-		    {
-		        return this._supplierId;
-		    }
-		    set
-		    {
-		        this._supplierId = value;
-		    }
-		}
-		
 		private string _companyName;
 		public virtual string CompanyName 
 		{ 
@@ -165,6 +152,19 @@ namespace DynamicApplicationModel
 		    set
 		    {
 		        this._modifiedDate = value;
+		    }
+		}
+		
+		private int _vendorId;
+		public virtual int VendorId 
+		{ 
+		    get
+		    {
+		        return this._vendorId;
+		    }
+		    set
+		    {
+		        this._vendorId = value;
 		    }
 		}
 		
