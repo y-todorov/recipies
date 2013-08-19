@@ -60,6 +60,7 @@
                         <telerik:RadMenuItem Text="Orders" NavigateUrl="~/Sales/Orders"></telerik:RadMenuItem>
                         <telerik:RadMenuItem Text="OrderDetails" NavigateUrl="~/Sales/OrderDetails"></telerik:RadMenuItem>
                         <telerik:RadMenuItem Text="Customers" NavigateUrl="~/Sales/Customers"></telerik:RadMenuItem>
+                        <telerik:RadMenuItem Text="Stores" NavigateUrl="~/Sales/Stores"></telerik:RadMenuItem>
                     </Items>
                 </telerik:RadMenuItem>
 
