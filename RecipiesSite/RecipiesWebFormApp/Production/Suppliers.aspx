@@ -3,7 +3,7 @@
 <%@ Register Assembly="Telerik.OpenAccess.Web.40" Namespace="Telerik.OpenAccess.Web" TagPrefix="telerik" %>
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <telerik:RadGrid ID="RadGrid1" runat="server" DataSourceID="OpenAccessLinqDataSourceSupplier">
+    <telerik:RadGrid ID="rgSuppliers" runat="server" DataSourceID="OpenAccessLinqDataSourceSupplier">
         <MasterTableView AutoGenerateColumns="False" DataKeyNames="SupplierId" DataSourceID="OpenAccessLinqDataSourceSupplier">
             <Columns>
                 <telerik:GridBoundColumn DataField="SupplierId" DataType="System.Int32" FilterControlAltText="Filter SupplierId column" HeaderText="SupplierId" ReadOnly="True" SortExpression="SupplierId" UniqueName="SupplierId">

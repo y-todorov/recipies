@@ -13,13 +13,13 @@ namespace RecipiesWebFormApp.Sales {
     public partial class OrderDetails {
         
         /// <summary>
-        /// RadGrid1 control.
+        /// rgOrderDetails control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadGrid RadGrid1;
+        protected global::Telerik.Web.UI.RadGrid rgOrderDetails;
         
         /// <summary>
         /// OpenAccessLinqDataSourceOrderDetail control.

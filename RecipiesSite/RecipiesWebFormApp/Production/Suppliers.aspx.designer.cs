@@ -13,13 +13,13 @@ namespace RecipiesWebFormApp.Production {
     public partial class xSuppliers {
         
         /// <summary>
-        /// RadGrid1 control.
+        /// rgSuppliers control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadGrid RadGrid1;
+        protected global::Telerik.Web.UI.RadGrid rgSuppliers;
         
         /// <summary>
         /// OpenAccessLinqDataSourceSupplier control.
