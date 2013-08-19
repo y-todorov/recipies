@@ -156,6 +156,7 @@
     <Content Include="Contact.aspx" />
     <Content Include="ErrorPages\Error.aspx" />
     <Content Include="ErrorPages\Error404.aspx" />
+    <Content Include="HumanResources\Employees.aspx" />
     <Content Include="Images\accent.png" />
     <Content Include="Images\bullet.png" />
     <Content Include="Images\heroAccent.png" />
@@ -291,6 +292,13 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="HumanResources\Employees.aspx.cs">
+      <DependentUpon>Employees.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HumanResources\Employees.aspx.designer.cs">
+      <DependentUpon>Employees.aspx</DependentUpon>
     </Compile>
     <Compile Include="Production\Categories.aspx.cs">
       <DependentUpon>Categories.aspx</DependentUpon>

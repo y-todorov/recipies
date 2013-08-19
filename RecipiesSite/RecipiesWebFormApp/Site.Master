@@ -22,7 +22,7 @@
                 args.set_cancel(true); // Cancel the event 
             }
         }
-</script>   
+    </script>
 
 </head>
 <body>
@@ -42,9 +42,9 @@
         <telerik:RadMenu runat="server" Width="100%" OnItemClick="Unnamed_ItemClick" OnClientItemClicking="OnClientItemClicking">
             <Items>
                 <telerik:RadMenuItem runat="server" Text="Dashboard" NavigateUrl="~/Default">
-                </telerik:RadMenuItem>            
+                </telerik:RadMenuItem>
                 <telerik:RadMenuItem runat="server" Text="Production">
-                    <Items>                       
+                    <Items>
                         <telerik:RadMenuItem runat="server" Text="Products" NavigateUrl="~/Production/Products">
                         </telerik:RadMenuItem>
                         <telerik:RadMenuItem runat="server" Text="Categories" NavigateUrl="~/Production/Categories">
@@ -62,17 +62,25 @@
                         <telerik:RadMenuItem Text="Customers" NavigateUrl="~/Sales/Customers"></telerik:RadMenuItem>
                     </Items>
                 </telerik:RadMenuItem>
+
+                <telerik:RadMenuItem IsSeparator="true"></telerik:RadMenuItem>
+                <telerik:RadMenuItem runat="server" Text="Human resources">
+                    <Items>
+                        <telerik:RadMenuItem Text="Employees" NavigateUrl="HumanResources/Employees.aspx"></telerik:RadMenuItem>
+                    </Items>
+                </telerik:RadMenuItem>
+
                 <telerik:RadMenuItem IsSeparator="true"></telerik:RadMenuItem>
                 <telerik:RadMenuItem Text="Account">
                     <Items>
                         <telerik:RadMenuItem Text="Manage my account" NavigateUrl="~/Account/Manage">
                         </telerik:RadMenuItem>
-                        <telerik:RadMenuItem Text="Log off" Value="Log off" NavigateUrl="Account/Login.aspx"  >
+                        <telerik:RadMenuItem Text="Log off" Value="Log off" NavigateUrl="Account/Login.aspx">
                         </telerik:RadMenuItem>
                     </Items>
                 </telerik:RadMenuItem>
                 <telerik:RadMenuItem IsSeparator="true"></telerik:RadMenuItem>
-                <telerik:RadMenuItem OnLoad="Unnamed_Load"  NavigateUrl="~/Default">
+                <telerik:RadMenuItem OnLoad="Unnamed_Load" NavigateUrl="~/Default">
                 </telerik:RadMenuItem>
 
             </Items>
