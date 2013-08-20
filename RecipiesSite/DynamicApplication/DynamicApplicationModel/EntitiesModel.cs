@@ -76,6 +76,38 @@ namespace DynamicApplicationModel
 	    	}
 		}
 		
+		public IQueryable<PurchaseOrderHeader> PurchaseOrderHeaders 
+		{
+	    	get
+	    	{
+	        	return this.GetAll<PurchaseOrderHeader>();
+	    	}
+		}
+		
+		public IQueryable<PurchaseOrderDetail> PurchaseOrderDetails 
+		{
+	    	get
+	    	{
+	        	return this.GetAll<PurchaseOrderDetail>();
+	    	}
+		}
+		
+		public IQueryable<ProductVendor> ProductVendors 
+		{
+	    	get
+	    	{
+	        	return this.GetAll<ProductVendor>();
+	    	}
+		}
+		
+		public IQueryable<ProductHistory> ProductHistories 
+		{
+	    	get
+	    	{
+	        	return this.GetAll<ProductHistory>();
+	    	}
+		}
+		
 		public IQueryable<ProductCategory> ProductCategories 
 		{
 	    	get
@@ -124,14 +156,6 @@ namespace DynamicApplicationModel
 	    	}
 		}
 		
-		public IQueryable<ProductHistory> ProductHistories 
-		{
-	    	get
-	    	{
-	        	return this.GetAll<ProductHistory>();
-	    	}
-		}
-		
 		public static BackendConfiguration GetBackendConfiguration()
 		{
 			BackendConfiguration backend = new BackendConfiguration();
@@ -154,6 +178,26 @@ namespace DynamicApplicationModel
 		}
 
 		IQueryable<Store> Stores 
+		{ 
+			get;
+		}
+
+		IQueryable<PurchaseOrderHeader> PurchaseOrderHeaders 
+		{ 
+			get;
+		}
+
+		IQueryable<PurchaseOrderDetail> PurchaseOrderDetails 
+		{ 
+			get;
+		}
+
+		IQueryable<ProductVendor> ProductVendors 
+		{ 
+			get;
+		}
+
+		IQueryable<ProductHistory> ProductHistories 
 		{ 
 			get;
 		}
@@ -184,11 +228,6 @@ namespace DynamicApplicationModel
 		}
 
 		IQueryable<Customer> Customers 
-		{ 
-			get;
-		}
-
-		IQueryable<ProductHistory> ProductHistories 
 		{ 
 			get;
 		}

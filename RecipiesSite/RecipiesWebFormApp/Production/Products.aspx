@@ -12,8 +12,8 @@
                     </ColumnValidationSettings>
                 </telerik:GridBoundColumn>
                 <telerik:GridDropDownColumn UniqueName="DropDownUnitListColumn" ListTextField="Name" EmptyListItemText="" EnableEmptyListItem="true" EmptyListItemValue="" ConvertEmptyStringToNull="true"
-                    ListValueField="UnitID" DataSourceID="OpenAccessLinqDataSourceUnit" HeaderText="Unit"
-                    DataField="UnitID" DropDownControlType="RadComboBox">
+                    ListValueField="UnitMeasureId" DataSourceID="OpenAccessLinqDataSourceUnit" HeaderText="UnitMeasure"
+                    DataField="UnitMeasureId" DropDownControlType="RadComboBox">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text=""></ModelErrorMessage>
                     </ColumnValidationSettings>
@@ -24,14 +24,7 @@
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text=""></ModelErrorMessage>
                     </ColumnValidationSettings>
-                </telerik:GridDropDownColumn>
-                <telerik:GridDropDownColumn UniqueName="DropDownVendorListColumn" ListTextField="ContactName"
-                    ListValueField="VendorID" DataSourceID="OpenAccessLinqDataSourceVendor" HeaderText="Vendor"
-                    DataField="VendorID" DropDownControlType="RadComboBox" EmptyListItemText="" EnableEmptyListItem="true" EmptyListItemValue="" ConvertEmptyStringToNull="true">
-                    <ColumnValidationSettings>
-                        <ModelErrorMessage Text=""></ModelErrorMessage>
-                    </ColumnValidationSettings>
-                </telerik:GridDropDownColumn>
+                </telerik:GridDropDownColumn>          
                 <telerik:GridBoundColumn DataField="Name" FilterControlAltText="Filter Name column" HeaderText="Name" SortExpression="Name" UniqueName="Name">
                     <ColumnValidationSettings EnableRequiredFieldValidation="true" EnableModelErrorMessageValidation="true">
                         <RequiredFieldValidator ForeColor="Red" ErrorMessage="This field is required!"></RequiredFieldValidator>

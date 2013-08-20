@@ -25,29 +25,42 @@ namespace DynamicApplicationModel
 {
 	public partial class Vendor
 	{
-		private string _companyName;
-		public virtual string CompanyName 
+		private int _vendorId;
+		public virtual int VendorId 
 		{ 
 		    get
 		    {
-		        return this._companyName;
+		        return this._vendorId;
 		    }
 		    set
 		    {
-		        this._companyName = value;
+		        this._vendorId = value;
 		    }
 		}
 		
-		private string _contactName;
-		public virtual string ContactName 
+		private string _accountNumber;
+		public virtual string AccountNumber 
 		{ 
 		    get
 		    {
-		        return this._contactName;
+		        return this._accountNumber;
 		    }
 		    set
 		    {
-		        this._contactName = value;
+		        this._accountNumber = value;
+		    }
+		}
+		
+		private string _name;
+		public virtual string Name 
+		{ 
+		    get
+		    {
+		        return this._name;
+		    }
+		    set
+		    {
+		        this._name = value;
 		    }
 		}
 		
@@ -61,32 +74,6 @@ namespace DynamicApplicationModel
 		    set
 		    {
 		        this._address = value;
-		    }
-		}
-		
-		private string _city;
-		public virtual string City 
-		{ 
-		    get
-		    {
-		        return this._city;
-		    }
-		    set
-		    {
-		        this._city = value;
-		    }
-		}
-		
-		private string _country;
-		public virtual string Country 
-		{ 
-		    get
-		    {
-		        return this._country;
-		    }
-		    set
-		    {
-		        this._country = value;
 		    }
 		}
 		
@@ -155,25 +142,12 @@ namespace DynamicApplicationModel
 		    }
 		}
 		
-		private int _vendorId;
-		public virtual int VendorId 
+		private IList<ProductVendor> _productVendors = new List<ProductVendor>();
+		public virtual IList<ProductVendor> ProductVendors 
 		{ 
 		    get
 		    {
-		        return this._vendorId;
-		    }
-		    set
-		    {
-		        this._vendorId = value;
-		    }
-		}
-		
-		private IList<Product> _products = new List<Product>();
-		public virtual IList<Product> Products 
-		{ 
-		    get
-		    {
-		        return this._products;
+		        return this._productVendors;
 		    }
 		}
 		

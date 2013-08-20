@@ -174,7 +174,9 @@
     <Content Include="App_Themes\DefaultTheme\DefaultSkin.skin" />
     <Content Include="Production\ProductCategories.aspx" />
     <Content Include="Production\Products.aspx" />
-    <Content Include="Production\Vendors.aspx" />
+    <Content Include="Purchasing\PurchaseOrderDetails.aspx" />
+    <Content Include="Purchasing\PurchaseOrders.aspx" />
+    <Content Include="Purchasing\Vendors.aspx" />
     <Content Include="Production\UnitMeasures.aspx" />
     <Content Include="Sales\Customers.aspx" />
     <Content Include="Sales\OrderDetails.aspx" />
@@ -315,11 +317,25 @@
     <Compile Include="Production\Products.aspx.designer.cs">
       <DependentUpon>Products.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Production\Vendors.aspx.cs">
+    <Compile Include="Purchasing\PurchaseOrderDetails.aspx.cs">
+      <DependentUpon>PurchaseOrderDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Purchasing\PurchaseOrderDetails.aspx.designer.cs">
+      <DependentUpon>PurchaseOrderDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Purchasing\PurchaseOrders.aspx.cs">
+      <DependentUpon>PurchaseOrders.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Purchasing\PurchaseOrders.aspx.designer.cs">
+      <DependentUpon>PurchaseOrders.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Purchasing\Vendors.aspx.cs">
       <DependentUpon>Vendors.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Production\Vendors.aspx.designer.cs">
+    <Compile Include="Purchasing\Vendors.aspx.designer.cs">
       <DependentUpon>Vendors.aspx</DependentUpon>
     </Compile>
     <Compile Include="Production\UnitMeasures.aspx.cs">

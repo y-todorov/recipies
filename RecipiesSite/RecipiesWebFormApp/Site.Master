@@ -43,7 +43,7 @@
             <Items>
                 <telerik:RadMenuItem runat="server" Text="Dashboard" NavigateUrl="~/Default">
                 </telerik:RadMenuItem>
-                  <telerik:RadMenuItem IsSeparator="true"></telerik:RadMenuItem>
+                <telerik:RadMenuItem IsSeparator="true"></telerik:RadMenuItem>
                 <telerik:RadMenuItem runat="server" Text="Production">
                     <Items>
                         <telerik:RadMenuItem runat="server" Text="Products" NavigateUrl="~/Production/Products">
@@ -52,11 +52,10 @@
                         </telerik:RadMenuItem>
                         <telerik:RadMenuItem runat="server" Text="Unit measures" NavigateUrl="~/Production/UnitMeasures">
                         </telerik:RadMenuItem>
-                        <telerik:RadMenuItem runat="server" Text="Vendors" NavigateUrl="~/Production/Vendors">
-                        </telerik:RadMenuItem>
+
                     </Items>
                 </telerik:RadMenuItem>
-                  <telerik:RadMenuItem IsSeparator="true"></telerik:RadMenuItem>
+                <telerik:RadMenuItem IsSeparator="true"></telerik:RadMenuItem>
                 <telerik:RadMenuItem runat="server" Text="Sales">
                     <Items>
                         <telerik:RadMenuItem Text="Sales orders" NavigateUrl="~/Sales/Orders"></telerik:RadMenuItem>
@@ -68,17 +67,21 @@
                 <telerik:RadMenuItem IsSeparator="true"></telerik:RadMenuItem>
                 <telerik:RadMenuItem Text="Purchasing">
                     <Items>
-                        <telerik:RadMenuItem Text="Purchase orders" NavigateUrl="~/Default"></telerik:RadMenuItem>
-                        <telerik:RadMenuItem Text="Purchase order details" NavigateUrl="~/Default"></telerik:RadMenuItem>
+                        <telerik:RadMenuItem runat="server" Text="Vendors" NavigateUrl="~/Purchasing/Vendors">
+                        </telerik:RadMenuItem>
+                        <telerik:RadMenuItem Text="Purchase orders" NavigateUrl="~/Purchasing/PurchaseOrders"></telerik:RadMenuItem>
+                        <telerik:RadMenuItem Text="Purchase order details" NavigateUrl="~/Purchasing/PurchaseOrderDetails"></telerik:RadMenuItem>
                     </Items>
                 </telerik:RadMenuItem>
-                  <telerik:RadMenuItem IsSeparator="true"></telerik:RadMenuItem>
+                <telerik:RadMenuItem IsSeparator="true"></telerik:RadMenuItem>
                 <telerik:RadMenuItem runat="server" Text="Human resources">
                     <Items>
                         <telerik:RadMenuItem Text="Employees" NavigateUrl="HumanResources/Employees.aspx"></telerik:RadMenuItem>
-                         <telerik:RadMenuItem Text="Shifts"  NavigateUrl="~/Default"></telerik:RadMenuItem>
+                        <telerik:RadMenuItem Text="Shifts" NavigateUrl="~/Default"></telerik:RadMenuItem>
                     </Items>
                 </telerik:RadMenuItem>
+                   <telerik:RadMenuItem IsSeparator="true"></telerik:RadMenuItem>
+                <telerik:RadMenuItem Text="History" NavigateUrl="~/Default"></telerik:RadMenuItem>
 
                 <telerik:RadMenuItem IsSeparator="true"></telerik:RadMenuItem>
                 <telerik:RadMenuItem Text="Account">

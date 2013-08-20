@@ -3,35 +3,25 @@
 <%@ Register Assembly="Telerik.OpenAccess.Web.40" Namespace="Telerik.OpenAccess.Web" TagPrefix="telerik" %>
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <telerik:RadGrid ID="rgSuppliers" runat="server" DataSourceID="OpenAccessLinqDataSourceSupplier">
-        <MasterTableView AutoGenerateColumns="False" DataKeyNames="SupplierId" DataSourceID="OpenAccessLinqDataSourceSupplier">
+    <telerik:RadGrid ID="rgSuppliers" runat="server" DataSourceID="OpenAccessLinqDataSourceVendor" CellSpacing="0" GridLines="None">
+        <MasterTableView AutoGenerateColumns="False" DataKeyNames="VendorId" DataSourceID="OpenAccessLinqDataSourceVendor">
             <Columns>
-                <telerik:GridBoundColumn DataField="SupplierId" DataType="System.Int32" FilterControlAltText="Filter SupplierId column" HeaderText="SupplierId" ReadOnly="True" SortExpression="SupplierId" UniqueName="SupplierId">
+                <telerik:GridBoundColumn DataField="VendorId" DataType="System.Int32" FilterControlAltText="Filter VendorId column" HeaderText="VendorId" ReadOnly="True" SortExpression="VendorId" UniqueName="VendorId">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
                 </telerik:GridBoundColumn>
-                <telerik:GridBoundColumn DataField="CompanyName" FilterControlAltText="Filter CompanyName column" HeaderText="CompanyName" SortExpression="CompanyName" UniqueName="CompanyName">
+                <telerik:GridBoundColumn DataField="AccountNumber" FilterControlAltText="Filter AccountNumber column" HeaderText="AccountNumber" SortExpression="AccountNumber" UniqueName="AccountNumber">
                     <ColumnValidationSettings>
-                        <ModelErrorMessage />
+                        <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
                 </telerik:GridBoundColumn>
-                <telerik:GridBoundColumn DataField="ContactName" FilterControlAltText="Filter ContactName column" HeaderText="ContactName" SortExpression="ContactName" UniqueName="ContactName">
+                <telerik:GridBoundColumn DataField="Name" FilterControlAltText="Filter Name column" HeaderText="Name" SortExpression="Name" UniqueName="Name">
                     <ColumnValidationSettings>
-                        <ModelErrorMessage />
+                        <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
                 </telerik:GridBoundColumn>
                 <telerik:GridBoundColumn DataField="Address" FilterControlAltText="Filter Address column" HeaderText="Address" SortExpression="Address" UniqueName="Address">
-                    <ColumnValidationSettings>
-                        <ModelErrorMessage Text="" />
-                    </ColumnValidationSettings>
-                </telerik:GridBoundColumn>
-                <telerik:GridBoundColumn DataField="City" FilterControlAltText="Filter City column" HeaderText="City" SortExpression="City" UniqueName="City">
-                    <ColumnValidationSettings>
-                        <ModelErrorMessage Text="" />
-                    </ColumnValidationSettings>
-                </telerik:GridBoundColumn>
-                <telerik:GridBoundColumn DataField="Country" FilterControlAltText="Filter Country column" HeaderText="Country" SortExpression="Country" UniqueName="Country">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
@@ -56,7 +46,7 @@
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
                 </telerik:GridBoundColumn>
-                <telerik:GridBoundColumn DataField="ModifiedDate" ReadOnly="true"  FilterControlAltText="Filter ModifiedDate column" HeaderText="ModifiedDate" SortExpression="ModifiedDate" UniqueName="ModifiedDate" DataType="System.DateTime">
+                <telerik:GridBoundColumn DataField="ModifiedDate" DataType="System.DateTime" FilterControlAltText="Filter ModifiedDate column" HeaderText="ModifiedDate" SortExpression="ModifiedDate" UniqueName="ModifiedDate">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
@@ -64,6 +54,6 @@
             </Columns>
         </MasterTableView>
     </telerik:RadGrid>
-    <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourceSupplier" runat="server" ContextTypeName="DynamicApplicationModel.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="Vendors">
+    <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourceVendor" runat="server" ContextTypeName="DynamicApplicationModel.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="Vendors">
     </telerik:OpenAccessLinqDataSource>
 </asp:Content>

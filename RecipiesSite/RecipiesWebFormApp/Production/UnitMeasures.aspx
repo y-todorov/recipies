@@ -4,9 +4,9 @@
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <telerik:RadGrid ID="rgUnits" runat="server" DataSourceID="OpenAccessLinqDataSourceUnit">
-        <MasterTableView AutoGenerateColumns="False" DataKeyNames="UnitId" DataSourceID="OpenAccessLinqDataSourceUnit">
+        <MasterTableView AutoGenerateColumns="False" DataKeyNames="UnitMeasureId" DataSourceID="OpenAccessLinqDataSourceUnit">
             <Columns>
-                <telerik:GridBoundColumn DataField="UnitId" DataType="System.Int32" FilterControlAltText="Filter UnitId column" HeaderText="UnitId" ReadOnly="True" SortExpression="UnitId" UniqueName="UnitId">
+                <telerik:GridBoundColumn DataField="UnitMeasureId" DataType="System.Int32" FilterControlAltText="Filter UnitId column" HeaderText="UnitId" ReadOnly="True" SortExpression="UnitMeasureId" UniqueName="UnitMeasureId">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>

@@ -25,16 +25,16 @@ namespace DynamicApplicationModel
 {
 	public partial class UnitMeasure
 	{
-		private int _unitId;
-		public virtual int UnitId 
+		private int _unitMeasureId;
+		public virtual int UnitMeasureId 
 		{ 
 		    get
 		    {
-		        return this._unitId;
+		        return this._unitMeasureId;
 		    }
 		    set
 		    {
-		        this._unitId = value;
+		        this._unitMeasureId = value;
 		    }
 		}
 		
@@ -61,6 +61,15 @@ namespace DynamicApplicationModel
 		    set
 		    {
 		        this._modifiedDate = value;
+		    }
+		}
+		
+		private IList<ProductVendor> _productVendors = new List<ProductVendor>();
+		public virtual IList<ProductVendor> ProductVendors 
+		{ 
+		    get
+		    {
+		        return this._productVendors;
 		    }
 		}
 		

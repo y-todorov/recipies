@@ -38,16 +38,16 @@ namespace DynamicApplicationModel
 		    }
 		}
 		
-		private int? _unitId;
-		public virtual int? UnitId 
+		private int? _unitMeasureId;
+		public virtual int? UnitMeasureId 
 		{ 
 		    get
 		    {
-		        return this._unitId;
+		        return this._unitMeasureId;
 		    }
 		    set
 		    {
-		        this._unitId = value;
+		        this._unitMeasureId = value;
 		    }
 		}
 		
@@ -61,19 +61,6 @@ namespace DynamicApplicationModel
 		    set
 		    {
 		        this._categoryId = value;
-		    }
-		}
-		
-		private int? _vendorID;
-		public virtual int? VendorID 
-		{ 
-		    get
-		    {
-		        return this._vendorID;
-		    }
-		    set
-		    {
-		        this._vendorID = value;
 		    }
 		}
 		
@@ -194,19 +181,6 @@ namespace DynamicApplicationModel
 		    }
 		}
 		
-		private Vendor _vendor;
-		public virtual Vendor Vendor 
-		{ 
-		    get
-		    {
-		        return this._vendor;
-		    }
-		    set
-		    {
-		        this._vendor = value;
-		    }
-		}
-		
 		private ProductCategory _productCategory;
 		public virtual ProductCategory ProductCategory 
 		{ 
@@ -220,12 +194,21 @@ namespace DynamicApplicationModel
 		    }
 		}
 		
-		private IList<OrderDetail> _orderDetails = new List<OrderDetail>();
-		public virtual IList<OrderDetail> OrderDetails 
+		private IList<PurchaseOrderDetail> _purchaseOrderDetails = new List<PurchaseOrderDetail>();
+		public virtual IList<PurchaseOrderDetail> PurchaseOrderDetails 
 		{ 
 		    get
 		    {
-		        return this._orderDetails;
+		        return this._purchaseOrderDetails;
+		    }
+		}
+		
+		private IList<ProductVendor> _productVendors = new List<ProductVendor>();
+		public virtual IList<ProductVendor> ProductVendors 
+		{ 
+		    get
+		    {
+		        return this._productVendors;
 		    }
 		}
 		
@@ -235,6 +218,15 @@ namespace DynamicApplicationModel
 		    get
 		    {
 		        return this._productHistories;
+		    }
+		}
+		
+		private IList<OrderDetail> _orderDetails = new List<OrderDetail>();
+		public virtual IList<OrderDetail> OrderDetails 
+		{ 
+		    get
+		    {
+		        return this._orderDetails;
 		    }
 		}
 		
