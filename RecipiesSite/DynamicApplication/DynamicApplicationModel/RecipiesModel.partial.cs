@@ -23,6 +23,8 @@ namespace DynamicApplicationModel
             base.Init(connectionString, backendConfiguration, metadataContainer, callingAssembly);
         }
 
+        
+        
         public override void SaveChanges(ConcurrencyConflictsProcessingMode failureMode)
         {
             IList<object> listOfUpdates = this.GetChanges().GetUpdates<object>();
@@ -39,8 +41,17 @@ namespace DynamicApplicationModel
                 }
             }
 
+            
+                
+                ProductHistory hist = new ProductHistory();
+                this.Add(hist);
+               
+           
+            
             base.SaveChanges(failureMode);
         }
+
+        
         
         protected override void OnDatabaseOpen(Telerik.OpenAccess.BackendConfiguration backendConfiguration, Telerik.OpenAccess.Metadata.MetadataContainer metadataContainer)
         {

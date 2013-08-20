@@ -23,10 +23,23 @@ using DynamicApplicationModel;
 
 namespace DynamicApplicationModel	
 {
-	public partial class Product
+	public partial class ProductHistory
 	{
-		private int _productId;
-		public virtual int ProductId 
+		private int _productHistoryId;
+		public virtual int ProductHistoryId 
+		{ 
+		    get
+		    {
+		        return this._productHistoryId;
+		    }
+		    set
+		    {
+		        this._productHistoryId = value;
+		    }
+		}
+		
+		private int? _productId;
+		public virtual int? ProductId 
 		{ 
 		    get
 		    {
@@ -181,60 +194,16 @@ namespace DynamicApplicationModel
 		    }
 		}
 		
-		private UnitMeasure _unitMeasure;
-		public virtual UnitMeasure UnitMeasure 
+		private Product _product;
+		public virtual Product Product 
 		{ 
 		    get
 		    {
-		        return this._unitMeasure;
+		        return this._product;
 		    }
 		    set
 		    {
-		        this._unitMeasure = value;
-		    }
-		}
-		
-		private Vendor _vendor;
-		public virtual Vendor Vendor 
-		{ 
-		    get
-		    {
-		        return this._vendor;
-		    }
-		    set
-		    {
-		        this._vendor = value;
-		    }
-		}
-		
-		private ProductCategory _productCategory;
-		public virtual ProductCategory ProductCategory 
-		{ 
-		    get
-		    {
-		        return this._productCategory;
-		    }
-		    set
-		    {
-		        this._productCategory = value;
-		    }
-		}
-		
-		private IList<OrderDetail> _orderDetails = new List<OrderDetail>();
-		public virtual IList<OrderDetail> OrderDetails 
-		{ 
-		    get
-		    {
-		        return this._orderDetails;
-		    }
-		}
-		
-		private IList<ProductHistory> _productHistories = new List<ProductHistory>();
-		public virtual IList<ProductHistory> ProductHistories 
-		{ 
-		    get
-		    {
-		        return this._productHistories;
+		        this._product = value;
 		    }
 		}
 		

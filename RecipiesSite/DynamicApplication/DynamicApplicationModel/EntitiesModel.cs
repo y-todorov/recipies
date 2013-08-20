@@ -124,6 +124,14 @@ namespace DynamicApplicationModel
 	    	}
 		}
 		
+		public IQueryable<ProductHistory> ProductHistories 
+		{
+	    	get
+	    	{
+	        	return this.GetAll<ProductHistory>();
+	    	}
+		}
+		
 		public static BackendConfiguration GetBackendConfiguration()
 		{
 			BackendConfiguration backend = new BackendConfiguration();
@@ -176,6 +184,11 @@ namespace DynamicApplicationModel
 		}
 
 		IQueryable<Customer> Customers 
+		{ 
+			get;
+		}
+
+		IQueryable<ProductHistory> ProductHistories 
 		{ 
 			get;
 		}

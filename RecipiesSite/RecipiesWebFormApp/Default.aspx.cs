@@ -18,7 +18,7 @@ namespace RecipiesWebFormApp
                 ISchemaHandler sh = ContextFactory.GetContextPerRequest().GetSchemaHandler();
 
                 string ddl = sh.CreateDDLScript();
-
+                
 
                 rhcLast10ModifiedProducts.DataSource = ContextFactory.GetContextPerRequest().Products.OrderByDescending(pr => pr.ModifiedDate).Take(10);
 
