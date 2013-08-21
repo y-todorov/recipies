@@ -175,6 +175,7 @@
     <Content Include="App_Themes\DefaultTheme\DefaultSkin.skin" />
     <Content Include="Production\ProductCategories.aspx" />
     <Content Include="Production\Products.aspx" />
+    <Content Include="Purchasing\ProductVendors.aspx" />
     <Content Include="Purchasing\PurchaseOrderDetails.aspx" />
     <Content Include="Purchasing\PurchaseOrders.aspx" />
     <Content Include="Purchasing\ShipMethods.aspx" />
@@ -325,6 +326,13 @@
     </Compile>
     <Compile Include="Production\Products.aspx.designer.cs">
       <DependentUpon>Products.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Purchasing\ProductVendors.aspx.cs">
+      <DependentUpon>ProductVendors.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Purchasing\ProductVendors.aspx.designer.cs">
+      <DependentUpon>ProductVendors.aspx</DependentUpon>
     </Compile>
     <Compile Include="Purchasing\PurchaseOrderDetails.aspx.cs">
       <DependentUpon>PurchaseOrderDetails.aspx</DependentUpon>

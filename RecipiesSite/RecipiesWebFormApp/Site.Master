@@ -72,6 +72,8 @@
                         <telerik:RadMenuItem Text="Purchase order details" NavigateUrl="~/Purchasing/PurchaseOrderDetails"></telerik:RadMenuItem> 
                         <telerik:RadMenuItem runat="server" Text="Vendors" NavigateUrl="~/Purchasing/Vendors">
                         </telerik:RadMenuItem>
+                            <telerik:RadMenuItem runat="server" Text="Product vendors" NavigateUrl="~/Purchasing/ProductVendors.aspx">
+                        </telerik:RadMenuItem>
                           <telerik:RadMenuItem runat="server" Text="Ship methods" NavigateUrl="~/Purchasing/ShipMethods.aspx">
                         </telerik:RadMenuItem>
                     </Items>

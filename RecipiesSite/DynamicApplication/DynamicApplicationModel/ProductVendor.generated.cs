@@ -168,6 +168,19 @@ namespace DynamicApplicationModel
 		    }
 		}
 		
+		private DateTime? _modifiedDate;
+		public virtual DateTime? ModifiedDate 
+		{ 
+		    get
+		    {
+		        return this._modifiedDate;
+		    }
+		    set
+		    {
+		        this._modifiedDate = value;
+		    }
+		}
+		
 		private Vendor _vendor;
 		public virtual Vendor Vendor 
 		{ 

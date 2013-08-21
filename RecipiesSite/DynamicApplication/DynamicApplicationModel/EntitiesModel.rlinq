@@ -115,7 +115,7 @@
           <orm:column name="TotalDue" sql-type="money" nullable="false" length="0" scale="0" ado-type="Currency" />
         </orm:field>
         <orm:field name="_modifiedDate" property="ModifiedDate" behavior="readwrite" uniqueId="119f890a-158a-438d-a477-b4ada8e6e8e1" type="System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
-          <orm:column name="ModifiedDate" sql-type="datetime" nullable="true" length="0" scale="0" ado-type="DateTime" />
+          <orm:column name="ModifiedDate" sql-type="datetime" nullable="true" length="0" scale="0" has-default-value="true" ado-type="DateTime" />
         </orm:field>
         <orm:field name="_vendorId" property="VendorId" behavior="readwrite" uniqueId="c8d480c0-4402-48b4-9c42-05a8491c7a16" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
           <orm:column name="VendorId" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
@@ -243,6 +243,9 @@
         </orm:field>
         <orm:field name="_onOrderQuantity" property="OnOrderQuantity" behavior="readwrite" uniqueId="debc167e-7c0b-49be-8723-2031ddd95ed6" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
           <orm:column name="OnOrderQuantity" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_modifiedDate" property="ModifiedDate" behavior="readwrite" uniqueId="f7265d32-6424-411d-a2f4-e8043b4c9f3d" type="System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column has-default-value="true" nullable="true" length="0" name="ModifiedDate" scale="0" sql-type="datetime" ado-type="DateTime" />
         </orm:field>
         <orm:field name="_vendor" property="Vendor" behavior="readwrite" uniqueId="d9b455ab-ed08-438c-ba23-1b79583d7727" type="DynamicApplicationModel.Vendor">
           <orm:reference uniqueId="da324f05-70dc-4094-b6d4-af799e12f4df">
@@ -631,7 +634,7 @@
         <orm:column name="TaxAmt" sql-type="money" nullable="true" length="0" scale="0" ado-type="Currency" />
         <orm:column name="Freight" sql-type="money" nullable="true" length="0" scale="0" ado-type="Currency" />
         <orm:column name="TotalDue" sql-type="money" nullable="false" length="0" scale="0" ado-type="Currency" />
-        <orm:column name="ModifiedDate" sql-type="datetime" nullable="true" length="0" scale="0" ado-type="DateTime" />
+        <orm:column name="ModifiedDate" sql-type="datetime" nullable="true" length="0" scale="0" has-default-value="true" ado-type="DateTime" />
         <orm:column name="VendorId" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
         <orm:column name="ShipMethodId" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
         <orm:column name="PurchaseOrderId" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
@@ -677,6 +680,7 @@
         <orm:column name="MinOrderQuantity" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
         <orm:column name="MaxOrderQuantity" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
         <orm:column name="OnOrderQuantity" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        <orm:column has-default-value="true" nullable="true" length="0" name="ModifiedDate" scale="0" sql-type="datetime" ado-type="DateTime" />
         <orm:constraint name="FK_ProductVendor_Vendor" schema="Purchasing" destination-table="Vendor">
           <orm:column name="VendorId" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
         </orm:constraint>
@@ -1012,6 +1016,7 @@
       <Property Id="9bdabe8f-1591-4713-ad37-e4eddc442d82" name="StandardPrice" type="Decimal" label="StandardPrice : Decimal" nullable="true" kind="Persistent" fieldName="_standardPrice" />
       <Property Id="65329715-f0dd-4441-87b0-47e380e32294" name="UnitMeasureId" type="Int32" label="UnitMeasureId : Int32" nullable="true" kind="Persistent" fieldName="_unitMeasureId" />
       <Property Id="bd25a9ce-9002-4167-a558-1d595e458f2e" name="VendorId" type="Int32" label="VendorId : Int32" nullable="true" kind="Persistent" fieldName="_vendorId" />
+      <Property Id="f7265d32-6424-411d-a2f4-e8043b4c9f3d" name="ModifiedDate" type="DateTime" label="ModifiedDate : DateTime" nullable="true" kind="Persistent" fieldName="_modifiedDate" />
       <AssociationTargets>
         <Association Id="da324f05-70dc-4094-b6d4-af799e12f4df" SourceMultiplicity="ZeroOne" name="ProductVendorHasVendor">
           <DomainClassMoniker name="/RecipiesModel/Vendor" />
