@@ -71,5 +71,5 @@
                 </telerik:GridBoundColumn>
             </Columns>
         </MasterTableView>
-    </telerik:RadGrid>
+</telerik:RadGrid>
 </asp:Content>

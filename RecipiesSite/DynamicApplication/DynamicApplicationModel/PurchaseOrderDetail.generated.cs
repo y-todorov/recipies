@@ -110,10 +110,6 @@ namespace DynamicApplicationModel
 		    {
 		        return this._lineTotal;
 		    }
-		    set
-		    {
-		        this._lineTotal = value;
-		    }
 		}
 		
 		private int? _receivedQuantity;
@@ -148,10 +144,6 @@ namespace DynamicApplicationModel
 		    get
 		    {
 		        return this._stockedQuantity;
-		    }
-		    set
-		    {
-		        this._stockedQuantity = value;
 		    }
 		}
 		

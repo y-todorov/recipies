@@ -13,6 +13,15 @@ namespace RecipiesWebFormApp.Purchasing {
     public partial class ShipMethods {
         
         /// <summary>
+        /// rgShipMethod control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadGrid rgShipMethod;
+        
+        /// <summary>
         /// OpenAccessLinqDataSourceShipMethod control.
         /// </summary>
         /// <remarks>

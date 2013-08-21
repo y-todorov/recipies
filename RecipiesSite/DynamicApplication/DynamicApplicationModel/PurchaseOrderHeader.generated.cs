@@ -123,10 +123,6 @@ namespace DynamicApplicationModel
 		    {
 		        return this._totalDue;
 		    }
-		    set
-		    {
-		        this._totalDue = value;
-		    }
 		}
 		
 		private DateTime? _modifiedDate;

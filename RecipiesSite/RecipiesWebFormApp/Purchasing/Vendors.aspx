@@ -38,6 +38,7 @@
                 </telerik:GridBoundColumn>
                 <telerik:GridBoundColumn DataField="Email" FilterControlAltText="Filter Email column" HeaderText="Email" SortExpression="Email" UniqueName="Email">
                     <ColumnValidationSettings>
+                        
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
                 </telerik:GridBoundColumn>
