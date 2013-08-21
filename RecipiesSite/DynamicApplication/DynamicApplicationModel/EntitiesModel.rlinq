@@ -276,14 +276,8 @@
         <orm:field name="_productId" property="ProductId" behavior="readwrite" uniqueId="0139ef77-024f-4920-8efe-c1642d6ccef2" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
           <orm:column name="ProductId" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
         </orm:field>
-        <orm:field name="_unitId" property="UnitId" behavior="readwrite" uniqueId="0424e286-d86f-43c2-8e7b-2337caf02003" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
-          <orm:column name="UnitId" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
-        </orm:field>
         <orm:field name="_categoryId" property="CategoryId" behavior="readwrite" uniqueId="a7556bf1-4636-4386-970d-94783733e10b" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
           <orm:column name="CategoryId" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
-        </orm:field>
-        <orm:field name="_vendorID" property="VendorID" behavior="readwrite" uniqueId="24b97d06-540b-4ddc-b8e7-0efe4041060f" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
-          <orm:column name="VendorID" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
         </orm:field>
         <orm:field name="_name" property="Name" behavior="readwrite" uniqueId="80a6c51e-6040-4d3a-acdc-f10f15161cf1" type="System.String">
           <orm:column name="Name" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
@@ -308,6 +302,9 @@
         </orm:field>
         <orm:field name="_code" property="Code" behavior="readwrite" uniqueId="72e1884a-2dde-4ffd-aa0a-ea21317189c7" type="System.String">
           <orm:column name="Code" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
+        <orm:field name="_unitMeasureId" property="UnitMeasureId" behavior="readwrite" uniqueId="cb9f944b-f063-4558-a89a-1b2a2a3e5d74" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column nullable="true" length="0" name="UnitMeasureId" scale="0" sql-type="int" ado-type="Int32" />
         </orm:field>
         <orm:field name="_product" property="Product" behavior="readwrite" uniqueId="f2d76929-7186-454f-bc79-c1500971439e" type="DynamicApplicationModel.Product">
           <orm:reference uniqueId="f0aba2c3-696b-4f1a-8ffa-698b19f53116">
@@ -707,9 +704,7 @@
       <orm:table name="ProductHistory" schema="Production">
         <orm:column name="ProductHistoryId" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
         <orm:column name="ProductId" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
-        <orm:column name="UnitId" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
         <orm:column name="CategoryId" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
-        <orm:column name="VendorID" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
         <orm:column name="Name" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
         <orm:column name="UnitPrice" sql-type="money" nullable="true" length="0" scale="0" ado-type="Currency" />
         <orm:column name="UnitsInStock" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
@@ -718,6 +713,7 @@
         <orm:column name="ReorderLevel" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
         <orm:column name="ModifiedDate" sql-type="datetime" nullable="true" length="0" scale="0" ado-type="DateTime" />
         <orm:column name="Code" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
+        <orm:column nullable="true" length="0" name="UnitMeasureId" scale="0" sql-type="int" ado-type="Int32" />
         <orm:constraint name="FK_ProductHistory_Product" schema="Production" destination-table="Product">
           <orm:column name="ProductId" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
         </orm:constraint>
@@ -1078,11 +1074,10 @@
       <Property Id="0139ef77-024f-4920-8efe-c1642d6ccef2" name="ProductId" type="Int32" label="ProductId : Int32" nullable="true" kind="Persistent" fieldName="_productId" />
       <Property Id="77df6e72-7f1c-4422-a6af-50221459c926" name="ReorderLevel" type="Int32" label="ReorderLevel : Int32" nullable="true" kind="Persistent" fieldName="_reorderLevel" />
       <Property Id="cd1f2987-7bb0-4828-8f00-22f89358e118" name="Store" label="Store : String" kind="Persistent" fieldName="_store" />
-      <Property Id="0424e286-d86f-43c2-8e7b-2337caf02003" name="UnitId" type="Int32" label="UnitId : Int32" nullable="true" kind="Persistent" fieldName="_unitId" />
       <Property Id="4a2c0d0f-d980-46b6-872e-578e94ef4265" name="UnitPrice" type="Decimal" label="UnitPrice : Decimal" nullable="true" kind="Persistent" fieldName="_unitPrice" />
       <Property Id="fc1ebac5-be3b-41ee-91a4-9b89dd6ff2b5" name="UnitsInStock" type="Int32" label="UnitsInStock : Int32" nullable="true" kind="Persistent" fieldName="_unitsInStock" />
       <Property Id="afcc0dfe-84ea-4881-bd99-680e639b1580" name="UnitsOnOrder" type="Int32" label="UnitsOnOrder : Int32" nullable="true" kind="Persistent" fieldName="_unitsOnOrder" />
-      <Property Id="24b97d06-540b-4ddc-b8e7-0efe4041060f" name="VendorID" type="Int32" label="VendorID : Int32" nullable="true" kind="Persistent" fieldName="_vendorID" />
+      <Property Id="cb9f944b-f063-4558-a89a-1b2a2a3e5d74" name="UnitMeasureId" type="Int32" label="UnitMeasureId : Int32" nullable="true" kind="Persistent" fieldName="_unitMeasureId" />
       <AssociationTargets>
         <Association Id="f0aba2c3-696b-4f1a-8ffa-698b19f53116" SourceMultiplicity="ZeroOne" name="ProductHistoryHasProduct">
           <DomainClassMoniker name="/RecipiesModel/Product" />

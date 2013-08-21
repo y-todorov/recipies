@@ -8,6 +8,7 @@ using Telerik.OpenAccess.Metadata;
 using Telerik.OpenAccess.Data.Common;
 using Telerik.OpenAccess.Metadata.Fluent;
 using Telerik.OpenAccess.Metadata.Fluent.Advanced;
+using System.Reflection;
 
 namespace DynamicApplicationModel
 {
@@ -41,13 +42,28 @@ namespace DynamicApplicationModel
                 }
             }
 
-            
-                
-                ProductHistory hist = new ProductHistory();
-                this.Add(hist);
-               
-           
-            
+
+            IList<Product> listOfProductUpdates = this.GetChanges().GetUpdates<Product>();
+            foreach (Product product in listOfProductUpdates)
+            {
+                Type productType = product.GetType();
+                var productProperties = productType.GetProperties();
+              
+                ProductHistory productHistory = new ProductHistory();
+                var productHistoryProperties = productHistory.GetType().GetProperties();
+
+                this.Add(productHistory);
+
+                foreach (PropertyInfo prop in productProperties)
+                {
+                    if (productHistoryProperties.Any(p => p.Name.Equals(prop.Name)))
+                    {
+                        object theValue = prop.GetValue(product);
+                        productHistory.SetFieldValue(prop.Name, theValue);
+                    }
+                }               
+            }   
+
             base.SaveChanges(failureMode);
         }
 

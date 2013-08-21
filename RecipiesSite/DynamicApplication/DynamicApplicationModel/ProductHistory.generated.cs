@@ -51,19 +51,6 @@ namespace DynamicApplicationModel
 		    }
 		}
 		
-		private int? _unitId;
-		public virtual int? UnitId 
-		{ 
-		    get
-		    {
-		        return this._unitId;
-		    }
-		    set
-		    {
-		        this._unitId = value;
-		    }
-		}
-		
 		private int? _categoryId;
 		public virtual int? CategoryId 
 		{ 
@@ -74,19 +61,6 @@ namespace DynamicApplicationModel
 		    set
 		    {
 		        this._categoryId = value;
-		    }
-		}
-		
-		private int? _vendorID;
-		public virtual int? VendorID 
-		{ 
-		    get
-		    {
-		        return this._vendorID;
-		    }
-		    set
-		    {
-		        this._vendorID = value;
 		    }
 		}
 		
@@ -191,6 +165,19 @@ namespace DynamicApplicationModel
 		    set
 		    {
 		        this._code = value;
+		    }
+		}
+		
+		private int? _unitMeasureId;
+		public virtual int? UnitMeasureId 
+		{ 
+		    get
+		    {
+		        return this._unitMeasureId;
+		    }
+		    set
+		    {
+		        this._unitMeasureId = value;
 		    }
 		}
 		
