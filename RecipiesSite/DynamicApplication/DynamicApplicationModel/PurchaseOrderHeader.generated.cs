@@ -25,19 +25,6 @@ namespace DynamicApplicationModel
 {
 	public partial class PurchaseOrderHeader
 	{
-		private int _purchaseOrderID;
-		public virtual int PurchaseOrderID 
-		{ 
-		    get
-		    {
-		        return this._purchaseOrderID;
-		    }
-		    set
-		    {
-		        this._purchaseOrderID = value;
-		    }
-		}
-		
 		private int? _revisionNumber;
 		public virtual int? RevisionNumber 
 		{ 
@@ -61,45 +48,6 @@ namespace DynamicApplicationModel
 		    set
 		    {
 		        this._status = value;
-		    }
-		}
-		
-		private int? _employeeID;
-		public virtual int? EmployeeID 
-		{ 
-		    get
-		    {
-		        return this._employeeID;
-		    }
-		    set
-		    {
-		        this._employeeID = value;
-		    }
-		}
-		
-		private int? _vendorID;
-		public virtual int? VendorID 
-		{ 
-		    get
-		    {
-		        return this._vendorID;
-		    }
-		    set
-		    {
-		        this._vendorID = value;
-		    }
-		}
-		
-		private int? _shipMethodID;
-		public virtual int? ShipMethodID 
-		{ 
-		    get
-		    {
-		        return this._shipMethodID;
-		    }
-		    set
-		    {
-		        this._shipMethodID = value;
 		    }
 		}
 		
@@ -191,6 +139,97 @@ namespace DynamicApplicationModel
 		    set
 		    {
 		        this._modifiedDate = value;
+		    }
+		}
+		
+		private int? _vendorId;
+		public virtual int? VendorId 
+		{ 
+		    get
+		    {
+		        return this._vendorId;
+		    }
+		    set
+		    {
+		        this._vendorId = value;
+		    }
+		}
+		
+		private int? _shipMethodId;
+		public virtual int? ShipMethodId 
+		{ 
+		    get
+		    {
+		        return this._shipMethodId;
+		    }
+		    set
+		    {
+		        this._shipMethodId = value;
+		    }
+		}
+		
+		private int _purchaseOrderId;
+		public virtual int PurchaseOrderId 
+		{ 
+		    get
+		    {
+		        return this._purchaseOrderId;
+		    }
+		    set
+		    {
+		        this._purchaseOrderId = value;
+		    }
+		}
+		
+		private int? _employeeId;
+		public virtual int? EmployeeId 
+		{ 
+		    get
+		    {
+		        return this._employeeId;
+		    }
+		    set
+		    {
+		        this._employeeId = value;
+		    }
+		}
+		
+		private Vendor _vendor;
+		public virtual Vendor Vendor 
+		{ 
+		    get
+		    {
+		        return this._vendor;
+		    }
+		    set
+		    {
+		        this._vendor = value;
+		    }
+		}
+		
+		private ShipMethod _shipMethod;
+		public virtual ShipMethod ShipMethod 
+		{ 
+		    get
+		    {
+		        return this._shipMethod;
+		    }
+		    set
+		    {
+		        this._shipMethod = value;
+		    }
+		}
+		
+		private Employee _employee;
+		public virtual Employee Employee 
+		{ 
+		    get
+		    {
+		        return this._employee;
+		    }
+		    set
+		    {
+		        this._employee = value;
 		    }
 		}
 		

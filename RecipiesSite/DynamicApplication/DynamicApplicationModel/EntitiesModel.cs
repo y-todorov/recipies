@@ -156,6 +156,14 @@ namespace DynamicApplicationModel
 	    	}
 		}
 		
+		public IQueryable<ShipMethod> ShipMethods 
+		{
+	    	get
+	    	{
+	        	return this.GetAll<ShipMethod>();
+	    	}
+		}
+		
 		public static BackendConfiguration GetBackendConfiguration()
 		{
 			BackendConfiguration backend = new BackendConfiguration();
@@ -228,6 +236,11 @@ namespace DynamicApplicationModel
 		}
 
 		IQueryable<Customer> Customers 
+		{ 
+			get;
+		}
+
+		IQueryable<ShipMethod> ShipMethods 
 		{ 
 			get;
 		}

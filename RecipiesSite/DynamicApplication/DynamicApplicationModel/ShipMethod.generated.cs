@@ -23,31 +23,18 @@ using DynamicApplicationModel;
 
 namespace DynamicApplicationModel	
 {
-	public partial class Vendor
+	public partial class ShipMethod
 	{
-		private int _vendorId;
-		public virtual int VendorId 
+		private int _shipMethodId;
+		public virtual int ShipMethodId 
 		{ 
 		    get
 		    {
-		        return this._vendorId;
+		        return this._shipMethodId;
 		    }
 		    set
 		    {
-		        this._vendorId = value;
-		    }
-		}
-		
-		private string _accountNumber;
-		public virtual string AccountNumber 
-		{ 
-		    get
-		    {
-		        return this._accountNumber;
-		    }
-		    set
-		    {
-		        this._accountNumber = value;
+		        this._shipMethodId = value;
 		    }
 		}
 		
@@ -64,68 +51,29 @@ namespace DynamicApplicationModel
 		    }
 		}
 		
-		private string _address;
-		public virtual string Address 
+		private decimal? _shipBase;
+		public virtual decimal? ShipBase 
 		{ 
 		    get
 		    {
-		        return this._address;
+		        return this._shipBase;
 		    }
 		    set
 		    {
-		        this._address = value;
+		        this._shipBase = value;
 		    }
 		}
 		
-		private string _phone;
-		public virtual string Phone 
+		private decimal? _shipRate;
+		public virtual decimal? ShipRate 
 		{ 
 		    get
 		    {
-		        return this._phone;
+		        return this._shipRate;
 		    }
 		    set
 		    {
-		        this._phone = value;
-		    }
-		}
-		
-		private string _fax;
-		public virtual string Fax 
-		{ 
-		    get
-		    {
-		        return this._fax;
-		    }
-		    set
-		    {
-		        this._fax = value;
-		    }
-		}
-		
-		private string _email;
-		public virtual string Email 
-		{ 
-		    get
-		    {
-		        return this._email;
-		    }
-		    set
-		    {
-		        this._email = value;
-		    }
-		}
-		
-		private string _homePage;
-		public virtual string HomePage 
-		{ 
-		    get
-		    {
-		        return this._homePage;
-		    }
-		    set
-		    {
-		        this._homePage = value;
+		        this._shipRate = value;
 		    }
 		}
 		
@@ -139,15 +87,6 @@ namespace DynamicApplicationModel
 		    set
 		    {
 		        this._modifiedDate = value;
-		    }
-		}
-		
-		private IList<ProductVendor> _productVendors = new List<ProductVendor>();
-		public virtual IList<ProductVendor> ProductVendors 
-		{ 
-		    get
-		    {
-		        return this._productVendors;
 		    }
 		}
 		

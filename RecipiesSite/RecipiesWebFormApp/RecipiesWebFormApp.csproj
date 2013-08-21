@@ -176,6 +176,7 @@
     <Content Include="Production\Products.aspx" />
     <Content Include="Purchasing\PurchaseOrderDetails.aspx" />
     <Content Include="Purchasing\PurchaseOrders.aspx" />
+    <Content Include="Purchasing\ShipMethods.aspx" />
     <Content Include="Purchasing\Vendors.aspx" />
     <Content Include="Production\UnitMeasures.aspx" />
     <Content Include="Sales\Customers.aspx" />
@@ -330,6 +331,13 @@
     </Compile>
     <Compile Include="Purchasing\PurchaseOrders.aspx.designer.cs">
       <DependentUpon>PurchaseOrders.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Purchasing\ShipMethods.aspx.cs">
+      <DependentUpon>ShipMethods.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Purchasing\ShipMethods.aspx.designer.cs">
+      <DependentUpon>ShipMethods.aspx</DependentUpon>
     </Compile>
     <Compile Include="Purchasing\Vendors.aspx.cs">
       <DependentUpon>Vendors.aspx</DependentUpon>

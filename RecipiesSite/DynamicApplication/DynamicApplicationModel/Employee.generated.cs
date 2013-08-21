@@ -216,5 +216,14 @@ namespace DynamicApplicationModel
 		    }
 		}
 		
+		private IList<PurchaseOrderHeader> _purchaseOrderHeaders = new List<PurchaseOrderHeader>();
+		public virtual IList<PurchaseOrderHeader> PurchaseOrderHeaders 
+		{ 
+		    get
+		    {
+		        return this._purchaseOrderHeaders;
+		    }
+		}
+		
 	}
 }
