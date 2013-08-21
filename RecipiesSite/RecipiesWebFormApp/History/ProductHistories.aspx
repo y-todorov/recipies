@@ -6,7 +6,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourceProductHistory" runat="server" ContextTypeName="DynamicApplicationModel.RecipiesModel" EntityTypeName="" ResourceSetName="ProductHistories">
     </telerik:OpenAccessLinqDataSource>
-    <telerik:RadGrid ID="rgProductHistory" runat="server" DataSourceID="OpenAccessLinqDataSourceProductHistory">
+    <telerik:RadGrid ID="rgProductHistory" SkinID="readOnlyGrid" runat="server" DataSourceID="OpenAccessLinqDataSourceProductHistory">
         <MasterTableView AutoGenerateColumns="False" DataKeyNames="ProductHistoryId" DataSourceID="OpenAccessLinqDataSourceProductHistory">
             <Columns>
                 <telerik:GridBoundColumn DataField="ProductHistoryId" DataType="System.Int32" FilterControlAltText="Filter ProductHistoryId column" HeaderText="ProductHistoryId" ReadOnly="True" SortExpression="ProductHistoryId" UniqueName="ProductHistoryId">
