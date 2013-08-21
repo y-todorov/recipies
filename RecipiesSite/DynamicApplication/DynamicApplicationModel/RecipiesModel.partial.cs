@@ -28,6 +28,15 @@ namespace DynamicApplicationModel
         
         public override void SaveChanges(ConcurrencyConflictsProcessingMode failureMode)
         {
+            SetModifiedDateField();
+
+            PopulateProductHistory(); 
+
+            base.SaveChanges(failureMode);
+        }
+
+        private void SetModifiedDateField()
+        {
             IList<object> listOfUpdates = this.GetChanges().GetUpdates<object>();
             IList<object> listOfInserts = this.GetChanges().GetInserts<object>();
 
@@ -38,17 +47,23 @@ namespace DynamicApplicationModel
                 Type type = update.GetType();
                 if (type.GetProperties().Any(p => p.Name.Equals("ModifiedDate")))
                 {
-                    update.SetFieldValue<DateTime>("ModifiedDate", DateTime.Now);           
+                    update.SetFieldValue<DateTime>("ModifiedDate", DateTime.Now);
                 }
             }
+        } 
 
+        private void PopulateProductHistory()
+        {
+            
 
+            IList<Product> listOfProductInserts = this.GetChanges().GetInserts<Product>();
             IList<Product> listOfProductUpdates = this.GetChanges().GetUpdates<Product>();
-            foreach (Product product in listOfProductUpdates)
+            IEnumerable<Product> combinedListOfProducts = listOfProductInserts.Concat(listOfProductUpdates);
+            foreach (Product product in combinedListOfProducts)
             {
                 Type productType = product.GetType();
                 var productProperties = productType.GetProperties();
-              
+
                 ProductHistory productHistory = new ProductHistory();
                 var productHistoryProperties = productHistory.GetType().GetProperties();
 
@@ -61,10 +76,8 @@ namespace DynamicApplicationModel
                         object theValue = prop.GetValue(product);
                         productHistory.SetFieldValue(prop.Name, theValue);
                     }
-                }               
-            }   
-
-            base.SaveChanges(failureMode);
+                }
+            }
         }
 
         

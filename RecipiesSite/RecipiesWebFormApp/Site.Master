@@ -81,7 +81,15 @@
                     </Items>
                 </telerik:RadMenuItem>
                    <telerik:RadMenuItem IsSeparator="true"></telerik:RadMenuItem>
-                <telerik:RadMenuItem Text="History" NavigateUrl="~/Default"></telerik:RadMenuItem>
+                <telerik:RadMenuItem Text="History">
+                    <Items>
+                        <telerik:RadMenuItem Text="Production">
+                            <Items>
+                                <telerik:RadMenuItem Text="Product history" NavigateUrl="History/ProductHistories.aspx"></telerik:RadMenuItem>
+                            </Items>
+                        </telerik:RadMenuItem>
+                    </Items>
+                </telerik:RadMenuItem>
 
                 <telerik:RadMenuItem IsSeparator="true"></telerik:RadMenuItem>
                 <telerik:RadMenuItem Text="Account">
