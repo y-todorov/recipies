@@ -155,6 +155,19 @@ namespace DynamicApplicationModel
 		    }
 		}
 		
+		private string _modifiedByUser;
+		public virtual string ModifiedByUser 
+		{ 
+		    get
+		    {
+		        return this._modifiedByUser;
+		    }
+		    set
+		    {
+		        this._modifiedByUser = value;
+		    }
+		}
+		
 		private Employee _employee;
 		public virtual Employee Employee 
 		{ 

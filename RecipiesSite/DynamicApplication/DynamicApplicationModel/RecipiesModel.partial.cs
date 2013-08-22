@@ -9,6 +9,7 @@ using Telerik.OpenAccess.Data.Common;
 using Telerik.OpenAccess.Metadata.Fluent;
 using Telerik.OpenAccess.Metadata.Fluent.Advanced;
 using System.Reflection;
+using System.Web;
 
 namespace DynamicApplicationModel
 {
@@ -28,15 +29,21 @@ namespace DynamicApplicationModel
         
         public override void SaveChanges(ConcurrencyConflictsProcessingMode failureMode)
         {
-            SetModifiedDateField();
+            SetModifiedDateAndModifiedByUserFields();
 
             PopulateProductHistory(); 
 
             base.SaveChanges(failureMode);
         }
 
-        private void SetModifiedDateField()
+        private void SetModifiedDateAndModifiedByUserFields()
         {
+            string userName = null;
+            if (HttpContext.Current != null && HttpContext.Current.User != null && HttpContext.Current.User.Identity != null)
+            {
+                userName = HttpContext.Current.User.Identity.Name;
+            }
+
             IList<object> listOfUpdates = this.GetChanges().GetUpdates<object>();
             IList<object> listOfInserts = this.GetChanges().GetInserts<object>();
 
@@ -48,6 +55,7 @@ namespace DynamicApplicationModel
                 if (type.GetProperties().Any(p => p.Name.Equals("ModifiedDate")))
                 {
                     update.SetFieldValue<DateTime>("ModifiedDate", DateTime.Now);
+                    update.SetFieldValue<string>("ModifiedByUser", userName);
                 }
             }
         } 

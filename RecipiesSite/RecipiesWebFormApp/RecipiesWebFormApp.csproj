@@ -193,6 +193,7 @@
     <Content Include="ErrorPages\Error.aspx" />
     <Content Include="ErrorPages\Error404.aspx" />
     <Content Include="History\ProductHistories.aspx" />
+    <Content Include="HumanResources\Departments.aspx" />
     <Content Include="HumanResources\Employees.aspx" />
     <Content Include="Images\accent.png" />
     <Content Include="Images\bullet.png" />
@@ -344,6 +345,13 @@
     </Compile>
     <Compile Include="History\ProductHistories.aspx.designer.cs">
       <DependentUpon>ProductHistories.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HumanResources\Departments.aspx.cs">
+      <DependentUpon>Departments.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HumanResources\Departments.aspx.designer.cs">
+      <DependentUpon>Departments.aspx</DependentUpon>
     </Compile>
     <Compile Include="HumanResources\Employees.aspx.cs">
       <DependentUpon>Employees.aspx</DependentUpon>

@@ -64,6 +64,19 @@ namespace DynamicApplicationModel
 		    }
 		}
 		
+		private string _modifiedByUser;
+		public virtual string ModifiedByUser 
+		{ 
+		    get
+		    {
+		        return this._modifiedByUser;
+		    }
+		    set
+		    {
+		        this._modifiedByUser = value;
+		    }
+		}
+		
 		private IList<ProductVendor> _productVendors = new List<ProductVendor>();
 		public virtual IList<ProductVendor> ProductVendors 
 		{ 

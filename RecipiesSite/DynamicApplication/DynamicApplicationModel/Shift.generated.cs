@@ -18,22 +18,23 @@ using Telerik.OpenAccess.Metadata;
 using Telerik.OpenAccess.Data.Common;
 using Telerik.OpenAccess.Metadata.Fluent;
 using Telerik.OpenAccess.Metadata.Fluent.Advanced;
+using DynamicApplicationModel;
 
 
 namespace DynamicApplicationModel	
 {
-	public partial class Store
+	public partial class Shift
 	{
-		private int _storeId;
-		public virtual int StoreId 
+		private int _shiftId;
+		public virtual int ShiftId 
 		{ 
 		    get
 		    {
-		        return this._storeId;
+		        return this._shiftId;
 		    }
 		    set
 		    {
-		        this._storeId = value;
+		        this._shiftId = value;
 		    }
 		}
 		
@@ -47,6 +48,32 @@ namespace DynamicApplicationModel
 		    set
 		    {
 		        this._name = value;
+		    }
+		}
+		
+		private DateTime? _startDate;
+		public virtual DateTime? StartDate 
+		{ 
+		    get
+		    {
+		        return this._startDate;
+		    }
+		    set
+		    {
+		        this._startDate = value;
+		    }
+		}
+		
+		private DateTime? _endDate;
+		public virtual DateTime? EndDate 
+		{ 
+		    get
+		    {
+		        return this._endDate;
+		    }
+		    set
+		    {
+		        this._endDate = value;
 		    }
 		}
 		
@@ -73,6 +100,15 @@ namespace DynamicApplicationModel
 		    set
 		    {
 		        this._modifiedByUser = value;
+		    }
+		}
+		
+		private IList<EmployeeDepartment> _employeeDepartments = new List<EmployeeDepartment>();
+		public virtual IList<EmployeeDepartment> EmployeeDepartments 
+		{ 
+		    get
+		    {
+		        return this._employeeDepartments;
 		    }
 		}
 		

@@ -90,6 +90,19 @@ namespace DynamicApplicationModel
 		    }
 		}
 		
+		private string _modifiedByUser;
+		public virtual string ModifiedByUser 
+		{ 
+		    get
+		    {
+		        return this._modifiedByUser;
+		    }
+		    set
+		    {
+		        this._modifiedByUser = value;
+		    }
+		}
+		
 		private IList<PurchaseOrderHeader> _purchaseOrderHeaders = new List<PurchaseOrderHeader>();
 		public virtual IList<PurchaseOrderHeader> PurchaseOrderHeaders 
 		{ 

@@ -207,6 +207,19 @@ namespace DynamicApplicationModel
 		    }
 		}
 		
+		private string _modifiedByUser;
+		public virtual string ModifiedByUser 
+		{ 
+		    get
+		    {
+		        return this._modifiedByUser;
+		    }
+		    set
+		    {
+		        this._modifiedByUser = value;
+		    }
+		}
+		
 		private IList<Order> _orders = new List<Order>();
 		public virtual IList<Order> Orders 
 		{ 
@@ -222,6 +235,15 @@ namespace DynamicApplicationModel
 		    get
 		    {
 		        return this._purchaseOrderHeaders;
+		    }
+		}
+		
+		private IList<EmployeeDepartment> _employeeDepartments = new List<EmployeeDepartment>();
+		public virtual IList<EmployeeDepartment> EmployeeDepartments 
+		{ 
+		    get
+		    {
+		        return this._employeeDepartments;
 		    }
 		}
 		

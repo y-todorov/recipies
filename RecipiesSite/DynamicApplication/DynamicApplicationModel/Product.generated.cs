@@ -168,6 +168,19 @@ namespace DynamicApplicationModel
 		    }
 		}
 		
+		private string _modifiedByUser;
+		public virtual string ModifiedByUser 
+		{ 
+		    get
+		    {
+		        return this._modifiedByUser;
+		    }
+		    set
+		    {
+		        this._modifiedByUser = value;
+		    }
+		}
+		
 		private UnitMeasure _unitMeasure;
 		public virtual UnitMeasure UnitMeasure 
 		{ 

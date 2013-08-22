@@ -164,6 +164,30 @@ namespace DynamicApplicationModel
 	    	}
 		}
 		
+		public IQueryable<Shift> Shifts 
+		{
+	    	get
+	    	{
+	        	return this.GetAll<Shift>();
+	    	}
+		}
+		
+		public IQueryable<EmployeeDepartment> EmployeeDepartments 
+		{
+	    	get
+	    	{
+	        	return this.GetAll<EmployeeDepartment>();
+	    	}
+		}
+		
+		public IQueryable<Department> Departments 
+		{
+	    	get
+	    	{
+	        	return this.GetAll<Department>();
+	    	}
+		}
+		
 		public static BackendConfiguration GetBackendConfiguration()
 		{
 			BackendConfiguration backend = new BackendConfiguration();
@@ -241,6 +265,21 @@ namespace DynamicApplicationModel
 		}
 
 		IQueryable<ShipMethod> ShipMethods 
+		{ 
+			get;
+		}
+
+		IQueryable<Shift> Shifts 
+		{ 
+			get;
+		}
+
+		IQueryable<EmployeeDepartment> EmployeeDepartments 
+		{ 
+			get;
+		}
+
+		IQueryable<Department> Departments 
 		{ 
 			get;
 		}

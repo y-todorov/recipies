@@ -23,83 +23,83 @@ using DynamicApplicationModel;
 
 namespace DynamicApplicationModel	
 {
-	public partial class OrderDetail
+	public partial class EmployeeDepartment
 	{
-		private int _orderDetailID;
-		public virtual int OrderDetailID 
+		private int _employeeDepartmentId;
+		public virtual int EmployeeDepartmentId 
 		{ 
 		    get
 		    {
-		        return this._orderDetailID;
+		        return this._employeeDepartmentId;
 		    }
 		    set
 		    {
-		        this._orderDetailID = value;
+		        this._employeeDepartmentId = value;
 		    }
 		}
 		
-		private int? _orderID;
-		public virtual int? OrderID 
+		private int? _employeeId;
+		public virtual int? EmployeeId 
 		{ 
 		    get
 		    {
-		        return this._orderID;
+		        return this._employeeId;
 		    }
 		    set
 		    {
-		        this._orderID = value;
+		        this._employeeId = value;
 		    }
 		}
 		
-		private int? _productID;
-		public virtual int? ProductID 
+		private int? _departmentId;
+		public virtual int? DepartmentId 
 		{ 
 		    get
 		    {
-		        return this._productID;
+		        return this._departmentId;
 		    }
 		    set
 		    {
-		        this._productID = value;
+		        this._departmentId = value;
 		    }
 		}
 		
-		private decimal? _unitPrice;
-		public virtual decimal? UnitPrice 
+		private int? _shiftId;
+		public virtual int? ShiftId 
 		{ 
 		    get
 		    {
-		        return this._unitPrice;
+		        return this._shiftId;
 		    }
 		    set
 		    {
-		        this._unitPrice = value;
+		        this._shiftId = value;
 		    }
 		}
 		
-		private int? _quantity;
-		public virtual int? Quantity 
+		private DateTime? _startDate;
+		public virtual DateTime? StartDate 
 		{ 
 		    get
 		    {
-		        return this._quantity;
+		        return this._startDate;
 		    }
 		    set
 		    {
-		        this._quantity = value;
+		        this._startDate = value;
 		    }
 		}
 		
-		private double? _discount;
-		public virtual double? Discount 
+		private DateTime? _endDate;
+		public virtual DateTime? EndDate 
 		{ 
 		    get
 		    {
-		        return this._discount;
+		        return this._endDate;
 		    }
 		    set
 		    {
-		        this._discount = value;
+		        this._endDate = value;
 		    }
 		}
 		
@@ -129,29 +129,42 @@ namespace DynamicApplicationModel
 		    }
 		}
 		
-		private Product _product;
-		public virtual Product Product 
+		private Shift _shift;
+		public virtual Shift Shift 
 		{ 
 		    get
 		    {
-		        return this._product;
+		        return this._shift;
 		    }
 		    set
 		    {
-		        this._product = value;
+		        this._shift = value;
 		    }
 		}
 		
-		private Order _order;
-		public virtual Order Order 
+		private Employee _employee;
+		public virtual Employee Employee 
 		{ 
 		    get
 		    {
-		        return this._order;
+		        return this._employee;
 		    }
 		    set
 		    {
-		        this._order = value;
+		        this._employee = value;
+		    }
+		}
+		
+		private Department _department;
+		public virtual Department Department 
+		{ 
+		    get
+		    {
+		        return this._department;
+		    }
+		    set
+		    {
+		        this._department = value;
 		    }
 		}
 		
