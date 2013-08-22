@@ -21,17 +21,20 @@
             if (args.get_item().get_items().get_count() != 0 && args.get_item().get_level() == 0) {
                 args.set_cancel(true); // Cancel the event 
             }
-        }
+        }       
     </script>
 
 </head>
 <body>
     <form runat="server">
-
+         
         <telerik:RadScriptManager ID="RadScriptManager1" runat="server">
             <Scripts>
             </Scripts>
         </telerik:RadScriptManager>
+   <%--     <telerik:RadAjaxManager ID="RadAjaxManager1" runat="server"  ClientEvents-OnRequestStart="mngRequestStarted">
+             <ClientEvents OnRequestStart="mngRequestStarted" />
+        </telerik:RadAjaxManager>--%>
         <telerik:RadStyleSheetManager runat="server" ID="RadStyleSheetManager1">
             <StyleSheets>
             </StyleSheets>
@@ -39,7 +42,7 @@
         <telerik:RadFormDecorator ID="RadFormDecorator1" runat="server" Skin="Silk" DecoratedControls="All" />
         <telerik:RadSkinManager ID="RadSkinManager1" runat="server" Skin="Silk">
         </telerik:RadSkinManager>
-        <telerik:RadAjaxLoadingPanel ID="RadAjaxLoadingPanel1" runat="server" BackgroundTransparency="50" EnableSkinTransparency="true" EnableAjaxSkinRendering="true">
+        <telerik:RadAjaxLoadingPanel ID="RadAjaxLoadingPanel1" runat="server" BackgroundTransparency="50" EnableSkinTransparency="true" EnableAjaxSkinRendering="true" Enabled="false">
         </telerik:RadAjaxLoadingPanel>
 
         <telerik:RadMenu runat="server" Width="100%" OnItemClick="Unnamed_ItemClick" OnClientItemClicking="OnClientItemClicking">
@@ -118,9 +121,9 @@
 
         </telerik:RadMenu>
         <div>
-            <telerik:RadAjaxPanel ID="RadAjaxPanel1" runat="server" LoadingPanelID="RadAjaxLoadingPanel1">
+           <%-- <telerik:RadAjaxPanel ID="RadAjaxPanel1" runat="server" LoadingPanelID="RadAjaxLoadingPanel1">--%>
                 <asp:ContentPlaceHolder runat="server" ID="MainContent" />
-            </telerik:RadAjaxPanel>
+         <%--   </telerik:RadAjaxPanel>--%>
         </div>
 
     </form>
