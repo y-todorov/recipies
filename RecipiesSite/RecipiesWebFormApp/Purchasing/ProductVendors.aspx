@@ -48,7 +48,7 @@
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
                 </telerik:GridNumericColumn>
-                <telerik:GridDateTimeColumn DataField="LastReceiptDate" DataType="System.DateTime" FilterControlAltText="Filter LastReceiptDate column" HeaderText="LastReceiptDate" SortExpression="LastReceiptDate" UniqueName="LastReceiptDate">
+                <telerik:GridDateTimeColumn DataField="LastReceiptDate"  DataFormatString="{0:dd/MM/yyyy}"  DataType="System.DateTime" FilterControlAltText="Filter LastReceiptDate column" HeaderText="LastReceiptDate" SortExpression="LastReceiptDate" UniqueName="LastReceiptDate">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>

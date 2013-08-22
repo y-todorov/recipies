@@ -17,12 +17,12 @@
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
                 </telerik:GridBoundColumn>
-                <telerik:GridDateTimeColumn  DataFormatString="{0:HH:mm}" DefaultInsertValue="2000-1-1"   ConvertEmptyStringToNull="true" PickerType="TimePicker" DataType="System.DateTime" DataField="StartDate" FilterControlAltText="Filter StartDate column" HeaderText="StartDate" SortExpression="StartDate" UniqueName="StartDate">
+                <telerik:GridDateTimeColumn  DataFormatString="{0:HH:mm}" ConvertEmptyStringToNull="true" PickerType="TimePicker" DataType="System.DateTime" DataField="StartDate" FilterControlAltText="Filter StartDate column" HeaderText="StartDate" SortExpression="StartDate" UniqueName="StartDate">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
                 </telerik:GridDateTimeColumn>
-                <telerik:GridDateTimeColumn DataFormatString="{0:HH:mm}" DefaultInsertValue="2000-1-1"  ConvertEmptyStringToNull="true" PickerType="TimePicker"  DataField="EndDate" DataType="System.DateTime" FilterControlAltText="Filter EndDate column" HeaderText="EndDate" SortExpression="EndDate" UniqueName="EndDate">
+                <telerik:GridDateTimeColumn DataFormatString="{0:HH:mm}" ConvertEmptyStringToNull="true" PickerType="TimePicker"  DataField="EndDate" DataType="System.DateTime" FilterControlAltText="Filter EndDate column" HeaderText="EndDate" SortExpression="EndDate" UniqueName="EndDate">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
