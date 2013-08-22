@@ -31,9 +31,34 @@ namespace DynamicApplicationModel
         {
             SetModifiedDateAndModifiedByUserFields();
 
-            PopulateProductHistory(); 
+            PopulateProductHistory();
+
+            SetProperShiftDates();
 
             base.SaveChanges(failureMode);
+        }
+
+        // Setting the date of shifts to be in 2000 year
+        private void SetProperShiftDates()
+        {
+            IList<Shift> listOfShiftInserts = this.GetChanges().GetInserts<Shift>();
+            IList<Shift> listOfShifttUpdates = this.GetChanges().GetUpdates<Shift>();
+            IEnumerable<Shift> combinedListOfShifts = listOfShiftInserts.Concat(listOfShifttUpdates);
+            foreach (Shift product in combinedListOfShifts)
+            {
+                if (product.StartDate.HasValue)
+                {
+                    product.StartDate = new DateTime(2000, 1, 1).
+                        AddHours(product.StartDate.Value.Hour).
+                        AddMinutes(product.StartDate.Value.Minute);
+                }
+                if (product.EndDate.HasValue)
+                {
+                    product.EndDate = new DateTime(2000, 1, 1).
+                        AddHours(product.EndDate.Value.Hour).
+                        AddMinutes(product.EndDate.Value.Minute);
+                }
+            }
         }
 
         private void SetModifiedDateAndModifiedByUserFields()
@@ -61,9 +86,7 @@ namespace DynamicApplicationModel
         } 
 
         private void PopulateProductHistory()
-        {
-            
-
+        {           
             IList<Product> listOfProductInserts = this.GetChanges().GetInserts<Product>();
             IList<Product> listOfProductUpdates = this.GetChanges().GetUpdates<Product>();
             IEnumerable<Product> combinedListOfProducts = listOfProductInserts.Concat(listOfProductUpdates);

@@ -39,6 +39,9 @@
         <telerik:RadFormDecorator ID="RadFormDecorator1" runat="server" Skin="Silk" DecoratedControls="All" />
         <telerik:RadSkinManager ID="RadSkinManager1" runat="server" Skin="Silk">
         </telerik:RadSkinManager>
+        <telerik:RadAjaxLoadingPanel ID="RadAjaxLoadingPanel1" runat="server">
+        </telerik:RadAjaxLoadingPanel>
+
         <telerik:RadMenu runat="server" Width="100%" OnItemClick="Unnamed_ItemClick" OnClientItemClicking="OnClientItemClicking">
             <Items>
                 <telerik:RadMenuItem runat="server" Text="Dashboard" NavigateUrl="~/Default">
@@ -67,30 +70,32 @@
                 <telerik:RadMenuItem IsSeparator="true"></telerik:RadMenuItem>
                 <telerik:RadMenuItem Text="Purchasing">
                     <Items>
-                       
+
                         <telerik:RadMenuItem Text="Purchase orders" NavigateUrl="~/Purchasing/PurchaseOrders"></telerik:RadMenuItem>
-                        <telerik:RadMenuItem Text="Purchase order details" NavigateUrl="~/Purchasing/PurchaseOrderDetails"></telerik:RadMenuItem> 
+                        <telerik:RadMenuItem Text="Purchase order details" NavigateUrl="~/Purchasing/PurchaseOrderDetails"></telerik:RadMenuItem>
                         <telerik:RadMenuItem runat="server" Text="Vendors" NavigateUrl="~/Purchasing/Vendors">
                         </telerik:RadMenuItem>
-                            <telerik:RadMenuItem runat="server" Text="Product vendors" NavigateUrl="~/Purchasing/ProductVendors.aspx">
+                        <telerik:RadMenuItem runat="server" Text="Product vendors" NavigateUrl="~/Purchasing/ProductVendors">
                         </telerik:RadMenuItem>
-                          <telerik:RadMenuItem runat="server" Text="Ship methods" NavigateUrl="~/Purchasing/ShipMethods.aspx">
+                        <telerik:RadMenuItem runat="server" Text="Ship methods" NavigateUrl="~/Purchasing/ShipMethods">
                         </telerik:RadMenuItem>
                     </Items>
                 </telerik:RadMenuItem>
                 <telerik:RadMenuItem IsSeparator="true"></telerik:RadMenuItem>
                 <telerik:RadMenuItem runat="server" Text="Human resources">
                     <Items>
-                        <telerik:RadMenuItem Text="Employees" NavigateUrl="HumanResources/Employees.aspx"></telerik:RadMenuItem>
-                        <telerik:RadMenuItem Text="Shifts" NavigateUrl="~/Default"></telerik:RadMenuItem>
+                        <telerik:RadMenuItem Text="Employees" NavigateUrl="HumanResources/Employees"></telerik:RadMenuItem>
+                        <telerik:RadMenuItem Text="Shifts" NavigateUrl="HumanResources/Shifts"></telerik:RadMenuItem>
+                        <telerik:RadMenuItem Text="Departments" NavigateUrl="HumanResources/Departments"></telerik:RadMenuItem>
+                        <telerik:RadMenuItem Text="Employee departments" NavigateUrl="HumanResources/EmployeeDepartment"></telerik:RadMenuItem>
                     </Items>
                 </telerik:RadMenuItem>
-                   <telerik:RadMenuItem IsSeparator="true"></telerik:RadMenuItem>
+                <telerik:RadMenuItem IsSeparator="true"></telerik:RadMenuItem>
                 <telerik:RadMenuItem Text="History">
                     <Items>
                         <telerik:RadMenuItem Text="Production">
                             <Items>
-                                <telerik:RadMenuItem Text="Product history" NavigateUrl="History/ProductHistories.aspx"></telerik:RadMenuItem>
+                                <telerik:RadMenuItem Text="Product history" NavigateUrl="History/ProductHistories"></telerik:RadMenuItem>
                             </Items>
                         </telerik:RadMenuItem>
                     </Items>
@@ -113,7 +118,9 @@
 
         </telerik:RadMenu>
         <div>
-            <asp:ContentPlaceHolder runat="server" ID="MainContent" />
+            <telerik:RadAjaxPanel ID="RadAjaxPanel1" runat="server" LoadingPanelID="RadAjaxLoadingPanel1">
+                <asp:ContentPlaceHolder runat="server" ID="MainContent" />
+            </telerik:RadAjaxPanel>
         </div>
 
     </form>

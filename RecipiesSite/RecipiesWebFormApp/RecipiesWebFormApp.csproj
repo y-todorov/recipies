@@ -194,7 +194,9 @@
     <Content Include="ErrorPages\Error404.aspx" />
     <Content Include="History\ProductHistories.aspx" />
     <Content Include="HumanResources\Departments.aspx" />
+    <Content Include="HumanResources\EmployeeDepartment.aspx" />
     <Content Include="HumanResources\Employees.aspx" />
+    <Content Include="HumanResources\Shifts.aspx" />
     <Content Include="Images\accent.png" />
     <Content Include="Images\bullet.png" />
     <Content Include="Images\heroAccent.png" />
@@ -353,12 +355,26 @@
     <Compile Include="HumanResources\Departments.aspx.designer.cs">
       <DependentUpon>Departments.aspx</DependentUpon>
     </Compile>
+    <Compile Include="HumanResources\EmployeeDepartment.aspx.cs">
+      <DependentUpon>EmployeeDepartment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HumanResources\EmployeeDepartment.aspx.designer.cs">
+      <DependentUpon>EmployeeDepartment.aspx</DependentUpon>
+    </Compile>
     <Compile Include="HumanResources\Employees.aspx.cs">
       <DependentUpon>Employees.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="HumanResources\Employees.aspx.designer.cs">
       <DependentUpon>Employees.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HumanResources\Shifts.aspx.cs">
+      <DependentUpon>Shifts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HumanResources\Shifts.aspx.designer.cs">
+      <DependentUpon>Shifts.aspx</DependentUpon>
     </Compile>
     <Compile Include="Production\ProductCategories.aspx.cs">
       <DependentUpon>ProductCategories.aspx</DependentUpon>
