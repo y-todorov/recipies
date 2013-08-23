@@ -217,6 +217,7 @@
     <Content Include="Purchasing\ProductVendors.aspx" />
     <Content Include="Purchasing\PurchaseOrderDetails.aspx" />
     <Content Include="Purchasing\PurchaseOrders.aspx" />
+    <Content Include="Purchasing\PurchaseOrderStatuses.aspx" />
     <Content Include="Purchasing\ShipMethods.aspx" />
     <Content Include="Purchasing\Vendors.aspx" />
     <Content Include="Production\UnitMeasures.aspx" />
@@ -230,7 +231,7 @@
     <Content Include="App_Data\RadSpell\en-US.tdf" />
     <Content Include="App_Data\RadSpell\fr-FR.tdf" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
-    <Content Include="Sales\Stores.aspx" />
+    <Content Include="Production\Stores.aspx" />
     <Content Include="Scripts\jquery-2.0.3.js" />
     <Content Include="Scripts\jquery-2.0.3.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.js" />
@@ -411,6 +412,13 @@
     <Compile Include="Purchasing\PurchaseOrders.aspx.designer.cs">
       <DependentUpon>PurchaseOrders.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Purchasing\PurchaseOrderStatuses.aspx.cs">
+      <DependentUpon>PurchaseOrderStatuses.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Purchasing\PurchaseOrderStatuses.aspx.designer.cs">
+      <DependentUpon>PurchaseOrderStatuses.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Purchasing\ShipMethods.aspx.cs">
       <DependentUpon>ShipMethods.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -454,11 +462,11 @@
     <Compile Include="Sales\Orders.aspx.designer.cs">
       <DependentUpon>Orders.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Sales\Stores.aspx.cs">
+    <Compile Include="Production\Stores.aspx.cs">
       <DependentUpon>Stores.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Sales\Stores.aspx.designer.cs">
+    <Compile Include="Production\Stores.aspx.designer.cs">
       <DependentUpon>Stores.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">

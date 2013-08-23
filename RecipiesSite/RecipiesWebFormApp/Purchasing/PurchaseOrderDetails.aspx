@@ -28,12 +28,8 @@
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text=""></ModelErrorMessage>
                     </ColumnValidationSettings>
-                </telerik:GridDropDownColumn>              
-                <telerik:GridDateTimeColumn DataField="DueDate"  DataFormatString="{0:dd/MM/yyyy}"  DataType="System.DateTime" FilterControlAltText="Filter DueDate column" HeaderText="DueDate" SortExpression="DueDate" UniqueName="DueDate">
-                    <ColumnValidationSettings>
-                        <ModelErrorMessage Text="" />
-                    </ColumnValidationSettings>
-                </telerik:GridDateTimeColumn>
+                </telerik:GridDropDownColumn>             
+           
                 <telerik:GridNumericColumn DataField="OrderQuantity" DataType="System.Int32" FilterControlAltText="Filter OrderQuantity column" HeaderText="OrderQuantity" SortExpression="OrderQuantity" UniqueName="OrderQuantity">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
@@ -54,7 +50,7 @@
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
                 </telerik:GridNumericColumn>
-                <telerik:GridNumericColumn DataField="RejectedQuantity" DataType="System.Int32" FilterControlAltText="Filter RejectedQuantity column" HeaderText="RejectedQuantity" SortExpression="RejectedQuantity" UniqueName="RejectedQuantity">
+                <telerik:GridNumericColumn DataField="ReturnedQuantity" DataType="System.Int32" FilterControlAltText="Filter ReturnedQuantity column" HeaderText="ReturnedQuantity" SortExpression="ReturnedQuantity" UniqueName="ReturnedQuantity">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>

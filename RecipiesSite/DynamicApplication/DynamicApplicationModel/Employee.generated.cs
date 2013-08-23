@@ -168,32 +168,6 @@ namespace DynamicApplicationModel
 		    }
 		}
 		
-		private string _extension;
-		public virtual string Extension 
-		{ 
-		    get
-		    {
-		        return this._extension;
-		    }
-		    set
-		    {
-		        this._extension = value;
-		    }
-		}
-		
-		private string _notes;
-		public virtual string Notes 
-		{ 
-		    get
-		    {
-		        return this._notes;
-		    }
-		    set
-		    {
-		        this._notes = value;
-		    }
-		}
-		
 		private DateTime? _modifiedDate;
 		public virtual DateTime? ModifiedDate 
 		{ 
@@ -217,6 +191,19 @@ namespace DynamicApplicationModel
 		    set
 		    {
 		        this._modifiedByUser = value;
+		    }
+		}
+		
+		private string _previousExperience;
+		public virtual string PreviousExperience 
+		{ 
+		    get
+		    {
+		        return this._previousExperience;
+		    }
+		    set
+		    {
+		        this._previousExperience = value;
 		    }
 		}
 		

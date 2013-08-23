@@ -111,6 +111,9 @@
     <Compile Include="PurchaseOrderHeader.generated.cs">
       <DependentUpon>EntitiesModel.rlinq</DependentUpon>
     </Compile>
+    <Compile Include="PurchaseOrderStatus.generated.cs">
+      <DependentUpon>EntitiesModel.rlinq</DependentUpon>
+    </Compile>
     <Compile Include="RecipiesModel.partial.cs" />
     <Compile Include="Shift.generated.cs">
       <DependentUpon>EntitiesModel.rlinq</DependentUpon>

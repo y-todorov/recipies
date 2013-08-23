@@ -64,19 +64,6 @@ namespace DynamicApplicationModel
 		    }
 		}
 		
-		private DateTime? _dueDate;
-		public virtual DateTime? DueDate 
-		{ 
-		    get
-		    {
-		        return this._dueDate;
-		    }
-		    set
-		    {
-		        this._dueDate = value;
-		    }
-		}
-		
 		private int? _orderQuantity;
 		public virtual int? OrderQuantity 
 		{ 
@@ -125,19 +112,6 @@ namespace DynamicApplicationModel
 		    }
 		}
 		
-		private int? _rejectedQuantity;
-		public virtual int? RejectedQuantity 
-		{ 
-		    get
-		    {
-		        return this._rejectedQuantity;
-		    }
-		    set
-		    {
-		        this._rejectedQuantity = value;
-		    }
-		}
-		
 		private int _stockedQuantity;
 		public virtual int StockedQuantity 
 		{ 
@@ -170,6 +144,19 @@ namespace DynamicApplicationModel
 		    set
 		    {
 		        this._modifiedByUser = value;
+		    }
+		}
+		
+		private int? _returnedQuantity;
+		public virtual int? ReturnedQuantity 
+		{ 
+		    get
+		    {
+		        return this._returnedQuantity;
+		    }
+		    set
+		    {
+		        this._returnedQuantity = value;
 		    }
 		}
 		

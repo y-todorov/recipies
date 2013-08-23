@@ -17,6 +17,7 @@
             <asp:Parameter DefaultValue="0" Name="PurchaseOrderId" Type="Int32" />
         </WhereParameters>
     </telerik:OpenAccessLinqDataSource>
+    <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourceStatus" Runat="server" ContextTypeName="DynamicApplicationModel.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="PurchaseOrderStatus" />
     <telerik:RadGrid ID="rgPurchaseOrders" runat="server" DataSourceID="OpenAccessLinqDataSourcePurchaseOrders" OnEditCommand="rgPurchaseOrders_EditCommand" OnItemCommand="rgPurchaseOrders_ItemCommand">
         <MasterTableView AutoGenerateColumns="False" DataKeyNames="PurchaseOrderId" DataSourceID="OpenAccessLinqDataSourcePurchaseOrders">
             <Columns>
@@ -46,16 +47,13 @@
                         <ModelErrorMessage Text=""></ModelErrorMessage>
                     </ColumnValidationSettings>
                 </telerik:GridDropDownColumn>
-                <telerik:GridBoundColumn DataField="RevisionNumber" DataType="System.Int32" FilterControlAltText="Filter RevisionNumber column" HeaderText="RevisionNumber" SortExpression="RevisionNumber" UniqueName="RevisionNumber">
+                 <telerik:GridDropDownColumn UniqueName="DropDownUnitListColumn" ListTextField="Name" EmptyListItemText="" EnableEmptyListItem="true" EmptyListItemValue="" ConvertEmptyStringToNull="true"
+                    ListValueField="PurchaseOrderStatusId" DataSourceID="OpenAccessLinqDataSourceStatus" HeaderText="Status"
+                    DataField="StatusId" DropDownControlType="RadComboBox">
                     <ColumnValidationSettings>
-                        <ModelErrorMessage Text="" />
+                        <ModelErrorMessage Text=""></ModelErrorMessage>
                     </ColumnValidationSettings>
-                </telerik:GridBoundColumn>
-                <telerik:GridNumericColumn DataField="Status" DataType="System.Int32" FilterControlAltText="Filter Status column" HeaderText="Status" SortExpression="Status" UniqueName="Status">
-                    <ColumnValidationSettings>
-                        <ModelErrorMessage Text="" />
-                    </ColumnValidationSettings>
-                </telerik:GridNumericColumn>
+                </telerik:GridDropDownColumn>    
                 <telerik:GridDateTimeColumn DataField="OrderDate" DataFormatString="{0:dd/MM/yyyy}" DataType="System.DateTime" FilterControlAltText="Filter OrderDate column" HeaderText="OrderDate" SortExpression="OrderDate" UniqueName="OrderDate">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
@@ -71,7 +69,7 @@
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
                 </telerik:GridNumericColumn>
-                <telerik:GridNumericColumn DataField="TaxAmt" DataType="System.Decimal" FilterControlAltText="Filter TaxAmt column" HeaderText="TaxAmt" SortExpression="TaxAmt" UniqueName="TaxAmt">
+                <telerik:GridNumericColumn DataField="VAT" DataType="System.Decimal" FilterControlAltText="Filter VAT column" HeaderText="VAT" SortExpression="VAT" UniqueName="VAT">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
@@ -121,12 +119,7 @@
                                         <ColumnValidationSettings>
                                             <ModelErrorMessage Text=""></ModelErrorMessage>
                                         </ColumnValidationSettings>
-                                    </telerik:GridDropDownColumn>
-                                    <telerik:GridDateTimeColumn DataField="DueDate" DataFormatString="{0:dd/MM/yyyy}" DataType="System.DateTime" FilterControlAltText="Filter DueDate column" HeaderText="DueDate" SortExpression="DueDate" UniqueName="DueDate">
-                                        <ColumnValidationSettings>
-                                            <ModelErrorMessage Text="" />
-                                        </ColumnValidationSettings>
-                                    </telerik:GridDateTimeColumn>
+                                    </telerik:GridDropDownColumn>                                   
                                     <telerik:GridNumericColumn DataField="OrderQuantity" DataType="System.Int32" FilterControlAltText="Filter OrderQuantity column" HeaderText="OrderQuantity" SortExpression="OrderQuantity" UniqueName="OrderQuantity">
                                         <ColumnValidationSettings>
                                             <ModelErrorMessage Text="" />
@@ -147,7 +140,7 @@
                                             <ModelErrorMessage Text="" />
                                         </ColumnValidationSettings>
                                     </telerik:GridNumericColumn>
-                                    <telerik:GridNumericColumn DataField="RejectedQuantity" DataType="System.Int32" FilterControlAltText="Filter RejectedQuantity column" HeaderText="RejectedQuantity" SortExpression="RejectedQuantity" UniqueName="RejectedQuantity">
+                                    <telerik:GridNumericColumn DataField="ReturnedQuantity" DataType="System.Int32" FilterControlAltText="Filter ReturnedQuantity column" HeaderText="ReturnedQuantity" SortExpression="ReturnedQuantity" UniqueName="ReturnedQuantity">
                                         <ColumnValidationSettings>
                                             <ModelErrorMessage Text="" />
                                         </ColumnValidationSettings>

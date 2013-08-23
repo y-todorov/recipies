@@ -25,32 +25,6 @@ namespace DynamicApplicationModel
 {
 	public partial class PurchaseOrderHeader
 	{
-		private int? _revisionNumber;
-		public virtual int? RevisionNumber 
-		{ 
-		    get
-		    {
-		        return this._revisionNumber;
-		    }
-		    set
-		    {
-		        this._revisionNumber = value;
-		    }
-		}
-		
-		private int? _status;
-		public virtual int? Status 
-		{ 
-		    get
-		    {
-		        return this._status;
-		    }
-		    set
-		    {
-		        this._status = value;
-		    }
-		}
-		
 		private DateTime? _orderDate;
 		public virtual DateTime? OrderDate 
 		{ 
@@ -87,19 +61,6 @@ namespace DynamicApplicationModel
 		    set
 		    {
 		        this._subTotal = value;
-		    }
-		}
-		
-		private decimal? _taxAmt;
-		public virtual decimal? TaxAmt 
-		{ 
-		    get
-		    {
-		        return this._taxAmt;
-		    }
-		    set
-		    {
-		        this._taxAmt = value;
 		    }
 		}
 		
@@ -203,6 +164,32 @@ namespace DynamicApplicationModel
 		    }
 		}
 		
+		private decimal? _vAT;
+		public virtual decimal? VAT 
+		{ 
+		    get
+		    {
+		        return this._vAT;
+		    }
+		    set
+		    {
+		        this._vAT = value;
+		    }
+		}
+		
+		private int? _statusId;
+		public virtual int? StatusId 
+		{ 
+		    get
+		    {
+		        return this._statusId;
+		    }
+		    set
+		    {
+		        this._statusId = value;
+		    }
+		}
+		
 		private Vendor _vendor;
 		public virtual Vendor Vendor 
 		{ 
@@ -239,6 +226,19 @@ namespace DynamicApplicationModel
 		    set
 		    {
 		        this._employee = value;
+		    }
+		}
+		
+		private PurchaseOrderStatus _purchaseOrderStatus;
+		public virtual PurchaseOrderStatus PurchaseOrderStatus 
+		{ 
+		    get
+		    {
+		        return this._purchaseOrderStatus;
+		    }
+		    set
+		    {
+		        this._purchaseOrderStatus = value;
 		    }
 		}
 		

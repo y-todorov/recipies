@@ -46,17 +46,17 @@ namespace DynamicApplicationModel
             IEnumerable<Shift> combinedListOfShifts = listOfShiftInserts.Concat(listOfShifttUpdates);
             foreach (Shift product in combinedListOfShifts)
             {
-                if (product.StartDate.HasValue)
+                if (product.StartHour.HasValue)
                 {
-                    product.StartDate = new DateTime(2000, 1, 1).
-                        AddHours(product.StartDate.Value.Hour).
-                        AddMinutes(product.StartDate.Value.Minute);
+                    product.StartHour = new DateTime(2000, 1, 1).
+                        AddHours(product.StartHour.Value.Hour).
+                        AddMinutes(product.StartHour.Value.Minute);
                 }
-                if (product.EndDate.HasValue)
+                if (product.EndHour.HasValue)
                 {
-                    product.EndDate = new DateTime(2000, 1, 1).
-                        AddHours(product.EndDate.Value.Hour).
-                        AddMinutes(product.EndDate.Value.Minute);
+                    product.EndHour = new DateTime(2000, 1, 1).
+                        AddHours(product.EndHour.Value.Hour).
+                        AddMinutes(product.EndHour.Value.Minute);
                 }
             }
         }

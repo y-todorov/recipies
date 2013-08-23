@@ -21,18 +21,18 @@
             if (args.get_item().get_items().get_count() != 0 && args.get_item().get_level() == 0) {
                 args.set_cancel(true); // Cancel the event 
             }
-        }       
+        }
     </script>
 
 </head>
 <body>
     <form runat="server">
-         
+
         <telerik:RadScriptManager ID="RadScriptManager1" runat="server">
             <Scripts>
             </Scripts>
         </telerik:RadScriptManager>
-   <%--     <telerik:RadAjaxManager ID="RadAjaxManager1" runat="server"  ClientEvents-OnRequestStart="mngRequestStarted">
+        <%--     <telerik:RadAjaxManager ID="RadAjaxManager1" runat="server"  ClientEvents-OnRequestStart="mngRequestStarted">
              <ClientEvents OnRequestStart="mngRequestStarted" />
         </telerik:RadAjaxManager>--%>
         <telerik:RadStyleSheetManager runat="server" ID="RadStyleSheetManager1">
@@ -58,7 +58,7 @@
                         </telerik:RadMenuItem>
                         <telerik:RadMenuItem runat="server" Text="Unit measures" NavigateUrl="~/Production/UnitMeasures">
                         </telerik:RadMenuItem>
-
+                        <telerik:RadMenuItem Text="Stores" NavigateUrl="~/Production/Stores"></telerik:RadMenuItem>
                     </Items>
                 </telerik:RadMenuItem>
                 <telerik:RadMenuItem IsSeparator="true"></telerik:RadMenuItem>
@@ -67,20 +67,20 @@
                         <telerik:RadMenuItem Text="Sales orders" NavigateUrl="~/Sales/Orders"></telerik:RadMenuItem>
                         <telerik:RadMenuItem Text="Sales order details" NavigateUrl="~/Sales/OrderDetails"></telerik:RadMenuItem>
                         <telerik:RadMenuItem Text="Customers" NavigateUrl="~/Sales/Customers"></telerik:RadMenuItem>
-                        <telerik:RadMenuItem Text="Stores" NavigateUrl="~/Sales/Stores"></telerik:RadMenuItem>
                     </Items>
                 </telerik:RadMenuItem>
                 <telerik:RadMenuItem IsSeparator="true"></telerik:RadMenuItem>
                 <telerik:RadMenuItem Text="Purchasing">
                     <Items>
-
                         <telerik:RadMenuItem Text="Purchase orders" NavigateUrl="~/Purchasing/PurchaseOrders"></telerik:RadMenuItem>
-                        <telerik:RadMenuItem Text="Purchase order details" NavigateUrl="~/Purchasing/PurchaseOrderDetails"></telerik:RadMenuItem>
+                        <telerik:RadMenuItem Text="Purchase order details" Visible="false" NavigateUrl="~/Purchasing/PurchaseOrderDetails"></telerik:RadMenuItem>
                         <telerik:RadMenuItem runat="server" Text="Vendors" NavigateUrl="~/Purchasing/Vendors">
                         </telerik:RadMenuItem>
                         <telerik:RadMenuItem runat="server" Text="Product vendors" NavigateUrl="~/Purchasing/ProductVendors">
                         </telerik:RadMenuItem>
                         <telerik:RadMenuItem runat="server" Text="Ship methods" NavigateUrl="~/Purchasing/ShipMethods">
+                        </telerik:RadMenuItem>
+                          <telerik:RadMenuItem runat="server" Text="Purchase order statuses" NavigateUrl="~/Purchasing/PurchaseOrderStatuses.aspx">
                         </telerik:RadMenuItem>
                     </Items>
                 </telerik:RadMenuItem>
@@ -121,9 +121,9 @@
 
         </telerik:RadMenu>
         <div>
-           <%-- <telerik:RadAjaxPanel ID="RadAjaxPanel1" runat="server" LoadingPanelID="RadAjaxLoadingPanel1">--%>
-                <asp:ContentPlaceHolder runat="server" ID="MainContent" />
-         <%--   </telerik:RadAjaxPanel>--%>
+            <%-- <telerik:RadAjaxPanel ID="RadAjaxPanel1" runat="server" LoadingPanelID="RadAjaxLoadingPanel1">--%>
+            <asp:ContentPlaceHolder runat="server" ID="MainContent" />
+            <%--   </telerik:RadAjaxPanel>--%>
         </div>
 
     </form>

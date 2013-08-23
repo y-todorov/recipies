@@ -66,7 +66,7 @@
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
                 </telerik:GridBoundColumn>
-                <telerik:GridBoundColumn DataField="Notes" FilterControlAltText="Filter Notes column" HeaderText="Notes" SortExpression="Notes" UniqueName="Notes">
+                <telerik:GridBoundColumn DataField="PreviousExperience" FilterControlAltText="Filter PreviousExperience column" HeaderText="PreviousExperience" SortExpression="PreviousExperience" UniqueName="PreviousExperience">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>

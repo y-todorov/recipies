@@ -23,18 +23,18 @@ using DynamicApplicationModel;
 
 namespace DynamicApplicationModel	
 {
-	public partial class Shift
+	public partial class PurchaseOrderStatus
 	{
-		private int _shiftId;
-		public virtual int ShiftId 
+		private int _purchaseOrderStatusId;
+		public virtual int PurchaseOrderStatusId 
 		{ 
 		    get
 		    {
-		        return this._shiftId;
+		        return this._purchaseOrderStatusId;
 		    }
 		    set
 		    {
-		        this._shiftId = value;
+		        this._purchaseOrderStatusId = value;
 		    }
 		}
 		
@@ -77,38 +77,12 @@ namespace DynamicApplicationModel
 		    }
 		}
 		
-		private DateTime? _startHour;
-		public virtual DateTime? StartHour 
+		private IList<PurchaseOrderHeader> _purchaseOrderHeaders = new List<PurchaseOrderHeader>();
+		public virtual IList<PurchaseOrderHeader> PurchaseOrderHeaders 
 		{ 
 		    get
 		    {
-		        return this._startHour;
-		    }
-		    set
-		    {
-		        this._startHour = value;
-		    }
-		}
-		
-		private DateTime? _endHour;
-		public virtual DateTime? EndHour 
-		{ 
-		    get
-		    {
-		        return this._endHour;
-		    }
-		    set
-		    {
-		        this._endHour = value;
-		    }
-		}
-		
-		private IList<EmployeeDepartment> _employeeDepartments = new List<EmployeeDepartment>();
-		public virtual IList<EmployeeDepartment> EmployeeDepartments 
-		{ 
-		    get
-		    {
-		        return this._employeeDepartments;
+		        return this._purchaseOrderHeaders;
 		    }
 		}
 		

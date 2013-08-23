@@ -188,6 +188,14 @@ namespace DynamicApplicationModel
 	    	}
 		}
 		
+		public IQueryable<PurchaseOrderStatus> PurchaseOrderStatus 
+		{
+	    	get
+	    	{
+	        	return this.GetAll<PurchaseOrderStatus>();
+	    	}
+		}
+		
 		public static BackendConfiguration GetBackendConfiguration()
 		{
 			BackendConfiguration backend = new BackendConfiguration();
@@ -280,6 +288,11 @@ namespace DynamicApplicationModel
 		}
 
 		IQueryable<Department> Departments 
+		{ 
+			get;
+		}
+
+		IQueryable<PurchaseOrderStatus> PurchaseOrderStatus 
 		{ 
 			get;
 		}
