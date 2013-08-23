@@ -49,6 +49,33 @@ namespace RecipiesWebFormApp.Purchasing {
         protected global::Telerik.OpenAccess.Web.OpenAccessLinqDataSource OpenAccessLinqDataSourceEmployee;
         
         /// <summary>
+        /// OpenAccessLinqDataSourcePurchaseOrder control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.OpenAccess.Web.OpenAccessLinqDataSource OpenAccessLinqDataSourcePurchaseOrder;
+        
+        /// <summary>
+        /// OpenAccessLinqDataSourceProduct control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.OpenAccess.Web.OpenAccessLinqDataSource OpenAccessLinqDataSourceProduct;
+        
+        /// <summary>
+        /// OpenAccessLinqDataSourcePurchaseOrderDetails control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.OpenAccess.Web.OpenAccessLinqDataSource OpenAccessLinqDataSourcePurchaseOrderDetails;
+        
+        /// <summary>
         /// rgPurchaseOrders control.
         /// </summary>
         /// <remarks>
