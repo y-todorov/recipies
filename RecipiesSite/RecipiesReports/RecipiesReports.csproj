@@ -51,11 +51,11 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="PurchaseOrderReport.cs">
+    <Compile Include="PurchaseOrderReportGen.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="PurchaseOrderReport.Designer.cs">
-      <DependentUpon>PurchaseOrderReport.cs</DependentUpon>
+    <Compile Include="PurchaseOrderReportGen.Designer.cs">
+      <DependentUpon>PurchaseOrderReportGen.cs</DependentUpon>
     </Compile>
     <Compile Include="Report2.cs">
       <SubType>Component</SubType>
@@ -71,8 +71,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="PurchaseOrderReport.resx">
-      <DependentUpon>PurchaseOrderReport.cs</DependentUpon>
+    <EmbeddedResource Include="PurchaseOrderReportGen.resx">
+      <DependentUpon>PurchaseOrderReportGen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Report2.resx">
       <DependentUpon>Report2.cs</DependentUpon>
