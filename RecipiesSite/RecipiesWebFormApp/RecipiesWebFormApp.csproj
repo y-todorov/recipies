@@ -129,6 +129,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\DynamicApplication\DynamicApplicationModel\OpenAccessAssemblies\Telerik.Reporting.dll</HintPath>
     </Reference>
+    <Reference Include="Telerik.ReportViewer.WebForms, Version=7.1.13.802, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DynamicApplication\DynamicApplicationModel\OpenAccessAssemblies\Telerik.ReportViewer.WebForms.dll</HintPath>
+    </Reference>
     <Reference Include="Telerik.Web.Design, Version=2013.2.730.45, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\DynamicApplication\DynamicApplicationModel\OpenAccessAssemblies\Telerik.Web.Design.dll</HintPath>
@@ -545,9 +549,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DynamicApplication\DynamicApplicationModel\DynamicApplicationModel.csproj">
+    <ProjectReference Include="..\DynamicApplication\DynamicApplicationModel\RecipiesModel.csproj">
       <Project>{c50145e6-a244-4f1f-b41f-90d1925b4a00}</Project>
-      <Name>DynamicApplicationModel</Name>
+      <Name>RecipiesModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RecipiesReports\RecipiesReports.csproj">
+      <Project>{b726482b-aee9-4c3f-9af6-9b60df2b5f3e}</Project>
+      <Name>RecipiesReports</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

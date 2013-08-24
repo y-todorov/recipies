@@ -19,6 +19,6 @@ namespace RecipiesWebFormApp.Purchasing {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Microsoft.Reporting.WebForms.ReportViewer ReportViewer1;
+        protected global::Telerik.ReportViewer.WebForms.ReportViewer ReportViewer1;
     }
 }

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicApplicationModel", "DynamicApplication\DynamicApplicationModel\DynamicApplicationModel.csproj", "{C50145E6-A244-4F1F-B41F-90D1925B4A00}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipiesModel", "DynamicApplication\DynamicApplicationModel\RecipiesModel.csproj", "{C50145E6-A244-4F1F-B41F-90D1925B4A00}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipiesWebFormApp", "RecipiesWebFormApp\RecipiesWebFormApp.csproj", "{86BDCA89-36F0-4884-99A5-DE0576D01188}"
 EndProject

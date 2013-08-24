@@ -35,3 +35,5 @@ C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Typesafe.Mailgun.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Newtonsoft.Json.xml
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\RestSharp.xml
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Typesafe.Mailgun.xml
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\RecipiesReports.dll
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\RecipiesReports.pdb

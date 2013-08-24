@@ -43,18 +43,45 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="PurchaseOrderReport.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="PurchaseOrderReport.Designer.cs">
       <DependentUpon>PurchaseOrderReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="Report2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report2.Designer.cs">
+      <DependentUpon>Report2.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DynamicApplication\DynamicApplicationModel\DynamicApplicationModel.csproj">
+    <ProjectReference Include="..\DynamicApplication\DynamicApplicationModel\RecipiesModel.csproj">
       <Project>{c50145e6-a244-4f1f-b41f-90d1925b4a00}</Project>
-      <Name>DynamicApplicationModel</Name>
+      <Name>RecipiesModel</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="PurchaseOrderReport.resx">
+      <DependentUpon>PurchaseOrderReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report2.resx">
+      <DependentUpon>Report2.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Properties\DataSources\DynamicApplicationModel.PurchaseOrderDetail.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

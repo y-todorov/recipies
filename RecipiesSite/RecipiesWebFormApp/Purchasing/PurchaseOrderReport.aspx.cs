@@ -13,7 +13,9 @@ namespace RecipiesWebFormApp.Purchasing
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            var instanceReportSource = new Telerik.Reporting.InstanceReportSource();
+            instanceReportSource.ReportDocument = new RecipiesReports.Report2();
+            this.ReportViewer1.ReportSource = instanceReportSource;
         }
     }
 }
