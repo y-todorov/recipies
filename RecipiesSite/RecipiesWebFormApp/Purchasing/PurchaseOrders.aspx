@@ -94,9 +94,10 @@
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
                 </telerik:GridBoundColumn>
-                <telerik:GridTemplateColumn InsertVisiblityMode="AlwaysVisible" Visible="false">
+                <telerik:GridTemplateColumn InsertVisiblityMode="AlwaysVisible" Visible="false" HeaderText="Purchasing products" >
 
                     <EditItemTemplate>
+                        <asp:Label runat="server" ID="lblPurchaseOrderDetails" Text="Please save the purchase order so products can be added to it." OnPreRender="lblPurchaseOrderDetails_PreRender"></asp:Label>
                         <telerik:RadGrid ID="rgPurchaseOrderDetails" runat="server" DataSourceID="OpenAccessLinqDataSourcePurchaseOrderDetails" OnPreRender="rgPurchaseOrderDetails_PreRender"  OnItemCommand="rgPurchaseOrderDetails_ItemCommand">
                             <MasterTableView AutoGenerateColumns="False" DataKeyNames="PurchaseOrderDetailId" DataSourceID="OpenAccessLinqDataSourcePurchaseOrderDetails" >
                                 <Columns>

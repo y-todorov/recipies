@@ -91,14 +91,7 @@ namespace RecipiesWebFormApp.Purchasing
             }
         }
    
-        protected void rgPurchaseOrderDetails_PreRender(object sender, EventArgs e)
-        {
-            if (PurchaseOrderId <= 0)
-            {
-                RadGrid rgPurchaseOrderDetails = (RadGrid)sender;
-                rgPurchaseOrderDetails.Visible = false;
-            }
-        }
+        
 
         protected void OpenAccessLinqDataSourceProduct_Selected(object sender, OpenAccessLinqDataSourceStatusEventArgs e)
         {
@@ -120,6 +113,24 @@ namespace RecipiesWebFormApp.Purchasing
             if (newPurchaseOrderDetail != null)
             {
                 newPurchaseOrderDetail.PurchaseOrderId = PurchaseOrderId;
+            }
+        }
+        
+        protected void rgPurchaseOrderDetails_PreRender(object sender, EventArgs e)
+        {
+            if (PurchaseOrderId <= 0)
+            {
+                RadGrid rgPurchaseOrderDetails = (RadGrid)sender;
+                rgPurchaseOrderDetails.Visible = false;                
+            }
+        }
+
+        protected void lblPurchaseOrderDetails_PreRender(object sender, EventArgs e)
+        {
+            if (PurchaseOrderId > 0)
+            {
+                Label lblPurchaseOrderDetails = (Label)sender;
+                lblPurchaseOrderDetails.Visible = false;
             }
         }
        
