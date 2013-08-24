@@ -27,16 +27,24 @@ namespace RecipiesWebFormApp.Purchasing
             }
         }
 
+        public int? VendorId
+        {
+            get
+            {
+                int? vendorId = (int)ViewState["VendorId"];
+                return vendorId;
+            }
+            set
+            {
+                ViewState["VendorId"] = value;
+            }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
-      
-        protected void rgPurchaseOrders_EditCommand(object sender, Telerik.Web.UI.GridCommandEventArgs e)
-        {
-            e.Item.Selected = true;
-        }
-
+   
         protected void OpenAccessLinqDataSourcePurchaseOrderDetails_Selecting(object sender, OpenAccessLinqDataSourceSelectEventArgs e)
         {
             if (e.WhereParameters.ContainsKey("PurchaseOrderId"))
@@ -54,7 +62,7 @@ namespace RecipiesWebFormApp.Purchasing
                 {
                     int purchaseOrderId = (int)editableItem.GetDataKeyValue(rgPurchaseOrders.MasterTableView.DataKeyNames[0]);
                     PurchaseOrderHeader purchaseOrder = ContextFactory.GetContextPerRequest().PurchaseOrderHeaders.FirstOrDefault(p => p.PurchaseOrderId == purchaseOrderId);
-                    ViewState.Add("VendorId", purchaseOrder.VendorId);
+                    VendorId = purchaseOrder.VendorId;
                     PurchaseOrderId = purchaseOrderId;
                 }
             }
@@ -69,8 +77,17 @@ namespace RecipiesWebFormApp.Purchasing
             if (e.CommandName == RadGrid.InitInsertCommandName)
             {
                 // set here default values to show 
-                //PurchaseOrderDetail newPod = new PurchaseOrderDetail() { PurchaseOrderId = (int)ViewState["PurchaseOrderId"] };
-                //e.Item.OwnerTableView.InsertItem(newPod);
+                // We should get the default product price ot item changed of the products. Thats tough.
+                if (VendorId.HasValue)
+                {
+                    Vendor vendor = ContextFactory.GetContextPerRequest().Vendors.FirstOrDefault(v => v.VendorId == VendorId);
+                    if (vendor != null)
+                    {
+                        PurchaseOrderDetail newPod = new PurchaseOrderDetail() { UnitPrice = null };
+                        e.Item.OwnerTableView.InsertItem(newPod);
+                    }
+                }
+               
             }
         }
    
@@ -88,13 +105,22 @@ namespace RecipiesWebFormApp.Purchasing
             List<Product> products = e.Result as List<Product>;
             products.Clear();
             List<Product> filteredProducts = ContextFactory.GetContextPerRequest().ProductVendors.
-                Where(pv => pv.VendorId == (int)ViewState["VendorId"]).Select(pv => pv.Product).ToList();
+                Where(pv => pv.VendorId == VendorId).Select(pv => pv.Product).ToList();
             products.AddRange(filteredProducts);            
         }
 
         protected void OpenAccessLinqDataSourcePurchaseOrderDetails_Selected(object sender, OpenAccessLinqDataSourceStatusEventArgs e)
         {
 
+        }
+
+        protected void OpenAccessLinqDataSourcePurchaseOrderDetails_Inserting(object sender, OpenAccessLinqDataSourceInsertEventArgs e)
+        {
+            PurchaseOrderDetail newPurchaseOrderDetail = e.NewObject as PurchaseOrderDetail;
+            if (newPurchaseOrderDetail != null)
+            {
+                newPurchaseOrderDetail.PurchaseOrderId = PurchaseOrderId;
+            }
         }
        
     }
