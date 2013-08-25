@@ -156,6 +156,7 @@
     <Content Include="OpenAccessAssemblies\Telerik.OpenAccess.Web.40.dll" />
     <Content Include="OpenAccessAssemblies\Telerik.Reporting.dll" />
     <Content Include="OpenAccessAssemblies\Telerik.ReportViewer.WebForms.dll" />
+    <Content Include="OpenAccessAssemblies\Typesafe.Mailgun.dll" />
     <Content Include="OpenAccessAssemblies\venhance.exe" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

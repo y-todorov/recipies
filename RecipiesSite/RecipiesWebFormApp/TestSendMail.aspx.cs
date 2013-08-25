@@ -23,6 +23,15 @@ namespace RecipiesWebFormApp
 
         public static RestResponse SendComplexMessage()
         {
+            Typesafe.Mailgun.MailgunClient mc = new Typesafe.Mailgun.MailgunClient("https://api.mailgun.net/v2",
+                "key-7md8hh5f7cxi062n3x23x7h6nof5fue9");
+            //MailMessage
+
+            mc.SendMail(null);
+
+
+
+
             RestClient client = new RestClient();
             client.BaseUrl = "https://api.mailgun.net/v2";
             client.Authenticator =
