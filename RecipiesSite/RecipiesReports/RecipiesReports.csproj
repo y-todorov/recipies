@@ -63,6 +63,18 @@
     <Compile Include="Report2.Designer.cs">
       <DependentUpon>Report2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Report3.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report3.Designer.cs">
+      <DependentUpon>Report3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SalesOrderDetails.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SalesOrderDetails.Designer.cs">
+      <DependentUpon>SalesOrderDetails.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DynamicApplication\DynamicApplicationModel\RecipiesModel.csproj">
@@ -76,6 +88,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Report2.resx">
       <DependentUpon>Report2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report3.resx">
+      <DependentUpon>Report3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SalesOrderDetails.resx">
+      <DependentUpon>SalesOrderDetails.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

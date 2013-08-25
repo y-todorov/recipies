@@ -166,6 +166,8 @@
                         </telerik:RadGrid>
                     </EditItemTemplate>
                 </telerik:GridTemplateColumn>
+
+                <telerik:GridButtonColumn ButtonType="LinkButton" Text="Download" CommandName="GeneratePurchaseOrderReport"></telerik:GridButtonColumn>
             </Columns>          
         </MasterTableView>
     </telerik:RadGrid>
