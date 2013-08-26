@@ -56,6 +56,7 @@ namespace RecipiesReports
             // 
             // textBox4
             // 
+            this.textBox4.Format = "{0:C2}";
             this.textBox4.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Inch(6.7708330154418945D), Telerik.Reporting.Drawing.Unit.Inch(3.9418537198798731E-05D));
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.6666666269302368D), Telerik.Reporting.Drawing.Unit.Inch(0.47988176345825195D));
@@ -184,6 +185,7 @@ namespace RecipiesReports
             // unitPriceDataTextBox
             // 
             this.unitPriceDataTextBox.CanGrow = true;
+            this.unitPriceDataTextBox.Format = "{0:C2}";
             this.unitPriceDataTextBox.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Inch(5.0833334922790527D), Telerik.Reporting.Drawing.Unit.Inch(0.02083333395421505D));
             this.unitPriceDataTextBox.Name = "unitPriceDataTextBox";
             this.unitPriceDataTextBox.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.6666666269302368D), Telerik.Reporting.Drawing.Unit.Inch(0.40000000596046448D));
@@ -193,6 +195,7 @@ namespace RecipiesReports
             // lineTotalDataTextBox
             // 
             this.lineTotalDataTextBox.CanGrow = true;
+            this.lineTotalDataTextBox.Format = "{0:C2}";
             this.lineTotalDataTextBox.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Inch(6.7708334922790527D), Telerik.Reporting.Drawing.Unit.Inch(0.02083333395421505D));
             this.lineTotalDataTextBox.Name = "lineTotalDataTextBox";
             this.lineTotalDataTextBox.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.6666666269302368D), Telerik.Reporting.Drawing.Unit.Inch(0.40000000596046448D));
