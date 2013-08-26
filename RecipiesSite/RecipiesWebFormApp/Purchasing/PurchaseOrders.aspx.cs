@@ -10,6 +10,7 @@ using Telerik.OpenAccess;
 using Telerik.OpenAccess.Web;
 using Telerik.ReportViewer.WebForms;
 using Telerik.Reporting.Processing;
+using RecipiesReports;
 
 
 namespace RecipiesWebFormApp.Purchasing
@@ -83,7 +84,9 @@ namespace RecipiesWebFormApp.Purchasing
                     ReportProcessor reportProcessor = new ReportProcessor();
 
                     var instanceReportSource = new Telerik.Reporting.InstanceReportSource();
-                    instanceReportSource.ReportDocument = new RecipiesReports.Report2() { };
+                    SalesOrderDetails salesOrderDetailsReport = new RecipiesReports.SalesOrderDetails();
+                    salesOrderDetailsReport.DataSource = purchaseOrder.PurchaseOrderDetails;
+                    instanceReportSource.ReportDocument = salesOrderDetailsReport;
                    
                     RenderingResult result = reportProcessor.RenderReport("PDF", instanceReportSource, null);
 
