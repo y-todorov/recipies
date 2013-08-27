@@ -171,5 +171,44 @@ namespace RecipiesWebFormApp.Purchasing
             }
         }
 
+        protected void rgPurchaseOrderDetails_ItemDataBound(object sender, GridItemEventArgs e)
+        {
+            if (e.Item is GridEditableItem && e.Item.IsInEditMode)
+            {
+                GridEditableItem editableItem = e.Item as GridEditableItem;
+
+                var col = editableItem.FindControl("DropDownProductListColumn");
+               
+                // execute custom logic
+            }
+        }
+
+        protected void rgPurchaseOrderDetails_CreateColumnEditor(object sender, GridCreateColumnEditorEventArgs e)
+        {
+            
+        }
+
+        protected void rgPurchaseOrderDetails_ItemCreated(object sender, GridItemEventArgs e)
+        {
+             
+            if (e.Item is GridEditableItem && e.Item.IsInEditMode)  
+            {
+                GridEditableItem edItem = (e.Item as GridEditableItem);
+                RadComboBox dropDownProductListColumn = edItem["DropDownProductListColumn"].Controls[0] as RadComboBox;  
+  
+                //attach SelectedIndexChanged event for the dropdown control  
+                dropDownProductListColumn.AutoPostBack = true;
+                dropDownProductListColumn.SelectedIndexChanged += dropDownProductListColumn_SelectedIndexChanged;
+            }  
+        }
+
+        void dropDownProductListColumn_SelectedIndexChanged(object sender, RadComboBoxSelectedIndexChangedEventArgs e)
+        {
+            //first reference the edited grid item through the NamingContainer                                                     attribute  
+            GridEditableItem editedItem = (sender as RadComboBox).NamingContainer as GridEditableItem;
+            RadNumericTextBox tbUnitPrice = editedItem["UnitPrice"].Controls[0] as RadNumericTextBox;
+            tbUnitPrice.Text = "0"; // DateTime.Now.Second.ToString();
+        }  
+  
     }
 }

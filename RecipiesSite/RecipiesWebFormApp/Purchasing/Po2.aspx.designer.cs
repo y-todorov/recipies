@@ -10,7 +10,16 @@
 namespace RecipiesWebFormApp.Purchasing {
     
     
-    public partial class WebForm1 {
+    public partial class Po2 {
+        
+        /// <summary>
+        /// rgPurchaseOrders control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadGrid rgPurchaseOrders;
         
         /// <summary>
         /// OpenAccessLinqDataSource1 control.
@@ -20,14 +29,5 @@ namespace RecipiesWebFormApp.Purchasing {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.OpenAccess.Web.OpenAccessLinqDataSource OpenAccessLinqDataSource1;
-        
-        /// <summary>
-        /// RadGrid1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Telerik.Web.UI.RadGrid RadGrid1;
     }
 }

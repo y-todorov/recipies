@@ -98,17 +98,16 @@
 
                     <EditItemTemplate>
                         <asp:Label runat="server" ID="lblPurchaseOrderDetails" Text="Please save the purchase order so products can be added to it." OnPreRender="lblPurchaseOrderDetails_PreRender"></asp:Label>
-                        <telerik:RadGrid ID="rgPurchaseOrderDetails" runat="server" DataSourceID="OpenAccessLinqDataSourcePurchaseOrderDetails" OnPreRender="rgPurchaseOrderDetails_PreRender"  OnItemCommand="rgPurchaseOrderDetails_ItemCommand">
+                        <telerik:RadGrid ID="rgPurchaseOrderDetails" runat="server" DataSourceID="OpenAccessLinqDataSourcePurchaseOrderDetails" OnItemCreated="rgPurchaseOrderDetails_ItemCreated" OnItemDataBound="rgPurchaseOrderDetails_ItemDataBound" OnCreateColumnEditor="rgPurchaseOrderDetails_CreateColumnEditor" OnPreRender="rgPurchaseOrderDetails_PreRender"  OnItemCommand="rgPurchaseOrderDetails_ItemCommand">
                             <MasterTableView AutoGenerateColumns="False" DataKeyNames="PurchaseOrderDetailId" DataSourceID="OpenAccessLinqDataSourcePurchaseOrderDetails" >
                                 <Columns>
                                     <telerik:GridDropDownColumn UniqueName="DropDownPurchaseOrderListColumn" Visible="false" ListTextField="PurchaseOrderId" EmptyListItemText="" EnableEmptyListItem="true" EmptyListItemValue="" ConvertEmptyStringToNull="true"
                                         ListValueField="PurchaseOrderId" DataSourceID="OpenAccessLinqDataSourcePurchaseOrder"  ReadOnly="true" HeaderText="PurchaseOrder"
-                                        DataField="PurchaseOrderId" DropDownControlType="RadComboBox">
+                                        DataField="PurchaseOrderId" DropDownControlType="RadComboBox" >
                                         <ColumnValidationSettings>
                                             <ModelErrorMessage Text=""></ModelErrorMessage>
                                         </ColumnValidationSettings>
                                     </telerik:GridDropDownColumn>
-
                                     <telerik:GridBoundColumn DataField="PurchaseOrderId" DataType="System.Int32" Visible="false" FilterControlAltText="Filter PurchaseOrderId column" HeaderText="PurchaseOrderId" ReadOnly="true" SortExpression="PurchaseOrderId" UniqueName="PurchaseOrderId">
                                         <ColumnValidationSettings>
                                             <ModelErrorMessage Text="" />

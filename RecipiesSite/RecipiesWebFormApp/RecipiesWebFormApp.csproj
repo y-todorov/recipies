@@ -232,6 +232,7 @@
     <Content Include="Production\ProductCategories.aspx" />
     <Content Include="Production\Products.aspx" />
     <Content Include="PurchaseOrderTemplate.html" />
+    <Content Include="Purchasing\Po2.aspx" />
     <Content Include="Purchasing\ProductVendors.aspx" />
     <Content Include="Purchasing\PurchaseOrderDetails.aspx" />
     <Content Include="Purchasing\PurchaseOrderReport.aspx" />
@@ -240,7 +241,6 @@
     <Content Include="Purchasing\ShipMethods.aspx" />
     <Content Include="Purchasing\Vendors.aspx" />
     <Content Include="Production\UnitMeasures.aspx" />
-    <Content Include="Purchasing\WebForm1.aspx" />
     <Content Include="Sales\Customers.aspx" />
     <Content Include="Sales\OrderDetails.aspx" />
     <Content Include="Sales\Orders.aspx" />
@@ -412,6 +412,13 @@
     <Compile Include="Production\Products.aspx.designer.cs">
       <DependentUpon>Products.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Purchasing\Po2.aspx.cs">
+      <DependentUpon>Po2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Purchasing\Po2.aspx.designer.cs">
+      <DependentUpon>Po2.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Purchasing\ProductVendors.aspx.cs">
       <DependentUpon>ProductVendors.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -469,13 +476,6 @@
       <DependentUpon>UnitMeasures.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Purchasing\WebForm1.aspx.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Purchasing\WebForm1.aspx.designer.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Sales\Customers.aspx.cs">
       <DependentUpon>Customers.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
