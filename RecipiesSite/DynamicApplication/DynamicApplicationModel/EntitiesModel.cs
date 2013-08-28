@@ -196,6 +196,14 @@ namespace DynamicApplicationModel
 	    	}
 		}
 		
+		public IQueryable<EmailTemplate> EmailTemplates 
+		{
+	    	get
+	    	{
+	        	return this.GetAll<EmailTemplate>();
+	    	}
+		}
+		
 		public static BackendConfiguration GetBackendConfiguration()
 		{
 			BackendConfiguration backend = new BackendConfiguration();
@@ -293,6 +301,11 @@ namespace DynamicApplicationModel
 		}
 
 		IQueryable<PurchaseOrderStatus> PurchaseOrderStatus 
+		{ 
+			get;
+		}
+
+		IQueryable<EmailTemplate> EmailTemplates 
 		{ 
 			get;
 		}

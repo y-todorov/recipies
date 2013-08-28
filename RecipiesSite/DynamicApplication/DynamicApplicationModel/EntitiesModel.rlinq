@@ -133,10 +133,10 @@
           <orm:column name="ModifiedByUser" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
         </orm:field>
         <orm:field name="_vAT" property="VAT" behavior="readwrite" uniqueId="ab13fc81-ef0a-493e-9f3b-f4b5dd465ccf" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
-          <orm:column nullable="true" length="0" name="VAT" scale="0" sql-type="money" ado-type="Currency" />
+          <orm:column name="VAT" sql-type="money" nullable="true" length="0" scale="0" ado-type="Currency" />
         </orm:field>
         <orm:field name="_statusId" property="StatusId" behavior="readwrite" uniqueId="8fd3a40e-19c2-4cbc-a941-78fe372793d6" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
-          <orm:column nullable="true" length="0" name="StatusId" scale="0" sql-type="int" ado-type="Int32" />
+          <orm:column name="StatusId" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
         </orm:field>
         <orm:field name="_vendor" property="Vendor" behavior="readwrite" uniqueId="1928efdc-d122-476c-9c29-4c1c0956788a" type="DynamicApplicationModel.Vendor">
           <orm:reference uniqueId="0b496378-0daa-4bed-82c8-c963c486482e">
@@ -156,14 +156,14 @@
             <orm:constraint name="FK_PurchaseOrderHeader_Employee" schema="Purchasing" destination-table="Employee" />
           </orm:reference>
         </orm:field>
-        <orm:field name="_purchaseOrderDetails" property="PurchaseOrderDetails" behavior="readwrite" uniqueId="acd2fd96-d0d9-40d3-ba43-c19b780b7cd1" type="DynamicApplicationModel.PurchaseOrderDetail">
-          <orm:collection element-class="DynamicApplicationModel.PurchaseOrderDetail" inverse-field="_purchaseOrderHeader" order-by="" uniqueId="34f0ec55-d1c4-43bf-8d43-35212826963a" />
-        </orm:field>
         <orm:field name="_purchaseOrderStatus" property="PurchaseOrderStatus" behavior="readwrite" uniqueId="6911011c-4442-461a-a627-7e485916df67" type="DynamicApplicationModel.PurchaseOrderStatus">
           <orm:reference uniqueId="6f804e4c-9ad0-4f99-a333-2cf9b0da735f">
             <orm:sharedfield name="_statusId" target-class="DynamicApplicationModel.PurchaseOrderStatus" target-field="_purchaseOrderStatusId" />
             <orm:constraint name="FK_PurchaseOrderHeader_PurchaseOrderStatus" schema="Purchasing" destination-table="PurchaseOrderStatus" />
           </orm:reference>
+        </orm:field>
+        <orm:field name="_purchaseOrderDetails" property="PurchaseOrderDetails" behavior="readwrite" uniqueId="acd2fd96-d0d9-40d3-ba43-c19b780b7cd1" type="DynamicApplicationModel.PurchaseOrderDetail">
+          <orm:collection element-class="DynamicApplicationModel.PurchaseOrderDetail" inverse-field="_purchaseOrderHeader" order-by="" uniqueId="34f0ec55-d1c4-43bf-8d43-35212826963a" />
         </orm:field>
       </orm:class>
       <orm:class name="PurchaseOrderDetail" uniqueId="2fe37073-9569-4897-9716-8f7826264bd5">
@@ -204,7 +204,7 @@
           <orm:column name="ModifiedByUser" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
         </orm:field>
         <orm:field name="_returnedQuantity" property="ReturnedQuantity" behavior="readwrite" uniqueId="44d48565-228f-49b0-acb2-ff47e56befc5" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
-          <orm:column nullable="true" length="0" name="ReturnedQuantity" scale="0" sql-type="int" ado-type="Int32" />
+          <orm:column name="ReturnedQuantity" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
         </orm:field>
         <orm:field name="_purchaseOrderHeader" property="PurchaseOrderHeader" behavior="readwrite" uniqueId="c2f62cb4-7039-4aaf-8c49-56cbd8a61eff" type="DynamicApplicationModel.PurchaseOrderHeader">
           <orm:reference uniqueId="34f0ec55-d1c4-43bf-8d43-35212826963a">
@@ -575,7 +575,7 @@
           <orm:column name="ModifiedByUser" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
         </orm:field>
         <orm:field name="_previousExperience" property="PreviousExperience" behavior="readwrite" uniqueId="91d1ecdd-d9f8-4dd2-9a32-70ac714c39f6" type="System.String">
-          <orm:column nullable="true" length="1000" name="PreviousExperience" scale="0" sql-type="nvarchar" ado-type="UnicodeStringVariableLength" />
+          <orm:column name="PreviousExperience" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
         </orm:field>
         <orm:field name="_orders" property="Orders" behavior="readwrite" uniqueId="57ee6990-6a04-4bb4-b656-ed15dfd7d0ff" type="DynamicApplicationModel.Order">
           <orm:collection element-class="DynamicApplicationModel.Order" inverse-field="_employee" order-by="" uniqueId="e6e59e63-1181-41f4-ab71-3d8a7942764d" />
@@ -674,10 +674,10 @@
           <orm:column name="ModifiedByUser" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
         </orm:field>
         <orm:field name="_startHour" property="StartHour" behavior="readwrite" uniqueId="49b91106-aa35-43f4-ad21-1faf1b6b5913" type="System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
-          <orm:column nullable="true" length="0" name="StartHour" scale="0" sql-type="datetime" ado-type="DateTime" />
+          <orm:column name="StartHour" sql-type="datetime" nullable="true" length="0" scale="0" ado-type="DateTime" />
         </orm:field>
         <orm:field name="_endHour" property="EndHour" behavior="readwrite" uniqueId="051c71f5-63b0-462d-ac49-59c657a365f1" type="System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
-          <orm:column nullable="true" length="0" name="EndHour" scale="0" sql-type="datetime" ado-type="DateTime" />
+          <orm:column name="EndHour" sql-type="datetime" nullable="true" length="0" scale="0" ado-type="DateTime" />
         </orm:field>
         <orm:field name="_employeeDepartments" property="EmployeeDepartments" behavior="readwrite" uniqueId="ca978e9a-6547-45d8-916c-911f6fbdc782" type="DynamicApplicationModel.EmployeeDepartment">
           <orm:collection element-class="DynamicApplicationModel.EmployeeDepartment" inverse-field="_shift" order-by="" uniqueId="f9f570b0-43bf-4a01-bcc0-7a2f207c1fe9" />
@@ -764,19 +764,60 @@
         </orm:identity>
         <orm:concurrency strategy="changed" />
         <orm:field name="_purchaseOrderStatusId" property="PurchaseOrderStatusId" behavior="readwrite" uniqueId="3fd88164-e5e3-4a05-aa74-f6c3b28106d2" type="System.Int32">
-          <orm:column nullable="false" primary-key="true" length="0" name="PurchaseOrderStatusId" scale="0" sql-type="int" backend-calculated="true" ado-type="Int32" />
+          <orm:column name="PurchaseOrderStatusId" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
         </orm:field>
         <orm:field name="_name" property="Name" behavior="readwrite" uniqueId="952c3ab3-9ac2-439b-9a08-7da7ebf1a238" type="System.String">
-          <orm:column nullable="true" length="1000" name="Name" scale="0" sql-type="nvarchar" ado-type="UnicodeStringVariableLength" />
+          <orm:column name="Name" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
         </orm:field>
         <orm:field name="_modifiedDate" property="ModifiedDate" behavior="readwrite" uniqueId="6053b261-e869-47ab-abfb-30f519236a73" type="System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
-          <orm:column has-default-value="true" nullable="true" length="0" name="ModifiedDate" scale="0" sql-type="datetime" ado-type="DateTime" />
+          <orm:column name="ModifiedDate" sql-type="datetime" nullable="true" length="0" scale="0" has-default-value="true" ado-type="DateTime" />
         </orm:field>
         <orm:field name="_modifiedByUser" property="ModifiedByUser" behavior="readwrite" uniqueId="99d94164-560f-4c78-b4af-b0e3c80f868b" type="System.String">
-          <orm:column nullable="true" length="1000" name="ModifiedByUser" scale="0" sql-type="nvarchar" ado-type="UnicodeStringVariableLength" />
+          <orm:column name="ModifiedByUser" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
         </orm:field>
         <orm:field name="_purchaseOrderHeaders" property="PurchaseOrderHeaders" behavior="readwrite" uniqueId="3906085f-9c38-44ab-8014-5bf9f8205c25" type="DynamicApplicationModel.PurchaseOrderHeader">
           <orm:collection element-class="DynamicApplicationModel.PurchaseOrderHeader" inverse-field="_purchaseOrderStatus" order-by="" uniqueId="6f804e4c-9ad0-4f99-a333-2cf9b0da735f" />
+        </orm:field>
+      </orm:class>
+      <orm:class name="EmailTemplate" uniqueId="54bdbdcc-97a8-410a-852f-b0c718c39c72">
+        <orm:table name="EmailTemplate" schema="Admin" />
+        <orm:identity>
+          <orm:key-generator name="autoinc" />
+          <orm:single-field field-name="_emailTemplateId" />
+        </orm:identity>
+        <orm:concurrency strategy="changed" />
+        <orm:field name="_emailTemplateId" property="EmailTemplateId" behavior="readwrite" uniqueId="dbd3bd2e-0d47-4881-907c-599029a1e638" type="System.Int32">
+          <orm:column nullable="false" primary-key="true" length="0" name="EmailTemplateId" scale="0" sql-type="int" backend-calculated="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_from" property="From" behavior="readwrite" uniqueId="ed5e488f-f056-4411-8837-01e2be437d0f" type="System.String">
+          <orm:column nullable="true" length="1000" name="From" scale="0" sql-type="nvarchar" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
+        <orm:field name="_cc" property="Cc" behavior="readwrite" uniqueId="2e998562-103e-4bbb-b2a2-052f3891a9c4" type="System.String">
+          <orm:column nullable="true" length="1000" name="Cc" scale="0" sql-type="nvarchar" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
+        <orm:field name="_bcc" property="Bcc" behavior="readwrite" uniqueId="9e3d45eb-9c8a-45e6-956a-1e09355ca952" type="System.String">
+          <orm:column nullable="true" length="1000" name="Bcc" scale="0" sql-type="nvarchar" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
+        <orm:field name="_subject" property="Subject" behavior="readwrite" uniqueId="6ff534c8-5815-43a9-a814-4b2e2822d65e" type="System.String">
+          <orm:column nullable="true" length="1000" name="Subject" scale="0" sql-type="nvarchar" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
+        <orm:field name="_textBody" property="TextBody" behavior="readwrite" uniqueId="400c5527-7ccd-4204-9e5e-5b909371c1db" type="System.String">
+          <orm:column nullable="true" length="1000" name="TextBody" scale="0" sql-type="nvarchar" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
+        <orm:field name="_htmlBody" property="HtmlBody" behavior="readwrite" uniqueId="596cf321-0785-4c4a-969f-23e45b2db3a4" type="System.String">
+          <orm:column nullable="true" length="1000" name="HtmlBody" scale="0" sql-type="nvarchar" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
+        <orm:field name="_isDefault" property="IsDefault" behavior="readwrite" uniqueId="acc13174-4fe5-4550-81fa-e6e7a362465d" type="System.Boolean">
+          <orm:column has-default-value="true" nullable="false" length="0" name="IsDefault" scale="0" sql-type="bit" ado-type="Bit" />
+        </orm:field>
+        <orm:field name="_modifiedDate" property="ModifiedDate" behavior="readwrite" uniqueId="474ed5e1-cbe6-4f06-a211-8e75e4f540a1" type="System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column has-default-value="true" nullable="true" length="0" name="ModifiedDate" scale="0" sql-type="datetime" ado-type="DateTime" />
+        </orm:field>
+        <orm:field name="_modifiedByUser" property="ModifiedByUser" behavior="readwrite" uniqueId="b24c9395-564a-4157-bcda-b5ea8d0a2fb2" type="System.String">
+          <orm:column nullable="true" length="1000" name="ModifiedByUser" scale="0" sql-type="nvarchar" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
+        <orm:field name="_attachmentName" property="AttachmentName" behavior="readwrite" uniqueId="b637ef7a-8ff1-4706-85ec-c3f28bdffcbe" type="System.String">
+          <orm:column nullable="true" length="1000" name="AttachmentName" scale="0" sql-type="nvarchar" ado-type="UnicodeStringVariableLength" />
         </orm:field>
       </orm:class>
     </orm:namespace>
@@ -805,8 +846,8 @@
         <orm:column name="PurchaseOrderId" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
         <orm:column name="EmployeeId" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
         <orm:column name="ModifiedByUser" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
-        <orm:column nullable="true" length="0" name="VAT" scale="0" sql-type="money" ado-type="Currency" />
-        <orm:column nullable="true" length="0" name="StatusId" scale="0" sql-type="int" ado-type="Int32" />
+        <orm:column name="VAT" sql-type="money" nullable="true" length="0" scale="0" ado-type="Currency" />
+        <orm:column name="StatusId" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
         <orm:constraint name="FK_PurchaseOrderHeader_Vendor" schema="Purchasing" destination-table="Vendor">
           <orm:column name="VendorId" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
         </orm:constraint>
@@ -817,7 +858,7 @@
           <orm:column name="EmployeeId" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
         </orm:constraint>
         <orm:constraint name="FK_PurchaseOrderHeader_PurchaseOrderStatus" schema="Purchasing" destination-table="PurchaseOrderStatus">
-          <orm:column nullable="true" length="0" name="StatusId" scale="0" sql-type="int" ado-type="Int32" />
+          <orm:column name="StatusId" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
         </orm:constraint>
       </orm:table>
       <orm:table name="PurchaseOrderDetail" schema="Purchasing">
@@ -831,7 +872,7 @@
         <orm:column name="StockedQuantity" sql-type="int" nullable="false" length="0" scale="0" ado-type="Int32" />
         <orm:column name="ModifiedDate" sql-type="datetime" nullable="true" length="0" scale="0" has-default-value="true" ado-type="DateTime" />
         <orm:column name="ModifiedByUser" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
-        <orm:column nullable="true" length="0" name="ReturnedQuantity" scale="0" sql-type="int" ado-type="Int32" />
+        <orm:column name="ReturnedQuantity" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
         <orm:constraint name="FK_PurchaseOrderDetail_PurchaseOrderHeader" schema="Purchasing" destination-table="PurchaseOrderHeader">
           <orm:column name="PurchaseOrderId" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
         </orm:constraint>
@@ -872,10 +913,10 @@
         <orm:column name="ModifiedByUser" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
       </orm:table>
       <orm:table name="PurchaseOrderStatus" schema="Purchasing">
-        <orm:column nullable="false" primary-key="true" length="0" name="PurchaseOrderStatusId" scale="0" sql-type="int" backend-calculated="true" ado-type="Int32" />
-        <orm:column nullable="true" length="1000" name="Name" scale="0" sql-type="nvarchar" ado-type="UnicodeStringVariableLength" />
-        <orm:column has-default-value="true" nullable="true" length="0" name="ModifiedDate" scale="0" sql-type="datetime" ado-type="DateTime" />
-        <orm:column nullable="true" length="1000" name="ModifiedByUser" scale="0" sql-type="nvarchar" ado-type="UnicodeStringVariableLength" />
+        <orm:column name="PurchaseOrderStatusId" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        <orm:column name="Name" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
+        <orm:column name="ModifiedDate" sql-type="datetime" nullable="true" length="0" scale="0" has-default-value="true" ado-type="DateTime" />
+        <orm:column name="ModifiedByUser" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
       </orm:table>
     </orm:schema>
     <orm:schema schema="Production">
@@ -999,15 +1040,15 @@
         <orm:column name="HomePhone" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
         <orm:column name="ModifiedDate" sql-type="datetime" nullable="true" length="0" scale="0" has-default-value="true" ado-type="DateTime" />
         <orm:column name="ModifiedByUser" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
-        <orm:column nullable="true" length="1000" name="PreviousExperience" scale="0" sql-type="nvarchar" ado-type="UnicodeStringVariableLength" />
+        <orm:column name="PreviousExperience" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
       </orm:table>
       <orm:table name="Shift" schema="HumanResources">
         <orm:column name="ShiftId" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
         <orm:column name="Name" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
         <orm:column name="ModifiedDate" sql-type="datetime" nullable="true" length="0" scale="0" has-default-value="true" ado-type="DateTime" />
         <orm:column name="ModifiedByUser" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
-        <orm:column nullable="true" length="0" name="StartHour" scale="0" sql-type="datetime" ado-type="DateTime" />
-        <orm:column nullable="true" length="0" name="EndHour" scale="0" sql-type="datetime" ado-type="DateTime" />
+        <orm:column name="StartHour" sql-type="datetime" nullable="true" length="0" scale="0" ado-type="DateTime" />
+        <orm:column name="EndHour" sql-type="datetime" nullable="true" length="0" scale="0" ado-type="DateTime" />
       </orm:table>
       <orm:table name="EmployeeDepartment" schema="HumanResources">
         <orm:column name="EmployeeDepartmentId" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
@@ -1033,6 +1074,21 @@
         <orm:column name="Name" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
         <orm:column name="ModifiedDate" sql-type="datetime" nullable="true" length="0" scale="0" has-default-value="true" ado-type="DateTime" />
         <orm:column name="ModifiedByUser" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
+      </orm:table>
+    </orm:schema>
+    <orm:schema schema="Admin">
+      <orm:table name="EmailTemplate" schema="Admin">
+        <orm:column nullable="false" primary-key="true" length="0" name="EmailTemplateId" scale="0" sql-type="int" backend-calculated="true" ado-type="Int32" />
+        <orm:column nullable="true" length="1000" name="From" scale="0" sql-type="nvarchar" ado-type="UnicodeStringVariableLength" />
+        <orm:column nullable="true" length="1000" name="Cc" scale="0" sql-type="nvarchar" ado-type="UnicodeStringVariableLength" />
+        <orm:column nullable="true" length="1000" name="Bcc" scale="0" sql-type="nvarchar" ado-type="UnicodeStringVariableLength" />
+        <orm:column nullable="true" length="1000" name="Subject" scale="0" sql-type="nvarchar" ado-type="UnicodeStringVariableLength" />
+        <orm:column nullable="true" length="1000" name="TextBody" scale="0" sql-type="nvarchar" ado-type="UnicodeStringVariableLength" />
+        <orm:column nullable="true" length="1000" name="HtmlBody" scale="0" sql-type="nvarchar" ado-type="UnicodeStringVariableLength" />
+        <orm:column has-default-value="true" nullable="false" length="0" name="IsDefault" scale="0" sql-type="bit" ado-type="Bit" />
+        <orm:column has-default-value="true" nullable="true" length="0" name="ModifiedDate" scale="0" sql-type="datetime" ado-type="DateTime" />
+        <orm:column nullable="true" length="1000" name="ModifiedByUser" scale="0" sql-type="nvarchar" ado-type="UnicodeStringVariableLength" />
+        <orm:column nullable="true" length="1000" name="AttachmentName" scale="0" sql-type="nvarchar" ado-type="UnicodeStringVariableLength" />
       </orm:table>
     </orm:schema>
     <orm:relational-naming-settings>
@@ -1669,6 +1725,19 @@
         </classHasNavigationalProperties>
       </navigationalProperties>
     </DomainClass>
+    <DomainClass Id="54bdbdcc-97a8-410a-852f-b0c718c39c72" name="EmailTemplate" namespace="DynamicApplicationModel" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true">
+      <Property Id="dbd3bd2e-0d47-4881-907c-599029a1e638" name="EmailTemplateId" type="Int32" label="EmailTemplateId : Int32" kind="Persistent" identity="true" fieldName="_emailTemplateId" />
+      <Property Id="9e3d45eb-9c8a-45e6-956a-1e09355ca952" name="Bcc" label="Bcc : String" kind="Persistent" fieldName="_bcc" />
+      <Property Id="2e998562-103e-4bbb-b2a2-052f3891a9c4" name="Cc" label="Cc : String" kind="Persistent" fieldName="_cc" />
+      <Property Id="ed5e488f-f056-4411-8837-01e2be437d0f" name="From" label="From : String" kind="Persistent" fieldName="_from" />
+      <Property Id="596cf321-0785-4c4a-969f-23e45b2db3a4" name="HtmlBody" label="HtmlBody : String" kind="Persistent" fieldName="_htmlBody" />
+      <Property Id="acc13174-4fe5-4550-81fa-e6e7a362465d" name="IsDefault" type="Boolean" label="IsDefault : Boolean" kind="Persistent" fieldName="_isDefault" />
+      <Property Id="b24c9395-564a-4157-bcda-b5ea8d0a2fb2" name="ModifiedByUser" label="ModifiedByUser : String" kind="Persistent" fieldName="_modifiedByUser" />
+      <Property Id="474ed5e1-cbe6-4f06-a211-8e75e4f540a1" name="ModifiedDate" type="DateTime" label="ModifiedDate : DateTime" nullable="true" kind="Persistent" fieldName="_modifiedDate" />
+      <Property Id="6ff534c8-5815-43a9-a814-4b2e2822d65e" name="Subject" label="Subject : String" kind="Persistent" fieldName="_subject" />
+      <Property Id="400c5527-7ccd-4204-9e5e-5b909371c1db" name="TextBody" label="TextBody : String" kind="Persistent" fieldName="_textBody" />
+      <Property Id="b637ef7a-8ff1-4706-85ec-c3f28bdffcbe" name="AttachmentName" label="AttachmentName : String" kind="Persistent" fieldName="_attachmentName" />
+    </DomainClass>
   </Types>
   <domainContext>
     <domainModelHasDomainContext Id="4427cc43-2e74-4ae4-91f1-9c6640dee166">
@@ -1691,6 +1760,7 @@
         <entitySetProperty name="EmployeeDepartments" namespace="DynamicApplicationModel" type="EmployeeDepartment" label="EmployeeDepartments : IQueryable&lt;DynamicApplicationModel.EmployeeDepartment&gt;" />
         <entitySetProperty name="Departments" namespace="DynamicApplicationModel" type="Department" label="Departments : IQueryable&lt;DynamicApplicationModel.Department&gt;" />
         <entitySetProperty name="PurchaseOrderStatus" namespace="DynamicApplicationModel" type="PurchaseOrderStatus" label="PurchaseOrderStatus : IQueryable&lt;DynamicApplicationModel.PurchaseOrderStatus&gt;" />
+        <entitySetProperty name="EmailTemplates" namespace="DynamicApplicationModel" type="EmailTemplate" label="EmailTemplates : IQueryable&lt;DynamicApplicationModel.EmailTemplate&gt;" />
       </domainContainer>
     </domainModelHasDomainContext>
   </domainContext>

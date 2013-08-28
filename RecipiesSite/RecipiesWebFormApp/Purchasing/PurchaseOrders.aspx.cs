@@ -12,6 +12,8 @@ using Telerik.ReportViewer.WebForms;
 using Telerik.Reporting.Processing;
 using RecipiesReports;
 using Helpers;
+using System.Web.Security;
+using System.IO;
 
 
 namespace RecipiesWebFormApp.Purchasing
@@ -124,7 +126,13 @@ namespace RecipiesWebFormApp.Purchasing
                     instanceReportSource.ReportDocument = salesOrderDetailsReport;
 
                     RenderingResult result = reportProcessor.RenderReport("PDF", instanceReportSource, null);
-                    EmailHelper.SendComplexMessage(result.DocumentBytes);
+
+                    EmailTemplate defaultTemplate = ContextFactory.GetContextPerRequest().EmailTemplates.FirstOrDefault(et => et.IsDefault);
+                    if (defaultTemplate != null)
+                    {
+                        EmailHelper.SendComplexMessage(defaultTemplate.From, defaultTemplate.Cc, defaultTemplate.Bcc, "test", "test", "test",
+                            result.DocumentBytes, result.DocumentName + "." + result.Extension);
+                    }
 
                 }
 

@@ -80,7 +80,7 @@
                         </telerik:RadMenuItem>
                         <telerik:RadMenuItem runat="server" Text="Ship methods" NavigateUrl="~/Purchasing/ShipMethods">
                         </telerik:RadMenuItem>
-                          <telerik:RadMenuItem runat="server" Text="Purchase order statuses" NavigateUrl="~/Purchasing/PurchaseOrderStatuses.aspx">
+                        <telerik:RadMenuItem runat="server" Text="Purchase order statuses" NavigateUrl="~/Purchasing/PurchaseOrderStatuses.aspx">
                         </telerik:RadMenuItem>
                     </Items>
                 </telerik:RadMenuItem>
@@ -104,6 +104,12 @@
                     </Items>
                 </telerik:RadMenuItem>
 
+                <telerik:RadMenuItem IsSeparator="true"></telerik:RadMenuItem>
+                <telerik:RadMenuItem Text="Admin">
+                    <Items>
+                        <telerik:RadMenuItem Text="Email temapltes" NavigateUrl="Admin/EmailTemplates.aspx"></telerik:RadMenuItem>
+                    </Items>
+                </telerik:RadMenuItem>
                 <telerik:RadMenuItem IsSeparator="true"></telerik:RadMenuItem>
                 <telerik:RadMenuItem Text="Account">
                     <Items>
