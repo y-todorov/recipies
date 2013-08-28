@@ -14,6 +14,8 @@ using RecipiesReports;
 using Helpers;
 using System.Web.Security;
 using System.IO;
+using System.Threading.Tasks;
+using RestSharp;
 
 
 namespace RecipiesWebFormApp.Purchasing
@@ -130,8 +132,10 @@ namespace RecipiesWebFormApp.Purchasing
                     EmailTemplate defaultTemplate = ContextFactory.GetContextPerRequest().EmailTemplates.FirstOrDefault(et => et.IsDefault);
                     if (defaultTemplate != null)
                     {
-                        EmailHelper.SendComplexMessage(defaultTemplate.From, defaultTemplate.Cc, defaultTemplate.Bcc, "test", "test", "test",
-                            result.DocumentBytes, result.DocumentName + "." + result.Extension);
+                      
+                        Task.Factory.StartNew<RestResponse>(() => EmailHelper.SendComplexMessage(defaultTemplate.From, defaultTemplate.Cc,
+                            defaultTemplate.Bcc, "test", "test", "test",
+                            result.DocumentBytes, result.DocumentName + "." + result.Extension));                         
                     }
 
                 }
