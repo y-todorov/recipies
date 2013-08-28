@@ -11,6 +11,7 @@ using Telerik.OpenAccess.Web;
 using Telerik.ReportViewer.WebForms;
 using Telerik.Reporting.Processing;
 using RecipiesReports;
+using Helpers;
 
 
 namespace RecipiesWebFormApp.Purchasing
@@ -107,6 +108,28 @@ namespace RecipiesWebFormApp.Purchasing
                     Response.End();
                 }
             }
+            if (e.CommandName.Equals("SendMail"))
+            {
+                GridDataItem dataItem = e.Item as GridDataItem;
+                if (dataItem != null)
+                {
+                    int purchaseOrderId = (int)dataItem.GetDataKeyValue(rgPurchaseOrders.MasterTableView.DataKeyNames[0]);
+                    PurchaseOrderHeader purchaseOrder = ContextFactory.GetContextPerRequest().PurchaseOrderHeaders.FirstOrDefault(p => p.PurchaseOrderId == purchaseOrderId);
+
+                    ReportProcessor reportProcessor = new ReportProcessor();
+
+                    var instanceReportSource = new Telerik.Reporting.InstanceReportSource();
+                    SalesOrderDetails salesOrderDetailsReport = new RecipiesReports.SalesOrderDetails();
+                    salesOrderDetailsReport.DataSource = purchaseOrder.PurchaseOrderDetails;
+                    instanceReportSource.ReportDocument = salesOrderDetailsReport;
+
+                    RenderingResult result = reportProcessor.RenderReport("PDF", instanceReportSource, null);
+                    EmailHelper.SendComplexMessage(result.DocumentBytes);
+
+                }
+
+
+            }
         }
 
         protected void rgPurchaseOrderDetails_ItemCommand(object sender, GridCommandEventArgs e)
@@ -193,8 +216,8 @@ namespace RecipiesWebFormApp.Purchasing
              
             if (e.Item is GridEditableItem && e.Item.IsInEditMode)  
             {
-                GridEditableItem edItem = (e.Item as GridEditableItem);
-                RadComboBox dropDownProductListColumn = edItem["DropDownProductListColumn"].Controls[0] as RadComboBox;  
+                GridEditableItem editedItem = (e.Item as GridEditableItem);
+                RadComboBox dropDownProductListColumn = editedItem["DropDownProductListColumn"].Controls[0] as RadComboBox;  
   
                 //attach SelectedIndexChanged event for the dropdown control  
                 dropDownProductListColumn.AutoPostBack = true;
@@ -206,9 +229,25 @@ namespace RecipiesWebFormApp.Purchasing
         {
             //first reference the edited grid item through the NamingContainer                                                     attribute  
             GridEditableItem editedItem = (sender as RadComboBox).NamingContainer as GridEditableItem;
+
             RadNumericTextBox tbUnitPrice = editedItem["UnitPrice"].Controls[0] as RadNumericTextBox;
-            tbUnitPrice.Text = "0"; // DateTime.Now.Second.ToString();
-        }  
+            RadComboBox dropDownProductListColumn = editedItem["DropDownProductListColumn"].Controls[0] as RadComboBox;
+            string productId = dropDownProductListColumn.SelectedValue;
+            if (!string.IsNullOrEmpty(productId))
+            {
+                int intProductId;
+                if (int.TryParse(productId, out intProductId))
+                {
+                    ProductVendor productVendor = ContextFactory.GetContextPerRequest().ProductVendors.FirstOrDefault(pv => pv.ProductId == intProductId && pv.VendorId == VendorId);
+
+                    tbUnitPrice.Text = productVendor.StandardPrice.ToString();
+                }
+            }
+            else
+            {
+                tbUnitPrice.Text = "0"; // default price if nothing is selected
+            }
+        }
   
     }
 }
