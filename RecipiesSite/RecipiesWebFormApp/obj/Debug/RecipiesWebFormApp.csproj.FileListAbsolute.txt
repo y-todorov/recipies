@@ -39,3 +39,5 @@ C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Telerik.Web.UI.xml
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Typesafe.Mailgun.xml
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\obj\Debug\RecipiesWebFormApp.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\obj\Debug\RecipiesWebFormApp.pdb
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Telerik.Reporting.dll
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Telerik.ReportViewer.WebForms.dll

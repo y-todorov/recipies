@@ -127,10 +127,12 @@
     <Reference Include="Telerik.Reporting, Version=7.1.13.802, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\DynamicApplication\DynamicApplicationModel\OpenAccessAssemblies\Telerik.Reporting.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Telerik.ReportViewer.WebForms, Version=7.1.13.802, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\DynamicApplication\DynamicApplicationModel\OpenAccessAssemblies\Telerik.ReportViewer.WebForms.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Telerik.Web.Design, Version=2013.2.730.45, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
