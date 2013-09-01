@@ -18,10 +18,10 @@ using Telerik.OpenAccess.Metadata;
 using Telerik.OpenAccess.Data.Common;
 using Telerik.OpenAccess.Metadata.Fluent;
 using Telerik.OpenAccess.Metadata.Fluent.Advanced;
-using DynamicApplicationModel;
+using RecipiesModelNS;
 
 
-namespace DynamicApplicationModel	
+namespace RecipiesModelNS	
 {
 	public partial class PurchaseOrderHeader
 	{
@@ -187,6 +187,19 @@ namespace DynamicApplicationModel
 		    set
 		    {
 		        this._statusId = value;
+		    }
+		}
+		
+		private bool _isInvoiced;
+		public virtual bool IsInvoiced 
+		{ 
+		    get
+		    {
+		        return this._isInvoiced;
+		    }
+		    set
+		    {
+		        this._isInvoiced = value;
 		    }
 		}
 		

@@ -29,6 +29,6 @@
             </Columns>
         </MasterTableView>
     </telerik:RadGrid>
-    <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourceStore" runat="server" ContextTypeName="DynamicApplicationModel.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="Stores">
+    <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourceStore" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="Stores">
     </telerik:OpenAccessLinqDataSource>
 </asp:Content>

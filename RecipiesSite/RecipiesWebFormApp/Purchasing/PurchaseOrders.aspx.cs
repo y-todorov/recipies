@@ -1,4 +1,4 @@
-﻿using DynamicApplicationModel;
+﻿using RecipiesModelNS;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -138,6 +138,32 @@ namespace RecipiesWebFormApp.Purchasing
                     }
                 }
             }
+            if (e.CommandName.Equals("InvoicePurchaseOrder"))
+            {
+                 GridDataItem dataItem = e.Item as GridDataItem;
+                 if (dataItem != null)
+                 {
+                     int purchaseOrderId = (int)dataItem.GetDataKeyValue(rgPurchaseOrders.MasterTableView.DataKeyNames[0]);
+                     PurchaseOrderHeader purchaseOrder = ContextFactory.GetContextPerRequest().PurchaseOrderHeaders.FirstOrDefault(p => p.PurchaseOrderId == purchaseOrderId);
+
+                     if (!purchaseOrder.IsInvoiced)
+                     {
+                         RecipiesModel recipiesContext = ContextFactory.GetContextPerRequest();
+                         foreach (PurchaseOrderDetail pod in purchaseOrder.PurchaseOrderDetails)
+                         {
+                             if (!pod.IsInvoiced)
+                             {                               
+                                 recipiesContext.Add(pod);
+                                 pod.Product.UnitsInStock += pod.StockedQuantity;
+                                 pod.IsInvoiced = true;
+                             }
+                         }
+                         recipiesContext.Add(purchaseOrder);
+                         purchaseOrder.IsInvoiced = true;
+                         recipiesContext.SaveChanges();                         
+                     }
+                 }
+            }
         }
 
         protected void rgPurchaseOrderDetails_ItemCommand(object sender, GridCommandEventArgs e)
@@ -220,8 +246,7 @@ namespace RecipiesWebFormApp.Purchasing
         }
 
         protected void rgPurchaseOrderDetails_ItemCreated(object sender, GridItemEventArgs e)
-        {
-             
+        {             
             if (e.Item is GridEditableItem && e.Item.IsInEditMode)  
             {
                 GridEditableItem editedItem = (e.Item as GridEditableItem);
@@ -255,6 +280,22 @@ namespace RecipiesWebFormApp.Purchasing
             {
                 tbUnitPrice.Text = "0"; // default price if nothing is selected
             }
+        }
+
+        protected void OpenAccessLinqDataSourcePurchaseOrders_Updating(object sender, OpenAccessLinqDataSourceUpdateEventArgs e)
+        {
+            PurchaseOrderHeader oldPurchaseOrderHeader = e.OriginalObject as PurchaseOrderHeader;
+            PurchaseOrderHeader newPurchaseOrderHeader = e.NewObject as PurchaseOrderHeader;
+
+            newPurchaseOrderHeader.UpdateProductsFromStatus(oldPurchaseOrderHeader.StatusId, newPurchaseOrderHeader.StatusId);
+        }
+
+        protected void rgPurchaseOrders_ItemCreated(object sender, GridItemEventArgs e)
+        {
+            if (e.Item is GridEditableItem && e.Item.IsInEditMode)
+            {
+               
+            }  
         }
   
     }

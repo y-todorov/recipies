@@ -4,7 +4,7 @@
 
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourceProductHistory" runat="server" ContextTypeName="DynamicApplicationModel.RecipiesModel" EntityTypeName="" ResourceSetName="ProductHistories">
+    <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourceProductHistory" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EntityTypeName="" ResourceSetName="ProductHistories">
     </telerik:OpenAccessLinqDataSource>
     <telerik:RadGrid ID="rgProductHistory" SkinID="readOnlyGrid" runat="server" DataSourceID="OpenAccessLinqDataSourceProductHistory">
         <MasterTableView AutoGenerateColumns="False" DataKeyNames="ProductHistoryId" DataSourceID="OpenAccessLinqDataSourceProductHistory">

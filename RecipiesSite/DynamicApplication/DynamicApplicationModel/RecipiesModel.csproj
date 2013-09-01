@@ -8,7 +8,7 @@
     <ProjectGuid>{C50145E6-A244-4F1F-B41F-90D1925B4A00}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DynamicApplicationModel</RootNamespace>
+    <RootNamespace>RecipiesModelNS</RootNamespace>
     <AssemblyName>DynamicApplicationModel</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -115,6 +115,7 @@
     <Compile Include="PurchaseOrderHeader.generated.cs">
       <DependentUpon>EntitiesModel.rlinq</DependentUpon>
     </Compile>
+    <Compile Include="PurchaseOrderHeader.partial.cs" />
     <Compile Include="PurchaseOrderStatus.generated.cs">
       <DependentUpon>EntitiesModel.rlinq</DependentUpon>
     </Compile>

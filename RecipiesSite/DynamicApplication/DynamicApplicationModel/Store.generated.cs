@@ -20,7 +20,7 @@ using Telerik.OpenAccess.Metadata.Fluent;
 using Telerik.OpenAccess.Metadata.Fluent.Advanced;
 
 
-namespace DynamicApplicationModel	
+namespace RecipiesModelNS	
 {
 	public partial class Store
 	{

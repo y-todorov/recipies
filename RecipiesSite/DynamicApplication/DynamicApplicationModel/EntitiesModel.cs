@@ -18,10 +18,10 @@ using Telerik.OpenAccess.Metadata;
 using Telerik.OpenAccess.Data.Common;
 using Telerik.OpenAccess.Metadata.Fluent;
 using Telerik.OpenAccess.Metadata.Fluent.Advanced;
-using DynamicApplicationModel;
+using RecipiesModelNS;
 
 
-namespace DynamicApplicationModel	
+namespace RecipiesModelNS	
 {
 	public partial class RecipiesModel : OpenAccessContext, IRecipiesModelUnitOfWork
 	{
@@ -188,19 +188,19 @@ namespace DynamicApplicationModel
 	    	}
 		}
 		
-		public IQueryable<PurchaseOrderStatus> PurchaseOrderStatus 
-		{
-	    	get
-	    	{
-	        	return this.GetAll<PurchaseOrderStatus>();
-	    	}
-		}
-		
 		public IQueryable<EmailTemplate> EmailTemplates 
 		{
 	    	get
 	    	{
 	        	return this.GetAll<EmailTemplate>();
+	    	}
+		}
+		
+		public IQueryable<PurchaseOrderStatus> PurchaseOrderStatus 
+		{
+	    	get
+	    	{
+	        	return this.GetAll<PurchaseOrderStatus>();
 	    	}
 		}
 		
@@ -300,12 +300,12 @@ namespace DynamicApplicationModel
 			get;
 		}
 
-		IQueryable<PurchaseOrderStatus> PurchaseOrderStatus 
+		IQueryable<EmailTemplate> EmailTemplates 
 		{ 
 			get;
 		}
 
-		IQueryable<EmailTemplate> EmailTemplates 
+		IQueryable<PurchaseOrderStatus> PurchaseOrderStatus 
 		{ 
 			get;
 		}

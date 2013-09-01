@@ -113,5 +113,5 @@
             </Columns>
         </MasterTableView>
     </telerik:RadGrid>
-    <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSource1" Runat="server" ContextTypeName="DynamicApplicationModel.RecipiesModel" EntityTypeName="" ResourceSetName="PurchaseOrderHeaders" />
+    <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSource1" Runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EntityTypeName="" ResourceSetName="PurchaseOrderHeaders" />
 </asp:Content>

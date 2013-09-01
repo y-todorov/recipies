@@ -2,7 +2,7 @@
 <%@ Register assembly="Telerik.OpenAccess.Web.40" namespace="Telerik.OpenAccess.Web" tagprefix="telerik" %>
 <%@ Register assembly="Telerik.Web.UI" namespace="Telerik.Web.UI" tagprefix="telerik" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourceEmployee" Runat="server" ContextTypeName="DynamicApplicationModel.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="Employees" />
+    <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourceEmployee" Runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="Employees" />
     <telerik:RadGrid ID="rgEmployee" runat="server" CellSpacing="0" DataSourceID="OpenAccessLinqDataSourceEmployee" GridLines="None">
         <MasterTableView AutoGenerateColumns="False" DataKeyNames="EmployeeID" DataSourceID="OpenAccessLinqDataSourceEmployee">
             <Columns>

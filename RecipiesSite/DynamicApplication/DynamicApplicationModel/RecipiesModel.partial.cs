@@ -11,8 +11,16 @@ using Telerik.OpenAccess.Metadata.Fluent.Advanced;
 using System.Reflection;
 using System.Web;
 
-namespace DynamicApplicationModel
+namespace RecipiesModelNS
 {
+    public enum PurchaseOrderStatusEnum
+    {
+        Pending = 1,
+        Approved = 2,
+        Rejected = 3,
+        Completed = 4
+    }
+
     public partial class RecipiesModel
     {
         protected override void Init(string connectionString, Telerik.OpenAccess.BackendConfiguration backendConfiguration, Telerik.OpenAccess.Metadata.MetadataContainer metadataContainer)
@@ -25,8 +33,8 @@ namespace DynamicApplicationModel
             base.Init(connectionString, backendConfiguration, metadataContainer, callingAssembly);
         }
 
-        
-        
+
+
         public override void SaveChanges(ConcurrencyConflictsProcessingMode failureMode)
         {
             SetModifiedDateAndModifiedByUserFields();
@@ -35,7 +43,34 @@ namespace DynamicApplicationModel
 
             SetProperShiftDates();
 
+
+
+            //PopulateProductsQuantityFromPurchaseOrderDetails();
+
+
             base.SaveChanges(failureMode);
+        }
+
+
+
+        private void PopulateProductsQuantityFromPurchaseOrderDetails()
+        {
+            //IList<PurchaseOrderDetail> listOfPurchaseOrderDetailsUpdates = this.GetChanges().GetUpdates<PurchaseOrderDetail>();
+            //IList<Product> listOfProductUpdates = this.GetChanges().GetUpdates<Product>();
+            //IEnumerable<Product> combinedListOfProducts = listOfProductInserts.Concat(listOfProductUpdates);
+
+            //foreach (PurchaseOrderDetail pod in listOfPurchaseOrderDetailsUpdates)
+            //{
+            //    using (RecipiesModel context = new RecipiesModel())
+            //    {
+            //        PurchaseOrderDetail podOriginal = context.PurchaseOrderDetails.FirstOrDefault(po => po.PurchaseOrderDetailId == pod.PurchaseOrderDetailId);
+            //        PurchaseOrderHeader purchaseOrderHeader = context.PurchaseOrderHeaders.FirstOrDefault(poh => poh.PurchaseOrderId == pod.PurchaseOrderId);
+
+            //        Product product = Products.FirstOrDefault(p => p.ProductId == pod.ProductId);
+            //        product.UnitsInStock += pod.ReceivedQuantity;
+            //        //pod.Product.UnitsOnOrder += pod.OrderQuantity;
+            //    }
+            //}
         }
 
         // Setting the date of shifts to be in 2000 year
@@ -83,10 +118,10 @@ namespace DynamicApplicationModel
                     update.SetFieldValue<string>("ModifiedByUser", userName);
                 }
             }
-        } 
+        }
 
         private void PopulateProductHistory()
-        {           
+        {
             IList<Product> listOfProductInserts = this.GetChanges().GetInserts<Product>();
             IList<Product> listOfProductUpdates = this.GetChanges().GetUpdates<Product>();
             IEnumerable<Product> combinedListOfProducts = listOfProductInserts.Concat(listOfProductUpdates);
@@ -111,13 +146,13 @@ namespace DynamicApplicationModel
             }
         }
 
-        
-        
+
+
         protected override void OnDatabaseOpen(Telerik.OpenAccess.BackendConfiguration backendConfiguration, Telerik.OpenAccess.Metadata.MetadataContainer metadataContainer)
         {
             base.OnDatabaseOpen(backendConfiguration, metadataContainer);
 
-            
+
 
         }
     }

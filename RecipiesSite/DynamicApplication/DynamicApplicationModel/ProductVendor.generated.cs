@@ -18,10 +18,10 @@ using Telerik.OpenAccess.Metadata;
 using Telerik.OpenAccess.Data.Common;
 using Telerik.OpenAccess.Metadata.Fluent;
 using Telerik.OpenAccess.Metadata.Fluent.Advanced;
-using DynamicApplicationModel;
+using RecipiesModelNS;
 
 
-namespace DynamicApplicationModel	
+namespace RecipiesModelNS	
 {
 	public partial class ProductVendor
 	{
