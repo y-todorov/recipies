@@ -12,14 +12,14 @@
 
     <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourcePurchaseOrder" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="PurchaseOrderHeaders" />
     <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourceProduct" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="Products" OnSelected="OpenAccessLinqDataSourceProduct_Selected" />
-    <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourcePurchaseOrderDetails" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="PurchaseOrderDetails" Where="PurchaseOrderId == @PurchaseOrderId" OnSelected="OpenAccessLinqDataSourcePurchaseOrderDetails_Selected" OnSelecting="OpenAccessLinqDataSourcePurchaseOrderDetails_Selecting" OnInserting="OpenAccessLinqDataSourcePurchaseOrderDetails_Inserting">
+    <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourcePurchaseOrderDetails" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="PurchaseOrderDetails" Where="PurchaseOrderId == @PurchaseOrderId" OnSelected="OpenAccessLinqDataSourcePurchaseOrderDetails_Selected" OnSelecting="OpenAccessLinqDataSourcePurchaseOrderDetails_Selecting" OnInserting="OpenAccessLinqDataSourcePurchaseOrderDetails_Inserting" OnUpdating="OpenAccessLinqDataSourcePurchaseOrderDetails_Updating">
         <WhereParameters>
             <asp:Parameter DefaultValue="0" Name="PurchaseOrderId" Type="Int32" />
         </WhereParameters>
     </telerik:OpenAccessLinqDataSource>
     <asp:ObjectDataSource ID="ObjectDataSource1" runat="server"></asp:ObjectDataSource>
     <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourceStatus" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="PurchaseOrderStatus" />
-    <telerik:RadGrid ID="rgPurchaseOrders" runat="server" DataSourceID="OpenAccessLinqDataSourcePurchaseOrders" OnItemCommand="rgPurchaseOrders_ItemCommand">
+    <telerik:RadGrid ID="rgPurchaseOrders" runat="server" DataSourceID="OpenAccessLinqDataSourcePurchaseOrders" OnItemCommand="rgPurchaseOrders_ItemCommand" OnItemCreated="rgPurchaseOrders_ItemCreated">
         <MasterTableView AutoGenerateColumns="False" DataKeyNames="PurchaseOrderId" DataSourceID="OpenAccessLinqDataSourcePurchaseOrders">
             <Columns>
                 <telerik:GridBoundColumn DataField="PurchaseOrderId" DataType="System.Int32" FilterControlAltText="Filter PurchaseOrderID column" HeaderText="PurchaseOrderID" ReadOnly="True" SortExpression="PurchaseOrderID" UniqueName="PurchaseOrderID">
@@ -48,7 +48,7 @@
                         <ModelErrorMessage Text=""></ModelErrorMessage>
                     </ColumnValidationSettings>
                 </telerik:GridDropDownColumn>       
-                <telerik:GridDropDownColumn UniqueName="DropDownUnitListColumn" ListTextField="Name" EmptyListItemText="" EnableEmptyListItem="true" EmptyListItemValue="" ConvertEmptyStringToNull="true"
+                <telerik:GridDropDownColumn UniqueName="DropDownStatusListColumn" ListTextField="Name" 
                     ListValueField="PurchaseOrderStatusId" DataSourceID="OpenAccessLinqDataSourceStatus" HeaderText="Status"
                     DataField="StatusId" DropDownControlType="RadComboBox">
                     <ColumnValidationSettings>

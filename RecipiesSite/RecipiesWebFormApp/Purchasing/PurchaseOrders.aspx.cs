@@ -294,8 +294,21 @@ namespace RecipiesWebFormApp.Purchasing
         {
             if (e.Item is GridEditableItem && e.Item.IsInEditMode)
             {
-               
+                if (e.Item is GridEditFormInsertItem || e.Item is GridDataInsertItem)
+                {
+                    // insert item
+
+                    GridEditableItem editedItem = (e.Item as GridEditableItem);
+                    RadComboBox dropDownStatusListColumn = editedItem["DropDownStatusListColumn"].Controls[0] as RadComboBox;
+                    dropDownStatusListColumn.Enabled = false;
+                }                
             }  
+        }
+
+        protected void OpenAccessLinqDataSourcePurchaseOrderDetails_Updating(object sender, OpenAccessLinqDataSourceUpdateEventArgs e)
+        {
+            PurchaseOrderDetail oldPurchaseOrderDetail = e.OriginalObject as PurchaseOrderDetail;
+            PurchaseOrderDetail newPurchaseOrderDetail = e.NewObject as PurchaseOrderDetail;
         }
   
     }
