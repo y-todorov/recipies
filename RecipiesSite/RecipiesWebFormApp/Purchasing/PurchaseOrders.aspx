@@ -110,7 +110,7 @@
                     <ItemTemplate />
                     <EditItemTemplate>
                         <asp:Label runat="server" ID="lblPurchaseOrderDetails" Text="Please save the purchase order so products can be added to it." OnPreRender="lblPurchaseOrderDetails_PreRender"></asp:Label>
-                        <telerik:RadGrid ID="rgPurchaseOrderDetails" runat="server" DataSourceID="OpenAccessLinqDataSourcePurchaseOrderDetails" OnItemCreated="rgPurchaseOrderDetails_ItemCreated" OnItemDataBound="rgPurchaseOrderDetails_ItemDataBound" OnCreateColumnEditor="rgPurchaseOrderDetails_CreateColumnEditor" OnPreRender="rgPurchaseOrderDetails_PreRender" OnItemCommand="rgPurchaseOrderDetails_ItemCommand">
+                        <yordan:YordanCustomRadGrid ID="rgPurchaseOrderDetails" runat="server" DataSourceID="OpenAccessLinqDataSourcePurchaseOrderDetails" OnItemCreated="rgPurchaseOrderDetails_ItemCreated" OnItemDataBound="rgPurchaseOrderDetails_ItemDataBound" OnCreateColumnEditor="rgPurchaseOrderDetails_CreateColumnEditor" OnPreRender="rgPurchaseOrderDetails_PreRender" OnItemCommand="rgPurchaseOrderDetails_ItemCommand">
                             <MasterTableView AutoGenerateColumns="False" DataKeyNames="PurchaseOrderDetailId" DataSourceID="OpenAccessLinqDataSourcePurchaseOrderDetails">
                                 <Columns>
                                     <telerik:GridDropDownColumn UniqueName="DropDownPurchaseOrderListColumn" Visible="false" ListTextField="PurchaseOrderId" EmptyListItemText="" EnableEmptyListItem="true" EmptyListItemValue="" ConvertEmptyStringToNull="true"
@@ -174,7 +174,7 @@
                                     </telerik:GridBoundColumn>
                                 </Columns>
                             </MasterTableView>
-                        </telerik:RadGrid>
+                        </yordan:YordanCustomRadGrid>
                     </EditItemTemplate>
                 </telerik:GridTemplateColumn>
 

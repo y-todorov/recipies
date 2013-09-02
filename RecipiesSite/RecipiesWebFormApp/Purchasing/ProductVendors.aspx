@@ -1,10 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ProductVendors.aspx.cs" Inherits="RecipiesWebFormApp.Purchasing.ProductVendors" %>
 
 <%@ Register Assembly="Telerik.OpenAccess.Web.40" Namespace="Telerik.OpenAccess.Web" TagPrefix="telerik" %>
-
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
+<%@ Register Assembly="YordanCustomControls" Namespace="YordanCustomControls" TagPrefix="yordan" %>
+
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <telerik:RadGrid ID="rgProductVendors" runat="server" DataSourceID="OpenAccessLinqDataSourceProductVendors">
+    <yordan:YordanCustomRadGrid ID="rgProductVendors" runat="server" DataSourceID="OpenAccessLinqDataSourceProductVendors">
         <MasterTableView AutoGenerateColumns="False" DataKeyNames="ProductVendorId" DataSourceID="OpenAccessLinqDataSourceProductVendors">
             <Columns>
                 <telerik:GridBoundColumn DataField="ProductVendorId" DataType="System.Int32" FilterControlAltText="Filter ProductVendorId column" HeaderText="ProductVendorId" ReadOnly="True" SortExpression="ProductVendorId" UniqueName="ProductVendorId">
@@ -80,7 +82,7 @@
                 </telerik:GridBoundColumn>
             </Columns>
         </MasterTableView>
-    </telerik:RadGrid>
+    </yordan:YordanCustomRadGrid>
     <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourceProductVendors" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="ProductVendors">
     </telerik:OpenAccessLinqDataSource>
     <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourceProduct" Runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="Products" />

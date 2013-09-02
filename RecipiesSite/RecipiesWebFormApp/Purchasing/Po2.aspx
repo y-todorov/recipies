@@ -2,8 +2,11 @@
 
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
 <%@ Register assembly="Telerik.OpenAccess.Web.40" namespace="Telerik.OpenAccess.Web" tagprefix="telerik" %>
+<%@ Register Assembly="YordanCustomControls" Namespace="YordanCustomControls" TagPrefix="yordan" %>
+
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <telerik:RadGrid ID="rgPurchaseOrders" runat="server" CellSpacing="0" GridLines="None" OnNeedDataSource="rgPurchaseOrders_NeedDataSource" DataSourceID="OpenAccessLinqDataSource1" OnItemCommand="rgPurchaseOrders_ItemCommand">
+    <yordan:YordanCustomRadGrid ID="rgPurchaseOrders" runat="server" CellSpacing="0" GridLines="None" OnNeedDataSource="rgPurchaseOrders_NeedDataSource" DataSourceID="OpenAccessLinqDataSource1" OnItemCommand="rgPurchaseOrders_ItemCommand">
         <MasterTableView AutoGenerateColumns="False" DataKeyNames="PurchaseOrderId" DataSourceID="OpenAccessLinqDataSource1">
             <Columns>
                 <telerik:GridTemplateColumn DataField="OrderDate" DataType="System.DateTime" FilterControlAltText="Filter OrderDate column" HeaderText="OrderDate" SortExpression="OrderDate" UniqueName="OrderDate">
@@ -112,6 +115,6 @@
                 </telerik:GridTemplateColumn>
             </Columns>
         </MasterTableView>
-    </telerik:RadGrid>
+    </yordan:YordanCustomRadGrid>
     <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSource1" Runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EntityTypeName="" ResourceSetName="PurchaseOrderHeaders" />
 </asp:Content>

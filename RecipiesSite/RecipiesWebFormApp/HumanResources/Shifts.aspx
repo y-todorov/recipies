@@ -1,10 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Shifts.aspx.cs" Inherits="RecipiesWebFormApp.HumanResources.Shifts" %>
 
 <%@ Register Assembly="Telerik.OpenAccess.Web.40" Namespace="Telerik.OpenAccess.Web" TagPrefix="telerik" %>
-
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
+<%@ Register Assembly="YordanCustomControls" Namespace="YordanCustomControls" TagPrefix="yordan" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <telerik:RadGrid ID="rgShifts" runat="server" DataSourceID="OpenAccessLinqDataSourceShifts">
+    <yordan:YordanCustomRadGrid ID="rgShifts" runat="server" DataSourceID="OpenAccessLinqDataSourceShifts">
         <MasterTableView AutoGenerateColumns="False" DataKeyNames="ShiftId" DataSourceID="OpenAccessLinqDataSourceShifts">
             <Columns>
                 <telerik:GridBoundColumn DataField="ShiftId" DataType="System.Int32" FilterControlAltText="Filter ShiftId column" HeaderText="ShiftId" ReadOnly="True" SortExpression="ShiftId" UniqueName="ShiftId">
@@ -39,7 +40,7 @@
                 </telerik:GridBoundColumn>
             </Columns>
         </MasterTableView>
-    </telerik:RadGrid>
+    </yordan:YordanCustomRadGrid>
     <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourceShifts" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="Shifts">
     </telerik:OpenAccessLinqDataSource>
 </asp:Content>

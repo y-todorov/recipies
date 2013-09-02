@@ -1,12 +1,14 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ProductHistories.aspx.cs" Inherits="RecipiesWebFormApp.History.ProductHistories" %>
 
 <%@ Register Assembly="Telerik.OpenAccess.Web.40" Namespace="Telerik.OpenAccess.Web" TagPrefix="telerik" %>
-
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
+<%@ Register Assembly="YordanCustomControls" Namespace="YordanCustomControls" TagPrefix="yordan" %>
+
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourceProductHistory" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EntityTypeName="" ResourceSetName="ProductHistories">
     </telerik:OpenAccessLinqDataSource>
-    <telerik:RadGrid ID="rgProductHistory" SkinID="readOnlyGrid" runat="server" DataSourceID="OpenAccessLinqDataSourceProductHistory">
+    <yordan:YordanCustomRadGrid ID="rgProductHistory" SkinID="readOnlyGrid" runat="server" DataSourceID="OpenAccessLinqDataSourceProductHistory">
         <MasterTableView AutoGenerateColumns="False" DataKeyNames="ProductHistoryId" DataSourceID="OpenAccessLinqDataSourceProductHistory">
             <Columns>
                 <telerik:GridBoundColumn DataField="ProductHistoryId" DataType="System.Int32" FilterControlAltText="Filter ProductHistoryId column" HeaderText="ProductHistoryId" ReadOnly="True" SortExpression="ProductHistoryId" UniqueName="ProductHistoryId">
@@ -76,5 +78,5 @@
                 </telerik:GridBoundColumn>
             </Columns>
         </MasterTableView>
-</telerik:RadGrid>
+</yordan:YordanCustomRadGrid>
 </asp:Content>

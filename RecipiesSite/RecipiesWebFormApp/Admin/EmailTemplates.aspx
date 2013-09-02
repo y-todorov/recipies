@@ -1,12 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="EmailTemplates.aspx.cs" Inherits="RecipiesWebFormApp.Admin.EmailTemplates" %>
 
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
-
+<%@ Register Assembly="YordanCustomControls" Namespace="YordanCustomControls" TagPrefix="yordan" %>
 <%@ Register Assembly="Telerik.OpenAccess.Web.40" Namespace="Telerik.OpenAccess.Web" TagPrefix="telerik" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourceEmailTemplates" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="EmailTemplates">
     </telerik:OpenAccessLinqDataSource>
-    <telerik:RadGrid ID="rgEmailTemplates" runat="server" CellSpacing="0" DataSourceID="OpenAccessLinqDataSourceEmailTemplates" GridLines="None">
+    <yordan:YordanCustomRadGrid ID="rgEmailTemplates" runat="server" CellSpacing="0" DataSourceID="OpenAccessLinqDataSourceEmailTemplates" GridLines="None">
         <MasterTableView AutoGenerateColumns="False" DataKeyNames="EmailTemplateId" DataSourceID="OpenAccessLinqDataSourceEmailTemplates">
             <Columns>
                 <telerik:GridBoundColumn DataField="EmailTemplateId" DataType="System.Int32" FilterControlAltText="Filter EmailTemplateId column" HeaderText="EmailTemplateId" ReadOnly="True" SortExpression="EmailTemplateId" UniqueName="EmailTemplateId">
@@ -63,5 +64,5 @@
                 </telerik:GridBoundColumn>
             </Columns>
         </MasterTableView>
-    </telerik:RadGrid>
+    </yordan:YordanCustomRadGrid>
 </asp:Content>

@@ -1,10 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ShipMethods.aspx.cs" Inherits="RecipiesWebFormApp.Purchasing.ShipMethods" %>
 
 <%@ Register Assembly="Telerik.OpenAccess.Web.40" Namespace="Telerik.OpenAccess.Web" TagPrefix="telerik" %>
-
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
+<%@ Register Assembly="YordanCustomControls" Namespace="YordanCustomControls" TagPrefix="yordan" %>
+
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <telerik:RadGrid ID="rgShipMethod" runat="server" DataSourceID="OpenAccessLinqDataSourceShipMethod">
+    <yordan:YordanCustomRadGrid ID="rgShipMethod" runat="server" DataSourceID="OpenAccessLinqDataSourceShipMethod">
     <MasterTableView AutoGenerateColumns="False" DataKeyNames="ShipMethodId" DataSourceID="OpenAccessLinqDataSourceShipMethod">
         <Columns>
             <telerik:GridBoundColumn DataField="ShipMethodId" DataType="System.Int32" FilterControlAltText="Filter ShipMethodId column" HeaderText="ShipMethodId" ReadOnly="True" SortExpression="ShipMethodId" UniqueName="ShipMethodId">
@@ -39,7 +41,7 @@
                 </telerik:GridBoundColumn>
         </Columns>
     </MasterTableView>
-</telerik:RadGrid>
+</yordan:YordanCustomRadGrid>
     <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourceShipMethod" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="ShipMethods">
     </telerik:OpenAccessLinqDataSource>
 </asp:Content>

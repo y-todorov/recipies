@@ -1,9 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Customers.aspx.cs" Inherits="RecipiesWebFormApp.Sales.Customer" %><%@ Register assembly="Telerik.OpenAccess.Web.40" namespace="Telerik.OpenAccess.Web" tagprefix="telerik" %>
 <%@ Register assembly="Telerik.Web.UI" namespace="Telerik.Web.UI" tagprefix="telerik" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+<%@ Register Assembly="YordanCustomControls" Namespace="YordanCustomControls" TagPrefix="yordan" %>
 
+
+<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourceCustomer" Runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="Customers" />
-<telerik:RadGrid ID="rgCustomers" runat="server" DataSourceID="OpenAccessLinqDataSourceCustomer">
+<yordan:YordanCustomRadGrid ID="rgCustomers" runat="server" DataSourceID="OpenAccessLinqDataSourceCustomer">
     <MasterTableView AutoGenerateColumns="False" DataKeyNames="CustomerID" DataSourceID="OpenAccessLinqDataSourceCustomer">
         <Columns>
             <telerik:GridBoundColumn DataField="CustomerID" DataType="System.Int32" FilterControlAltText="Filter CustomerID column" HeaderText="CustomerID" ReadOnly="True" SortExpression="CustomerID" UniqueName="CustomerID">
@@ -53,6 +55,6 @@
                 </telerik:GridBoundColumn>
         </Columns>
     </MasterTableView>
-</telerik:RadGrid>
+</yordan:YordanCustomRadGrid>
 
 </asp:Content>

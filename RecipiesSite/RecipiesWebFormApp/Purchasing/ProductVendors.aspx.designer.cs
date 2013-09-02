@@ -19,7 +19,7 @@ namespace RecipiesWebFormApp.Purchasing {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadGrid rgProductVendors;
+        protected global::YordanCustomControls.YordanCustomRadGrid rgProductVendors;
         
         /// <summary>
         /// OpenAccessLinqDataSourceProductVendors control.

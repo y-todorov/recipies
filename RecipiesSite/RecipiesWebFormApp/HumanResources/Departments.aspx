@@ -1,10 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Departments.aspx.cs" Inherits="RecipiesWebFormApp.HumanResources.Departments" %>
 
 <%@ Register Assembly="Telerik.OpenAccess.Web.40" Namespace="Telerik.OpenAccess.Web" TagPrefix="telerik" %>
-
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
+<%@ Register Assembly="YordanCustomControls" Namespace="YordanCustomControls" TagPrefix="yordan" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <telerik:RadGrid ID="rgDepartment" runat="server" DataSourceID="OpenAccessLinqDataSourceDepartments">
+    <yordan:YordanCustomRadGrid ID="rgDepartment" runat="server" DataSourceID="OpenAccessLinqDataSourceDepartments">
         <MasterTableView AutoGenerateColumns="False" DataKeyNames="DepartmentId" DataSourceID="OpenAccessLinqDataSourceDepartments">
             <Columns>
                 <telerik:GridBoundColumn DataField="DepartmentId" DataType="System.Int32" FilterControlAltText="Filter DepartmentId column" HeaderText="DepartmentId" ReadOnly="True" SortExpression="DepartmentId" UniqueName="DepartmentId">
@@ -29,7 +30,7 @@
                 </telerik:GridBoundColumn>
             </Columns>
         </MasterTableView>
-    </telerik:RadGrid>
+    </yordan:YordanCustomRadGrid>
     <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourceDepartments" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="Departments">
     </telerik:OpenAccessLinqDataSource>
 </asp:Content>

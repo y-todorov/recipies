@@ -2,8 +2,10 @@
 
 <%@ Register Assembly="Telerik.OpenAccess.Web.40" Namespace="Telerik.OpenAccess.Web" TagPrefix="telerik" %>
 <%@ Register assembly="Telerik.Web.UI" namespace="Telerik.Web.UI" tagprefix="telerik" %>
+<%@ Register Assembly="YordanCustomControls" Namespace="YordanCustomControls" TagPrefix="yordan" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <telerik:RadGrid ID="rgCategories" runat="server" DataSourceID="OpenAccessLinqDataSourceCategory">
+    <yordan:YordanCustomRadGrid ID="rgCategories" runat="server" DataSourceID="OpenAccessLinqDataSourceCategory">
     <MasterTableView AutoGenerateColumns="False" DataKeyNames="CategoryId" DataSourceID="OpenAccessLinqDataSourceCategory">
         <Columns>
             <telerik:GridBoundColumn DataField="CategoryId" DataType="System.Int32" FilterControlAltText="Filter CategoryId column" HeaderText="CategoryId" ReadOnly="True" SortExpression="CategoryId" UniqueName="CategoryId">
@@ -28,7 +30,7 @@
                 </telerik:GridBoundColumn>
         </Columns>
     </MasterTableView>
-</telerik:RadGrid>
+</yordan:YordanCustomRadGrid>
 <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourceCategory" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="ProductCategories">
     </telerik:OpenAccessLinqDataSource>
 </asp:Content>

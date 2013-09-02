@@ -1,9 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Employees.aspx.cs" Inherits="RecipiesWebFormApp.HumanResources.Employee" %>
 <%@ Register assembly="Telerik.OpenAccess.Web.40" namespace="Telerik.OpenAccess.Web" tagprefix="telerik" %>
 <%@ Register assembly="Telerik.Web.UI" namespace="Telerik.Web.UI" tagprefix="telerik" %>
+<%@ Register Assembly="YordanCustomControls" Namespace="YordanCustomControls" TagPrefix="yordan" %>
+
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourceEmployee" Runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="Employees" />
-    <telerik:RadGrid ID="rgEmployee" runat="server" CellSpacing="0" DataSourceID="OpenAccessLinqDataSourceEmployee" GridLines="None">
+    <yordan:YordanCustomRadGrid ID="rgEmployee" runat="server" CellSpacing="0" DataSourceID="OpenAccessLinqDataSourceEmployee" GridLines="None">
         <MasterTableView AutoGenerateColumns="False" DataKeyNames="EmployeeID" DataSourceID="OpenAccessLinqDataSourceEmployee">
             <Columns>
                 <telerik:GridBoundColumn DataField="EmployeeID" DataType="System.Int32" FilterControlAltText="Filter EmployeeID column" HeaderText="EmployeeID" ReadOnly="True" SortExpression="EmployeeID" UniqueName="EmployeeID">
@@ -83,5 +86,5 @@
                 </telerik:GridBoundColumn>
             </Columns>
         </MasterTableView>
-    </telerik:RadGrid>
+    </yordan:YordanCustomRadGrid>
 </asp:Content>

@@ -38,26 +38,25 @@ namespace YordanCustomControls
                     Control exportToWordButton = (e.Item as GridCommandItem).FindControl("ExportToWordButton") as Control;
                     if (exportToWordButton != null)
                     {
-                        ScriptManager.GetCurrent(this.Page).RegisterPostBackControl(exportToWordButton);                     
+                        ScriptManager.GetCurrent(this.Page).RegisterPostBackControl(exportToWordButton);
                     }
                 }
             }
             if (e.Item is GridDataItem)
             {
                 GridDataItem dataItem = (GridDataItem)e.Item;
-                TableCell tableCell = dataItem["Download"];
-                if (tableCell != null)
+                if (Columns.FindByUniqueNameSafe("Download") != null)
                 {
-                    foreach (Control control in tableCell.Controls)
+                    TableCell tableCell = dataItem["Download"];
+                    if (tableCell != null)
                     {
-                        ScriptManager.GetCurrent(this.Page).RegisterPostBackControl(control);
-                    }                  
-                }
-                //double dbl = Double.Parse(dataItem["PHONE"].Text.ToString());
-                //string str = String.Format("{0:###-###-##}", dbl);
-                //dataItem["PHONE"].Text = str;
-                
-            } 
+                        foreach (Control control in tableCell.Controls)
+                        {
+                            ScriptManager.GetCurrent(this.Page).RegisterPostBackControl(control);
+                        }
+                    }
+                }         
+            }
 
             base.OnItemCreated(e);
         }
