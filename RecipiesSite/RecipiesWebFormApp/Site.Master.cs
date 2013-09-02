@@ -15,6 +15,14 @@ namespace RecipiesWebFormApp
         private const string AntiXsrfUserNameKey = "__AntiXsrfUserName";
         private string _antiXsrfTokenValue;
 
+        public RadWindowManager MasterRadWindwManager
+        {
+            get
+            {
+                return RadWindowManager1;
+            }
+        }
+
         protected void Page_Init(object sender, EventArgs e)
         {
             // This prevents back button after log out 

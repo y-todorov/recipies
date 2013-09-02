@@ -181,7 +181,16 @@ namespace RecipiesWebFormApp.Purchasing
                         e.Item.OwnerTableView.InsertItem(newPod);
                     }
                 }
-
+            }
+            if (e.CommandName == RadGrid.DeleteCommandName)
+            {
+                 //this works fine
+                PurchaseOrderHeader purchaseOrder = ContextFactory.GetContextPerRequest().PurchaseOrderHeaders.FirstOrDefault(p => p.PurchaseOrderId == PurchaseOrderId);
+                if (purchaseOrder != null && purchaseOrder.StatusId == (int)PurchaseOrderStatusEnum.Completed)
+                {
+                    (Master as SiteMaster).MasterRadWindwManager.RadAlert("You can not delete products from a purchase order with completed status!", 300, 200, "Can not delete!", "");
+                    e.Canceled = true;
+                }
             }
         }
 
