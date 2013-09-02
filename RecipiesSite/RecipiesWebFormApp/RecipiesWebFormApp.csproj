@@ -255,6 +255,7 @@
     <Content Include="App_Data\RadSpell\fr-FR.tdf" />
     <Content Include="jquery.min.map" />
     <Content Include="jquery-2.0.3.min.map" />
+    <Content Include="WebForm1.aspx" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
     <Content Include="Production\Stores.aspx" />
     <Content Include="Scripts\jquery-2.0.3.js" />
@@ -551,6 +552,13 @@
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
     </Compile>
+    <Compile Include="WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Account\Web.config" />
@@ -579,6 +587,10 @@
     <ProjectReference Include="..\RecipiesReports\RecipiesReports.csproj">
       <Project>{b726482b-aee9-4c3f-9af6-9b60df2b5f3e}</Project>
       <Name>RecipiesReports</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\YordanCustomControls\YordanCustomControls.csproj">
+      <Project>{25f012a1-c5bb-4dfe-be22-64cdd9c1b65b}</Project>
+      <Name>YordanCustomControls</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

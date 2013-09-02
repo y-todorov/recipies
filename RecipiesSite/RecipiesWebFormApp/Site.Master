@@ -17,6 +17,7 @@
         }
     </style>
     <script type="text/javascript">
+        // this is for the rad menu so root item cannot be clicked.
         function OnClientItemClicking(sender, args) {
             if (args.get_item().get_items().get_count() != 0 && args.get_item().get_level() == 0) {
                 args.set_cancel(true); // Cancel the event 
@@ -32,9 +33,8 @@
             <Scripts>
             </Scripts>
         </telerik:RadScriptManager>
-        <%--     <telerik:RadAjaxManager ID="RadAjaxManager1" runat="server"  ClientEvents-OnRequestStart="mngRequestStarted">
-             <ClientEvents OnRequestStart="mngRequestStarted" />
-        </telerik:RadAjaxManager>--%>
+        <telerik:RadAjaxManager ID="RadAjaxManager1" runat="server">
+        </telerik:RadAjaxManager>
         <telerik:RadStyleSheetManager runat="server" ID="RadStyleSheetManager1">
             <StyleSheets>
             </StyleSheets>
@@ -128,11 +128,11 @@
             </Items>
 
         </telerik:RadMenu>
-        <div>
-            <%-- <telerik:RadAjaxPanel ID="RadAjaxPanel1" runat="server" LoadingPanelID="RadAjaxLoadingPanel1">--%>
-            <asp:ContentPlaceHolder runat="server" ID="MainContent" />
-            <%--   </telerik:RadAjaxPanel>--%>
-        </div>
+        <telerik:RadAjaxPanel ID="RadAjaxPanel1" runat="server" LoadingPanelID="RadAjaxLoadingPanel1">
+            <div>
+                <asp:ContentPlaceHolder runat="server" ID="MainContent" />
+            </div>
+        </telerik:RadAjaxPanel>
 
     </form>
 </body>

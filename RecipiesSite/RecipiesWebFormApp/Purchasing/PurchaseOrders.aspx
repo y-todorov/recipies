@@ -2,6 +2,9 @@
 
 <%@ Register Assembly="Telerik.OpenAccess.Web.40" Namespace="Telerik.OpenAccess.Web" TagPrefix="telerik" %>
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
+<%@ Register Assembly="YordanCustomControls" Namespace="YordanCustomControls" TagPrefix="yordan" %>
+
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourcePurchaseOrders" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="PurchaseOrderHeaders" OnUpdating="OpenAccessLinqDataSourcePurchaseOrders_Updating">
     </telerik:OpenAccessLinqDataSource>
@@ -19,7 +22,7 @@
     </telerik:OpenAccessLinqDataSource>
     <asp:ObjectDataSource ID="ObjectDataSource1" runat="server"></asp:ObjectDataSource>
     <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourceStatus" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="PurchaseOrderStatus" />
-    <telerik:RadGrid ID="rgPurchaseOrders" runat="server" DataSourceID="OpenAccessLinqDataSourcePurchaseOrders" OnItemCommand="rgPurchaseOrders_ItemCommand" OnItemCreated="rgPurchaseOrders_ItemCreated">
+    <yordan:YordanCustomRadGrid ID="rgPurchaseOrders" runat="server" DataSourceID="OpenAccessLinqDataSourcePurchaseOrders" OnItemCommand="rgPurchaseOrders_ItemCommand" OnItemCreated="rgPurchaseOrders_ItemCreated">
         <MasterTableView AutoGenerateColumns="False" DataKeyNames="PurchaseOrderId" DataSourceID="OpenAccessLinqDataSourcePurchaseOrders">
             <Columns>
                 <telerik:GridBoundColumn DataField="PurchaseOrderId" DataType="System.Int32" FilterControlAltText="Filter PurchaseOrderID column" HeaderText="PurchaseOrderID" ReadOnly="True" SortExpression="PurchaseOrderID" UniqueName="PurchaseOrderID">
@@ -47,16 +50,16 @@
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text=""></ModelErrorMessage>
                     </ColumnValidationSettings>
-                </telerik:GridDropDownColumn>       
-                <telerik:GridDropDownColumn UniqueName="DropDownStatusListColumn" ListTextField="Name" 
+                </telerik:GridDropDownColumn>
+                <telerik:GridDropDownColumn UniqueName="DropDownStatusListColumn" ListTextField="Name"
                     ListValueField="PurchaseOrderStatusId" DataSourceID="OpenAccessLinqDataSourceStatus" HeaderText="Status"
                     DataField="StatusId" DropDownControlType="RadComboBox">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text=""></ModelErrorMessage>
                     </ColumnValidationSettings>
                 </telerik:GridDropDownColumn>
-   
-     <%--            <telerik:GridNumericColumn DataField="StatusId" DataType="System.Int32"  FilterControlAltText="Filter StatusId column" HeaderText="StatusId" SortExpression="StatusId" UniqueName="StatusId">
+
+                <%--            <telerik:GridNumericColumn DataField="StatusId" DataType="System.Int32"  FilterControlAltText="Filter StatusId column" HeaderText="StatusId" SortExpression="StatusId" UniqueName="StatusId">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
@@ -104,7 +107,7 @@
                     </ColumnValidationSettings>
                 </telerik:GridBoundColumn>
                 <telerik:GridTemplateColumn InsertVisiblityMode="AlwaysVisible" Visible="false" HeaderText="Purchasing products">
-                      <ItemTemplate />
+                    <ItemTemplate />
                     <EditItemTemplate>
                         <asp:Label runat="server" ID="lblPurchaseOrderDetails" Text="Please save the purchase order so products can be added to it." OnPreRender="lblPurchaseOrderDetails_PreRender"></asp:Label>
                         <telerik:RadGrid ID="rgPurchaseOrderDetails" runat="server" DataSourceID="OpenAccessLinqDataSourcePurchaseOrderDetails" OnItemCreated="rgPurchaseOrderDetails_ItemCreated" OnItemDataBound="rgPurchaseOrderDetails_ItemDataBound" OnCreateColumnEditor="rgPurchaseOrderDetails_CreateColumnEditor" OnPreRender="rgPurchaseOrderDetails_PreRender" OnItemCommand="rgPurchaseOrderDetails_ItemCommand">
@@ -175,11 +178,11 @@
                     </EditItemTemplate>
                 </telerik:GridTemplateColumn>
 
-                 <telerik:GridButtonColumn ButtonType="LinkButton" Text="Invoice" CommandName="InvoicePurchaseOrder"></telerik:GridButtonColumn>
-                <telerik:GridButtonColumn ButtonType="LinkButton" Text="Download" CommandName="GeneratePurchaseOrderReport"></telerik:GridButtonColumn>
+                <telerik:GridButtonColumn ButtonType="LinkButton" Text="Invoice" CommandName="InvoicePurchaseOrder"></telerik:GridButtonColumn>
+                <telerik:GridButtonColumn ButtonType="LinkButton" Text="Download" UniqueName="Download" CommandName="GeneratePurchaseOrderReport"></telerik:GridButtonColumn>
                 <telerik:GridButtonColumn ButtonType="LinkButton" Text="Send mail" CommandName="SendMail"></telerik:GridButtonColumn>
             </Columns>
         </MasterTableView>
-    </telerik:RadGrid>
+    </yordan:YordanCustomRadGrid>
 
 </asp:Content>
