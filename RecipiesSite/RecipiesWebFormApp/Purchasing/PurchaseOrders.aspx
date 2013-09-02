@@ -176,10 +176,8 @@
                             </MasterTableView>
                         </yordan:YordanCustomRadGrid>
                     </EditItemTemplate>
-                </telerik:GridTemplateColumn>
-
-                <telerik:GridButtonColumn ButtonType="LinkButton" Text="Invoice" CommandName="InvoicePurchaseOrder"></telerik:GridButtonColumn>
-                <telerik:GridButtonColumn ButtonType="LinkButton" Text="Download" UniqueName="Download" CommandName="GeneratePurchaseOrderReport"></telerik:GridButtonColumn>
+                </telerik:GridTemplateColumn>                                
+                <telerik:GridButtonColumn ButtonType="LinkButton" Text="Download PO" UniqueName="Download" CommandName="GeneratePurchaseOrderReport"></telerik:GridButtonColumn>
                 <telerik:GridButtonColumn ButtonType="LinkButton" Text="Send mail" CommandName="SendMail"></telerik:GridButtonColumn>
             </Columns>
         </MasterTableView>

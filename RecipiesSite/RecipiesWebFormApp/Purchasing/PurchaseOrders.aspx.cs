@@ -137,33 +137,7 @@ namespace RecipiesWebFormApp.Purchasing
                             result.DocumentBytes, result.DocumentName + "." + result.Extension));                         
                     }
                 }
-            }
-            if (e.CommandName.Equals("InvoicePurchaseOrder"))
-            {
-                 GridDataItem dataItem = e.Item as GridDataItem;
-                 if (dataItem != null)
-                 {
-                     int purchaseOrderId = (int)dataItem.GetDataKeyValue(rgPurchaseOrders.MasterTableView.DataKeyNames[0]);
-                     PurchaseOrderHeader purchaseOrder = ContextFactory.GetContextPerRequest().PurchaseOrderHeaders.FirstOrDefault(p => p.PurchaseOrderId == purchaseOrderId);
-
-                     if (!purchaseOrder.IsInvoiced)
-                     {
-                         RecipiesModel recipiesContext = ContextFactory.GetContextPerRequest();
-                         foreach (PurchaseOrderDetail pod in purchaseOrder.PurchaseOrderDetails)
-                         {
-                             if (!pod.IsInvoiced)
-                             {                               
-                                 recipiesContext.Add(pod);
-                                 pod.Product.UnitsInStock += pod.StockedQuantity;
-                                 pod.IsInvoiced = true;
-                             }
-                         }
-                         recipiesContext.Add(purchaseOrder);
-                         purchaseOrder.IsInvoiced = true;
-                         recipiesContext.SaveChanges();                         
-                     }
-                 }
-            }
+            }            
         }
 
         protected void rgPurchaseOrderDetails_ItemCommand(object sender, GridCommandEventArgs e)
