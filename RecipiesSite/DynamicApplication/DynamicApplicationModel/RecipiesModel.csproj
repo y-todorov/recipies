@@ -98,6 +98,7 @@
     <Compile Include="Product.generated.cs">
       <DependentUpon>EntitiesModel.rlinq</DependentUpon>
     </Compile>
+    <Compile Include="Product.partial.cs" />
     <Compile Include="ProductCategory.generated.cs">
       <DependentUpon>EntitiesModel.rlinq</DependentUpon>
     </Compile>
@@ -117,6 +118,12 @@
     </Compile>
     <Compile Include="PurchaseOrderHeader.partial.cs" />
     <Compile Include="PurchaseOrderStatus.generated.cs">
+      <DependentUpon>EntitiesModel.rlinq</DependentUpon>
+    </Compile>
+    <Compile Include="Recipe.generated.cs">
+      <DependentUpon>EntitiesModel.rlinq</DependentUpon>
+    </Compile>
+    <Compile Include="RecipeIngredient.generated.cs">
       <DependentUpon>EntitiesModel.rlinq</DependentUpon>
     </Compile>
     <Compile Include="RecipiesModel.partial.cs" />

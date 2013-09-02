@@ -26,7 +26,14 @@
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text=""></ModelErrorMessage>
                     </ColumnValidationSettings>
-                </telerik:GridDropDownColumn>          
+                </telerik:GridDropDownColumn>    
+                 <telerik:GridDropDownColumn UniqueName="DropDownStoreListColumn" ListTextField="Name"
+                    ListValueField="StoreID" DataSourceID="OpenAccessLinqDataSourceStore" HeaderText="Store"
+                    DataField="StoreID" DropDownControlType="RadComboBox" EmptyListItemText="" EnableEmptyListItem="true" EmptyListItemValue="" ConvertEmptyStringToNull="true">
+                    <ColumnValidationSettings>
+                        <ModelErrorMessage Text=""></ModelErrorMessage>
+                    </ColumnValidationSettings>
+                </telerik:GridDropDownColumn>       
                 <telerik:GridBoundColumn DataField="Name" FilterControlAltText="Filter Name column" HeaderText="Name" SortExpression="Name" UniqueName="Name">
                     <ColumnValidationSettings EnableRequiredFieldValidation="true" EnableModelErrorMessageValidation="true">
                         <RequiredFieldValidator ForeColor="Red" ErrorMessage="This field is required!"></RequiredFieldValidator>
@@ -52,13 +59,8 @@
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
-                </telerik:GridNumericColumn>
-               
-                <telerik:GridBoundColumn DataField="Store" FilterControlAltText="Filter Store column" HeaderText="Store" SortExpression="Store" UniqueName="Store">
-                    <ColumnValidationSettings>
-                        <ModelErrorMessage Text="" />
-                    </ColumnValidationSettings>
-                </telerik:GridBoundColumn>
+                </telerik:GridNumericColumn>              
+     
                 <telerik:GridNumericColumn DataField="ReorderLevel" DataType="System.Int32" FilterControlAltText="Filter ReorderLevel column" HeaderText="ReorderLevel" SortExpression="ReorderLevel" UniqueName="ReorderLevel">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
@@ -77,6 +79,7 @@
             </Columns>
         </MasterTableView>
     </yordan:YordanCustomRadGrid>
+    <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourceStore" Runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="Stores" />
     <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourceProduct" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="Products">
     </telerik:OpenAccessLinqDataSource>
     <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourceUnit" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="UnitMeasures" />

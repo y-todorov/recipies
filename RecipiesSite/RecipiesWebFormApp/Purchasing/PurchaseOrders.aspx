@@ -58,7 +58,6 @@
                         <ModelErrorMessage Text=""></ModelErrorMessage>
                     </ColumnValidationSettings>
                 </telerik:GridDropDownColumn>
-
                 <telerik:GridNumericColumn DataField="InvoiceNumber" DataType="System.Int32" FilterControlAltText="Filter InvoiceNumber column" HeaderText="InvoiceNumber" SortExpression="InvoiceNumber" UniqueName="InvoiceNumber">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />

@@ -68,14 +68,6 @@ namespace RecipiesModelNS
 	    	}
 		}
 		
-		public IQueryable<Store> Stores 
-		{
-	    	get
-	    	{
-	        	return this.GetAll<Store>();
-	    	}
-		}
-		
 		public IQueryable<PurchaseOrderHeader> PurchaseOrderHeaders 
 		{
 	    	get
@@ -204,6 +196,30 @@ namespace RecipiesModelNS
 	    	}
 		}
 		
+		public IQueryable<RecipeIngredient> RecipeIngredients 
+		{
+	    	get
+	    	{
+	        	return this.GetAll<RecipeIngredient>();
+	    	}
+		}
+		
+		public IQueryable<Recipe> Recipes 
+		{
+	    	get
+	    	{
+	        	return this.GetAll<Recipe>();
+	    	}
+		}
+		
+		public IQueryable<Store> Stores 
+		{
+	    	get
+	    	{
+	        	return this.GetAll<Store>();
+	    	}
+		}
+		
 		public static BackendConfiguration GetBackendConfiguration()
 		{
 			BackendConfiguration backend = new BackendConfiguration();
@@ -221,11 +237,6 @@ namespace RecipiesModelNS
 		}
 
 		IQueryable<UnitMeasure> UnitMeasures 
-		{ 
-			get;
-		}
-
-		IQueryable<Store> Stores 
 		{ 
 			get;
 		}
@@ -306,6 +317,21 @@ namespace RecipiesModelNS
 		}
 
 		IQueryable<PurchaseOrderStatus> PurchaseOrderStatus 
+		{ 
+			get;
+		}
+
+		IQueryable<RecipeIngredient> RecipeIngredients 
+		{ 
+			get;
+		}
+
+		IQueryable<Recipe> Recipes 
+		{ 
+			get;
+		}
+
+		IQueryable<Store> Stores 
 		{ 
 			get;
 		}

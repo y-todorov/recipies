@@ -116,19 +116,6 @@ namespace RecipiesModelNS
 		    }
 		}
 		
-		private string _store;
-		public virtual string Store 
-		{ 
-		    get
-		    {
-		        return this._store;
-		    }
-		    set
-		    {
-		        this._store = value;
-		    }
-		}
-		
 		private int? _reorderLevel;
 		public virtual int? ReorderLevel 
 		{ 
@@ -181,6 +168,19 @@ namespace RecipiesModelNS
 		    }
 		}
 		
+		private int? _storeId;
+		public virtual int? StoreId 
+		{ 
+		    get
+		    {
+		        return this._storeId;
+		    }
+		    set
+		    {
+		        this._storeId = value;
+		    }
+		}
+		
 		private UnitMeasure _unitMeasure;
 		public virtual UnitMeasure UnitMeasure 
 		{ 
@@ -207,6 +207,19 @@ namespace RecipiesModelNS
 		    }
 		}
 		
+		private Store _store;
+		public virtual Store Store 
+		{ 
+		    get
+		    {
+		        return this._store;
+		    }
+		    set
+		    {
+		        this._store = value;
+		    }
+		}
+		
 		private IList<PurchaseOrderDetail> _purchaseOrderDetails = new List<PurchaseOrderDetail>();
 		public virtual IList<PurchaseOrderDetail> PurchaseOrderDetails 
 		{ 
@@ -225,21 +238,21 @@ namespace RecipiesModelNS
 		    }
 		}
 		
-		private IList<ProductHistory> _productHistories = new List<ProductHistory>();
-		public virtual IList<ProductHistory> ProductHistories 
-		{ 
-		    get
-		    {
-		        return this._productHistories;
-		    }
-		}
-		
 		private IList<OrderDetail> _orderDetails = new List<OrderDetail>();
 		public virtual IList<OrderDetail> OrderDetails 
 		{ 
 		    get
 		    {
 		        return this._orderDetails;
+		    }
+		}
+		
+		private IList<RecipeIngredient> _recipeIngredients = new List<RecipeIngredient>();
+		public virtual IList<RecipeIngredient> RecipeIngredients 
+		{ 
+		    get
+		    {
+		        return this._recipeIngredients;
 		    }
 		}
 		

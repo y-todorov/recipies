@@ -23,31 +23,70 @@ using RecipiesModelNS;
 
 namespace RecipiesModelNS	
 {
-	public partial class ProductCategory
+	public partial class RecipeIngredient
 	{
-		private int _categoryId;
-		public virtual int CategoryId 
+		private int _recipeIngredientId;
+		public virtual int RecipeIngredientId 
 		{ 
 		    get
 		    {
-		        return this._categoryId;
+		        return this._recipeIngredientId;
 		    }
 		    set
 		    {
-		        this._categoryId = value;
+		        this._recipeIngredientId = value;
 		    }
 		}
 		
-		private string _name;
-		public virtual string Name 
+		private int? _recipeId;
+		public virtual int? RecipeId 
 		{ 
 		    get
 		    {
-		        return this._name;
+		        return this._recipeId;
 		    }
 		    set
 		    {
-		        this._name = value;
+		        this._recipeId = value;
+		    }
+		}
+		
+		private int? _productId;
+		public virtual int? ProductId 
+		{ 
+		    get
+		    {
+		        return this._productId;
+		    }
+		    set
+		    {
+		        this._productId = value;
+		    }
+		}
+		
+		private double? _quantityPerPortion;
+		public virtual double? QuantityPerPortion 
+		{ 
+		    get
+		    {
+		        return this._quantityPerPortion;
+		    }
+		    set
+		    {
+		        this._quantityPerPortion = value;
+		    }
+		}
+		
+		private decimal? _cost;
+		public virtual decimal? Cost 
+		{ 
+		    get
+		    {
+		        return this._cost;
+		    }
+		    set
+		    {
+		        this._cost = value;
 		    }
 		}
 		
@@ -77,21 +116,29 @@ namespace RecipiesModelNS
 		    }
 		}
 		
-		private IList<Product> _products = new List<Product>();
-		public virtual IList<Product> Products 
+		private Recipe _recipe;
+		public virtual Recipe Recipe 
 		{ 
 		    get
 		    {
-		        return this._products;
+		        return this._recipe;
+		    }
+		    set
+		    {
+		        this._recipe = value;
 		    }
 		}
 		
-		private IList<Recipe> _recipes = new List<Recipe>();
-		public virtual IList<Recipe> Recipes 
+		private Product _product;
+		public virtual Product Product 
 		{ 
 		    get
 		    {
-		        return this._recipes;
+		        return this._product;
+		    }
+		    set
+		    {
+		        this._product = value;
 		    }
 		}
 		

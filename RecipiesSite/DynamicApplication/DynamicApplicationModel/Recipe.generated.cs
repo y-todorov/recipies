@@ -23,10 +23,23 @@ using RecipiesModelNS;
 
 namespace RecipiesModelNS	
 {
-	public partial class ProductCategory
+	public partial class Recipe
 	{
-		private int _categoryId;
-		public virtual int CategoryId 
+		private int _recipeId;
+		public virtual int RecipeId 
+		{ 
+		    get
+		    {
+		        return this._recipeId;
+		    }
+		    set
+		    {
+		        this._recipeId = value;
+		    }
+		}
+		
+		private int? _categoryId;
+		public virtual int? CategoryId 
 		{ 
 		    get
 		    {
@@ -48,6 +61,32 @@ namespace RecipiesModelNS
 		    set
 		    {
 		        this._name = value;
+		    }
+		}
+		
+		private string _description;
+		public virtual string Description 
+		{ 
+		    get
+		    {
+		        return this._description;
+		    }
+		    set
+		    {
+		        this._description = value;
+		    }
+		}
+		
+		private decimal? _valuePerPortion;
+		public virtual decimal? ValuePerPortion 
+		{ 
+		    get
+		    {
+		        return this._valuePerPortion;
+		    }
+		    set
+		    {
+		        this._valuePerPortion = value;
 		    }
 		}
 		
@@ -77,21 +116,25 @@ namespace RecipiesModelNS
 		    }
 		}
 		
-		private IList<Product> _products = new List<Product>();
-		public virtual IList<Product> Products 
+		private ProductCategory _productCategory;
+		public virtual ProductCategory ProductCategory 
 		{ 
 		    get
 		    {
-		        return this._products;
+		        return this._productCategory;
+		    }
+		    set
+		    {
+		        this._productCategory = value;
 		    }
 		}
 		
-		private IList<Recipe> _recipes = new List<Recipe>();
-		public virtual IList<Recipe> Recipes 
+		private IList<RecipeIngredient> _recipeIngredients = new List<RecipeIngredient>();
+		public virtual IList<RecipeIngredient> RecipeIngredients 
 		{ 
 		    get
 		    {
-		        return this._recipes;
+		        return this._recipeIngredients;
 		    }
 		}
 		

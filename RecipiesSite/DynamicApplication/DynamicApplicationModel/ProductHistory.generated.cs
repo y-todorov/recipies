@@ -18,7 +18,6 @@ using Telerik.OpenAccess.Metadata;
 using Telerik.OpenAccess.Data.Common;
 using Telerik.OpenAccess.Metadata.Fluent;
 using Telerik.OpenAccess.Metadata.Fluent.Advanced;
-using RecipiesModelNS;
 
 
 namespace RecipiesModelNS	
@@ -191,19 +190,6 @@ namespace RecipiesModelNS
 		    set
 		    {
 		        this._modifiedByUser = value;
-		    }
-		}
-		
-		private Product _product;
-		public virtual Product Product 
-		{ 
-		    get
-		    {
-		        return this._product;
-		    }
-		    set
-		    {
-		        this._product = value;
 		    }
 		}
 		

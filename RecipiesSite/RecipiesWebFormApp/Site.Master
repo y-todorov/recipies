@@ -82,7 +82,7 @@
                         </telerik:RadMenuItem>
                         <telerik:RadMenuItem runat="server" Text="Ship methods" NavigateUrl="~/Purchasing/ShipMethods">
                         </telerik:RadMenuItem>
-                        <telerik:RadMenuItem runat="server" Text="Purchase order statuses" NavigateUrl="~/Purchasing/PurchaseOrderStatuses.aspx">
+                        <telerik:RadMenuItem runat="server" Text="Purchase order statuses" Visible="false" NavigateUrl="~/Purchasing/PurchaseOrderStatuses.aspx">
                         </telerik:RadMenuItem>
                     </Items>
                 </telerik:RadMenuItem>
