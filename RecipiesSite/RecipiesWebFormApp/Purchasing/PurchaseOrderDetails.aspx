@@ -62,9 +62,7 @@
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
-                </telerik:GridNumericColumn>
-                 <telerik:GridCheckBoxColumn DataField="IsInvoiced" ReadOnly="true" DataType="System.Boolean" FilterControlAltText="Filter IsInvoiced column" HeaderText="IsInvoiced" SortExpression="IsInvoiced" UniqueName="IsInvoiced">
-                </telerik:GridCheckBoxColumn>
+                </telerik:GridNumericColumn>            
                 <telerik:GridBoundColumn DataField="ModifiedDate" ReadOnly="true" DataType="System.DateTime" FilterControlAltText="Filter ModifiedDate column" HeaderText="ModifiedDate" SortExpression="ModifiedDate" UniqueName="ModifiedDate">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />

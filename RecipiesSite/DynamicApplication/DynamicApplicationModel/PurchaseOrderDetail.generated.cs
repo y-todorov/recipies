@@ -160,19 +160,6 @@ namespace RecipiesModelNS
 		    }
 		}
 		
-		private bool _isInvoiced;
-		public virtual bool IsInvoiced 
-		{ 
-		    get
-		    {
-		        return this._isInvoiced;
-		    }
-		    set
-		    {
-		        this._isInvoiced = value;
-		    }
-		}
-		
 		private PurchaseOrderHeader _purchaseOrderHeader;
 		public virtual PurchaseOrderHeader PurchaseOrderHeader 
 		{ 

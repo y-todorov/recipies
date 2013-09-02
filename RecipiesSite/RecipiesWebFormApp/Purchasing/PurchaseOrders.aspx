@@ -59,11 +59,12 @@
                     </ColumnValidationSettings>
                 </telerik:GridDropDownColumn>
 
-                <%--            <telerik:GridNumericColumn DataField="StatusId" DataType="System.Int32"  FilterControlAltText="Filter StatusId column" HeaderText="StatusId" SortExpression="StatusId" UniqueName="StatusId">
+                <telerik:GridNumericColumn DataField="InvoiceNumber" DataType="System.Int32" FilterControlAltText="Filter InvoiceNumber column" HeaderText="InvoiceNumber" SortExpression="InvoiceNumber" UniqueName="InvoiceNumber">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
-                </telerik:GridNumericColumn>--%>
+                </telerik:GridNumericColumn>
+
                 <telerik:GridDateTimeColumn DataField="OrderDate" DataFormatString="{0:dd/MM/yyyy}" DataType="System.DateTime" FilterControlAltText="Filter OrderDate column" HeaderText="OrderDate" SortExpression="OrderDate" UniqueName="OrderDate">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
@@ -94,8 +95,6 @@
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
                 </telerik:GridNumericColumn>
-                <telerik:GridCheckBoxColumn DataField="IsInvoiced" ReadOnly="true" DataType="System.Boolean" FilterControlAltText="Filter IsInvoiced column" HeaderText="IsInvoiced" SortExpression="IsInvoiced" UniqueName="IsInvoiced">
-                </telerik:GridCheckBoxColumn>
                 <telerik:GridBoundColumn DataField="ModifiedDate" ReadOnly="true" DataType="System.DateTime" FilterControlAltText="Filter ModifiedDate column" HeaderText="ModifiedDate" SortExpression="ModifiedDate" UniqueName="ModifiedDate">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
@@ -176,7 +175,7 @@
                             </MasterTableView>
                         </yordan:YordanCustomRadGrid>
                     </EditItemTemplate>
-                </telerik:GridTemplateColumn>                                
+                </telerik:GridTemplateColumn>
                 <telerik:GridButtonColumn ButtonType="LinkButton" Text="Download PO" UniqueName="Download" CommandName="GeneratePurchaseOrderReport"></telerik:GridButtonColumn>
                 <telerik:GridButtonColumn ButtonType="LinkButton" Text="Send mail" CommandName="SendMail"></telerik:GridButtonColumn>
             </Columns>

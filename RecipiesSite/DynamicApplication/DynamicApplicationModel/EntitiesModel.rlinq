@@ -138,8 +138,8 @@
         <orm:field name="_statusId" property="StatusId" behavior="readwrite" uniqueId="8fd3a40e-19c2-4cbc-a941-78fe372793d6" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
           <orm:column name="StatusId" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
         </orm:field>
-        <orm:field name="_isInvoiced" property="IsInvoiced" behavior="readwrite" uniqueId="60c289ce-cab9-4d15-a50a-9c5d943f2058" type="System.Boolean">
-          <orm:column name="IsInvoiced" sql-type="bit" nullable="false" length="0" scale="0" has-default-value="true" ado-type="Bit" />
+        <orm:field name="_invoiceNumber" property="InvoiceNumber" behavior="readwrite" uniqueId="c1ca843a-afd5-4c6c-97f6-b93d9af3708f" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column has-default-value="true" nullable="true" length="0" name="InvoiceNumber" scale="0" sql-type="int" ado-type="Int32" />
         </orm:field>
         <orm:field name="_vendor" property="Vendor" behavior="readwrite" uniqueId="1928efdc-d122-476c-9c29-4c1c0956788a" type="RecipiesModelNS.Vendor">
           <orm:reference uniqueId="0b496378-0daa-4bed-82c8-c963c486482e">
@@ -159,14 +159,14 @@
             <orm:constraint name="FK_PurchaseOrderHeader_Employee" schema="Purchasing" destination-table="Employee" />
           </orm:reference>
         </orm:field>
-        <orm:field name="_purchaseOrderDetails" property="PurchaseOrderDetails" behavior="readwrite" uniqueId="acd2fd96-d0d9-40d3-ba43-c19b780b7cd1" type="RecipiesModelNS.PurchaseOrderDetail">
-          <orm:collection element-class="RecipiesModelNS.PurchaseOrderDetail" inverse-field="_purchaseOrderHeader" order-by="" uniqueId="34f0ec55-d1c4-43bf-8d43-35212826963a" />
-        </orm:field>
         <orm:field name="_purchaseOrderStatus" property="PurchaseOrderStatus" behavior="readwrite" uniqueId="a3b1bdda-43a3-42ab-8899-e647491ca3e4" type="RecipiesModelNS.PurchaseOrderStatus">
           <orm:reference uniqueId="ef20567a-b187-4a17-a750-1adfd2d06ea3">
             <orm:sharedfield name="_statusId" target-class="RecipiesModelNS.PurchaseOrderStatus" target-field="_purchaseOrderStatusId" />
             <orm:constraint name="FK_PurchaseOrderHeader_PurchaseOrderStatus" schema="Purchasing" destination-table="PurchaseOrderStatus" />
           </orm:reference>
+        </orm:field>
+        <orm:field name="_purchaseOrderDetails" property="PurchaseOrderDetails" behavior="readwrite" uniqueId="acd2fd96-d0d9-40d3-ba43-c19b780b7cd1" type="RecipiesModelNS.PurchaseOrderDetail">
+          <orm:collection element-class="RecipiesModelNS.PurchaseOrderDetail" inverse-field="_purchaseOrderHeader" order-by="" uniqueId="34f0ec55-d1c4-43bf-8d43-35212826963a" />
         </orm:field>
       </orm:class>
       <orm:class name="PurchaseOrderDetail" uniqueId="2fe37073-9569-4897-9716-8f7826264bd5">
@@ -208,9 +208,6 @@
         </orm:field>
         <orm:field name="_returnedQuantity" property="ReturnedQuantity" behavior="readwrite" uniqueId="44d48565-228f-49b0-acb2-ff47e56befc5" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
           <orm:column name="ReturnedQuantity" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
-        </orm:field>
-        <orm:field name="_isInvoiced" property="IsInvoiced" behavior="readwrite" uniqueId="0ae1261e-f7ef-4234-a1e4-8a068f1204e3" type="System.Boolean">
-          <orm:column name="IsInvoiced" sql-type="bit" nullable="false" length="0" scale="0" has-default-value="true" ado-type="Bit" />
         </orm:field>
         <orm:field name="_purchaseOrderHeader" property="PurchaseOrderHeader" behavior="readwrite" uniqueId="c2f62cb4-7039-4aaf-8c49-56cbd8a61eff" type="RecipiesModelNS.PurchaseOrderHeader">
           <orm:reference uniqueId="34f0ec55-d1c4-43bf-8d43-35212826963a">
@@ -854,7 +851,7 @@
         <orm:column name="ModifiedByUser" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
         <orm:column name="VAT" sql-type="money" nullable="true" length="0" scale="0" ado-type="Currency" />
         <orm:column name="StatusId" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
-        <orm:column name="IsInvoiced" sql-type="bit" nullable="false" length="0" scale="0" has-default-value="true" ado-type="Bit" />
+        <orm:column has-default-value="true" nullable="true" length="0" name="InvoiceNumber" scale="0" sql-type="int" ado-type="Int32" />
         <orm:constraint name="FK_PurchaseOrderHeader_Vendor" schema="Purchasing" destination-table="Vendor">
           <orm:column name="VendorId" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
         </orm:constraint>
@@ -880,7 +877,6 @@
         <orm:column name="ModifiedDate" sql-type="datetime" nullable="true" length="0" scale="0" has-default-value="true" ado-type="DateTime" />
         <orm:column name="ModifiedByUser" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
         <orm:column name="ReturnedQuantity" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
-        <orm:column name="IsInvoiced" sql-type="bit" nullable="false" length="0" scale="0" has-default-value="true" ado-type="Bit" />
         <orm:constraint name="FK_PurchaseOrderDetail_PurchaseOrderHeader" schema="Purchasing" destination-table="PurchaseOrderHeader">
           <orm:column name="PurchaseOrderId" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
         </orm:constraint>
@@ -1186,7 +1182,7 @@
       <Property Id="02780811-ff4e-4207-86e8-d57f5cb92048" name="ModifiedByUser" label="ModifiedByUser : String" kind="Persistent" fieldName="_modifiedByUser" />
       <Property Id="ab13fc81-ef0a-493e-9f3b-f4b5dd465ccf" name="VAT" type="Decimal" label="VAT : Decimal" nullable="true" kind="Persistent" fieldName="_vAT" />
       <Property Id="8fd3a40e-19c2-4cbc-a941-78fe372793d6" name="StatusId" type="Int32" label="StatusId : Int32" nullable="true" kind="Persistent" fieldName="_statusId" />
-      <Property Id="60c289ce-cab9-4d15-a50a-9c5d943f2058" name="IsInvoiced" type="Boolean" label="IsInvoiced : Boolean" kind="Persistent" fieldName="_isInvoiced" />
+      <Property Id="c1ca843a-afd5-4c6c-97f6-b93d9af3708f" name="InvoiceNumber" type="Int32" label="InvoiceNumber : Int32" nullable="true" kind="Persistent" fieldName="_invoiceNumber" />
       <AssociationTargets>
         <Association Id="0b496378-0daa-4bed-82c8-c963c486482e" SourceMultiplicity="ZeroOne" name="PurchaseOrderHeaderHasVendor">
           <DomainClassMoniker name="/RecipiesModel/Vendor" />
@@ -1271,7 +1267,6 @@
       <Property Id="4d5cc722-7d66-4733-b955-c9d7f4522cef" name="UnitPrice" type="Decimal" label="UnitPrice : Decimal" nullable="true" kind="Persistent" fieldName="_unitPrice" />
       <Property Id="eeb7f207-b277-4afb-915a-98c1ae903844" name="ModifiedByUser" label="ModifiedByUser : String" kind="Persistent" fieldName="_modifiedByUser" />
       <Property Id="44d48565-228f-49b0-acb2-ff47e56befc5" name="ReturnedQuantity" type="Int32" label="ReturnedQuantity : Int32" nullable="true" kind="Persistent" fieldName="_returnedQuantity" />
-      <Property Id="0ae1261e-f7ef-4234-a1e4-8a068f1204e3" name="IsInvoiced" type="Boolean" label="IsInvoiced : Boolean" kind="Persistent" fieldName="_isInvoiced" />
       <AssociationTargets>
         <Association Id="34f0ec55-d1c4-43bf-8d43-35212826963a" SourceMultiplicity="ZeroOne" name="PurchaseOrderDetailHasPurchaseOrderHeader">
           <DomainClassMoniker name="/RecipiesModel/PurchaseOrderHeader" />

@@ -190,16 +190,16 @@ namespace RecipiesModelNS
 		    }
 		}
 		
-		private bool _isInvoiced;
-		public virtual bool IsInvoiced 
+		private int? _invoiceNumber;
+		public virtual int? InvoiceNumber 
 		{ 
 		    get
 		    {
-		        return this._isInvoiced;
+		        return this._invoiceNumber;
 		    }
 		    set
 		    {
-		        this._isInvoiced = value;
+		        this._invoiceNumber = value;
 		    }
 		}
 		
