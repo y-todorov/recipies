@@ -11,21 +11,24 @@
                     <modelerrormessage text=""></modelerrormessage>
                 </columnvalidationsettings>
             </telerik:GridBoundColumn>
-            <telerik:GridBoundColumn DataField="CategoryId" DataType="System.Int32" FilterControlAltText="Filter CategoryId column" HeaderText="CategoryId" SortExpression="CategoryId" UniqueName="CategoryId">
-                <columnvalidationsettings>
-                    <modelerrormessage text=""></modelerrormessage>
-                </columnvalidationsettings>
-            </telerik:GridBoundColumn>
+             <telerik:GridDropDownColumn UniqueName="DropDownCategoryListColumn" ListTextField="Name"
+                    ListValueField="CategoryID" DataSourceID="OpenAccessLinqDataSourceCategory" HeaderText="Category"
+                    DataField="CategoryID" DropDownControlType="RadComboBox" AllowAutomaticLoadOnDemand="true"
+                    AllowVirtualScrolling="true" ShowMoreResultsBox="true" ItemsPerRequest="10">
+                    <ColumnValidationSettings>
+                        <ModelErrorMessage Text=""></ModelErrorMessage>
+                    </ColumnValidationSettings>
+                </telerik:GridDropDownColumn>  
             <telerik:GridBoundColumn DataField="Name" FilterControlAltText="Filter Name column" HeaderText="Name" SortExpression="Name" UniqueName="Name">
                 <columnvalidationsettings>
                     <modelerrormessage text=""></modelerrormessage>
                 </columnvalidationsettings>
             </telerik:GridBoundColumn>
-            <telerik:GridBoundColumn DataField="Description" FilterControlAltText="Filter Description column" HeaderText="Description" SortExpression="Description" UniqueName="Description">
+            <telerik:GridHTMLEditorColumn DataField="Description" FilterControlAltText="Filter Description column" HeaderText="Description" SortExpression="Description" UniqueName="Description">                
                 <columnvalidationsettings>
                     <modelerrormessage text=""></modelerrormessage>
                 </columnvalidationsettings>
-            </telerik:GridBoundColumn>
+            </telerik:GridHTMLEditorColumn>
             <telerik:GridBoundColumn DataField="ValuePerPortion" DataType="System.Decimal" FilterControlAltText="Filter ValuePerPortion column" HeaderText="ValuePerPortion" SortExpression="ValuePerPortion" UniqueName="ValuePerPortion">
                 <columnvalidationsettings>
                     <modelerrormessage text=""></modelerrormessage>
@@ -44,5 +47,6 @@
         </Columns>
     </MasterTableView>
 </cc1:YordanCustomRadGrid>
+    <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourceCategory" Runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="ProductCategories" />
 <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourceRecipes" Runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="Recipes" />
 </asp:Content>

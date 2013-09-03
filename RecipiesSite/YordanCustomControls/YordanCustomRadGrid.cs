@@ -74,27 +74,43 @@ namespace YordanCustomControls
                 modifiedByUserColumn.ReadOnly = true;
             }
             
-
-            foreach (GridColumn gc in Columns)
+            // setting default columns properties that cannot be set through skin file
+            foreach (GridColumn gridColumn in Columns)
             {
-                GridBoundColumn gbc = gc as GridBoundColumn;
-                if (gbc != null)
+                GridBoundColumn gridBoundColumn = gridColumn as GridBoundColumn;
+                if (gridBoundColumn != null)
                 {
-                    if (gbc.DataType == typeof(DateTime))
+                    if (gridBoundColumn.DataType == typeof(DateTime))
                     {
-                        if (string.IsNullOrEmpty(gbc.DataFormatString))
+                        if (string.IsNullOrEmpty(gridBoundColumn.DataFormatString))
                         {
-                            gbc.DataFormatString = "{0:dd/MM/yyyy}";
+                            gridBoundColumn.DataFormatString = "{0:dd/MM/yyyy}";
                         }
                     }
-                    if (gbc.DataType == typeof(decimal))
+                    if (gridBoundColumn.DataType == typeof(decimal))
                     {
-                        if (string.IsNullOrEmpty(gbc.DataFormatString))
+                        if (string.IsNullOrEmpty(gridBoundColumn.DataFormatString))
                         {
-                            gbc.DataFormatString = "{0:C}";
+                            gridBoundColumn.DataFormatString = "{0:C}";
                         }
                     }
                 }
+                GridDropDownColumn gridDropDownColumn = gridColumn as GridDropDownColumn;
+                if (gridDropDownColumn != null)
+                {
+                    if (string.IsNullOrEmpty(gridDropDownColumn.EmptyListItemText))
+                    {
+                        gridDropDownColumn.EmptyListItemText = string.Empty;
+                    }
+                    if (string.IsNullOrEmpty(gridDropDownColumn.EmptyListItemValue))
+                    {
+                        gridDropDownColumn.EmptyListItemValue = null;
+                    }
+                    gridDropDownColumn.EnableEmptyListItem = true;
+                    gridDropDownColumn.ConvertEmptyStringToNull = true;
+                    gridDropDownColumn.DropDownControlType = GridDropDownColumnControlType.RadComboBox;
+                }
+
             }
 
             base.OnPreRender(e);
