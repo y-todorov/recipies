@@ -28,8 +28,8 @@
                     </ColumnValidationSettings>
                 </telerik:GridDropDownColumn>    
                  <telerik:GridDropDownColumn UniqueName="DropDownStoreListColumn" ListTextField="Name"
-                    ListValueField="StoreID" DataSourceID="OpenAccessLinqDataSourceStore" HeaderText="Store"
-                    DataField="StoreID" DropDownControlType="RadComboBox" EmptyListItemText="" EnableEmptyListItem="true" EmptyListItemValue="" ConvertEmptyStringToNull="true">
+                    ListValueField="StoreId" DataSourceID="OpenAccessLinqDataSourceStore" HeaderText="Store"
+                    DataField="StoreId" DropDownControlType="RadComboBox">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text=""></ModelErrorMessage>
                     </ColumnValidationSettings>

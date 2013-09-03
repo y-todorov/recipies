@@ -207,19 +207,6 @@ namespace RecipiesModelNS
 		    }
 		}
 		
-		private Store _store;
-		public virtual Store Store 
-		{ 
-		    get
-		    {
-		        return this._store;
-		    }
-		    set
-		    {
-		        this._store = value;
-		    }
-		}
-		
 		private IList<PurchaseOrderDetail> _purchaseOrderDetails = new List<PurchaseOrderDetail>();
 		public virtual IList<PurchaseOrderDetail> PurchaseOrderDetails 
 		{ 

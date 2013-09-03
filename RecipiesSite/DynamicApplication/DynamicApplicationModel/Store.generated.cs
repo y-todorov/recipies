@@ -18,7 +18,6 @@ using Telerik.OpenAccess.Metadata;
 using Telerik.OpenAccess.Data.Common;
 using Telerik.OpenAccess.Metadata.Fluent;
 using Telerik.OpenAccess.Metadata.Fluent.Advanced;
-using RecipiesModelNS;
 
 
 namespace RecipiesModelNS	
@@ -74,15 +73,6 @@ namespace RecipiesModelNS
 		    set
 		    {
 		        this._modifiedByUser = value;
-		    }
-		}
-		
-		private IList<Product> _products = new List<Product>();
-		public virtual IList<Product> Products 
-		{ 
-		    get
-		    {
-		        return this._products;
 		    }
 		}
 		
