@@ -56,12 +56,13 @@
                     <Items>
                         <telerik:RadMenuItem runat="server" Text="Products" NavigateUrl="~/Production/Products">
                         </telerik:RadMenuItem>
-                        <telerik:RadMenuItem runat="server" Text="Product categories" NavigateUrl="~/Production/ProductCategories">
+                        <telerik:RadMenuItem runat="server" Text="Categories" NavigateUrl="~/Production/ProductCategories">
                         </telerik:RadMenuItem>
                         <telerik:RadMenuItem runat="server" Text="Unit measures" NavigateUrl="~/Production/UnitMeasures">
                         </telerik:RadMenuItem>
                         <telerik:RadMenuItem Text="Stores" NavigateUrl="~/Production/Stores"></telerik:RadMenuItem>
                         <telerik:RadMenuItem Text="Recipes" NavigateUrl="Production/Recipes.aspx"></telerik:RadMenuItem>
+                          <telerik:RadMenuItem Text="Recipe ingredients" NavigateUrl="Production/RecipeIngredients.aspx"></telerik:RadMenuItem>
                     </Items>
                 </telerik:RadMenuItem>
                 <telerik:RadMenuItem IsSeparator="true"></telerik:RadMenuItem>

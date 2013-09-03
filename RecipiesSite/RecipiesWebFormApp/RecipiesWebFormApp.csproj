@@ -235,6 +235,7 @@
     <Content Include="App_Themes\DefaultTheme\DefaultSkin.skin" />
     <Content Include="Production\ProductCategories.aspx" />
     <Content Include="Production\Products.aspx" />
+    <Content Include="Production\RecipeIngredients.aspx" />
     <Content Include="Production\Recipes.aspx" />
     <Content Include="Purchasing\Po2.aspx" />
     <Content Include="Purchasing\ProductVendors.aspx" />
@@ -424,6 +425,13 @@
     </Compile>
     <Compile Include="Production\Products.aspx.designer.cs">
       <DependentUpon>Products.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Production\RecipeIngredients.aspx.cs">
+      <DependentUpon>RecipeIngredients.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Production\RecipeIngredients.aspx.designer.cs">
+      <DependentUpon>RecipeIngredients.aspx</DependentUpon>
     </Compile>
     <Compile Include="Production\Recipes.aspx.cs">
       <DependentUpon>Recipes.aspx</DependentUpon>
