@@ -61,6 +61,7 @@
                         <telerik:RadMenuItem runat="server" Text="Unit measures" NavigateUrl="~/Production/UnitMeasures">
                         </telerik:RadMenuItem>
                         <telerik:RadMenuItem Text="Stores" NavigateUrl="~/Production/Stores"></telerik:RadMenuItem>
+                        <telerik:RadMenuItem Text="Recipes" NavigateUrl="Production/Recipes.aspx"></telerik:RadMenuItem>
                     </Items>
                 </telerik:RadMenuItem>
                 <telerik:RadMenuItem IsSeparator="true"></telerik:RadMenuItem>

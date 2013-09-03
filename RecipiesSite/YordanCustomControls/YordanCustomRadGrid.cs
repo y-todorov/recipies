@@ -55,10 +55,49 @@ namespace YordanCustomControls
                             ScriptManager.GetCurrent(this.Page).RegisterPostBackControl(control);
                         }
                     }
-                }         
+                }
             }
 
             base.OnItemCreated(e);
+        }
+
+        protected override void OnPreRender(EventArgs e)
+        {
+            GridEditableColumn modifiedDateColumn = Columns.FindByUniqueNameSafe("ModifiedDate") as GridEditableColumn;
+            if (modifiedDateColumn != null)
+            {
+                modifiedDateColumn.ReadOnly = true;
+            }
+            GridEditableColumn modifiedByUserColumn = Columns.FindByUniqueNameSafe("ModifiedByUser") as GridEditableColumn;
+            if (modifiedByUserColumn != null)
+            {
+                modifiedByUserColumn.ReadOnly = true;
+            }
+            
+
+            foreach (GridColumn gc in Columns)
+            {
+                GridBoundColumn gbc = gc as GridBoundColumn;
+                if (gbc != null)
+                {
+                    if (gbc.DataType == typeof(DateTime))
+                    {
+                        if (string.IsNullOrEmpty(gbc.DataFormatString))
+                        {
+                            gbc.DataFormatString = "{0:dd/MM/yyyy}";
+                        }
+                    }
+                    if (gbc.DataType == typeof(decimal))
+                    {
+                        if (string.IsNullOrEmpty(gbc.DataFormatString))
+                        {
+                            gbc.DataFormatString = "{0:C}";
+                        }
+                    }
+                }
+            }
+
+            base.OnPreRender(e);
         }
     }
 }

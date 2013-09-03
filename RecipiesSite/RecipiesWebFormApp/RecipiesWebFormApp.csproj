@@ -230,10 +230,12 @@
     <Content Include="Images\orderedList7.png" />
     <Content Include="Images\orderedList8.png" />
     <Content Include="Images\orderedList9.png" />
+    <Content Include="loaderio-30652baccf98dd4b259576ae7897b597.txt" />
     <Content Include="packages.config" />
     <Content Include="App_Themes\DefaultTheme\DefaultSkin.skin" />
     <Content Include="Production\ProductCategories.aspx" />
     <Content Include="Production\Products.aspx" />
+    <Content Include="Production\Recipes.aspx" />
     <Content Include="Purchasing\Po2.aspx" />
     <Content Include="Purchasing\ProductVendors.aspx" />
     <Content Include="Purchasing\PurchaseOrderDetails.aspx" />
@@ -422,6 +424,13 @@
     </Compile>
     <Compile Include="Production\Products.aspx.designer.cs">
       <DependentUpon>Products.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Production\Recipes.aspx.cs">
+      <DependentUpon>Recipes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Production\Recipes.aspx.designer.cs">
+      <DependentUpon>Recipes.aspx</DependentUpon>
     </Compile>
     <Compile Include="Purchasing\Po2.aspx.cs">
       <DependentUpon>Po2.aspx</DependentUpon>
