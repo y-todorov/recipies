@@ -11,6 +11,56 @@ namespace YordanCustomControls
 {
     public class YordanCustomRadGrid : RadGrid
     {
+
+//        protected override void OnLoad(EventArgs e)
+//        { // Define the name and type of the client scripts on the page.
+//            String csname1 = "PopupScript";
+//            Type cstype = this.GetType();
+
+//            // Get a ClientScriptManager reference from the Page class.
+//            ClientScriptManager cs = Page.ClientScript;
+
+//            // Check to see if the startup script is already registered.
+//            if (!cs.IsStartupScriptRegistered(cstype, csname1))
+//            {
+//                String cstext1 = @"(function () {
+//                    // Init
+//                var pubnub = PUBNUB.init({
+//                    publish_key: 'pub-c-cc6cdb68-ab44-4f1a-8553-ccc30d96f87a',
+//                    subscribe_key: 'sub-c-bde0a3b8-1538-11e3-bc51-02ee2ddab7fe'
+//                })
+//
+//                pubnub.ready();
+//
+//                pubnub.subscribe({
+//                    channel: 'Products',
+//                    callback: function (message) { rebindGrid(message) }
+//                });
+//
+//                function rebindGrid(message) {
+//                   
+//                    var grid = window.$find(""<%= ((RadGrid)rgProducts).ClientID %>"");
+//
+//                    if (grid != null) {
+//                        debugger;
+//                        var masterTable = grid.get_masterTableView();
+//                        var editedItemsArray = masterTable.get_editItems();
+//                        var isItemInserted  = masterTable.get_isItemInserted()
+//                        if (editedItemsArray.length == 0 && !isItemInserted) {
+//                            masterTable.rebind();
+//                        }
+//                    }
+//                }
+//})();";
+
+
+
+//                cs.RegisterStartupScript(cstype, csname1, cstext1, true);
+                              
+//            }
+//            base.OnLoad(e);
+//        }
+               
         protected override void OnItemCreated(GridItemEventArgs e)
         {
             if (e.Item is GridCommandItem)
@@ -53,6 +103,7 @@ namespace YordanCustomControls
                         foreach (Control control in tableCell.Controls)
                         {
                             ScriptManager.GetCurrent(this.Page).RegisterPostBackControl(control);
+                            //Page.ClientScript.RegisterStartupScript();
                         }
                     }
                 }
@@ -110,8 +161,8 @@ namespace YordanCustomControls
                     gridDropDownColumn.ConvertEmptyStringToNull = true;
                     gridDropDownColumn.DropDownControlType = GridDropDownColumnControlType.RadComboBox;
                 }
-
             }
+                       
 
             base.OnPreRender(e);
         }

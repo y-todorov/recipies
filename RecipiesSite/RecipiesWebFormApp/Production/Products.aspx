@@ -6,11 +6,6 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <telerik:RadCodeBlock runat="server">
-
-
-
-        <script src="../Scripts/jquery-2.0.3.js"></script>
-        <script src="../Scripts/pubnub.js"></script>
         <script type="text/javascript">
 
             (function () {
@@ -21,14 +16,7 @@
                     subscribe_key: 'sub-c-bde0a3b8-1538-11e3-bc51-02ee2ddab7fe'
                 })
 
-                // LISTEN
-                //pubnub.subscribe({
-                //    channel: "Products",
-                //    message: function (m) { alert(m) }
-                //})
-
                 pubnub.ready();
-                
 
                 pubnub.subscribe({
                     channel: 'Products',
@@ -48,11 +36,12 @@
                             masterTable.rebind();
                         }
                     }
-
                 }
 
 
-            })();</script>
+            })();
+
+        </script>
 
     </telerik:RadCodeBlock>
 
