@@ -5,6 +5,57 @@
 <%@ Register Assembly="YordanCustomControls" Namespace="YordanCustomControls" TagPrefix="yordan" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <telerik:RadCodeBlock runat="server">
+
+
+
+        <script src="../Scripts/jquery-2.0.3.js"></script>
+        <script src="../Scripts/pubnub.js"></script>
+        <script type="text/javascript">
+
+            (function () {
+
+                // Init
+                var pubnub = PUBNUB.init({
+                    publish_key: 'pub-c-cc6cdb68-ab44-4f1a-8553-ccc30d96f87a',
+                    subscribe_key: 'sub-c-bde0a3b8-1538-11e3-bc51-02ee2ddab7fe'
+                })
+
+                // LISTEN
+                //pubnub.subscribe({
+                //    channel: "Products",
+                //    message: function (m) { alert(m) }
+                //})
+
+                pubnub.ready();
+                
+
+                pubnub.subscribe({
+                    channel: 'Products',
+                    callback: function (message) { rebindGrid(message) }
+                });
+
+                function rebindGrid(message) {
+                   
+                    var grid = window.$find("<%= ((RadGrid)rgProducts).ClientID %>");
+
+                    if (grid != null) {
+                        debugger;
+                        var masterTable = grid.get_masterTableView();
+                        var editedItemsArray = masterTable.get_editItems();
+                        var isItemInserted  = masterTable.get_isItemInserted()
+                        if (editedItemsArray.length == 0 && !isItemInserted) {
+                            masterTable.rebind();
+                        }
+                    }
+
+                }
+
+
+            })();</script>
+
+    </telerik:RadCodeBlock>
+
     <yordan:YordanCustomRadGrid ID="rgProducts" runat="server" DataSourceID="OpenAccessLinqDataSourceProduct" CellSpacing="0" GridLines="None">
         <MasterTableView AutoGenerateColumns="False" DataKeyNames="ProductId" DataSourceID="OpenAccessLinqDataSourceProduct">
             <Columns>
@@ -26,21 +77,21 @@
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text=""></ModelErrorMessage>
                     </ColumnValidationSettings>
-                </telerik:GridDropDownColumn>    
-                 <telerik:GridDropDownColumn UniqueName="DropDownStoreListColumn" ListTextField="Name"
+                </telerik:GridDropDownColumn>
+                <telerik:GridDropDownColumn UniqueName="DropDownStoreListColumn" ListTextField="Name"
                     ListValueField="StoreId" DataSourceID="OpenAccessLinqDataSourceStore" HeaderText="Store"
                     DataField="StoreId" DropDownControlType="RadComboBox">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text=""></ModelErrorMessage>
                     </ColumnValidationSettings>
-                </telerik:GridDropDownColumn>       
+                </telerik:GridDropDownColumn>
                 <telerik:GridBoundColumn DataField="Name" FilterControlAltText="Filter Name column" HeaderText="Name" SortExpression="Name" UniqueName="Name">
                     <ColumnValidationSettings EnableRequiredFieldValidation="true" EnableModelErrorMessageValidation="true">
                         <RequiredFieldValidator ForeColor="Red" ErrorMessage="This field is required!"></RequiredFieldValidator>
                         <ModelErrorMessage BackColor="Red" />
                     </ColumnValidationSettings>
                 </telerik:GridBoundColumn>
-                     <telerik:GridBoundColumn DataField="Code" FilterControlAltText="Filter Code column" HeaderText="Code" SortExpression="Code" UniqueName="Code">
+                <telerik:GridBoundColumn DataField="Code" FilterControlAltText="Filter Code column" HeaderText="Code" SortExpression="Code" UniqueName="Code">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
@@ -59,19 +110,19 @@
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
-                </telerik:GridNumericColumn>              
-     
+                </telerik:GridNumericColumn>
+
                 <telerik:GridNumericColumn DataField="ReorderLevel" DataType="System.Int32" FilterControlAltText="Filter ReorderLevel column" HeaderText="ReorderLevel" SortExpression="ReorderLevel" UniqueName="ReorderLevel">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
                 </telerik:GridNumericColumn>
-                 <telerik:GridDateTimeColumn DataField="ModifiedDate" ReadOnly="true" DataType="System.DateTime" FilterControlAltText="Filter ModifiedDate column" HeaderText="ModifiedDate" SortExpression="ModifiedDate" UniqueName="ModifiedDate">
+                <telerik:GridDateTimeColumn DataField="ModifiedDate" ReadOnly="true" DataType="System.DateTime" FilterControlAltText="Filter ModifiedDate column" HeaderText="ModifiedDate" SortExpression="ModifiedDate" UniqueName="ModifiedDate">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
                 </telerik:GridDateTimeColumn>
-                  <telerik:GridBoundColumn DataField="ModifiedByUser" ReadOnly="true" FilterControlAltText="Filter ModifiedByUser column" HeaderText="ModifiedByUser" SortExpression="ModifiedByUser" UniqueName="ModifiedByUser">
+                <telerik:GridBoundColumn DataField="ModifiedByUser" ReadOnly="true" FilterControlAltText="Filter ModifiedByUser column" HeaderText="ModifiedByUser" SortExpression="ModifiedByUser" UniqueName="ModifiedByUser">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
@@ -79,7 +130,7 @@
             </Columns>
         </MasterTableView>
     </yordan:YordanCustomRadGrid>
-    <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourceStore" Runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="Stores" />
+    <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourceStore" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="Stores" />
     <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourceProduct" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="Products">
     </telerik:OpenAccessLinqDataSource>
     <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourceUnit" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="UnitMeasures" />

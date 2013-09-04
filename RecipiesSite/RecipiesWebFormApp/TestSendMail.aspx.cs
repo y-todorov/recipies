@@ -1,4 +1,5 @@
-﻿using RestSharp;
+﻿using PubNubMessaging.Core;
+using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -21,38 +22,19 @@ namespace RecipiesWebFormApp
             SendComplexMessage();
         }
 
-        public static RestResponse SendComplexMessage()
+        public static void SendComplexMessage()
         {
-            Typesafe.Mailgun.MailgunClient mc = new Typesafe.Mailgun.MailgunClient("https://api.mailgun.net/v2",
-                "key-7md8hh5f7cxi062n3x23x7h6nof5fue9");
-            //MailMessage
+            Pubnub pubnub = new Pubnub("pub-c-cc6cdb68-ab44-4f1a-8553-ccc30d96f87a",
+                "sub-c-bde0a3b8-1538-11e3-bc51-02ee2ddab7fe",
+                "sec-c-NzUzZTU0MzktNDlhOC00YWVlLThmZTYtNzFhMjg4NDI2N2Vi");
+            pubnub.Publish("Products", "Inserted", (o) => Test(o), (o) => Test(o));
 
-            mc.SendMail(null);
+            pubnub.Subscribe("Products", (t) => Test(t), null, null);
+        }
 
+        public static void Test(object o)
+        {
 
-
-
-            RestClient client = new RestClient();
-            client.BaseUrl = "https://api.mailgun.net/v2";
-            client.Authenticator =
-                    new HttpBasicAuthenticator("api",
-                                               "key-7md8hh5f7cxi062n3x23x7h6nof5fue9");
-            IRestRequest request = new RestRequest();
-            request.AddParameter("domain",
-                                 "app20716.mailgun.org", ParameterType.UrlSegment);
-            request.Resource = "{domain}/messages";
-            request.AddParameter("from", "Excited User <ytodorov@ytodorov.com>");
-            request.AddParameter("to", "ytodorov@ytodorov.com");
-            request.AddParameter("cc", "ytodorov@ytodorov.com");
-            request.AddParameter("bcc", "ytodorov@ytodorov.com");
-            request.AddParameter("subject", "Hello");
-            request.AddParameter("text", "Testing some Mailgun awesomness!");
-            request.AddParameter("html", "<html>HTML version of the body</html>");
-            //request.AddFile("attachment", Path.Combine("files", "test.jpg"));
-            //request.AddFile("attachment", Path.Combine("files", "test.txt"));
-            request.Method = Method.POST;
-            RestResponse response = client.Execute(request) as RestResponse;
-            return response;
         }
     }
 }

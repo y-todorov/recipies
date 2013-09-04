@@ -29,7 +29,7 @@
 <body>
     <form runat="server">
 
-        <telerik:RadScriptManager ID="RadScriptManager1" runat="server">
+        <telerik:RadScriptManager ID="RadScriptManager1" runat="server" LoadScriptsBeforeUI="False" >
             <Scripts>
             </Scripts>
         </telerik:RadScriptManager>

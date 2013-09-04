@@ -171,6 +171,12 @@
     <Content Include="OpenAccessAssemblies\Typesafe.Mailgun.dll" />
     <Content Include="OpenAccessAssemblies\venhance.exe" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Helpers\Helpers.csproj">
+      <Project>{a241735c-b9a0-4f9a-903c-e248c1c97990}</Project>
+      <Name>Helpers</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="OpenAccessAssemblies\OpenAccess.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

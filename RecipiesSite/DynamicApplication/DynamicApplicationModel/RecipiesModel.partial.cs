@@ -33,7 +33,7 @@ namespace RecipiesModelNS
             base.Init(connectionString, backendConfiguration, metadataContainer, callingAssembly);
         }
 
-
+        
 
         public override void SaveChanges(ConcurrencyConflictsProcessingMode failureMode)
         {
@@ -49,6 +49,8 @@ namespace RecipiesModelNS
 
 
             base.SaveChanges(failureMode);
+
+            PubNubMessaging.Core.Pubnub.Instance.Publish("Products", "rebind", (t) => t.ToString(), (t) => t.ToString());
         }
 
 
@@ -124,7 +126,13 @@ namespace RecipiesModelNS
         {
             IList<Product> listOfProductInserts = this.GetChanges().GetInserts<Product>();
             IList<Product> listOfProductUpdates = this.GetChanges().GetUpdates<Product>();
-            IEnumerable<Product> combinedListOfProducts = listOfProductInserts.Concat(listOfProductUpdates);
+            IList<Product> listOfProductDeletes = this.GetChanges().GetDeletes<Product>();
+
+            IEnumerable<Product> combinedListOfProducts = listOfProductInserts.Concat(listOfProductUpdates).Concat(listOfProductDeletes);
+            if (combinedListOfProducts.Count() > 0)
+            {
+                //PubNubMessaging.Core.Pubnub.Instance.Publish("Products", "rebind", (t) => t.ToString(), (t) => t.ToString());
+            }
             foreach (Product product in combinedListOfProducts)
             {
                 Type productType = product.GetType();
