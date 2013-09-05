@@ -110,10 +110,6 @@ namespace RecipiesModelNS
 		    {
 		        return this._lineTotal;
 		    }
-		    set
-		    {
-		        this._lineTotal = value;
-		    }
 		}
 		
 		private DateTime? _modifiedDate;

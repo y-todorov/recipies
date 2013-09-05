@@ -31,13 +31,13 @@ namespace RecipiesWebFormApp.Sales {
         protected global::Telerik.OpenAccess.Web.OpenAccessLinqDataSource OpenAccessLinqDataSourceOrderDetail;
         
         /// <summary>
-        /// OpenAccessLinqDataSourceOrder control.
+        /// OpenAccessLinqDataSourceSalesOrderHeader control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.OpenAccess.Web.OpenAccessLinqDataSource OpenAccessLinqDataSourceOrder;
+        protected global::Telerik.OpenAccess.Web.OpenAccessLinqDataSource OpenAccessLinqDataSourceSalesOrderHeader;
         
         /// <summary>
         /// OpenAccessLinqDataSourceRecipe control.
