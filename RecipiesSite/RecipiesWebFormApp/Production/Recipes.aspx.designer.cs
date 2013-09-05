@@ -13,13 +13,13 @@ namespace RecipiesWebFormApp.Production {
     public partial class Recipes {
         
         /// <summary>
-        /// YordanCustomRadGrid1 control.
+        /// rgRecipes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::YordanCustomControls.YordanCustomRadGrid YordanCustomRadGrid1;
+        protected global::YordanCustomControls.YordanCustomRadGrid rgRecipes;
         
         /// <summary>
         /// OpenAccessLinqDataSourceCategory control.
@@ -38,5 +38,32 @@ namespace RecipiesWebFormApp.Production {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.OpenAccess.Web.OpenAccessLinqDataSource OpenAccessLinqDataSourceRecipes;
+        
+        /// <summary>
+        /// OpenAccessLinqDataSourceRecipeIngredients control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.OpenAccess.Web.OpenAccessLinqDataSource OpenAccessLinqDataSourceRecipeIngredients;
+        
+        /// <summary>
+        /// OpenAccessLinqDataSourceProduct control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.OpenAccess.Web.OpenAccessLinqDataSource OpenAccessLinqDataSourceProduct;
+        
+        /// <summary>
+        /// OpenAccessLinqDataSourceRecipe control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.OpenAccess.Web.OpenAccessLinqDataSource OpenAccessLinqDataSourceRecipe;
     }
 }

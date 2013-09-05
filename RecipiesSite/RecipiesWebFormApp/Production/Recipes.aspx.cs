@@ -13,5 +13,11 @@ namespace RecipiesWebFormApp.Production
         {
 
         }
+
+        protected void OpenAccessLinqDataSourceRecipeIngredients_InsertedUpdatedDeleted(object sender, Telerik.OpenAccess.Web.OpenAccessLinqDataSourceStatusEventArgs e)
+        {
+            // So value per portion will be updated
+            rgRecipes.Rebind();
+        }
     }
 }
