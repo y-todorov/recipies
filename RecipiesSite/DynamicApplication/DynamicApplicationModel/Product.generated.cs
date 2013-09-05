@@ -225,15 +225,6 @@ namespace RecipiesModelNS
 		    }
 		}
 		
-		private IList<OrderDetail> _orderDetails = new List<OrderDetail>();
-		public virtual IList<OrderDetail> OrderDetails 
-		{ 
-		    get
-		    {
-		        return this._orderDetails;
-		    }
-		}
-		
 		private IList<RecipeIngredient> _recipeIngredients = new List<RecipeIngredient>();
 		public virtual IList<RecipeIngredient> RecipeIngredients 
 		{ 

@@ -13,13 +13,13 @@ namespace RecipiesWebFormApp.Sales {
     public partial class OrderDetails {
         
         /// <summary>
-        /// rgOrderDetails control.
+        /// rgSalesOrderDetails control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::YordanCustomControls.YordanCustomRadGrid rgOrderDetails;
+        protected global::YordanCustomControls.YordanCustomRadGrid rgSalesOrderDetails;
         
         /// <summary>
         /// OpenAccessLinqDataSourceOrderDetail control.
@@ -40,12 +40,12 @@ namespace RecipiesWebFormApp.Sales {
         protected global::Telerik.OpenAccess.Web.OpenAccessLinqDataSource OpenAccessLinqDataSourceOrder;
         
         /// <summary>
-        /// OpenAccessLinqDataSourceProduct control.
+        /// OpenAccessLinqDataSourceRecipe control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.OpenAccess.Web.OpenAccessLinqDataSource OpenAccessLinqDataSourceProduct;
+        protected global::Telerik.OpenAccess.Web.OpenAccessLinqDataSource OpenAccessLinqDataSourceRecipe;
     }
 }

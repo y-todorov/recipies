@@ -23,96 +23,31 @@ using RecipiesModelNS;
 
 namespace RecipiesModelNS	
 {
-	public partial class Customer
+	public partial class SalesOrderStatus
 	{
-		private int _customerID;
-		public virtual int CustomerID 
+		private int _salesOrderStatusId;
+		public virtual int SalesOrderStatusId 
 		{ 
 		    get
 		    {
-		        return this._customerID;
+		        return this._salesOrderStatusId;
 		    }
 		    set
 		    {
-		        this._customerID = value;
+		        this._salesOrderStatusId = value;
 		    }
 		}
 		
-		private string _companyName;
-		public virtual string CompanyName 
+		private string _name;
+		public virtual string Name 
 		{ 
 		    get
 		    {
-		        return this._companyName;
+		        return this._name;
 		    }
 		    set
 		    {
-		        this._companyName = value;
-		    }
-		}
-		
-		private string _contactName;
-		public virtual string ContactName 
-		{ 
-		    get
-		    {
-		        return this._contactName;
-		    }
-		    set
-		    {
-		        this._contactName = value;
-		    }
-		}
-		
-		private string _address;
-		public virtual string Address 
-		{ 
-		    get
-		    {
-		        return this._address;
-		    }
-		    set
-		    {
-		        this._address = value;
-		    }
-		}
-		
-		private string _country;
-		public virtual string Country 
-		{ 
-		    get
-		    {
-		        return this._country;
-		    }
-		    set
-		    {
-		        this._country = value;
-		    }
-		}
-		
-		private string _phone;
-		public virtual string Phone 
-		{ 
-		    get
-		    {
-		        return this._phone;
-		    }
-		    set
-		    {
-		        this._phone = value;
-		    }
-		}
-		
-		private string _email;
-		public virtual string Email 
-		{ 
-		    get
-		    {
-		        return this._email;
-		    }
-		    set
-		    {
-		        this._email = value;
+		        this._name = value;
 		    }
 		}
 		

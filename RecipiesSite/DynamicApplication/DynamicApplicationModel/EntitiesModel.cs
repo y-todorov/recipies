@@ -116,22 +116,6 @@ namespace RecipiesModelNS
 	    	}
 		}
 		
-		public IQueryable<OrderDetail> OrderDetails 
-		{
-	    	get
-	    	{
-	        	return this.GetAll<OrderDetail>();
-	    	}
-		}
-		
-		public IQueryable<Order> Orders 
-		{
-	    	get
-	    	{
-	        	return this.GetAll<Order>();
-	    	}
-		}
-		
 		public IQueryable<Employee> Employees 
 		{
 	    	get
@@ -220,6 +204,30 @@ namespace RecipiesModelNS
 	    	}
 		}
 		
+		public IQueryable<SalesOrderStatus> SalesOrderStatus 
+		{
+	    	get
+	    	{
+	        	return this.GetAll<SalesOrderStatus>();
+	    	}
+		}
+		
+		public IQueryable<SalesOrderHeader> SalesOrderHeaders 
+		{
+	    	get
+	    	{
+	        	return this.GetAll<SalesOrderHeader>();
+	    	}
+		}
+		
+		public IQueryable<SalesOrderDetail> SalesOrderDetails 
+		{
+	    	get
+	    	{
+	        	return this.GetAll<SalesOrderDetail>();
+	    	}
+		}
+		
 		public static BackendConfiguration GetBackendConfiguration()
 		{
 			BackendConfiguration backend = new BackendConfiguration();
@@ -267,16 +275,6 @@ namespace RecipiesModelNS
 		}
 
 		IQueryable<Product> Products 
-		{ 
-			get;
-		}
-
-		IQueryable<OrderDetail> OrderDetails 
-		{ 
-			get;
-		}
-
-		IQueryable<Order> Orders 
 		{ 
 			get;
 		}
@@ -332,6 +330,21 @@ namespace RecipiesModelNS
 		}
 
 		IQueryable<Store> Stores 
+		{ 
+			get;
+		}
+
+		IQueryable<SalesOrderStatus> SalesOrderStatus 
+		{ 
+			get;
+		}
+
+		IQueryable<SalesOrderHeader> SalesOrderHeaders 
+		{ 
+			get;
+		}
+
+		IQueryable<SalesOrderDetail> SalesOrderDetails 
 		{ 
 			get;
 		}

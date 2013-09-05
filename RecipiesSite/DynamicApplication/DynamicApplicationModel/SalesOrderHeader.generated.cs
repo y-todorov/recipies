@@ -23,7 +23,7 @@ using RecipiesModelNS;
 
 namespace RecipiesModelNS	
 {
-	public partial class Order
+	public partial class SalesOrderHeader
 	{
 		private int _orderID;
 		public virtual int OrderID 
@@ -61,6 +61,19 @@ namespace RecipiesModelNS
 		    set
 		    {
 		        this._employeeID = value;
+		    }
+		}
+		
+		private int? _statusId;
+		public virtual int? StatusId 
+		{ 
+		    get
+		    {
+		        return this._statusId;
+		    }
+		    set
+		    {
+		        this._statusId = value;
 		    }
 		}
 		
@@ -168,6 +181,19 @@ namespace RecipiesModelNS
 		    }
 		}
 		
+		private SalesOrderStatus _salesOrderStatus;
+		public virtual SalesOrderStatus SalesOrderStatus 
+		{ 
+		    get
+		    {
+		        return this._salesOrderStatus;
+		    }
+		    set
+		    {
+		        this._salesOrderStatus = value;
+		    }
+		}
+		
 		private Employee _employee;
 		public virtual Employee Employee 
 		{ 
@@ -194,12 +220,12 @@ namespace RecipiesModelNS
 		    }
 		}
 		
-		private IList<OrderDetail> _orderDetails = new List<OrderDetail>();
-		public virtual IList<OrderDetail> OrderDetails 
+		private IList<SalesOrderDetail> _salesOrderDetails = new List<SalesOrderDetail>();
+		public virtual IList<SalesOrderDetail> SalesOrderDetails 
 		{ 
 		    get
 		    {
-		        return this._orderDetails;
+		        return this._salesOrderDetails;
 		    }
 		}
 		

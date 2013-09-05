@@ -31,4 +31,9 @@
 })();</script>
     </telerik:RadCodeBlock>
     <asp:Button ID="Button1" runat="server" Text="Button" OnClick="Button1_Click" />
+    <telerik:RadComboBox ID="RadComboBox1" Runat="server" DataSourceID="LinqDataSource1">
+    </telerik:RadComboBox>
+    <asp:LinqDataSource ID="LinqDataSource1" runat="server" ContextTypeName="YordanCustomControls.YordanCustomRadGrid" EntityTypeName="" Select="new (Item, IsReadOnly)" TableName="SelectedValues">
+    </asp:LinqDataSource>
+    <asp:ObjectDataSource ID="ObjectDataSource1" runat="server"></asp:ObjectDataSource>
 </asp:Content>

@@ -23,44 +23,57 @@ using RecipiesModelNS;
 
 namespace RecipiesModelNS	
 {
-	public partial class OrderDetail
+	public partial class SalesOrderDetail
 	{
-		private int _orderDetailID;
-		public virtual int OrderDetailID 
+		private int _salesOrderDetailId;
+		public virtual int SalesOrderDetailId 
 		{ 
 		    get
 		    {
-		        return this._orderDetailID;
+		        return this._salesOrderDetailId;
 		    }
 		    set
 		    {
-		        this._orderDetailID = value;
+		        this._salesOrderDetailId = value;
 		    }
 		}
 		
-		private int? _orderID;
-		public virtual int? OrderID 
+		private int? _salesOrderId;
+		public virtual int? SalesOrderId 
 		{ 
 		    get
 		    {
-		        return this._orderID;
+		        return this._salesOrderId;
 		    }
 		    set
 		    {
-		        this._orderID = value;
+		        this._salesOrderId = value;
 		    }
 		}
 		
-		private int? _productID;
-		public virtual int? ProductID 
+		private int? _recipeId;
+		public virtual int? RecipeId 
 		{ 
 		    get
 		    {
-		        return this._productID;
+		        return this._recipeId;
 		    }
 		    set
 		    {
-		        this._productID = value;
+		        this._recipeId = value;
+		    }
+		}
+		
+		private int? _orderQuantity;
+		public virtual int? OrderQuantity 
+		{ 
+		    get
+		    {
+		        return this._orderQuantity;
+		    }
+		    set
+		    {
+		        this._orderQuantity = value;
 		    }
 		}
 		
@@ -77,29 +90,29 @@ namespace RecipiesModelNS
 		    }
 		}
 		
-		private int? _quantity;
-		public virtual int? Quantity 
+		private double? _unitPriceDiscount;
+		public virtual double? UnitPriceDiscount 
 		{ 
 		    get
 		    {
-		        return this._quantity;
+		        return this._unitPriceDiscount;
 		    }
 		    set
 		    {
-		        this._quantity = value;
+		        this._unitPriceDiscount = value;
 		    }
 		}
 		
-		private double? _discount;
-		public virtual double? Discount 
+		private double _lineTotal;
+		public virtual double LineTotal 
 		{ 
 		    get
 		    {
-		        return this._discount;
+		        return this._lineTotal;
 		    }
 		    set
 		    {
-		        this._discount = value;
+		        this._lineTotal = value;
 		    }
 		}
 		
@@ -129,29 +142,29 @@ namespace RecipiesModelNS
 		    }
 		}
 		
-		private Product _product;
-		public virtual Product Product 
+		private Recipe _recipe;
+		public virtual Recipe Recipe 
 		{ 
 		    get
 		    {
-		        return this._product;
+		        return this._recipe;
 		    }
 		    set
 		    {
-		        this._product = value;
+		        this._recipe = value;
 		    }
 		}
 		
-		private Order _order;
-		public virtual Order Order 
+		private SalesOrderHeader _salesOrderHeader;
+		public virtual SalesOrderHeader SalesOrderHeader 
 		{ 
 		    get
 		    {
-		        return this._order;
+		        return this._salesOrderHeader;
 		    }
 		    set
 		    {
-		        this._order = value;
+		        this._salesOrderHeader = value;
 		    }
 		}
 		

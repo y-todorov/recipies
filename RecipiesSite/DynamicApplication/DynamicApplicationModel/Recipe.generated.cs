@@ -138,5 +138,14 @@ namespace RecipiesModelNS
 		    }
 		}
 		
+		private IList<SalesOrderDetail> _salesOrderDetails = new List<SalesOrderDetail>();
+		public virtual IList<SalesOrderDetail> SalesOrderDetails 
+		{ 
+		    get
+		    {
+		        return this._salesOrderDetails;
+		    }
+		}
+		
 	}
 }

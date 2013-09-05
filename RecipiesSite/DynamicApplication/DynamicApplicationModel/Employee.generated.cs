@@ -207,15 +207,6 @@ namespace RecipiesModelNS
 		    }
 		}
 		
-		private IList<Order> _orders = new List<Order>();
-		public virtual IList<Order> Orders 
-		{ 
-		    get
-		    {
-		        return this._orders;
-		    }
-		}
-		
 		private IList<PurchaseOrderHeader> _purchaseOrderHeaders = new List<PurchaseOrderHeader>();
 		public virtual IList<PurchaseOrderHeader> PurchaseOrderHeaders 
 		{ 
@@ -231,6 +222,15 @@ namespace RecipiesModelNS
 		    get
 		    {
 		        return this._employeeDepartments;
+		    }
+		}
+		
+		private IList<SalesOrderHeader> _salesOrderHeaders = new List<SalesOrderHeader>();
+		public virtual IList<SalesOrderHeader> SalesOrderHeaders 
+		{ 
+		    get
+		    {
+		        return this._salesOrderHeaders;
 		    }
 		}
 		

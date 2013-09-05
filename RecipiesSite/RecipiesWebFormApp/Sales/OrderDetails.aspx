@@ -5,53 +5,52 @@
 <%@ Register Assembly="YordanCustomControls" Namespace="YordanCustomControls" TagPrefix="yordan" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <yordan:YordanCustomRadGrid ID="rgOrderDetails" runat="server" DataSourceID="OpenAccessLinqDataSourceOrderDetail" CellSpacing="0" GridLines="None">
+    <yordan:YordanCustomRadGrid ID="rgSalesOrderDetails" runat="server" DataSourceID="OpenAccessLinqDataSourceOrderDetail" CellSpacing="0" GridLines="None">
 
         <HeaderStyle />
-        <MasterTableView AutoGenerateColumns="False" DataKeyNames="OrderDetailID" DataSourceID="OpenAccessLinqDataSourceOrderDetail">
+        <MasterTableView AutoGenerateColumns="False" DataKeyNames="SalesOrderDetailId" DataSourceID="OpenAccessLinqDataSourceOrderDetail">
             <Columns>
-                <telerik:GridBoundColumn DataField="OrderDetailID" DataType="System.Int32" FilterControlAltText="Filter OrderDetailID column" HeaderText="OrderDetailID" ReadOnly="True" SortExpression="OrderDetailID" UniqueName="OrderDetailID">
+                <telerik:GridBoundColumn DataField="SalesOrderDetailId" DataType="System.Int32" FilterControlAltText="Filter SalesOrderDetailId column" HeaderText="SalesOrderDetailId" ReadOnly="True" SortExpression="SalesOrderDetailId" UniqueName="SalesOrderDetailId">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
                 </telerik:GridBoundColumn>
-                <telerik:GridDropDownColumn UniqueName="DropDownOrderListColumn" ListTextField="Name" EmptyListItemText="" EnableEmptyListItem="true" EmptyListItemValue="" ConvertEmptyStringToNull="true"
-                    ListValueField="OrderID" DataSourceID="OpenAccessLinqDataSourceOrder" HeaderText="Order"
-                    DataField="OrderID" DropDownControlType="RadComboBox">
-                    <ColumnValidationSettings>
-                        <RequiredFieldValidator ForeColor="Red" ErrorMessage="This field is required!"></RequiredFieldValidator>
-                        <ModelErrorMessage Text=""></ModelErrorMessage>
-                    </ColumnValidationSettings>
-                </telerik:GridDropDownColumn>
-                <telerik:GridDropDownColumn UniqueName="DropDownProductListColumn" ListTextField="Name" EmptyListItemText="" EnableEmptyListItem="true" EmptyListItemValue="" ConvertEmptyStringToNull="true"
-                    ListValueField="ProductID" DataSourceID="OpenAccessLinqDataSourceProduct" HeaderText="Product"
-                    DataField="ProductID" DropDownControlType="RadComboBox">
-                    <ColumnValidationSettings>
-                        <RequiredFieldValidator ForeColor="Red" ErrorMessage="This field is required!"></RequiredFieldValidator>
-                        <ModelErrorMessage Text=""></ModelErrorMessage>
-                    </ColumnValidationSettings>
-                </telerik:GridDropDownColumn>
-                <telerik:GridNumericColumn DataField="UnitPrice" DataType="System.Decimal" FilterControlAltText="Filter UnitPrice column" HeaderText="UnitPrice" SortExpression="UnitPrice" UniqueName="UnitPrice">
-                    <ColumnValidationSettings>
-                        <ModelErrorMessage Text="" />
-                    </ColumnValidationSettings>
-                </telerik:GridNumericColumn>
-                <telerik:GridNumericColumn DataField="Quantity" DataType="System.Int32" FilterControlAltText="Filter Quantity column" HeaderText="Quantity" SortExpression="Quantity" UniqueName="Quantity">
-                    <ColumnValidationSettings>
-                        <ModelErrorMessage Text="" />
-                    </ColumnValidationSettings>
-                </telerik:GridNumericColumn>
-                <telerik:GridNumericColumn DataField="Discount" DataType="System.Double" FilterControlAltText="Filter Discount column" HeaderText="Discount" SortExpression="Discount" UniqueName="Discount">
-                    <ColumnValidationSettings>
-                        <ModelErrorMessage Text="" />
-                    </ColumnValidationSettings>
-                </telerik:GridNumericColumn>
-                <telerik:GridBoundColumn DataField="ModifiedDate" ReadOnly="true" DataType="System.DateTime" FilterControlAltText="Filter ModifiedDate column" HeaderText="ModifiedDate" SortExpression="ModifiedDate" UniqueName="ModifiedDate">
+                <telerik:GridBoundColumn DataField="SalesOrderId" DataType="System.Int32" FilterControlAltText="Filter SalesOrderId column" HeaderText="SalesOrderId" SortExpression="SalesOrderId" UniqueName="SalesOrderId">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
                 </telerik:GridBoundColumn>
-                  <telerik:GridBoundColumn DataField="ModifiedByUser" ReadOnly="true" FilterControlAltText="Filter ModifiedByUser column" HeaderText="ModifiedByUser" SortExpression="ModifiedByUser" UniqueName="ModifiedByUser">
+                  <telerik:GridBoundColumn DataField="RecipeId" FilterControlAltText="Filter RecipeId column" HeaderText="RecipeId" SortExpression="RecipeId" UniqueName="RecipeId" DataType="System.Int32">
+                    <ColumnValidationSettings>
+                        <ModelErrorMessage Text="" />
+                    </ColumnValidationSettings>
+                </telerik:GridBoundColumn>
+                <telerik:GridBoundColumn DataField="OrderQuantity" DataType="System.Int32" FilterControlAltText="Filter OrderQuantity column" HeaderText="OrderQuantity" SortExpression="OrderQuantity" UniqueName="OrderQuantity">
+                    <ColumnValidationSettings>
+                        <ModelErrorMessage Text="" />
+                    </ColumnValidationSettings>
+                </telerik:GridBoundColumn>
+                <telerik:GridBoundColumn DataField="UnitPrice" DataType="System.Decimal" FilterControlAltText="Filter UnitPrice column" HeaderText="UnitPrice" SortExpression="UnitPrice" UniqueName="UnitPrice">
+                    <ColumnValidationSettings>
+                        <ModelErrorMessage Text="" />
+                    </ColumnValidationSettings>
+                </telerik:GridBoundColumn>
+                <telerik:GridBoundColumn DataField="UnitPriceDiscount" DataType="System.Double" FilterControlAltText="Filter UnitPriceDiscount column" HeaderText="UnitPriceDiscount" SortExpression="UnitPriceDiscount" UniqueName="UnitPriceDiscount">
+                    <ColumnValidationSettings>
+                        <ModelErrorMessage Text="" />
+                    </ColumnValidationSettings>
+                </telerik:GridBoundColumn>
+                <telerik:GridBoundColumn DataField="LineTotal" DataType="System.Double" FilterControlAltText="Filter LineTotal column" HeaderText="LineTotal" SortExpression="LineTotal" UniqueName="LineTotal">
+                    <ColumnValidationSettings>
+                        <ModelErrorMessage Text="" />
+                    </ColumnValidationSettings>
+                </telerik:GridBoundColumn>
+                <telerik:GridBoundColumn DataField="ModifiedDate" DataType="System.DateTime" FilterControlAltText="Filter ModifiedDate column" HeaderText="ModifiedDate" SortExpression="ModifiedDate" UniqueName="ModifiedDate">
+                    <ColumnValidationSettings>
+                        <ModelErrorMessage Text="" />
+                    </ColumnValidationSettings>
+                </telerik:GridBoundColumn>
+                <telerik:GridBoundColumn DataField="ModifiedByUser" FilterControlAltText="Filter ModifiedByUser column" HeaderText="ModifiedByUser" SortExpression="ModifiedByUser" UniqueName="ModifiedByUser">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
@@ -59,8 +58,8 @@
             </Columns>
         </MasterTableView>
     </yordan:YordanCustomRadGrid>
-    <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourceOrderDetail" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="OrderDetails">
+    <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourceOrderDetail" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="SalesOrderDetails">
     </telerik:OpenAccessLinqDataSource>
     <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourceOrder" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="Orders" />
-    <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourceProduct" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="Products" />
+    <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourceRecipe" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="Recipes" />
 </asp:Content>
