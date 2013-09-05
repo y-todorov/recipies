@@ -29,11 +29,11 @@
                     <modelerrormessage text=""></modelerrormessage>
                 </columnvalidationsettings>
             </telerik:GridHTMLEditorColumn>
-            <telerik:GridBoundColumn DataField="ValuePerPortion" DataType="System.Decimal" FilterControlAltText="Filter ValuePerPortion column" HeaderText="ValuePerPortion" SortExpression="ValuePerPortion" UniqueName="ValuePerPortion">
+            <telerik:GridNumericColumn DataField="ValuePerPortion" DataType="System.Decimal" FilterControlAltText="Filter ValuePerPortion column" HeaderText="ValuePerPortion" SortExpression="ValuePerPortion" UniqueName="ValuePerPortion">
                 <columnvalidationsettings>
                     <modelerrormessage text=""></modelerrormessage>
                 </columnvalidationsettings>
-            </telerik:GridBoundColumn>
+            </telerik:GridNumericColumn>
             <telerik:GridBoundColumn DataField="ModifiedDate" DataType="System.DateTime" FilterControlAltText="Filter ModifiedDate column" HeaderText="ModifiedDate" SortExpression="ModifiedDate" UniqueName="ModifiedDate">
                 <columnvalidationsettings>
                     <modelerrormessage text=""></modelerrormessage>

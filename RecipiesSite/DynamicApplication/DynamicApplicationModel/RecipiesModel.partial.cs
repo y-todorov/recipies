@@ -43,38 +43,48 @@ namespace RecipiesModelNS
 
             SetProperShiftDates();
 
+            IEnumerable<int?> recipeIds = GetUpdatedRecipeIds();
+            
+            base.SaveChanges(failureMode);
 
-
-            //PopulateProductsQuantityFromPurchaseOrderDetails();
-
+            UpdateRecipesValuePerPortionFromIngredientsChange(recipeIds);
 
             base.SaveChanges(failureMode);
 
             PubNubMessaging.Core.Pubnub.Instance.Publish("Products", "rebind", (t) => t.ToString(), (t) => t.ToString());
         }
 
-
-
-        private void PopulateProductsQuantityFromPurchaseOrderDetails()
+        private void UpdateRecipesValuePerPortionFromIngredientsChange(IEnumerable<int?> recipeIds)
         {
-            //IList<PurchaseOrderDetail> listOfPurchaseOrderDetailsUpdates = this.GetChanges().GetUpdates<PurchaseOrderDetail>();
-            //IList<Product> listOfProductUpdates = this.GetChanges().GetUpdates<Product>();
-            //IEnumerable<Product> combinedListOfProducts = listOfProductInserts.Concat(listOfProductUpdates);
-
-            //foreach (PurchaseOrderDetail pod in listOfPurchaseOrderDetailsUpdates)
-            //{
-            //    using (RecipiesModel context = new RecipiesModel())
-            //    {
-            //        PurchaseOrderDetail podOriginal = context.PurchaseOrderDetails.FirstOrDefault(po => po.PurchaseOrderDetailId == pod.PurchaseOrderDetailId);
-            //        PurchaseOrderHeader purchaseOrderHeader = context.PurchaseOrderHeaders.FirstOrDefault(poh => poh.PurchaseOrderId == pod.PurchaseOrderId);
-
-            //        Product product = Products.FirstOrDefault(p => p.ProductId == pod.ProductId);
-            //        product.UnitsInStock += pod.ReceivedQuantity;
-            //        //pod.Product.UnitsOnOrder += pod.OrderQuantity;
-            //    }
-            //}
+            foreach (int? id in recipeIds)
+            {
+                if (id.HasValue)
+                {
+                    Recipe recipe = Recipes.FirstOrDefault(re => re.RecipeId == id);
+                    if (recipe != null)
+                    {
+                        decimal? valuePerPortion = 0;
+                        foreach (RecipeIngredient ri in recipe.RecipeIngredients)
+                        {
+                            valuePerPortion += ri.Cost;
+                        }
+                        recipe.ValuePerPortion = valuePerPortion;
+                    }
+                }
+            }
         }
 
+        private IEnumerable<int?> GetUpdatedRecipeIds()
+        {
+            IList<RecipeIngredient> listOfIngredientsInserts = this.GetChanges().GetInserts<RecipeIngredient>();
+            IList<RecipeIngredient> listOfIngredientsUpdates = this.GetChanges().GetUpdates<RecipeIngredient>();
+            IList<RecipeIngredient> listOfIngredientsDeletes = this.GetChanges().GetDeletes<RecipeIngredient>();
+
+            IEnumerable<RecipeIngredient> combinedListOfIngredients = listOfIngredientsInserts.Concat(listOfIngredientsUpdates).Concat(listOfIngredientsDeletes);
+            IEnumerable<int?> recipeIds = combinedListOfIngredients.Select(ri => ri.RecipeId);
+            return recipeIds;
+        }
+        
         // Setting the date of shifts to be in 2000 year
         private void SetProperShiftDates()
         {

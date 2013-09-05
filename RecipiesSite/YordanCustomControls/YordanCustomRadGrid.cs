@@ -112,7 +112,7 @@ namespace YordanCustomControls
             base.OnItemCreated(e);
         }
 
-        protected override void OnPreRender(EventArgs e)
+        protected override void OnLoad(EventArgs e)
         {
             GridEditableColumn modifiedDateColumn = Columns.FindByUniqueNameSafe("ModifiedDate") as GridEditableColumn;
             if (modifiedDateColumn != null)
@@ -146,7 +146,7 @@ namespace YordanCustomControls
                     {
                         if (string.IsNullOrEmpty(gridBoundColumn.DataFormatString))
                         {
-                            gridBoundColumn.DataFormatString = "{0:C}";
+                            gridBoundColumn.DataFormatString = "{0:C2}";
                         }
                     }
                 }
@@ -168,7 +168,7 @@ namespace YordanCustomControls
             }
                        
 
-            base.OnPreRender(e);
+            base.OnLoad(e);
         }
     }
 }
