@@ -131,9 +131,13 @@ namespace YordanCustomControls
                 GridBoundColumn gridBoundColumn = gridColumn as GridBoundColumn;
                 if (gridBoundColumn != null)
                 {
+                    if (gridBoundColumn.MaxLength == 0)
+                    {
+                        gridBoundColumn.MaxLength = 1000;
+                    }
                     if (gridBoundColumn.DataType == typeof(DateTime))
                     {
-                        if (string.IsNullOrEmpty(gridBoundColumn.DataFormatString))
+                        if (string.IsNullOrEmpty(gridBoundColumn.DataFormatString) && gridBoundColumn != modifiedDateColumn)
                         {
                             gridBoundColumn.DataFormatString = "{0:dd/MM/yyyy}";
                         }

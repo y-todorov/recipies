@@ -127,9 +127,7 @@
                 <telerik:RadMenuItem IsSeparator="true"></telerik:RadMenuItem>
                 <telerik:RadMenuItem OnLoad="Unnamed_Load" NavigateUrl="~/Default">
                 </telerik:RadMenuItem>
-
             </Items>
-
         </telerik:RadMenu>
         <telerik:RadAjaxPanel ID="RadAjaxPanel1" runat="server" LoadingPanelID="RadAjaxLoadingPanel1">
             <div>
