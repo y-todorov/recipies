@@ -43,7 +43,7 @@ namespace RecipiesModelNS
 
             SetProperShiftDates();
 
-            IEnumerable<int?> recipeIds = GetUpdatedRecipeIds();
+            List<int> recipeIds = GetUpdatedRecipeIds();
             
             base.SaveChanges(failureMode);
 
@@ -54,7 +54,7 @@ namespace RecipiesModelNS
             PubNubMessaging.Core.Pubnub.Instance.Publish("Products", "rebind", (t) => t.ToString(), (t) => t.ToString());
         }
 
-        private void UpdateRecipesValuePerPortionFromIngredientsChange(IEnumerable<int?> recipeIds)
+        private void UpdateRecipesValuePerPortionFromIngredientsChange(List<int> recipeIds)
         {
             foreach (int? id in recipeIds)
             {
@@ -74,15 +74,24 @@ namespace RecipiesModelNS
             }
         }
 
-        private IEnumerable<int?> GetUpdatedRecipeIds()
+        private List<int> GetUpdatedRecipeIds()
         {
             IList<RecipeIngredient> listOfIngredientsInserts = this.GetChanges().GetInserts<RecipeIngredient>();
             IList<RecipeIngredient> listOfIngredientsUpdates = this.GetChanges().GetUpdates<RecipeIngredient>();
-            IList<RecipeIngredient> listOfIngredientsDeletes = this.GetChanges().GetDeletes<RecipeIngredient>();
+            IList<RecipeIngredient> listOfIngredientsDeletes = this.GetChanges().GetDeletes<RecipeIngredient>();                      
 
-            IEnumerable<RecipeIngredient> combinedListOfIngredients = listOfIngredientsInserts.Concat(listOfIngredientsUpdates).Concat(listOfIngredientsDeletes);
-            IEnumerable<int?> recipeIds = combinedListOfIngredients.Select(ri => ri.RecipeId);
-            return recipeIds;
+            List<RecipeIngredient> combinedListOfIngredients = listOfIngredientsInserts.Concat(listOfIngredientsUpdates).Concat(listOfIngredientsDeletes).ToList();
+
+            // тук ако е променена съставка, ще ъпдехтнем всички рецепти за сега, колкото и неефективно да е това. Трябва да се измисли по натам.
+
+            if (combinedListOfIngredients.Count() != 0)
+            {
+                return Recipes.Select(ri => ri.RecipeId).ToList();
+            }
+            else
+            {
+                return new List<int>();
+            }         
         }
         
         // Setting the date of shifts to be in 2000 year
