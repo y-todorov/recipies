@@ -29,9 +29,9 @@
 <body>
     <form runat="server">
 
-        <telerik:RadScriptManager ID="RadScriptManager1" runat="server" >
+        <telerik:RadScriptManager ID="RadScriptManager1" runat="server"  >
             <Scripts>
-                <telerik:RadScriptReference Path="Scripts/pubnub.js" />
+                <telerik:RadScriptReference Path="Scripts/pubnub.min.js" />               
             </Scripts>
         </telerik:RadScriptManager>
         <telerik:RadAjaxManager ID="RadAjaxManager1" runat="server">

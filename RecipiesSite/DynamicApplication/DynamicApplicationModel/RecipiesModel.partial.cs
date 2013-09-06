@@ -82,8 +82,7 @@ namespace RecipiesModelNS
 
             List<RecipeIngredient> combinedListOfIngredients = listOfIngredientsInserts.Concat(listOfIngredientsUpdates).Concat(listOfIngredientsDeletes).ToList();
 
-            // тук ако е променена съставка, ще ъпдехтнем всички рецепти за сега, колкото и неефективно да е това. Трябва да се измисли по натам.
-
+            // тук ако е променена съставка, ще ъпдехтнем всички рецепти за сега, колкото и неефективно да е това. Трябва да се измисли по натам.       
             if (combinedListOfIngredients.Count() != 0)
             {
                 return Recipes.Select(ri => ri.RecipeId).ToList();
