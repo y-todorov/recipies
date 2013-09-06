@@ -28,7 +28,7 @@
                     var grid = window.$find("<%= ((RadGrid)rgProducts).ClientID %>");
 
                     if (grid != null) {
-                        debugger;
+                        //debugger;
                         var masterTable = grid.get_masterTableView();
                         var editedItemsArray = masterTable.get_editItems();
                         var isItemInserted  = masterTable.get_isItemInserted()

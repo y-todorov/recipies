@@ -151,7 +151,7 @@ namespace YordanCustomControls
                     }
 
                     // validation
-                    gridBoundColumn.ColumnValidationSettings.EnableRequiredFieldValidation = true;
+                    //gridBoundColumn.ColumnValidationSettings.EnableRequiredFieldValidation = true;
                        
                     //gridBoundColumn.ColumnValidationSettings.RequiredFieldValidator = new RequiredFieldValidator() { ErrorMessage = "This field is required!" };
                 }

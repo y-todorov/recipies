@@ -8,38 +8,22 @@
     <meta charset="utf-8" />
     <title>Inventory management</title>
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-
-    <style type="text/css">
-        * {
-            margin: 0;
-            padding: 0;
-            border: 0;
-        }
-    </style>
-    <script type="text/javascript">
-        // this is for the rad menu so root item cannot be clicked.
-        function OnClientItemClicking(sender, args) {
-            if (args.get_item().get_items().get_count() != 0 && args.get_item().get_level() == 0) {
-                args.set_cancel(true); // Cancel the event 
-            }
-        }
-    </script>
-
 </head>
 <body>
     <form runat="server">
-
-        <telerik:RadScriptManager ID="RadScriptManager1" runat="server"  >
+        <telerik:RadScriptManager ID="RadScriptManager1" runat="server">
             <Scripts>
-                <telerik:RadScriptReference Path="Scripts/pubnub.min.js" />               
+                <telerik:RadScriptReference Path="Scripts/pubnub.min.js" />
+                <telerik:RadScriptReference Path="Scripts/MyJavaScript.js" />
             </Scripts>
         </telerik:RadScriptManager>
-        <telerik:RadAjaxManager ID="RadAjaxManager1" runat="server">
-        </telerik:RadAjaxManager>
         <telerik:RadStyleSheetManager runat="server" ID="RadStyleSheetManager1">
             <StyleSheets>
+                <telerik:StyleSheetReference Path="~/Styles/MyStyleSheet.css" />
             </StyleSheets>
         </telerik:RadStyleSheetManager>
+        <telerik:RadAjaxManager ID="RadAjaxManager1" runat="server">
+        </telerik:RadAjaxManager>
         <telerik:RadFormDecorator ID="RadFormDecorator1" runat="server" Skin="Silk" DecoratedControls="All" />
         <telerik:RadSkinManager ID="RadSkinManager1" runat="server" Skin="Silk">
         </telerik:RadSkinManager>
@@ -63,7 +47,7 @@
                         </telerik:RadMenuItem>
                         <telerik:RadMenuItem Text="Stores" NavigateUrl="~/Production/Stores"></telerik:RadMenuItem>
                         <telerik:RadMenuItem Text="Recipes" NavigateUrl="Production/Recipes.aspx"></telerik:RadMenuItem>
-                          <telerik:RadMenuItem Text="Recipe ingredients" NavigateUrl="Production/RecipeIngredients.aspx"></telerik:RadMenuItem>
+                        <telerik:RadMenuItem Text="Recipe ingredients" NavigateUrl="Production/RecipeIngredients.aspx"></telerik:RadMenuItem>
                     </Items>
                 </telerik:RadMenuItem>
                 <telerik:RadMenuItem IsSeparator="true"></telerik:RadMenuItem>

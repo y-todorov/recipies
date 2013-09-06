@@ -22,15 +22,6 @@ namespace RecipiesWebFormApp {
         protected global::Telerik.Web.UI.RadScriptManager RadScriptManager1;
         
         /// <summary>
-        /// RadAjaxManager1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Telerik.Web.UI.RadAjaxManager RadAjaxManager1;
-        
-        /// <summary>
         /// RadStyleSheetManager1 control.
         /// </summary>
         /// <remarks>
@@ -38,6 +29,15 @@ namespace RecipiesWebFormApp {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadStyleSheetManager RadStyleSheetManager1;
+        
+        /// <summary>
+        /// RadAjaxManager1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadAjaxManager RadAjaxManager1;
         
         /// <summary>
         /// RadFormDecorator1 control.
