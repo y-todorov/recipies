@@ -158,6 +158,11 @@ namespace RecipiesWebFormApp.Purchasing
             }
             if (e.CommandName == RadGrid.DeleteCommandName)
             {
+                // TESTSSSSSSSSSSSSSSSSS
+                (Master as SiteMaster).MasterRadNotification.Show("hello from rad notification");
+
+
+
                  //this works fine
                 PurchaseOrderHeader purchaseOrder = ContextFactory.GetContextPerRequest().PurchaseOrderHeaders.FirstOrDefault(p => p.PurchaseOrderId == PurchaseOrderId);
                 if (purchaseOrder != null && purchaseOrder.StatusId == (int)PurchaseOrderStatusEnum.Completed)

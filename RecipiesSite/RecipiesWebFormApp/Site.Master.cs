@@ -23,6 +23,14 @@ namespace RecipiesWebFormApp
             }
         }
 
+        public RadNotification MasterRadNotification
+        {
+            get
+            {
+                return RadNotification1;
+            }
+        }
+
         protected void Page_Init(object sender, EventArgs e)
         {
             // This prevents back button after log out 
@@ -103,6 +111,11 @@ namespace RecipiesWebFormApp
             //    FormsAuthentication.SignOut();
             //    FormsAuthentication.RedirectToLoginPage();
             //}            
+        }
+
+        protected void RadScriptManager1_AsyncPostBackError(object sender, AsyncPostBackErrorEventArgs e)
+        {
+            
         }
     }
 }

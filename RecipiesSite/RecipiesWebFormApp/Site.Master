@@ -11,7 +11,7 @@
 </head>
 <body>
     <form runat="server">
-        <telerik:RadScriptManager ID="RadScriptManager1" runat="server">
+        <telerik:RadScriptManager ID="RadScriptManager1" runat="server" AsyncPostBackErrorMessage="An error has occured on the server!" OnAsyncPostBackError="RadScriptManager1_AsyncPostBackError">
             <Scripts>
                 <telerik:RadScriptReference Path="Scripts/pubnub.min.js" />
                 <telerik:RadScriptReference Path="Scripts/MyJavaScript.js" />
@@ -30,6 +30,10 @@
         <telerik:RadAjaxLoadingPanel ID="RadAjaxLoadingPanel1" runat="server" BackgroundTransparency="50" EnableSkinTransparency="true" EnableAjaxSkinRendering="true" Enabled="false">
             <telerik:RadWindowManager ID="RadWindowManager1" runat="server">
             </telerik:RadWindowManager>
+           
+            <telerik:RadNotification ID="RadNotification1" runat="server" Title="Notification" AutoCloseDelay="5000" Animation="Fade" AnimationDuration="2000" RegisterWithScriptManager="true">
+            </telerik:RadNotification>
+           
         </telerik:RadAjaxLoadingPanel>
 
         <telerik:RadMenu runat="server" Width="100%" OnItemClick="Unnamed_ItemClick" OnClientItemClicking="OnClientItemClicking">
