@@ -149,6 +149,11 @@ namespace YordanCustomControls
                             gridBoundColumn.DataFormatString = "{0:C2}";
                         }
                     }
+
+                    // validation
+                    gridBoundColumn.ColumnValidationSettings.EnableRequiredFieldValidation = true;
+                       
+                    //gridBoundColumn.ColumnValidationSettings.RequiredFieldValidator = new RequiredFieldValidator() { ErrorMessage = "This field is required!" };
                 }
                 GridDropDownColumn gridDropDownColumn = gridColumn as GridDropDownColumn;
                 if (gridDropDownColumn != null)

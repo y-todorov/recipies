@@ -69,5 +69,25 @@ namespace RecipiesWebFormApp.Production
                 e.WhereParameters["RecipeId"] = RecipeId;
             }
         }
+
+        protected void lblProductIngredients_PreRender(object sender, EventArgs e)
+        {
+            if (RecipeId > 0)
+            {
+                Label lblRecipeIngredients = (Label)sender;
+                lblRecipeIngredients.Visible = false;
+            }
+        }
+
+        protected void rgRecipeIngredients_PreRender(object sender, EventArgs e)
+        {
+            if (RecipeId <= 0)
+            {
+                RadGrid rgRecipeIngredients = (RadGrid)sender;
+                rgRecipeIngredients.Visible = false;
+            }
+        }
+
+      
     }
 }
