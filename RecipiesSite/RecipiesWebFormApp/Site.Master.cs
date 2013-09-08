@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Security;
@@ -115,7 +116,7 @@ namespace RecipiesWebFormApp
 
         protected void RadScriptManager1_AsyncPostBackError(object sender, AsyncPostBackErrorEventArgs e)
         {
-            RadScriptManager1.AsyncPostBackErrorMessage = e.Exception.Message;           
+            Debugger.Break();
         }
     }
 }
