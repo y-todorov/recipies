@@ -171,14 +171,8 @@ namespace YordanCustomControls
                     gridDropDownColumn.DropDownControlType = GridDropDownColumnControlType.RadComboBox;
                 }
             }
-                       
 
             base.OnLoad(e);
-        }
-
-        protected override void OnPreRender(EventArgs e)
-        {          
-            base.OnPreRender(e);
         }
 
         protected override void OnColumnCreated(GridColumnCreatedEventArgs e)

@@ -22,18 +22,17 @@ namespace RecipiesModelNS
     }
 
     public partial class RecipiesModel
-    {
+    {      
+
         protected override void Init(string connectionString, Telerik.OpenAccess.BackendConfiguration backendConfiguration, Telerik.OpenAccess.Metadata.MetadataContainer metadataContainer)
-        {
-            base.Init(connectionString, backendConfiguration, metadataContainer);
-        }
+        {           
+            base.Init(connectionString, backendConfiguration, metadataContainer);           
+        }       
 
         protected override void Init(string connectionString, Telerik.OpenAccess.BackendConfiguration backendConfiguration, Telerik.OpenAccess.Metadata.MetadataContainer metadataContainer, System.Reflection.Assembly callingAssembly)
         {
             base.Init(connectionString, backendConfiguration, metadataContainer, callingAssembly);
-        }
-
-        
+        }        
 
         public override void SaveChanges(ConcurrencyConflictsProcessingMode failureMode)
         {
