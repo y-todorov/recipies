@@ -115,7 +115,7 @@ namespace RecipiesWebFormApp
 
         protected void RadScriptManager1_AsyncPostBackError(object sender, AsyncPostBackErrorEventArgs e)
         {
-            
+            RadScriptManager1.AsyncPostBackErrorMessage = e.Exception.Message;           
         }
     }
 }

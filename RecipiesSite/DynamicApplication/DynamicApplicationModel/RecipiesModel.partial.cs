@@ -22,17 +22,17 @@ namespace RecipiesModelNS
     }
 
     public partial class RecipiesModel
-    {      
+    {
 
         protected override void Init(string connectionString, Telerik.OpenAccess.BackendConfiguration backendConfiguration, Telerik.OpenAccess.Metadata.MetadataContainer metadataContainer)
-        {           
-            base.Init(connectionString, backendConfiguration, metadataContainer);           
-        }       
+        {
+            base.Init(connectionString, backendConfiguration, metadataContainer);
+        }
 
         protected override void Init(string connectionString, Telerik.OpenAccess.BackendConfiguration backendConfiguration, Telerik.OpenAccess.Metadata.MetadataContainer metadataContainer, System.Reflection.Assembly callingAssembly)
         {
             base.Init(connectionString, backendConfiguration, metadataContainer, callingAssembly);
-        }        
+        }
 
         public override void SaveChanges(ConcurrencyConflictsProcessingMode failureMode)
         {
@@ -43,7 +43,7 @@ namespace RecipiesModelNS
             SetProperShiftDates();
 
             List<int> recipeIds = GetUpdatedRecipeIds();
-            
+
             base.SaveChanges(failureMode);
 
             UpdateRecipesValuePerPortionFromIngredientsChange(recipeIds);
@@ -77,7 +77,7 @@ namespace RecipiesModelNS
         {
             IList<RecipeIngredient> listOfIngredientsInserts = this.GetChanges().GetInserts<RecipeIngredient>();
             IList<RecipeIngredient> listOfIngredientsUpdates = this.GetChanges().GetUpdates<RecipeIngredient>();
-            IList<RecipeIngredient> listOfIngredientsDeletes = this.GetChanges().GetDeletes<RecipeIngredient>();                      
+            IList<RecipeIngredient> listOfIngredientsDeletes = this.GetChanges().GetDeletes<RecipeIngredient>();
 
             List<RecipeIngredient> combinedListOfIngredients = listOfIngredientsInserts.Concat(listOfIngredientsUpdates).Concat(listOfIngredientsDeletes).ToList();
 
@@ -89,9 +89,9 @@ namespace RecipiesModelNS
             else
             {
                 return new List<int>();
-            }         
+            }
         }
-        
+
         // Setting the date of shifts to be in 2000 year
         private void SetProperShiftDates()
         {
@@ -152,21 +152,42 @@ namespace RecipiesModelNS
             }
             foreach (Product product in combinedListOfProducts)
             {
-                Type productType = product.GetType();
-                var productProperties = productType.GetProperties();
+                var productFields = product.GetType().GetFields(BindingFlags.Instance |
+                       BindingFlags.Static |
+                       BindingFlags.NonPublic |
+                       BindingFlags.Public);
+                var productProperties = product.GetType().GetProperties();
 
                 ProductHistory productHistory = new ProductHistory();
+                var productHistoryFields = productHistory.GetType().GetFields(BindingFlags.Instance |
+                       BindingFlags.Static |
+                       BindingFlags.NonPublic |
+                       BindingFlags.Public);
                 var productHistoryProperties = productHistory.GetType().GetProperties();
 
                 this.Add(productHistory);
 
-                foreach (PropertyInfo prop in productProperties)
+                foreach (FieldInfo field in productFields)
                 {
-                    if (productHistoryProperties.Any(p => p.Name.Equals(prop.Name)))
+                    // Check if this is actual property
+                    if (productProperties.Any(p => ("_" + p.Name).Equals(field.Name, StringComparison.InvariantCultureIgnoreCase)))
                     {
-                        object theValue = prop.GetValue(product);
-                        productHistory.SetFieldValue(prop.Name, theValue);
+                        //object theValue = prop.GetValue(product); This is property and we get exception when deleting products
+                        var field2 = productHistoryFields.FirstOrDefault(f => f.Name.Equals(field.Name));
+                        if (field2 != null)
+                        {
+                            try
+                            {
+                                object theValue = field.GetValue(product);
+                                productHistory.SetFieldValue(field.Name, theValue);
+                            }
+                            catch (Exception ex)
+                            {
+
+                            }
+                        }
                     }
+
                 }
             }
         }
