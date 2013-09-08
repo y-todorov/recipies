@@ -51,14 +51,14 @@
                         </telerik:RadMenuItem>
                         <telerik:RadMenuItem Text="Stores" NavigateUrl="~/Production/Stores"></telerik:RadMenuItem>
                         <telerik:RadMenuItem Text="Recipes" NavigateUrl="Production/Recipes.aspx"></telerik:RadMenuItem>
-                        <telerik:RadMenuItem Text="Recipe ingredients" NavigateUrl="Production/RecipeIngredients.aspx"></telerik:RadMenuItem>
+                        <telerik:RadMenuItem Text="Recipe ingredients" Visible="false" NavigateUrl="Production/RecipeIngredients.aspx"></telerik:RadMenuItem>
                     </Items>
                 </telerik:RadMenuItem>
                 <telerik:RadMenuItem IsSeparator="true"></telerik:RadMenuItem>
                 <telerik:RadMenuItem runat="server" Text="Sales">
                     <Items>
                         <telerik:RadMenuItem Text="Sales orders" NavigateUrl="~/Sales/Orders"></telerik:RadMenuItem>
-                        <telerik:RadMenuItem Text="Sales order details" NavigateUrl="~/Sales/OrderDetails"></telerik:RadMenuItem>
+                        <telerik:RadMenuItem Text="Sales order details" Visible="false" NavigateUrl="~/Sales/OrderDetails"></telerik:RadMenuItem>
                         <telerik:RadMenuItem Text="Customers" NavigateUrl="~/Sales/Customers"></telerik:RadMenuItem>
                     </Items>
                 </telerik:RadMenuItem>

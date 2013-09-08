@@ -56,5 +56,32 @@ namespace RecipiesWebFormApp.Sales {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.OpenAccess.Web.OpenAccessLinqDataSource OpenAccessLinqDataSourceStatus;
+        
+        /// <summary>
+        /// OpenAccessLinqDataSourceOrderDetail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.OpenAccess.Web.OpenAccessLinqDataSource OpenAccessLinqDataSourceOrderDetail;
+        
+        /// <summary>
+        /// OpenAccessLinqDataSourceSalesOrderHeader control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.OpenAccess.Web.OpenAccessLinqDataSource OpenAccessLinqDataSourceSalesOrderHeader;
+        
+        /// <summary>
+        /// OpenAccessLinqDataSourceRecipe control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.OpenAccess.Web.OpenAccessLinqDataSource OpenAccessLinqDataSourceRecipe;
     }
 }
