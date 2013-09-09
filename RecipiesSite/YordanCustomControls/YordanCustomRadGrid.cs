@@ -213,7 +213,7 @@ namespace YordanCustomControls
                     {
                         gridDropDownColumn.EmptyListItemValue = null;
                     }
-                    gridDropDownColumn.EnableEmptyListItem = true;
+                    gridDropDownColumn.EnableEmptyListItem = false;
                     gridDropDownColumn.ConvertEmptyStringToNull = true;
                     gridDropDownColumn.DropDownControlType = GridDropDownColumnControlType.RadComboBox;
                 }
