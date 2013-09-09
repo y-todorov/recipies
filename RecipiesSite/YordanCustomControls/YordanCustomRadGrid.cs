@@ -9,61 +9,62 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Telerik.Web.UI;
+using Helpers.Extensions;
 
 namespace YordanCustomControls
 {
     public class YordanCustomRadGrid : RadGrid
     {
 
-//        protected override void OnLoad(EventArgs e)
-//        { // Define the name and type of the client scripts on the page.
-//            String csname1 = "PopupScript";
-//            Type cstype = this.GetType();
+        //        protected override void OnLoad(EventArgs e)
+        //        { // Define the name and type of the client scripts on the page.
+        //            String csname1 = "PopupScript";
+        //            Type cstype = this.GetType();
 
-//            // Get a ClientScriptManager reference from the Page class.
-//            ClientScriptManager cs = Page.ClientScript;
+        //            // Get a ClientScriptManager reference from the Page class.
+        //            ClientScriptManager cs = Page.ClientScript;
 
-//            // Check to see if the startup script is already registered.
-//            if (!cs.IsStartupScriptRegistered(cstype, csname1))
-//            {
-//                String cstext1 = @"(function () {
-//                    // Init
-//                var pubnub = PUBNUB.init({
-//                    publish_key: 'pub-c-cc6cdb68-ab44-4f1a-8553-ccc30d96f87a',
-//                    subscribe_key: 'sub-c-bde0a3b8-1538-11e3-bc51-02ee2ddab7fe'
-//                })
-//
-//                pubnub.ready();
-//
-//                pubnub.subscribe({
-//                    channel: 'Products',
-//                    callback: function (message) { rebindGrid(message) }
-//                });
-//
-//                function rebindGrid(message) {
-//                   
-//                    var grid = window.$find(""<%= ((RadGrid)rgProducts).ClientID %>"");
-//
-//                    if (grid != null) {
-//                        debugger;
-//                        var masterTable = grid.get_masterTableView();
-//                        var editedItemsArray = masterTable.get_editItems();
-//                        var isItemInserted  = masterTable.get_isItemInserted()
-//                        if (editedItemsArray.length == 0 && !isItemInserted) {
-//                            masterTable.rebind();
-//                        }
-//                    }
-//                }
-//})();";
+        //            // Check to see if the startup script is already registered.
+        //            if (!cs.IsStartupScriptRegistered(cstype, csname1))
+        //            {
+        //                String cstext1 = @"(function () {
+        //                    // Init
+        //                var pubnub = PUBNUB.init({
+        //                    publish_key: 'pub-c-cc6cdb68-ab44-4f1a-8553-ccc30d96f87a',
+        //                    subscribe_key: 'sub-c-bde0a3b8-1538-11e3-bc51-02ee2ddab7fe'
+        //                })
+        //
+        //                pubnub.ready();
+        //
+        //                pubnub.subscribe({
+        //                    channel: 'Products',
+        //                    callback: function (message) { rebindGrid(message) }
+        //                });
+        //
+        //                function rebindGrid(message) {
+        //                   
+        //                    var grid = window.$find(""<%= ((RadGrid)rgProducts).ClientID %>"");
+        //
+        //                    if (grid != null) {
+        //                        debugger;
+        //                        var masterTable = grid.get_masterTableView();
+        //                        var editedItemsArray = masterTable.get_editItems();
+        //                        var isItemInserted  = masterTable.get_isItemInserted()
+        //                        if (editedItemsArray.length == 0 && !isItemInserted) {
+        //                            masterTable.rebind();
+        //                        }
+        //                    }
+        //                }
+        //})();";
 
 
 
-//                cs.RegisterStartupScript(cstype, csname1, cstext1, true);
-                              
-//            }
-//            base.OnLoad(e);
-//        }
-               
+        //                cs.RegisterStartupScript(cstype, csname1, cstext1, true);
+
+        //            }
+        //            base.OnLoad(e);
+        //        }
+
         protected override void OnItemCreated(GridItemEventArgs e)
         {
             if (e.Item is GridCommandItem)
@@ -80,21 +81,21 @@ namespace YordanCustomControls
                     Button exportToPdfButton = (e.Item as GridCommandItem).FindControl("ExportToPdfButton") as Button;
                     if (exportToPdfButton != null)
                     {
-                        exportToPdfButton.Click += exportButton_Click; 
+                        exportToPdfButton.Click += exportButton_Click;
                         ScriptManager.GetCurrent(this.Page).RegisterPostBackControl(exportToPdfButton);
                     }
 
                     Button exportToCsvButton = (e.Item as GridCommandItem).FindControl("ExportToCsvButton") as Button;
                     if (exportToCsvButton != null)
                     {
-                        exportToCsvButton.Click += exportButton_Click; 
+                        exportToCsvButton.Click += exportButton_Click;
                         ScriptManager.GetCurrent(this.Page).RegisterPostBackControl(exportToCsvButton);
                     }
 
                     Button exportToWordButton = (e.Item as GridCommandItem).FindControl("ExportToWordButton") as Button;
                     if (exportToWordButton != null)
                     {
-                        exportToWordButton.Click += exportButton_Click; 
+                        exportToWordButton.Click += exportButton_Click;
                         ScriptManager.GetCurrent(this.Page).RegisterPostBackControl(exportToWordButton);
                     }
                 }
@@ -131,20 +132,28 @@ namespace YordanCustomControls
             if (gdi != null)
             {
                 foreach (GridColumn gc in Columns)
-                {                   
+                {
                     // for now every column will be trimmed and shown with tooltips
-                    //if (!(gc is GridButtonColumn))
+                    if (!(gc is GridButtonColumn || gc is GridEditCommandColumn))
                     {
                         gdi[gc].ToolTip = HtmlToText.ConvertHtml(gdi[gc].Text);
-                        int yordanRadGridColumnMaxVisualLength = int.Parse(ConfigurationManager.AppSettings["YordanRadGridColumnMaxVisualLength"]);
-                        if (gdi[gc].Text.Length >= yordanRadGridColumnMaxVisualLength)
+
+                        if (ViewState["isExporting"] == null)
                         {
-                            if (ViewState["isExporting"] == null)
-                            {
-                                gdi[gc].Text = gdi[gc].Text.Substring(0, yordanRadGridColumnMaxVisualLength - 3) + "...";
-                            }
+                            gdi[gc].Text = gdi[gc].Text.TrimToLength(); // = gdi[gc].Text.Substring(0, yordanRadGridColumnMaxVisualLength - 3) + "...";
+
                         }
                     }
+                }
+            }
+            GridGroupHeaderItem gghi = e.Item as GridGroupHeaderItem;
+            if (gghi != null)
+            {
+                gghi.DataCell.ToolTip = HtmlToText.ConvertHtml(gghi.DataCell.Text);
+
+                if (ViewState["isExporting"] == null)
+                {
+                    gghi.DataCell.Text = gghi.DataCell.Text.TrimToLength();
                 }
             }
             base.OnItemDataBound(e);
@@ -162,7 +171,7 @@ namespace YordanCustomControls
             {
                 modifiedByUserColumn.ReadOnly = true;
             }
-            
+
             // setting default columns properties that cannot be set through skin file
             foreach (GridColumn gridColumn in Columns)
             {
@@ -190,7 +199,7 @@ namespace YordanCustomControls
 
                     // validation
                     //gridBoundColumn.ColumnValidationSettings.EnableRequiredFieldValidation = true;
-                       
+
                     //gridBoundColumn.ColumnValidationSettings.RequiredFieldValidator = new RequiredFieldValidator() { ErrorMessage = "This field is required!" };
                 }
                 GridDropDownColumn gridDropDownColumn = gridColumn as GridDropDownColumn;
@@ -219,7 +228,7 @@ namespace YordanCustomControls
             {
                 GridButtonColumn autoGeneratedDeleteColumn = e.Column as GridButtonColumn;
                 autoGeneratedDeleteColumn.ConfirmText = "Delete this record?";
-                autoGeneratedDeleteColumn.ConfirmDialogType = GridConfirmDialogType.Classic;
+                autoGeneratedDeleteColumn.ConfirmDialogType = GridConfirmDialogType.RadWindow;
                 autoGeneratedDeleteColumn.ConfirmTitle = "Delete";
             }
             base.OnColumnCreated(e);
@@ -230,6 +239,6 @@ namespace YordanCustomControls
             ViewState.Remove("isExporting");
             base.OnPreRender(e);
         }
-       
+
     }
 }
