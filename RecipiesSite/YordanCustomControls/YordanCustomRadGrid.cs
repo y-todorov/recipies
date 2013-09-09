@@ -68,27 +68,31 @@ namespace YordanCustomControls
             {
                 if (ScriptManager.GetCurrent(this.Page) != null)
                 {
-                    Control exportToExcelButton = (e.Item as GridCommandItem).FindControl("ExportToExcelButton") as Control;
+                    Button exportToExcelButton = (e.Item as GridCommandItem).FindControl("ExportToExcelButton") as Button;
                     if (exportToExcelButton != null)
                     {
+                        exportToExcelButton.Click += exportButton_Click;
                         ScriptManager.GetCurrent(this.Page).RegisterPostBackControl(exportToExcelButton);
                     }
 
-                    Control exportToPdfButton = (e.Item as GridCommandItem).FindControl("ExportToPdfButton") as Control;
+                    Button exportToPdfButton = (e.Item as GridCommandItem).FindControl("ExportToPdfButton") as Button;
                     if (exportToPdfButton != null)
                     {
+                        exportToPdfButton.Click += exportButton_Click; 
                         ScriptManager.GetCurrent(this.Page).RegisterPostBackControl(exportToPdfButton);
                     }
 
-                    Control exportToCsvButton = (e.Item as GridCommandItem).FindControl("ExportToCsvButton") as Control;
+                    Button exportToCsvButton = (e.Item as GridCommandItem).FindControl("ExportToCsvButton") as Button;
                     if (exportToCsvButton != null)
                     {
+                        exportToCsvButton.Click += exportButton_Click; 
                         ScriptManager.GetCurrent(this.Page).RegisterPostBackControl(exportToCsvButton);
                     }
 
-                    Control exportToWordButton = (e.Item as GridCommandItem).FindControl("ExportToWordButton") as Control;
+                    Button exportToWordButton = (e.Item as GridCommandItem).FindControl("ExportToWordButton") as Button;
                     if (exportToWordButton != null)
                     {
+                        exportToWordButton.Click += exportButton_Click; 
                         ScriptManager.GetCurrent(this.Page).RegisterPostBackControl(exportToWordButton);
                     }
                 }
@@ -113,19 +117,30 @@ namespace YordanCustomControls
             base.OnItemCreated(e);
         }
 
+        void exportButton_Click(object sender, EventArgs e)
+        {
+            // This is important so we do not cut text when exporting info from the grid.
+            ViewState.Add("isExporting", true);
+        }
+
         protected override void OnItemDataBound(GridItemEventArgs e)
         {
             GridDataItem gdi = e.Item as GridDataItem;
             if (gdi != null)
             {
                 foreach (GridColumn gc in Columns)
-                {
-                    // TEST
-                    gdi[gc].ToolTip = gdi[gc].Text;
-                    int yordanRadGridColumnMaxVisualLength = int.Parse(ConfigurationManager.AppSettings["YordanRadGridColumnMaxVisualLength"]);
-                    if (gdi[gc].Text.Length >= yordanRadGridColumnMaxVisualLength)
+                {                   
+                    if (gc is GridBoundColumn)
                     {
-                        gdi[gc].Text = gdi[gc].Text.Substring(0, yordanRadGridColumnMaxVisualLength - 3) + "...";
+                        gdi[gc].ToolTip = gdi[gc].Text;
+                        int yordanRadGridColumnMaxVisualLength = int.Parse(ConfigurationManager.AppSettings["YordanRadGridColumnMaxVisualLength"]);
+                        if (gdi[gc].Text.Length >= yordanRadGridColumnMaxVisualLength)
+                        {
+                            if (ViewState["isExporting"] == null)
+                            {
+                                gdi[gc].Text = gdi[gc].Text.Substring(0, yordanRadGridColumnMaxVisualLength - 3) + "...";
+                            }
+                        }
                     }
                 }
             }
@@ -206,5 +221,12 @@ namespace YordanCustomControls
             }
             base.OnColumnCreated(e);
         }
+
+        protected override void OnPreRender(EventArgs e)
+        {
+            ViewState.Remove("isExporting");
+            base.OnPreRender(e);
+        }
+       
     }
 }

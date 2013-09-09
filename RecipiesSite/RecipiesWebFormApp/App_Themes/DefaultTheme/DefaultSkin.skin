@@ -20,8 +20,9 @@ Default skin template. The following skins are provided as examples only.
         <GroupingSettings CaseSensitive="False" RetainGroupFootersVisibility="True" ShowUnGroupButton="True" />
         <ExportSettings ExportOnlyData="True" FileName="Export" HideStructureColumns="True" IgnorePaging="True" OpenInNewWindow="True">
         </ExportSettings>
+<%-- AllowRowResize="False" иначе се чупи тултипа на гридовете --%>
         <ClientSettings AllowColumnsReorder="True" AllowDragToGroup="True" ReorderColumnsOnClient="True">
-            <Resizing AllowColumnResize="True" AllowResizeToFit="True" AllowRowResize="True" EnableRealTimeResize="True" ResizeGridOnColumnResize="True" />
+            <Resizing AllowColumnResize="True" AllowResizeToFit="True" AllowRowResize="False" EnableRealTimeResize="True" ResizeGridOnColumnResize="True" />
             <Animation AllowColumnReorderAnimation="True" AllowColumnRevertAnimation="True" />
         </ClientSettings>
         <MasterTableView  AutoGenerateColumns="False" AllowMultiColumnSorting="True" EnableHeaderContextAggregatesMenu="True" EnableHeaderContextFilterMenu="True" EnableHeaderContextMenu="True" ShowFooter="True" CommandItemDisplay="TopAndBottom">
@@ -47,8 +48,9 @@ Default skin template. The following skins are provided as examples only.
         <GroupingSettings CaseSensitive="False" RetainGroupFootersVisibility="True" ShowUnGroupButton="True" />
         <ExportSettings ExportOnlyData="True" FileName="Export" HideStructureColumns="True" IgnorePaging="True" OpenInNewWindow="True">
         </ExportSettings>
+<%-- AllowRowResize="False" иначе се чупи тултипа на гридовете --%>
         <ClientSettings AllowColumnsReorder="True" AllowDragToGroup="True" ReorderColumnsOnClient="True">
-            <Resizing AllowColumnResize="True" AllowResizeToFit="True" AllowRowResize="True" EnableRealTimeResize="True" ResizeGridOnColumnResize="True" />
+            <Resizing AllowColumnResize="True" AllowResizeToFit="True" AllowRowResize="False" EnableRealTimeResize="True" ResizeGridOnColumnResize="True" />
             <Animation AllowColumnReorderAnimation="True" AllowColumnRevertAnimation="True" />
         </ClientSettings>
         <MasterTableView AutoGenerateColumns="False" AllowMultiColumnSorting="True" EnableHeaderContextAggregatesMenu="True" EnableHeaderContextFilterMenu="True" EnableHeaderContextMenu="True" ShowFooter="True" CommandItemDisplay="TopAndBottom">
