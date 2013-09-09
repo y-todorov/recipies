@@ -1,9 +1,11 @@
-﻿using System;
+﻿using HtmlAgilityPack;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Telerik.Web.UI;
@@ -130,9 +132,10 @@ namespace YordanCustomControls
             {
                 foreach (GridColumn gc in Columns)
                 {                   
-                    if (gc is GridBoundColumn)
+                    // for now every column will be trimmed and shown with tooltips
+                    //if (!(gc is GridButtonColumn))
                     {
-                        gdi[gc].ToolTip = gdi[gc].Text;
+                        gdi[gc].ToolTip = HtmlToText.ConvertHtml(gdi[gc].Text);
                         int yordanRadGridColumnMaxVisualLength = int.Parse(ConfigurationManager.AppSettings["YordanRadGridColumnMaxVisualLength"]);
                         if (gdi[gc].Text.Length >= yordanRadGridColumnMaxVisualLength)
                         {
