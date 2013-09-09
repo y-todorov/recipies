@@ -693,6 +693,9 @@
         <orm:field name="_modifiedByUser" property="ModifiedByUser" behavior="readwrite" uniqueId="af4ad6bf-84c0-4239-925d-1f6240328dd9" type="System.String">
           <orm:column name="ModifiedByUser" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
         </orm:field>
+        <orm:field name="_isVisible" property="IsVisible" behavior="readwrite" uniqueId="5f93f39b-ca19-4ff8-a7db-83876d83415b" type="System.Nullable`1[[System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column nullable="true" length="0" name="IsVisible" scale="0" sql-type="bit" ado-type="Bit" />
+        </orm:field>
         <orm:field name="_purchaseOrderHeaders" property="PurchaseOrderHeaders" behavior="readwrite" uniqueId="8f2dc563-13ba-4f40-8942-cb0de539236a" type="RecipiesModelNS.PurchaseOrderHeader">
           <orm:collection element-class="RecipiesModelNS.PurchaseOrderHeader" inverse-field="_purchaseOrderStatus" order-by="" uniqueId="ef20567a-b187-4a17-a750-1adfd2d06ea3" />
         </orm:field>
@@ -818,6 +821,9 @@
         <orm:field name="_modifiedByUser" property="ModifiedByUser" behavior="readwrite" uniqueId="2ba42496-6bb6-403f-a25b-4775db52e48e" type="System.String">
           <orm:column name="ModifiedByUser" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
         </orm:field>
+        <orm:field name="_isVisible" property="IsVisible" behavior="readwrite" uniqueId="fd8b2eba-6ef4-4cb4-9348-9b391fc383ce" type="System.Nullable`1[[System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="IsVisible" sql-type="bit" nullable="true" length="0" scale="0" ado-type="Bit" />
+        </orm:field>
         <orm:field name="_salesOrderHeaders" property="SalesOrderHeaders" behavior="readwrite" uniqueId="20ca36c5-eb30-47a6-9e5a-06205e266455" type="RecipiesModelNS.SalesOrderHeader">
           <orm:collection element-class="RecipiesModelNS.SalesOrderHeader" inverse-field="_salesOrderStatus" order-by="" uniqueId="bcd87049-2d51-466b-9c7b-204a820068d4" />
         </orm:field>
@@ -910,7 +916,7 @@
           <orm:column name="UnitPrice" sql-type="money" nullable="true" length="0" scale="0" ado-type="Currency" />
         </orm:field>
         <orm:field name="_unitPriceDiscount" property="UnitPriceDiscount" behavior="readwrite" uniqueId="5edeb300-1aa6-4ea9-bcf8-6636c5967872" type="System.Nullable`1[[System.Double, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
-          <orm:column name="UnitPriceDiscount" sql-type="float" nullable="true" length="0" scale="0" ado-type="Double" />
+          <orm:column name="UnitPriceDiscount" sql-type="float" nullable="true" length="0" scale="0" has-default-value="true" ado-type="Double" />
         </orm:field>
         <orm:field name="_lineTotal" property="LineTotal" behavior="readonly" uniqueId="c6314e01-23cb-4103-a01f-ac4da2e6e1c3" type="System.Double">
           <orm:column name="LineTotal" sql-type="float" nullable="false" length="0" scale="0" ado-type="Double" />
@@ -1032,6 +1038,7 @@
         <orm:column name="Name" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
         <orm:column name="ModifiedDate" sql-type="datetime" nullable="true" length="0" scale="0" has-default-value="true" ado-type="DateTime" />
         <orm:column name="ModifiedByUser" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
+        <orm:column nullable="true" length="0" name="IsVisible" scale="0" sql-type="bit" ado-type="Bit" />
       </orm:table>
     </orm:schema>
     <orm:schema schema="Production">
@@ -1171,6 +1178,7 @@
         <orm:column name="Name" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
         <orm:column name="ModifiedDate" sql-type="datetime" nullable="true" length="0" scale="0" has-default-value="true" ado-type="DateTime" />
         <orm:column name="ModifiedByUser" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
+        <orm:column name="IsVisible" sql-type="bit" nullable="true" length="0" scale="0" ado-type="Bit" />
       </orm:table>
       <orm:table name="SalesOrderHeader" schema="Sales">
         <orm:column name="OrderID" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
@@ -1201,7 +1209,7 @@
         <orm:column name="RecipeId" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
         <orm:column name="OrderQuantity" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
         <orm:column name="UnitPrice" sql-type="money" nullable="true" length="0" scale="0" ado-type="Currency" />
-        <orm:column name="UnitPriceDiscount" sql-type="float" nullable="true" length="0" scale="0" ado-type="Double" />
+        <orm:column name="UnitPriceDiscount" sql-type="float" nullable="true" length="0" scale="0" has-default-value="true" ado-type="Double" />
         <orm:column name="LineTotal" sql-type="float" nullable="false" length="0" scale="0" ado-type="Double" />
         <orm:column name="ModifiedDate" sql-type="datetime" nullable="true" length="0" scale="0" has-default-value="true" ado-type="DateTime" />
         <orm:column name="ModifiedByUser" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
@@ -1797,6 +1805,7 @@
       <Property Id="af4ad6bf-84c0-4239-925d-1f6240328dd9" name="ModifiedByUser" label="ModifiedByUser : String" kind="Persistent" fieldName="_modifiedByUser" />
       <Property Id="865f74c2-ebd6-48c7-9a09-6109cf20031b" name="ModifiedDate" type="DateTime" label="ModifiedDate : DateTime" nullable="true" kind="Persistent" fieldName="_modifiedDate" />
       <Property Id="8bd36ba5-23b3-4353-99c0-0b7c20e2b2bc" name="Name" label="Name : String" kind="Persistent" fieldName="_name" />
+      <Property Id="5f93f39b-ca19-4ff8-a7db-83876d83415b" name="IsVisible" type="Boolean" label="IsVisible : Boolean" nullable="true" kind="Persistent" fieldName="_isVisible" />
       <navigationalProperties>
         <classHasNavigationalProperties Id="eca62d11-02d9-4104-9d42-36909d9f20dc">
           <NavigationalProperty Id="8f2dc563-13ba-4f40-8942-cb0de539236a" name="PurchaseOrderHeaders" type="IList&lt;PurchaseOrderHeader&gt;" label="PurchaseOrderHeaders : IList&lt;PurchaseOrderHeader&gt;" nullable="true" kind="Persistent" fieldName="_purchaseOrderHeaders" isDependent="false" isManaged="false" />
@@ -1894,6 +1903,7 @@
       <Property Id="2ba42496-6bb6-403f-a25b-4775db52e48e" name="ModifiedByUser" label="ModifiedByUser : String" kind="Persistent" fieldName="_modifiedByUser" />
       <Property Id="a45e6085-517b-495e-9459-df42b5385b33" name="ModifiedDate" type="DateTime" label="ModifiedDate : DateTime" nullable="true" kind="Persistent" fieldName="_modifiedDate" />
       <Property Id="7f60f3f8-73f9-4397-b9a0-535436799a98" name="Name" label="Name : String" kind="Persistent" fieldName="_name" />
+      <Property Id="fd8b2eba-6ef4-4cb4-9348-9b391fc383ce" name="IsVisible" type="Boolean" label="IsVisible : Boolean" nullable="true" kind="Persistent" fieldName="_isVisible" />
       <navigationalProperties>
         <classHasNavigationalProperties Id="e8915fe3-b884-422c-a2f1-c041c30f77b4">
           <NavigationalProperty Id="20ca36c5-eb30-47a6-9e5a-06205e266455" name="SalesOrderHeaders" type="IList&lt;SalesOrderHeader&gt;" label="SalesOrderHeaders : IList&lt;SalesOrderHeader&gt;" nullable="true" kind="Persistent" fieldName="_salesOrderHeaders" isDependent="false" isManaged="false" />

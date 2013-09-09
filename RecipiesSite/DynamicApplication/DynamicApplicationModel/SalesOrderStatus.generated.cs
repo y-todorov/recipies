@@ -77,6 +77,19 @@ namespace RecipiesModelNS
 		    }
 		}
 		
+		private bool? _isVisible;
+		public virtual bool? IsVisible 
+		{ 
+		    get
+		    {
+		        return this._isVisible;
+		    }
+		    set
+		    {
+		        this._isVisible = value;
+		    }
+		}
+		
 		private IList<SalesOrderHeader> _salesOrderHeaders = new List<SalesOrderHeader>();
 		public virtual IList<SalesOrderHeader> SalesOrderHeaders 
 		{ 
