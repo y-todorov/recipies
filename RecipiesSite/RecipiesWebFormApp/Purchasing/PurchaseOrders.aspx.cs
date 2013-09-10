@@ -142,8 +142,8 @@ namespace RecipiesWebFormApp.Purchasing
                         }
                         else
                         {
-                            (Master as SiteMaster).MasterRadNotification.Show("Error sending Email! ResponseStatus: " + restResponse.ResponseStatus.ToString() + ", StatusCode: " + restResponse.StatusCode.ToString()); // + 
-                                //", Content: " + HtmlToText.ConvertHtml(restResponse.Content));
+                            (Master as SiteMaster).MasterRadNotification.Show("Error sending Email! ResponseStatus: " + restResponse.ResponseStatus.ToString() + ", StatusCode: " + restResponse.StatusCode.ToString()  + 
+                                ", Content: " + HttpUtility.JavaScriptStringEncode(restResponse.Content));
                         }
                     }
                     else
