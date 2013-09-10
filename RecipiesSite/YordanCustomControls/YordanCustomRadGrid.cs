@@ -10,6 +10,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Telerik.Web.UI;
 using Helpers.Extensions;
+using System.Diagnostics;
 
 namespace YordanCustomControls
 {
@@ -133,15 +134,15 @@ namespace YordanCustomControls
             {
                 foreach (GridColumn gc in Columns)
                 {
-                    // for now every column will be trimmed and shown with tooltips
-                    if (!(gc is GridButtonColumn || gc is GridEditCommandColumn))
+                    // for now every column will be trimmed and shown with tooltips. 
+                    // If we want to exclude a column from being trimmed we have to add it here
+                    if (!(gc is GridButtonColumn || gc is GridEditCommandColumn || gc is GridDropDownColumn))
                     {
                         gdi[gc].ToolTip = HtmlToText.ConvertHtml(gdi[gc].Text);
 
                         if (ViewState["isExporting"] == null)
                         {
-                            gdi[gc].Text = gdi[gc].Text.TrimToLength(); // = gdi[gc].Text.Substring(0, yordanRadGridColumnMaxVisualLength - 3) + "...";
-
+                            gdi[gc].Text = gdi[gc].Text.TrimToLength();                             
                         }
                     }
                 }
@@ -153,7 +154,7 @@ namespace YordanCustomControls
 
                 if (ViewState["isExporting"] == null)
                 {
-                    gghi.DataCell.Text = gghi.DataCell.Text.TrimToLength();
+                    gghi.DataCell.Text = gghi.DataCell.Text.TrimToLength();                   
                 }
             }
             base.OnItemDataBound(e);
@@ -213,7 +214,7 @@ namespace YordanCustomControls
                     {
                         gridDropDownColumn.EmptyListItemValue = null;
                     }
-                    gridDropDownColumn.EnableEmptyListItem = false;
+                    gridDropDownColumn.EnableEmptyListItem = true;
                     gridDropDownColumn.ConvertEmptyStringToNull = true;
                     gridDropDownColumn.DropDownControlType = GridDropDownColumnControlType.RadComboBox;
                 }

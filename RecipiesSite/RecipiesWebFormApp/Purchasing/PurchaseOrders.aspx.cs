@@ -16,6 +16,7 @@ using System.Web.Security;
 using System.IO;
 using System.Threading.Tasks;
 using RestSharp;
+using HtmlAgilityPack;
 
 
 namespace RecipiesWebFormApp.Purchasing
@@ -131,10 +132,23 @@ namespace RecipiesWebFormApp.Purchasing
 
                     EmailTemplate defaultTemplate = ContextFactory.GetContextPerRequest().EmailTemplates.FirstOrDefault(et => et.IsDefault);
                     if (defaultTemplate != null)
-                    {                      
-                        Task.Factory.StartNew<RestResponse>(() => EmailHelper.SendComplexMessage(defaultTemplate.From, defaultTemplate.Cc,
-                            defaultTemplate.Bcc, "test", "test", "test",
-                            result.DocumentBytes, result.DocumentName + "." + result.Extension));                         
+                    {
+                        RestResponse restResponse = EmailHelper.SendComplexMessage(defaultTemplate.From, purchaseOrder.Vendor.Email, defaultTemplate.Cc,
+                            defaultTemplate.Bcc, defaultTemplate.Subject, defaultTemplate.TextBody, defaultTemplate.HtmlBody,
+                            result.DocumentBytes, defaultTemplate.AttachmentName + "." + result.Extension);
+                        if (restResponse.StatusCode == System.Net.HttpStatusCode.OK)
+                        {
+                            (Master as SiteMaster).MasterRadNotification.Show("An Email has been successfully sent to address " + purchaseOrder.Vendor.Email);
+                        }
+                        else
+                        {
+                            (Master as SiteMaster).MasterRadNotification.Show("Error sending Email! ResponseStatus: " + restResponse.ResponseStatus.ToString() + ", StatusCode: " + restResponse.StatusCode.ToString()); // + 
+                                //", Content: " + HtmlToText.ConvertHtml(restResponse.Content));
+                        }
+                    }
+                    else
+                    {
+                        (Master as SiteMaster).MasterRadNotification.Show("Error sending Email! There is no default email template. Please add email templates and configure one of them as a default!");
                     }
                 }
             }            
