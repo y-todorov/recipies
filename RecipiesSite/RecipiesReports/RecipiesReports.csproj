@@ -39,10 +39,10 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="Telerik.Reporting, Version=7.1.13.802, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\DynamicApplication\DynamicApplicationModel\OpenAccessAssemblies\Telerik.Reporting.dll</HintPath>
+    <Reference Include="Telerik.Reporting, Version=7.1.13.802, Culture=neutral, PublicKeyToken=a9d7983dfcc261be">
       <Private>True</Private>
+      <HintPath>C:\Program Files (x86)\Telerik\Reporting Q2 2013\bin\Telerik.Reporting.dll</HintPath>
+      <SpecificVersion>True</SpecificVersion>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -51,6 +51,12 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="PurchaseOrderHeaderReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PurchaseOrderHeaderReport.Designer.cs">
+      <DependentUpon>PurchaseOrderHeaderReport.cs</DependentUpon>
     </Compile>
     <Compile Include="PurchaseOrderReportGen.cs">
       <SubType>Component</SubType>
@@ -70,11 +76,11 @@
     <Compile Include="Report3.Designer.cs">
       <DependentUpon>Report3.cs</DependentUpon>
     </Compile>
-    <Compile Include="SalesOrderDetails.cs">
+    <Compile Include="PurchaseOrderDetailsReport.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="SalesOrderDetails.Designer.cs">
-      <DependentUpon>SalesOrderDetails.cs</DependentUpon>
+    <Compile Include="PurchaseOrderDetailsReport.Designer.cs">
+      <DependentUpon>PurchaseOrderDetailsReport.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -84,6 +90,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="PurchaseOrderHeaderReport.resx">
+      <DependentUpon>PurchaseOrderHeaderReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PurchaseOrderReportGen.resx">
       <DependentUpon>PurchaseOrderReportGen.cs</DependentUpon>
     </EmbeddedResource>
@@ -93,8 +102,8 @@
     <EmbeddedResource Include="Report3.resx">
       <DependentUpon>Report3.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SalesOrderDetails.resx">
-      <DependentUpon>SalesOrderDetails.cs</DependentUpon>
+    <EmbeddedResource Include="PurchaseOrderDetailsReport.resx">
+      <DependentUpon>PurchaseOrderDetailsReport.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

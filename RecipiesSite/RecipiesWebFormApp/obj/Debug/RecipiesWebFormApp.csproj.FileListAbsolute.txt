@@ -47,3 +47,7 @@ C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Typesafe.Mailgun.xml
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\obj\Debug\RecipiesWebFormApp.csprojResolveAssemblyReference.cache
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\obj\Debug\RecipiesWebFormApp.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\obj\Debug\RecipiesWebFormApp.pdb
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Telerik.Reporting.pdb
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Telerik.Reporting.xml
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Telerik.ReportViewer.WebForms.pdb
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Telerik.ReportViewer.WebForms.xml

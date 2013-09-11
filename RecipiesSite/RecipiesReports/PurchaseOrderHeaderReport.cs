@@ -8,11 +8,11 @@ namespace RecipiesReports
     using Telerik.Reporting.Drawing;
 
     /// <summary>
-    /// Summary description for SalesOrderDetails.
+    /// Summary description for PurchaseOrderHeaderReport.
     /// </summary>
-    public partial class SalesOrderDetails : Telerik.Reporting.Report
+    public partial class PurchaseOrderHeaderReport : Telerik.Reporting.Report
     {
-        public SalesOrderDetails()
+        public PurchaseOrderHeaderReport()
         {
             //
             // Required for telerik Reporting designer support

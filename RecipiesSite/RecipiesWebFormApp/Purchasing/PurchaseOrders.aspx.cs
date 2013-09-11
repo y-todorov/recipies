@@ -90,9 +90,14 @@ namespace RecipiesWebFormApp.Purchasing
                     ReportProcessor reportProcessor = new ReportProcessor();
 
                     var instanceReportSource = new Telerik.Reporting.InstanceReportSource();
-                    SalesOrderDetails salesOrderDetailsReport = new RecipiesReports.SalesOrderDetails();
-                    salesOrderDetailsReport.DataSource = purchaseOrder.PurchaseOrderDetails;
-                    instanceReportSource.ReportDocument = salesOrderDetailsReport;
+                    //RecipiesReports.PurchaseOrderDetailsReport salesOrderDetailsReport = new RecipiesReports.PurchaseOrderDetailsReport();
+                    //salesOrderDetailsReport.DataSource = purchaseOrder.PurchaseOrderDetails;
+
+                    PurchaseOrderHeaderReport salesOrderHeaderReport = new PurchaseOrderHeaderReport();
+                    salesOrderHeaderReport.DataSource = purchaseOrder;
+                    
+
+                    instanceReportSource.ReportDocument = salesOrderHeaderReport;
                    
                     RenderingResult result = reportProcessor.RenderReport("PDF", instanceReportSource, null);
 
@@ -124,7 +129,7 @@ namespace RecipiesWebFormApp.Purchasing
                     ReportProcessor reportProcessor = new ReportProcessor();
 
                     var instanceReportSource = new Telerik.Reporting.InstanceReportSource();
-                    SalesOrderDetails salesOrderDetailsReport = new RecipiesReports.SalesOrderDetails();
+                    RecipiesReports.PurchaseOrderDetailsReport salesOrderDetailsReport = new RecipiesReports.PurchaseOrderDetailsReport();
                     salesOrderDetailsReport.DataSource = purchaseOrder.PurchaseOrderDetails;
                     instanceReportSource.ReportDocument = salesOrderDetailsReport;
 

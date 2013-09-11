@@ -1,6 +1,6 @@
 namespace RecipiesReports
 {
-    partial class SalesOrderDetails
+    partial class PurchaseOrderDetailsReport
     {
         #region Component Designer generated code
         /// <summary>
@@ -62,7 +62,8 @@ namespace RecipiesReports
             this.textBox4.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.6666666269302368D), Telerik.Reporting.Drawing.Unit.Inch(0.47988176345825195D));
             this.textBox4.Style.Font.Bold = true;
             this.textBox4.Style.Font.Italic = false;
-            this.textBox4.Value = "= Sum(Fields.LineTotal)";
+            this.textBox4.Style.Visible = false;
+            this.textBox4.Value = "";
             // 
             // labelsGroupHeaderSection
             // 
@@ -200,7 +201,7 @@ namespace RecipiesReports
             this.lineTotalDataTextBox.Name = "lineTotalDataTextBox";
             this.lineTotalDataTextBox.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.6666666269302368D), Telerik.Reporting.Drawing.Unit.Inch(0.40000000596046448D));
             this.lineTotalDataTextBox.StyleName = "Data";
-            this.lineTotalDataTextBox.Value = "=Fields.LineTotal";
+            this.lineTotalDataTextBox.Value = "=Fields.UnitPrice";
             // 
             // odsSalesOrderDetails
             // 
@@ -209,7 +210,7 @@ namespace RecipiesReports
     "Culture=neutral, PublicKeyToken=null";
             this.odsSalesOrderDetails.Name = "odsSalesOrderDetails";
             // 
-            // SalesOrderDetails
+            // PurchaseOrderDetailsReport
             // 
             this.DataSource = this.dsSalesOrderDetails;
             group1.GroupFooter = this.labelsGroupFooterSection;
