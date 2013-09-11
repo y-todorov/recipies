@@ -23,6 +23,7 @@ namespace RecipiesModelNS
 
     public enum SalesOrderStatusEnum
     {
+        None = 0,
         Approved = 2,
         Canceled = 6
     }

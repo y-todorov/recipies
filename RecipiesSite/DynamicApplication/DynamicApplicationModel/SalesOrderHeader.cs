@@ -19,12 +19,13 @@ namespace RecipiesModelNS
                     {
                         if (ri.QuantityPerPortion.HasValue)
                         {
-                            ri.Product.UnitsInStock -= (int)ri.QuantityPerPortion.Value; // TEST MUST BE FIXED
+                            ri.Product.UnitsInStock += (int)ri.QuantityPerPortion.Value; // TEST MUST BE FIXED NO CASTING
                         }
                     }
                 }
             }
-            if (oldStatus == SalesOrderStatusEnum.Canceled && newStatus == SalesOrderStatusEnum.Approved)
+            if (oldStatus == SalesOrderStatusEnum.Canceled && newStatus == SalesOrderStatusEnum.Approved &&
+                oldStatus == SalesOrderStatusEnum.None || newStatus == SalesOrderStatusEnum.Approved)
             {
                 foreach (SalesOrderDetail sod in salesOrderDetails)
                 {
@@ -32,7 +33,7 @@ namespace RecipiesModelNS
                     {
                         if (ri.QuantityPerPortion.HasValue)
                         {
-                            ri.Product.UnitsInStock += (int)ri.QuantityPerPortion.Value; // TEST MUST BE FIXED
+                            ri.Product.UnitsInStock -= (int)ri.QuantityPerPortion.Value; // TEST MUST BE FIXED NO CASTING
                         }
                     }
                 }
@@ -43,13 +44,19 @@ namespace RecipiesModelNS
 
         public void UpdateProductsFromStatus(int? oldStatusId, int? newStatusId)
         {
-            if (oldStatusId.HasValue && newStatusId.HasValue)
+            SalesOrderStatusEnum oldStatus = SalesOrderStatusEnum.None;
+            SalesOrderStatusEnum newStatus = SalesOrderStatusEnum.None;
+           
+            if (newStatusId.HasValue)
             {
-                SalesOrderStatusEnum oldStatus = (SalesOrderStatusEnum)oldStatusId.Value;
-                SalesOrderStatusEnum newStatus = (SalesOrderStatusEnum)newStatusId.Value;
-
-                UpdateProductsFromStatus(oldStatus, newStatus);
+                newStatus = (SalesOrderStatusEnum)newStatusId.Value;               
+            } 
+            if (oldStatusId.HasValue)
+            {
+                oldStatus = (SalesOrderStatusEnum)oldStatusId.Value;               
             }
+            UpdateProductsFromStatus(oldStatus, newStatus);
+
         }
     }
 }
