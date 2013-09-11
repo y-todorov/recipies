@@ -23,8 +23,6 @@ C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\System.Web.Optimization
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\System.Web.Providers.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Telerik.OpenAccess.35.Extensions.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Telerik.OpenAccess.Web.40.dll
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Telerik.Reporting.dll
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Telerik.ReportViewer.WebForms.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Telerik.Web.UI.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Telerik.Web.UI.Skins.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Typesafe.Mailgun.dll
@@ -47,7 +45,3 @@ C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Typesafe.Mailgun.xml
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\obj\Debug\RecipiesWebFormApp.csprojResolveAssemblyReference.cache
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\obj\Debug\RecipiesWebFormApp.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\obj\Debug\RecipiesWebFormApp.pdb
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Telerik.Reporting.pdb
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Telerik.Reporting.xml
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Telerik.ReportViewer.WebForms.pdb
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Telerik.ReportViewer.WebForms.xml
