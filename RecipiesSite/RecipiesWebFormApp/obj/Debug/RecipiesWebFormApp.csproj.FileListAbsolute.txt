@@ -4,6 +4,7 @@ C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\AppfailReporting.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\DynamicApplicationModel.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\EntityFramework.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Helpers.dll
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\HtmlAgilityPack.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.AspNet.FriendlyUrls.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.AspNet.Membership.OpenAuth.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
@@ -34,6 +35,8 @@ C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\DynamicApplicationModel
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Helpers.pdb
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\RecipiesReports.pdb
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\YordanCustomControls.pdb
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\HtmlAgilityPack.pdb
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\HtmlAgilityPack.xml
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.AspNet.FriendlyUrls.xml
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Newtonsoft.Json.xml
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\RestSharp.xml
@@ -44,6 +47,3 @@ C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Typesafe.Mailgun.xml
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\obj\Debug\RecipiesWebFormApp.csprojResolveAssemblyReference.cache
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\obj\Debug\RecipiesWebFormApp.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\obj\Debug\RecipiesWebFormApp.pdb
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\HtmlAgilityPack.dll
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\HtmlAgilityPack.pdb
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\HtmlAgilityPack.xml

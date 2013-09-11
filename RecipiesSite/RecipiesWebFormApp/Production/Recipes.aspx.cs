@@ -88,6 +88,48 @@ namespace RecipiesWebFormApp.Production
             }
         }
 
+        protected void rgRecipeIngredients_ItemCreated(object sender, GridItemEventArgs e)
+        {
+            if (e.Item is GridEditableItem && e.Item.IsInEditMode)
+            {
+                GridEditableItem editedItem = (e.Item as GridEditableItem);
+                RadComboBox dropDownProductListColumn = editedItem["DropDownProductListColumn"].Controls[0] as RadComboBox;
+
+                //attach SelectedIndexChanged event for the dropdown control  
+                dropDownProductListColumn.AutoPostBack = true;
+                dropDownProductListColumn.SelectedIndexChanged += dropDownProductListColumn_SelectedIndexChanged;
+            }  
+        }
+
+        void dropDownProductListColumn_SelectedIndexChanged(object sender, RadComboBoxSelectedIndexChangedEventArgs e)
+        {
+            (sender as RadComboBox).ToolTip = (sender as RadComboBox).SelectedValue + (sender as RadComboBox).SelectedItem.Text;
+
+            //first reference the edited grid item through the NamingContainer                                                     attribute  
+            GridEditableItem editedItem = (sender as RadComboBox).NamingContainer as GridEditableItem;
+
+            RadNumericTextBox tbCost = editedItem["Cost"].Controls[0] as RadNumericTextBox;
+            RadComboBox dropDownProductListColumn = editedItem["DropDownProductListColumn"].Controls[0] as RadComboBox;
+            string productId = dropDownProductListColumn.SelectedValue;
+            tbCost.Text = "0";
+            if (!string.IsNullOrEmpty(productId))
+            {
+                int intProductId;
+                if (int.TryParse(productId, out intProductId))
+                {
+                    Product product = ContextFactory.GetContextPerRequest().Products.FirstOrDefault(p => p.ProductId == intProductId);
+                    if (product != null)
+                    {
+                        tbCost.Text = product.GetAveragePriceLastDays(14).ToString();
+                    }
+
+                    //ProductVendor productVendor = ContextFactory.GetContextPerRequest().ProductVendors.FirstOrDefault(pv => pv.ProductId == intProductId && pv.VendorId == VendorId);
+
+                    //tbUnitPrice.Text = productVendor.StandardPrice.ToString();
+                }
+            }    
+        }
+
       
     }
 }

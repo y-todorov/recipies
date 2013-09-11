@@ -40,21 +40,14 @@
                     <ItemTemplate />
                     <EditItemTemplate>
                         <asp:Label runat="server" ID="lblProductIngredients" ForeColor="Blue" Text="Please save the recipe so recipe ingredients can be added to it." OnPreRender="lblProductIngredients_PreRender"></asp:Label>
-                        <yordan:YordanCustomRadGrid ID="rgRecipeIngredients" runat="server" CellSpacing="0" DataSourceID="OpenAccessLinqDataSourceRecipeIngredients" GridLines="None" OnPreRender="rgRecipeIngredients_PreRender">
+                        <yordan:YordanCustomRadGrid ID="rgRecipeIngredients" runat="server" CellSpacing="0" DataSourceID="OpenAccessLinqDataSourceRecipeIngredients" GridLines="None" OnItemCreated="rgRecipeIngredients_ItemCreated" OnPreRender="rgRecipeIngredients_PreRender">
                             <MasterTableView AutoGenerateColumns="False" DataKeyNames="RecipeIngredientId" DataSourceID="OpenAccessLinqDataSourceRecipeIngredients">
                                 <Columns>
                                     <telerik:GridBoundColumn DataField="RecipeIngredientId" Visible="false" DataType="System.Int32" FilterControlAltText="Filter RecipeIngredientId column" HeaderText="RecipeIngredientId" ReadOnly="True" SortExpression="RecipeIngredientId" UniqueName="RecipeIngredientId">
                                         <ColumnValidationSettings>
                                             <ModelErrorMessage Text=""></ModelErrorMessage>
                                         </ColumnValidationSettings>
-                                    </telerik:GridBoundColumn>
-                                    <telerik:GridDropDownColumn UniqueName="DropDownRecipeListColumn" ListTextField="Name" Visible="false" ReadOnly="true"
-                                        ListValueField="RecipeId" DataSourceID="OpenAccessLinqDataSourceRecipe" HeaderText="Recipe"
-                                        DataField="RecipeId" DropDownControlType="RadComboBox">
-                                        <ColumnValidationSettings>
-                                            <ModelErrorMessage Text=""></ModelErrorMessage>
-                                        </ColumnValidationSettings>
-                                    </telerik:GridDropDownColumn>
+                                    </telerik:GridBoundColumn>                                   
                                     <telerik:GridDropDownColumn UniqueName="DropDownProductListColumn" ListTextField="Name"
                                         ListValueField="ProductId" DataSourceID="OpenAccessLinqDataSourceProduct" HeaderText="Product"
                                         DataField="ProductId" DropDownControlType="RadComboBox">

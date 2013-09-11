@@ -263,20 +263,23 @@ namespace RecipiesWebFormApp.Purchasing
             RadNumericTextBox tbUnitPrice = editedItem["UnitPrice"].Controls[0] as RadNumericTextBox;
             RadComboBox dropDownProductListColumn = editedItem["DropDownProductListColumn"].Controls[0] as RadComboBox;
             string productId = dropDownProductListColumn.SelectedValue;
+            tbUnitPrice.Text = "0";
             if (!string.IsNullOrEmpty(productId))
             {
                 int intProductId;
                 if (int.TryParse(productId, out intProductId))
                 {
-                    ProductVendor productVendor = ContextFactory.GetContextPerRequest().ProductVendors.FirstOrDefault(pv => pv.ProductId == intProductId && pv.VendorId == VendorId);
+                    Product product = ContextFactory.GetContextPerRequest().Products.FirstOrDefault(p => p.ProductId == intProductId);
+                    if (product != null)
+                    {
+                        tbUnitPrice.Text = product.GetAveragePriceLastDays(14).ToString();
+                    }
 
-                    tbUnitPrice.Text = productVendor.StandardPrice.ToString();
+                    //ProductVendor productVendor = ContextFactory.GetContextPerRequest().ProductVendors.FirstOrDefault(pv => pv.ProductId == intProductId && pv.VendorId == VendorId);
+
+                    //tbUnitPrice.Text = productVendor.StandardPrice.ToString();
                 }
-            }
-            else
-            {
-                tbUnitPrice.Text = "0"; // default price if nothing is selected
-            }
+            }            
         }
 
         protected void OpenAccessLinqDataSourcePurchaseOrders_Updating(object sender, OpenAccessLinqDataSourceUpdateEventArgs e)
