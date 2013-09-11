@@ -124,6 +124,7 @@
     <Compile Include="SalesOrderDetail.generated.cs">
       <DependentUpon>EntitiesModel.rlinq</DependentUpon>
     </Compile>
+    <Compile Include="SalesOrderHeader.cs" />
     <Compile Include="SalesOrderHeader.generated.cs">
       <DependentUpon>EntitiesModel.rlinq</DependentUpon>
     </Compile>

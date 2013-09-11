@@ -21,6 +21,12 @@ namespace RecipiesModelNS
         Completed = 4
     }
 
+    public enum SalesOrderStatusEnum
+    {
+        Approved = 2,
+        Canceled = 6
+    }
+
     public partial class RecipiesModel
     {
 

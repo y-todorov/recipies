@@ -81,5 +81,13 @@ namespace RecipiesWebFormApp.Sales
                 SalesOrderId = 0;
             }
         }
+
+        protected void OpenAccessLinqDataSourceOrder_Updating(object sender, Telerik.OpenAccess.Web.OpenAccessLinqDataSourceUpdateEventArgs e)
+        {
+            SalesOrderHeader oldPurchaseOrderHeader = e.OriginalObject as SalesOrderHeader;
+            SalesOrderHeader newPurchaseOrderHeader = e.NewObject as SalesOrderHeader;
+
+            newPurchaseOrderHeader.UpdateProductsFromStatus(oldPurchaseOrderHeader.StatusId, newPurchaseOrderHeader.StatusId);
+        }
     }
 }
