@@ -228,6 +228,14 @@ namespace RecipiesModelNS
 	    	}
 		}
 		
+		public IQueryable<Inventory> Inventories 
+		{
+	    	get
+	    	{
+	        	return this.GetAll<Inventory>();
+	    	}
+		}
+		
 		public static BackendConfiguration GetBackendConfiguration()
 		{
 			BackendConfiguration backend = new BackendConfiguration();
@@ -345,6 +353,11 @@ namespace RecipiesModelNS
 		}
 
 		IQueryable<SalesOrderDetail> SalesOrderDetails 
+		{ 
+			get;
+		}
+
+		IQueryable<Inventory> Inventories 
 		{ 
 			get;
 		}

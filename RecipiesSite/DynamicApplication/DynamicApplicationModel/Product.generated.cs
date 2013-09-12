@@ -234,5 +234,14 @@ namespace RecipiesModelNS
 		    }
 		}
 		
+		private IList<Inventory> _inventories = new List<Inventory>();
+		public virtual IList<Inventory> Inventories 
+		{ 
+		    get
+		    {
+		        return this._inventories;
+		    }
+		}
+		
 	}
 }

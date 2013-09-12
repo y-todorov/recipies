@@ -230,6 +230,7 @@
     <Content Include="loaderio-30652baccf98dd4b259576ae7897b597.txt" />
     <Content Include="packages.config" />
     <Content Include="App_Themes\DefaultTheme\DefaultSkin.skin" />
+    <Content Include="Production\Inventories.aspx" />
     <Content Include="Production\ProductCategories.aspx" />
     <Content Include="Production\Products.aspx" />
     <Content Include="Production\RecipeIngredients.aspx" />
@@ -412,6 +413,13 @@
     </Compile>
     <Compile Include="HumanResources\Shifts.aspx.designer.cs">
       <DependentUpon>Shifts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Production\Inventories.aspx.cs">
+      <DependentUpon>Inventories.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Production\Inventories.aspx.designer.cs">
+      <DependentUpon>Inventories.aspx</DependentUpon>
     </Compile>
     <Compile Include="Production\ProductCategories.aspx.cs">
       <DependentUpon>ProductCategories.aspx</DependentUpon>
