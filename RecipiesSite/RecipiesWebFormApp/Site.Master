@@ -7,18 +7,20 @@
 <head runat="server">
     <meta charset="utf-8" />
     <title>Inventory management</title>
-    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />   
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 </head>
 <body>
     <form runat="server">
         <%--EnablePartialRendering="false/true" This is very importan.--%>
-        <telerik:RadScriptManager ID="RadScriptManager1" runat="server" AsyncPostBackErrorMessage="An error has occured on the server!" OnAsyncPostBackError="RadScriptManager1_AsyncPostBackError" EnablePartialRendering="true" EnableCdn="True" EnableScriptCombine="True">
+        <telerik:RadScriptManager ID="RadScriptManager1" runat="server" AsyncPostBackErrorMessage="An error has occured on the server!" OnAsyncPostBackError="RadScriptManager1_AsyncPostBackError" EnablePartialRendering="true" EnableCdn="True" EnableScriptCombine="True" LoadScriptsBeforeUI="False">
             <CdnSettings TelerikCdn="Enabled" />
             <Scripts>
-<asp:ScriptReference Assembly="Telerik.Web.UI" Name="Telerik.Web.UI.Common.Core.js"></asp:ScriptReference>
-<asp:ScriptReference Assembly="Telerik.Web.UI" Name="Telerik.Web.UI.Common.jQuery.js"></asp:ScriptReference>
-<asp:ScriptReference Assembly="Telerik.Web.UI" Name="Telerik.Web.UI.Common.jQueryInclude.js"></asp:ScriptReference>
-                <telerik:RadScriptReference Path="Scripts/pubnub.min.js" />
+                <asp:ScriptReference Assembly="Telerik.Web.UI" Name="Telerik.Web.UI.Common.Core.js"></asp:ScriptReference>
+                <asp:ScriptReference Assembly="Telerik.Web.UI" Name="Telerik.Web.UI.Common.jQuery.js"></asp:ScriptReference>
+                <asp:ScriptReference Assembly="Telerik.Web.UI" Name="Telerik.Web.UI.Common.jQueryInclude.js"></asp:ScriptReference>
+               <%-- <telerik:RadScriptReference Path="Scripts/pubnub.min.js" />--%>
+                
+                   <telerik:RadScriptReference Path="http://cdn.pubnub.com/pubnub-3.5.4.min.js"  />
                 <telerik:RadScriptReference Path="Scripts/MyJavaScript.js" />
                 <telerik:RadScriptReference Path="Scripts/GoogleAnalytics.js" />
             </Scripts>
@@ -37,10 +39,10 @@
         <telerik:RadAjaxLoadingPanel ID="RadAjaxLoadingPanel1" runat="server" BackgroundTransparency="50" EnableSkinTransparency="true" EnableAjaxSkinRendering="true" Enabled="false">
             <telerik:RadWindowManager ID="RadWindowManager1" runat="server">
             </telerik:RadWindowManager>
-           
+
             <telerik:RadNotification ID="RadNotification1" runat="server" Title="Notification" AutoCloseDelay="5000" Animation="Fade" AnimationDuration="2000" RegisterWithScriptManager="true">
             </telerik:RadNotification>
-           
+
         </telerik:RadAjaxLoadingPanel>
 
         <telerik:RadMenu runat="server" Width="100%" OnItemClick="Unnamed_ItemClick" OnClientItemClicking="OnClientItemClicking">
@@ -59,7 +61,7 @@
                         <telerik:RadMenuItem Text="Stores" NavigateUrl="~/Production/Stores"></telerik:RadMenuItem>
                         <telerik:RadMenuItem Text="Recipes" NavigateUrl="Production/Recipes.aspx"></telerik:RadMenuItem>
                         <telerik:RadMenuItem Text="Recipe ingredients" Visible="false" NavigateUrl="Production/RecipeIngredients"></telerik:RadMenuItem>
-                         <telerik:RadMenuItem runat="server" Text="Inventory" NavigateUrl="~/Production/Inventories">
+                        <telerik:RadMenuItem runat="server" Text="Inventory" NavigateUrl="~/Production/Inventories">
                         </telerik:RadMenuItem>
                     </Items>
                 </telerik:RadMenuItem>

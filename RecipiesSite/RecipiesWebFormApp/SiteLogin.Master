@@ -9,7 +9,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <telerik:RadScriptManager runat="server" ID="RadScriptManagerLogin" EnableCdn="True" EnableScriptCombine="True">
+        <telerik:RadScriptManager runat="server" ID="RadScriptManagerLogin" EnableCdn="True" EnableScriptCombine="True" LoadScriptsBeforeUI="False">
             <CdnSettings TelerikCdn="Enabled" />
             <Scripts>
 <asp:ScriptReference Assembly="Telerik.Web.UI" Name="Telerik.Web.UI.Common.Core.js"></asp:ScriptReference>

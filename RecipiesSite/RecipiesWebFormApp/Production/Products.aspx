@@ -6,6 +6,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <telerik:RadCodeBlock runat="server">
+        <script src=http://cdn.pubnub.com/pubnub-3.5.4.min.js ></script>
         <script type="text/javascript">
 
             (function () {
