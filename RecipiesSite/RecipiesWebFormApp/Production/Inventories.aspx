@@ -24,56 +24,56 @@
                         <modelerrormessage text=""></modelerrormessage>
                     </columnvalidationsettings>
                 </telerik:GridDateTimeColumn>
-                <telerik:GridBoundColumn DataField="AverageUnitPrice" DataType="System.Decimal" FilterControlAltText="Filter AverageUnitPrice column" HeaderText="AverageUnitPrice" SortExpression="AverageUnitPrice" UniqueName="AverageUnitPrice">
+                <telerik:GridNumericColumn DataField="AverageUnitPrice" DataType="System.Decimal" FilterControlAltText="Filter AverageUnitPrice column" HeaderText="AverageUnitPrice" SortExpression="AverageUnitPrice" UniqueName="AverageUnitPrice">
                     <columnvalidationsettings>
                         <modelerrormessage text=""></modelerrormessage>
                     </columnvalidationsettings>
-                </telerik:GridBoundColumn>
-                <telerik:GridBoundColumn DataField="QuantityByDocuments" DataType="System.Double" FilterControlAltText="Filter QuantityByDocuments column" HeaderText="QuantityByDocuments" SortExpression="QuantityByDocuments" UniqueName="QuantityByDocuments">
+                </telerik:GridNumericColumn>
+                <telerik:GridNumericColumn DataField="QuantityByDocuments" DataType="System.Double" FilterControlAltText="Filter QuantityByDocuments column" HeaderText="QuantityByDocuments" SortExpression="QuantityByDocuments" UniqueName="QuantityByDocuments">
                     <columnvalidationsettings>
                         <modelerrormessage text=""></modelerrormessage>
                     </columnvalidationsettings>
-                </telerik:GridBoundColumn>
-                <telerik:GridBoundColumn DataField="ValueByDocuments" ReadOnly="true" DataType="System.Double" FilterControlAltText="Filter ValueByDocuments column" HeaderText="ValueByDocuments" SortExpression="ValueByDocuments" UniqueName="ValueByDocuments">
+                </telerik:GridNumericColumn>
+                <telerik:GridNumericColumn DataField="ValueByDocuments" ReadOnly="true"  DataType="System.Decimal" FilterControlAltText="Filter ValueByDocuments column" HeaderText="ValueByDocuments" SortExpression="ValueByDocuments" UniqueName="ValueByDocuments">
                     <columnvalidationsettings>
                         <modelerrormessage text=""></modelerrormessage>
                     </columnvalidationsettings>
-                </telerik:GridBoundColumn>
-                <telerik:GridBoundColumn DataField="StocktakeQuantity" DataType="System.Double" FilterControlAltText="Filter StocktakeQuantity column" HeaderText="StocktakeQuantity" SortExpression="StocktakeQuantity" UniqueName="StocktakeQuantity">
+                </telerik:GridNumericColumn>
+                <telerik:GridNumericColumn DataField="StocktakeQuantity" DataType="System.Double" FilterControlAltText="Filter StocktakeQuantity column" HeaderText="StocktakeQuantity" SortExpression="StocktakeQuantity" UniqueName="StocktakeQuantity">
                     <columnvalidationsettings>
                         <modelerrormessage text=""></modelerrormessage>
                     </columnvalidationsettings>
-                </telerik:GridBoundColumn>
-                <telerik:GridBoundColumn DataField="StocktakeValue" ReadOnly="true" DataType="System.Double" FilterControlAltText="Filter StocktakeValue column" HeaderText="StocktakeValue" SortExpression="StocktakeValue" UniqueName="StocktakeValue">
+                </telerik:GridNumericColumn>
+                <telerik:GridNumericColumn DataField="StocktakeValue" ReadOnly="true"  DataType="System.Decimal" FilterControlAltText="Filter StocktakeValue column" HeaderText="StocktakeValue" SortExpression="StocktakeValue" UniqueName="StocktakeValue">
                     <columnvalidationsettings>
                         <modelerrormessage text=""></modelerrormessage>
                     </columnvalidationsettings>
-                </telerik:GridBoundColumn>
-                <telerik:GridBoundColumn DataField="DeficiencyQuantity" ReadOnly="true" DataType="System.Double" FilterControlAltText="Filter DeficiencyQuantity column" HeaderText="DeficiencyQuantity" SortExpression="DeficiencyQuantity" UniqueName="DeficiencyQuantity">
+                </telerik:GridNumericColumn>
+                <telerik:GridNumericColumn DataField="DeficiencyQuantity" ReadOnly="true" DataType="System.Double" FilterControlAltText="Filter DeficiencyQuantity column" HeaderText="DeficiencyQuantity" SortExpression="DeficiencyQuantity" UniqueName="DeficiencyQuantity">
                     <columnvalidationsettings>
                         <modelerrormessage text=""></modelerrormessage>
                     </columnvalidationsettings>
-                </telerik:GridBoundColumn>
-                <telerik:GridBoundColumn DataField="DeficiencyValue" ReadOnly="true" DataType="System.Double" FilterControlAltText="Filter DeficiencyValue column" HeaderText="DeficiencyValue" SortExpression="DeficiencyValue" UniqueName="DeficiencyValue">
+                </telerik:GridNumericColumn>
+                <telerik:GridNumericColumn DataField="DeficiencyValue" ReadOnly="true"  DataType="System.Decimal" FilterControlAltText="Filter DeficiencyValue column" HeaderText="DeficiencyValue" SortExpression="DeficiencyValue" UniqueName="DeficiencyValue">
                     <columnvalidationsettings>
                         <modelerrormessage text=""></modelerrormessage>
                     </columnvalidationsettings>
-                </telerik:GridBoundColumn>
-                <telerik:GridBoundColumn DataField="SurplusQuantity" ReadOnly="true" DataType="System.Double" FilterControlAltText="Filter SurplusQuantity column" HeaderText="SurplusQuantity" SortExpression="SurplusQuantity" UniqueName="SurplusQuantity">
+                </telerik:GridNumericColumn>
+                <telerik:GridNumericColumn DataField="SurplusQuantity" ReadOnly="true" DataType="System.Double" FilterControlAltText="Filter SurplusQuantity column" HeaderText="SurplusQuantity" SortExpression="SurplusQuantity" UniqueName="SurplusQuantity">
                     <columnvalidationsettings>
                         <modelerrormessage text=""></modelerrormessage>
                     </columnvalidationsettings>
-                </telerik:GridBoundColumn>
-                <telerik:GridBoundColumn DataField="SurplusValue" ReadOnly="true" DataType="System.Double" FilterControlAltText="Filter SurplusValue column" HeaderText="SurplusValue" SortExpression="SurplusValue" UniqueName="SurplusValue">
+                </telerik:GridNumericColumn>
+                <telerik:GridNumericColumn DataField="SurplusValue" ReadOnly="true"  DataType="System.Decimal" FilterControlAltText="Filter SurplusValue column" HeaderText="SurplusValue" SortExpression="SurplusValue" UniqueName="SurplusValue">
                     <columnvalidationsettings>
                         <modelerrormessage text=""></modelerrormessage>
                     </columnvalidationsettings>
-                </telerik:GridBoundColumn>
-                <telerik:GridBoundColumn DataField="ModifiedDate" DataType="System.DateTime" FilterControlAltText="Filter ModifiedDate column" HeaderText="ModifiedDate" SortExpression="ModifiedDate" UniqueName="ModifiedDate">
+                </telerik:GridNumericColumn>
+                <telerik:GridDateTimeColumn DataField="ModifiedDate" DataType="System.DateTime" FilterControlAltText="Filter ModifiedDate column" HeaderText="ModifiedDate" SortExpression="ModifiedDate" UniqueName="ModifiedDate">
                     <columnvalidationsettings>
                         <modelerrormessage text=""></modelerrormessage>
                     </columnvalidationsettings>
-                </telerik:GridBoundColumn>
+                </telerik:GridDateTimeColumn>
                 <telerik:GridBoundColumn DataField="ModifiedByUser" FilterControlAltText="Filter ModifiedByUser column" HeaderText="ModifiedByUser" SortExpression="ModifiedByUser" UniqueName="ModifiedByUser">
                     <columnvalidationsettings>
                         <modelerrormessage text=""></modelerrormessage>
