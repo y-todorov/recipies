@@ -11,6 +11,7 @@ using System.Web.UI.WebControls;
 using Telerik.Web.UI;
 using Helpers.Extensions;
 using System.Diagnostics;
+using System.Drawing;
 
 namespace YordanCustomControls
 {
@@ -214,9 +215,17 @@ namespace YordanCustomControls
                     {
                         gridDropDownColumn.EmptyListItemValue = null;
                     }
-                    gridDropDownColumn.EnableEmptyListItem = true;
+                    // because we have validation now
+                    gridDropDownColumn.EnableEmptyListItem = false;
                     gridDropDownColumn.ConvertEmptyStringToNull = true;
                     gridDropDownColumn.DropDownControlType = GridDropDownColumnControlType.RadComboBox;
+
+                    // Validation
+
+                    gridDropDownColumn.ColumnValidationSettings.EnableRequiredFieldValidation = true;
+                    gridDropDownColumn.ColumnValidationSettings.RequiredFieldValidator.Text = "This field is required!";
+                    gridDropDownColumn.ColumnValidationSettings.RequiredFieldValidator.ErrorMessage = "This field is required!";
+                    gridDropDownColumn.ColumnValidationSettings.RequiredFieldValidator.ForeColor = Color.Red;
                 }
             }
 
