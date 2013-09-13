@@ -267,6 +267,7 @@ namespace RecipiesWebFormApp.Purchasing
 
             RadNumericTextBox tbUnitPrice = editedItem["UnitPrice"].Controls[0] as RadNumericTextBox;
             RadComboBox dropDownProductListColumn = editedItem["DropDownProductListColumn"].Controls[0] as RadComboBox;
+            RadComboBox dropDownUnitListColumn = editedItem["DropDownUnitListColumn"].Controls[0] as RadComboBox;
             string productId = dropDownProductListColumn.SelectedValue;
             tbUnitPrice.Text = "0";
             if (!string.IsNullOrEmpty(productId))
@@ -278,6 +279,9 @@ namespace RecipiesWebFormApp.Purchasing
                     if (product != null)
                     {
                         tbUnitPrice.Text = product.GetAveragePriceLastDays(14).ToString();
+
+                        dropDownUnitListColumn.DataSource = product.UnitMeasure.GetRelatedUnitMeasures();
+                        dropDownUnitListColumn.DataBind();
                     }
 
                     //ProductVendor productVendor = ContextFactory.GetContextPerRequest().ProductVendors.FirstOrDefault(pv => pv.ProductId == intProductId && pv.VendorId == VendorId);
@@ -287,7 +291,8 @@ namespace RecipiesWebFormApp.Purchasing
             }
 
 
-            Control unitMeasureName = editedItem["UnitMeasureName"].Controls[0] as Control;
+            
+
             
         }
 

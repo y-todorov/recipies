@@ -146,6 +146,7 @@
     <Compile Include="UnitMeasure.generated.cs">
       <DependentUpon>EntitiesModel.rlinq</DependentUpon>
     </Compile>
+    <Compile Include="UnitMeasure.partial.cs" />
     <Compile Include="Vendor.generated.cs">
       <DependentUpon>EntitiesModel.rlinq</DependentUpon>
     </Compile>
