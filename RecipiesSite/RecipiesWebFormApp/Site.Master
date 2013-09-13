@@ -12,14 +12,14 @@
 <body>
     <form runat="server">
         <%--EnablePartialRendering="false/true" This is very importan.--%>
-        <telerik:RadScriptManager ID="RadScriptManager1" runat="server" AsyncPostBackErrorMessage="An error has occured on the server!" OnAsyncPostBackError="RadScriptManager1_AsyncPostBackError" EnablePartialRendering="true" EnableScriptCombine="True">
+        <telerik:RadScriptManager ID="RadScriptManager1" runat="server" AsyncPostBackErrorMessage="An error has occured on the server!" OnAsyncPostBackError="RadScriptManager1_AsyncPostBackError" EnablePartialRendering="true" EnableScriptCombine="True" LoadScriptsBeforeUI="False">
             <Scripts>
-<asp:ScriptReference Assembly="Telerik.Web.UI" Name="Telerik.Web.UI.Common.Core.js"></asp:ScriptReference>
+<%--<asp:ScriptReference Assembly="Telerik.Web.UI" Name="Telerik.Web.UI.Common.Core.js"></asp:ScriptReference>
 <asp:ScriptReference Assembly="Telerik.Web.UI" Name="Telerik.Web.UI.Common.jQuery.js"></asp:ScriptReference>
 <asp:ScriptReference Assembly="Telerik.Web.UI" Name="Telerik.Web.UI.Common.jQueryInclude.js"></asp:ScriptReference>
                 <asp:ScriptReference Assembly="Telerik.Web.UI" Name="Telerik.Web.UI.Common.Core.js"></asp:ScriptReference>
                 <asp:ScriptReference Assembly="Telerik.Web.UI" Name="Telerik.Web.UI.Common.jQuery.js"></asp:ScriptReference>
-                <asp:ScriptReference Assembly="Telerik.Web.UI" Name="Telerik.Web.UI.Common.jQueryInclude.js"></asp:ScriptReference>
+                <asp:ScriptReference Assembly="Telerik.Web.UI" Name="Telerik.Web.UI.Common.jQueryInclude.js"></asp:ScriptReference>--%>
                <%-- <telerik:RadScriptReference Path="Scripts/pubnub.min.js" />--%>
                 
                    <telerik:RadScriptReference Path="http://cdn.pubnub.com/pubnub-3.5.4.min.js"  />
