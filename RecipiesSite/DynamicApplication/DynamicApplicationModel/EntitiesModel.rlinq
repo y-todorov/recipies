@@ -46,32 +46,6 @@
           <orm:collection element-class="RecipiesModelNS.PurchaseOrderHeader" inverse-field="_vendor" order-by="" uniqueId="0b496378-0daa-4bed-82c8-c963c486482e" />
         </orm:field>
       </orm:class>
-      <orm:class name="UnitMeasure" uniqueId="54f006de-1e54-4dd1-aff9-4a981310c710">
-        <orm:table name="UnitMeasure" schema="Production" />
-        <orm:identity>
-          <orm:key-generator name="autoinc" />
-          <orm:single-field field-name="_unitMeasureId" />
-        </orm:identity>
-        <orm:concurrency strategy="changed" />
-        <orm:field name="_unitMeasureId" property="UnitMeasureId" behavior="readwrite" uniqueId="6a1c1ef4-2527-41c5-b599-f00db7b5d9e0" type="System.Int32">
-          <orm:column name="UnitMeasureId" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
-        </orm:field>
-        <orm:field name="_name" property="Name" behavior="readwrite" uniqueId="5370ff1a-9892-400e-a508-dd53bdba9305" type="System.String">
-          <orm:column name="Name" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
-        </orm:field>
-        <orm:field name="_modifiedDate" property="ModifiedDate" behavior="readwrite" uniqueId="d0b75faa-58c1-44ee-af0b-6828f56b54c7" type="System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
-          <orm:column name="ModifiedDate" sql-type="datetime" nullable="true" length="0" scale="0" has-default-value="true" ado-type="DateTime" />
-        </orm:field>
-        <orm:field name="_modifiedByUser" property="ModifiedByUser" behavior="readwrite" uniqueId="a246bf5c-5bf8-4193-bda2-bd9be20bcbb6" type="System.String">
-          <orm:column name="ModifiedByUser" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
-        </orm:field>
-        <orm:field name="_productVendors" property="ProductVendors" behavior="readwrite" uniqueId="5cb12bd0-f322-44a7-b20f-86cff6ba57ec" type="RecipiesModelNS.ProductVendor">
-          <orm:collection element-class="RecipiesModelNS.ProductVendor" inverse-field="_unitMeasure" order-by="" uniqueId="d7f42fba-7251-41b2-9dd6-aaf3a07c83a9" />
-        </orm:field>
-        <orm:field name="_products" property="Products" behavior="readwrite" uniqueId="3cd9d0ca-eac9-4732-88c1-9720b99a63a5" type="RecipiesModelNS.Product">
-          <orm:collection element-class="RecipiesModelNS.Product" inverse-field="_unitMeasure" order-by="" uniqueId="4e0c0c75-a2a7-4700-8321-38e8858971dd" />
-        </orm:field>
-      </orm:class>
       <orm:class name="PurchaseOrderHeader" uniqueId="26cab22f-397d-4d11-8d7d-8c69bd4b1e5b">
         <orm:table name="PurchaseOrderHeader" schema="Purchasing" />
         <orm:identity>
@@ -254,12 +228,6 @@
             <orm:constraint name="FK_ProductVendor_Vendor" schema="Purchasing" destination-table="Vendor" />
           </orm:reference>
         </orm:field>
-        <orm:field name="_unitMeasure" property="UnitMeasure" behavior="readwrite" uniqueId="890de63a-97b5-4eae-8934-9ece54cadb01" type="RecipiesModelNS.UnitMeasure">
-          <orm:reference uniqueId="d7f42fba-7251-41b2-9dd6-aaf3a07c83a9">
-            <orm:sharedfield name="_unitMeasureId" target-class="RecipiesModelNS.UnitMeasure" target-field="_unitMeasureId" />
-            <orm:constraint name="FK_ProductVendor_UnitMeasure" schema="Purchasing" destination-table="UnitMeasure" />
-          </orm:reference>
-        </orm:field>
         <orm:field name="_product" property="Product" behavior="readwrite" uniqueId="968e9238-bd16-4509-ae51-6dcd118d47ec" type="RecipiesModelNS.Product">
           <orm:reference uniqueId="af9d2da1-bc41-4099-b398-538013e129d9">
             <orm:sharedfield name="_productId" target-class="RecipiesModelNS.Product" target-field="_productId" />
@@ -382,12 +350,6 @@
         </orm:field>
         <orm:field name="_storeId" property="StoreId" behavior="readwrite" uniqueId="5ac058c8-7127-444e-ae75-b6a36d9a7554" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
           <orm:column name="StoreId" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
-        </orm:field>
-        <orm:field name="_unitMeasure" property="UnitMeasure" behavior="readwrite" uniqueId="a0ebc130-0177-4ed3-9989-3b73eed6f9a4" type="RecipiesModelNS.UnitMeasure">
-          <orm:reference uniqueId="4e0c0c75-a2a7-4700-8321-38e8858971dd">
-            <orm:sharedfield name="_unitMeasureId" target-class="RecipiesModelNS.UnitMeasure" target-field="_unitMeasureId" />
-            <orm:constraint name="FK_xProduct_xUnit" schema="Production" destination-table="UnitMeasure" />
-          </orm:reference>
         </orm:field>
         <orm:field name="_productCategory" property="ProductCategory" behavior="readwrite" uniqueId="47c8d2dd-5b5e-4917-ba70-72980b1b984f" type="RecipiesModelNS.ProductCategory">
           <orm:reference uniqueId="b7d6c266-0271-4882-8071-f63511f8e1e1">
@@ -951,52 +913,90 @@
         </orm:identity>
         <orm:concurrency strategy="changed" />
         <orm:field name="_inventoryId" property="InventoryId" behavior="readwrite" uniqueId="f9616fbb-399e-41c0-ae50-26a312a7872d" type="System.Int32">
-          <orm:column nullable="false" primary-key="true" length="0" name="InventoryId" scale="0" sql-type="int" backend-calculated="true" ado-type="Int32" />
+          <orm:column name="InventoryId" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
         </orm:field>
         <orm:field name="_productId" property="ProductId" behavior="readwrite" uniqueId="43ccee6d-a6d1-4056-aa2e-f10f99940874" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
-          <orm:column nullable="true" length="0" name="ProductId" scale="0" sql-type="int" ado-type="Int32" />
+          <orm:column name="ProductId" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
         </orm:field>
         <orm:field name="_forDate" property="ForDate" behavior="readwrite" uniqueId="dbb87465-6e0f-4e3b-af9b-fe578e7ca83d" type="System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
-          <orm:column nullable="true" length="0" name="ForDate" scale="0" sql-type="date" ado-type="Date" />
+          <orm:column name="ForDate" sql-type="date" nullable="true" length="0" scale="0" ado-type="Date" />
         </orm:field>
         <orm:field name="_averageUnitPrice" property="AverageUnitPrice" behavior="readwrite" uniqueId="b297a727-90db-4f22-8423-dab13b221f3a" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
-          <orm:column nullable="true" length="0" name="AverageUnitPrice" scale="0" sql-type="money" ado-type="Currency" />
+          <orm:column name="AverageUnitPrice" sql-type="money" nullable="true" length="0" scale="0" ado-type="Currency" />
         </orm:field>
         <orm:field name="_quantityByDocuments" property="QuantityByDocuments" behavior="readwrite" uniqueId="c6020515-6763-48ae-a98e-b8938b451a51" type="System.Nullable`1[[System.Double, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
-          <orm:column nullable="true" length="0" name="QuantityByDocuments" scale="0" sql-type="float" ado-type="Double" />
+          <orm:column name="QuantityByDocuments" sql-type="float" nullable="true" length="0" scale="0" ado-type="Double" />
         </orm:field>
         <orm:field name="_valueByDocuments" property="ValueByDocuments" behavior="readonly" uniqueId="d28a38ff-2fba-4455-a27a-347461839593" type="System.Nullable`1[[System.Double, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
-          <orm:column nullable="true" length="0" name="ValueByDocuments" scale="0" sql-type="float" ado-type="Double" />
+          <orm:column name="ValueByDocuments" sql-type="float" nullable="true" length="0" scale="0" ado-type="Double" />
         </orm:field>
         <orm:field name="_stocktakeQuantity" property="StocktakeQuantity" behavior="readwrite" uniqueId="6ceb560c-cc80-4772-8e0f-ed9fbce5667c" type="System.Nullable`1[[System.Double, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
-          <orm:column nullable="true" length="0" name="StocktakeQuantity" scale="0" sql-type="float" ado-type="Double" />
+          <orm:column name="StocktakeQuantity" sql-type="float" nullable="true" length="0" scale="0" ado-type="Double" />
         </orm:field>
         <orm:field name="_stocktakeValue" property="StocktakeValue" behavior="readonly" uniqueId="0b9dee4d-aa7b-49cc-b273-7c0211b701fe" type="System.Nullable`1[[System.Double, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
-          <orm:column nullable="true" length="0" name="StocktakeValue" scale="0" sql-type="float" ado-type="Double" />
+          <orm:column name="StocktakeValue" sql-type="float" nullable="true" length="0" scale="0" ado-type="Double" />
         </orm:field>
         <orm:field name="_deficiencyQuantity" property="DeficiencyQuantity" behavior="readonly" uniqueId="26a75b77-b6d0-41a3-9844-fb3dfd701131" type="System.Nullable`1[[System.Double, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
-          <orm:column nullable="true" length="0" name="DeficiencyQuantity" scale="0" sql-type="float" ado-type="Double" />
+          <orm:column name="DeficiencyQuantity" sql-type="float" nullable="true" length="0" scale="0" ado-type="Double" />
         </orm:field>
         <orm:field name="_deficiencyValue" property="DeficiencyValue" behavior="readonly" uniqueId="1f05b70a-f078-4a2a-8e89-c582ad3fceaa" type="System.Nullable`1[[System.Double, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
-          <orm:column nullable="true" length="0" name="DeficiencyValue" scale="0" sql-type="float" ado-type="Double" />
+          <orm:column name="DeficiencyValue" sql-type="float" nullable="true" length="0" scale="0" ado-type="Double" />
         </orm:field>
         <orm:field name="_surplusQuantity" property="SurplusQuantity" behavior="readonly" uniqueId="68535bf3-f385-48ff-bc7b-fccb3ae1f3dc" type="System.Nullable`1[[System.Double, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
-          <orm:column nullable="true" length="0" name="SurplusQuantity" scale="0" sql-type="float" ado-type="Double" />
+          <orm:column name="SurplusQuantity" sql-type="float" nullable="true" length="0" scale="0" ado-type="Double" />
         </orm:field>
         <orm:field name="_surplusValue" property="SurplusValue" behavior="readonly" uniqueId="992580a5-6065-484c-9b2d-0744a95862c2" type="System.Nullable`1[[System.Double, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
-          <orm:column nullable="true" length="0" name="SurplusValue" scale="0" sql-type="float" ado-type="Double" />
+          <orm:column name="SurplusValue" sql-type="float" nullable="true" length="0" scale="0" ado-type="Double" />
         </orm:field>
         <orm:field name="_modifiedDate" property="ModifiedDate" behavior="readwrite" uniqueId="f5ad4fcd-177f-4cfa-82ab-e6c67532ef21" type="System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
-          <orm:column has-default-value="true" nullable="true" length="0" name="ModifiedDate" scale="0" sql-type="datetime" ado-type="DateTime" />
+          <orm:column name="ModifiedDate" sql-type="datetime" nullable="true" length="0" scale="0" has-default-value="true" ado-type="DateTime" />
         </orm:field>
         <orm:field name="_modifiedByUser" property="ModifiedByUser" behavior="readwrite" uniqueId="26133dd4-b1dd-418a-91be-50c479607cb6" type="System.String">
-          <orm:column nullable="true" length="1000" name="ModifiedByUser" scale="0" sql-type="nvarchar" ado-type="UnicodeStringVariableLength" />
+          <orm:column name="ModifiedByUser" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
         </orm:field>
         <orm:field name="_product" property="Product" behavior="readwrite" uniqueId="074ea26f-1340-4ea0-87fd-563655345069" type="RecipiesModelNS.Product">
           <orm:reference uniqueId="13391a88-8889-4397-905e-82ec635c4feb">
             <orm:sharedfield name="_productId" target-class="RecipiesModelNS.Product" target-field="_productId" />
             <orm:constraint name="FK_Inventory_Product" schema="Production" destination-table="Product" />
           </orm:reference>
+        </orm:field>
+      </orm:class>
+      <orm:class name="UnitMeasure" uniqueId="39cc5974-35ee-4684-af81-af6f39198723">
+        <orm:table name="UnitMeasure" schema="Production" />
+        <orm:identity>
+          <orm:key-generator name="autoinc" />
+          <orm:single-field field-name="_unitMeasureId" />
+        </orm:identity>
+        <orm:concurrency strategy="changed" />
+        <orm:field name="_unitMeasureId" property="UnitMeasureId" behavior="readwrite" uniqueId="1775d696-8c3c-4135-a8d1-09453bdcbe12" type="System.Int32">
+          <orm:column nullable="false" primary-key="true" length="0" name="UnitMeasureId" scale="0" sql-type="int" backend-calculated="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_name" property="Name" behavior="readwrite" uniqueId="6dcffd23-8ee7-4823-808a-749802a7f0fc" type="System.String">
+          <orm:column nullable="true" length="1000" name="Name" scale="0" sql-type="nvarchar" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
+        <orm:field name="_isBaseUnit" property="IsBaseUnit" behavior="readwrite" uniqueId="69a964b6-fe29-43a4-bca1-ad5175102ed6" type="System.Nullable`1[[System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column has-default-value="true" nullable="true" length="0" name="IsBaseUnit" scale="0" sql-type="bit" ado-type="Bit" />
+        </orm:field>
+        <orm:field name="_baseUnitId" property="BaseUnitId" behavior="readwrite" uniqueId="b845ba85-ebe4-4d9b-b00a-8161b136790c" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column nullable="true" length="0" name="BaseUnitId" scale="0" sql-type="int" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_baseUnitFactor" property="BaseUnitFactor" behavior="readwrite" uniqueId="5c20e18e-a599-465e-bf07-f179df8327bc" type="System.Nullable`1[[System.Double, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column nullable="true" length="0" name="BaseUnitFactor" scale="0" sql-type="float" ado-type="Double" />
+        </orm:field>
+        <orm:field name="_modifiedDate" property="ModifiedDate" behavior="readwrite" uniqueId="24bddb61-b0a9-4897-b6fe-b782cf125573" type="System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column has-default-value="true" nullable="true" length="0" name="ModifiedDate" scale="0" sql-type="datetime" ado-type="DateTime" />
+        </orm:field>
+        <orm:field name="_modifiedByUser" property="ModifiedByUser" behavior="readwrite" uniqueId="8dd93ea5-4ef5-4789-9a5f-0cadf0008172" type="System.String">
+          <orm:column nullable="true" length="1000" name="ModifiedByUser" scale="0" sql-type="nvarchar" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
+        <orm:field name="_unitMeasure1" property="UnitMeasure1" behavior="readwrite" uniqueId="d2653ca4-95e2-41f6-b7bc-a2d2708542c3" type="RecipiesModelNS.UnitMeasure">
+          <orm:reference uniqueId="f1db7938-3034-4a76-a85b-994f1a506ffd">
+            <orm:sharedfield name="_baseUnitId" target-class="RecipiesModelNS.UnitMeasure" target-field="_unitMeasureId" />
+            <orm:constraint name="FK_UnitMeasure_UnitMeasure" schema="Production" destination-table="UnitMeasure" />
+          </orm:reference>
+        </orm:field>
+        <orm:field name="_unitMeasures" property="UnitMeasures" behavior="readwrite" uniqueId="092600fb-93d0-400f-adf9-9e1acbbcbf9f" type="RecipiesModelNS.UnitMeasure">
+          <orm:collection element-class="RecipiesModelNS.UnitMeasure" inverse-field="_unitMeasure1" order-by="" uniqueId="f1db7938-3034-4a76-a85b-994f1a506ffd" />
         </orm:field>
       </orm:class>
     </orm:namespace>
@@ -1101,12 +1101,6 @@
       </orm:table>
     </orm:schema>
     <orm:schema schema="Production">
-      <orm:table name="UnitMeasure" schema="Production">
-        <orm:column name="UnitMeasureId" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
-        <orm:column name="Name" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
-        <orm:column name="ModifiedDate" sql-type="datetime" nullable="true" length="0" scale="0" has-default-value="true" ado-type="DateTime" />
-        <orm:column name="ModifiedByUser" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
-      </orm:table>
       <orm:table name="ProductHistory" schema="Production">
         <orm:column name="ProductHistoryId" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
         <orm:column name="ProductId" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
@@ -1185,22 +1179,34 @@
         <orm:column name="ModifiedByUser" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
       </orm:table>
       <orm:table name="Inventory" schema="Production">
-        <orm:column nullable="false" primary-key="true" length="0" name="InventoryId" scale="0" sql-type="int" backend-calculated="true" ado-type="Int32" />
-        <orm:column nullable="true" length="0" name="ProductId" scale="0" sql-type="int" ado-type="Int32" />
-        <orm:column nullable="true" length="0" name="ForDate" scale="0" sql-type="date" ado-type="Date" />
-        <orm:column nullable="true" length="0" name="AverageUnitPrice" scale="0" sql-type="money" ado-type="Currency" />
-        <orm:column nullable="true" length="0" name="QuantityByDocuments" scale="0" sql-type="float" ado-type="Double" />
-        <orm:column nullable="true" length="0" name="ValueByDocuments" scale="0" sql-type="float" ado-type="Double" />
-        <orm:column nullable="true" length="0" name="StocktakeQuantity" scale="0" sql-type="float" ado-type="Double" />
-        <orm:column nullable="true" length="0" name="StocktakeValue" scale="0" sql-type="float" ado-type="Double" />
-        <orm:column nullable="true" length="0" name="DeficiencyQuantity" scale="0" sql-type="float" ado-type="Double" />
-        <orm:column nullable="true" length="0" name="DeficiencyValue" scale="0" sql-type="float" ado-type="Double" />
-        <orm:column nullable="true" length="0" name="SurplusQuantity" scale="0" sql-type="float" ado-type="Double" />
-        <orm:column nullable="true" length="0" name="SurplusValue" scale="0" sql-type="float" ado-type="Double" />
+        <orm:column name="InventoryId" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        <orm:column name="ProductId" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="ForDate" sql-type="date" nullable="true" length="0" scale="0" ado-type="Date" />
+        <orm:column name="AverageUnitPrice" sql-type="money" nullable="true" length="0" scale="0" ado-type="Currency" />
+        <orm:column name="QuantityByDocuments" sql-type="float" nullable="true" length="0" scale="0" ado-type="Double" />
+        <orm:column name="ValueByDocuments" sql-type="float" nullable="true" length="0" scale="0" ado-type="Double" />
+        <orm:column name="StocktakeQuantity" sql-type="float" nullable="true" length="0" scale="0" ado-type="Double" />
+        <orm:column name="StocktakeValue" sql-type="float" nullable="true" length="0" scale="0" ado-type="Double" />
+        <orm:column name="DeficiencyQuantity" sql-type="float" nullable="true" length="0" scale="0" ado-type="Double" />
+        <orm:column name="DeficiencyValue" sql-type="float" nullable="true" length="0" scale="0" ado-type="Double" />
+        <orm:column name="SurplusQuantity" sql-type="float" nullable="true" length="0" scale="0" ado-type="Double" />
+        <orm:column name="SurplusValue" sql-type="float" nullable="true" length="0" scale="0" ado-type="Double" />
+        <orm:column name="ModifiedDate" sql-type="datetime" nullable="true" length="0" scale="0" has-default-value="true" ado-type="DateTime" />
+        <orm:column name="ModifiedByUser" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
+        <orm:constraint name="FK_Inventory_Product" schema="Production" destination-table="Product">
+          <orm:column name="ProductId" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:constraint>
+      </orm:table>
+      <orm:table name="UnitMeasure" schema="Production">
+        <orm:column nullable="false" primary-key="true" length="0" name="UnitMeasureId" scale="0" sql-type="int" backend-calculated="true" ado-type="Int32" />
+        <orm:column nullable="true" length="1000" name="Name" scale="0" sql-type="nvarchar" ado-type="UnicodeStringVariableLength" />
+        <orm:column has-default-value="true" nullable="true" length="0" name="IsBaseUnit" scale="0" sql-type="bit" ado-type="Bit" />
+        <orm:column nullable="true" length="0" name="BaseUnitId" scale="0" sql-type="int" ado-type="Int32" />
+        <orm:column nullable="true" length="0" name="BaseUnitFactor" scale="0" sql-type="float" ado-type="Double" />
         <orm:column has-default-value="true" nullable="true" length="0" name="ModifiedDate" scale="0" sql-type="datetime" ado-type="DateTime" />
         <orm:column nullable="true" length="1000" name="ModifiedByUser" scale="0" sql-type="nvarchar" ado-type="UnicodeStringVariableLength" />
-        <orm:constraint name="FK_Inventory_Product" schema="Production" destination-table="Product">
-          <orm:column nullable="true" length="0" name="ProductId" scale="0" sql-type="int" ado-type="Int32" />
+        <orm:constraint name="FK_UnitMeasure_UnitMeasure" schema="Production" destination-table="UnitMeasure">
+          <orm:column nullable="true" length="0" name="BaseUnitId" scale="0" sql-type="int" ado-type="Int32" />
         </orm:constraint>
       </orm:table>
     </orm:schema>
@@ -1418,20 +1424,6 @@
         </classHasNavigationalProperties>
       </navigationalProperties>
     </DomainClass>
-    <DomainClass Id="54f006de-1e54-4dd1-aff9-4a981310c710" name="UnitMeasure" namespace="RecipiesModelNS" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true">
-      <Property Id="6a1c1ef4-2527-41c5-b599-f00db7b5d9e0" name="UnitMeasureId" type="Int32" label="UnitMeasureId : Int32" kind="Persistent" identity="true" fieldName="_unitMeasureId" />
-      <Property Id="d0b75faa-58c1-44ee-af0b-6828f56b54c7" name="ModifiedDate" type="DateTime" label="ModifiedDate : DateTime" nullable="true" kind="Persistent" fieldName="_modifiedDate" />
-      <Property Id="5370ff1a-9892-400e-a508-dd53bdba9305" name="Name" label="Name : String" kind="Persistent" fieldName="_name" />
-      <Property Id="a246bf5c-5bf8-4193-bda2-bd9be20bcbb6" name="ModifiedByUser" label="ModifiedByUser : String" kind="Persistent" fieldName="_modifiedByUser" />
-      <navigationalProperties>
-        <classHasNavigationalProperties Id="93b3706c-8ec4-4960-96fe-83a88eb1e070">
-          <NavigationalProperty Id="5cb12bd0-f322-44a7-b20f-86cff6ba57ec" name="ProductVendors" type="IList&lt;ProductVendor&gt;" label="ProductVendors : IList&lt;ProductVendor&gt;" nullable="true" kind="Persistent" fieldName="_productVendors" isDependent="false" isManaged="false" />
-        </classHasNavigationalProperties>
-        <classHasNavigationalProperties Id="60d215d8-acd7-4df1-9c0d-1c8afdf3fd0e">
-          <NavigationalProperty Id="3cd9d0ca-eac9-4732-88c1-9720b99a63a5" name="Products" type="IList&lt;Product&gt;" label="Products : IList&lt;Product&gt;" nullable="true" kind="Persistent" fieldName="_products" isDependent="false" isManaged="false" />
-        </classHasNavigationalProperties>
-      </navigationalProperties>
-    </DomainClass>
     <DomainClass Id="26cab22f-397d-4d11-8d7d-8c69bd4b1e5b" name="PurchaseOrderHeader" namespace="RecipiesModelNS" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true">
       <Property Id="55b1d0c3-e967-4a33-bbd4-5384f6ef32d8" name="Freight" type="Decimal" label="Freight : Decimal" nullable="true" kind="Persistent" fieldName="_freight" />
       <Property Id="119f890a-158a-438d-a477-b4ada8e6e8e1" name="ModifiedDate" type="DateTime" label="ModifiedDate : DateTime" nullable="true" kind="Persistent" fieldName="_modifiedDate" />
@@ -1596,19 +1588,6 @@
             </associationDefinesSourceProperty>
           </sourceNavigationalProperty>
         </Association>
-        <Association Id="d7f42fba-7251-41b2-9dd6-aaf3a07c83a9" SourceMultiplicity="ZeroOne" name="ProductVendorHasUnitMeasure">
-          <DomainClassMoniker name="/RecipiesModel/UnitMeasure" />
-          <targetNavigationalProperty>
-            <associationDefinesTargetProperty Id="a590fb27-0e33-46b4-b113-2c40785a7638">
-              <NavigationalPropertyMoniker name="/RecipiesModel/UnitMeasure/ProductVendors" />
-            </associationDefinesTargetProperty>
-          </targetNavigationalProperty>
-          <sourceNavigationalProperty>
-            <associationDefinesSourceProperty Id="f6b2aa77-d0b4-4531-8121-efb314455680">
-              <NavigationalPropertyMoniker name="/RecipiesModel/ProductVendor/UnitMeasure" />
-            </associationDefinesSourceProperty>
-          </sourceNavigationalProperty>
-        </Association>
         <Association Id="af9d2da1-bc41-4099-b398-538013e129d9" SourceMultiplicity="ZeroOne" name="ProductVendorHasProduct">
           <DomainClassMoniker name="/RecipiesModel/Product" />
           <targetNavigationalProperty>
@@ -1626,9 +1605,6 @@
       <navigationalProperties>
         <classHasNavigationalProperties Id="12926591-4a6b-4416-9e70-b1fa5c8445cc">
           <NavigationalProperty Id="d9b455ab-ed08-438c-ba23-1b79583d7727" name="Vendor" type="Vendor" label="Vendor : Vendor" nullable="true" kind="Persistent" fieldName="_vendor" isDependent="false" isManaged="false" />
-        </classHasNavigationalProperties>
-        <classHasNavigationalProperties Id="fb187eba-e1be-45bd-b3cf-c3b8056137ec">
-          <NavigationalProperty Id="890de63a-97b5-4eae-8934-9ece54cadb01" name="UnitMeasure" type="UnitMeasure" label="UnitMeasure : UnitMeasure" nullable="true" kind="Persistent" fieldName="_unitMeasure" isDependent="false" isManaged="false" />
         </classHasNavigationalProperties>
         <classHasNavigationalProperties Id="c9c2f981-a19e-4fbc-b3fc-9c42903fc274">
           <NavigationalProperty Id="968e9238-bd16-4509-ae51-6dcd118d47ec" name="Product" type="Product" label="Product : Product" nullable="true" kind="Persistent" fieldName="_product" isDependent="false" isManaged="false" />
@@ -1678,19 +1654,6 @@
       <Property Id="101a8902-c6d4-4010-b401-f9831dccc9ba" name="ModifiedByUser" label="ModifiedByUser : String" kind="Persistent" fieldName="_modifiedByUser" />
       <Property Id="5ac058c8-7127-444e-ae75-b6a36d9a7554" name="StoreId" type="Int32" label="StoreId : Int32" nullable="true" kind="Persistent" fieldName="_storeId" />
       <AssociationTargets>
-        <Association Id="4e0c0c75-a2a7-4700-8321-38e8858971dd" SourceMultiplicity="ZeroOne" name="ProductHasUnitMeasure">
-          <DomainClassMoniker name="/RecipiesModel/UnitMeasure" />
-          <targetNavigationalProperty>
-            <associationDefinesTargetProperty Id="ae7f232e-9227-40c7-bf51-21edad0175aa">
-              <NavigationalPropertyMoniker name="/RecipiesModel/UnitMeasure/Products" />
-            </associationDefinesTargetProperty>
-          </targetNavigationalProperty>
-          <sourceNavigationalProperty>
-            <associationDefinesSourceProperty Id="32efd422-db88-4ef3-bacd-7d70ead92767">
-              <NavigationalPropertyMoniker name="/RecipiesModel/Product/UnitMeasure" />
-            </associationDefinesSourceProperty>
-          </sourceNavigationalProperty>
-        </Association>
         <Association Id="b7d6c266-0271-4882-8071-f63511f8e1e1" SourceMultiplicity="ZeroOne" name="ProductHasProductCategory">
           <DomainClassMoniker name="/RecipiesModel/ProductCategory" />
           <targetNavigationalProperty>
@@ -1711,9 +1674,6 @@
         </classHasNavigationalProperties>
         <classHasNavigationalProperties Id="b65979af-b1f1-4001-b4b1-ea0933853424">
           <NavigationalProperty Id="37069bb3-7694-4e07-80cf-ad8d79bb2a88" name="ProductVendors" type="IList&lt;ProductVendor&gt;" label="ProductVendors : IList&lt;ProductVendor&gt;" nullable="true" kind="Persistent" fieldName="_productVendors" isDependent="false" isManaged="false" />
-        </classHasNavigationalProperties>
-        <classHasNavigationalProperties Id="b0cb9583-2c74-41c9-b9bd-0c7d255c9b93">
-          <NavigationalProperty Id="a0ebc130-0177-4ed3-9989-3b73eed6f9a4" name="UnitMeasure" type="UnitMeasure" label="UnitMeasure : UnitMeasure" nullable="true" kind="Persistent" fieldName="_unitMeasure" isDependent="false" isManaged="false" />
         </classHasNavigationalProperties>
         <classHasNavigationalProperties Id="b8cc0abb-1cf1-41dc-8d96-dc5101e381b3">
           <NavigationalProperty Id="47c8d2dd-5b5e-4917-ba70-72980b1b984f" name="ProductCategory" type="ProductCategory" label="ProductCategory : ProductCategory" nullable="true" kind="Persistent" fieldName="_productCategory" isDependent="false" isManaged="false" />
@@ -2143,12 +2103,43 @@
         </classHasNavigationalProperties>
       </navigationalProperties>
     </DomainClass>
+    <DomainClass Id="39cc5974-35ee-4684-af81-af6f39198723" name="UnitMeasure" namespace="RecipiesModelNS" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true">
+      <Property Id="1775d696-8c3c-4135-a8d1-09453bdcbe12" name="UnitMeasureId" type="Int32" label="UnitMeasureId : Int32" kind="Persistent" identity="true" fieldName="_unitMeasureId" />
+      <Property Id="5c20e18e-a599-465e-bf07-f179df8327bc" name="BaseUnitFactor" type="Double" label="BaseUnitFactor : Double" nullable="true" kind="Persistent" fieldName="_baseUnitFactor" />
+      <Property Id="b845ba85-ebe4-4d9b-b00a-8161b136790c" name="BaseUnitId" type="Int32" label="BaseUnitId : Int32" nullable="true" kind="Persistent" fieldName="_baseUnitId" />
+      <Property Id="69a964b6-fe29-43a4-bca1-ad5175102ed6" name="IsBaseUnit" type="Boolean" label="IsBaseUnit : Boolean" nullable="true" kind="Persistent" fieldName="_isBaseUnit" />
+      <Property Id="8dd93ea5-4ef5-4789-9a5f-0cadf0008172" name="ModifiedByUser" label="ModifiedByUser : String" kind="Persistent" fieldName="_modifiedByUser" />
+      <Property Id="24bddb61-b0a9-4897-b6fe-b782cf125573" name="ModifiedDate" type="DateTime" label="ModifiedDate : DateTime" nullable="true" kind="Persistent" fieldName="_modifiedDate" />
+      <Property Id="6dcffd23-8ee7-4823-808a-749802a7f0fc" name="Name" label="Name : String" kind="Persistent" fieldName="_name" />
+      <AssociationTargets>
+        <Association Id="f1db7938-3034-4a76-a85b-994f1a506ffd" SourceMultiplicity="ZeroOne" name="UnitMeasureHasUnitMeasure">
+          <DomainClassMoniker name="/RecipiesModel/UnitMeasure" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="d8d53414-9b5a-4eae-96f2-b99ebfd8d95f">
+              <NavigationalPropertyMoniker name="/RecipiesModel/UnitMeasure/UnitMeasures" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="c6eeaa7e-65a3-463c-a70e-e26eaff1c082">
+              <NavigationalPropertyMoniker name="/RecipiesModel/UnitMeasure/UnitMeasure1" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+      </AssociationTargets>
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="b7740f7c-21f3-4c23-a1f9-080d136458f4">
+          <NavigationalProperty Id="d2653ca4-95e2-41f6-b7bc-a2d2708542c3" name="UnitMeasure1" type="UnitMeasure" label="UnitMeasure1 : UnitMeasure" nullable="true" kind="Persistent" fieldName="_unitMeasure1" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="3319ac46-3420-4156-a437-60ae319041b1">
+          <NavigationalProperty Id="092600fb-93d0-400f-adf9-9e1acbbcbf9f" name="UnitMeasures" type="IList&lt;UnitMeasure&gt;" label="UnitMeasures : IList&lt;UnitMeasure&gt;" nullable="true" kind="Persistent" fieldName="_unitMeasures" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
   </Types>
   <domainContext>
     <domainModelHasDomainContext Id="4427cc43-2e74-4ae4-91f1-9c6640dee166">
       <domainContainer name="RecipiesModel" namespace="RecipiesModelNS" showPropertiesCompartment="true">
         <entitySetProperty name="Vendors" namespace="RecipiesModelNS" type="Vendor" label="Vendors : IQueryable&lt;RecipiesModelNS.Vendor&gt;" />
-        <entitySetProperty name="UnitMeasures" namespace="RecipiesModelNS" type="UnitMeasure" label="UnitMeasures : IQueryable&lt;RecipiesModelNS.UnitMeasure&gt;" />
         <entitySetProperty name="PurchaseOrderHeaders" namespace="RecipiesModelNS" type="PurchaseOrderHeader" label="PurchaseOrderHeaders : IQueryable&lt;RecipiesModelNS.PurchaseOrderHeader&gt;" />
         <entitySetProperty name="PurchaseOrderDetails" namespace="RecipiesModelNS" type="PurchaseOrderDetail" label="PurchaseOrderDetails : IQueryable&lt;RecipiesModelNS.PurchaseOrderDetail&gt;" />
         <entitySetProperty name="ProductVendors" namespace="RecipiesModelNS" type="ProductVendor" label="ProductVendors : IQueryable&lt;RecipiesModelNS.ProductVendor&gt;" />
@@ -2170,6 +2161,7 @@
         <entitySetProperty name="SalesOrderHeaders" namespace="RecipiesModelNS" type="SalesOrderHeader" label="SalesOrderHeaders : IQueryable&lt;RecipiesModelNS.SalesOrderHeader&gt;" />
         <entitySetProperty name="SalesOrderDetails" namespace="RecipiesModelNS" type="SalesOrderDetail" label="SalesOrderDetails : IQueryable&lt;RecipiesModelNS.SalesOrderDetail&gt;" />
         <entitySetProperty name="Inventories" namespace="RecipiesModelNS" type="Inventory" label="Inventories : IQueryable&lt;RecipiesModelNS.Inventory&gt;" />
+        <entitySetProperty name="UnitMeasures" namespace="RecipiesModelNS" type="UnitMeasure" label="UnitMeasures : IQueryable&lt;RecipiesModelNS.UnitMeasure&gt;" />
       </domainContainer>
     </domainModelHasDomainContext>
   </domainContext>

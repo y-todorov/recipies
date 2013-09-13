@@ -136,7 +136,7 @@ namespace YordanCustomControls
                 {
                     // for now every column will be trimmed and shown with tooltips. 
                     // If we want to exclude a column from being trimmed we have to add it here
-                    if (!(gc is GridButtonColumn || gc is GridEditCommandColumn || gc is GridDropDownColumn))
+                    if (!(gc is GridButtonColumn || gc is GridEditCommandColumn || gc is GridDropDownColumn || gc is GridCheckBoxColumn))
                     {
                         gdi[gc].ToolTip = HtmlToText.ConvertHtml(gdi[gc].Text);
 

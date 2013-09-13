@@ -60,14 +60,6 @@ namespace RecipiesModelNS
 	    	}
 		}
 		
-		public IQueryable<UnitMeasure> UnitMeasures 
-		{
-	    	get
-	    	{
-	        	return this.GetAll<UnitMeasure>();
-	    	}
-		}
-		
 		public IQueryable<PurchaseOrderHeader> PurchaseOrderHeaders 
 		{
 	    	get
@@ -236,6 +228,14 @@ namespace RecipiesModelNS
 	    	}
 		}
 		
+		public IQueryable<UnitMeasure> UnitMeasures 
+		{
+	    	get
+	    	{
+	        	return this.GetAll<UnitMeasure>();
+	    	}
+		}
+		
 		public static BackendConfiguration GetBackendConfiguration()
 		{
 			BackendConfiguration backend = new BackendConfiguration();
@@ -248,11 +248,6 @@ namespace RecipiesModelNS
 	public interface IRecipiesModelUnitOfWork : IUnitOfWork
 	{
 		IQueryable<Vendor> Vendors 
-		{ 
-			get;
-		}
-
-		IQueryable<UnitMeasure> UnitMeasures 
 		{ 
 			get;
 		}
@@ -358,6 +353,11 @@ namespace RecipiesModelNS
 		}
 
 		IQueryable<Inventory> Inventories 
+		{ 
+			get;
+		}
+
+		IQueryable<UnitMeasure> UnitMeasures 
 		{ 
 			get;
 		}

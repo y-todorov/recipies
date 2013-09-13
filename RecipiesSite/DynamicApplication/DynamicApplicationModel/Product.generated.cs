@@ -181,19 +181,6 @@ namespace RecipiesModelNS
 		    }
 		}
 		
-		private UnitMeasure _unitMeasure;
-		public virtual UnitMeasure UnitMeasure 
-		{ 
-		    get
-		    {
-		        return this._unitMeasure;
-		    }
-		    set
-		    {
-		        this._unitMeasure = value;
-		    }
-		}
-		
 		private ProductCategory _productCategory;
 		public virtual ProductCategory ProductCategory 
 		{ 

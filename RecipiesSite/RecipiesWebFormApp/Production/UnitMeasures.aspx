@@ -18,12 +18,23 @@
                         <ModelErrorMessage />
                     </ColumnValidationSettings>
                 </telerik:GridBoundColumn>
-                <telerik:GridBoundColumn DataField="ModifiedDate" ReadOnly="true"  DataType="System.DateTime" FilterControlAltText="Filter ModifiedDate column" HeaderText="ModifiedDate" SortExpression="ModifiedDate" UniqueName="ModifiedDate">
+                <telerik:GridCheckBoxColumn DataField="IsBaseUnit" FilterControlAltText="Filter IsBaseUnit column" HeaderText="IsBaseUnit" SortExpression="IsBaseUnit" UniqueName="IsBaseUnit">
+                </telerik:GridCheckBoxColumn>
+                  <telerik:GridNumericColumn DataField="BaseUnitFactor" FilterControlAltText="Filter BaseUnitFactor column" HeaderText="BaseUnitFactor" SortExpression="BaseUnitFactor" UniqueName="BaseUnitFactor">                  
+                </telerik:GridNumericColumn>
+                   <telerik:GridDropDownColumn UniqueName="DropDownCategoryListColumn" ListTextField="Name"
+                    ListValueField="UnitMeasureId" DataSourceID="OpenAccessLinqDataSourceBaseUnit" HeaderText="BaseUnit"
+                    DataField="BaseUnitId" DropDownControlType="RadComboBox" EmptyListItemText="" EnableEmptyListItem="true" EmptyListItemValue="" ConvertEmptyStringToNull="true">
+                    <ColumnValidationSettings>
+                        <ModelErrorMessage Text=""></ModelErrorMessage>
+                    </ColumnValidationSettings>
+                </telerik:GridDropDownColumn>
+                <telerik:GridBoundColumn DataField="ModifiedDate" ReadOnly="true" DataType="System.DateTime" FilterControlAltText="Filter ModifiedDate column" HeaderText="ModifiedDate" SortExpression="ModifiedDate" UniqueName="ModifiedDate">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
                 </telerik:GridBoundColumn>
-                  <telerik:GridBoundColumn DataField="ModifiedByUser" ReadOnly="true" FilterControlAltText="Filter ModifiedByUser column" HeaderText="ModifiedByUser" SortExpression="ModifiedByUser" UniqueName="ModifiedByUser">
+                <telerik:GridBoundColumn DataField="ModifiedByUser" ReadOnly="true" FilterControlAltText="Filter ModifiedByUser column" HeaderText="ModifiedByUser" SortExpression="ModifiedByUser" UniqueName="ModifiedByUser">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
@@ -32,5 +43,10 @@
         </MasterTableView>
     </yordan:YordanCustomRadGrid>
     <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourceUnit" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="UnitMeasures">
+    </telerik:OpenAccessLinqDataSource>
+    <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourceBaseUnit" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="UnitMeasures" Where="IsBaseUnit == @IsBaseUnit">
+        <WhereParameters>
+            <asp:Parameter DefaultValue="True" Name="IsBaseUnit" Type="Boolean" />
+        </WhereParameters>
     </telerik:OpenAccessLinqDataSource>
 </asp:Content>

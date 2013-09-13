@@ -51,6 +51,45 @@ namespace RecipiesModelNS
 		    }
 		}
 		
+		private bool? _isBaseUnit;
+		public virtual bool? IsBaseUnit 
+		{ 
+		    get
+		    {
+		        return this._isBaseUnit;
+		    }
+		    set
+		    {
+		        this._isBaseUnit = value;
+		    }
+		}
+		
+		private int? _baseUnitId;
+		public virtual int? BaseUnitId 
+		{ 
+		    get
+		    {
+		        return this._baseUnitId;
+		    }
+		    set
+		    {
+		        this._baseUnitId = value;
+		    }
+		}
+		
+		private double? _baseUnitFactor;
+		public virtual double? BaseUnitFactor 
+		{ 
+		    get
+		    {
+		        return this._baseUnitFactor;
+		    }
+		    set
+		    {
+		        this._baseUnitFactor = value;
+		    }
+		}
+		
 		private DateTime? _modifiedDate;
 		public virtual DateTime? ModifiedDate 
 		{ 
@@ -77,21 +116,25 @@ namespace RecipiesModelNS
 		    }
 		}
 		
-		private IList<ProductVendor> _productVendors = new List<ProductVendor>();
-		public virtual IList<ProductVendor> ProductVendors 
+		private UnitMeasure _unitMeasure1;
+		public virtual UnitMeasure UnitMeasure1 
 		{ 
 		    get
 		    {
-		        return this._productVendors;
+		        return this._unitMeasure1;
+		    }
+		    set
+		    {
+		        this._unitMeasure1 = value;
 		    }
 		}
 		
-		private IList<Product> _products = new List<Product>();
-		public virtual IList<Product> Products 
+		private IList<UnitMeasure> _unitMeasures = new List<UnitMeasure>();
+		public virtual IList<UnitMeasure> UnitMeasures 
 		{ 
 		    get
 		    {
-		        return this._products;
+		        return this._unitMeasures;
 		    }
 		}
 		

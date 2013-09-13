@@ -207,19 +207,6 @@ namespace RecipiesModelNS
 		    }
 		}
 		
-		private UnitMeasure _unitMeasure;
-		public virtual UnitMeasure UnitMeasure 
-		{ 
-		    get
-		    {
-		        return this._unitMeasure;
-		    }
-		    set
-		    {
-		        this._unitMeasure = value;
-		    }
-		}
-		
 		private Product _product;
 		public virtual Product Product 
 		{ 
