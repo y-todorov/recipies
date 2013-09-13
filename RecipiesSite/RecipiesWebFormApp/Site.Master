@@ -12,9 +12,11 @@
 <body>
     <form runat="server">
         <%--EnablePartialRendering="false/true" This is very importan.--%>
-        <telerik:RadScriptManager ID="RadScriptManager1" runat="server" AsyncPostBackErrorMessage="An error has occured on the server!" OnAsyncPostBackError="RadScriptManager1_AsyncPostBackError" EnablePartialRendering="true" EnableCdn="True" EnableScriptCombine="True" LoadScriptsBeforeUI="False">
-            <CdnSettings TelerikCdn="Enabled" />
+        <telerik:RadScriptManager ID="RadScriptManager1" runat="server" AsyncPostBackErrorMessage="An error has occured on the server!" OnAsyncPostBackError="RadScriptManager1_AsyncPostBackError" EnablePartialRendering="true" EnableScriptCombine="True">
             <Scripts>
+<asp:ScriptReference Assembly="Telerik.Web.UI" Name="Telerik.Web.UI.Common.Core.js"></asp:ScriptReference>
+<asp:ScriptReference Assembly="Telerik.Web.UI" Name="Telerik.Web.UI.Common.jQuery.js"></asp:ScriptReference>
+<asp:ScriptReference Assembly="Telerik.Web.UI" Name="Telerik.Web.UI.Common.jQueryInclude.js"></asp:ScriptReference>
                 <asp:ScriptReference Assembly="Telerik.Web.UI" Name="Telerik.Web.UI.Common.Core.js"></asp:ScriptReference>
                 <asp:ScriptReference Assembly="Telerik.Web.UI" Name="Telerik.Web.UI.Common.jQuery.js"></asp:ScriptReference>
                 <asp:ScriptReference Assembly="Telerik.Web.UI" Name="Telerik.Web.UI.Common.jQueryInclude.js"></asp:ScriptReference>
@@ -29,7 +31,6 @@
             <StyleSheets>
                 <telerik:StyleSheetReference Path="~/Styles/MyStyleSheet.css" />
             </StyleSheets>
-            <CdnSettings TelerikCdn="Enabled" />
         </telerik:RadStyleSheetManager>
         <telerik:RadAjaxManager ID="RadAjaxManager1" runat="server">
         </telerik:RadAjaxManager>

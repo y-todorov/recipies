@@ -9,19 +9,21 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <telerik:RadScriptManager runat="server" ID="RadScriptManagerLogin" EnableCdn="True" EnableScriptCombine="True" LoadScriptsBeforeUI="False">
-            <CdnSettings TelerikCdn="Enabled" />
-            <Scripts>
-<asp:ScriptReference Assembly="Telerik.Web.UI" Name="Telerik.Web.UI.Common.Core.js"></asp:ScriptReference>
-<asp:ScriptReference Assembly="Telerik.Web.UI" Name="Telerik.Web.UI.Common.jQuery.js"></asp:ScriptReference>
-<asp:ScriptReference Assembly="Telerik.Web.UI" Name="Telerik.Web.UI.Common.jQueryInclude.js"></asp:ScriptReference>
+      <%--  <telerik:RadScriptManager runat="server" ID="RadScriptManagerLogin" EnableScriptCombine="True">
+            <Scripts>               
+                 <telerik:RadScriptReference Path="Scripts/WebForms/MSAjax/MicrosoftAjax.js" />
+                 <telerik:RadScriptReference Path="Scripts/WebForms/MSAjax/MicrosoftAjaxWebForms.js" />
                 <telerik:RadScriptReference Path="Scripts/GoogleAnalytics.js" />
             </Scripts>
-        </telerik:RadScriptManager>
-        <telerik:RadStyleSheetManager runat="server" ID="RadStyleSheetManagerLogin" EnableStyleSheetCombine="true">
-            <CdnSettings TelerikCdn="Enabled" />
+        </telerik:RadScriptManager>--%>
+        <asp:ScriptManager ID="ScriptManager1" runat="server">
+            <Scripts>
+                <asp:ScriptReference Path="~/Scripts/GoogleAnalytics.js" />
+            </Scripts>
+        </asp:ScriptManager>
+      <%--  <telerik:RadStyleSheetManager runat="server" ID="RadStyleSheetManagerLogin">
 
-        </telerik:RadStyleSheetManager>
+        </telerik:RadStyleSheetManager>--%>
 
         <telerik:RadFormDecorator ID="RadFormDecorator1" runat="server" DecoratedControls="All" Skin="Silk" />
         <div>
