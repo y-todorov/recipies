@@ -64,6 +64,19 @@ namespace RecipiesModelNS
 		    }
 		}
 		
+		private int? _storeId;
+		public virtual int? StoreId 
+		{ 
+		    get
+		    {
+		        return this._storeId;
+		    }
+		    set
+		    {
+		        this._storeId = value;
+		    }
+		}
+		
 		private string _name;
 		public virtual string Name 
 		{ 
@@ -74,6 +87,19 @@ namespace RecipiesModelNS
 		    set
 		    {
 		        this._name = value;
+		    }
+		}
+		
+		private string _code;
+		public virtual string Code 
+		{ 
+		    get
+		    {
+		        return this._code;
+		    }
+		    set
+		    {
+		        this._code = value;
 		    }
 		}
 		
@@ -142,19 +168,6 @@ namespace RecipiesModelNS
 		    }
 		}
 		
-		private string _code;
-		public virtual string Code 
-		{ 
-		    get
-		    {
-		        return this._code;
-		    }
-		    set
-		    {
-		        this._code = value;
-		    }
-		}
-		
 		private string _modifiedByUser;
 		public virtual string ModifiedByUser 
 		{ 
@@ -168,16 +181,16 @@ namespace RecipiesModelNS
 		    }
 		}
 		
-		private int? _storeId;
-		public virtual int? StoreId 
+		private UnitMeasure _unitMeasure;
+		public virtual UnitMeasure UnitMeasure 
 		{ 
 		    get
 		    {
-		        return this._storeId;
+		        return this._unitMeasure;
 		    }
 		    set
 		    {
-		        this._storeId = value;
+		        this._unitMeasure = value;
 		    }
 		}
 		
@@ -191,6 +204,28 @@ namespace RecipiesModelNS
 		    set
 		    {
 		        this._productCategory = value;
+		    }
+		}
+		
+		private Store _store;
+		public virtual Store Store 
+		{ 
+		    get
+		    {
+		        return this._store;
+		    }
+		    set
+		    {
+		        this._store = value;
+		    }
+		}
+		
+		private IList<RecipeIngredient> _recipeIngredients = new List<RecipeIngredient>();
+		public virtual IList<RecipeIngredient> RecipeIngredients 
+		{ 
+		    get
+		    {
+		        return this._recipeIngredients;
 		    }
 		}
 		
@@ -209,15 +244,6 @@ namespace RecipiesModelNS
 		    get
 		    {
 		        return this._productVendors;
-		    }
-		}
-		
-		private IList<RecipeIngredient> _recipeIngredients = new List<RecipeIngredient>();
-		public virtual IList<RecipeIngredient> RecipeIngredients 
-		{ 
-		    get
-		    {
-		        return this._recipeIngredients;
 		    }
 		}
 		

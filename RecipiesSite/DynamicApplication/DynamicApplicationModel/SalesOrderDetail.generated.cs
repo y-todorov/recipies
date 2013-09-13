@@ -38,16 +38,16 @@ namespace RecipiesModelNS
 		    }
 		}
 		
-		private int? _salesOrderId;
-		public virtual int? SalesOrderId 
+		private int? _salesOrderHeaderId;
+		public virtual int? SalesOrderHeaderId 
 		{ 
 		    get
 		    {
-		        return this._salesOrderId;
+		        return this._salesOrderHeaderId;
 		    }
 		    set
 		    {
-		        this._salesOrderId = value;
+		        this._salesOrderHeaderId = value;
 		    }
 		}
 		

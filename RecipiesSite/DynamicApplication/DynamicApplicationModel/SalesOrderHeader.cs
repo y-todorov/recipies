@@ -10,7 +10,7 @@ namespace RecipiesModelNS
     {
         public void UpdateProductsFromStatus(SalesOrderStatusEnum oldStatus, SalesOrderStatusEnum newStatus)
         {
-            List<SalesOrderDetail> salesOrderDetails = ContextFactory.GetContextPerRequest().SalesOrderDetails.Where(po => po.SalesOrderId == OrderID).ToList();
+            List<SalesOrderDetail> salesOrderDetails = ContextFactory.GetContextPerRequest().SalesOrderDetails.Where(po => po.SalesOrderHeaderId == SalesOrderHeaderId).ToList();
             if (oldStatus == SalesOrderStatusEnum.Approved && newStatus == SalesOrderStatusEnum.Canceled)
             {
                 foreach (SalesOrderDetail sod in salesOrderDetails)

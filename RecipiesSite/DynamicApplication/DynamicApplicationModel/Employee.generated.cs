@@ -168,6 +168,19 @@ namespace RecipiesModelNS
 		    }
 		}
 		
+		private string _previousExperience;
+		public virtual string PreviousExperience 
+		{ 
+		    get
+		    {
+		        return this._previousExperience;
+		    }
+		    set
+		    {
+		        this._previousExperience = value;
+		    }
+		}
+		
 		private DateTime? _modifiedDate;
 		public virtual DateTime? ModifiedDate 
 		{ 
@@ -194,16 +207,12 @@ namespace RecipiesModelNS
 		    }
 		}
 		
-		private string _previousExperience;
-		public virtual string PreviousExperience 
+		private IList<SalesOrderHeader> _salesOrderHeaders = new List<SalesOrderHeader>();
+		public virtual IList<SalesOrderHeader> SalesOrderHeaders 
 		{ 
 		    get
 		    {
-		        return this._previousExperience;
-		    }
-		    set
-		    {
-		        this._previousExperience = value;
+		        return this._salesOrderHeaders;
 		    }
 		}
 		
@@ -222,15 +231,6 @@ namespace RecipiesModelNS
 		    get
 		    {
 		        return this._employeeDepartments;
-		    }
-		}
-		
-		private IList<SalesOrderHeader> _salesOrderHeaders = new List<SalesOrderHeader>();
-		public virtual IList<SalesOrderHeader> SalesOrderHeaders 
-		{ 
-		    get
-		    {
-		        return this._salesOrderHeaders;
 		    }
 		}
 		

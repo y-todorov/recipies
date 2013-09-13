@@ -50,6 +50,19 @@ namespace RecipiesModelNS
 		    }
 		}
 		
+		private int? _unitMeasureId;
+		public virtual int? UnitMeasureId 
+		{ 
+		    get
+		    {
+		        return this._unitMeasureId;
+		    }
+		    set
+		    {
+		        this._unitMeasureId = value;
+		    }
+		}
+		
 		private int? _categoryId;
 		public virtual int? CategoryId 
 		{ 
@@ -73,6 +86,19 @@ namespace RecipiesModelNS
 		    set
 		    {
 		        this._name = value;
+		    }
+		}
+		
+		private string _code;
+		public virtual string Code 
+		{ 
+		    get
+		    {
+		        return this._code;
+		    }
+		    set
+		    {
+		        this._code = value;
 		    }
 		}
 		
@@ -151,32 +177,6 @@ namespace RecipiesModelNS
 		    set
 		    {
 		        this._modifiedDate = value;
-		    }
-		}
-		
-		private string _code;
-		public virtual string Code 
-		{ 
-		    get
-		    {
-		        return this._code;
-		    }
-		    set
-		    {
-		        this._code = value;
-		    }
-		}
-		
-		private int? _unitMeasureId;
-		public virtual int? UnitMeasureId 
-		{ 
-		    get
-		    {
-		        return this._unitMeasureId;
-		    }
-		    set
-		    {
-		        this._unitMeasureId = value;
 		    }
 		}
 		

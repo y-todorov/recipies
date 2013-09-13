@@ -25,42 +25,42 @@ namespace RecipiesModelNS
 {
 	public partial class SalesOrderHeader
 	{
-		private int _orderID;
-		public virtual int OrderID 
+		private int _salesOrderHeaderId;
+		public virtual int SalesOrderHeaderId 
 		{ 
 		    get
 		    {
-		        return this._orderID;
+		        return this._salesOrderHeaderId;
 		    }
 		    set
 		    {
-		        this._orderID = value;
+		        this._salesOrderHeaderId = value;
 		    }
 		}
 		
-		private int? _customerID;
-		public virtual int? CustomerID 
+		private int? _customerId;
+		public virtual int? CustomerId 
 		{ 
 		    get
 		    {
-		        return this._customerID;
+		        return this._customerId;
 		    }
 		    set
 		    {
-		        this._customerID = value;
+		        this._customerId = value;
 		    }
 		}
 		
-		private int? _employeeID;
-		public virtual int? EmployeeID 
+		private int? _employeeId;
+		public virtual int? EmployeeId 
 		{ 
 		    get
 		    {
-		        return this._employeeID;
+		        return this._employeeId;
 		    }
 		    set
 		    {
-		        this._employeeID = value;
+		        this._employeeId = value;
 		    }
 		}
 		

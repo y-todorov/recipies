@@ -106,10 +106,6 @@ namespace RecipiesModelNS
 		    {
 		        return this._stocktakeQuantity;
 		    }
-		    set
-		    {
-		        this._stocktakeQuantity = value;
-		    }
 		}
 		
 		private double? _stocktakeValue;

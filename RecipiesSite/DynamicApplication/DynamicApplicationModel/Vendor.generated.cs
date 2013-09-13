@@ -155,21 +155,21 @@ namespace RecipiesModelNS
 		    }
 		}
 		
-		private IList<ProductVendor> _productVendors = new List<ProductVendor>();
-		public virtual IList<ProductVendor> ProductVendors 
-		{ 
-		    get
-		    {
-		        return this._productVendors;
-		    }
-		}
-		
 		private IList<PurchaseOrderHeader> _purchaseOrderHeaders = new List<PurchaseOrderHeader>();
 		public virtual IList<PurchaseOrderHeader> PurchaseOrderHeaders 
 		{ 
 		    get
 		    {
 		        return this._purchaseOrderHeaders;
+		    }
+		}
+		
+		private IList<ProductVendor> _productVendors = new List<ProductVendor>();
+		public virtual IList<ProductVendor> ProductVendors 
+		{ 
+		    get
+		    {
+		        return this._productVendors;
 		    }
 		}
 		

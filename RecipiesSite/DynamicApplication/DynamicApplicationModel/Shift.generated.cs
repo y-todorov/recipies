@@ -51,32 +51,6 @@ namespace RecipiesModelNS
 		    }
 		}
 		
-		private DateTime? _modifiedDate;
-		public virtual DateTime? ModifiedDate 
-		{ 
-		    get
-		    {
-		        return this._modifiedDate;
-		    }
-		    set
-		    {
-		        this._modifiedDate = value;
-		    }
-		}
-		
-		private string _modifiedByUser;
-		public virtual string ModifiedByUser 
-		{ 
-		    get
-		    {
-		        return this._modifiedByUser;
-		    }
-		    set
-		    {
-		        this._modifiedByUser = value;
-		    }
-		}
-		
 		private DateTime? _startHour;
 		public virtual DateTime? StartHour 
 		{ 
@@ -100,6 +74,32 @@ namespace RecipiesModelNS
 		    set
 		    {
 		        this._endHour = value;
+		    }
+		}
+		
+		private DateTime? _modifiedDate;
+		public virtual DateTime? ModifiedDate 
+		{ 
+		    get
+		    {
+		        return this._modifiedDate;
+		    }
+		    set
+		    {
+		        this._modifiedDate = value;
+		    }
+		}
+		
+		private string _modifiedByUser;
+		public virtual string ModifiedByUser 
+		{ 
+		    get
+		    {
+		        return this._modifiedByUser;
+		    }
+		    set
+		    {
+		        this._modifiedByUser = value;
 		    }
 		}
 		

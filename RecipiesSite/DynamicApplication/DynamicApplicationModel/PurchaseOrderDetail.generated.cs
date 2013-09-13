@@ -112,6 +112,19 @@ namespace RecipiesModelNS
 		    }
 		}
 		
+		private int? _returnedQuantity;
+		public virtual int? ReturnedQuantity 
+		{ 
+		    get
+		    {
+		        return this._returnedQuantity;
+		    }
+		    set
+		    {
+		        this._returnedQuantity = value;
+		    }
+		}
+		
 		private int _stockedQuantity;
 		public virtual int StockedQuantity 
 		{ 
@@ -147,16 +160,16 @@ namespace RecipiesModelNS
 		    }
 		}
 		
-		private int? _returnedQuantity;
-		public virtual int? ReturnedQuantity 
+		private int? _unitMeasureId;
+		public virtual int? UnitMeasureId 
 		{ 
 		    get
 		    {
-		        return this._returnedQuantity;
+		        return this._unitMeasureId;
 		    }
 		    set
 		    {
-		        this._returnedQuantity = value;
+		        this._unitMeasureId = value;
 		    }
 		}
 		
@@ -183,6 +196,19 @@ namespace RecipiesModelNS
 		    set
 		    {
 		        this._product = value;
+		    }
+		}
+		
+		private UnitMeasure _unitMeasure;
+		public virtual UnitMeasure UnitMeasure 
+		{ 
+		    get
+		    {
+		        return this._unitMeasure;
+		    }
+		    set
+		    {
+		        this._unitMeasure = value;
 		    }
 		}
 		

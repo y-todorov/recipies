@@ -60,6 +60,86 @@ namespace RecipiesModelNS
 	    	}
 		}
 		
+		public IQueryable<UnitMeasure> UnitMeasures 
+		{
+	    	get
+	    	{
+	        	return this.GetAll<UnitMeasure>();
+	    	}
+		}
+		
+		public IQueryable<Store> Stores 
+		{
+	    	get
+	    	{
+	        	return this.GetAll<Store>();
+	    	}
+		}
+		
+		public IQueryable<ShipMethod> ShipMethods 
+		{
+	    	get
+	    	{
+	        	return this.GetAll<ShipMethod>();
+	    	}
+		}
+		
+		public IQueryable<Shift> Shifts 
+		{
+	    	get
+	    	{
+	        	return this.GetAll<Shift>();
+	    	}
+		}
+		
+		public IQueryable<SalesOrderStatus> SalesOrderStatus 
+		{
+	    	get
+	    	{
+	        	return this.GetAll<SalesOrderStatus>();
+	    	}
+		}
+		
+		public IQueryable<SalesOrderHeader> SalesOrderHeaders 
+		{
+	    	get
+	    	{
+	        	return this.GetAll<SalesOrderHeader>();
+	    	}
+		}
+		
+		public IQueryable<SalesOrderDetail> SalesOrderDetails 
+		{
+	    	get
+	    	{
+	        	return this.GetAll<SalesOrderDetail>();
+	    	}
+		}
+		
+		public IQueryable<RecipeIngredient> RecipeIngredients 
+		{
+	    	get
+	    	{
+	        	return this.GetAll<RecipeIngredient>();
+	    	}
+		}
+		
+		public IQueryable<Recipe> Recipes 
+		{
+	    	get
+	    	{
+	        	return this.GetAll<Recipe>();
+	    	}
+		}
+		
+		public IQueryable<PurchaseOrderStatus> PurchaseOrderStatus 
+		{
+	    	get
+	    	{
+	        	return this.GetAll<PurchaseOrderStatus>();
+	    	}
+		}
+		
 		public IQueryable<PurchaseOrderHeader> PurchaseOrderHeaders 
 		{
 	    	get
@@ -108,35 +188,11 @@ namespace RecipiesModelNS
 	    	}
 		}
 		
-		public IQueryable<Employee> Employees 
+		public IQueryable<Inventory> Inventories 
 		{
 	    	get
 	    	{
-	        	return this.GetAll<Employee>();
-	    	}
-		}
-		
-		public IQueryable<Customer> Customers 
-		{
-	    	get
-	    	{
-	        	return this.GetAll<Customer>();
-	    	}
-		}
-		
-		public IQueryable<ShipMethod> ShipMethods 
-		{
-	    	get
-	    	{
-	        	return this.GetAll<ShipMethod>();
-	    	}
-		}
-		
-		public IQueryable<Shift> Shifts 
-		{
-	    	get
-	    	{
-	        	return this.GetAll<Shift>();
+	        	return this.GetAll<Inventory>();
 	    	}
 		}
 		
@@ -148,11 +204,11 @@ namespace RecipiesModelNS
 	    	}
 		}
 		
-		public IQueryable<Department> Departments 
+		public IQueryable<Employee> Employees 
 		{
 	    	get
 	    	{
-	        	return this.GetAll<Department>();
+	        	return this.GetAll<Employee>();
 	    	}
 		}
 		
@@ -164,75 +220,19 @@ namespace RecipiesModelNS
 	    	}
 		}
 		
-		public IQueryable<PurchaseOrderStatus> PurchaseOrderStatus 
+		public IQueryable<Department> Departments 
 		{
 	    	get
 	    	{
-	        	return this.GetAll<PurchaseOrderStatus>();
+	        	return this.GetAll<Department>();
 	    	}
 		}
 		
-		public IQueryable<RecipeIngredient> RecipeIngredients 
+		public IQueryable<Customer> Customers 
 		{
 	    	get
 	    	{
-	        	return this.GetAll<RecipeIngredient>();
-	    	}
-		}
-		
-		public IQueryable<Recipe> Recipes 
-		{
-	    	get
-	    	{
-	        	return this.GetAll<Recipe>();
-	    	}
-		}
-		
-		public IQueryable<Store> Stores 
-		{
-	    	get
-	    	{
-	        	return this.GetAll<Store>();
-	    	}
-		}
-		
-		public IQueryable<SalesOrderStatus> SalesOrderStatus 
-		{
-	    	get
-	    	{
-	        	return this.GetAll<SalesOrderStatus>();
-	    	}
-		}
-		
-		public IQueryable<SalesOrderHeader> SalesOrderHeaders 
-		{
-	    	get
-	    	{
-	        	return this.GetAll<SalesOrderHeader>();
-	    	}
-		}
-		
-		public IQueryable<SalesOrderDetail> SalesOrderDetails 
-		{
-	    	get
-	    	{
-	        	return this.GetAll<SalesOrderDetail>();
-	    	}
-		}
-		
-		public IQueryable<Inventory> Inventories 
-		{
-	    	get
-	    	{
-	        	return this.GetAll<Inventory>();
-	    	}
-		}
-		
-		public IQueryable<UnitMeasure> UnitMeasures 
-		{
-	    	get
-	    	{
-	        	return this.GetAll<UnitMeasure>();
+	        	return this.GetAll<Customer>();
 	    	}
 		}
 		
@@ -248,6 +248,56 @@ namespace RecipiesModelNS
 	public interface IRecipiesModelUnitOfWork : IUnitOfWork
 	{
 		IQueryable<Vendor> Vendors 
+		{ 
+			get;
+		}
+
+		IQueryable<UnitMeasure> UnitMeasures 
+		{ 
+			get;
+		}
+
+		IQueryable<Store> Stores 
+		{ 
+			get;
+		}
+
+		IQueryable<ShipMethod> ShipMethods 
+		{ 
+			get;
+		}
+
+		IQueryable<Shift> Shifts 
+		{ 
+			get;
+		}
+
+		IQueryable<SalesOrderStatus> SalesOrderStatus 
+		{ 
+			get;
+		}
+
+		IQueryable<SalesOrderHeader> SalesOrderHeaders 
+		{ 
+			get;
+		}
+
+		IQueryable<SalesOrderDetail> SalesOrderDetails 
+		{ 
+			get;
+		}
+
+		IQueryable<RecipeIngredient> RecipeIngredients 
+		{ 
+			get;
+		}
+
+		IQueryable<Recipe> Recipes 
+		{ 
+			get;
+		}
+
+		IQueryable<PurchaseOrderStatus> PurchaseOrderStatus 
 		{ 
 			get;
 		}
@@ -282,22 +332,7 @@ namespace RecipiesModelNS
 			get;
 		}
 
-		IQueryable<Employee> Employees 
-		{ 
-			get;
-		}
-
-		IQueryable<Customer> Customers 
-		{ 
-			get;
-		}
-
-		IQueryable<ShipMethod> ShipMethods 
-		{ 
-			get;
-		}
-
-		IQueryable<Shift> Shifts 
+		IQueryable<Inventory> Inventories 
 		{ 
 			get;
 		}
@@ -307,7 +342,7 @@ namespace RecipiesModelNS
 			get;
 		}
 
-		IQueryable<Department> Departments 
+		IQueryable<Employee> Employees 
 		{ 
 			get;
 		}
@@ -317,47 +352,12 @@ namespace RecipiesModelNS
 			get;
 		}
 
-		IQueryable<PurchaseOrderStatus> PurchaseOrderStatus 
+		IQueryable<Department> Departments 
 		{ 
 			get;
 		}
 
-		IQueryable<RecipeIngredient> RecipeIngredients 
-		{ 
-			get;
-		}
-
-		IQueryable<Recipe> Recipes 
-		{ 
-			get;
-		}
-
-		IQueryable<Store> Stores 
-		{ 
-			get;
-		}
-
-		IQueryable<SalesOrderStatus> SalesOrderStatus 
-		{ 
-			get;
-		}
-
-		IQueryable<SalesOrderHeader> SalesOrderHeaders 
-		{ 
-			get;
-		}
-
-		IQueryable<SalesOrderDetail> SalesOrderDetails 
-		{ 
-			get;
-		}
-
-		IQueryable<Inventory> Inventories 
-		{ 
-			get;
-		}
-
-		IQueryable<UnitMeasure> UnitMeasures 
+		IQueryable<Customer> Customers 
 		{ 
 			get;
 		}

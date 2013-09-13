@@ -25,6 +25,71 @@ namespace RecipiesModelNS
 {
 	public partial class PurchaseOrderHeader
 	{
+		private int _purchaseOrderId;
+		public virtual int PurchaseOrderId 
+		{ 
+		    get
+		    {
+		        return this._purchaseOrderId;
+		    }
+		    set
+		    {
+		        this._purchaseOrderId = value;
+		    }
+		}
+		
+		private int? _statusId;
+		public virtual int? StatusId 
+		{ 
+		    get
+		    {
+		        return this._statusId;
+		    }
+		    set
+		    {
+		        this._statusId = value;
+		    }
+		}
+		
+		private int? _employeeId;
+		public virtual int? EmployeeId 
+		{ 
+		    get
+		    {
+		        return this._employeeId;
+		    }
+		    set
+		    {
+		        this._employeeId = value;
+		    }
+		}
+		
+		private int? _vendorId;
+		public virtual int? VendorId 
+		{ 
+		    get
+		    {
+		        return this._vendorId;
+		    }
+		    set
+		    {
+		        this._vendorId = value;
+		    }
+		}
+		
+		private int? _shipMethodId;
+		public virtual int? ShipMethodId 
+		{ 
+		    get
+		    {
+		        return this._shipMethodId;
+		    }
+		    set
+		    {
+		        this._shipMethodId = value;
+		    }
+		}
+		
 		private DateTime? _orderDate;
 		public virtual DateTime? OrderDate 
 		{ 
@@ -64,6 +129,19 @@ namespace RecipiesModelNS
 		    }
 		}
 		
+		private decimal? _vAT;
+		public virtual decimal? VAT 
+		{ 
+		    get
+		    {
+		        return this._vAT;
+		    }
+		    set
+		    {
+		        this._vAT = value;
+		    }
+		}
+		
 		private decimal? _freight;
 		public virtual decimal? Freight 
 		{ 
@@ -86,6 +164,19 @@ namespace RecipiesModelNS
 		    }
 		}
 		
+		private int? _invoiceNumber;
+		public virtual int? InvoiceNumber 
+		{ 
+		    get
+		    {
+		        return this._invoiceNumber;
+		    }
+		    set
+		    {
+		        this._invoiceNumber = value;
+		    }
+		}
+		
 		private DateTime? _modifiedDate;
 		public virtual DateTime? ModifiedDate 
 		{ 
@@ -99,58 +190,6 @@ namespace RecipiesModelNS
 		    }
 		}
 		
-		private int? _vendorId;
-		public virtual int? VendorId 
-		{ 
-		    get
-		    {
-		        return this._vendorId;
-		    }
-		    set
-		    {
-		        this._vendorId = value;
-		    }
-		}
-		
-		private int? _shipMethodId;
-		public virtual int? ShipMethodId 
-		{ 
-		    get
-		    {
-		        return this._shipMethodId;
-		    }
-		    set
-		    {
-		        this._shipMethodId = value;
-		    }
-		}
-		
-		private int _purchaseOrderId;
-		public virtual int PurchaseOrderId 
-		{ 
-		    get
-		    {
-		        return this._purchaseOrderId;
-		    }
-		    set
-		    {
-		        this._purchaseOrderId = value;
-		    }
-		}
-		
-		private int? _employeeId;
-		public virtual int? EmployeeId 
-		{ 
-		    get
-		    {
-		        return this._employeeId;
-		    }
-		    set
-		    {
-		        this._employeeId = value;
-		    }
-		}
-		
 		private string _modifiedByUser;
 		public virtual string ModifiedByUser 
 		{ 
@@ -161,45 +200,6 @@ namespace RecipiesModelNS
 		    set
 		    {
 		        this._modifiedByUser = value;
-		    }
-		}
-		
-		private decimal? _vAT;
-		public virtual decimal? VAT 
-		{ 
-		    get
-		    {
-		        return this._vAT;
-		    }
-		    set
-		    {
-		        this._vAT = value;
-		    }
-		}
-		
-		private int? _statusId;
-		public virtual int? StatusId 
-		{ 
-		    get
-		    {
-		        return this._statusId;
-		    }
-		    set
-		    {
-		        this._statusId = value;
-		    }
-		}
-		
-		private int? _invoiceNumber;
-		public virtual int? InvoiceNumber 
-		{ 
-		    get
-		    {
-		        return this._invoiceNumber;
-		    }
-		    set
-		    {
-		        this._invoiceNumber = value;
 		    }
 		}
 		
@@ -229,19 +229,6 @@ namespace RecipiesModelNS
 		    }
 		}
 		
-		private Employee _employee;
-		public virtual Employee Employee 
-		{ 
-		    get
-		    {
-		        return this._employee;
-		    }
-		    set
-		    {
-		        this._employee = value;
-		    }
-		}
-		
 		private PurchaseOrderStatus _purchaseOrderStatus;
 		public virtual PurchaseOrderStatus PurchaseOrderStatus 
 		{ 
@@ -252,6 +239,19 @@ namespace RecipiesModelNS
 		    set
 		    {
 		        this._purchaseOrderStatus = value;
+		    }
+		}
+		
+		private Employee _employee;
+		public virtual Employee Employee 
+		{ 
+		    get
+		    {
+		        return this._employee;
+		    }
+		    set
+		    {
+		        this._employee = value;
 		    }
 		}
 		

@@ -284,7 +284,11 @@ namespace RecipiesWebFormApp.Purchasing
 
                     //tbUnitPrice.Text = productVendor.StandardPrice.ToString();
                 }
-            }            
+            }
+
+
+            Control unitMeasureName = editedItem["UnitMeasureName"].Controls[0] as Control;
+            
         }
 
         protected void OpenAccessLinqDataSourcePurchaseOrders_Updating(object sender, OpenAccessLinqDataSourceUpdateEventArgs e)

@@ -116,25 +116,30 @@ namespace RecipiesModelNS
 		    }
 		}
 		
-		private UnitMeasure _unitMeasure1;
-		public virtual UnitMeasure UnitMeasure1 
+		private IList<ProductVendor> _productVendors = new List<ProductVendor>();
+		public virtual IList<ProductVendor> ProductVendors 
 		{ 
 		    get
 		    {
-		        return this._unitMeasure1;
-		    }
-		    set
-		    {
-		        this._unitMeasure1 = value;
+		        return this._productVendors;
 		    }
 		}
 		
-		private IList<UnitMeasure> _unitMeasures = new List<UnitMeasure>();
-		public virtual IList<UnitMeasure> UnitMeasures 
+		private IList<Product> _products = new List<Product>();
+		public virtual IList<Product> Products 
 		{ 
 		    get
 		    {
-		        return this._unitMeasures;
+		        return this._products;
+		    }
+		}
+		
+		private IList<PurchaseOrderDetail> _purchaseOrderDetails = new List<PurchaseOrderDetail>();
+		public virtual IList<PurchaseOrderDetail> PurchaseOrderDetails 
+		{ 
+		    get
+		    {
+		        return this._purchaseOrderDetails;
 		    }
 		}
 		

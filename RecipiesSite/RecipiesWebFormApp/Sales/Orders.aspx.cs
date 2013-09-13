@@ -52,7 +52,7 @@ namespace RecipiesWebFormApp.Sales
             SalesOrderDetail newSalesOrderDetail = e.NewObject as SalesOrderDetail;
             if (newSalesOrderDetail != null)
             {
-                newSalesOrderDetail.SalesOrderId = SalesOrderId;
+                newSalesOrderDetail.SalesOrderHeaderId = SalesOrderId;
             }
         }
 
@@ -72,8 +72,8 @@ namespace RecipiesWebFormApp.Sales
                 if (editableItem != null)
                 {
                     int salesOrderId = (int)editableItem.GetDataKeyValue(rgSalesOrderHeaders.MasterTableView.DataKeyNames[0]);
-                    SalesOrderHeader salesOrderHeader = ContextFactory.GetContextPerRequest().SalesOrderHeaders.FirstOrDefault(s => s.OrderID == salesOrderId);
-                    SalesOrderId = salesOrderHeader.OrderID;                  
+                    SalesOrderHeader salesOrderHeader = ContextFactory.GetContextPerRequest().SalesOrderHeaders.FirstOrDefault(s => s.SalesOrderHeaderId == salesOrderId);
+                    SalesOrderId = salesOrderHeader.SalesOrderHeaderId;                  
                 }
             }
             if (e.CommandName == RadGrid.InitInsertCommandName)

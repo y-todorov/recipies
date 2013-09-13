@@ -115,6 +115,19 @@ namespace RecipiesModelNS
 		    }
 		}
 		
+		private string _attachmentName;
+		public virtual string AttachmentName 
+		{ 
+		    get
+		    {
+		        return this._attachmentName;
+		    }
+		    set
+		    {
+		        this._attachmentName = value;
+		    }
+		}
+		
 		private bool _isDefault;
 		public virtual bool IsDefault 
 		{ 
@@ -151,19 +164,6 @@ namespace RecipiesModelNS
 		    set
 		    {
 		        this._modifiedByUser = value;
-		    }
-		}
-		
-		private string _attachmentName;
-		public virtual string AttachmentName 
-		{ 
-		    get
-		    {
-		        return this._attachmentName;
-		    }
-		    set
-		    {
-		        this._attachmentName = value;
 		    }
 		}
 		

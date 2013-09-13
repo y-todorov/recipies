@@ -77,21 +77,21 @@ namespace RecipiesModelNS
 		    }
 		}
 		
-		private IList<Product> _products = new List<Product>();
-		public virtual IList<Product> Products 
-		{ 
-		    get
-		    {
-		        return this._products;
-		    }
-		}
-		
 		private IList<Recipe> _recipes = new List<Recipe>();
 		public virtual IList<Recipe> Recipes 
 		{ 
 		    get
 		    {
 		        return this._recipes;
+		    }
+		}
+		
+		private IList<Product> _products = new List<Product>();
+		public virtual IList<Product> Products 
+		{ 
+		    get
+		    {
+		        return this._products;
 		    }
 		}
 		
