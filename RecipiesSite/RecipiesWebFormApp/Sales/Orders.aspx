@@ -7,9 +7,9 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <yordan:YordanCustomRadGrid ID="rgSalesOrderHeaders" runat="server" DataSourceID="OpenAccessLinqDataSourceOrder" CellSpacing="0" GridLines="None" OnItemCommand="rgSalesOrderHeaders_ItemCommand">
-        <MasterTableView AutoGenerateColumns="False" DataKeyNames="OrderID" DataSourceID="OpenAccessLinqDataSourceOrder">
+        <MasterTableView AutoGenerateColumns="False" DataKeyNames="SalesOrderHeaderId" DataSourceID="OpenAccessLinqDataSourceOrder">
             <Columns>
-                <telerik:GridBoundColumn DataField="OrderID" DataType="System.Int32" FilterControlAltText="Filter OrderID column" HeaderText="OrderID" ReadOnly="True" SortExpression="OrderID" UniqueName="OrderID">
+                <telerik:GridBoundColumn DataField="SalesOrderHeaderId" DataType="System.Int32" FilterControlAltText="Filter SalesOrderHeaderId column" HeaderText="SalesOrderHeaderId" ReadOnly="True" SortExpression="SalesOrderHeaderId" UniqueName="SalesOrderHeaderId">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
@@ -126,9 +126,9 @@
         </WhereParameters>
     </telerik:OpenAccessLinqDataSource>
 
-    <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourceOrderDetail" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="SalesOrderDetails" OnInserting="OpenAccessLinqDataSourceOrderDetail_Inserting" OnSelecting="OpenAccessLinqDataSourceOrderDetail_Selecting" Where="SalesOrderId == @SalesOrderId" >
+    <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourceOrderDetail" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="SalesOrderDetails" OnInserting="OpenAccessLinqDataSourceOrderDetail_Inserting" OnSelecting="OpenAccessLinqDataSourceOrderDetail_Selecting" Where="SalesOrderHeaderId == @SalesOrderHeaderId" >
         <WhereParameters>
-            <asp:Parameter DefaultValue="0" Name="SalesOrderId" Type="Int32" />
+            <asp:Parameter DefaultValue="0" Name="SalesOrderHeaderId" Type="Int32" />
         </WhereParameters>
 </telerik:OpenAccessLinqDataSource>
     <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourceSalesOrderHeader" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="SalesOrderHeaders" />

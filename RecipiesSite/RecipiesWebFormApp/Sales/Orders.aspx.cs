@@ -58,9 +58,9 @@ namespace RecipiesWebFormApp.Sales
 
         protected void OpenAccessLinqDataSourceOrderDetail_Selecting(object sender, Telerik.OpenAccess.Web.OpenAccessLinqDataSourceSelectEventArgs e)
         {
-            if (e.WhereParameters.ContainsKey("SalesOrderId"))
+            if (e.WhereParameters.ContainsKey("SalesOrderHeaderId"))
             {
-                e.WhereParameters["SalesOrderId"] = SalesOrderId;
+                e.WhereParameters["SalesOrderHeaderId"] = SalesOrderId;
             }
         }
 
