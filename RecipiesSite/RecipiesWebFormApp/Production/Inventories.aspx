@@ -4,7 +4,7 @@
 <%@ Register assembly="Telerik.Web.UI" namespace="Telerik.Web.UI" tagprefix="telerik" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourceProduct" Runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="Products" />
-    <cc1:YordanCustomRadGrid ID="YordanCustomRadGridInventory" runat="server" CellSpacing="0" DataSourceID="OpenAccessLinqDataSourceInventory" GridLines="None">
+    <cc1:YordanCustomRadGrid ID="YordanCustomRadGridInventory" runat="server" CellSpacing="0" DataSourceID="OpenAccessLinqDataSourceInventory" GridLines="None" OnItemCreated="YordanCustomRadGridInventory_ItemCreated" >
         <MasterTableView AutoGenerateColumns="False" DataKeyNames="InventoryId" DataSourceID="OpenAccessLinqDataSourceInventory">
             <Columns>
                 <telerik:GridBoundColumn DataField="InventoryId" DataType="System.Int32" FilterControlAltText="Filter InventoryId column" HeaderText="InventoryId" ReadOnly="True" SortExpression="InventoryId" UniqueName="InventoryId">

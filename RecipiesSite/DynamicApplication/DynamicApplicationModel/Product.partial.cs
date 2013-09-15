@@ -49,7 +49,59 @@ namespace RecipiesModelNS
             {
                 averagePrice = 0;
             }
-            return averagePrice;                
+            return averagePrice;
+        }
+
+        public Inventory GetLastInventory()
+        {
+            Inventory lastInventory = ContextFactory.GetContextPerRequest().Inventories.Where(inv => inv.ProductId == ProductId).OrderByDescending(inv => inv.ForDate).FirstOrDefault();
+            return lastInventory;
+        }
+
+        public double GetQuantityByDocuments()
+        {
+            Inventory inventory = GetLastInventory();
+
+            // test
+            double result = GetPurchaseOrderStockedQuantity(DateTime.Now.AddYears(-1), DateTime.Now.AddYears(1));
+            double result2 = GetSalesOrderQuantity(DateTime.Now.AddYears(-1), DateTime.Now.AddYears(1));
+            
+
+
+            if (inventory != null)
+            {
+                if (inventory.StocktakeQuantity.HasValue)
+                {
+
+                }
+            }
+            return 0;
+        }
+
+        public double GetPurchaseOrderStockedQuantity(DateTime fromDate, DateTime toDate)
+        {
+            List<PurchaseOrderHeader> purchaseOrderHeaders = ContextFactory.GetContextPerRequest().PurchaseOrderHeaders.Where(pu => pu.ShipDate.HasValue &&
+                pu.ShipDate.Value.Date >= fromDate.Date &&
+                pu.ShipDate.Value.Date <= toDate.Date && pu.PurchaseOrderDetails.Any(pod => pod.ProductId == ProductId)).ToList();
+            double stockedQuantityForPeriod = 0;
+            foreach (PurchaseOrderHeader poh in purchaseOrderHeaders)
+            {
+                foreach (PurchaseOrderDetail pod in poh.PurchaseOrderDetails)
+                {
+                    stockedQuantityForPeriod += pod.StockedQuantity;
+                }
+            }
+            return stockedQuantityForPeriod;
+        }
+
+        public double GetSalesOrderQuantity(DateTime fromDate, DateTime toDate)
+        {
+            List<SalesOrderHeader> salesOrderHeaders = ContextFactory.GetContextPerRequest().SalesOrderHeaders.Where(soh => soh.ShippedDate.HasValue &&
+                soh.ShippedDate.Value.Date >= fromDate.Date &&
+                soh.ShippedDate.Value.Date <= toDate.Date &&
+                soh.SalesOrderDetails.Any(sod => sod.Recipe.RecipeIngredients.Any(ri => ri.ProductId == ProductId))).ToList();
+
+            return 0;
         }
     }
 }
