@@ -1370,6 +1370,7 @@
     <orm:relational-naming-settings>
       <orm:remove-camel-case>False</orm:remove-camel-case>
       <orm:source-strategy>Property</orm:source-strategy>
+      <orm:remove-leading-underscore>False</orm:remove-leading-underscore>
     </orm:relational-naming-settings>
   </orm:orm>
   <ModelSettings xmlns="">
@@ -1391,11 +1392,20 @@
     <CodeGenerationSettings>
       <MappingDefinitionType>Xml</MappingDefinitionType>
     </CodeGenerationSettings>
-    <SchemaUpdateSettings />
+    <SchemaUpdateSettings>
+      <DeploymentProject>RecipiesModel</DeploymentProject>
+    </SchemaUpdateSettings>
     <BackendConfigurationSettings>
       <BackendConfiguration>
         <Backend>MsSql</Backend>
         <ProviderName>System.Data.SqlClient</ProviderName>
+        <Logging>
+          <LogLevel>Normal</LogLevel>
+          <LogFileName>OpenAccessLogFile</LogFileName>
+          <EventText>True</EventText>
+          <MetricStoreSnapshotInterval>0</MetricStoreSnapshotInterval>
+          <Append>True</Append>
+        </Logging>
       </BackendConfiguration>
     </BackendConfigurationSettings>
   </ModelSettings>
