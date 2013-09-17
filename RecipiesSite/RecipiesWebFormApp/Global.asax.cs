@@ -14,7 +14,7 @@ using System.IO;
 using System.Text;
 using RecipiesModelNS;
 using System.Diagnostics;
-using PubNubMessaging.Core;
+//using PubNubMessaging.Core;
 
 namespace RecipiesWebFormApp
 {
@@ -56,7 +56,7 @@ namespace RecipiesWebFormApp
                 DateTime? lmd = Application["ProductDate"] as DateTime?;
                 if (lmd.Value != lastModifiedDate.Value)
                 {
-                    PubNubMessaging.Core.Pubnub.Instance.Publish("Products", "rebind", (t) => t.ToString(), (t) => t.ToString());
+                    //PubNubMessaging.Core.Pubnub.Instance.Publish("Products", "rebind", (t) => t.ToString(), (t) => t.ToString());
                 }
                 Application["ProductDate"] = lastModifiedDate;
             }

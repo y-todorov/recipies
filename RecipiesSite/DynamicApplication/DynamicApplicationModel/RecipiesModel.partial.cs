@@ -57,7 +57,7 @@ namespace RecipiesModelNS
 
             base.SaveChanges(failureMode);
 
-            PubNubMessaging.Core.Pubnub.Instance.Publish("Products", "rebind", (t) => t.ToString(), (t) => t.ToString());
+            //PubNubMessaging.Core.Pubnub.Instance.Publish("Products", "rebind", (t) => t.ToString(), (t) => t.ToString());
         }
 
         private void UpdateRecipesValuePerPortionFromIngredientsChange(List<int> recipeIds)

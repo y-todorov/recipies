@@ -5,45 +5,7 @@
 <%@ Register Assembly="YordanCustomControls" Namespace="YordanCustomControls" TagPrefix="yordan" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <telerik:RadCodeBlock runat="server">
-        <script src=http://cdn.pubnub.com/pubnub-3.5.4.min.js ></script>
-        <script type="text/javascript">
-
-            (function () {
-
-                // Init
-                var pubnub = PUBNUB.init({
-                    publish_key: 'pub-c-cc6cdb68-ab44-4f1a-8553-ccc30d96f87a',
-                    subscribe_key: 'sub-c-bde0a3b8-1538-11e3-bc51-02ee2ddab7fe'
-                })
-
-                pubnub.ready();
-
-                pubnub.subscribe({
-                    channel: 'Products',
-                    callback: function (message) { rebindGrid(message) }
-                });
-
-                function rebindGrid(message) {
-                   
-                    var grid = window.$find("<%= ((RadGrid)rgProducts).ClientID %>");
-
-                    if (grid != null) {
-                        //debugger;
-                        var masterTable = grid.get_masterTableView();
-                        var editedItemsArray = masterTable.get_editItems();
-                        var isItemInserted  = masterTable.get_isItemInserted()
-                        if (editedItemsArray.length == 0 && !isItemInserted) {
-                            masterTable.rebind();
-                        }
-                    }
-                }
-
-
-            })();
-
-        </script>
-
+    <telerik:RadCodeBlock runat="server">       
     </telerik:RadCodeBlock>
 
     <yordan:YordanCustomRadGrid ID="rgProducts" runat="server" DataSourceID="OpenAccessLinqDataSourceProduct" CellSpacing="0" GridLines="None">

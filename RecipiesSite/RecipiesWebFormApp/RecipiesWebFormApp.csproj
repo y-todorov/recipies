@@ -290,7 +290,6 @@
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Styles\MyStyleSheet.css" />
-    <Content Include="TestSendMail.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -563,13 +562,6 @@
     </Compile>
     <Compile Include="SiteLogin.Master.designer.cs">
       <DependentUpon>SiteLogin.Master</DependentUpon>
-    </Compile>
-    <Compile Include="TestSendMail.aspx.cs">
-      <DependentUpon>TestSendMail.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="TestSendMail.aspx.designer.cs">
-      <DependentUpon>TestSendMail.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
