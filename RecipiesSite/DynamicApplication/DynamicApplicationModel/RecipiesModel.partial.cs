@@ -10,6 +10,8 @@ using Telerik.OpenAccess.Metadata.Fluent;
 using Telerik.OpenAccess.Metadata.Fluent.Advanced;
 using System.Reflection;
 using System.Web;
+using Microsoft.AspNet.SignalR;
+using RecipiesWebFormApp;
 
 namespace RecipiesModelNS
 {
@@ -59,6 +61,8 @@ namespace RecipiesModelNS
 
             base.SaveChanges(failureMode);
 
+            var context = GlobalHost.ConnectionManager.GetHubContext<RebindHub>();
+            context.Clients.All.rebindRadGrid();      
             //PubNubMessaging.Core.Pubnub.Instance.Publish("Products", "rebind", (t) => t.ToString(), (t) => t.ToString());
         }
 

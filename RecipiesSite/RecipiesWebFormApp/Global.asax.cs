@@ -23,6 +23,7 @@ namespace RecipiesWebFormApp
         void Application_Start(object sender, EventArgs e)
         {            
             // Code that runs on application startup
+            RouteTable.Routes.MapHubs();
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterOpenAuth();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
