@@ -9,6 +9,7 @@ namespace RecipiesReports
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PurchaseOrderDetailsReport));
             Telerik.Reporting.Group group1 = new Telerik.Reporting.Group();
             Telerik.Reporting.Drawing.StyleRule styleRule1 = new Telerik.Reporting.Drawing.StyleRule();
             Telerik.Reporting.Drawing.StyleRule styleRule2 = new Telerik.Reporting.Drawing.StyleRule();
@@ -33,6 +34,7 @@ namespace RecipiesReports
             this.unitPriceDataTextBox = new Telerik.Reporting.TextBox();
             this.lineTotalDataTextBox = new Telerik.Reporting.TextBox();
             this.odsSalesOrderDetails = new Telerik.Reporting.ObjectDataSource();
+            this.pictureBox1 = new Telerik.Reporting.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // labelsGroupFooterSection
@@ -62,8 +64,8 @@ namespace RecipiesReports
             this.textBox4.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.6666666269302368D), Telerik.Reporting.Drawing.Unit.Inch(0.47988176345825195D));
             this.textBox4.Style.Font.Bold = true;
             this.textBox4.Style.Font.Italic = false;
-            this.textBox4.Style.Visible = false;
-            this.textBox4.Value = "";
+            this.textBox4.Style.Visible = true;
+            this.textBox4.Value = "= Sum(Fields.LineTotal)";
             // 
             // labelsGroupHeaderSection
             // 
@@ -132,16 +134,17 @@ namespace RecipiesReports
             // 
             // reportHeader
             // 
-            this.reportHeader.Height = Telerik.Reporting.Drawing.Unit.Inch(0.5D);
+            this.reportHeader.Height = Telerik.Reporting.Drawing.Unit.Inch(1.1000000238418579D);
             this.reportHeader.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
-            this.titleTextBox});
+            this.titleTextBox,
+            this.pictureBox1});
             this.reportHeader.Name = "reportHeader";
             // 
             // titleTextBox
             // 
-            this.titleTextBox.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Inch(0D), Telerik.Reporting.Drawing.Unit.Inch(3.9339065551757812E-05D));
+            this.titleTextBox.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Inch(3.3958332538604736D), Telerik.Reporting.Drawing.Unit.Inch(0.099960647523403168D));
             this.titleTextBox.Name = "titleTextBox";
-            this.titleTextBox.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(8.4583330154418945D), Telerik.Reporting.Drawing.Unit.Inch(0.48740151524543762D));
+            this.titleTextBox.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.6874996423721314D), Telerik.Reporting.Drawing.Unit.Inch(0.2999606728553772D));
             this.titleTextBox.StyleName = "Title";
             this.titleTextBox.Value = "Order Details";
             // 
@@ -201,7 +204,7 @@ namespace RecipiesReports
             this.lineTotalDataTextBox.Name = "lineTotalDataTextBox";
             this.lineTotalDataTextBox.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.6666666269302368D), Telerik.Reporting.Drawing.Unit.Inch(0.40000000596046448D));
             this.lineTotalDataTextBox.StyleName = "Data";
-            this.lineTotalDataTextBox.Value = "=Fields.UnitPrice";
+            this.lineTotalDataTextBox.Value = "=Fields.LineTotal";
             // 
             // odsSalesOrderDetails
             // 
@@ -209,6 +212,14 @@ namespace RecipiesReports
             this.odsSalesOrderDetails.DataSource = "DynamicApplicationModel.RecipiesModel, DynamicApplicationModel, Version=1.0.0.0, " +
     "Culture=neutral, PublicKeyToken=null";
             this.odsSalesOrderDetails.Name = "odsSalesOrderDetails";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Inch(2.5D), Telerik.Reporting.Drawing.Unit.Inch(0.40000000596046448D));
+            this.pictureBox1.MimeType = "image/png";
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(3.5D), Telerik.Reporting.Drawing.Unit.Inch(0.69996070861816406D));
+            this.pictureBox1.Value = ((object)(resources.GetObject("pictureBox1.Value")));
             // 
             // PurchaseOrderDetailsReport
             // 
@@ -281,6 +292,7 @@ namespace RecipiesReports
         private Telerik.Reporting.TextBox textBox3;
         private Telerik.Reporting.TextBox textBox4;
         private Telerik.Reporting.ObjectDataSource odsSalesOrderDetails;
+        private Telerik.Reporting.PictureBox pictureBox1;
 
     }
 }

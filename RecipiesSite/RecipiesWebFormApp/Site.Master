@@ -32,13 +32,6 @@
             </StyleSheets>
         </telerik:RadStyleSheetManager>
         <telerik:RadAjaxManager ID="RadAjaxManager1" runat="server" DefaultLoadingPanelID="RadAjaxLoadingPanel1">
-            <AjaxSettings>
-                <telerik:AjaxSetting AjaxControlID="MainContent">
-                    <UpdatedControls>
-                        <telerik:AjaxUpdatedControl ControlID="MainContent" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass="" />
-                    </UpdatedControls>
-                </telerik:AjaxSetting>
-            </AjaxSettings>
         </telerik:RadAjaxManager>
         <telerik:RadFormDecorator ID="RadFormDecorator1" runat="server" Skin="Silk" DecoratedControls="All" />
         <telerik:RadSkinManager ID="RadSkinManager1" runat="server" Skin="Silk">
