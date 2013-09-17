@@ -1400,11 +1400,8 @@
         <Backend>MsSql</Backend>
         <ProviderName>System.Data.SqlClient</ProviderName>
         <Logging>
-          <LogLevel>Normal</LogLevel>
-          <LogFileName>OpenAccessLogFile</LogFileName>
-          <EventText>True</EventText>
+          <LogToTrace>False</LogToTrace>
           <MetricStoreSnapshotInterval>0</MetricStoreSnapshotInterval>
-          <Append>True</Append>
         </Logging>
       </BackendConfiguration>
     </BackendConfigurationSettings>

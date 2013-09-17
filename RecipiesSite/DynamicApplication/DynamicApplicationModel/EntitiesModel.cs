@@ -241,11 +241,8 @@ namespace RecipiesModelNS
 			BackendConfiguration backend = new BackendConfiguration();
 			backend.Backend = "MsSql";
 			backend.ProviderName = "System.Data.SqlClient";
-			backend.Logging.LogEvents = LoggingLevel.Normal;
+			backend.Logging.LogEventsToTrace = false;
 			backend.Logging.MetricStoreSnapshotInterval = 0;
-			backend.Logging.Downloader.Append = true;
-			backend.Logging.Downloader.Filename = "OpenAccessLogFile";
-			backend.Logging.Downloader.EventText = true;
 			return backend;
 		}
 	}
