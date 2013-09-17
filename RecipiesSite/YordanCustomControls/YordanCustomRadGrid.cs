@@ -195,7 +195,14 @@ namespace YordanCustomControls
                     {
                         if (string.IsNullOrEmpty(gridBoundColumn.DataFormatString))
                         {
-                            gridBoundColumn.DataFormatString = "{0:C2}";
+                            gridBoundColumn.DataFormatString = "{0:C3}";
+                        }
+                    }
+                    if (gridBoundColumn.DataType == typeof(double) || gridBoundColumn.DataType == typeof(float))
+                    {
+                        if (string.IsNullOrEmpty(gridBoundColumn.DataFormatString))
+                        {
+                            gridBoundColumn.DataFormatString = "{0:F3}";
                         }
                     }
 

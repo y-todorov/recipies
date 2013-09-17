@@ -20,7 +20,7 @@
                 </telerik:GridBoundColumn>
                 <telerik:GridCheckBoxColumn DataField="IsBaseUnit" FilterControlAltText="Filter IsBaseUnit column" HeaderText="IsBaseUnit" SortExpression="IsBaseUnit" UniqueName="IsBaseUnit">
                 </telerik:GridCheckBoxColumn>
-                  <telerik:GridNumericColumn DataField="BaseUnitFactor" FilterControlAltText="Filter BaseUnitFactor column" HeaderText="BaseUnitFactor" SortExpression="BaseUnitFactor" UniqueName="BaseUnitFactor">                  
+                  <telerik:GridNumericColumn DataField="BaseUnitFactor" DataType="System.Double" FilterControlAltText="Filter BaseUnitFactor column" HeaderText="BaseUnitFactor" SortExpression="BaseUnitFactor" UniqueName="BaseUnitFactor">                  
                 </telerik:GridNumericColumn>
                    <telerik:GridDropDownColumn UniqueName="DropDownCategoryListColumn" ListTextField="Name"
                     ListValueField="UnitMeasureId" DataSourceID="OpenAccessLinqDataSourceBaseUnit" HeaderText="BaseUnit"

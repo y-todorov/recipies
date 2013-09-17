@@ -164,8 +164,8 @@ namespace RecipiesModelNS
 		    }
 		}
 		
-		private int? _invoiceNumber;
-		public virtual int? InvoiceNumber 
+		private string _invoiceNumber;
+		public virtual string InvoiceNumber 
 		{ 
 		    get
 		    {

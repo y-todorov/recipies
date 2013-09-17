@@ -64,11 +64,11 @@
                         <ModelErrorMessage Text=""></ModelErrorMessage>
                     </ColumnValidationSettings>
                 </telerik:GridDropDownColumn>
-                <telerik:GridNumericColumn DataField="InvoiceNumber" DataType="System.Int32" FilterControlAltText="Filter InvoiceNumber column" HeaderText="InvoiceNumber" SortExpression="InvoiceNumber" UniqueName="InvoiceNumber">
+                <telerik:GridBoundColumn DataField="InvoiceNumber" FilterControlAltText="Filter InvoiceNumber column" HeaderText="InvoiceNumber" SortExpression="InvoiceNumber" UniqueName="InvoiceNumber">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
-                </telerik:GridNumericColumn>
+                </telerik:GridBoundColumn>
 
                 <telerik:GridDateTimeColumn DataField="OrderDate" DataFormatString="{0:dd/MM/yyyy}" DataType="System.DateTime" FilterControlAltText="Filter OrderDate column" HeaderText="OrderDate" SortExpression="OrderDate" UniqueName="OrderDate">
                     <ColumnValidationSettings>
