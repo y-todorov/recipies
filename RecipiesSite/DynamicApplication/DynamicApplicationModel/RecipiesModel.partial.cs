@@ -50,14 +50,36 @@ namespace RecipiesModelNS
             SetProperShiftDates();
 
             List<int> recipeIds = GetUpdatedRecipeIds();
+            List<int> purchaseOrderHeaderIds = PurchaseOrderHeaders.Select(poh => poh.PurchaseOrderId).ToList();
 
             base.SaveChanges(failureMode);
 
             UpdateRecipesValuePerPortionFromIngredientsChange(recipeIds);
+            UpdatePurchaseOrderSubTotalFromPurchaseOrderDetails(purchaseOrderHeaderIds);
 
             base.SaveChanges(failureMode);
 
             //PubNubMessaging.Core.Pubnub.Instance.Publish("Products", "rebind", (t) => t.ToString(), (t) => t.ToString());
+        }
+
+        private void UpdatePurchaseOrderSubTotalFromPurchaseOrderDetails(List<int> purchaseOrderHeaderIds)
+        {
+            foreach (int? id in purchaseOrderHeaderIds)
+            {
+                if (id.HasValue)
+                {
+                    PurchaseOrderHeader poh = PurchaseOrderHeaders.FirstOrDefault(po => po.PurchaseOrderId == id);
+                    if (poh != null)
+                    {
+                        decimal? subTotal = 0;
+                        foreach (PurchaseOrderDetail pod in poh.PurchaseOrderDetails)
+                        {
+                            subTotal += pod.LineTotal;
+                        }
+                        poh.SubTotal = subTotal;
+                    }
+                }
+            }
         }
 
         private void UpdateRecipesValuePerPortionFromIngredientsChange(List<int> recipeIds)
@@ -98,6 +120,11 @@ namespace RecipiesModelNS
                 return new List<int>();
             }
         }
+
+        //private List<int> GetUpdatedObjects(Type typeOfObject)
+        //{
+
+        //}
 
         // Setting the date of shifts to be in 2000 year
         private void SetProperShiftDates()

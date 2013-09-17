@@ -327,6 +327,12 @@ namespace RecipiesWebFormApp.Purchasing
             PurchaseOrderDetail oldPurchaseOrderDetail = e.OriginalObject as PurchaseOrderDetail;
             PurchaseOrderDetail newPurchaseOrderDetail = e.NewObject as PurchaseOrderDetail;
         }
+
+        protected void OpenAccessLinqDataSourcePurchaseOrderDetails_InsertedUpdatedDeleted(object sender, OpenAccessLinqDataSourceStatusEventArgs e)
+        {
+            // So SubTotal and Total value  will be updated
+            rgPurchaseOrders.Rebind();
+        }
   
     }
 }
