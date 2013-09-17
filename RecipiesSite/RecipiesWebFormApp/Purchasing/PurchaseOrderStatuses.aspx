@@ -20,11 +20,11 @@
                     <ModelErrorMessage Text="" />
                 </ColumnValidationSettings>
             </telerik:GridBoundColumn>
-            <telerik:GridBoundColumn DataField="ModifiedDate" DataType="System.DateTime"  ReadOnly="true" FilterControlAltText="Filter ModifiedDate column" HeaderText="ModifiedDate" SortExpression="ModifiedDate" UniqueName="ModifiedDate">
+            <telerik:GridDateTimeColumn DataField="ModifiedDate" DataType="System.DateTime"  ReadOnly="true" FilterControlAltText="Filter ModifiedDate column" HeaderText="ModifiedDate" SortExpression="ModifiedDate" UniqueName="ModifiedDate">
                 <ColumnValidationSettings>
                     <ModelErrorMessage Text="" />
                 </ColumnValidationSettings>
-            </telerik:GridBoundColumn>
+            </telerik:GridDateTimeColumn>
             <telerik:GridBoundColumn DataField="ModifiedByUser" ReadOnly="true" FilterControlAltText="Filter ModifiedByUser column" HeaderText="ModifiedByUser" SortExpression="ModifiedByUser" UniqueName="ModifiedByUser">
                 <ColumnValidationSettings>
                     <ModelErrorMessage Text="" />

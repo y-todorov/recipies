@@ -123,6 +123,9 @@ namespace RecipiesWebFormApp.Purchasing
                 GridDataItem dataItem = e.Item as GridDataItem;
                 if (dataItem != null)
                 {
+                    (Master as SiteMaster).MasterRadNotification.Show("Sending Emails is temporary disabled. Will be enabled when the product is tested enough! ");
+                    return;
+
                     int purchaseOrderId = (int)dataItem.GetDataKeyValue(rgPurchaseOrders.MasterTableView.DataKeyNames[0]);
                     PurchaseOrderHeader purchaseOrder = ContextFactory.GetContextPerRequest().PurchaseOrderHeaders.FirstOrDefault(p => p.PurchaseOrderId == purchaseOrderId);
 

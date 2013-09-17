@@ -136,13 +136,18 @@
                                             <ModelErrorMessage Text=""></ModelErrorMessage>
                                         </ColumnValidationSettings>
                                     </telerik:GridDropDownColumn>
+                                    <telerik:GridBoundColumn ReadOnly="true" DataField="Product.Code" FilterControlAltText="Filter Product.Code column" HeaderText="Product.Code" SortExpression="Product.Code" UniqueName="Product.Code">
+                                        <ColumnValidationSettings>
+                                            <ModelErrorMessage Text="" />
+                                        </ColumnValidationSettings>
+                                    </telerik:GridBoundColumn>
                                     <telerik:GridDropDownColumn UniqueName="DropDownUnitListColumn" ListTextField="Name" EmptyListItemText="" EnableEmptyListItem="true" EmptyListItemValue="" ConvertEmptyStringToNull="true"
                                         ListValueField="UnitMeasureId" DataSourceID="OpenAccessLinqDataSourceUnit" HeaderText="UnitMeasure"
                                         DataField="UnitMeasureId" DropDownControlType="RadComboBox">
                                         <ColumnValidationSettings>
                                             <ModelErrorMessage Text=""></ModelErrorMessage>
                                         </ColumnValidationSettings>
-                                    </telerik:GridDropDownColumn>                               
+                                    </telerik:GridDropDownColumn>
                                     <telerik:GridNumericColumn DataField="OrderQuantity" DataType="System.Int32" FilterControlAltText="Filter OrderQuantity column" HeaderText="OrderQuantity" SortExpression="OrderQuantity" UniqueName="OrderQuantity">
                                         <ColumnValidationSettings>
                                             <ModelErrorMessage Text="" />

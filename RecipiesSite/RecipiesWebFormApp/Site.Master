@@ -47,7 +47,7 @@
             <telerik:RadWindowManager ID="RadWindowManager1" runat="server">
             </telerik:RadWindowManager>
 
-            <telerik:RadNotification ID="RadNotification1" runat="server" Title="Notification" AutoCloseDelay="5000" Animation="Fade" AnimationDuration="2000" RegisterWithScriptManager="true" Height="43px" Width="190px">
+            <telerik:RadNotification ID="RadNotification1" runat="server" Title="Notification" AutoCloseDelay="5000" Animation="Fade" AnimationDuration="2000" RegisterWithScriptManager="true" >
             </telerik:RadNotification>
 
         </telerik:RadAjaxLoadingPanel>
