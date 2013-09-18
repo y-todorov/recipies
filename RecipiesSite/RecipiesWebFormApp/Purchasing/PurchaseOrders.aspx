@@ -148,7 +148,7 @@
                                             <ModelErrorMessage Text=""></ModelErrorMessage>
                                         </ColumnValidationSettings>
                                     </telerik:GridDropDownColumn>
-                                    <telerik:GridNumericColumn DataField="OrderQuantity" DataType="System.Int32" FilterControlAltText="Filter OrderQuantity column" HeaderText="OrderQuantity" SortExpression="OrderQuantity" UniqueName="OrderQuantity">
+                                    <telerik:GridNumericColumn DataField="OrderQuantity" DataType="System.Double" FilterControlAltText="Filter OrderQuantity column" HeaderText="OrderQuantity" SortExpression="OrderQuantity" UniqueName="OrderQuantity">
                                         <ColumnValidationSettings>
                                             <ModelErrorMessage Text="" />
                                         </ColumnValidationSettings>
@@ -163,17 +163,17 @@
                                             <ModelErrorMessage Text="" />
                                         </ColumnValidationSettings>
                                     </telerik:GridNumericColumn>
-                                    <telerik:GridNumericColumn DataField="ReceivedQuantity" DataType="System.Int32" FilterControlAltText="Filter ReceivedQuantity column" HeaderText="ReceivedQuantity" SortExpression="ReceivedQuantity" UniqueName="ReceivedQuantity">
+                                    <telerik:GridNumericColumn DataField="ReceivedQuantity" DataType="System.Double" FilterControlAltText="Filter ReceivedQuantity column" HeaderText="ReceivedQuantity" SortExpression="ReceivedQuantity" UniqueName="ReceivedQuantity">
                                         <ColumnValidationSettings>
                                             <ModelErrorMessage Text="" />
                                         </ColumnValidationSettings>
                                     </telerik:GridNumericColumn>
-                                    <telerik:GridNumericColumn DataField="ReturnedQuantity" DataType="System.Int32" FilterControlAltText="Filter ReturnedQuantity column" HeaderText="ReturnedQuantity" SortExpression="ReturnedQuantity" UniqueName="ReturnedQuantity">
+                                    <telerik:GridNumericColumn DataField="ReturnedQuantity" DataType="System.Double" FilterControlAltText="Filter ReturnedQuantity column" HeaderText="ReturnedQuantity" SortExpression="ReturnedQuantity" UniqueName="ReturnedQuantity">
                                         <ColumnValidationSettings>
                                             <ModelErrorMessage Text="" />
                                         </ColumnValidationSettings>
                                     </telerik:GridNumericColumn>
-                                    <telerik:GridNumericColumn DataField="StockedQuantity" ReadOnly="true" DataType="System.Int32" FilterControlAltText="Filter StockedQuantity column" HeaderText="StockedQuantity" SortExpression="StockedQuantity" UniqueName="StockedQuantity">
+                                    <telerik:GridNumericColumn DataField="StockedQuantity" ReadOnly="true" DataType="System.Double" FilterControlAltText="Filter StockedQuantity column" HeaderText="StockedQuantity" SortExpression="StockedQuantity" UniqueName="StockedQuantity">
                                         <ColumnValidationSettings>
                                             <ModelErrorMessage Text="" />
                                         </ColumnValidationSettings>

@@ -80,18 +80,18 @@
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
                 </telerik:GridNumericColumn>
-                <telerik:GridNumericColumn DataField="UnitsInStock" DataType="System.Int32" FilterControlAltText="Filter UnitsInStock column" HeaderText="UnitsInStock" SortExpression="UnitsInStock" UniqueName="UnitsInStock">
+                <telerik:GridNumericColumn DataField="UnitsInStock" DataType="System.Double" FilterControlAltText="Filter UnitsInStock column" HeaderText="UnitsInStock" SortExpression="UnitsInStock" UniqueName="UnitsInStock">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
                 </telerik:GridNumericColumn>
-                <telerik:GridNumericColumn DataField="UnitsOnOrder" DataType="System.Int32" FilterControlAltText="Filter UnitsOnOrder column" HeaderText="UnitsOnOrder" SortExpression="UnitsOnOrder" UniqueName="UnitsOnOrder">
+                <telerik:GridNumericColumn DataField="UnitsOnOrder" DataType="System.Double" FilterControlAltText="Filter UnitsOnOrder column" HeaderText="UnitsOnOrder" SortExpression="UnitsOnOrder" UniqueName="UnitsOnOrder">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
                 </telerik:GridNumericColumn>
 
-                <telerik:GridNumericColumn DataField="ReorderLevel" DataType="System.Int32" FilterControlAltText="Filter ReorderLevel column" HeaderText="ReorderLevel" SortExpression="ReorderLevel" UniqueName="ReorderLevel">
+                <telerik:GridNumericColumn DataField="ReorderLevel" DataType="System.Double" FilterControlAltText="Filter ReorderLevel column" HeaderText="ReorderLevel" SortExpression="ReorderLevel" UniqueName="ReorderLevel">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>

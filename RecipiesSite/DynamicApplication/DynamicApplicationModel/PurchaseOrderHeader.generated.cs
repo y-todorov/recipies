@@ -155,8 +155,8 @@ namespace RecipiesModelNS
 		    }
 		}
 		
-		private decimal _totalDue;
-		public virtual decimal TotalDue 
+		private decimal? _totalDue;
+		public virtual decimal? TotalDue 
 		{ 
 		    get
 		    {

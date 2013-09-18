@@ -77,8 +77,8 @@ namespace RecipiesModelNS
 		    }
 		}
 		
-		private int? _averageLeadTime;
-		public virtual int? AverageLeadTime 
+		private double? _averageLeadTime;
+		public virtual double? AverageLeadTime 
 		{ 
 		    get
 		    {
@@ -129,8 +129,8 @@ namespace RecipiesModelNS
 		    }
 		}
 		
-		private int? _minOrderQuantity;
-		public virtual int? MinOrderQuantity 
+		private double? _minOrderQuantity;
+		public virtual double? MinOrderQuantity 
 		{ 
 		    get
 		    {
@@ -142,8 +142,8 @@ namespace RecipiesModelNS
 		    }
 		}
 		
-		private int? _maxOrderQuantity;
-		public virtual int? MaxOrderQuantity 
+		private double? _maxOrderQuantity;
+		public virtual double? MaxOrderQuantity 
 		{ 
 		    get
 		    {
@@ -155,8 +155,8 @@ namespace RecipiesModelNS
 		    }
 		}
 		
-		private int? _onOrderQuantity;
-		public virtual int? OnOrderQuantity 
+		private double? _onOrderQuantity;
+		public virtual double? OnOrderQuantity 
 		{ 
 		    get
 		    {

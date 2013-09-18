@@ -64,8 +64,8 @@ namespace RecipiesModelNS
 		    }
 		}
 		
-		private int? _orderQuantity;
-		public virtual int? OrderQuantity 
+		private double? _orderQuantity;
+		public virtual double? OrderQuantity 
 		{ 
 		    get
 		    {

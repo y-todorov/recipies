@@ -36,12 +36,12 @@
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
                 </telerik:GridBoundColumn>
-                <telerik:GridBoundColumn DataField="UnitsInStock" DataType="System.Int32" FilterControlAltText="Filter UnitsInStock column" HeaderText="UnitsInStock" SortExpression="UnitsInStock" UniqueName="UnitsInStock">
+                <telerik:GridBoundColumn DataField="UnitsInStock" DataType="System.Double" FilterControlAltText="Filter UnitsInStock column" HeaderText="UnitsInStock" SortExpression="UnitsInStock" UniqueName="UnitsInStock">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
                 </telerik:GridBoundColumn>
-                <telerik:GridBoundColumn DataField="UnitsOnOrder" DataType="System.Int32" FilterControlAltText="Filter UnitsOnOrder column" HeaderText="UnitsOnOrder" SortExpression="UnitsOnOrder" UniqueName="UnitsOnOrder">
+                <telerik:GridBoundColumn DataField="UnitsOnOrder" DataType="System.Double" FilterControlAltText="Filter UnitsOnOrder column" HeaderText="UnitsOnOrder" SortExpression="UnitsOnOrder" UniqueName="UnitsOnOrder">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
@@ -51,7 +51,7 @@
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
                 </telerik:GridBoundColumn>
-                <telerik:GridBoundColumn DataField="ReorderLevel" DataType="System.Int32" FilterControlAltText="Filter ReorderLevel column" HeaderText="ReorderLevel" SortExpression="ReorderLevel" UniqueName="ReorderLevel">
+                <telerik:GridBoundColumn DataField="ReorderLevel" DataType="System.Double" FilterControlAltText="Filter ReorderLevel column" HeaderText="ReorderLevel" SortExpression="ReorderLevel" UniqueName="ReorderLevel">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>

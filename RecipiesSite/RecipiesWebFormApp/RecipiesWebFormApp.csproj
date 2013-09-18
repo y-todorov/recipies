@@ -256,10 +256,8 @@
     <Content Include="Production\Products.aspx" />
     <Content Include="Production\RecipeIngredients.aspx" />
     <Content Include="Production\Recipes.aspx" />
-    <Content Include="Purchasing\Po2.aspx" />
     <Content Include="Purchasing\ProductVendors.aspx" />
     <Content Include="Purchasing\PurchaseOrderDetails.aspx" />
-    <Content Include="Purchasing\PurchaseOrderReport.aspx" />
     <Content Include="Purchasing\PurchaseOrders.aspx" />
     <Content Include="Purchasing\PurchaseOrderStatuses.aspx" />
     <Content Include="Purchasing\ShipMethods.aspx" />
@@ -472,13 +470,6 @@
     <Compile Include="Production\Recipes.aspx.designer.cs">
       <DependentUpon>Recipes.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Purchasing\Po2.aspx.cs">
-      <DependentUpon>Po2.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Purchasing\Po2.aspx.designer.cs">
-      <DependentUpon>Po2.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Purchasing\ProductVendors.aspx.cs">
       <DependentUpon>ProductVendors.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -492,13 +483,6 @@
     </Compile>
     <Compile Include="Purchasing\PurchaseOrderDetails.aspx.designer.cs">
       <DependentUpon>PurchaseOrderDetails.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Purchasing\PurchaseOrderReport.aspx.cs">
-      <DependentUpon>PurchaseOrderReport.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Purchasing\PurchaseOrderReport.aspx.designer.cs">
-      <DependentUpon>PurchaseOrderReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="Purchasing\PurchaseOrders.aspx.cs">
       <DependentUpon>PurchaseOrders.aspx</DependentUpon>

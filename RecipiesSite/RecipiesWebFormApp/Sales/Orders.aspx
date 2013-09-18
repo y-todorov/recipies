@@ -78,7 +78,7 @@
                                         ListValueField="RecipeId" DataSourceID="OpenAccessLinqDataSourceRecipe" HeaderText="Recipe"
                                         DataField="RecipeId" DropDownControlType="RadComboBox" EmptyListItemText="" EnableEmptyListItem="true" EmptyListItemValue="" ConvertEmptyStringToNull="true">
                                     </telerik:GridDropDownColumn>
-                                    <telerik:GridNumericColumn DataField="OrderQuantity" DataType="System.Int32" FilterControlAltText="Filter OrderQuantity column" HeaderText="OrderQuantity" SortExpression="OrderQuantity" UniqueName="OrderQuantity">
+                                    <telerik:GridNumericColumn DataField="OrderQuantity" DataType="System.Double" FilterControlAltText="Filter OrderQuantity column" HeaderText="OrderQuantity" SortExpression="OrderQuantity" UniqueName="OrderQuantity">
                                         <ColumnValidationSettings>
                                             <ModelErrorMessage Text="" />
                                         </ColumnValidationSettings>

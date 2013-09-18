@@ -79,7 +79,7 @@ namespace RecipiesModelNS
                         decimal? subTotal = 0;
                         foreach (PurchaseOrderDetail pod in poh.PurchaseOrderDetails)
                         {
-                            subTotal += pod.LineTotal;
+                            subTotal += (decimal)pod.LineTotal;
                         }
                         poh.SubTotal = subTotal;
                     }
@@ -172,7 +172,12 @@ namespace RecipiesModelNS
                 Type type = update.GetType();
                 if (type.GetProperties().Any(p => p.Name.Equals("ModifiedDate")))
                 {
-                    update.SetFieldValue<DateTime>("ModifiedDate", DateTime.Now.ToLocalTime());
+                    //DateTime time1 = DateTime.Now;
+                    //TimeZoneInfo timeZone1 = TimeZoneInfo.Local;
+                    //TimeZoneInfo timeZone2 = TimeZoneInfo.FindSystemTimeZoneById("Irish Standard Time");
+                    //DateTime dateModified = TimeZoneInfo.ConvertTime(time1, timeZone1, timeZone2);
+
+                    update.SetFieldValue<DateTime>("ModifiedDate", DateTime.Now.ToUniversalTime());
                     update.SetFieldValue<string>("ModifiedByUser", userName);
                 }
             }

@@ -64,8 +64,8 @@ namespace RecipiesModelNS
 		    }
 		}
 		
-		private int? _orderQuantity;
-		public virtual int? OrderQuantity 
+		private double? _orderQuantity;
+		public virtual double? OrderQuantity 
 		{ 
 		    get
 		    {
@@ -90,8 +90,8 @@ namespace RecipiesModelNS
 		    }
 		}
 		
-		private decimal _lineTotal;
-		public virtual decimal LineTotal 
+		private double _lineTotal;
+		public virtual double LineTotal 
 		{ 
 		    get
 		    {
@@ -99,8 +99,8 @@ namespace RecipiesModelNS
 		    }
 		}
 		
-		private int? _receivedQuantity;
-		public virtual int? ReceivedQuantity 
+		private double? _receivedQuantity;
+		public virtual double? ReceivedQuantity 
 		{ 
 		    get
 		    {
@@ -112,8 +112,8 @@ namespace RecipiesModelNS
 		    }
 		}
 		
-		private int? _returnedQuantity;
-		public virtual int? ReturnedQuantity 
+		private double? _returnedQuantity;
+		public virtual double? ReturnedQuantity 
 		{ 
 		    get
 		    {
@@ -125,8 +125,8 @@ namespace RecipiesModelNS
 		    }
 		}
 		
-		private int _stockedQuantity;
-		public virtual int StockedQuantity 
+		private double _stockedQuantity;
+		public virtual double StockedQuantity 
 		{ 
 		    get
 		    {

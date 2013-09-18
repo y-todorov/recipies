@@ -115,8 +115,8 @@ namespace RecipiesModelNS
 		    }
 		}
 		
-		private int? _unitsInStock;
-		public virtual int? UnitsInStock 
+		private double? _unitsInStock;
+		public virtual double? UnitsInStock 
 		{ 
 		    get
 		    {
@@ -128,8 +128,8 @@ namespace RecipiesModelNS
 		    }
 		}
 		
-		private int? _unitsOnOrder;
-		public virtual int? UnitsOnOrder 
+		private double? _unitsOnOrder;
+		public virtual double? UnitsOnOrder 
 		{ 
 		    get
 		    {
@@ -154,8 +154,8 @@ namespace RecipiesModelNS
 		    }
 		}
 		
-		private int? _reorderLevel;
-		public virtual int? ReorderLevel 
+		private double? _reorderLevel;
+		public virtual double? ReorderLevel 
 		{ 
 		    get
 		    {

@@ -24,7 +24,7 @@ namespace RecipiesModelNS
                 {
                     if (pod.UnitPrice.HasValue)
                     {
-                        totalPrice += pod.StockedQuantity * pod.UnitPrice.Value;
+                        totalPrice += (decimal)pod.StockedQuantity * pod.UnitPrice.Value;
                     }
                     totalQuantity += pod.StockedQuantity;
                 }
@@ -38,7 +38,7 @@ namespace RecipiesModelNS
                 {
                     if (lastPod.UnitPrice.HasValue)
                     {
-                        totalPrice += lastPod.StockedQuantity * lastPod.UnitPrice.Value;
+                        totalPrice += (decimal)lastPod.StockedQuantity * lastPod.UnitPrice.Value;
                     }
                     totalQuantity += lastPod.StockedQuantity;
                 }

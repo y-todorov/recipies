@@ -57,15 +57,15 @@ namespace RecipiesModelNS
             }
         }
 
-        private int GetBaseUnitMeasureQuantityForProduct(Product product, int? quantity, UnitMeasure quantityUnitMeasure)
+        private double GetBaseUnitMeasureQuantityForProduct(Product product, double? quantity, UnitMeasure quantityUnitMeasure)
         {
             if (quantityUnitMeasure.BaseUnitId == product.UnitMeasureId)
             {
                 UnitMeasure baseUnitMeasure = product.UnitMeasure;
                 if (quantityUnitMeasure.BaseUnitFactor.HasValue)
                 {
-                    int result = quantity.Value * (int)quantityUnitMeasure.BaseUnitFactor.Value;
-                    return result;// Math.Round(result, 2);
+                    double result = quantity.Value * (int)quantityUnitMeasure.BaseUnitFactor.Value;
+                    return Math.Round(result, 2);
                 }
                 else
                 {
@@ -74,8 +74,8 @@ namespace RecipiesModelNS
             }
             else if (quantityUnitMeasure.UnitMeasureId == product.UnitMeasureId)
             {
-                int result = quantity.Value;
-                return result; //Math.Round(result, 2);
+                double result = quantity.Value;
+                return Math.Round(result, 2);
             }
             else
             {

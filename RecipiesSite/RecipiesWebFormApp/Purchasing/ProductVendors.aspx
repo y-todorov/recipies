@@ -35,7 +35,7 @@
                         <ModelErrorMessage Text=""></ModelErrorMessage>
                     </ColumnValidationSettings>
                 </telerik:GridDropDownColumn>                               
-                <telerik:GridNumericColumn DataField="AverageLeadTime" DataType="System.Int32" FilterControlAltText="Filter AverageLeadTime column" HeaderText="AverageLeadTime" SortExpression="AverageLeadTime" UniqueName="AverageLeadTime">
+                <telerik:GridNumericColumn DataField="AverageLeadTime" DataType="System.Double" FilterControlAltText="Filter AverageLeadTime column" HeaderText="AverageLeadTime" SortExpression="AverageLeadTime" UniqueName="AverageLeadTime">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
@@ -55,17 +55,17 @@
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
                 </telerik:GridDateTimeColumn>
-                <telerik:GridBoundColumn DataField="MinOrderQuantity" DataType="System.Int32" FilterControlAltText="Filter MinOrderQuantity column" HeaderText="MinOrderQuantity" SortExpression="MinOrderQuantity" UniqueName="MinOrderQuantity">
+                <telerik:GridBoundColumn DataField="MinOrderQuantity" DataType="System.Double" FilterControlAltText="Filter MinOrderQuantity column" HeaderText="MinOrderQuantity" SortExpression="MinOrderQuantity" UniqueName="MinOrderQuantity">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
                 </telerik:GridBoundColumn>
-                <telerik:GridNumericColumn DataField="MaxOrderQuantity" DataType="System.Int32" FilterControlAltText="Filter MaxOrderQuantity column" HeaderText="MaxOrderQuantity" SortExpression="MaxOrderQuantity" UniqueName="MaxOrderQuantity">
+                <telerik:GridNumericColumn DataField="MaxOrderQuantity" DataType="System.Double" FilterControlAltText="Filter MaxOrderQuantity column" HeaderText="MaxOrderQuantity" SortExpression="MaxOrderQuantity" UniqueName="MaxOrderQuantity">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
                 </telerik:GridNumericColumn>
-                <telerik:GridNumericColumn DataField="OnOrderQuantity" DataType="System.Int32" FilterControlAltText="Filter OnOrderQuantity column" HeaderText="OnOrderQuantity" SortExpression="OnOrderQuantity" UniqueName="OnOrderQuantity">
+                <telerik:GridNumericColumn DataField="OnOrderQuantity" DataType="System.Double" FilterControlAltText="Filter OnOrderQuantity column" HeaderText="OnOrderQuantity" SortExpression="OnOrderQuantity" UniqueName="OnOrderQuantity">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
