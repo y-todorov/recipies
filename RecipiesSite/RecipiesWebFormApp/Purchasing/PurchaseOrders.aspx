@@ -136,7 +136,7 @@
                                             <ModelErrorMessage Text=""></ModelErrorMessage>
                                         </ColumnValidationSettings>
                                     </telerik:GridDropDownColumn>
-                                    <telerik:GridBoundColumn ReadOnly="true" DataField="Product.Code" FilterControlAltText="Filter Product.Code column" HeaderText="Product.Code" SortExpression="Product.Code" UniqueName="Product.Code">
+                                    <telerik:GridBoundColumn ReadOnly="true" DataField="Product.Code" FilterControlAltText="Filter Product.Code column" HeaderText="Product Code" SortExpression="Product.Code" UniqueName="Product.Code">
                                         <ColumnValidationSettings>
                                             <ModelErrorMessage Text="" />
                                         </ColumnValidationSettings>
