@@ -10,7 +10,7 @@
     <script src="../Scripts/jquery.signalR-1.1.3.js"></script>
      <script src="/signalr/hubs"></script>
     <script>
-        debugger;
+        //debugger;
         var hub = $.connection.rebindHub;
 
 

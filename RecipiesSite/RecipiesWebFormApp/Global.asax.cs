@@ -14,6 +14,7 @@ using System.IO;
 using System.Text;
 using RecipiesModelNS;
 using System.Diagnostics;
+using Microsoft.AspNet.SignalR;
 //using PubNubMessaging.Core;
 
 namespace RecipiesWebFormApp
@@ -23,7 +24,12 @@ namespace RecipiesWebFormApp
         void Application_Start(object sender, EventArgs e)
         {            
             // Code that runs on application startup
-            RouteTable.Routes.MapHubs();
+
+            HubConfiguration hubConfig = new HubConfiguration
+            {
+                EnableCrossDomain = true, EnableDetailedErrors = true
+            };
+            RouteTable.Routes.MapHubs(hubConfig);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterOpenAuth();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
