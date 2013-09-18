@@ -172,7 +172,7 @@ namespace RecipiesModelNS
                 Type type = update.GetType();
                 if (type.GetProperties().Any(p => p.Name.Equals("ModifiedDate")))
                 {
-                    update.SetFieldValue<DateTime>("ModifiedDate", DateTime.Now);
+                    update.SetFieldValue<DateTime>("ModifiedDate", DateTime.Now.ToLocalTime());
                     update.SetFieldValue<string>("ModifiedByUser", userName);
                 }
             }
