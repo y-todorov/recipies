@@ -8,11 +8,7 @@ C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Helpers.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\HtmlAgilityPack.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.AspNet.FriendlyUrls.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.AspNet.Membership.OpenAuth.dll
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.AspNet.SignalR.Core.dll
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.AspNet.SignalR.Owin.dll
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.Owin.Host.SystemWeb.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.ScriptManager.MSAjax.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.ScriptManager.WebForms.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.SqlServer.ConnectionInfo.dll
@@ -22,7 +18,6 @@ C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.SqlServer.Smo
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.SqlServer.SqlEnum.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.Web.Infrastructure.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Newtonsoft.Json.dll
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Owin.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\RecipiesReports.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\RestSharp.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\System.Web.Optimization.dll
@@ -42,10 +37,6 @@ C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\YordanCustomControls.pd
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\HtmlAgilityPack.pdb
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\HtmlAgilityPack.xml
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.AspNet.FriendlyUrls.xml
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.AspNet.SignalR.Core.xml
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.AspNet.SignalR.Owin.xml
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.Owin.Host.SystemWeb.xml
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Newtonsoft.Json.xml
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\RestSharp.xml
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\EntityFramework.xml

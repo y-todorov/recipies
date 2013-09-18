@@ -11,24 +11,17 @@ namespace RecipiesWebFormApp
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            try
+            Exception ex = Server.GetLastError();
+            string details = string.Empty;
+            if (ex.InnerException != null)
             {
-                Exception ex = Server.GetLastError();
-                if (ex != null)
-                {
-                    string details = string.Empty;
-                    if (ex.InnerException != null)
-                    {
-                        details = ex.InnerException.Message;
-                    }
-                    lblError.Text = string.Format("Exception: {0}! Details: {1}!", ex.Message, details);
-                }
+                details = ex.InnerException.Message;
             }
-            catch (Exception exc)
-            {
-                lblError.Text = exc.Message + " " + exc.StackTrace;
-            }
+            lblError.Text = string.Format("Exception: {0}! Details: {1}!", ex.Message, details);
 
+            Uri urlReferrer = Request.UrlReferrer;
+            //Response.Redirect(u.ToString(), false);
+            
         }
     }
 }
