@@ -5,8 +5,40 @@
 <%@ Register Assembly="YordanCustomControls" Namespace="YordanCustomControls" TagPrefix="yordan" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <telerik:RadCodeBlock runat="server">       
-    </telerik:RadCodeBlock>
+<%--<telerik:RadCodeBlock runat="server">       
+    <script src="../Scripts/jquery-2.0.3.min.js"></script>
+    <script src="../Scripts/jquery.signalR-1.1.3.js"></script>
+     <script src="/signalr/hubs"></script>
+    <script>
+        //debugger;
+        var hub = $.connection.rebindHub;
+
+
+        hub.client.rebindRadGrid = function () {
+
+            var grid = window.$find("<%= ((RadGrid)rgProducts).ClientID %>");
+
+            if (grid != null) {
+                //debugger;
+                var masterTable = grid.get_masterTableView();
+                var editedItemsArray = masterTable.get_editItems();
+                var isItemInserted = masterTable.get_isItemInserted()
+                if (editedItemsArray.length == 0 && !isItemInserted) {
+                    masterTable.rebind();
+                }
+            }
+
+
+        }
+
+        $.connection.hub.start().done(function () {
+
+        });
+          
+    </script>
+    
+
+    </telerik:RadCodeBlock>--%>
 
     <yordan:YordanCustomRadGrid ID="rgProducts" runat="server" DataSourceID="OpenAccessLinqDataSourceProduct" CellSpacing="0" GridLines="None">
         <MasterTableView AutoGenerateColumns="False" DataKeyNames="ProductId" DataSourceID="OpenAccessLinqDataSourceProduct">
