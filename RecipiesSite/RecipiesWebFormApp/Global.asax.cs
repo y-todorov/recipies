@@ -14,6 +14,7 @@ using System.IO;
 using System.Text;
 using RecipiesModelNS;
 using System.Diagnostics;
+using Microsoft.AspNet.SignalR;
 //using PubNubMessaging.Core;
 
 namespace RecipiesWebFormApp
@@ -26,6 +27,13 @@ namespace RecipiesWebFormApp
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterOpenAuth();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+            HubConfiguration hubConfig = new HubConfiguration
+            {
+                EnableCrossDomain = true,
+                EnableDetailedErrors = true
+            };
+            RouteTable.Routes.MapHubs(hubConfig);
 
             // Yordan, test that site is not asleep after 20 mins. of inactivity
             // By the way this works very well :)
