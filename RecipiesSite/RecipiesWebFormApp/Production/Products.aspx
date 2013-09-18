@@ -5,7 +5,7 @@
 <%@ Register Assembly="YordanCustomControls" Namespace="YordanCustomControls" TagPrefix="yordan" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-<telerik:RadCodeBlock runat="server">       
+<%--<telerik:RadCodeBlock runat="server">       
     <script src="../Scripts/jquery-2.0.3.min.js"></script>
     <script src="../Scripts/jquery.signalR-1.1.3.js"></script>
      <script src="/signalr/hubs"></script>
@@ -38,7 +38,7 @@
     </script>
     
 
-    </telerik:RadCodeBlock>
+    </telerik:RadCodeBlock>--%>
 
     <yordan:YordanCustomRadGrid ID="rgProducts" runat="server" DataSourceID="OpenAccessLinqDataSourceProduct" CellSpacing="0" GridLines="None">
         <MasterTableView AutoGenerateColumns="False" DataKeyNames="ProductId" DataSourceID="OpenAccessLinqDataSourceProduct">

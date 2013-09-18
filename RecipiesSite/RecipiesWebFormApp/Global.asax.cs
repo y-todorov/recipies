@@ -29,12 +29,12 @@ namespace RecipiesWebFormApp
             AuthConfig.RegisterOpenAuth();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
-            HubConfiguration hubConfig = new HubConfiguration
-            {
-                EnableCrossDomain = true,
-                EnableDetailedErrors = true
-            };
-            RouteTable.Routes.MapHubs(hubConfig);
+            //HubConfiguration hubConfig = new HubConfiguration
+            //{
+            //    EnableCrossDomain = true,
+            //    EnableDetailedErrors = true
+            //};
+            //RouteTable.Routes.MapHubs(hubConfig);
 
             // Yordan, test that site is not asleep after 20 mins. of inactivity
             // By the way this works very well :)

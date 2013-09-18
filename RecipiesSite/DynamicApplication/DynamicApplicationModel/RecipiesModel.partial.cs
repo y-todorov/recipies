@@ -61,8 +61,8 @@ namespace RecipiesModelNS
 
             base.SaveChanges(failureMode);
 
-            var context = GlobalHost.ConnectionManager.GetHubContext<RebindHub>();
-            context.Clients.All.rebindRadGrid();      
+            //var context = GlobalHost.ConnectionManager.GetHubContext<RebindHub>();
+            //context.Clients.All.rebindRadGrid();      
             //PubNubMessaging.Core.Pubnub.Instance.Publish("Products", "rebind", (t) => t.ToString(), (t) => t.ToString());
         }
 
