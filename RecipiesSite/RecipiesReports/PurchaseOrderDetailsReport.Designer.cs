@@ -27,6 +27,7 @@ namespace RecipiesReports
             this.dsSalesOrderDetails = new Telerik.Reporting.OpenAccessDataSource();
             this.reportHeader = new Telerik.Reporting.ReportHeaderSection();
             this.titleTextBox = new Telerik.Reporting.TextBox();
+            this.pictureBox1 = new Telerik.Reporting.PictureBox();
             this.detail = new Telerik.Reporting.DetailSection();
             this.productIdDataTextBox = new Telerik.Reporting.TextBox();
             this.textBox2 = new Telerik.Reporting.TextBox();
@@ -34,7 +35,6 @@ namespace RecipiesReports
             this.unitPriceDataTextBox = new Telerik.Reporting.TextBox();
             this.lineTotalDataTextBox = new Telerik.Reporting.TextBox();
             this.odsSalesOrderDetails = new Telerik.Reporting.ObjectDataSource();
-            this.pictureBox1 = new Telerik.Reporting.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // labelsGroupFooterSection
@@ -86,7 +86,7 @@ namespace RecipiesReports
             this.productIdCaptionTextBox.Name = "productIdCaptionTextBox";
             this.productIdCaptionTextBox.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.6666666269302368D), Telerik.Reporting.Drawing.Unit.Inch(0.40000000596046448D));
             this.productIdCaptionTextBox.StyleName = "Caption";
-            this.productIdCaptionTextBox.Value = "Product Id";
+            this.productIdCaptionTextBox.Value = "Product Code";
             // 
             // textBox1
             // 
@@ -148,6 +148,14 @@ namespace RecipiesReports
             this.titleTextBox.StyleName = "Title";
             this.titleTextBox.Value = "Order Details";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Inch(2.5D), Telerik.Reporting.Drawing.Unit.Inch(0.40000000596046448D));
+            this.pictureBox1.MimeType = "image/png";
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(3.5D), Telerik.Reporting.Drawing.Unit.Inch(0.69996070861816406D));
+            this.pictureBox1.Value = ((object)(resources.GetObject("pictureBox1.Value")));
+            // 
             // detail
             // 
             this.detail.Height = Telerik.Reporting.Drawing.Unit.Inch(0.44166669249534607D);
@@ -166,7 +174,7 @@ namespace RecipiesReports
             this.productIdDataTextBox.Name = "productIdDataTextBox";
             this.productIdDataTextBox.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.6666666269302368D), Telerik.Reporting.Drawing.Unit.Inch(0.40000000596046448D));
             this.productIdDataTextBox.StyleName = "Data";
-            this.productIdDataTextBox.Value = "=Fields.ProductId";
+            this.productIdDataTextBox.Value = "=Fields.Product.Code";
             // 
             // textBox2
             // 
@@ -212,14 +220,6 @@ namespace RecipiesReports
             this.odsSalesOrderDetails.DataSource = "DynamicApplicationModel.RecipiesModel, DynamicApplicationModel, Version=1.0.0.0, " +
     "Culture=neutral, PublicKeyToken=null";
             this.odsSalesOrderDetails.Name = "odsSalesOrderDetails";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Inch(2.5D), Telerik.Reporting.Drawing.Unit.Inch(0.40000000596046448D));
-            this.pictureBox1.MimeType = "image/png";
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(3.5D), Telerik.Reporting.Drawing.Unit.Inch(0.69996070861816406D));
-            this.pictureBox1.Value = ((object)(resources.GetObject("pictureBox1.Value")));
             // 
             // PurchaseOrderDetailsReport
             // 
