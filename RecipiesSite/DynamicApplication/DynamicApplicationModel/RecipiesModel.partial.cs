@@ -171,13 +171,10 @@ namespace RecipiesModelNS
             {
                 Type type = update.GetType();
                 if (type.GetProperties().Any(p => p.Name.Equals("ModifiedDate")))
-                {
-                    //DateTime time1 = DateTime.Now;
-                    //TimeZoneInfo timeZone1 = TimeZoneInfo.Local;
-                    //TimeZoneInfo timeZone2 = TimeZoneInfo.FindSystemTimeZoneById("Irish Standard Time");
-                    //DateTime dateModified = TimeZoneInfo.ConvertTime(time1, timeZone1, timeZone2);
-
-                    update.SetFieldValue<DateTime>("ModifiedDate", DateTime.Now.ToUniversalTime());
+                {                    
+                    DateTime modifiedDate = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, TimeZoneInfo.FindSystemTimeZoneById("GMT Standard Time"));
+                    // 		TimeZoneInfo.FindSystemTimeZoneById("GMT Standard Time")	{(UTC) Dublin, Edinburgh, Lisbon, London}
+                    update.SetFieldValue<DateTime>("ModifiedDate", modifiedDate);
                     update.SetFieldValue<string>("ModifiedByUser", userName);
                 }
             }
@@ -235,17 +232,6 @@ namespace RecipiesModelNS
                 }
             }
         }
-
-        
-
-
-
-        protected override void OnDatabaseOpen(Telerik.OpenAccess.BackendConfiguration backendConfiguration, Telerik.OpenAccess.Metadata.MetadataContainer metadataContainer)
-        {
-            base.OnDatabaseOpen(backendConfiguration, metadataContainer);
-
-
-
-        }
+       
     }
 }

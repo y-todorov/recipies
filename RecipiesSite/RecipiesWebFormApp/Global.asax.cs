@@ -15,6 +15,8 @@ using System.Text;
 using RecipiesModelNS;
 using System.Diagnostics;
 using Microsoft.AspNet.SignalR;
+//using System.Threading;
+using System.Globalization;
 //using PubNubMessaging.Core;
 
 namespace RecipiesWebFormApp
@@ -22,9 +24,7 @@ namespace RecipiesWebFormApp
     public class Global : HttpApplication
     {
         void Application_Start(object sender, EventArgs e)
-        {            
-            
-
+        {
             // Code that runs on application startup
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterOpenAuth();
