@@ -84,7 +84,7 @@ Default skin template. The following skins are provided as examples only.
  <PlotArea>
                        
                         <XAxis >
-                            <LabelsAppearance RotationAngle="10"></LabelsAppearance>
+                            <LabelsAppearance RotationAngle="90"></LabelsAppearance>
                            
 
                         </XAxis>

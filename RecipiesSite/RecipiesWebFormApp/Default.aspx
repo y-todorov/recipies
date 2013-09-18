@@ -22,7 +22,7 @@
                             </telerik:ColumnSeries>
                         </Series>
                         <XAxis DataLabelsField="Name" Step="1">
-                            <LabelsAppearance RotationAngle="10"></LabelsAppearance>
+                            <LabelsAppearance ></LabelsAppearance>
                             <MajorGridLines Visible="false"></MajorGridLines>
                             <MinorGridLines Visible="false"></MinorGridLines>
 
@@ -45,7 +45,7 @@
                             </telerik:ColumnSeries>
                         </Series>
                         <XAxis DataLabelsField="CategoryName" Step="1">
-                            <LabelsAppearance RotationAngle="-10" ></LabelsAppearance>
+                            <LabelsAppearance></LabelsAppearance>
                             <MajorGridLines Visible="false"></MajorGridLines>
                             <MinorGridLines Visible="false"></MinorGridLines>
                         </XAxis>
@@ -72,7 +72,7 @@
                             </telerik:ColumnSeries>
                         </Series>
                         <XAxis DataLabelsField="Name" Step="1">
-                            <LabelsAppearance RotationAngle="10"></LabelsAppearance>
+                            <LabelsAppearance ></LabelsAppearance>
                             <MajorGridLines Visible="false"></MajorGridLines>
                             <MinorGridLines Visible="false"></MinorGridLines>
 

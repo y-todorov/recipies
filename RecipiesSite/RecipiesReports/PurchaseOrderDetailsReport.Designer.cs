@@ -35,6 +35,8 @@ namespace RecipiesReports
             this.unitPriceDataTextBox = new Telerik.Reporting.TextBox();
             this.lineTotalDataTextBox = new Telerik.Reporting.TextBox();
             this.odsSalesOrderDetails = new Telerik.Reporting.ObjectDataSource();
+            this.textBox5 = new Telerik.Reporting.TextBox();
+            this.textBox6 = new Telerik.Reporting.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // labelsGroupFooterSection
@@ -51,7 +53,7 @@ namespace RecipiesReports
             // 
             this.textBox3.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Inch(0.02083333395421505D), Telerik.Reporting.Drawing.Unit.Inch(0D));
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(6.7291665077209473D), Telerik.Reporting.Drawing.Unit.Inch(0.47996059060096741D));
+            this.textBox3.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(7.0790872573852539D), Telerik.Reporting.Drawing.Unit.Inch(0.47996059060096741D));
             this.textBox3.Style.Font.Bold = true;
             this.textBox3.StyleName = "Total";
             this.textBox3.Value = "Total";
@@ -59,9 +61,9 @@ namespace RecipiesReports
             // textBox4
             // 
             this.textBox4.Format = "{0:C2}";
-            this.textBox4.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Inch(6.7708330154418945D), Telerik.Reporting.Drawing.Unit.Inch(3.9418537198798731E-05D));
+            this.textBox4.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Inch(7.0999999046325684D), Telerik.Reporting.Drawing.Unit.Inch(3.9418537198798731E-05D));
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.6666666269302368D), Telerik.Reporting.Drawing.Unit.Inch(0.47988176345825195D));
+            this.textBox4.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.3374996185302734D), Telerik.Reporting.Drawing.Unit.Inch(0.47988176345825195D));
             this.textBox4.Style.Font.Bold = true;
             this.textBox4.Style.Font.Italic = false;
             this.textBox4.Style.Visible = true;
@@ -75,52 +77,53 @@ namespace RecipiesReports
             this.textBox1,
             this.orderQuantityCaptionTextBox,
             this.unitPriceCaptionTextBox,
-            this.lineTotalCaptionTextBox});
+            this.lineTotalCaptionTextBox,
+            this.textBox5});
             this.labelsGroupHeaderSection.Name = "labelsGroupHeaderSection";
             this.labelsGroupHeaderSection.PrintOnEveryPage = true;
             // 
             // productIdCaptionTextBox
             // 
             this.productIdCaptionTextBox.CanGrow = true;
-            this.productIdCaptionTextBox.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Inch(0.02083333395421505D), Telerik.Reporting.Drawing.Unit.Inch(0.02083333395421505D));
+            this.productIdCaptionTextBox.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Inch(3.9418537198798731E-05D), Telerik.Reporting.Drawing.Unit.Inch(0.02083333395421505D));
             this.productIdCaptionTextBox.Name = "productIdCaptionTextBox";
-            this.productIdCaptionTextBox.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.6666666269302368D), Telerik.Reporting.Drawing.Unit.Inch(0.40000000596046448D));
+            this.productIdCaptionTextBox.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.3374996185302734D), Telerik.Reporting.Drawing.Unit.Inch(0.40000000596046448D));
             this.productIdCaptionTextBox.StyleName = "Caption";
             this.productIdCaptionTextBox.Value = "Product Code";
             // 
             // textBox1
             // 
             this.textBox1.CanGrow = true;
-            this.textBox1.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Inch(1.7083333730697632D), Telerik.Reporting.Drawing.Unit.Inch(0.02083333395421505D));
+            this.textBox1.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Inch(1.3376177549362183D), Telerik.Reporting.Drawing.Unit.Inch(0.02083333395421505D));
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.6666666269302368D), Telerik.Reporting.Drawing.Unit.Inch(0.40000000596046448D));
+            this.textBox1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.3374996185302734D), Telerik.Reporting.Drawing.Unit.Inch(0.40000000596046448D));
             this.textBox1.StyleName = "Caption";
             this.textBox1.Value = "Product Name";
             // 
             // orderQuantityCaptionTextBox
             // 
             this.orderQuantityCaptionTextBox.CanGrow = true;
-            this.orderQuantityCaptionTextBox.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Inch(3.3958332538604736D), Telerik.Reporting.Drawing.Unit.Inch(0.02083333395421505D));
+            this.orderQuantityCaptionTextBox.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Inch(4.4248433113098145D), Telerik.Reporting.Drawing.Unit.Inch(0.02083333395421505D));
             this.orderQuantityCaptionTextBox.Name = "orderQuantityCaptionTextBox";
-            this.orderQuantityCaptionTextBox.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.6666666269302368D), Telerik.Reporting.Drawing.Unit.Inch(0.40000000596046448D));
+            this.orderQuantityCaptionTextBox.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.3374996185302734D), Telerik.Reporting.Drawing.Unit.Inch(0.40000000596046448D));
             this.orderQuantityCaptionTextBox.StyleName = "Caption";
             this.orderQuantityCaptionTextBox.Value = "Order Quantity";
             // 
             // unitPriceCaptionTextBox
             // 
             this.unitPriceCaptionTextBox.CanGrow = true;
-            this.unitPriceCaptionTextBox.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Inch(5.0833334922790527D), Telerik.Reporting.Drawing.Unit.Inch(0.02083333395421505D));
+            this.unitPriceCaptionTextBox.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Inch(5.76242208480835D), Telerik.Reporting.Drawing.Unit.Inch(0.02083333395421505D));
             this.unitPriceCaptionTextBox.Name = "unitPriceCaptionTextBox";
-            this.unitPriceCaptionTextBox.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.6666666269302368D), Telerik.Reporting.Drawing.Unit.Inch(0.40000000596046448D));
+            this.unitPriceCaptionTextBox.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.3374996185302734D), Telerik.Reporting.Drawing.Unit.Inch(0.40000000596046448D));
             this.unitPriceCaptionTextBox.StyleName = "Caption";
             this.unitPriceCaptionTextBox.Value = "Unit Price";
             // 
             // lineTotalCaptionTextBox
             // 
             this.lineTotalCaptionTextBox.CanGrow = true;
-            this.lineTotalCaptionTextBox.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Inch(6.7708334922790527D), Telerik.Reporting.Drawing.Unit.Inch(0.02083333395421505D));
+            this.lineTotalCaptionTextBox.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Inch(7.1000003814697266D), Telerik.Reporting.Drawing.Unit.Inch(0.02083333395421505D));
             this.lineTotalCaptionTextBox.Name = "lineTotalCaptionTextBox";
-            this.lineTotalCaptionTextBox.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.6666666269302368D), Telerik.Reporting.Drawing.Unit.Inch(0.40000000596046448D));
+            this.lineTotalCaptionTextBox.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.3374996185302734D), Telerik.Reporting.Drawing.Unit.Inch(0.40000000596046448D));
             this.lineTotalCaptionTextBox.StyleName = "Caption";
             this.lineTotalCaptionTextBox.Value = "Line Total";
             // 
@@ -164,7 +167,8 @@ namespace RecipiesReports
             this.textBox2,
             this.orderQuantityDataTextBox,
             this.unitPriceDataTextBox,
-            this.lineTotalDataTextBox});
+            this.lineTotalDataTextBox,
+            this.textBox6});
             this.detail.Name = "detail";
             // 
             // productIdDataTextBox
@@ -172,25 +176,25 @@ namespace RecipiesReports
             this.productIdDataTextBox.CanGrow = true;
             this.productIdDataTextBox.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Inch(0.02083333395421505D), Telerik.Reporting.Drawing.Unit.Inch(0.02083333395421505D));
             this.productIdDataTextBox.Name = "productIdDataTextBox";
-            this.productIdDataTextBox.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.6666666269302368D), Telerik.Reporting.Drawing.Unit.Inch(0.40000000596046448D));
+            this.productIdDataTextBox.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.3374996185302734D), Telerik.Reporting.Drawing.Unit.Inch(0.40000000596046448D));
             this.productIdDataTextBox.StyleName = "Data";
             this.productIdDataTextBox.Value = "=Fields.Product.Code";
             // 
             // textBox2
             // 
             this.textBox2.CanGrow = true;
-            this.textBox2.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Inch(1.7083333730697632D), Telerik.Reporting.Drawing.Unit.Inch(0.02083333395421505D));
+            this.textBox2.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Inch(1.3584117889404297D), Telerik.Reporting.Drawing.Unit.Inch(0.02083333395421505D));
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.6666666269302368D), Telerik.Reporting.Drawing.Unit.Inch(0.40000000596046448D));
+            this.textBox2.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.3374996185302734D), Telerik.Reporting.Drawing.Unit.Inch(0.40000000596046448D));
             this.textBox2.StyleName = "Data";
             this.textBox2.Value = "=Fields.Product.Name";
             // 
             // orderQuantityDataTextBox
             // 
             this.orderQuantityDataTextBox.CanGrow = true;
-            this.orderQuantityDataTextBox.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Inch(3.3958332538604736D), Telerik.Reporting.Drawing.Unit.Inch(0.02083333395421505D));
+            this.orderQuantityDataTextBox.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Inch(4.4248433113098145D), Telerik.Reporting.Drawing.Unit.Inch(0.02083333395421505D));
             this.orderQuantityDataTextBox.Name = "orderQuantityDataTextBox";
-            this.orderQuantityDataTextBox.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.6666666269302368D), Telerik.Reporting.Drawing.Unit.Inch(0.40000000596046448D));
+            this.orderQuantityDataTextBox.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.3374996185302734D), Telerik.Reporting.Drawing.Unit.Inch(0.40000000596046448D));
             this.orderQuantityDataTextBox.StyleName = "Data";
             this.orderQuantityDataTextBox.Value = "=Fields.OrderQuantity";
             // 
@@ -198,9 +202,9 @@ namespace RecipiesReports
             // 
             this.unitPriceDataTextBox.CanGrow = true;
             this.unitPriceDataTextBox.Format = "{0:C2}";
-            this.unitPriceDataTextBox.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Inch(5.0833334922790527D), Telerik.Reporting.Drawing.Unit.Inch(0.02083333395421505D));
+            this.unitPriceDataTextBox.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Inch(5.76242208480835D), Telerik.Reporting.Drawing.Unit.Inch(0.02083333395421505D));
             this.unitPriceDataTextBox.Name = "unitPriceDataTextBox";
-            this.unitPriceDataTextBox.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.6666666269302368D), Telerik.Reporting.Drawing.Unit.Inch(0.40000000596046448D));
+            this.unitPriceDataTextBox.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.3374996185302734D), Telerik.Reporting.Drawing.Unit.Inch(0.40000000596046448D));
             this.unitPriceDataTextBox.StyleName = "Data";
             this.unitPriceDataTextBox.Value = "=Fields.UnitPrice";
             // 
@@ -208,9 +212,9 @@ namespace RecipiesReports
             // 
             this.lineTotalDataTextBox.CanGrow = true;
             this.lineTotalDataTextBox.Format = "{0:C2}";
-            this.lineTotalDataTextBox.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Inch(6.7708334922790527D), Telerik.Reporting.Drawing.Unit.Inch(0.02083333395421505D));
+            this.lineTotalDataTextBox.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Inch(7.1000003814697266D), Telerik.Reporting.Drawing.Unit.Inch(0.02083333395421505D));
             this.lineTotalDataTextBox.Name = "lineTotalDataTextBox";
-            this.lineTotalDataTextBox.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.6666666269302368D), Telerik.Reporting.Drawing.Unit.Inch(0.40000000596046448D));
+            this.lineTotalDataTextBox.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.3374996185302734D), Telerik.Reporting.Drawing.Unit.Inch(0.40000000596046448D));
             this.lineTotalDataTextBox.StyleName = "Data";
             this.lineTotalDataTextBox.Value = "=Fields.LineTotal";
             // 
@@ -220,6 +224,24 @@ namespace RecipiesReports
             this.odsSalesOrderDetails.DataSource = "DynamicApplicationModel.RecipiesModel, DynamicApplicationModel, Version=1.0.0.0, " +
     "Culture=neutral, PublicKeyToken=null";
             this.odsSalesOrderDetails.Name = "odsSalesOrderDetails";
+            // 
+            // textBox5
+            // 
+            this.textBox5.CanGrow = true;
+            this.textBox5.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Inch(2.6751964092254639D), Telerik.Reporting.Drawing.Unit.Inch(0.02083333395421505D));
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.7495683431625366D), Telerik.Reporting.Drawing.Unit.Inch(0.40000000596046448D));
+            this.textBox5.StyleName = "Caption";
+            this.textBox5.Value = "Unit";
+            // 
+            // textBox6
+            // 
+            this.textBox6.CanGrow = true;
+            this.textBox6.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Inch(2.6959903240203857D), Telerik.Reporting.Drawing.Unit.Inch(0.02083333395421505D));
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.7287744283676148D), Telerik.Reporting.Drawing.Unit.Inch(0.40000000596046448D));
+            this.textBox6.StyleName = "Data";
+            this.textBox6.Value = "=Fields.UnitMeasure.Name";
             // 
             // PurchaseOrderDetailsReport
             // 
@@ -293,6 +315,8 @@ namespace RecipiesReports
         private Telerik.Reporting.TextBox textBox4;
         private Telerik.Reporting.ObjectDataSource odsSalesOrderDetails;
         private Telerik.Reporting.PictureBox pictureBox1;
+        private Telerik.Reporting.TextBox textBox5;
+        private Telerik.Reporting.TextBox textBox6;
 
     }
 }
