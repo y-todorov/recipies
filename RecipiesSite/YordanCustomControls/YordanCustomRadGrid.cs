@@ -246,5 +246,28 @@ namespace YordanCustomControls
             base.OnInit(e);
         }
 
+        protected override void OnGroupsChanging(GridGroupsChangingEventArgs e)
+        {
+            //Expression is added (by drag/grop on group panel)
+
+            //if (e.Action == GridGroupsChangingAction.Group)
+            //{
+            //    if (e.Expression.GroupByFields[0].FieldName == "CategoryId")
+            //    {
+            //        GridGroupByField countryGroupField = new GridGroupByField();
+            //        countryGroupField.FieldName = "ProductCategory.Name";                   
+
+            //        e.Expression.SelectFields.Clear();
+            //        e.Expression.SelectFields.Add(countryGroupField);                 
+
+            //        e.Expression.GroupByFields.Clear();
+            //        e.Expression.GroupByFields.Add(countryGroupField);                  
+            //    }
+
+            //}
+
+            base.OnGroupsChanging(e);
+        }
+
     }
 }

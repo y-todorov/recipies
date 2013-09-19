@@ -17,6 +17,9 @@ using System.Diagnostics;
 using Microsoft.AspNet.SignalR;
 //using System.Threading;
 using System.Globalization;
+using System.Web.Caching;
+using System.Reflection;
+using System.Collections;
 //using PubNubMessaging.Core;
 
 namespace RecipiesWebFormApp
@@ -24,7 +27,7 @@ namespace RecipiesWebFormApp
     public class Global : HttpApplication
     {
         void Application_Start(object sender, EventArgs e)
-        {
+        {           
             // Code that runs on application startup
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterOpenAuth();
@@ -44,9 +47,9 @@ namespace RecipiesWebFormApp
             timerRequestPage.Start();
 
             // Test for database refresh
-            Timer timerCheckDatabaseForChanges = new Timer(TimeSpan.FromSeconds(10).TotalMilliseconds);
+            Timer timerCheckDatabaseForChanges = new Timer(TimeSpan.FromSeconds(1).TotalMilliseconds);
             timerCheckDatabaseForChanges.Elapsed += timerCheckDatabaseForChanges_Elapsed;
-            //timerCheckDatabaseForChanges.Start();
+            timerCheckDatabaseForChanges.Start();
 
             //int mnt = System.Threading.Thread.CurrentThread.ManagedThreadId;
 
@@ -56,6 +59,11 @@ namespace RecipiesWebFormApp
         {
             Stopwatch s = new Stopwatch();
             s.Start();
+
+            //MethodInfo method = ContextFactory.GetContextPerRequest().GetType().GetMethod("GetAll");
+            //MethodInfo generic = method.MakeGenericMethod(typeof(Product));
+            //var res = generic.Invoke(ContextFactory.GetContextPerRequest(), null) as IEnumerable;
+
             DateTime? lastModifiedDate = ContextFactory.GetContextPerRequest().Products.OrderByDescending(p => p.ModifiedDate).Select( p => p.ModifiedDate).FirstOrDefault();
             if (Application["ProductDate"] == null)
             {
@@ -63,20 +71,42 @@ namespace RecipiesWebFormApp
             }
             else
             {
-                DateTime? lmd = Application["ProductDate"] as DateTime?;
-                if (lmd.Value != lastModifiedDate.Value)
+                DateTime? lastModifiedDateCacheValue = Application["ProductDate"] as DateTime?;
+                if (lastModifiedDateCacheValue.Value != lastModifiedDate.Value)
                 {
-                    //PubNubMessaging.Core.Pubnub.Instance.Publish("Products", "rebind", (t) => t.ToString(), (t) => t.ToString());
+                    var context = GlobalHost.ConnectionManager.GetHubContext<RebindHub>();
+                    // Here we refresh only grids with ItemType product. We should do notification system on wathcing the sql database. SQL WATCH or something
+                    context.Clients.Group(typeof(Product).FullName).rebindRadGrid();
+                    Application["ProductDate"] = lastModifiedDate.Value;
+                    return;
                 }
                 Application["ProductDate"] = lastModifiedDate;
+            }
+
+            int lastProductCount = ContextFactory.GetContextPerRequest().Products.Count();
+            if (Application["ProductCount"] == null)
+            {
+                Application.Add("ProductCount", lastProductCount);
+            }
+            else
+            {
+                int productCountCacheValue = (int)Application["ProductCount"];
+                if (productCountCacheValue != lastProductCount)
+                {
+                    var context = GlobalHost.ConnectionManager.GetHubContext<RebindHub>();
+
+                    // Here we refresh only grids with ItemType product. We should do notification system on wathcing the sql database. SQL WATCH or something
+                    context.Clients.Group(typeof(Product).FullName).rebindRadGrid();
+                    Application["ProductCount"] = lastProductCount;
+                    return;                        
+                }
             }
 
 
             s.Stop();
             var mills = s.ElapsedMilliseconds;
             var ticks = s.ElapsedTicks;
-            //int mnt = System.Threading.Thread.CurrentThread.ManagedThreadId;
-
+                        
         }
 
         void timer_Elapsed(object sender, ElapsedEventArgs e)
