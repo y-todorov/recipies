@@ -113,6 +113,8 @@ namespace YordanCustomControls
 
         protected override void OnLoad(EventArgs e)
         {
+            
+
             GridEditableColumn modifiedDateColumn = Columns.FindByUniqueNameSafe("ModifiedDate") as GridEditableColumn;
             if (modifiedDateColumn != null)
             {
@@ -205,6 +207,40 @@ namespace YordanCustomControls
         {
             ViewState.Remove("isExporting");
             base.OnPreRender(e);
+        }
+
+        protected override void OnInit(EventArgs e)
+        {
+            string script = @"<script src=""../Scripts/jquery-2.0.3.min.js""></script>
+        <script src=""../Scripts/jquery.signalR-1.1.3.js""></script>
+        <script src=""/signalr/hubs""></script>
+        <script>
+//debugger;
+            var hub = $.connection.rebindHub;
+            hub.state.MyType = ""Products"";
+            hub.client.rebindRadGrid = function () {
+
+                var grid = window.$find(""" + ClientID + @""");
+
+            if (grid != null) {
+                var masterTable = grid.get_masterTableView();
+                var editedItemsArray = masterTable.get_editItems();
+                var isItemInserted = masterTable.get_isItemInserted()
+                if (editedItemsArray.length == 0 && !isItemInserted) {
+                    masterTable.rebind();
+                }
+            }
+
+        }
+
+        $.connection.hub.start().done(function () {
+ hub.server.addToGroup($.connection.hub.id, """ + ItemType + @""");
+        });</script>";
+                // ItemType should be setted in markup
+            ScriptManager.RegisterStartupScript(Page, GetType(), "key", script, false);
+                
+
+            base.OnInit(e);
         }
 
     }

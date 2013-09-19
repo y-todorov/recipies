@@ -62,9 +62,10 @@ namespace RecipiesModelNS
             base.SaveChanges(failureMode);
 
             var context = GlobalHost.ConnectionManager.GetHubContext<RebindHub>();
-            context.Clients.All.rebindRadGrid();      
+          
+            // Here we refresh only grids with ItemType product. We should do notification system on wathcing the sql database. SQL WATCH or something
+            context.Clients.Group(typeof(Product).FullName).rebindRadGrid();
 
-            //PubNubMessaging.Core.Pubnub.Instance.Publish("Products", "rebind", (t) => t.ToString(), (t) => t.ToString());
         }
 
         private void UpdatePurchaseOrderSubTotalFromPurchaseOrderDetails(List<int> purchaseOrderHeaderIds)

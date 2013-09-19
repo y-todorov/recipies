@@ -13,12 +13,10 @@
     <form runat="server">
         <%--EnablePartialRendering="false/true" This is very importan.--%>
         <telerik:RadScriptManager ID="RadScriptManager1" runat="server" AsyncPostBackErrorMessage="An error has occured on the server!" OnAsyncPostBackError="RadScriptManager1_AsyncPostBackError" LoadScriptsBeforeUI="False">
-            <%--<CompositeScript>--%>
             <Scripts>
-                <%-- <telerik:RadScriptReference Path="Scripts/pubnub.min.js" />--%>
+             
             </Scripts>
 
-            <%--</CompositeScript>--%>
             <CompositeScript>
                 <Scripts>
                     <telerik:RadScriptReference Path="Scripts/MyJavaScript.js" Combine="true" />

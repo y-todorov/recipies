@@ -5,12 +5,14 @@
 <%@ Register Assembly="YordanCustomControls" Namespace="YordanCustomControls" TagPrefix="yordan" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <telerik:RadCodeBlock runat="server">
+   <%-- <telerik:RadCodeBlock runat="server" ID="RadCodeBlock1">
         <script src="../Scripts/jquery-2.0.3.min.js"></script>
         <script src="../Scripts/jquery.signalR-1.1.3.js"></script>
         <script src="/signalr/hubs"></script>
         <script>
             var hub = $.connection.rebindHub;
+
+            
 
             hub.client.rebindRadGrid = function () {
 
@@ -28,14 +30,14 @@
         }
 
         $.connection.hub.start().done(function () {
-
+            hub.server.AddToGroup($.connection, "test");
         });
 
     </script>
 
 
-    </telerik:RadCodeBlock>
-    <yordan:YordanCustomRadGrid ID="rgProducts" runat="server" DataSourceID="OpenAccessLinqDataSourceProduct" CellSpacing="0" GridLines="None">
+    </telerik:RadCodeBlock>--%>
+    <yordan:YordanCustomRadGrid ID="rgProducts" runat="server" ItemType="RecipiesModelNS.Product" DataSourceID="OpenAccessLinqDataSourceProduct" CellSpacing="0" GridLines="None">
         <MasterTableView AutoGenerateColumns="False" DataKeyNames="ProductId" DataSourceID="OpenAccessLinqDataSourceProduct">
             <Columns>
                 <telerik:GridBoundColumn DataField="ProductId" DataType="System.Int32" FilterControlAltText="Filter ProductId column" HeaderText="ProductId" ReadOnly="True" SortExpression="ProductId" UniqueName="ProductId">
