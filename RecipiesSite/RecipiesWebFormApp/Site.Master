@@ -13,7 +13,7 @@
 <body>
     <form runat="server">
         <%--EnablePartialRendering="false/true" This is very importan.--%>
-        <telerik:RadScriptManager ID="RadScriptManager1" runat="server" AsyncPostBackErrorMessage="An error has occured on the server!" OnAsyncPostBackError="RadScriptManager1_AsyncPostBackError" LoadScriptsBeforeUI="False">
+        <telerik:RadScriptManager ID="RadScriptManager1" runat="server" OutputCompression="Forced" AsyncPostBackErrorMessage="An error has occured on the server!" OnAsyncPostBackError="RadScriptManager1_AsyncPostBackError" LoadScriptsBeforeUI="False">
             <Scripts>
             </Scripts>
             <CompositeScript>

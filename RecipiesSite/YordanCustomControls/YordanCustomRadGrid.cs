@@ -212,7 +212,7 @@ namespace YordanCustomControls
         protected override void OnInit(EventArgs e)
         {
             string script = @"<script src=""../Scripts/jquery-2.0.3.min.js""></script>
-        <script src=""../Scripts/jquery.signalR-1.1.3.js""></script>
+        <script src=""../Scripts/jquery.signalR-1.1.3.min.js""></script>
         <script src=""/signalr/hubs""></script>
         <script>
 //debugger;
