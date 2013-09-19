@@ -237,7 +237,10 @@ namespace YordanCustomControls
  hub.server.addToGroup($.connection.hub.id, """ + ItemType + @""");
         });</script>";
                 // ItemType should be setted in markup
-            ScriptManager.RegisterStartupScript(Page, GetType(), "key", script, false);
+            //if (ScriptManager.GetRegisteredStartupScripts().Count == 0)
+            {
+                ScriptManager.RegisterStartupScript(Page, GetType(), "key", script, false);
+            }
                 
 
             base.OnInit(e);

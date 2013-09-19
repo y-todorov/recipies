@@ -70,32 +70,32 @@
                     </ColumnValidationSettings>
                 </telerik:GridBoundColumn>
 
-                <telerik:GridDateTimeColumn DataField="OrderDate" DataFormatString="{0:dd/MM/yyyy}" DataType="System.DateTime" FilterControlAltText="Filter OrderDate column" HeaderText="OrderDate" SortExpression="OrderDate" UniqueName="OrderDate">
+                <telerik:GridDateTimeColumn DataField="OrderDate" DataType="System.DateTime" FilterControlAltText="Filter OrderDate column" HeaderText="OrderDate" SortExpression="OrderDate" UniqueName="OrderDate">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
                 </telerik:GridDateTimeColumn>
-                <telerik:GridDateTimeColumn DataField="ShipDate" DataFormatString="{0:dd/MM/yyyy}" DataType="System.DateTime" FilterControlAltText="Filter ShipDate column" HeaderText="ShipDate" SortExpression="ShipDate" UniqueName="ShipDate">
+                <telerik:GridDateTimeColumn DataField="ShipDate" DataType="System.DateTime" FilterControlAltText="Filter ShipDate column" HeaderText="ShipDate" SortExpression="ShipDate" UniqueName="ShipDate">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
                 </telerik:GridDateTimeColumn>
-                <telerik:GridNumericColumn DataField="SubTotal" DataType="System.Decimal" DataFormatString="{0:C}" FilterControlAltText="Filter SubTotal column" HeaderText="SubTotal" SortExpression="SubTotal" UniqueName="SubTotal">
+                <telerik:GridNumericColumn DataField="SubTotal" DataType="System.Decimal" FilterControlAltText="Filter SubTotal column" HeaderText="SubTotal" SortExpression="SubTotal" UniqueName="SubTotal">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
                 </telerik:GridNumericColumn>
-                <telerik:GridNumericColumn DataField="VAT" DataType="System.Decimal" DataFormatString="{0:C}" FilterControlAltText="Filter VAT column" HeaderText="VAT" SortExpression="VAT" UniqueName="VAT">
+                <telerik:GridNumericColumn DataField="VAT" DataType="System.Decimal" FilterControlAltText="Filter VAT column" HeaderText="VAT" SortExpression="VAT" UniqueName="VAT">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
                 </telerik:GridNumericColumn>
-                <telerik:GridNumericColumn DataField="Freight" DataType="System.Decimal" DataFormatString="{0:C}" FilterControlAltText="Filter Freight column" HeaderText="Freight" SortExpression="Freight" UniqueName="Freight">
+                <telerik:GridNumericColumn DataField="Freight" DataType="System.Decimal" FilterControlAltText="Filter Freight column" HeaderText="Freight" SortExpression="Freight" UniqueName="Freight">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
                 </telerik:GridNumericColumn>
-                <telerik:GridNumericColumn DataField="TotalDue" ReadOnly="true" DataFormatString="{0:C}" DataType="System.Decimal" FilterControlAltText="Filter TotalDue column" HeaderText="TotalDue" SortExpression="TotalDue" UniqueName="TotalDue">
+                <telerik:GridNumericColumn DataField="TotalDue" ReadOnly="true" DataType="System.Decimal" FilterControlAltText="Filter TotalDue column" HeaderText="TotalDue" SortExpression="TotalDue" UniqueName="TotalDue">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
@@ -153,12 +153,12 @@
                                             <ModelErrorMessage Text="" />
                                         </ColumnValidationSettings>
                                     </telerik:GridNumericColumn>
-                                    <telerik:GridNumericColumn DataField="UnitPrice" DataFormatString="{0:C}" DataType="System.Decimal" FilterControlAltText="Filter UnitPrice column" HeaderText="UnitPrice" SortExpression="UnitPrice" UniqueName="UnitPrice">
+                                    <telerik:GridNumericColumn DataField="UnitPrice" DataType="System.Decimal" FilterControlAltText="Filter UnitPrice column" HeaderText="UnitPrice" SortExpression="UnitPrice" UniqueName="UnitPrice">
                                         <ColumnValidationSettings>
                                             <ModelErrorMessage Text="" />
                                         </ColumnValidationSettings>
                                     </telerik:GridNumericColumn>
-                                    <telerik:GridNumericColumn DataField="LineTotal" ReadOnly="true" DataFormatString="{0:C}" DataType="System.Decimal" FilterControlAltText="Filter LineTotal column" HeaderText="LineTotal" SortExpression="LineTotal" UniqueName="LineTotal">
+                                    <telerik:GridNumericColumn DataField="LineTotal" ReadOnly="true" DataType="System.Decimal" FilterControlAltText="Filter LineTotal column" HeaderText="LineTotal" SortExpression="LineTotal" UniqueName="LineTotal">
                                         <ColumnValidationSettings>
                                             <ModelErrorMessage Text="" />
                                         </ColumnValidationSettings>

@@ -92,7 +92,7 @@ namespace RecipiesWebFormApp
 
         void Application_Error(object sender, EventArgs e)
         {
-                      
+            Debugger.Break();
         }
     }
 }

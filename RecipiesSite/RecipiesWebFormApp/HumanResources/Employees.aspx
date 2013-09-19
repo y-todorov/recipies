@@ -24,12 +24,12 @@
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
                 </telerik:GridBoundColumn> 
-                <telerik:GridDateTimeColumn DataField="BirthDate"  DataFormatString="{0:dd/MM/yyyy}" DataType="System.DateTime" FilterControlAltText="Filter BirthDate column" HeaderText="BirthDate" SortExpression="BirthDate" UniqueName="BirthDate">
+                <telerik:GridDateTimeColumn DataField="BirthDate" DataType="System.DateTime" FilterControlAltText="Filter BirthDate column" HeaderText="BirthDate" SortExpression="BirthDate" UniqueName="BirthDate">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
                 </telerik:GridDateTimeColumn>
-                <telerik:GridDateTimeColumn DataField="HireDate" DataFormatString="{0:dd/MM/yyyy}" DataType="System.DateTime" FilterControlAltText="Filter HireDate column" HeaderText="HireDate" SortExpression="HireDate" UniqueName="HireDate">
+                <telerik:GridDateTimeColumn DataField="HireDate" DataType="System.DateTime" FilterControlAltText="Filter HireDate column" HeaderText="HireDate" SortExpression="HireDate" UniqueName="HireDate">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
