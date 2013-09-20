@@ -4,7 +4,3 @@ function OnClientItemClicking(sender, args) {
         args.set_cancel(true); // Cancel the event 
     }
 }
-
-function OnClientYordanGridDataBound(sender, args) {
-    alert("test OnClientYordanGridDataBound event")
-}

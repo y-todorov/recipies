@@ -31,7 +31,12 @@ namespace RecipiesWebFormApp
 
         public void RebindRadGrid()
         {
-            this.Clients.Others.rebindRadGrid();
-        }       
+            this.Clients.All.rebindRadGrid();
+        }
+
+        public void Hello()
+        {
+            Clients.All.hello();
+        }
     }
 }

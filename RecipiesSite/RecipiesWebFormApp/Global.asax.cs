@@ -20,8 +20,6 @@ using System.Globalization;
 using System.Web.Caching;
 using System.Reflection;
 using System.Collections;
-using Telerik.OpenAccess.Metadata;
-using System.Threading.Tasks;
 //using PubNubMessaging.Core;
 
 namespace RecipiesWebFormApp
@@ -29,7 +27,7 @@ namespace RecipiesWebFormApp
     public class Global : HttpApplication
     {
         void Application_Start(object sender, EventArgs e)
-        {
+        {           
             // Code that runs on application startup
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterOpenAuth();
@@ -49,83 +47,66 @@ namespace RecipiesWebFormApp
             timerRequestPage.Start();
 
             // Test for database refresh
-            Timer timerCheckDatabaseForChanges = new Timer(TimeSpan.FromSeconds(30).TotalMilliseconds);
+            Timer timerCheckDatabaseForChanges = new Timer(TimeSpan.FromSeconds(1).TotalMilliseconds);
             timerCheckDatabaseForChanges.Elapsed += timerCheckDatabaseForChanges_Elapsed;
-            //timerCheckDatabaseForChanges.Start();
+            timerCheckDatabaseForChanges.Start();
 
-            int mnt = System.Threading.Thread.CurrentThread.ManagedThreadId;
+            //int mnt = System.Threading.Thread.CurrentThread.ManagedThreadId;
 
         }
 
         void timerCheckDatabaseForChanges_Elapsed(object sender, ElapsedEventArgs e)
         {
-            Task.Factory.StartNew(() => CheckDatabaseForChanges());
-            //CheckDatabaseForChanges();
-
-        }
-
-        private void CheckDatabaseForChanges()
-        {
             Stopwatch s = new Stopwatch();
             s.Start();
 
-            // It takse so fucking long for all types
-            IList<MetaPersistentType> subTypes = ContextFactory.GetContextPerRequest().Metadata.PersistentTypes.Take(5).ToList();
+            //MethodInfo method = ContextFactory.GetContextPerRequest().GetType().GetMethod("GetAll");
+            //MethodInfo generic = method.MakeGenericMethod(typeof(Product));
+            //var res = generic.Invoke(ContextFactory.GetContextPerRequest(), null) as IEnumerable;
 
-            foreach (MetaPersistentType mpt in subTypes)
+            DateTime? lastModifiedDate = ContextFactory.GetContextPerRequest().Products.OrderByDescending(p => p.ModifiedDate).Select( p => p.ModifiedDate).FirstOrDefault();
+            if (Application["ProductDate"] == null)
             {
-                string tableName = string.Format("[{0}].[{1}]", mpt.Table.SchemaName, mpt.Table.Name);
-                CheckTableForChanges(tableName, mpt.FullName);
+                Application.Add("ProductDate", lastModifiedDate);
+            }
+            else
+            {
+                DateTime? lastModifiedDateCacheValue = Application["ProductDate"] as DateTime?;
+                if (lastModifiedDateCacheValue.Value != lastModifiedDate.Value)
+                {
+                    var context = GlobalHost.ConnectionManager.GetHubContext<RebindHub>();
+                    // Here we refresh only grids with ItemType product. We should do notification system on wathcing the sql database. SQL WATCH or something
+                    context.Clients.Group(typeof(Product).FullName).rebindRadGrid();
+                    Application["ProductDate"] = lastModifiedDate.Value;
+                    return;
+                }
+                Application["ProductDate"] = lastModifiedDate;
+            }
+
+            int lastProductCount = ContextFactory.GetContextPerRequest().Products.Count();
+            if (Application["ProductCount"] == null)
+            {
+                Application.Add("ProductCount", lastProductCount);
+            }
+            else
+            {
+                int productCountCacheValue = (int)Application["ProductCount"];
+                if (productCountCacheValue != lastProductCount)
+                {
+                    var context = GlobalHost.ConnectionManager.GetHubContext<RebindHub>();
+
+                    // Here we refresh only grids with ItemType product. We should do notification system on wathcing the sql database. SQL WATCH or something
+                    context.Clients.Group(typeof(Product).FullName).rebindRadGrid();
+                    Application["ProductCount"] = lastProductCount;
+                    return;                        
+                }
             }
 
 
             s.Stop();
             var mills = s.ElapsedMilliseconds;
             var ticks = s.ElapsedTicks;
-        }
-
-        private async void CheckTableForChanges(string tableName, string persistentTypeFullName)
-        {
-            DateTime? lastModifiedDate = await Task.Factory.StartNew<DateTime?>(() => ContextFactory.GetContextPerRequest().ExecuteScalar<DateTime?>("SELECT [ModifiedDate] FROM " + tableName + " ORDER BY [ModifiedDate] DESC "));
-            int lastProductCount = await Task.Factory.StartNew<int>(() => ContextFactory.GetContextPerRequest().ExecuteScalar<int>("SELECT COUNT(*) FROM  " + tableName)); //ContextFactory.GetContextPerRequest().Products.Count();
-            string dateConstant = tableName + "Date";
-            string countConstant = tableName + "Count";
-            if (Application[dateConstant] == null)
-            {
-                Application.Add(dateConstant, lastModifiedDate);
-            }
-            else
-            {
-                DateTime? lastModifiedDateCacheValue = Application[dateConstant] as DateTime?;
-                if (lastModifiedDateCacheValue.Value != lastModifiedDate.Value)
-                {
-                    var context = GlobalHost.ConnectionManager.GetHubContext<RebindHub>();
-                    // Here we refresh only grids with ItemType product. We should do notification system on wathcing the sql database. SQL WATCH or something
-                    context.Clients.Group(persistentTypeFullName).rebindRadGrid();
-                    Application[dateConstant] = lastModifiedDate.Value;
-                    Application[countConstant] = lastProductCount;
-                    //return;
-                }
-                Application[dateConstant] = lastModifiedDate;
-            }
-
-            if (Application[countConstant] == null)
-            {
-                Application.Add(countConstant, lastProductCount);
-            }
-            else
-            {
-                int productCountCacheValue = (int)Application[countConstant];
-                if (productCountCacheValue != lastProductCount)
-                {
-                    var context = GlobalHost.ConnectionManager.GetHubContext<RebindHub>();
-
-                    // Here we refresh only grids with ItemType product. We should do notification system on wathcing the sql database. SQL WATCH or something
-                    context.Clients.Group(persistentTypeFullName).rebindRadGrid();
-                    Application[dateConstant] = lastModifiedDate.Value;
-                    Application[countConstant] = lastProductCount;
-                }
-            }
+                        
         }
 
         void timer_Elapsed(object sender, ElapsedEventArgs e)
