@@ -14,7 +14,6 @@ using System.Diagnostics;
 using System.Drawing;
 using Telerik.OpenAccess.Web;
 using System.Reflection;
-using Microsoft.AspNet.SignalR;
 using RecipiesWebFormApp;
 
 namespace YordanCustomControls
@@ -301,22 +300,22 @@ namespace YordanCustomControls
         protected override void OnItemDeleted(GridDeletedEventArgs e)
         {
             base.OnItemDeleted(e);
-            var context = GlobalHost.ConnectionManager.GetHubContext<RebindHub>();
-            context.Clients.Group(ItemType).rebindRadGrid();
+            //var context = GlobalHost.ConnectionManager.GetHubContext<RebindHub>();
+            //context.Clients.Group(ItemType).rebindRadGrid();
         }
 
         protected override void OnItemInserted(GridInsertedEventArgs e)
         {
             base.OnItemInserted(e);
-            var context = GlobalHost.ConnectionManager.GetHubContext<RebindHub>();
-            context.Clients.Group(ItemType).rebindRadGrid();
+            //var context = GlobalHost.ConnectionManager.GetHubContext<RebindHub>();
+            //context.Clients.Group(ItemType).rebindRadGrid();
         }
 
         protected override void OnItemUpdated(GridUpdatedEventArgs e)
         {
             base.OnItemUpdated(e);
-            var context = GlobalHost.ConnectionManager.GetHubContext<RebindHub>();
-            context.Clients.Group(ItemType).rebindRadGrid();
+            //var context = GlobalHost.ConnectionManager.GetHubContext<RebindHub>();
+            //context.Clients.Group(ItemType).rebindRadGrid();
         }
 
     }
