@@ -12,6 +12,10 @@ using Telerik.Web.UI;
 using Helpers.Extensions;
 using System.Diagnostics;
 using System.Drawing;
+using RecipiesWebFormApp;
+using Microsoft.AspNet.SignalR;
+using System.Reflection;
+using Telerik.OpenAccess.Web;
 
 namespace YordanCustomControls
 {
@@ -211,6 +215,32 @@ namespace YordanCustomControls
 
         protected override void OnInit(EventArgs e)
         {
+            if (string.IsNullOrEmpty(ItemType))
+            {
+                string itemType = string.Empty;
+
+                //try to get the type of the entity shown in the grid. we assume that the grid and the openaccesslinqdatasource are in the same namingContainer
+                OpenAccessLinqDataSource linqDataSource = NamingContainer.Controls.Cast<Control>().FirstOrDefault(c => c.ID == DataSourceID) as OpenAccessLinqDataSource;
+
+                if (linqDataSource != null)
+                {
+                    var linqDataSourceFields = linqDataSource.GetType().GetFields(BindingFlags.Instance |
+                        BindingFlags.Static |
+                        BindingFlags.NonPublic |
+                        BindingFlags.Public);
+
+                    OpenAccessLinqDataSourceView theView = linqDataSourceFields.FirstOrDefault(f => f.Name == "view").GetValue(linqDataSource) as OpenAccessLinqDataSourceView;
+
+                    PropertyInfo prop = theView.GetType().GetProperty("EntityType", (BindingFlags.Instance |
+                        BindingFlags.Static |
+                        BindingFlags.NonPublic |
+                        BindingFlags.Public));
+                    Type theType = prop.GetValue(theView) as Type;
+                    itemType = theType.FullName;
+                    ItemType = itemType;
+                }
+            }
+
             string script = @"<script src=""../Scripts/jquery-2.0.3.min.js""></script>
         <script src=""../Scripts/jquery.signalR-1.1.3.min.js""></script>
         <script src=""/signalr/hubs""></script>
@@ -267,6 +297,27 @@ namespace YordanCustomControls
             //}
 
             base.OnGroupsChanging(e);
+        }
+
+        protected override void OnItemDeleted(GridDeletedEventArgs e)
+        {
+            base.OnItemDeleted(e);
+            var context = GlobalHost.ConnectionManager.GetHubContext<RebindHub>();
+            context.Clients.Group(ItemType).rebindRadGrid();
+        }
+
+        protected override void OnItemInserted(GridInsertedEventArgs e)
+        {
+            base.OnItemInserted(e);
+            var context = GlobalHost.ConnectionManager.GetHubContext<RebindHub>();
+            context.Clients.Group(ItemType).rebindRadGrid();
+        }
+
+        protected override void OnItemUpdated(GridUpdatedEventArgs e)
+        {
+            base.OnItemUpdated(e);
+            var context = GlobalHost.ConnectionManager.GetHubContext<RebindHub>();
+            context.Clients.Group(ItemType).rebindRadGrid();
         }
 
     }

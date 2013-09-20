@@ -49,7 +49,7 @@ namespace RecipiesWebFormApp
             // Test for database refresh
             Timer timerCheckDatabaseForChanges = new Timer(TimeSpan.FromSeconds(1).TotalMilliseconds);
             timerCheckDatabaseForChanges.Elapsed += timerCheckDatabaseForChanges_Elapsed;
-            timerCheckDatabaseForChanges.Start();
+            //timerCheckDatabaseForChanges.Start();
 
             //int mnt = System.Threading.Thread.CurrentThread.ManagedThreadId;
 
