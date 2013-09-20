@@ -5,7 +5,7 @@
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <yordan:YordanCustomRadGrid ID="rgRecipes" runat="server" CellSpacing="0" DataSourceID="OpenAccessLinqDataSourceRecipes" GridLines="None" OnItemCommand="rgRecipes_ItemCommand">
+    <yordan:YordanCustomRadGrid ID="rgRecipes" runat="server" CellSpacing="0" ItemType="RecipiesModelNS.Recipe" DataSourceID="OpenAccessLinqDataSourceRecipes" GridLines="None" OnItemCommand="rgRecipes_ItemCommand">
         <MasterTableView AutoGenerateColumns="False" DataKeyNames="RecipeId" DataSourceID="OpenAccessLinqDataSourceRecipes">
             <Columns>
                 <telerik:GridBoundColumn DataField="RecipeId" DataType="System.Int32" FilterControlAltText="Filter RecipeId column" HeaderText="RecipeId" ReadOnly="True" SortExpression="RecipeId" UniqueName="RecipeId">
@@ -40,7 +40,7 @@
                     <ItemTemplate />
                     <EditItemTemplate>
                         <asp:Label runat="server" ID="lblProductIngredients" ForeColor="Blue" Text="Please save the recipe so recipe ingredients can be added to it." OnPreRender="lblProductIngredients_PreRender"></asp:Label>
-                        <yordan:YordanCustomRadGrid ID="rgRecipeIngredients" runat="server" CellSpacing="0" DataSourceID="OpenAccessLinqDataSourceRecipeIngredients" GridLines="None" OnItemCreated="rgRecipeIngredients_ItemCreated" OnPreRender="rgRecipeIngredients_PreRender">
+                        <yordan:YordanCustomRadGrid ID="rgRecipeIngredients" runat="server" ItemType="RecipiesModelNS.RecipeIngredient" CellSpacing="0" DataSourceID="OpenAccessLinqDataSourceRecipeIngredients" GridLines="None" OnItemCreated="rgRecipeIngredients_ItemCreated" OnPreRender="rgRecipeIngredients_PreRender">
                             <MasterTableView AutoGenerateColumns="False" DataKeyNames="RecipeIngredientId" DataSourceID="OpenAccessLinqDataSourceRecipeIngredients">
                                 <Columns>
                                     <telerik:GridBoundColumn DataField="RecipeIngredientId" Visible="false" DataType="System.Int32" FilterControlAltText="Filter RecipeIngredientId column" HeaderText="RecipeIngredientId" ReadOnly="True" SortExpression="RecipeIngredientId" UniqueName="RecipeIngredientId">

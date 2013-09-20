@@ -8,7 +8,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourceProductHistory" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EntityTypeName="" ResourceSetName="ProductHistories">
     </telerik:OpenAccessLinqDataSource>
-    <yordan:YordanCustomRadGrid ID="rgProductHistory" SkinID="readOnlyGrid" runat="server" DataSourceID="OpenAccessLinqDataSourceProductHistory">
+    <yordan:YordanCustomRadGrid ID="rgProductHistory" SkinID="readOnlyGrid" runat="server" ItemType="RecipiesModelNS.ProductHistory" DataSourceID="OpenAccessLinqDataSourceProductHistory">
         <MasterTableView AutoGenerateColumns="False" DataKeyNames="ProductHistoryId" DataSourceID="OpenAccessLinqDataSourceProductHistory">
             <Columns>
                 <telerik:GridBoundColumn DataField="ProductHistoryId" DataType="System.Int32" FilterControlAltText="Filter ProductHistoryId column" HeaderText="ProductHistoryId" ReadOnly="True" SortExpression="ProductHistoryId" UniqueName="ProductHistoryId">

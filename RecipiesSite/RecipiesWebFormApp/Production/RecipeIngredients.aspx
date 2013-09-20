@@ -4,7 +4,7 @@
 <%@ Register assembly="Telerik.Web.UI" namespace="Telerik.Web.UI" tagprefix="telerik" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
-    <yordan:YordanCustomRadGrid ID="YordanCustomRadGrid1" runat="server" CellSpacing="0" DataSourceID="OpenAccessLinqDataSourceRecipeIngredients" GridLines="None">
+    <yordan:YordanCustomRadGrid ID="YordanCustomRadGrid1" runat="server" CellSpacing="0" ItemType="RecipiesModelNS.RecipeIngredient" DataSourceID="OpenAccessLinqDataSourceRecipeIngredients" GridLines="None">
     <MasterTableView AutoGenerateColumns="False" DataKeyNames="RecipeIngredientId" DataSourceID="OpenAccessLinqDataSourceRecipeIngredients">
         <Columns>
             <telerik:GridBoundColumn DataField="RecipeIngredientId" DataType="System.Int32" FilterControlAltText="Filter RecipeIngredientId column" HeaderText="RecipeIngredientId" ReadOnly="True" SortExpression="RecipeIngredientId" UniqueName="RecipeIngredientId">

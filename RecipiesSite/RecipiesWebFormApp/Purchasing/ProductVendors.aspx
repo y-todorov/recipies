@@ -6,7 +6,7 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <yordan:YordanCustomRadGrid ID="rgProductVendors" runat="server" DataSourceID="OpenAccessLinqDataSourceProductVendors">
+    <yordan:YordanCustomRadGrid ID="rgProductVendors" runat="server" ItemType="RecipiesModelNS.ProductVendor" DataSourceID="OpenAccessLinqDataSourceProductVendors">
         <MasterTableView AutoGenerateColumns="False" DataKeyNames="ProductVendorId" DataSourceID="OpenAccessLinqDataSourceProductVendors">
             <Columns>
                 <telerik:GridBoundColumn DataField="ProductVendorId" DataType="System.Int32" FilterControlAltText="Filter ProductVendorId column" HeaderText="ProductVendorId" ReadOnly="True" SortExpression="ProductVendorId" UniqueName="ProductVendorId">

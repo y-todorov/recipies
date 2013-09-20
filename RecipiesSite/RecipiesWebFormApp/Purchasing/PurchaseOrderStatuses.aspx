@@ -7,7 +7,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourcePurchaseOrderStatuses" Runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="PurchaseOrderStatus" />
-<yordan:YordanCustomRadGrid ID="rgPurchaseOrderStatuses" runat="server" CellSpacing="0" DataSourceID="OpenAccessLinqDataSourcePurchaseOrderStatuses" GridLines="None">
+<yordan:YordanCustomRadGrid ID="rgPurchaseOrderStatuses" runat="server" ItemType="RecipiesModelNS.PurchaseOrderStatus" CellSpacing="0" DataSourceID="OpenAccessLinqDataSourcePurchaseOrderStatuses" GridLines="None">
     <MasterTableView AutoGenerateColumns="False" DataKeyNames="PurchaseOrderStatusId" DataSourceID="OpenAccessLinqDataSourcePurchaseOrderStatuses">
         <Columns>
             <telerik:GridBoundColumn DataField="PurchaseOrderStatusId" DataType="System.Int32" FilterControlAltText="Filter PurchaseOrderStatusId column" HeaderText="PurchaseOrderStatusId" ReadOnly="True" SortExpression="PurchaseOrderStatusId" UniqueName="PurchaseOrderStatusId">

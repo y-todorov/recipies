@@ -6,7 +6,7 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <yordan:YordanCustomRadGrid ID="rgShipMethod" runat="server" DataSourceID="OpenAccessLinqDataSourceShipMethod">
+    <yordan:YordanCustomRadGrid ID="rgShipMethod" runat="server" ItemType="RecipiesModelNS.ShipMethod" DataSourceID="OpenAccessLinqDataSourceShipMethod">
     <MasterTableView AutoGenerateColumns="False" DataKeyNames="ShipMethodId" DataSourceID="OpenAccessLinqDataSourceShipMethod">
         <Columns>
             <telerik:GridBoundColumn DataField="ShipMethodId" DataType="System.Int32" FilterControlAltText="Filter ShipMethodId column" HeaderText="ShipMethodId" ReadOnly="True" SortExpression="ShipMethodId" UniqueName="ShipMethodId">

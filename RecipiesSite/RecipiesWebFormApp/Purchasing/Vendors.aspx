@@ -5,7 +5,7 @@
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <yordan:YordanCustomRadGrid ID="rgSuppliers" runat="server" DataSourceID="OpenAccessLinqDataSourceVendor" CellSpacing="0" GridLines="None">
+    <yordan:YordanCustomRadGrid ID="rgSuppliers" runat="server" ItemType="RecipiesModelNS.Vendor" DataSourceID="OpenAccessLinqDataSourceVendor" CellSpacing="0" GridLines="None">
         <MasterTableView AutoGenerateColumns="False" DataKeyNames="VendorId" DataSourceID="OpenAccessLinqDataSourceVendor">
             <Columns>
                 <telerik:GridBoundColumn DataField="VendorId" DataType="System.Int32" FilterControlAltText="Filter VendorId column" HeaderText="VendorId" ReadOnly="True" SortExpression="VendorId" UniqueName="VendorId">

@@ -5,7 +5,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourceCustomer" Runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="Customers" />
-<yordan:YordanCustomRadGrid ID="rgCustomers" runat="server" DataSourceID="OpenAccessLinqDataSourceCustomer">
+<yordan:YordanCustomRadGrid ID="rgCustomers" runat="server" ItemType="RecipiesModelNS.Customer" DataSourceID="OpenAccessLinqDataSourceCustomer">
     <MasterTableView AutoGenerateColumns="False" DataKeyNames="CustomerID" DataSourceID="OpenAccessLinqDataSourceCustomer">
         <Columns>
             <telerik:GridBoundColumn DataField="CustomerID" DataType="System.Int32" FilterControlAltText="Filter CustomerID column" HeaderText="CustomerID" ReadOnly="True" SortExpression="CustomerID" UniqueName="CustomerID">

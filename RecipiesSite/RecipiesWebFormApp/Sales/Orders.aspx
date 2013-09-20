@@ -6,7 +6,7 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <yordan:YordanCustomRadGrid ID="rgSalesOrderHeaders" runat="server" DataSourceID="OpenAccessLinqDataSourceOrder" CellSpacing="0" GridLines="None" OnItemCommand="rgSalesOrderHeaders_ItemCommand">
+    <yordan:YordanCustomRadGrid ID="rgSalesOrderHeaders" runat="server" ItemType="RecipiesModelNS.SalesOrderHeader" DataSourceID="OpenAccessLinqDataSourceOrder" CellSpacing="0" GridLines="None" OnItemCommand="rgSalesOrderHeaders_ItemCommand">
         <MasterTableView AutoGenerateColumns="False" DataKeyNames="SalesOrderHeaderId" DataSourceID="OpenAccessLinqDataSourceOrder">
             <Columns>
                 <telerik:GridBoundColumn DataField="SalesOrderHeaderId" DataType="System.Int32" FilterControlAltText="Filter SalesOrderHeaderId column" HeaderText="SalesOrderHeaderId" ReadOnly="True" SortExpression="SalesOrderHeaderId" UniqueName="SalesOrderHeaderId">
@@ -70,7 +70,7 @@
                     <ItemStyle />
                     <EditItemTemplate>
                         <asp:Label runat="server" ID="lblSalesOrderDetails" ForeColor="Blue" Text="Please save the sales order so recipies can be added to it." OnPreRender="lblSalesOrderDetails_PreRender"></asp:Label>
-                        <yordan:YordanCustomRadGrid ID="rgSalesOrderDetails" runat="server" DataSourceID="OpenAccessLinqDataSourceOrderDetail" CellSpacing="0" GridLines="None"  OnPreRender="rgSalesOrderDetails_PreRender">
+                        <yordan:YordanCustomRadGrid ID="rgSalesOrderDetails" runat="server" ItemType="RecipiesModelNS.SalesOrderDetail" DataSourceID="OpenAccessLinqDataSourceOrderDetail" CellSpacing="0" GridLines="None"  OnPreRender="rgSalesOrderDetails_PreRender">
                             <HeaderStyle />
                             <MasterTableView AutoGenerateColumns="False" DataKeyNames="SalesOrderDetailId" DataSourceID="OpenAccessLinqDataSourceOrderDetail">
                                 <Columns>                                                                   

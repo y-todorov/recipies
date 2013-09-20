@@ -5,7 +5,7 @@
 <%@ Register Assembly="YordanCustomControls" Namespace="YordanCustomControls" TagPrefix="yordan" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <yordan:YordanCustomRadGrid ID="rgShifts" runat="server" DataSourceID="OpenAccessLinqDataSourceShifts">
+    <yordan:YordanCustomRadGrid ID="rgShifts" runat="server" ItemType="RecipiesModelNS.Shift" DataSourceID="OpenAccessLinqDataSourceShifts">
         <MasterTableView AutoGenerateColumns="False" DataKeyNames="ShiftId" DataSourceID="OpenAccessLinqDataSourceShifts">
             <Columns>
                 <telerik:GridBoundColumn DataField="ShiftId" DataType="System.Int32" FilterControlAltText="Filter ShiftId column" HeaderText="ShiftId" ReadOnly="True" SortExpression="ShiftId" UniqueName="ShiftId">
