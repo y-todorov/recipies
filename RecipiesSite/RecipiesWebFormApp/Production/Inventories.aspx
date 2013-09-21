@@ -44,11 +44,15 @@
                         <modelerrormessage text=""></modelerrormessage>
                     </columnvalidationsettings>
                 </telerik:GridNumericColumn>
-                <telerik:GridNumericColumn DataField="StocktakeValue" ReadOnly="true"  DataType="System.Decimal" FilterControlAltText="Filter StocktakeValue column" HeaderText="StocktakeValue" SortExpression="StocktakeValue" UniqueName="StocktakeValue">
-                    <columnvalidationsettings>
-                        <modelerrormessage text=""></modelerrormessage>
-                    </columnvalidationsettings>
-                </telerik:GridNumericColumn>
+                <telerik:GridTemplateColumn DataField="StocktakeValue" DataType="System.Decimal" FilterControlAltText="Filter StocktakeValue column" HeaderText="StocktakeValue" SortExpression="StocktakeValue" UniqueName="StocktakeValue">
+                    <EditItemTemplate>
+                        <telerik:RadNumericTextBox ID="StocktakeValueRadNumericTextBox" runat="server" DbValue='<%# Bind("StocktakeValue") %>' Type="Number">
+                        </telerik:RadNumericTextBox>
+                    </EditItemTemplate>
+                    <ItemTemplate>
+                        <asp:Label ID="StocktakeValueLabel" runat="server" Text='<%# Eval("StocktakeValue") %>'></asp:Label>
+                    </ItemTemplate>
+                </telerik:GridTemplateColumn>
                 <telerik:GridNumericColumn DataField="DeficiencyQuantity" ReadOnly="true" DataType="System.Double" FilterControlAltText="Filter DeficiencyQuantity column" HeaderText="DeficiencyQuantity" SortExpression="DeficiencyQuantity" UniqueName="DeficiencyQuantity">
                     <columnvalidationsettings>
                         <modelerrormessage text=""></modelerrormessage>

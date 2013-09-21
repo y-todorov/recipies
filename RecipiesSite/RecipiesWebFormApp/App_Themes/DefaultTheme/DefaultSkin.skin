@@ -25,7 +25,7 @@ Default skin template. The following skins are provided as examples only.
             <Resizing AllowColumnResize="True" AllowResizeToFit="True" AllowRowResize="False" EnableRealTimeResize="True" ResizeGridOnColumnResize="True" />
             <Animation AllowColumnReorderAnimation="True" AllowColumnRevertAnimation="True" />
         </ClientSettings>
-        <MasterTableView  AutoGenerateColumns="False" AllowMultiColumnSorting="True" EnableHeaderContextAggregatesMenu="True" EnableHeaderContextFilterMenu="True" EnableHeaderContextMenu="True" ShowFooter="True" CommandItemDisplay="TopAndBottom">
+        <MasterTableView ShowGroupFooter="true" AutoGenerateColumns="False" AllowMultiColumnSorting="True" EnableHeaderContextAggregatesMenu="True" EnableHeaderContextFilterMenu="True" EnableHeaderContextMenu="True" ShowFooter="True" CommandItemDisplay="TopAndBottom">
             <CommandItemSettings ExportToPdfText="Export to PDF" ShowExportToCsvButton="True" ShowExportToExcelButton="True" ShowExportToPdfButton="True" ShowExportToWordButton="True" ShowRefreshButton="False"></CommandItemSettings>
 
             <RowIndicatorColumn Visible="True" FilterControlAltText="Filter RowIndicator column">
@@ -53,7 +53,7 @@ Default skin template. The following skins are provided as examples only.
             <Resizing AllowColumnResize="True" AllowResizeToFit="True" AllowRowResize="False" EnableRealTimeResize="True" ResizeGridOnColumnResize="True" />
             <Animation AllowColumnReorderAnimation="True" AllowColumnRevertAnimation="True" />
         </ClientSettings>
-        <MasterTableView AutoGenerateColumns="False" AllowMultiColumnSorting="True" EnableHeaderContextAggregatesMenu="True" EnableHeaderContextFilterMenu="True" EnableHeaderContextMenu="True" ShowFooter="True" CommandItemDisplay="TopAndBottom">
+        <MasterTableView ShowGroupFooter="true" AutoGenerateColumns="False" AllowMultiColumnSorting="True" EnableHeaderContextAggregatesMenu="True" EnableHeaderContextFilterMenu="True" EnableHeaderContextMenu="True" ShowFooter="True" CommandItemDisplay="TopAndBottom">
             <CommandItemSettings ExportToPdfText="Export to PDF" ShowExportToCsvButton="True" ShowExportToExcelButton="True" ShowExportToPdfButton="True" ShowExportToWordButton="True" ShowRefreshButton="False" ShowAddNewRecordButton="False"></CommandItemSettings>
 
             <RowIndicatorColumn Visible="True" FilterControlAltText="Filter RowIndicator column">
