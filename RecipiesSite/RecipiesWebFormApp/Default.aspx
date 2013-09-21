@@ -86,8 +86,22 @@
                     </ChartTitle> 
                 </telerik:RadHtmlChart>
             </td>
-            <td>
-
+           <td>
+                <telerik:RadHtmlChart runat="server" ID="rhcMostExpensiveProducts">
+                    <PlotArea>
+                        <Series>
+                            <telerik:ColumnSeries DataFieldY="UnitPrice" Name="Unit Price">   
+                            </telerik:ColumnSeries>                       
+                        </Series>
+                        <XAxis DataLabelsField="Name">                           
+                        </XAxis>
+                        <YAxis>
+                            <TitleAppearance Text="Price"></TitleAppearance>
+                        </YAxis>
+                    </PlotArea>
+                    <ChartTitle Text="Top 10 most expensive products">
+                    </ChartTitle>           
+                </telerik:RadHtmlChart>
             </td>
         </tr>
     </table>
