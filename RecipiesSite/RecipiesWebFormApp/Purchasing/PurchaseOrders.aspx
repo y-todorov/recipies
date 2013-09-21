@@ -28,7 +28,7 @@
             <asp:Parameter DefaultValue="True" Name="IsVisible" Type="Boolean" />
         </WhereParameters>
     </telerik:OpenAccessLinqDataSource>
-    <yordan:YordanCustomRadGrid ID="rgPurchaseOrders" runat="server" ItemType="RecipiesModelNS.PurchaseOrderHeader" DataSourceID="OpenAccessLinqDataSourcePurchaseOrders" OnItemCommand="rgPurchaseOrders_ItemCommand" OnItemCreated="rgPurchaseOrders_ItemCreated">
+    <yordan:YordanCustomRadGrid ID="rgPurchaseOrders" runat="server" DataSourceID="OpenAccessLinqDataSourcePurchaseOrders" OnItemCommand="rgPurchaseOrders_ItemCommand" OnItemCreated="rgPurchaseOrders_ItemCreated">
         <MasterTableView AutoGenerateColumns="False" DataKeyNames="PurchaseOrderId" DataSourceID="OpenAccessLinqDataSourcePurchaseOrders">
             <Columns>
                 <telerik:GridBoundColumn DataField="PurchaseOrderId" DataType="System.Int32" FilterControlAltText="Filter PurchaseOrderID column" HeaderText="PurchaseOrderID" ReadOnly="True" SortExpression="PurchaseOrderID" UniqueName="PurchaseOrderID">
@@ -129,7 +129,7 @@
                                             <ModelErrorMessage Text="" />
                                         </ColumnValidationSettings>
                                     </telerik:GridBoundColumn>
-                                    <telerik:GridDropDownColumn UniqueName="DropDownProductListColumn" ListTextField="Name" EmptyListItemText="" EnableEmptyListItem="true" EmptyListItemValue="" ConvertEmptyStringToNull="true"
+                                    <%----%><telerik:GridDropDownColumn UniqueName="DropDownProductListColumn" ListTextField="Name" EmptyListItemText="" EnableEmptyListItem="true" EmptyListItemValue="" ConvertEmptyStringToNull="true"
                                         ListValueField="ProductId" DataSourceID="OpenAccessLinqDataSourceProduct" HeaderText="Product"
                                         DataField="ProductId" DropDownControlType="RadComboBox">
                                         <ColumnValidationSettings>

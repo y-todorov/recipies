@@ -195,14 +195,16 @@ namespace RecipiesWebFormApp.Purchasing
         {
             List<Product> products = e.Result as List<Product>;
             products.Clear();
+            // it is important to filter null returned values
             List<Product> filteredProducts = ContextFactory.GetContextPerRequest().ProductVendors.
-                Where(pv => pv.VendorId == VendorId).Select(pv => pv.Product).ToList();
+                Where(pv => pv.VendorId == VendorId && pv.Product != null).Select(pv => pv.Product).ToList();
+
             products.AddRange(filteredProducts);
         }
 
         protected void OpenAccessLinqDataSourcePurchaseOrderDetails_Selected(object sender, OpenAccessLinqDataSourceStatusEventArgs e)
         {
-
+           
         }
 
         protected void OpenAccessLinqDataSourcePurchaseOrderDetails_Inserting(object sender, OpenAccessLinqDataSourceInsertEventArgs e)
@@ -250,12 +252,12 @@ namespace RecipiesWebFormApp.Purchasing
         }
 
         protected void rgPurchaseOrderDetails_ItemCreated(object sender, GridItemEventArgs e)
-        {             
-            if (e.Item is GridEditableItem && e.Item.IsInEditMode)  
+        {
+            if (e.Item is GridEditableItem && e.Item.IsInEditMode)
             {
                 GridEditableItem editedItem = (e.Item as GridEditableItem);
-                RadComboBox dropDownProductListColumn = editedItem["DropDownProductListColumn"].Controls[0] as RadComboBox;  
-  
+                RadComboBox dropDownProductListColumn = editedItem["DropDownProductListColumn"].Controls[0] as RadComboBox;
+
                 //attach SelectedIndexChanged event for the dropdown control  
                 dropDownProductListColumn.AutoPostBack = true;
                 dropDownProductListColumn.SelectedIndexChanged += dropDownProductListColumn_SelectedIndexChanged;
@@ -284,18 +286,9 @@ namespace RecipiesWebFormApp.Purchasing
 
                         dropDownUnitListColumn.DataSource = product.UnitMeasure.GetRelatedUnitMeasures();
                         dropDownUnitListColumn.DataBind();
-                    }
-
-                    //ProductVendor productVendor = ContextFactory.GetContextPerRequest().ProductVendors.FirstOrDefault(pv => pv.ProductId == intProductId && pv.VendorId == VendorId);
-
-                    //tbUnitPrice.Text = productVendor.StandardPrice.ToString();
+                    }                 
                 }
             }
-
-
-            
-
-            
         }
 
         protected void OpenAccessLinqDataSourcePurchaseOrders_Updating(object sender, OpenAccessLinqDataSourceUpdateEventArgs e)
@@ -331,6 +324,11 @@ namespace RecipiesWebFormApp.Purchasing
         {
             // So SubTotal and Total value  will be updated
             rgPurchaseOrders.Rebind();
+        }
+
+        protected void OpenAccessLinqDataSourcePurchaseOrderDetails_Inserted(object sender, OpenAccessLinqDataSourceStatusEventArgs e)
+        {
+            PurchaseOrderDetail oldPurchaseOrderDetail = e.Result as PurchaseOrderDetail;
         }
   
     }

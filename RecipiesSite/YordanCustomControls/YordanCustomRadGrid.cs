@@ -191,8 +191,7 @@ namespace YordanCustomControls
                     gridDropDownColumn.ColumnValidationSettings.RequiredFieldValidator.ForeColor = Color.Red;
                 }
             }
-
-            base.OnLoad(e);
+                base.OnLoad(e);
         }
 
         protected override void OnColumnCreated(GridColumnCreatedEventArgs e)
@@ -220,24 +219,27 @@ namespace YordanCustomControls
                 string itemType = string.Empty;
 
                 //try to get the type of the entity shown in the grid. we assume that the grid and the openaccesslinqdatasource are in the same namingContainer
-                OpenAccessLinqDataSource linqDataSource = NamingContainer.Controls.Cast<Control>().FirstOrDefault(c => c.ID == DataSourceID) as OpenAccessLinqDataSource;
-
-                if (linqDataSource != null)
+                if (NamingContainer != null)
                 {
-                    var linqDataSourceFields = linqDataSource.GetType().GetFields(BindingFlags.Instance |
-                        BindingFlags.Static |
-                        BindingFlags.NonPublic |
-                        BindingFlags.Public);
+                    OpenAccessLinqDataSource linqDataSource = NamingContainer.Controls.Cast<Control>().FirstOrDefault(c => c.ID == DataSourceID) as OpenAccessLinqDataSource;
 
-                    OpenAccessLinqDataSourceView theView = linqDataSourceFields.FirstOrDefault(f => f.Name == "view").GetValue(linqDataSource) as OpenAccessLinqDataSourceView;
+                    if (linqDataSource != null)
+                    {
+                        var linqDataSourceFields = linqDataSource.GetType().GetFields(BindingFlags.Instance |
+                            BindingFlags.Static |
+                            BindingFlags.NonPublic |
+                            BindingFlags.Public);
 
-                    PropertyInfo prop = theView.GetType().GetProperty("EntityType", (BindingFlags.Instance |
-                        BindingFlags.Static |
-                        BindingFlags.NonPublic |
-                        BindingFlags.Public));
-                    Type theType = prop.GetValue(theView) as Type;
-                    itemType = theType.FullName;
-                    ItemType = itemType;
+                        OpenAccessLinqDataSourceView theView = linqDataSourceFields.FirstOrDefault(f => f.Name == "view").GetValue(linqDataSource) as OpenAccessLinqDataSourceView;
+
+                        PropertyInfo prop = theView.GetType().GetProperty("EntityType", (BindingFlags.Instance |
+                            BindingFlags.Static |
+                            BindingFlags.NonPublic |
+                            BindingFlags.Public));
+                        Type theType = prop.GetValue(theView) as Type;
+                        itemType = theType.FullName;
+                        ItemType = itemType;
+                    }
                 }
             }
 
