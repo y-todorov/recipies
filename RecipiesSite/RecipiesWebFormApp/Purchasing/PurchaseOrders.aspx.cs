@@ -212,6 +212,18 @@ namespace RecipiesWebFormApp.Purchasing
             {
                 newPurchaseOrderDetail.PurchaseOrderId = PurchaseOrderId;
             }
+            PurchaseOrderDetail insertedPurchaseOrderDetail = e.NewObject as PurchaseOrderDetail;
+            PurchaseOrderHeader purchaseOrder = ContextFactory.GetContextPerRequest().PurchaseOrderHeaders.FirstOrDefault(p => p.PurchaseOrderId == PurchaseOrderId);
+            Product selectedProduct = ContextFactory.GetContextPerRequest().Products.FirstOrDefault(p => p.ProductId == insertedPurchaseOrderDetail.ProductId);
+            if (purchaseOrder.StatusId == (int)PurchaseOrderStatusEnum.Approved)
+            {
+                selectedProduct.UnitsOnOrder += insertedPurchaseOrderDetail.OrderQuantity;
+            }
+            else if (purchaseOrder.StatusId == (int)PurchaseOrderStatusEnum.Completed)
+            {
+                selectedProduct.UnitsInStock += insertedPurchaseOrderDetail.StockedQuantity;
+            }
+            ContextFactory.GetContextPerRequest().SaveChanges();
         }
 
         protected void rgPurchaseOrderDetails_PreRender(object sender, EventArgs e)
@@ -325,12 +337,63 @@ namespace RecipiesWebFormApp.Purchasing
         {
             PurchaseOrderDetail oldPurchaseOrderDetail = e.OriginalObject as PurchaseOrderDetail;
             PurchaseOrderDetail newPurchaseOrderDetail = e.NewObject as PurchaseOrderDetail;
+            double differenceOrderQuantity = newPurchaseOrderDetail.OrderQuantity.GetValueOrDefault() - oldPurchaseOrderDetail.OrderQuantity.GetValueOrDefault();
+            double differenceStockedQuantity = newPurchaseOrderDetail.StockedQuantity - oldPurchaseOrderDetail.StockedQuantity;
+
+            Product selectedProduct = ContextFactory.GetContextPerRequest().Products.FirstOrDefault(p => p.ProductId == newPurchaseOrderDetail.ProductId);
+            
+            PurchaseOrderHeader purchaseOrder = ContextFactory.GetContextPerRequest().PurchaseOrderHeaders.FirstOrDefault(p => p.PurchaseOrderId == PurchaseOrderId);
+            if (purchaseOrder.StatusId == (int)PurchaseOrderStatusEnum.Approved)
+            {
+                selectedProduct.UnitsOnOrder += differenceOrderQuantity;
+            }
+            else if (purchaseOrder.StatusId == (int)PurchaseOrderStatusEnum.Completed)
+            {
+                selectedProduct.UnitsInStock += differenceStockedQuantity;
+            }
+            ContextFactory.GetContextPerRequest().SaveChanges();
         }
 
         protected void OpenAccessLinqDataSourcePurchaseOrderDetails_InsertedUpdatedDeleted(object sender, OpenAccessLinqDataSourceStatusEventArgs e)
         {
             // So SubTotal and Total value  will be updated
+            //rgPurchaseOrders.Rebind();
+        }
+
+        protected void OpenAccessLinqDataSourcePurchaseOrderDetails_Inserted(object sender, OpenAccessLinqDataSourceStatusEventArgs e)
+        {            
+             // So SubTotal and Total value  will be updated
+             rgPurchaseOrders.Rebind();
+        }
+
+        protected void OpenAccessLinqDataSourcePurchaseOrderDetails_Updated(object sender, OpenAccessLinqDataSourceStatusEventArgs e)
+        {
+            // So SubTotal and Total value  will be updated
             rgPurchaseOrders.Rebind();
+        }
+
+        protected void OpenAccessLinqDataSourcePurchaseOrderDetails_Deleted(object sender, OpenAccessLinqDataSourceStatusEventArgs e)
+        {
+            
+            // So SubTotal and Total value  will be updated
+            rgPurchaseOrders.Rebind();
+        }
+
+        protected void OpenAccessLinqDataSourcePurchaseOrderDetails_Deleting(object sender, OpenAccessLinqDataSourceDeleteEventArgs e)
+        {
+            PurchaseOrderDetail deletedPurchaseOrderDetail = e.OriginalObject as PurchaseOrderDetail;
+            PurchaseOrderHeader purchaseOrder = ContextFactory.GetContextPerRequest().PurchaseOrderHeaders.FirstOrDefault(p => p.PurchaseOrderId == PurchaseOrderId);
+            Product selectedProduct = ContextFactory.GetContextPerRequest().Products.FirstOrDefault(p => p.ProductId == deletedPurchaseOrderDetail.ProductId);
+
+            if (purchaseOrder.StatusId == (int)PurchaseOrderStatusEnum.Approved)
+            {
+                selectedProduct.UnitsOnOrder -= deletedPurchaseOrderDetail.OrderQuantity;
+            }
+            else if (purchaseOrder.StatusId == (int)PurchaseOrderStatusEnum.Completed)
+            {
+                selectedProduct.UnitsInStock -= deletedPurchaseOrderDetail.StockedQuantity;
+            }
+            ContextFactory.GetContextPerRequest().SaveChanges();
         }
   
     }

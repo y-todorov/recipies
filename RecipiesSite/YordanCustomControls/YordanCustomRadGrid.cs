@@ -241,6 +241,11 @@ namespace YordanCustomControls
                 }
             }
 
+            if (string.IsNullOrEmpty(ItemType))
+            {
+                throw new ApplicationException("ItemType cannot be empty.Source: Custom Grid Control.");
+            }
+
             string script = @"<script src=""../Scripts/jquery-2.0.3.min.js""></script>
         <script src=""../Scripts/jquery.signalR-1.1.3.min.js""></script>
         <script src=""/signalr/hubs""></script>
