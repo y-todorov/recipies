@@ -252,7 +252,8 @@ namespace YordanCustomControls
         <script>
 //debugger;
             var hub = $.connection.rebindHub;
-            hub.state.MyType = ""Products"";
+            // Unable to get property 'state' of undefined or null reference THIS IS A MISTAKE. I DELIBERATLEY DID NOT DELETE THIS SO I CAN SEE THE ERROR THAT WILL OCCUIF I UNCOMMENT THAT LINE
+            //hub.state.MyType = ""Products"";
             hub.client.rebindRadGrid = function () {
 
                 var grid = window.$find(""" + ClientID + @""");
