@@ -8,17 +8,17 @@
     <meta charset="utf-8" />
     <title>Inventory management</title>
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-    <%-- tuk ne stava da se registrira signalr--%>
+    <%-- tuk ne stava da se registrira signalr--%>      
 </head>
 <body>
     <form runat="server">
         <%--EnablePartialRendering="false/true" This is very importan.--%>
-        <telerik:RadScriptManager ID="RadScriptManager1" runat="server" OutputCompression="Forced"  AsyncPostBackErrorMessage="An error has occured on the server!" OnAsyncPostBackError="RadScriptManager1_AsyncPostBackError" LoadScriptsBeforeUI="True">
-                <Scripts>
-                    <telerik:RadScriptReference Path="Scripts/MyJavaScript.js" Combine="true" />
-                    <telerik:RadScriptReference Path="Scripts/GoogleAnalytics.js" Combine="true" />
-                    <%-- tuk ne stava da se registrira signalr--%>
-                </Scripts>
+        <telerik:RadScriptManager ID="RadScriptManager1" runat="server" OutputCompression="Forced" AsyncPostBackErrorMessage="An error has occured on the server!" OnAsyncPostBackError="RadScriptManager1_AsyncPostBackError" LoadScriptsBeforeUI="True">
+            <Scripts>
+                <telerik:RadScriptReference Path="Scripts/MyJavaScript.js" Combine="true" />
+                <telerik:RadScriptReference Path="Scripts/GoogleAnalytics.js" Combine="true" />
+                <%-- tuk ne stava da se registrira signalr--%>
+            </Scripts>
         </telerik:RadScriptManager>
         <telerik:RadStyleSheetManager runat="server" ID="RadStyleSheetManager1">
             <StyleSheets>
