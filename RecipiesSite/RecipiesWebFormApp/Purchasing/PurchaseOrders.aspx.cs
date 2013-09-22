@@ -250,6 +250,19 @@ namespace RecipiesWebFormApp.Purchasing
                 //attach SelectedIndexChanged event for the dropdown control  
                 dropDownProductListColumn.AutoPostBack = true;
                 dropDownProductListColumn.SelectedIndexChanged += dropDownProductListColumn_SelectedIndexChanged;
+
+                if (e.Item is GridEditFormInsertItem || e.Item is GridDataInsertItem)
+                {
+                    // insert item                   
+                }
+                else 
+                {
+                    RadComboBox dropDownUnitListColumn = editedItem["DropDownUnitListColumn"].Controls[0] as RadComboBox;
+                    dropDownProductListColumn.Enabled = false;
+                    dropDownUnitListColumn.Enabled = false;
+
+                    // edit item
+                }
             }  
         }
 
