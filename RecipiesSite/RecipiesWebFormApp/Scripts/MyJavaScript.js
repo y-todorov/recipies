@@ -4,3 +4,12 @@ function OnClientItemClicking(sender, args) {
         args.set_cancel(true); // Cancel the event 
     }
 }
+
+
+function OnRequestStart() {
+    isInRequest = true;
+}
+
+function OnResponseEnd() {
+    isInRequest = false;
+}

@@ -384,6 +384,7 @@ namespace RecipiesWebFormApp.Purchasing
             PurchaseOrderDetail deletedPurchaseOrderDetail = e.OriginalObject as PurchaseOrderDetail;
             PurchaseOrderHeader purchaseOrder = ContextFactory.GetContextPerRequest().PurchaseOrderHeaders.FirstOrDefault(p => p.PurchaseOrderId == PurchaseOrderId);
             Product selectedProduct = ContextFactory.GetContextPerRequest().Products.FirstOrDefault(p => p.ProductId == deletedPurchaseOrderDetail.ProductId);
+            //UnitMeasure selectedUnitMeasure = ContextFactory.GetContextPerRequest().UnitMeasures.FirstOrDefault(um => um.UnitMeasureId == deletedPurchaseOrderDetail.UnitMeasureId);
 
             if (purchaseOrder.StatusId == (int)PurchaseOrderStatusEnum.Approved)
             {

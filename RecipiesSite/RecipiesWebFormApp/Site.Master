@@ -14,8 +14,6 @@
     <form runat="server">
         <%--EnablePartialRendering="false/true" This is very importan.--%>
         <telerik:RadScriptManager ID="RadScriptManager1" runat="server" OutputCompression="Forced" AsyncPostBackErrorMessage="An error has occured on the server!" OnAsyncPostBackError="RadScriptManager1_AsyncPostBackError" LoadScriptsBeforeUI="False">
-            <Scripts>
-            </Scripts>
             <CompositeScript>
                 <Scripts>
                     <telerik:RadScriptReference Path="Scripts/MyJavaScript.js" Combine="true" />
@@ -126,7 +124,8 @@
                 </telerik:RadMenuItem>
             </Items>
         </telerik:RadMenu>
-        <telerik:RadAjaxPanel ID="RadAjaxPanel1" runat="server" LoadingPanelID="RadAjaxLoadingPanel1">
+        <telerik:RadAjaxPanel ID="RadAjaxPanel1" runat="server" LoadingPanelID="RadAjaxLoadingPanel1" ClientEvents-OnRequestStart="OnRequestStart" ClientEvents-OnResponseEnd="OnResponseEnd">
+
             <div>
                 <asp:ContentPlaceHolder runat="server" ID="MainContent" />
             </div>

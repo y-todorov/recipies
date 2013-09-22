@@ -31,7 +31,7 @@ namespace RecipiesWebFormApp
                 return RadNotification1;
             }
         }
-
+        
         protected void Page_Init(object sender, EventArgs e)
         {
             // This prevents back button after log out 
@@ -117,6 +117,15 @@ namespace RecipiesWebFormApp
         protected void RadScriptManager1_AsyncPostBackError(object sender, AsyncPostBackErrorEventArgs e)
         {
             Debugger.Break();
+        }
+
+        public override void DataBind()
+        {
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+            base.DataBind();
+            stopwatch.Stop();
+            long mills = stopwatch.ElapsedMilliseconds;
         }
     }
 }

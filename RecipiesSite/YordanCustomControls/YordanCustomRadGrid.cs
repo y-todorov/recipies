@@ -258,14 +258,21 @@ namespace YordanCustomControls
                 var grid = window.$find(""" + ClientID + @""");
 
             if (grid != null) {
+//debugger;
+
+if (typeof isInRequest === 'undefined') {
+isInRequest = false;
+    // variable is undefined
+}
+var res = isInRequest; // this is global variable set in ajax start and ajax stop event handlers
+
                 var masterTable = grid.get_masterTableView();
                 var editedItemsArray = masterTable.get_editItems();
                 var isItemInserted = masterTable.get_isItemInserted()
-                if (editedItemsArray.length == 0 && !isItemInserted) {
+                if (editedItemsArray.length == 0 && !isItemInserted && !isInRequest) {
                     masterTable.rebind();
                 }
-            }
-
+            }            
         }
 
         $.connection.hub.start().done(function () {
@@ -307,23 +314,57 @@ namespace YordanCustomControls
         protected override void OnItemDeleted(GridDeletedEventArgs e)
         {
             base.OnItemDeleted(e);
+            (Page.Master as dynamic).MasterRadNotification.Show("Item was successfully deleted! ");
             var context = GlobalHost.ConnectionManager.GetHubContext<RebindHub>();
             context.Clients.Group(ItemType).rebindRadGrid();
+          
         }
 
         protected override void OnItemInserted(GridInsertedEventArgs e)
         {
             base.OnItemInserted(e);
+            (Page.Master as dynamic).MasterRadNotification.Show("Item was successfully inserted! ");
             var context = GlobalHost.ConnectionManager.GetHubContext<RebindHub>();
             context.Clients.Group(ItemType).rebindRadGrid();
+            
         }
 
         protected override void OnItemUpdated(GridUpdatedEventArgs e)
         {
             base.OnItemUpdated(e);
+            (Page.Master as dynamic).MasterRadNotification.Show("Item was successfully updated! ");
             var context = GlobalHost.ConnectionManager.GetHubContext<RebindHub>();
             context.Clients.Group(ItemType).rebindRadGrid();
+            
+        }
+
+        protected override void OnDataBinding(EventArgs e)
+        {
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+            base.OnDataBinding(e);
+            stopwatch.Stop();
+            long mills = stopwatch.ElapsedMilliseconds;
+        }
+
+        public override void DataBind()
+        {
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+            base.DataBind();
+            stopwatch.Stop();
+            long mills = stopwatch.ElapsedMilliseconds;
+        }
+
+        protected override void DataBind(bool raiseOnDataBinding)
+        {
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+            base.DataBind(raiseOnDataBinding);
+            stopwatch.Stop();
+            long mills = stopwatch.ElapsedMilliseconds;
         }
 
     }
+   
 }

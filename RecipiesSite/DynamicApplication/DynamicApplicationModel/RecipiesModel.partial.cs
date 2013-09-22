@@ -12,6 +12,7 @@ using System.Reflection;
 using System.Web;
 using Microsoft.AspNet.SignalR;
 using RecipiesWebFormApp;
+using System.Diagnostics;
 
 namespace RecipiesModelNS
 {
@@ -32,7 +33,15 @@ namespace RecipiesModelNS
 
     public partial class RecipiesModel
     {
-
+        protected override IQueryable<T> GetAllCore<T>()
+        {
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+            IQueryable<T> result = base.GetAllCore<T>();
+            stopwatch.Stop();
+            long mills = stopwatch.ElapsedMilliseconds;
+            return result;
+        }
         protected override void Init(string connectionString, Telerik.OpenAccess.BackendConfiguration backendConfiguration, Telerik.OpenAccess.Metadata.MetadataContainer metadataContainer)
         {
             base.Init(connectionString, backendConfiguration, metadataContainer);
@@ -62,7 +71,7 @@ namespace RecipiesModelNS
             base.SaveChanges(failureMode);
 
             //var context = GlobalHost.ConnectionManager.GetHubContext<RebindHub>();
-          
+
             // Here we refresh only grids with ItemType product. We should do notification system on wathcing the sql database. SQL WATCH or something
             //context.Clients.Group(typeof(Product).FullName).rebindRadGrid();
 
@@ -172,7 +181,7 @@ namespace RecipiesModelNS
             {
                 Type type = update.GetType();
                 if (type.GetProperties().Any(p => p.Name.Equals("ModifiedDate")))
-                {                    
+                {
                     DateTime modifiedDate = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, TimeZoneInfo.FindSystemTimeZoneById("GMT Standard Time"));
                     // 		TimeZoneInfo.FindSystemTimeZoneById("GMT Standard Time")	{(UTC) Dublin, Edinburgh, Lisbon, London}
                     update.SetFieldValue<DateTime>("ModifiedDate", modifiedDate);
@@ -233,6 +242,6 @@ namespace RecipiesModelNS
                 }
             }
         }
-       
+
     }
 }
