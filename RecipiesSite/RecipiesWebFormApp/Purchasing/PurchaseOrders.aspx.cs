@@ -251,6 +251,8 @@ namespace RecipiesWebFormApp.Purchasing
                 dropDownProductListColumn.AutoPostBack = true;
                 dropDownProductListColumn.SelectedIndexChanged += dropDownProductListColumn_SelectedIndexChanged;
 
+                dropDownProductListColumn.PreRender += dropDownProductListColumn_PreRender;
+
                 if (e.Item is GridEditFormInsertItem || e.Item is GridDataInsertItem)
                 {
                     // insert item                   
@@ -265,6 +267,13 @@ namespace RecipiesWebFormApp.Purchasing
                 }
             }  
         }
+
+        void dropDownProductListColumn_PreRender(object sender, EventArgs e)
+        {
+            dropDownProductListColumn_SelectedIndexChanged(sender, new RadComboBoxSelectedIndexChangedEventArgs(string.Empty, string.Empty, string.Empty, string.Empty));
+        }
+
+       
 
         void dropDownProductListColumn_SelectedIndexChanged(object sender, RadComboBoxSelectedIndexChangedEventArgs e)
         {
