@@ -16,30 +16,30 @@ namespace RecipiesModelNS
             {
                 foreach (PurchaseOrderDetail pod in purchaseOrderDetails)
                 {
-                    pod.Product.UnitsOnOrder += GetBaseUnitMeasureQuantityForProduct(pod.Product, pod.OrderQuantity, pod.UnitMeasure);
+                    pod.Product.UnitsOnOrder += pod.Product.GetBaseUnitMeasureQuantityForProduct(pod.OrderQuantity, pod.UnitMeasure);
                 }
             }
             if (oldStatus == PurchaseOrderStatusEnum.Approved && newStatus == PurchaseOrderStatusEnum.Pending)
             {
                 foreach (PurchaseOrderDetail pod in purchaseOrderDetails)
                 {
-                    pod.Product.UnitsOnOrder -=  GetBaseUnitMeasureQuantityForProduct(pod.Product, pod.OrderQuantity, pod.UnitMeasure);
+                    pod.Product.UnitsOnOrder -= pod.Product.GetBaseUnitMeasureQuantityForProduct(pod.OrderQuantity, pod.UnitMeasure);
                 }
             }
             if (oldStatus == PurchaseOrderStatusEnum.Approved && newStatus == PurchaseOrderStatusEnum.Completed)
             {
                 foreach (PurchaseOrderDetail pod in purchaseOrderDetails)
                 {
-                    pod.Product.UnitsInStock += GetBaseUnitMeasureQuantityForProduct(pod.Product, pod.StockedQuantity, pod.UnitMeasure);
-                    pod.Product.UnitsOnOrder -= GetBaseUnitMeasureQuantityForProduct(pod.Product, pod.OrderQuantity, pod.UnitMeasure); 
+                    pod.Product.UnitsInStock += pod.Product.GetBaseUnitMeasureQuantityForProduct(pod.StockedQuantity, pod.UnitMeasure);
+                    pod.Product.UnitsOnOrder -= pod.Product.GetBaseUnitMeasureQuantityForProduct(pod.OrderQuantity, pod.UnitMeasure); 
                 }
             }
             if (oldStatus == PurchaseOrderStatusEnum.Completed && newStatus == PurchaseOrderStatusEnum.Approved)
             {
                 foreach (PurchaseOrderDetail pod in purchaseOrderDetails)
                 {
-                    pod.Product.UnitsInStock -= GetBaseUnitMeasureQuantityForProduct(pod.Product, pod.StockedQuantity, pod.UnitMeasure);
-                    pod.Product.UnitsOnOrder += GetBaseUnitMeasureQuantityForProduct(pod.Product, pod.StockedQuantity, pod.UnitMeasure); 
+                    pod.Product.UnitsInStock -= pod.Product.GetBaseUnitMeasureQuantityForProduct(pod.StockedQuantity, pod.UnitMeasure);
+                    pod.Product.UnitsOnOrder += pod.Product.GetBaseUnitMeasureQuantityForProduct(pod.StockedQuantity, pod.UnitMeasure); 
                 }
             }
 
@@ -57,33 +57,7 @@ namespace RecipiesModelNS
             }
         }
 
-        private double GetBaseUnitMeasureQuantityForProduct(Product product, double? quantity, UnitMeasure quantityUnitMeasure)
-        {
-            if (quantityUnitMeasure.BaseUnitId == product.UnitMeasureId)
-            {
-                UnitMeasure baseUnitMeasure = product.UnitMeasure;
-                if (quantityUnitMeasure.BaseUnitFactor.HasValue)
-                {
-                    double result = quantity.Value * (int)quantityUnitMeasure.BaseUnitFactor.Value;
-                    return Math.Round(result, 2);
-                }
-                else
-                {
-                    throw new ApplicationException("UnitMeasure mismatch in method GetBaseUnitMeasureQuantityForProduct! quantityUnitMeasure does no have");
-                }
-            }
-            else if (quantityUnitMeasure.UnitMeasureId == product.UnitMeasureId)
-            {
-                double result = quantity.Value;
-                return Math.Round(result, 2);
-            }
-            else
-            {
-                throw new ApplicationException("UnitMeasure mismatch in method GetBaseUnitMeasureQuantityForProduct!");
-            }
-        }
-
-
+       
 
     }
 }

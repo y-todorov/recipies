@@ -103,5 +103,31 @@ namespace RecipiesModelNS
 
             return 0;
         }
+
+        public double GetBaseUnitMeasureQuantityForProduct(double? quantity, UnitMeasure quantityUnitMeasure)
+        {
+            if (quantityUnitMeasure.BaseUnitId == this.UnitMeasureId)
+            {
+                UnitMeasure baseUnitMeasure = this.UnitMeasure;
+                if (quantityUnitMeasure.BaseUnitFactor.HasValue)
+                {
+                    double result = quantity.Value * (int)quantityUnitMeasure.BaseUnitFactor.Value;
+                    return Math.Round(result, 3);
+                }
+                else
+                {
+                    throw new ApplicationException("UnitMeasure mismatch in method GetBaseUnitMeasureQuantityForProduct! quantityUnitMeasure does no have");
+                }
+            }
+            else if (quantityUnitMeasure.UnitMeasureId == this.UnitMeasureId)
+            {
+                double result = quantity.Value;
+                return Math.Round(result, 3);
+            }
+            else
+            {
+                throw new ApplicationException("UnitMeasure mismatch in method GetBaseUnitMeasureQuantityForProduct!");
+            }
+        }
     }
 }
