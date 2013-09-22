@@ -15,17 +15,11 @@
                     <PlotArea>
                         <Series>
                             <telerik:ColumnSeries DataFieldY="UnitsInStock" Name="Units In Stock">                                  
-                                <TooltipsAppearance Visible="false"></TooltipsAppearance>
                             </telerik:ColumnSeries>
                             <telerik:ColumnSeries DataFieldY="UnitsOnOrder" Name="Units On Order">                                
-                                <TooltipsAppearance Visible="false"></TooltipsAppearance>
                             </telerik:ColumnSeries>
                         </Series>
-                        <XAxis DataLabelsField="Name" Step="1">
-                            <LabelsAppearance ></LabelsAppearance>
-                            <MajorGridLines Visible="false"></MajorGridLines>
-                            <MinorGridLines Visible="false"></MinorGridLines>
-
+                        <XAxis DataLabelsField="Name" >
                         </XAxis>
                         <YAxis>
                             <TitleAppearance Text="Units"></TitleAppearance>
@@ -41,17 +35,12 @@
                     <PlotArea>
                         <Series>
                             <telerik:ColumnSeries DataFieldY="ProductCount" Name="Product count">
-                                <TooltipsAppearance Visible="false"></TooltipsAppearance>
                             </telerik:ColumnSeries>
                         </Series>
-                        <XAxis DataLabelsField="CategoryName" Step="1">
-                            <LabelsAppearance></LabelsAppearance>
-                            <MajorGridLines Visible="false"></MajorGridLines>
-                            <MinorGridLines Visible="false"></MinorGridLines>
+                        <XAxis DataLabelsField="CategoryName">
                         </XAxis>
                         <YAxis>
                             <TitleAppearance Text="Count"></TitleAppearance>
-                            <MinorGridLines Visible="false"></MinorGridLines>
                         </YAxis>
                     </PlotArea>
                     <ChartTitle Text="Products count per category">
@@ -71,11 +60,8 @@
                                 <TooltipsAppearance Visible="false"></TooltipsAppearance>
                             </telerik:ColumnSeries>
                         </Series>
-                        <XAxis DataLabelsField="Name" Step="1">
-                            <LabelsAppearance ></LabelsAppearance>
-                            <MajorGridLines Visible="false"></MajorGridLines>
-                            <MinorGridLines Visible="false"></MinorGridLines>
-
+                        <XAxis DataLabelsField="Name">
+                            <LabelsAppearance ></LabelsAppearance>                          
                         </XAxis>
                         <YAxis>
                             <TitleAppearance Text="Units"></TitleAppearance>
