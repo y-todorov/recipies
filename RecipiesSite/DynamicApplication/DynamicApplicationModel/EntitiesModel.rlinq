@@ -39,6 +39,9 @@
         <orm:field name="_modifiedByUser" property="ModifiedByUser" behavior="readwrite" uniqueId="3c7f31b6-7537-468a-88de-dbfd222533ba" type="System.String">
           <orm:column name="ModifiedByUser" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
         </orm:field>
+        <orm:field name="_reportAccountNumber" property="ReportAccountNumber" behavior="readwrite" uniqueId="d0597c1f-6b89-42f1-a653-fcd8175505b0" type="System.String">
+          <orm:column nullable="true" length="1000" name="ReportAccountNumber" scale="0" sql-type="nvarchar" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
         <orm:field name="_purchaseOrderHeaders" property="PurchaseOrderHeaders" behavior="readwrite" uniqueId="4b94d918-4afd-4eb5-b010-d7107f648534" type="RecipiesModelNS.PurchaseOrderHeader">
           <orm:collection element-class="RecipiesModelNS.PurchaseOrderHeader" inverse-field="_vendor" order-by="" uniqueId="c8924dfa-0516-4dfd-bb8a-338b9a12eb56" />
         </orm:field>
@@ -234,6 +237,9 @@
         <orm:field name="_modifiedByUser" property="ModifiedByUser" behavior="readwrite" uniqueId="b8820ccd-f1c3-4b8d-8136-1f1488c2b0ff" type="System.String">
           <orm:column name="ModifiedByUser" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
         </orm:field>
+        <orm:field name="_paymentTypeId" property="PaymentTypeId" behavior="readwrite" uniqueId="d8242e75-a419-44f7-82d2-02a90ae87738" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column nullable="true" length="0" name="PaymentTypeId" scale="0" sql-type="int" ado-type="Int32" />
+        </orm:field>
         <orm:field name="_salesOrderStatus" property="SalesOrderStatus" behavior="readwrite" uniqueId="602084c5-3d51-49e3-85ba-2446e71566e6" type="RecipiesModelNS.SalesOrderStatus">
           <orm:reference uniqueId="1a715701-c419-498a-b23e-af63d098cd69">
             <orm:sharedfield name="_statusId" target-class="RecipiesModelNS.SalesOrderStatus" target-field="_salesOrderStatusId" />
@@ -254,6 +260,12 @@
         </orm:field>
         <orm:field name="_salesOrderDetails" property="SalesOrderDetails" behavior="readwrite" uniqueId="cea1d949-565c-48da-abbe-e10aff597b5a" type="RecipiesModelNS.SalesOrderDetail">
           <orm:collection element-class="RecipiesModelNS.SalesOrderDetail" inverse-field="_salesOrderHeader" order-by="" uniqueId="2b570b55-3cce-4cd5-8666-de42c047d9d8" />
+        </orm:field>
+        <orm:field name="_paymentType" property="PaymentType" behavior="readwrite" uniqueId="185a7ff5-978c-42f7-aa23-80a46390b2d0" type="RecipiesModelNS.PaymentType">
+          <orm:reference uniqueId="7178b76e-ce3b-472c-9173-886677d93982">
+            <orm:sharedfield name="_paymentTypeId" target-class="RecipiesModelNS.PaymentType" target-field="_paymentTypeId" />
+            <orm:constraint name="FK_SalesOrderHeader_PaymentType" schema="Sales" destination-table="PaymentType" />
+          </orm:reference>
         </orm:field>
       </orm:class>
       <orm:class name="SalesOrderDetail" uniqueId="7313557e-4952-4569-84b6-e9089e318746">
@@ -1029,6 +1041,29 @@
           <orm:collection element-class="RecipiesModelNS.SalesOrderHeader" inverse-field="_customer" order-by="" uniqueId="194fb433-527c-424f-a9f4-91d068347b99" />
         </orm:field>
       </orm:class>
+      <orm:class name="PaymentType" uniqueId="1d859c6b-c85d-47d5-9de8-1e1bd5638132">
+        <orm:table name="PaymentType" schema="Sales" />
+        <orm:identity>
+          <orm:key-generator name="autoinc" />
+          <orm:single-field field-name="_paymentTypeId" />
+        </orm:identity>
+        <orm:concurrency strategy="changed" />
+        <orm:field name="_paymentTypeId" property="PaymentTypeId" behavior="readwrite" uniqueId="3458710c-c60c-4929-8d2d-72fd31494c2b" type="System.Int32">
+          <orm:column nullable="false" primary-key="true" length="0" name="PaymentTypeId" scale="0" sql-type="int" backend-calculated="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_name" property="Name" behavior="readwrite" uniqueId="82033850-ead9-4dd7-9e80-3ae6cbbf0054" type="System.String">
+          <orm:column nullable="true" length="1000" name="Name" scale="0" sql-type="nvarchar" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
+        <orm:field name="_modifiedDate" property="ModifiedDate" behavior="readwrite" uniqueId="e01f8363-9cb5-4188-b791-52630a1b87b7" type="System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column has-default-value="true" nullable="true" length="0" name="ModifiedDate" scale="0" sql-type="datetime" ado-type="DateTime" />
+        </orm:field>
+        <orm:field name="_modifiedByUser" property="ModifiedByUser" behavior="readwrite" uniqueId="e4e3cfa0-3dfa-4ccb-917c-968b5fe7eda6" type="System.String">
+          <orm:column nullable="true" length="1000" name="ModifiedByUser" scale="0" sql-type="nvarchar" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
+        <orm:field name="_salesOrderHeaders" property="SalesOrderHeaders" behavior="readwrite" uniqueId="68ae9c06-3351-4840-8e07-f36514d22bf2" type="RecipiesModelNS.SalesOrderHeader">
+          <orm:collection element-class="RecipiesModelNS.SalesOrderHeader" inverse-field="_paymentType" order-by="" uniqueId="7178b76e-ce3b-472c-9173-886677d93982" />
+        </orm:field>
+      </orm:class>
     </orm:namespace>
     <orm:schema schema="Purchasing">
       <orm:table name="Vendor" schema="Purchasing">
@@ -1042,6 +1077,7 @@
         <orm:column name="HomePage" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
         <orm:column name="ModifiedDate" sql-type="datetime" nullable="true" length="0" scale="0" has-default-value="true" ado-type="DateTime" />
         <orm:column name="ModifiedByUser" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
+        <orm:column nullable="true" length="1000" name="ReportAccountNumber" scale="0" sql-type="nvarchar" ado-type="UnicodeStringVariableLength" />
       </orm:table>
       <orm:table name="ShipMethod" schema="Purchasing">
         <orm:column name="ShipMethodId" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
@@ -1313,6 +1349,7 @@
         <orm:column name="ShipAddress" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
         <orm:column name="ModifiedDate" sql-type="datetime" nullable="true" length="0" scale="0" has-default-value="true" ado-type="DateTime" />
         <orm:column name="ModifiedByUser" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
+        <orm:column nullable="true" length="0" name="PaymentTypeId" scale="0" sql-type="int" ado-type="Int32" />
         <orm:constraint name="FK_SalesOrderHeader_SalesOrderStatus" schema="Sales" destination-table="SalesOrderStatus">
           <orm:column name="StatusId" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
         </orm:constraint>
@@ -1321,6 +1358,9 @@
         </orm:constraint>
         <orm:constraint name="FK_Order_Customer" schema="Sales" destination-table="Customer">
           <orm:column name="CustomerId" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:constraint>
+        <orm:constraint name="FK_SalesOrderHeader_PaymentType" schema="Sales" destination-table="PaymentType">
+          <orm:column nullable="true" length="0" name="PaymentTypeId" scale="0" sql-type="int" ado-type="Int32" />
         </orm:constraint>
       </orm:table>
       <orm:table name="SalesOrderDetail" schema="Sales">
@@ -1350,6 +1390,12 @@
         <orm:column name="Email" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
         <orm:column name="ModifiedDate" sql-type="datetime" nullable="true" length="0" scale="0" has-default-value="true" ado-type="DateTime" />
         <orm:column name="ModifiedByUser" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
+      </orm:table>
+      <orm:table name="PaymentType" schema="Sales">
+        <orm:column nullable="false" primary-key="true" length="0" name="PaymentTypeId" scale="0" sql-type="int" backend-calculated="true" ado-type="Int32" />
+        <orm:column nullable="true" length="1000" name="Name" scale="0" sql-type="nvarchar" ado-type="UnicodeStringVariableLength" />
+        <orm:column has-default-value="true" nullable="true" length="0" name="ModifiedDate" scale="0" sql-type="datetime" ado-type="DateTime" />
+        <orm:column nullable="true" length="1000" name="ModifiedByUser" scale="0" sql-type="nvarchar" ado-type="UnicodeStringVariableLength" />
       </orm:table>
     </orm:schema>
     <orm:schema schema="Admin">
@@ -1418,6 +1464,7 @@
       <Property Id="a4eaae0b-acbb-4b3e-b61a-2c3865563bfe" name="ModifiedDate" type="DateTime" label="ModifiedDate : DateTime" nullable="true" kind="Persistent" fieldName="_modifiedDate" />
       <Property Id="5f8a6da6-ad91-49a8-8d3e-812846b283fb" name="Name" label="Name : String" kind="Persistent" fieldName="_name" />
       <Property Id="c154d086-a632-4800-bbd1-eebc12d0591c" name="Phone" label="Phone : String" kind="Persistent" fieldName="_phone" />
+      <Property Id="d0597c1f-6b89-42f1-a653-fcd8175505b0" name="ReportAccountNumber" label="ReportAccountNumber : String" kind="Persistent" fieldName="_reportAccountNumber" />
       <navigationalProperties>
         <classHasNavigationalProperties Id="6db39e2e-c617-42f6-9b15-dff24f690499">
           <NavigationalProperty Id="4b94d918-4afd-4eb5-b010-d7107f648534" name="PurchaseOrderHeaders" type="IList&lt;PurchaseOrderHeader&gt;" label="PurchaseOrderHeaders : IList&lt;PurchaseOrderHeader&gt;" nullable="true" kind="Persistent" fieldName="_purchaseOrderHeaders" isDependent="false" isManaged="false" />
@@ -1509,6 +1556,7 @@
       <Property Id="563d37ba-b03a-4d73-9729-864c442c7910" name="ShipName" label="ShipName : String" kind="Persistent" fieldName="_shipName" />
       <Property Id="f2357bde-f3e0-4db7-8835-9ee2e269dcb5" name="ShippedDate" type="DateTime" label="ShippedDate : DateTime" nullable="true" kind="Persistent" fieldName="_shippedDate" />
       <Property Id="50181503-1f5c-401d-aef0-9e04f28050df" name="StatusId" type="Int32" label="StatusId : Int32" nullable="true" kind="Persistent" fieldName="_statusId" />
+      <Property Id="d8242e75-a419-44f7-82d2-02a90ae87738" name="PaymentTypeId" type="Int32" label="PaymentTypeId : Int32" nullable="true" kind="Persistent" fieldName="_paymentTypeId" />
       <AssociationTargets>
         <Association Id="1a715701-c419-498a-b23e-af63d098cd69" SourceMultiplicity="ZeroOne" name="SalesOrderHeaderHasSalesOrderStatus">
           <DomainClassMoniker name="/RecipiesModel/SalesOrderStatus" />
@@ -1549,6 +1597,19 @@
             </associationDefinesSourceProperty>
           </sourceNavigationalProperty>
         </Association>
+        <Association Id="7178b76e-ce3b-472c-9173-886677d93982" SourceMultiplicity="ZeroOne" name="SalesOrderHeaderHasPaymentType">
+          <DomainClassMoniker name="/RecipiesModel/PaymentType" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="03c1bb45-a6f4-422c-a02c-fa2a78f3b4de">
+              <NavigationalPropertyMoniker name="/RecipiesModel/PaymentType/SalesOrderHeaders" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="76a7cab1-2842-4d01-9c73-a9bf0da691d7">
+              <NavigationalPropertyMoniker name="/RecipiesModel/SalesOrderHeader/PaymentType" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
       </AssociationTargets>
       <navigationalProperties>
         <classHasNavigationalProperties Id="4491bec0-79e6-4c35-8f74-c280940522d9">
@@ -1562,6 +1623,9 @@
         </classHasNavigationalProperties>
         <classHasNavigationalProperties Id="976e1a64-094c-4174-85e9-290c3de67765">
           <NavigationalProperty Id="cea1d949-565c-48da-abbe-e10aff597b5a" name="SalesOrderDetails" type="IList&lt;SalesOrderDetail&gt;" label="SalesOrderDetails : IList&lt;SalesOrderDetail&gt;" nullable="true" kind="Persistent" fieldName="_salesOrderDetails" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="97523dd3-89a5-43f8-b3ac-b6aa3078da65">
+          <NavigationalProperty Id="185a7ff5-978c-42f7-aa23-80a46390b2d0" name="PaymentType" type="PaymentType" label="PaymentType : PaymentType" nullable="true" kind="Persistent" fieldName="_paymentType" isDependent="false" isManaged="false" />
         </classHasNavigationalProperties>
       </navigationalProperties>
     </DomainClass>
@@ -2196,6 +2260,17 @@
         </classHasNavigationalProperties>
       </navigationalProperties>
     </DomainClass>
+    <DomainClass Id="1d859c6b-c85d-47d5-9de8-1e1bd5638132" name="PaymentType" namespace="RecipiesModelNS" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true">
+      <Property Id="3458710c-c60c-4929-8d2d-72fd31494c2b" name="PaymentTypeId" type="Int32" label="PaymentTypeId : Int32" kind="Persistent" identity="true" fieldName="_paymentTypeId" />
+      <Property Id="e4e3cfa0-3dfa-4ccb-917c-968b5fe7eda6" name="ModifiedByUser" label="ModifiedByUser : String" kind="Persistent" fieldName="_modifiedByUser" />
+      <Property Id="e01f8363-9cb5-4188-b791-52630a1b87b7" name="ModifiedDate" type="DateTime" label="ModifiedDate : DateTime" nullable="true" kind="Persistent" fieldName="_modifiedDate" />
+      <Property Id="82033850-ead9-4dd7-9e80-3ae6cbbf0054" name="Name" label="Name : String" kind="Persistent" fieldName="_name" />
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="1f59d58e-5f46-4149-90c4-a2ed6a690c45">
+          <NavigationalProperty Id="68ae9c06-3351-4840-8e07-f36514d22bf2" name="SalesOrderHeaders" type="IList&lt;SalesOrderHeader&gt;" label="SalesOrderHeaders : IList&lt;SalesOrderHeader&gt;" nullable="true" kind="Persistent" fieldName="_salesOrderHeaders" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
   </Types>
   <domainContext>
     <domainModelHasDomainContext Id="4427cc43-2e74-4ae4-91f1-9c6640dee166">
@@ -2223,6 +2298,7 @@
         <entitySetProperty name="EmailTemplates" namespace="RecipiesModelNS" type="EmailTemplate" label="EmailTemplates : IQueryable&lt;RecipiesModelNS.EmailTemplate&gt;" />
         <entitySetProperty name="Departments" namespace="RecipiesModelNS" type="Department" label="Departments : IQueryable&lt;RecipiesModelNS.Department&gt;" />
         <entitySetProperty name="Customers" namespace="RecipiesModelNS" type="Customer" label="Customers : IQueryable&lt;RecipiesModelNS.Customer&gt;" />
+        <entitySetProperty name="PaymentTypes" namespace="RecipiesModelNS" type="PaymentType" label="PaymentTypes : IQueryable&lt;RecipiesModelNS.PaymentType&gt;" />
       </domainContainer>
     </domainModelHasDomainContext>
   </domainContext>

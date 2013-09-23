@@ -18,6 +18,11 @@
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
                 </telerik:GridBoundColumn>
+                   <telerik:GridBoundColumn DataField="ReportAccountNumber" FilterControlAltText="Filter ReportAccountNumber column" HeaderText="ReportAccountNumber" SortExpression="ReportAccountNumber" UniqueName="ReportAccountNumber">
+                    <ColumnValidationSettings>
+                        <ModelErrorMessage Text="" />
+                    </ColumnValidationSettings>
+                </telerik:GridBoundColumn>
                 <telerik:GridBoundColumn DataField="Name" FilterControlAltText="Filter Name column" HeaderText="Name" SortExpression="Name" UniqueName="Name">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />

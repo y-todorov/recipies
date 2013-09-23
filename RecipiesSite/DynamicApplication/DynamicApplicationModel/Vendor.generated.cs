@@ -155,6 +155,19 @@ namespace RecipiesModelNS
 		    }
 		}
 		
+		private string _reportAccountNumber;
+		public virtual string ReportAccountNumber 
+		{ 
+		    get
+		    {
+		        return this._reportAccountNumber;
+		    }
+		    set
+		    {
+		        this._reportAccountNumber = value;
+		    }
+		}
+		
 		private IList<PurchaseOrderHeader> _purchaseOrderHeaders = new List<PurchaseOrderHeader>();
 		public virtual IList<PurchaseOrderHeader> PurchaseOrderHeaders 
 		{ 

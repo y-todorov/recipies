@@ -181,6 +181,19 @@ namespace RecipiesModelNS
 		    }
 		}
 		
+		private int? _paymentTypeId;
+		public virtual int? PaymentTypeId 
+		{ 
+		    get
+		    {
+		        return this._paymentTypeId;
+		    }
+		    set
+		    {
+		        this._paymentTypeId = value;
+		    }
+		}
+		
 		private SalesOrderStatus _salesOrderStatus;
 		public virtual SalesOrderStatus SalesOrderStatus 
 		{ 
@@ -217,6 +230,19 @@ namespace RecipiesModelNS
 		    set
 		    {
 		        this._customer = value;
+		    }
+		}
+		
+		private PaymentType _paymentType;
+		public virtual PaymentType PaymentType 
+		{ 
+		    get
+		    {
+		        return this._paymentType;
+		    }
+		    set
+		    {
+		        this._paymentType = value;
 		    }
 		}
 		

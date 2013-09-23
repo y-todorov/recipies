@@ -236,6 +236,14 @@ namespace RecipiesModelNS
 	    	}
 		}
 		
+		public IQueryable<PaymentType> PaymentTypes 
+		{
+	    	get
+	    	{
+	        	return this.GetAll<PaymentType>();
+	    	}
+		}
+		
 		public static BackendConfiguration GetBackendConfiguration()
 		{
 			BackendConfiguration backend = new BackendConfiguration();
@@ -360,6 +368,11 @@ namespace RecipiesModelNS
 		}
 
 		IQueryable<Customer> Customers 
+		{ 
+			get;
+		}
+
+		IQueryable<PaymentType> PaymentTypes 
 		{ 
 			get;
 		}
