@@ -86,6 +86,7 @@
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
+                    
                 </telerik:GridNumericColumn>
                 <telerik:GridCalculatedColumn HeaderText="Total Price" UniqueName="TotalPrice" DataType="System.Decimal" DataFormatString="{0:C3}"
                     DataFields="UnitPrice, UnitsInStock" Expression=" {0} * Convert({1}, 'System.Decimal')" FooterText="Total : "

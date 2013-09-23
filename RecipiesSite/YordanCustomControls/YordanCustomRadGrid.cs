@@ -72,6 +72,24 @@ namespace YordanCustomControls
                     }
                 }
             }
+            //if (e.Item is GridEditableItem && e.Item.IsInEditMode)
+            //{
+            //    GridEditableItem editedItem = (e.Item as GridEditableItem);
+            //    foreach (TableCell cell in editedItem.Cells)
+            //    {
+            //        foreach (Control c in cell.Controls)
+            //        {
+            //            RadNumericTextBox rnt = c as RadNumericTextBox;
+            //            if (rnt != null)
+            //            {
+            //                if (rnt.DataType == typeof(decimal))
+            //                {
+            //                    rnt.NumberFormat.DecimalDigits = 3;
+            //                }
+            //            }
+            //        }
+            //    }
+            //}
 
             base.OnItemCreated(e);
         }
@@ -156,7 +174,7 @@ namespace YordanCustomControls
                         if (gridBoundColumn.Aggregate == GridAggregateFunction.None)
                         {
                             gridBoundColumn.Aggregate = GridAggregateFunction.Sum;
-                        }
+                        }                        
                     }
                     if (gridBoundColumn.DataType == typeof(double) || gridBoundColumn.DataType == typeof(float))
                     {
@@ -164,6 +182,12 @@ namespace YordanCustomControls
                         {
                             gridBoundColumn.DataFormatString = "{0:F3}";
                         }
+                    }
+
+                    GridNumericColumn gridNumericColumn = gridBoundColumn as GridNumericColumn;
+                    if (gridNumericColumn != null)
+                    {
+                        gridNumericColumn.DecimalDigits = 3;
                     }
 
                     // validation
