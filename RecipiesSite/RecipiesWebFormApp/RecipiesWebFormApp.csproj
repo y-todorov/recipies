@@ -276,6 +276,7 @@
     <None Include="jquery-2.0.3.min.mapTEST" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
     <Content Include="Production\Stores.aspx" />
+    <Content Include="Sales\PaymentTypes.aspx" />
     <Content Include="Scripts\GoogleAnalytics.js" />
     <Content Include="Scripts\jquery-2.0.3.js" />
     <Content Include="Scripts\jquery-2.0.3.min.js" />
@@ -545,6 +546,13 @@
     </Compile>
     <Compile Include="Production\Stores.aspx.designer.cs">
       <DependentUpon>Stores.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\PaymentTypes.aspx.cs">
+      <DependentUpon>PaymentTypes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sales\PaymentTypes.aspx.designer.cs">
+      <DependentUpon>PaymentTypes.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>

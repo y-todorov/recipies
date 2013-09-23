@@ -348,8 +348,8 @@ namespace YordanCustomControls
         {
             base.OnItemDeleted(e);
             (Page.Master as dynamic).MasterRadNotification.Show("Item was successfully deleted! ");
-            var context = GlobalHost.ConnectionManager.GetHubContext<RebindHub>();
-            context.Clients.Group(ItemType).rebindRadGrid();
+            //var context = GlobalHost.ConnectionManager.GetHubContext<RebindHub>();
+            //context.Clients.Group(ItemType).rebindRadGrid();
           
         }
 
@@ -357,8 +357,8 @@ namespace YordanCustomControls
         {
             base.OnItemInserted(e);
             (Page.Master as dynamic).MasterRadNotification.Show("Item was successfully inserted! ");
-            var context = GlobalHost.ConnectionManager.GetHubContext<RebindHub>();
-            context.Clients.Group(ItemType).rebindRadGrid();
+            //var context = GlobalHost.ConnectionManager.GetHubContext<RebindHub>();
+            //context.Clients.Group(ItemType).rebindRadGrid();
             
         }
 
@@ -366,8 +366,8 @@ namespace YordanCustomControls
         {
             base.OnItemUpdated(e);
             (Page.Master as dynamic).MasterRadNotification.Show("Item was successfully updated! ");
-            var context = GlobalHost.ConnectionManager.GetHubContext<RebindHub>();
-            context.Clients.Group(ItemType).rebindRadGrid();
+            //var context = GlobalHost.ConnectionManager.GetHubContext<RebindHub>();
+            //context.Clients.Group(ItemType).rebindRadGrid();
             
         }
 

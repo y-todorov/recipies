@@ -26,6 +26,10 @@
                     ListValueField="SalesOrderStatusId" DataSourceID="OpenAccessLinqDataSourceStatus" HeaderText="Status"
                     DataField="StatusId" DropDownControlType="RadComboBox" EmptyListItemText="" EnableEmptyListItem="true" EmptyListItemValue="" ConvertEmptyStringToNull="true">
                 </telerik:GridDropDownColumn>
+                    <telerik:GridDropDownColumn UniqueName="DropDownPaymentTypeColumn" ListTextField="Name"
+                    ListValueField="PaymentTypeId" DataSourceID="OpenAccessLinqDataSourcePaymentType" HeaderText="Payment Type"
+                    DataField="PaymentTypeId" DropDownControlType="RadComboBox">
+                </telerik:GridDropDownColumn>
                 <telerik:GridBoundColumn DataField="AccountName" FilterControlAltText="Filter AccountName column" HeaderText="AccountName" SortExpression="AccountName" UniqueName="AccountName">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
@@ -131,6 +135,7 @@
             <asp:Parameter DefaultValue="0" Name="SalesOrderHeaderId" Type="Int32" />
         </WhereParameters>
 </telerik:OpenAccessLinqDataSource>
+    <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourcePaymentType" Runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="PaymentTypes" />
     <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourceSalesOrderHeader" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="SalesOrderHeaders" />
     <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourceRecipe" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="Recipes" />
 

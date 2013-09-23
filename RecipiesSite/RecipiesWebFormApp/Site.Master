@@ -65,6 +65,7 @@
                         <telerik:RadMenuItem Text="Sales orders" NavigateUrl="~/Sales/Orders"></telerik:RadMenuItem>
                         <telerik:RadMenuItem Text="Sales order details" Visible="false" NavigateUrl="~/Sales/OrderDetails"></telerik:RadMenuItem>
                         <telerik:RadMenuItem Text="Customers" NavigateUrl="~/Sales/Customers"></telerik:RadMenuItem>
+                           <telerik:RadMenuItem Text="Payment types" NavigateUrl="~/Sales/PaymentTypes"></telerik:RadMenuItem>
                     </Items>
                 </telerik:RadMenuItem>
                 <telerik:RadMenuItem IsSeparator="true"></telerik:RadMenuItem>
