@@ -247,7 +247,7 @@ namespace RecipiesModelNS
 		public static BackendConfiguration GetBackendConfiguration()
 		{
 			BackendConfiguration backend = new BackendConfiguration();
-			backend.Backend = "MsSql";
+			backend.Backend = "Azure";
 			backend.ProviderName = "System.Data.SqlClient";
 			backend.Logging.LogEventsToTrace = false;
 			backend.Logging.MetricStoreSnapshotInterval = 0;

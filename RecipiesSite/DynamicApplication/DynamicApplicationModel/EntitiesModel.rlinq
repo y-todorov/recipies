@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <DomainModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="2.0.0.0" name="RecipiesModel" namespace="RecipiesModelNS" showPropertiesCompartment="true" xmlns="http://www.telerik.com/ORM">
-  <orm:orm name="RecipiesModel" backend="mssql" xmlns:orm="http://tempuri.org/ORM">
+  <orm:orm name="RecipiesModel" backend="azure" xmlns:orm="http://tempuri.org/ORM">
     <orm:namespace name="RecipiesModelNS" default="true">
       <orm:class name="Vendor" uniqueId="dc4f5ddd-ce01-48cd-9add-c0725b6730a7">
         <orm:table name="Vendor" schema="Purchasing" />
@@ -40,7 +40,7 @@
           <orm:column name="ModifiedByUser" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
         </orm:field>
         <orm:field name="_reportAccountNumber" property="ReportAccountNumber" behavior="readwrite" uniqueId="d0597c1f-6b89-42f1-a653-fcd8175505b0" type="System.String">
-          <orm:column nullable="true" length="1000" name="ReportAccountNumber" scale="0" sql-type="nvarchar" ado-type="UnicodeStringVariableLength" />
+          <orm:column name="ReportAccountNumber" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
         </orm:field>
         <orm:field name="_purchaseOrderHeaders" property="PurchaseOrderHeaders" behavior="readwrite" uniqueId="4b94d918-4afd-4eb5-b010-d7107f648534" type="RecipiesModelNS.PurchaseOrderHeader">
           <orm:collection element-class="RecipiesModelNS.PurchaseOrderHeader" inverse-field="_vendor" order-by="" uniqueId="c8924dfa-0516-4dfd-bb8a-338b9a12eb56" />
@@ -238,7 +238,7 @@
           <orm:column name="ModifiedByUser" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
         </orm:field>
         <orm:field name="_paymentTypeId" property="PaymentTypeId" behavior="readwrite" uniqueId="d8242e75-a419-44f7-82d2-02a90ae87738" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
-          <orm:column nullable="true" length="0" name="PaymentTypeId" scale="0" sql-type="int" ado-type="Int32" />
+          <orm:column name="PaymentTypeId" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
         </orm:field>
         <orm:field name="_salesOrderStatus" property="SalesOrderStatus" behavior="readwrite" uniqueId="602084c5-3d51-49e3-85ba-2446e71566e6" type="RecipiesModelNS.SalesOrderStatus">
           <orm:reference uniqueId="1a715701-c419-498a-b23e-af63d098cd69">
@@ -258,14 +258,14 @@
             <orm:constraint name="FK_Order_Customer" schema="Sales" destination-table="Customer" />
           </orm:reference>
         </orm:field>
-        <orm:field name="_salesOrderDetails" property="SalesOrderDetails" behavior="readwrite" uniqueId="cea1d949-565c-48da-abbe-e10aff597b5a" type="RecipiesModelNS.SalesOrderDetail">
-          <orm:collection element-class="RecipiesModelNS.SalesOrderDetail" inverse-field="_salesOrderHeader" order-by="" uniqueId="2b570b55-3cce-4cd5-8666-de42c047d9d8" />
-        </orm:field>
         <orm:field name="_paymentType" property="PaymentType" behavior="readwrite" uniqueId="185a7ff5-978c-42f7-aa23-80a46390b2d0" type="RecipiesModelNS.PaymentType">
           <orm:reference uniqueId="7178b76e-ce3b-472c-9173-886677d93982">
             <orm:sharedfield name="_paymentTypeId" target-class="RecipiesModelNS.PaymentType" target-field="_paymentTypeId" />
             <orm:constraint name="FK_SalesOrderHeader_PaymentType" schema="Sales" destination-table="PaymentType" />
           </orm:reference>
+        </orm:field>
+        <orm:field name="_salesOrderDetails" property="SalesOrderDetails" behavior="readwrite" uniqueId="cea1d949-565c-48da-abbe-e10aff597b5a" type="RecipiesModelNS.SalesOrderDetail">
+          <orm:collection element-class="RecipiesModelNS.SalesOrderDetail" inverse-field="_salesOrderHeader" order-by="" uniqueId="2b570b55-3cce-4cd5-8666-de42c047d9d8" />
         </orm:field>
       </orm:class>
       <orm:class name="SalesOrderDetail" uniqueId="7313557e-4952-4569-84b6-e9089e318746">
@@ -1049,16 +1049,16 @@
         </orm:identity>
         <orm:concurrency strategy="changed" />
         <orm:field name="_paymentTypeId" property="PaymentTypeId" behavior="readwrite" uniqueId="3458710c-c60c-4929-8d2d-72fd31494c2b" type="System.Int32">
-          <orm:column nullable="false" primary-key="true" length="0" name="PaymentTypeId" scale="0" sql-type="int" backend-calculated="true" ado-type="Int32" />
+          <orm:column name="PaymentTypeId" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
         </orm:field>
         <orm:field name="_name" property="Name" behavior="readwrite" uniqueId="82033850-ead9-4dd7-9e80-3ae6cbbf0054" type="System.String">
-          <orm:column nullable="true" length="1000" name="Name" scale="0" sql-type="nvarchar" ado-type="UnicodeStringVariableLength" />
+          <orm:column name="Name" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
         </orm:field>
         <orm:field name="_modifiedDate" property="ModifiedDate" behavior="readwrite" uniqueId="e01f8363-9cb5-4188-b791-52630a1b87b7" type="System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
-          <orm:column has-default-value="true" nullable="true" length="0" name="ModifiedDate" scale="0" sql-type="datetime" ado-type="DateTime" />
+          <orm:column name="ModifiedDate" sql-type="datetime" nullable="true" length="0" scale="0" has-default-value="true" ado-type="DateTime" />
         </orm:field>
         <orm:field name="_modifiedByUser" property="ModifiedByUser" behavior="readwrite" uniqueId="e4e3cfa0-3dfa-4ccb-917c-968b5fe7eda6" type="System.String">
-          <orm:column nullable="true" length="1000" name="ModifiedByUser" scale="0" sql-type="nvarchar" ado-type="UnicodeStringVariableLength" />
+          <orm:column name="ModifiedByUser" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
         </orm:field>
         <orm:field name="_salesOrderHeaders" property="SalesOrderHeaders" behavior="readwrite" uniqueId="68ae9c06-3351-4840-8e07-f36514d22bf2" type="RecipiesModelNS.SalesOrderHeader">
           <orm:collection element-class="RecipiesModelNS.SalesOrderHeader" inverse-field="_paymentType" order-by="" uniqueId="7178b76e-ce3b-472c-9173-886677d93982" />
@@ -1077,7 +1077,7 @@
         <orm:column name="HomePage" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
         <orm:column name="ModifiedDate" sql-type="datetime" nullable="true" length="0" scale="0" has-default-value="true" ado-type="DateTime" />
         <orm:column name="ModifiedByUser" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
-        <orm:column nullable="true" length="1000" name="ReportAccountNumber" scale="0" sql-type="nvarchar" ado-type="UnicodeStringVariableLength" />
+        <orm:column name="ReportAccountNumber" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
       </orm:table>
       <orm:table name="ShipMethod" schema="Purchasing">
         <orm:column name="ShipMethodId" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
@@ -1349,7 +1349,7 @@
         <orm:column name="ShipAddress" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
         <orm:column name="ModifiedDate" sql-type="datetime" nullable="true" length="0" scale="0" has-default-value="true" ado-type="DateTime" />
         <orm:column name="ModifiedByUser" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
-        <orm:column nullable="true" length="0" name="PaymentTypeId" scale="0" sql-type="int" ado-type="Int32" />
+        <orm:column name="PaymentTypeId" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
         <orm:constraint name="FK_SalesOrderHeader_SalesOrderStatus" schema="Sales" destination-table="SalesOrderStatus">
           <orm:column name="StatusId" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
         </orm:constraint>
@@ -1360,7 +1360,7 @@
           <orm:column name="CustomerId" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
         </orm:constraint>
         <orm:constraint name="FK_SalesOrderHeader_PaymentType" schema="Sales" destination-table="PaymentType">
-          <orm:column nullable="true" length="0" name="PaymentTypeId" scale="0" sql-type="int" ado-type="Int32" />
+          <orm:column name="PaymentTypeId" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
         </orm:constraint>
       </orm:table>
       <orm:table name="SalesOrderDetail" schema="Sales">
@@ -1392,10 +1392,10 @@
         <orm:column name="ModifiedByUser" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
       </orm:table>
       <orm:table name="PaymentType" schema="Sales">
-        <orm:column nullable="false" primary-key="true" length="0" name="PaymentTypeId" scale="0" sql-type="int" backend-calculated="true" ado-type="Int32" />
-        <orm:column nullable="true" length="1000" name="Name" scale="0" sql-type="nvarchar" ado-type="UnicodeStringVariableLength" />
-        <orm:column has-default-value="true" nullable="true" length="0" name="ModifiedDate" scale="0" sql-type="datetime" ado-type="DateTime" />
-        <orm:column nullable="true" length="1000" name="ModifiedByUser" scale="0" sql-type="nvarchar" ado-type="UnicodeStringVariableLength" />
+        <orm:column name="PaymentTypeId" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        <orm:column name="Name" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
+        <orm:column name="ModifiedDate" sql-type="datetime" nullable="true" length="0" scale="0" has-default-value="true" ado-type="DateTime" />
+        <orm:column name="ModifiedByUser" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
       </orm:table>
     </orm:schema>
     <orm:schema schema="Admin">
@@ -1443,7 +1443,7 @@
     </SchemaUpdateSettings>
     <BackendConfigurationSettings>
       <BackendConfiguration>
-        <Backend>MsSql</Backend>
+        <Backend>Azure</Backend>
         <ProviderName>System.Data.SqlClient</ProviderName>
         <Logging>
           <LogToTrace>False</LogToTrace>
