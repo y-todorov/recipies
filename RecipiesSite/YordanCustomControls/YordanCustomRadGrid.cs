@@ -153,6 +153,10 @@ namespace YordanCustomControls
                         {
                             gridBoundColumn.DataFormatString = "{0:C3}";
                         }
+                        if (gridBoundColumn.Aggregate == GridAggregateFunction.None)
+                        {
+                            gridBoundColumn.Aggregate = GridAggregateFunction.Sum;
+                        }
                     }
                     if (gridBoundColumn.DataType == typeof(double) || gridBoundColumn.DataType == typeof(float))
                     {
