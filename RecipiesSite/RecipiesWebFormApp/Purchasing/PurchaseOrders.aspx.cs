@@ -293,10 +293,19 @@ namespace RecipiesWebFormApp.Purchasing
                     Product product = ContextFactory.GetContextPerRequest().Products.FirstOrDefault(p => p.ProductId == intProductId);
                     if (product != null)
                     {
-                        tbUnitPrice.Text = product.GetAveragePriceLastDays(14).ToString();
+                        //tbUnitPrice.Text = product.GetAveragePriceLastDays(14).ToString();
+                        tbUnitPrice.Text = product.UnitPrice.GetValueOrDefault().ToString();
 
-                        dropDownUnitListColumn.DataSource = product.UnitMeasure.GetRelatedUnitMeasures();
-                        dropDownUnitListColumn.DataBind();
+                        //dropDownUnitListColumn.DataSource = product.UnitMeasure.GetRelatedUnitMeasures();
+                        PurchaseOrderHeader purchaseOrder = ContextFactory.GetContextPerRequest().PurchaseOrderHeaders.FirstOrDefault(p => p.PurchaseOrderId == PurchaseOrderId);
+
+                        if (purchaseOrder.Vendor != null)
+                        {
+                            ProductVendor productVendor = purchaseOrder.Vendor.ProductVendors.FirstOrDefault(pv => pv.ProductId == product.ProductId);
+                            dropDownUnitListColumn.DataSource = new List<UnitMeasure>() { productVendor.UnitMeasure };
+                            dropDownUnitListColumn.DataBind();
+                        }
+
                     }
                 }
             }
