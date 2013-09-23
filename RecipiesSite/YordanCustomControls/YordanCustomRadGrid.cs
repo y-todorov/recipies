@@ -215,79 +215,79 @@ namespace YordanCustomControls
 
         protected override void OnInit(EventArgs e)
         {
-            if (string.IsNullOrEmpty(ItemType))
-            {
-                string itemType = string.Empty;
+//            if (string.IsNullOrEmpty(ItemType))
+//            {
+//                string itemType = string.Empty;
 
-                //try to get the type of the entity shown in the grid. we assume that the grid and the openaccesslinqdatasource are in the same namingContainer
-                OpenAccessLinqDataSource linqDataSource = NamingContainer.Controls.Cast<Control>().FirstOrDefault(c => c.ID == DataSourceID) as OpenAccessLinqDataSource;
+//                //try to get the type of the entity shown in the grid. we assume that the grid and the openaccesslinqdatasource are in the same namingContainer
+//                OpenAccessLinqDataSource linqDataSource = NamingContainer.Controls.Cast<Control>().FirstOrDefault(c => c.ID == DataSourceID) as OpenAccessLinqDataSource;
 
-                if (linqDataSource != null)
-                {
-                    var linqDataSourceFields = linqDataSource.GetType().GetFields(BindingFlags.Instance |
-                        BindingFlags.Static |
-                        BindingFlags.NonPublic |
-                        BindingFlags.Public);
+//                if (linqDataSource != null)
+//                {
+//                    var linqDataSourceFields = linqDataSource.GetType().GetFields(BindingFlags.Instance |
+//                        BindingFlags.Static |
+//                        BindingFlags.NonPublic |
+//                        BindingFlags.Public);
 
-                    OpenAccessLinqDataSourceView theView = linqDataSourceFields.FirstOrDefault(f => f.Name == "view").GetValue(linqDataSource) as OpenAccessLinqDataSourceView;
+//                    OpenAccessLinqDataSourceView theView = linqDataSourceFields.FirstOrDefault(f => f.Name == "view").GetValue(linqDataSource) as OpenAccessLinqDataSourceView;
 
-                    PropertyInfo prop = theView.GetType().GetProperty("EntityType", (BindingFlags.Instance |
-                        BindingFlags.Static |
-                        BindingFlags.NonPublic |
-                        BindingFlags.Public));
-                    Type theType = prop.GetValue(theView) as Type;
-                    itemType = theType.FullName;
-                    ItemType = itemType;
-                }
-            }
+//                    PropertyInfo prop = theView.GetType().GetProperty("EntityType", (BindingFlags.Instance |
+//                        BindingFlags.Static |
+//                        BindingFlags.NonPublic |
+//                        BindingFlags.Public));
+//                    Type theType = prop.GetValue(theView) as Type;
+//                    itemType = theType.FullName;
+//                    ItemType = itemType;
+//                }
+//            }
 
-            if (string.IsNullOrEmpty(ItemType))
-            {
-                throw new ApplicationException("ItemType cannot be empty.Source: Custom Grid Control.");
-            }
+//            if (string.IsNullOrEmpty(ItemType))
+//            {
+//                throw new ApplicationException("ItemType cannot be empty.Source: Custom Grid Control.");
+//            }
 
-            string script = @"<script src=""../Scripts/jquery-2.0.3.min.js""></script>
-        <script src=""../Scripts/jquery.signalR-1.1.3.min.js""></script>
-        <script src=""/signalr/hubs""></script>
-        <script>
-//debugger;
-            var hub = $.connection.rebindHub;
-           if (typeof hub !== 'undefined')
-{
-            // Unable to get property 'state' of undefined or null reference THIS IS A MISTAKE. I DELIBERATLEY DID NOT DELETE THIS SO I CAN SEE THE ERROR THAT WILL OCCUIF I UNCOMMENT THAT LINE
-            //hub.state.MyType = ""Products"";
-            hub.client.rebindRadGrid = function () {
-
-                var grid = window.$find(""" + ClientID + @""");
-
-            if (grid != null) {
-//debugger;
-
-if (typeof isInRequest === 'undefined') {
-isInRequest = false;
-    // variable is undefined
-}
-var res = isInRequest; // this is global variable set in ajax start and ajax stop event handlers
-
-                var masterTable = grid.get_masterTableView();
-                var editedItemsArray = masterTable.get_editItems();
-                var isItemInserted = masterTable.get_isItemInserted()
-                if (editedItemsArray.length == 0 && !isItemInserted && !isInRequest) {
-                    masterTable.rebind();
-                }
-            }            
-        }
-
-        $.connection.hub.start().done(function () {
- hub.server.addToGroup($.connection.hub.id, """ + ItemType + @""");
-        })
-};
-</script>";
-                // ItemType should be setted in markup
-            //if (ScriptManager.GetRegisteredStartupScripts().Count == 0)
-            {
-                ScriptManager.RegisterStartupScript(Page, GetType(), "key", script, false);
-            }
+//            string script = @"<script src=""../Scripts/jquery-2.0.3.min.js""></script>
+//        <script src=""../Scripts/jquery.signalR-1.1.3.min.js""></script>
+//        <script src=""/signalr/hubs""></script>
+//        <script>
+////debugger;
+//            var hub = $.connection.rebindHub;
+//           if (typeof hub !== 'undefined')
+//{
+//            // Unable to get property 'state' of undefined or null reference THIS IS A MISTAKE. I DELIBERATLEY DID NOT DELETE THIS SO I CAN SEE THE ERROR THAT WILL OCCUIF I UNCOMMENT THAT LINE
+//            //hub.state.MyType = ""Products"";
+//            hub.client.rebindRadGrid = function () {
+//
+//                var grid = window.$find(""" + ClientID + @""");
+//
+//            if (grid != null) {
+////debugger;
+//
+//if (typeof isInRequest === 'undefined') {
+//isInRequest = false;
+//    // variable is undefined
+//}
+//var res = isInRequest; // this is global variable set in ajax start and ajax stop event handlers
+//
+//                var masterTable = grid.get_masterTableView();
+//                var editedItemsArray = masterTable.get_editItems();
+//                var isItemInserted = masterTable.get_isItemInserted()
+//                if (editedItemsArray.length == 0 && !isItemInserted && !isInRequest) {
+//                    masterTable.rebind();
+//                }
+//            }            
+//        }
+//
+//        $.connection.hub.start().done(function () {
+// hub.server.addToGroup($.connection.hub.id, """ + ItemType + @""");
+//        })
+//};
+//</script>";
+//                // ItemType should be setted in markup
+//            //if (ScriptManager.GetRegisteredStartupScripts().Count == 0)
+//            {
+//                ScriptManager.RegisterStartupScript(Page, GetType(), "key", script, false);
+//            }
                 
 
             base.OnInit(e);
