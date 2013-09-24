@@ -158,7 +158,11 @@ namespace RecipiesWebFormApp.Purchasing
                     //    (Master as SiteMaster).MasterRadNotification.Show("Error sending Email! There is no default email template. Please add email templates and configure one of them as a default!");
                     //}
                 }
-            }            
+            }
+            if (e.CommandName == RadGrid.UpdateCommandName)
+            {
+
+            }
         }
 
         protected void rgPurchaseOrderDetails_ItemCommand(object sender, GridCommandEventArgs e)
@@ -183,7 +187,7 @@ namespace RecipiesWebFormApp.Purchasing
                 PurchaseOrderHeader purchaseOrder = ContextFactory.GetContextPerRequest().PurchaseOrderHeaders.FirstOrDefault(p => p.PurchaseOrderId == PurchaseOrderId);
                 if (purchaseOrder != null && purchaseOrder.StatusId == (int)PurchaseOrderStatusEnum.Completed)
                 {
-                    (Master as SiteMaster).MasterRadWindwManager.RadAlert("You can not delete products from a purchase order with completed status!", 300, 200, "Can not delete!", "");
+                    (Master as SiteMaster).MasterRadWindowManager.RadAlert("You can not delete products from a purchase order with completed status!", 300, 200, "Can not delete!", "");
                     e.Canceled = true;
                 }
             }
@@ -316,7 +320,14 @@ namespace RecipiesWebFormApp.Purchasing
             PurchaseOrderHeader oldPurchaseOrderHeader = e.OriginalObject as PurchaseOrderHeader;
             PurchaseOrderHeader newPurchaseOrderHeader = e.NewObject as PurchaseOrderHeader;
 
-            newPurchaseOrderHeader.UpdateProductsFromStatus(oldPurchaseOrderHeader.StatusId, newPurchaseOrderHeader.StatusId);
+
+            bool isValidStatusTransition = newPurchaseOrderHeader.UpdateProductsFromStatus(oldPurchaseOrderHeader.StatusId, newPurchaseOrderHeader.StatusId);
+            if (!isValidStatusTransition)
+            {
+                e.Cancel = true;                    
+                (Master as SiteMaster).MasterRadWindowManager.RadAlert(
+                    "Invalid status transition! Valid status transitions are Pending -> Approved, Approved -> Rejected, Approved -> Completed and vice versa!", 600, 300, "Can not update!", "");
+            }
         }
 
         protected void rgPurchaseOrders_ItemCreated(object sender, GridItemEventArgs e)

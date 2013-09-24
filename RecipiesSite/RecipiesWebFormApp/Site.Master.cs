@@ -16,7 +16,7 @@ namespace RecipiesWebFormApp
         private const string AntiXsrfUserNameKey = "__AntiXsrfUserName";
         private string _antiXsrfTokenValue;
 
-        public RadWindowManager MasterRadWindwManager
+        public RadWindowManager MasterRadWindowManager
         {
             get
             {

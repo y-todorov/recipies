@@ -111,7 +111,7 @@ namespace RecipiesModelNS
                 UnitMeasure baseUnitMeasure = this.UnitMeasure;
                 if (quantityUnitMeasure.BaseUnitFactor.HasValue)
                 {
-                    double result = quantity.Value * (int)quantityUnitMeasure.BaseUnitFactor.Value;
+                    double result = quantity.Value * quantityUnitMeasure.BaseUnitFactor.Value;
                     return Math.Round(result, 3);
                 }
                 else

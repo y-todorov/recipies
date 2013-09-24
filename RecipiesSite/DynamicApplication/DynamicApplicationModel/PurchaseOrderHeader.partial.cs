@@ -9,18 +9,23 @@ namespace RecipiesModelNS
     public partial class PurchaseOrderHeader
     {
 
-        public void UpdateProductsFromStatus(PurchaseOrderStatusEnum oldStatus, PurchaseOrderStatusEnum newStatus)
+        public bool UpdateProductsFromStatus(PurchaseOrderStatusEnum oldStatus, PurchaseOrderStatusEnum newStatus)
         {
+            bool isValidStatusTransition = false;
             List<PurchaseOrderDetail> purchaseOrderDetails = ContextFactory.GetContextPerRequest().PurchaseOrderDetails.Where(po => po.PurchaseOrderId == PurchaseOrderId).ToList();
-            if (oldStatus == PurchaseOrderStatusEnum.Pending && newStatus == PurchaseOrderStatusEnum.Approved)
+            if (oldStatus == PurchaseOrderStatusEnum.Pending && newStatus == PurchaseOrderStatusEnum.Approved ||
+                oldStatus == PurchaseOrderStatusEnum.Rejected && newStatus == PurchaseOrderStatusEnum.Approved)
             {
+                isValidStatusTransition = true;
                 foreach (PurchaseOrderDetail pod in purchaseOrderDetails)
                 {
                     pod.Product.UnitsOnOrder += pod.Product.GetBaseUnitMeasureQuantityForProduct(pod.OrderQuantity, pod.UnitMeasure);
                 }
             }
-            if (oldStatus == PurchaseOrderStatusEnum.Approved && newStatus == PurchaseOrderStatusEnum.Pending)
+            if (oldStatus == PurchaseOrderStatusEnum.Approved && newStatus == PurchaseOrderStatusEnum.Pending ||
+                oldStatus == PurchaseOrderStatusEnum.Approved && newStatus == PurchaseOrderStatusEnum.Rejected)
             {
+                isValidStatusTransition = true;
                 foreach (PurchaseOrderDetail pod in purchaseOrderDetails)
                 {
                     pod.Product.UnitsOnOrder -= pod.Product.GetBaseUnitMeasureQuantityForProduct(pod.OrderQuantity, pod.UnitMeasure);
@@ -28,6 +33,7 @@ namespace RecipiesModelNS
             }
             if (oldStatus == PurchaseOrderStatusEnum.Approved && newStatus == PurchaseOrderStatusEnum.Completed)
             {
+                isValidStatusTransition = true;
                 foreach (PurchaseOrderDetail pod in purchaseOrderDetails)
                 {
                     pod.Product.UnitsInStock += pod.Product.GetBaseUnitMeasureQuantityForProduct(pod.StockedQuantity, pod.UnitMeasure);
@@ -36,6 +42,7 @@ namespace RecipiesModelNS
             }
             if (oldStatus == PurchaseOrderStatusEnum.Completed && newStatus == PurchaseOrderStatusEnum.Approved)
             {
+                isValidStatusTransition = true;
                 foreach (PurchaseOrderDetail pod in purchaseOrderDetails)
                 {
                     pod.Product.UnitsInStock -= pod.Product.GetBaseUnitMeasureQuantityForProduct(pod.StockedQuantity, pod.UnitMeasure);
@@ -43,21 +50,25 @@ namespace RecipiesModelNS
                 }
             }
 
-            ContextFactory.GetContextPerRequest().SaveChanges();
+            if (isValidStatusTransition)
+            {
+                ContextFactory.GetContextPerRequest().SaveChanges();
+            }
+            return isValidStatusTransition;
         }
 
-        public void UpdateProductsFromStatus(int? oldStatusId, int? newStatusId)
+        public bool UpdateProductsFromStatus(int? oldStatusId, int? newStatusId)
         {
             if (oldStatusId.HasValue && newStatusId.HasValue)
             {
                 PurchaseOrderStatusEnum oldStatus = (PurchaseOrderStatusEnum)oldStatusId.Value;
                 PurchaseOrderStatusEnum newStatus = (PurchaseOrderStatusEnum)newStatusId.Value;
 
-                UpdateProductsFromStatus(oldStatus, newStatus);
+                bool isValidStatusTransition = UpdateProductsFromStatus(oldStatus, newStatus);
+                return isValidStatusTransition;
             }
-        }
-
-       
+            return false;
+        }      
 
     }
 }
