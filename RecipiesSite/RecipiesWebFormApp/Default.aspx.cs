@@ -15,11 +15,7 @@ namespace RecipiesWebFormApp
         {
             if (!IsPostBack)
             {
-                ISchemaHandler sh = ContextFactory.GetContextPerRequest().GetSchemaHandler();
-
-                string ddl = sh.CreateDDLScript();
-                
-
+                string s = string.Empty;
                 rhcLast10ModifiedProducts.DataSource = ContextFactory.GetContextPerRequest().Products.OrderByDescending(pr => pr.ModifiedDate).Take(10);
 
                 rhcProductsCountByCategory.DataSource = ContextFactory.GetContextPerRequest().ProductCategories.Select(cat => new { CategoryName = cat.Name, ProductCount = cat.Products.Count }).OrderByDescending(res => res.ProductCount);

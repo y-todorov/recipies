@@ -232,7 +232,7 @@ namespace RecipiesModelNS
                                 object theValue = field.GetValue(product);
                                 productHistory.SetFieldValue(field.Name, theValue);
                             }
-                            catch (Exception ex)
+                            catch (Exception)
                             {
 
                             }

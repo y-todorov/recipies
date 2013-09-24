@@ -27,7 +27,8 @@
     <OutputPath>bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <WarningLevel>0</WarningLevel>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -274,6 +275,8 @@
     <Content Include="App_Data\RadSpell\fr-FR.tdf" />
     <Content Include="jquery.min.map" />
     <None Include="jquery-2.0.3.min.mapTEST" />
+    <None Include="Properties\PublishProfiles\bluesystems - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\bluesystems - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
     <Content Include="Production\Stores.aspx" />
     <Content Include="Sales\PaymentTypes.aspx" />

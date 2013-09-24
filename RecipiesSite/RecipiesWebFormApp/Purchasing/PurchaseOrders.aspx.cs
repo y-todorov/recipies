@@ -125,38 +125,38 @@ namespace RecipiesWebFormApp.Purchasing
                     (Master as SiteMaster).MasterRadNotification.Show("Sending Emails is temporary disabled. Will be enabled when the product is tested enough! ");
                     return;
 
-                    int purchaseOrderId = (int)dataItem.GetDataKeyValue(rgPurchaseOrders.MasterTableView.DataKeyNames[0]);
-                    PurchaseOrderHeader purchaseOrder = ContextFactory.GetContextPerRequest().PurchaseOrderHeaders.FirstOrDefault(p => p.PurchaseOrderId == purchaseOrderId);
+                    //int purchaseOrderId = (int)dataItem.GetDataKeyValue(rgPurchaseOrders.MasterTableView.DataKeyNames[0]);
+                    //PurchaseOrderHeader purchaseOrder = ContextFactory.GetContextPerRequest().PurchaseOrderHeaders.FirstOrDefault(p => p.PurchaseOrderId == purchaseOrderId);
 
-                    ReportProcessor reportProcessor = new ReportProcessor();
+                    //ReportProcessor reportProcessor = new ReportProcessor();
 
-                    var instanceReportSource = new Telerik.Reporting.InstanceReportSource();
-                    RecipiesReports.PurchaseOrderDetailsReport salesOrderDetailsReport = new RecipiesReports.PurchaseOrderDetailsReport();
-                    salesOrderDetailsReport.DataSource = purchaseOrder.PurchaseOrderDetails;
-                    instanceReportSource.ReportDocument = salesOrderDetailsReport;
+                    //var instanceReportSource = new Telerik.Reporting.InstanceReportSource();
+                    //RecipiesReports.PurchaseOrderDetailsReport salesOrderDetailsReport = new RecipiesReports.PurchaseOrderDetailsReport();
+                    //salesOrderDetailsReport.DataSource = purchaseOrder.PurchaseOrderDetails;
+                    //instanceReportSource.ReportDocument = salesOrderDetailsReport;
 
-                    RenderingResult result = reportProcessor.RenderReport("PDF", instanceReportSource, null);
+                    //RenderingResult result = reportProcessor.RenderReport("PDF", instanceReportSource, null);
 
-                    EmailTemplate defaultTemplate = ContextFactory.GetContextPerRequest().EmailTemplates.FirstOrDefault(et => et.IsDefault);
-                    if (defaultTemplate != null)
-                    {
-                        RestResponse restResponse = EmailHelper.SendComplexMessage(defaultTemplate.From, purchaseOrder.Vendor.Email, defaultTemplate.Cc,
-                            defaultTemplate.Bcc, defaultTemplate.Subject, defaultTemplate.TextBody, defaultTemplate.HtmlBody,
-                            result.DocumentBytes, defaultTemplate.AttachmentName + "." + result.Extension);
-                        if (restResponse.StatusCode == System.Net.HttpStatusCode.OK)
-                        {
-                            (Master as SiteMaster).MasterRadNotification.Show("An Email has been successfully sent to address " + purchaseOrder.Vendor.Email);
-                        }
-                        else
-                        {
-                            (Master as SiteMaster).MasterRadNotification.Show("Error sending Email! ResponseStatus: " + restResponse.ResponseStatus.ToString() + ", StatusCode: " + restResponse.StatusCode.ToString()  + 
-                                ", Content: " + HttpUtility.JavaScriptStringEncode(restResponse.Content));
-                        }
-                    }
-                    else
-                    {
-                        (Master as SiteMaster).MasterRadNotification.Show("Error sending Email! There is no default email template. Please add email templates and configure one of them as a default!");
-                    }
+                    //EmailTemplate defaultTemplate = ContextFactory.GetContextPerRequest().EmailTemplates.FirstOrDefault(et => et.IsDefault);
+                    //if (defaultTemplate != null)
+                    //{
+                    //    RestResponse restResponse = EmailHelper.SendComplexMessage(defaultTemplate.From, purchaseOrder.Vendor.Email, defaultTemplate.Cc,
+                    //        defaultTemplate.Bcc, defaultTemplate.Subject, defaultTemplate.TextBody, defaultTemplate.HtmlBody,
+                    //        result.DocumentBytes, defaultTemplate.AttachmentName + "." + result.Extension);
+                    //    if (restResponse.StatusCode == System.Net.HttpStatusCode.OK)
+                    //    {
+                    //        (Master as SiteMaster).MasterRadNotification.Show("An Email has been successfully sent to address " + purchaseOrder.Vendor.Email);
+                    //    }
+                    //    else
+                    //    {
+                    //        (Master as SiteMaster).MasterRadNotification.Show("Error sending Email! ResponseStatus: " + restResponse.ResponseStatus.ToString() + ", StatusCode: " + restResponse.StatusCode.ToString()  + 
+                    //            ", Content: " + HttpUtility.JavaScriptStringEncode(restResponse.Content));
+                    //    }
+                    //}
+                    //else
+                    //{
+                    //    (Master as SiteMaster).MasterRadNotification.Show("Error sending Email! There is no default email template. Please add email templates and configure one of them as a default!");
+                    //}
                 }
             }            
         }
