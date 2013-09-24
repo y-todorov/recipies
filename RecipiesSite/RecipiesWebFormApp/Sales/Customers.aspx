@@ -4,6 +4,8 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+   <%-- <telerik:RadComboBox runat="server" DropDownWidth="300" Height="500"></telerik:RadComboBox>--%>
+
     <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourceCustomer" Runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="Customers" />
 <yordan:YordanCustomRadGrid ID="rgCustomers" runat="server" ItemType="RecipiesModelNS.Customer" DataSourceID="OpenAccessLinqDataSourceCustomer">
     <MasterTableView AutoGenerateColumns="False" DataKeyNames="CustomerID" DataSourceID="OpenAccessLinqDataSourceCustomer">
