@@ -10,6 +10,8 @@ using Telerik.OpenAccess.Metadata.Fluent;
 using Telerik.OpenAccess.Metadata.Fluent.Advanced;
 using System.Reflection;
 using System.Web;
+using Microsoft.AspNet.SignalR;
+using RecipiesWebFormApp;
 using System.Diagnostics;
 
 namespace RecipiesModelNS

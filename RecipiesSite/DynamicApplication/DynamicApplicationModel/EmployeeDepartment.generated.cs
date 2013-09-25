@@ -8,8 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using System;
+using System.Data;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Data.Common;
 using System.Collections.Generic;
 using Telerik.OpenAccess;
 using Telerik.OpenAccess.Metadata;

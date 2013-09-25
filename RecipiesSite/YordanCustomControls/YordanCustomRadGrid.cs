@@ -13,6 +13,7 @@ using Helpers.Extensions;
 using System.Diagnostics;
 using System.Drawing;
 using RecipiesWebFormApp;
+using Microsoft.AspNet.SignalR;
 using System.Reflection;
 using Telerik.OpenAccess.Web;
 
