@@ -20,14 +20,15 @@ using System.Globalization;
 using System.Web.Caching;
 using System.Reflection;
 using System.Collections;
+
 //using PubNubMessaging.Core;
 
 namespace RecipiesWebFormApp
 {
     public class Global : HttpApplication
     {
-        void Application_Start(object sender, EventArgs e)
-        {           
+        private void Application_Start(object sender, EventArgs e)
+        {
             // Code that runs on application startup
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterOpenAuth();
@@ -38,7 +39,8 @@ namespace RecipiesWebFormApp
                 EnableCrossDomain = true,
                 EnableDetailedErrors = true
             };
-            RouteTable.Routes.MapHubs(hubConfig);
+            // THIS REQUIRE TO ADD SMOE ASSEMBLY REFERENCES
+            //RouteTable.Routes.MapHubs(hubConfig);
 
             // Yordan, test that site is not asleep after 20 mins. of inactivity
             // By the way this works very well :)
@@ -52,10 +54,9 @@ namespace RecipiesWebFormApp
             //timerCheckDatabaseForChanges.Start();
 
             //int mnt = System.Threading.Thread.CurrentThread.ManagedThreadId;
-
         }
 
-        void timerCheckDatabaseForChanges_Elapsed(object sender, ElapsedEventArgs e)
+        private void timerCheckDatabaseForChanges_Elapsed(object sender, ElapsedEventArgs e)
         {
             Stopwatch s = new Stopwatch();
             s.Start();
@@ -64,7 +65,11 @@ namespace RecipiesWebFormApp
             //MethodInfo generic = method.MakeGenericMethod(typeof(Product));
             //var res = generic.Invoke(ContextFactory.GetContextPerRequest(), null) as IEnumerable;
 
-            DateTime? lastModifiedDate = ContextFactory.GetContextPerRequest().Products.OrderByDescending(p => p.ModifiedDate).Select( p => p.ModifiedDate).FirstOrDefault();
+            DateTime? lastModifiedDate =
+                ContextFactory.GetContextPerRequest()
+                    .Products.OrderByDescending(p => p.ModifiedDate)
+                    .Select(p => p.ModifiedDate)
+                    .FirstOrDefault();
             if (Application["ProductDate"] == null)
             {
                 Application.Add("ProductDate", lastModifiedDate);
@@ -76,7 +81,7 @@ namespace RecipiesWebFormApp
                 {
                     var context = GlobalHost.ConnectionManager.GetHubContext<RebindHub>();
                     // Here we refresh only grids with ItemType product. We should do notification system on wathcing the sql database. SQL WATCH or something
-                    context.Clients.Group(typeof(Product).FullName).rebindRadGrid();
+                    context.Clients.Group(typeof (Product).FullName).rebindRadGrid();
                     Application["ProductDate"] = lastModifiedDate.Value;
                     return;
                 }
@@ -90,15 +95,15 @@ namespace RecipiesWebFormApp
             }
             else
             {
-                int productCountCacheValue = (int)Application["ProductCount"];
+                int productCountCacheValue = (int) Application["ProductCount"];
                 if (productCountCacheValue != lastProductCount)
                 {
                     var context = GlobalHost.ConnectionManager.GetHubContext<RebindHub>();
 
                     // Here we refresh only grids with ItemType product. We should do notification system on wathcing the sql database. SQL WATCH or something
-                    context.Clients.Group(typeof(Product).FullName).rebindRadGrid();
+                    context.Clients.Group(typeof (Product).FullName).rebindRadGrid();
                     Application["ProductCount"] = lastProductCount;
-                    return;                        
+                    return;
                 }
             }
 
@@ -106,23 +111,30 @@ namespace RecipiesWebFormApp
             s.Stop();
             var mills = s.ElapsedMilliseconds;
             var ticks = s.ElapsedTicks;
-                        
         }
 
-        void timer_Elapsed(object sender, ElapsedEventArgs e)
+        private void timer_Elapsed(object sender, ElapsedEventArgs e)
         {
             WebClient client = new WebClient();
             string res = client.DownloadStringTaskAsync(new Uri("http://recipies.apphb.com/")).Result;
         }
 
-        void Application_End(object sender, EventArgs e)
+        private void Application_End(object sender, EventArgs e)
         {
             //  Code that runs on application shutdown
         }
 
-        void Application_Error(object sender, EventArgs e)
+        private void Application_Error(object sender, EventArgs e)
         {
             Debugger.Break();
+            Exception ex = Server.GetLastError();
+            string message = ex.Message;
+            string stackTrace = ex.StackTrace;
+            // WE have ToString Log the Error Here !!!
+
+
+
+
         }
     }
 }
