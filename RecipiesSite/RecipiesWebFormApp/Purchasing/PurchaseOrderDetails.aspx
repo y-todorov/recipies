@@ -10,8 +10,11 @@
     </telerik:OpenAccessLinqDataSource>
     <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourcePurchaseOrder" Runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="PurchaseOrderHeaders" />
     <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourceProduct" Runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="Products" />
-    <yordan:YordanCustomRadGrid ID="rgPurchaseOrderDetails" SkinID="readOnlyGrid" runat="server" ItemType="DynamicApplicationModel.PurchaseOrderDetail" DataSourceID="OpenAccessLinqDataSourcePurchaseOrderDetails">
+    <yordan:YordanCustomRadGrid ID="rgPurchaseOrderDetails" runat="server" ItemType="DynamicApplicationModel.PurchaseOrderDetail" DataSourceID="OpenAccessLinqDataSourcePurchaseOrderDetails">
         <MasterTableView AutoGenerateColumns="False" DataKeyNames="PurchaseOrderDetailId" DataSourceID="OpenAccessLinqDataSourcePurchaseOrderDetails">
+            <GroupByExpressions>
+                <telerik:GridGroupByExpression> </telerik:GridGroupByExpression>
+            </GroupByExpressions>
             <Columns>
                 <telerik:GridBoundColumn DataField="PurchaseOrderDetailId" DataType="System.Int32" FilterControlAltText="Filter PurchaseOrderDetailId column" HeaderText="PurchaseOrderDetailId" ReadOnly="True" SortExpression="PurchaseOrderDetailId" UniqueName="PurchaseOrderDetailId">
                     <ColumnValidationSettings>
@@ -31,8 +34,17 @@
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text=""></ModelErrorMessage>
                     </ColumnValidationSettings>
-                </telerik:GridDropDownColumn>             
-           
+                </telerik:GridDropDownColumn>           
+                 <telerik:GridDateTimeColumn DataField=" PurchaseOrderHeader.ShipDate" ReadOnly="true" DataType="System.DateTime" FilterControlAltText="Filter  PurchaseOrderHeader.ShipDate column" HeaderText="PurchaseOrderHeader.ShipDate" SortExpression="PurchaseOrderHeader.ShipDate" UniqueName="PurchaseOrderHeaderShipDate">
+                    <ColumnValidationSettings>
+                        <ModelErrorMessage Text="" />
+                    </ColumnValidationSettings>
+                </telerik:GridDateTimeColumn>
+                  <telerik:GridBoundColumn DataField="PurchaseOrderHeader.Vendor.Name" GroupByExpression="Group by PurchaseOrderHeader.Vendor.Name" ReadOnly="true" DataType="System.String" FilterControlAltText="Filter  PurchaseOrderHeader.ShipDate column" HeaderText="PurchaseOrderHeader.Vendor.Name" SortExpression="PurchaseOrderHeader.Vendor.Name" UniqueName="PurchaseOrderHeader.Vendor.Name">
+                    <ColumnValidationSettings>
+                        <ModelErrorMessage Text="" />
+                    </ColumnValidationSettings>
+                </telerik:GridBoundColumn>
                 <telerik:GridNumericColumn DataField="OrderQuantity" DataType="System.Int32" FilterControlAltText="Filter OrderQuantity column" HeaderText="OrderQuantity" SortExpression="OrderQuantity" UniqueName="OrderQuantity">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
@@ -63,11 +75,11 @@
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
                 </telerik:GridNumericColumn>            
-                <telerik:GridBoundColumn DataField="ModifiedDate" ReadOnly="true" DataType="System.DateTime" FilterControlAltText="Filter ModifiedDate column" HeaderText="ModifiedDate" SortExpression="ModifiedDate" UniqueName="ModifiedDate">
+                <telerik:GridDateTimeColumn DataField="ModifiedDate" ReadOnly="true" DataType="System.DateTime" FilterControlAltText="Filter ModifiedDate column" HeaderText="ModifiedDate" SortExpression="ModifiedDate" UniqueName="ModifiedDate">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
-                </telerik:GridBoundColumn>
+                </telerik:GridDateTimeColumn>
                   <telerik:GridBoundColumn DataField="ModifiedByUser" ReadOnly="true" FilterControlAltText="Filter ModifiedByUser column" HeaderText="ModifiedByUser" SortExpression="ModifiedByUser" UniqueName="ModifiedByUser">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />

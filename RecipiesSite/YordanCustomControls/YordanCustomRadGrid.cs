@@ -16,6 +16,7 @@ using RecipiesWebFormApp;
 using Microsoft.AspNet.SignalR;
 using System.Reflection;
 using Telerik.OpenAccess.Web;
+using RecipiesModelNS;
 
 namespace YordanCustomControls
 {
@@ -114,11 +115,36 @@ namespace YordanCustomControls
             if (gdi != null)
             {
                 foreach (GridColumn gc in Columns)
-                {
+                {                  
                     // for now every column will be trimmed and shown with tooltips. 
                     // If we want to exclude a column from being trimmed we have to add it here
                     if (!(gc is GridButtonColumn || gc is GridEditCommandColumn || gc is GridDropDownColumn || gc is GridCheckBoxColumn))
                     {
+                        if (gdi.DataItem.GetType() == typeof(Product))
+                        {
+                            GridBoundColumn gbc = gc as GridBoundColumn;
+                            if (gbc != null)
+                            {
+                                if (((Product)gdi.DataItem).UnitsOnOrder > 0)
+                                {
+                                    if (gbc.DataField.Equals("UnitsOnOrder", StringComparison.InvariantCultureIgnoreCase))
+                                    {
+                                        gdi[gc].BackColor = Color.Aqua;
+                                    }
+                                    //gdi.BackColor = Color.Aqua;                                
+                                }
+                                if (((Product)gdi.DataItem).UnitsInStock <= ((Product)gdi.DataItem).ReorderLevel)
+                                {
+                                    if (gbc.DataField.Equals("UnitsInStock", StringComparison.InvariantCultureIgnoreCase) ||
+                                        gbc.DataField.Equals("ReorderLevel", StringComparison.InvariantCultureIgnoreCase))
+                                    {
+                                        gdi[gc].BackColor = Color.Yellow;
+                                    }
+                                    //gdi.BackColor = Color.YellowGreen; ;
+                                }
+                            }
+                        }
+
                         gdi[gc].ToolTip = HtmlToText.ConvertHtml(gdi[gc].Text);
 
                         if (ViewState["isExporting"] == null)
