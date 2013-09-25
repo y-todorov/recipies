@@ -322,12 +322,21 @@ namespace RecipiesWebFormApp.Purchasing
 
 
             bool isValidStatusTransition = newPurchaseOrderHeader.UpdateProductsFromStatus(oldPurchaseOrderHeader.StatusId, newPurchaseOrderHeader.StatusId);
-            if (!isValidStatusTransition)
-            {
-                e.Cancel = true;                    
-                (Master as SiteMaster).MasterRadWindowManager.RadAlert(
-                    "Invalid status transition! Valid status transitions are Pending -> Approved, Approved -> Rejected, Approved -> Completed and vice versa!", 600, 300, "Can not update!", "");
-            }
+
+            
+
+            //if (!isValidStatusTransition)
+            //{
+            //    e.Cancel = true;                    
+            //    (Master as SiteMaster).MasterRadWindowManager.RadAlert(
+            //        "Invalid status transition! Valid status transitions are Pending -> Approved, Approved -> Rejected, Approved -> Completed and vice versa!", 600, 300, "Can not update!", "");
+            //    return;
+            //}
+            //foreach (PurchaseOrderDetail pod in newPurchaseOrderHeader.PurchaseOrderDetails)
+            //{
+            //   pod.Product.UnitPrice = (decimal)pod.Product.GetAveragePriceLastDays(14);
+            //}
+            //ContextFactory.GetContextPerRequest().SaveChanges();
         }
 
         protected void rgPurchaseOrders_ItemCreated(object sender, GridItemEventArgs e)
@@ -390,6 +399,7 @@ namespace RecipiesWebFormApp.Purchasing
             {
                 selectedProduct.UnitsInStock += selectedProduct.GetBaseUnitMeasureQuantityForProduct(insertedPurchaseOrderDetail.StockedQuantity, selectedUnitMeasure);
             }
+            selectedProduct.UnitPrice = (decimal)selectedProduct.GetAveragePriceLastDays(14);
             ContextFactory.GetContextPerRequest().SaveChanges();
         }
 
@@ -413,6 +423,7 @@ namespace RecipiesWebFormApp.Purchasing
             {
                 selectedProduct.UnitsInStock += selectedProduct.GetBaseUnitMeasureQuantityForProduct(differenceStockedQuantity, selectedUnitMeasure);
             }
+            selectedProduct.UnitPrice = (decimal)selectedProduct.GetAveragePriceLastDays(14);
             ContextFactory.GetContextPerRequest().SaveChanges();
         }
 
@@ -431,6 +442,9 @@ namespace RecipiesWebFormApp.Purchasing
             {
                 selectedProduct.UnitsInStock -= selectedProduct.GetBaseUnitMeasureQuantityForProduct(deletedPurchaseOrderDetail.StockedQuantity, selectedUnitMeasure);
             }
+           
+            deletedPurchaseOrderDetail.Product.UnitPrice = (decimal)deletedPurchaseOrderDetail.Product.GetAveragePriceLastDays(14);
+            
             ContextFactory.GetContextPerRequest().SaveChanges();
         }
   

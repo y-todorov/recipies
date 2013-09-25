@@ -13,7 +13,7 @@ namespace RecipiesModelNS
             RecipiesModel context = ContextFactory.GetContextPerRequest();
 
             List<PurchaseOrderDetail> pods = context.PurchaseOrderDetails.Where(pod => pod.ProductId == ProductId && pod.PurchaseOrderHeader.ShipDate.HasValue &&
-                pod.PurchaseOrderHeader.ShipDate.Value.Date > DateTime.Now.AddDays(lastDays).Date && pod.PurchaseOrderHeader.ShipDate.Value.Date <= DateTime.Now.Date &&
+                pod.PurchaseOrderHeader.ShipDate.Value.Date > DateTime.Now.AddDays(-lastDays).Date && pod.PurchaseOrderHeader.ShipDate.Value.Date <= DateTime.Now.Date &&
                 pod.PurchaseOrderHeader.StatusId == (int)PurchaseOrderStatusEnum.Completed).ToList();
 
             decimal totalPrice = 0;
