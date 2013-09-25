@@ -43,6 +43,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>OpenAccessAssemblies\Telerik.OpenAccess.35.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="Telerik.OpenAccess.Runtime, Version=2013.1.418.2, Culture=neutral, PublicKeyToken=7ce17eeaf1d59342, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>OpenAccessAssemblies\Telerik.OpenAccess.Runtime.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ContextFactory.cs" />
