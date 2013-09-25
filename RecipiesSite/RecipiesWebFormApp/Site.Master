@@ -72,7 +72,7 @@
                 <telerik:RadMenuItem Text="Purchasing">
                     <Items>
                         <telerik:RadMenuItem Text="Purchase orders" NavigateUrl="~/Purchasing/PurchaseOrders"></telerik:RadMenuItem>
-                        <telerik:RadMenuItem Text="Purchase order details" Visible="false" NavigateUrl="~/Purchasing/PurchaseOrderDetails"></telerik:RadMenuItem>
+                        <telerik:RadMenuItem Text="Purchase order details" Visible="true" NavigateUrl="~/Purchasing/PurchaseOrderDetails"></telerik:RadMenuItem>
                         <telerik:RadMenuItem runat="server" Text="Vendors" NavigateUrl="~/Purchasing/Vendors">
                         </telerik:RadMenuItem>
                         <telerik:RadMenuItem runat="server" Text="Product vendors" NavigateUrl="~/Purchasing/ProductVendors">

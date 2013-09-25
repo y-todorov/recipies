@@ -10,7 +10,7 @@
     </telerik:OpenAccessLinqDataSource>
     <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourcePurchaseOrder" Runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="PurchaseOrderHeaders" />
     <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourceProduct" Runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="Products" />
-    <yordan:YordanCustomRadGrid ID="rgPurchaseOrderDetails" runat="server" ItemType="DynamicApplicationModel.PurchaseOrderDetail" DataSourceID="OpenAccessLinqDataSourcePurchaseOrderDetails">
+    <yordan:YordanCustomRadGrid ID="rgPurchaseOrderDetails" SkinID="readOnlyGrid" runat="server" ItemType="DynamicApplicationModel.PurchaseOrderDetail" DataSourceID="OpenAccessLinqDataSourcePurchaseOrderDetails">
         <MasterTableView AutoGenerateColumns="False" DataKeyNames="PurchaseOrderDetailId" DataSourceID="OpenAccessLinqDataSourcePurchaseOrderDetails">
             <Columns>
                 <telerik:GridBoundColumn DataField="PurchaseOrderDetailId" DataType="System.Int32" FilterControlAltText="Filter PurchaseOrderDetailId column" HeaderText="PurchaseOrderDetailId" ReadOnly="True" SortExpression="PurchaseOrderDetailId" UniqueName="PurchaseOrderDetailId">
@@ -43,22 +43,22 @@
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
                 </telerik:GridNumericColumn>
-                <telerik:GridNumericColumn DataField="LineTotal" ReadOnly="true"  DataType="System.Decimal" FilterControlAltText="Filter LineTotal column" HeaderText="LineTotal" SortExpression="LineTotal" UniqueName="LineTotal">
+                <telerik:GridNumericColumn DataField="LineTotal" ReadOnly="true"  DataType="System.Double" FilterControlAltText="Filter LineTotal column" HeaderText="LineTotal" SortExpression="LineTotal" UniqueName="LineTotal">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
                 </telerik:GridNumericColumn>
-                <telerik:GridNumericColumn DataField="ReceivedQuantity" DataType="System.Int32" FilterControlAltText="Filter ReceivedQuantity column" HeaderText="ReceivedQuantity" SortExpression="ReceivedQuantity" UniqueName="ReceivedQuantity">
+                <telerik:GridNumericColumn DataField="ReceivedQuantity" DataType="System.Double" FilterControlAltText="Filter ReceivedQuantity column" HeaderText="ReceivedQuantity" SortExpression="ReceivedQuantity" UniqueName="ReceivedQuantity">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
                 </telerik:GridNumericColumn>
-                <telerik:GridNumericColumn DataField="ReturnedQuantity" DataType="System.Int32" FilterControlAltText="Filter ReturnedQuantity column" HeaderText="ReturnedQuantity" SortExpression="ReturnedQuantity" UniqueName="ReturnedQuantity">
+                <telerik:GridNumericColumn DataField="ReturnedQuantity" DataType="System.Double" FilterControlAltText="Filter ReturnedQuantity column" HeaderText="ReturnedQuantity" SortExpression="ReturnedQuantity" UniqueName="ReturnedQuantity">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
                 </telerik:GridNumericColumn>
-                <telerik:GridNumericColumn DataField="StockedQuantity" ReadOnly="true"  DataType="System.Int32" FilterControlAltText="Filter StockedQuantity column" HeaderText="StockedQuantity" SortExpression="StockedQuantity" UniqueName="StockedQuantity">
+                <telerik:GridNumericColumn DataField="StockedQuantity" ReadOnly="true"  DataType="System.Double" FilterControlAltText="Filter StockedQuantity column" HeaderText="StockedQuantity" SortExpression="StockedQuantity" UniqueName="StockedQuantity">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>

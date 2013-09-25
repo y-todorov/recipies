@@ -190,6 +190,10 @@ namespace YordanCustomControls
                         {
                             gridBoundColumn.DataFormatString = "{0:F3}";
                         }
+                        if (gridBoundColumn.Aggregate == GridAggregateFunction.None)
+                        {
+                            gridBoundColumn.Aggregate = GridAggregateFunction.Sum;
+                        }
                     }
 
                     GridNumericColumn gridNumericColumn = gridBoundColumn as GridNumericColumn;
