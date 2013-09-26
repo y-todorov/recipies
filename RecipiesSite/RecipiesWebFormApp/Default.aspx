@@ -54,10 +54,10 @@
                     <PlotArea>
                         <Series>
                             <telerik:ColumnSeries DataFieldY="UnitsInStock" Name="Units In Stock">                                  
-                                <TooltipsAppearance Visible="false"></TooltipsAppearance>
                             </telerik:ColumnSeries>
                             <telerik:ColumnSeries DataFieldY="UnitsOnOrder" Name="Units On Order">                                
-                                <TooltipsAppearance Visible="false"></TooltipsAppearance>
+                            </telerik:ColumnSeries>
+                             <telerik:ColumnSeries DataFieldY="ReorderLevel" Name="Reorder Level">                                
                             </telerik:ColumnSeries>
                         </Series>
                         <XAxis DataLabelsField="Name">
@@ -68,7 +68,7 @@
                             <MinorGridLines Visible="false"></MinorGridLines>
                         </YAxis>
                     </PlotArea>
-                    <ChartTitle Text="Products for reorder">
+                    <ChartTitle Text="Top 10 products for reorder">
                     </ChartTitle> 
                 </telerik:RadHtmlChart>
             </td>

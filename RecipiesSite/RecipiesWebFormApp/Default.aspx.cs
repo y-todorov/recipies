@@ -20,7 +20,7 @@ namespace RecipiesWebFormApp
 
                 rhcProductsCountByCategory.DataSource = ContextFactory.GetContextPerRequest().ProductCategories.Select(cat => new { CategoryName = cat.Name, ProductCount = cat.Products.Count }).OrderByDescending(res => res.ProductCount);
 
-                rhcProductsForReorder.DataSource = ContextFactory.GetContextPerRequest().Products.Where(product => product.UnitsInStock <= product.ReorderLevel);
+                rhcProductsForReorder.DataSource = ContextFactory.GetContextPerRequest().Products.Where(product => product.UnitsInStock <= product.ReorderLevel).OrderByDescending(product => product.ReorderLevel).Take(10);
 
                 rhcMostExpensiveProducts.DataSource = ContextFactory.GetContextPerRequest().Products.OrderByDescending(product => product.UnitPrice).Take(10);
             }
