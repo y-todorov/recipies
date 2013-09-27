@@ -41,6 +41,6 @@
             </Columns>
         </MasterTableView>
     </yordan:YordanCustomRadGrid>
-    <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourceShifts" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="Shifts">
-    </telerik:OpenAccessLinqDataSource>
+    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceShifts" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="Shifts">
+     </yordan:YordanCustomOpenAccessLinqDataSource>
 </asp:Content>

@@ -5,7 +5,7 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourceEmployee" Runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="Employees" />
+    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceEmployee" Runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="Employees" />
     <yordan:YordanCustomRadGrid ID="rgEmployee" runat="server" CellSpacing="0" ItemType="RecipiesModelNS.Employee" DataSourceID="OpenAccessLinqDataSourceEmployee" GridLines="None">
         <MasterTableView AutoGenerateColumns="False" DataKeyNames="EmployeeID" DataSourceID="OpenAccessLinqDataSourceEmployee">
             <Columns>

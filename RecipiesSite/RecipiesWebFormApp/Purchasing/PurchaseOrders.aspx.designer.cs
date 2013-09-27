@@ -19,7 +19,7 @@ namespace RecipiesWebFormApp.Purchasing {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.OpenAccess.Web.OpenAccessLinqDataSource OpenAccessLinqDataSourcePurchaseOrders;
+        protected global::YordanCustomControls.YordanCustomOpenAccessLinqDataSource OpenAccessLinqDataSourcePurchaseOrders;
         
         /// <summary>
         /// OpenAccessLinqDataSourceVendor control.
@@ -28,7 +28,7 @@ namespace RecipiesWebFormApp.Purchasing {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.OpenAccess.Web.OpenAccessLinqDataSource OpenAccessLinqDataSourceVendor;
+        protected global::YordanCustomControls.YordanCustomOpenAccessLinqDataSource OpenAccessLinqDataSourceVendor;
         
         /// <summary>
         /// OpenAccessLinqDataSourceShipMethod control.
@@ -37,7 +37,7 @@ namespace RecipiesWebFormApp.Purchasing {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.OpenAccess.Web.OpenAccessLinqDataSource OpenAccessLinqDataSourceShipMethod;
+        protected global::YordanCustomControls.YordanCustomOpenAccessLinqDataSource OpenAccessLinqDataSourceShipMethod;
         
         /// <summary>
         /// OpenAccessLinqDataSourceEmployee control.
@@ -46,7 +46,7 @@ namespace RecipiesWebFormApp.Purchasing {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.OpenAccess.Web.OpenAccessLinqDataSource OpenAccessLinqDataSourceEmployee;
+        protected global::YordanCustomControls.YordanCustomOpenAccessLinqDataSource OpenAccessLinqDataSourceEmployee;
         
         /// <summary>
         /// OpenAccessLinqDataSourcePurchaseOrder control.
@@ -55,7 +55,7 @@ namespace RecipiesWebFormApp.Purchasing {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.OpenAccess.Web.OpenAccessLinqDataSource OpenAccessLinqDataSourcePurchaseOrder;
+        protected global::YordanCustomControls.YordanCustomOpenAccessLinqDataSource OpenAccessLinqDataSourcePurchaseOrder;
         
         /// <summary>
         /// OpenAccessLinqDataSourceProduct control.
@@ -64,7 +64,7 @@ namespace RecipiesWebFormApp.Purchasing {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.OpenAccess.Web.OpenAccessLinqDataSource OpenAccessLinqDataSourceProduct;
+        protected global::YordanCustomControls.YordanCustomOpenAccessLinqDataSource OpenAccessLinqDataSourceProduct;
         
         /// <summary>
         /// OpenAccessLinqDataSourcePurchaseOrderDetails control.
@@ -73,7 +73,7 @@ namespace RecipiesWebFormApp.Purchasing {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.OpenAccess.Web.OpenAccessLinqDataSource OpenAccessLinqDataSourcePurchaseOrderDetails;
+        protected global::YordanCustomControls.YordanCustomOpenAccessLinqDataSource OpenAccessLinqDataSourcePurchaseOrderDetails;
         
         /// <summary>
         /// OpenAccessLinqDataSourceUnit control.
@@ -82,7 +82,7 @@ namespace RecipiesWebFormApp.Purchasing {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.OpenAccess.Web.OpenAccessLinqDataSource OpenAccessLinqDataSourceUnit;
+        protected global::YordanCustomControls.YordanCustomOpenAccessLinqDataSource OpenAccessLinqDataSourceUnit;
         
         /// <summary>
         /// OpenAccessLinqDataSourceStatus control.
@@ -91,7 +91,7 @@ namespace RecipiesWebFormApp.Purchasing {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.OpenAccess.Web.OpenAccessLinqDataSource OpenAccessLinqDataSourceStatus;
+        protected global::YordanCustomControls.YordanCustomOpenAccessLinqDataSource OpenAccessLinqDataSourceStatus;
         
         /// <summary>
         /// rgPurchaseOrders control.

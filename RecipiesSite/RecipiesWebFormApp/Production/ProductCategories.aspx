@@ -31,6 +31,7 @@
         </Columns>
     </MasterTableView>
 </yordan:YordanCustomRadGrid>
-<telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourceCategory" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="ProductCategories">
-    </telerik:OpenAccessLinqDataSource>
+      
+<yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceCategory" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="ProductCategories" OnInserting="OpenAccessLinqDataSourceCategory_Inserting" OnInserted="OpenAccessLinqDataSourceCategory_Inserted">
+    </yordan:YordanCustomOpenAccessLinqDataSource>
 </asp:Content>

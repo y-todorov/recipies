@@ -28,7 +28,7 @@ namespace RecipiesWebFormApp.Sales {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.OpenAccess.Web.OpenAccessLinqDataSource OpenAccessLinqDataSourceOrder;
+        protected global::YordanCustomControls.YordanCustomOpenAccessLinqDataSource OpenAccessLinqDataSourceOrder;
         
         /// <summary>
         /// OpenAccessLinqDataSourceCustomer control.
@@ -37,7 +37,7 @@ namespace RecipiesWebFormApp.Sales {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.OpenAccess.Web.OpenAccessLinqDataSource OpenAccessLinqDataSourceCustomer;
+        protected global::YordanCustomControls.YordanCustomOpenAccessLinqDataSource OpenAccessLinqDataSourceCustomer;
         
         /// <summary>
         /// OpenAccessLinqDataSourceEmployee control.
@@ -46,7 +46,7 @@ namespace RecipiesWebFormApp.Sales {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.OpenAccess.Web.OpenAccessLinqDataSource OpenAccessLinqDataSourceEmployee;
+        protected global::YordanCustomControls.YordanCustomOpenAccessLinqDataSource OpenAccessLinqDataSourceEmployee;
         
         /// <summary>
         /// OpenAccessLinqDataSourceStatus control.
@@ -55,7 +55,7 @@ namespace RecipiesWebFormApp.Sales {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.OpenAccess.Web.OpenAccessLinqDataSource OpenAccessLinqDataSourceStatus;
+        protected global::YordanCustomControls.YordanCustomOpenAccessLinqDataSource OpenAccessLinqDataSourceStatus;
         
         /// <summary>
         /// OpenAccessLinqDataSourceOrderDetail control.
@@ -64,7 +64,7 @@ namespace RecipiesWebFormApp.Sales {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.OpenAccess.Web.OpenAccessLinqDataSource OpenAccessLinqDataSourceOrderDetail;
+        protected global::YordanCustomControls.YordanCustomOpenAccessLinqDataSource OpenAccessLinqDataSourceOrderDetail;
         
         /// <summary>
         /// OpenAccessLinqDataSourcePaymentType control.
@@ -73,7 +73,7 @@ namespace RecipiesWebFormApp.Sales {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.OpenAccess.Web.OpenAccessLinqDataSource OpenAccessLinqDataSourcePaymentType;
+        protected global::YordanCustomControls.YordanCustomOpenAccessLinqDataSource OpenAccessLinqDataSourcePaymentType;
         
         /// <summary>
         /// OpenAccessLinqDataSourceSalesOrderHeader control.
@@ -82,7 +82,7 @@ namespace RecipiesWebFormApp.Sales {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.OpenAccess.Web.OpenAccessLinqDataSource OpenAccessLinqDataSourceSalesOrderHeader;
+        protected global::YordanCustomControls.YordanCustomOpenAccessLinqDataSource OpenAccessLinqDataSourceSalesOrderHeader;
         
         /// <summary>
         /// OpenAccessLinqDataSourceRecipe control.
@@ -91,6 +91,6 @@ namespace RecipiesWebFormApp.Sales {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.OpenAccess.Web.OpenAccessLinqDataSource OpenAccessLinqDataSourceRecipe;
+        protected global::YordanCustomControls.YordanCustomOpenAccessLinqDataSource OpenAccessLinqDataSourceRecipe;
     }
 }

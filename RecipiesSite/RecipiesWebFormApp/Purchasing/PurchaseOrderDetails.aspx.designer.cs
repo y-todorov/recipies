@@ -19,7 +19,7 @@ namespace RecipiesWebFormApp.Purchasing {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.OpenAccess.Web.OpenAccessLinqDataSource OpenAccessLinqDataSourcePurchaseOrderDetails;
+        protected global::YordanCustomControls.YordanCustomOpenAccessLinqDataSource OpenAccessLinqDataSourcePurchaseOrderDetails;
         
         /// <summary>
         /// OpenAccessLinqDataSourcePurchaseOrder control.
@@ -28,7 +28,7 @@ namespace RecipiesWebFormApp.Purchasing {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.OpenAccess.Web.OpenAccessLinqDataSource OpenAccessLinqDataSourcePurchaseOrder;
+        protected global::YordanCustomControls.YordanCustomOpenAccessLinqDataSource OpenAccessLinqDataSourcePurchaseOrder;
         
         /// <summary>
         /// OpenAccessLinqDataSourceProduct control.
@@ -37,7 +37,7 @@ namespace RecipiesWebFormApp.Purchasing {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.OpenAccess.Web.OpenAccessLinqDataSource OpenAccessLinqDataSourceProduct;
+        protected global::YordanCustomControls.YordanCustomOpenAccessLinqDataSource OpenAccessLinqDataSourceProduct;
         
         /// <summary>
         /// rgPurchaseOrderDetails control.

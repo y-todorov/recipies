@@ -28,7 +28,7 @@ namespace RecipiesWebFormApp.Purchasing {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.OpenAccess.Web.OpenAccessLinqDataSource OpenAccessLinqDataSourceProductVendors;
+        protected global::YordanCustomControls.YordanCustomOpenAccessLinqDataSource OpenAccessLinqDataSourceProductVendors;
         
         /// <summary>
         /// OpenAccessLinqDataSourceProduct control.
@@ -37,7 +37,7 @@ namespace RecipiesWebFormApp.Purchasing {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.OpenAccess.Web.OpenAccessLinqDataSource OpenAccessLinqDataSourceProduct;
+        protected global::YordanCustomControls.YordanCustomOpenAccessLinqDataSource OpenAccessLinqDataSourceProduct;
         
         /// <summary>
         /// OpenAccessLinqDataSourceVendor control.
@@ -46,7 +46,7 @@ namespace RecipiesWebFormApp.Purchasing {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.OpenAccess.Web.OpenAccessLinqDataSource OpenAccessLinqDataSourceVendor;
+        protected global::YordanCustomControls.YordanCustomOpenAccessLinqDataSource OpenAccessLinqDataSourceVendor;
         
         /// <summary>
         /// OpenAccessLinqDataSourceUnitMeasure control.
@@ -55,6 +55,6 @@ namespace RecipiesWebFormApp.Purchasing {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.OpenAccess.Web.OpenAccessLinqDataSource OpenAccessLinqDataSourceUnitMeasure;
+        protected global::YordanCustomControls.YordanCustomOpenAccessLinqDataSource OpenAccessLinqDataSourceUnitMeasure;
     }
 }

@@ -28,7 +28,7 @@ namespace RecipiesWebFormApp.HumanResources {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.OpenAccess.Web.OpenAccessLinqDataSource OpenAccessLinqDataSourceEmployeeDepartment;
+        protected global::YordanCustomControls.YordanCustomOpenAccessLinqDataSource OpenAccessLinqDataSourceEmployeeDepartment;
         
         /// <summary>
         /// OpenAccessLinqDataSourceEmployee control.
@@ -37,7 +37,7 @@ namespace RecipiesWebFormApp.HumanResources {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.OpenAccess.Web.OpenAccessLinqDataSource OpenAccessLinqDataSourceEmployee;
+        protected global::YordanCustomControls.YordanCustomOpenAccessLinqDataSource OpenAccessLinqDataSourceEmployee;
         
         /// <summary>
         /// OpenAccessLinqDataSourceShift control.
@@ -46,7 +46,7 @@ namespace RecipiesWebFormApp.HumanResources {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.OpenAccess.Web.OpenAccessLinqDataSource OpenAccessLinqDataSourceShift;
+        protected global::YordanCustomControls.YordanCustomOpenAccessLinqDataSource OpenAccessLinqDataSourceShift;
         
         /// <summary>
         /// OpenAccessLinqDataSourceDepartment control.
@@ -55,6 +55,6 @@ namespace RecipiesWebFormApp.HumanResources {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.OpenAccess.Web.OpenAccessLinqDataSource OpenAccessLinqDataSourceDepartment;
+        protected global::YordanCustomControls.YordanCustomOpenAccessLinqDataSource OpenAccessLinqDataSourceDepartment;
     }
 }

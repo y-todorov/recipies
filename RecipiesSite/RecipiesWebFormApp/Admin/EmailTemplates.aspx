@@ -5,8 +5,8 @@
 <%@ Register Assembly="Telerik.OpenAccess.Web.40" Namespace="Telerik.OpenAccess.Web" TagPrefix="telerik" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <telerik:OpenAccessLinqDataSource ID="OpenAccessLinqDataSourceEmailTemplates" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="EmailTemplates">
-    </telerik:OpenAccessLinqDataSource>
+    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceEmailTemplates" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="EmailTemplates">
+     </yordan:YordanCustomOpenAccessLinqDataSource>
     <yordan:YordanCustomRadGrid ID="rgEmailTemplates" runat="server" CellSpacing="0" DataSourceID="OpenAccessLinqDataSourceEmailTemplates" GridLines="None">
         <MasterTableView AutoGenerateColumns="False" DataKeyNames="EmailTemplateId" DataSourceID="OpenAccessLinqDataSourceEmailTemplates">
             <Columns>

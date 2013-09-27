@@ -28,7 +28,7 @@ namespace RecipiesWebFormApp.Production {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.OpenAccess.Web.OpenAccessLinqDataSource OpenAccessLinqDataSourceUnit;
+        protected global::YordanCustomControls.YordanCustomOpenAccessLinqDataSource OpenAccessLinqDataSourceUnit;
         
         /// <summary>
         /// OpenAccessLinqDataSourceBaseUnit control.
@@ -37,6 +37,6 @@ namespace RecipiesWebFormApp.Production {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.OpenAccess.Web.OpenAccessLinqDataSource OpenAccessLinqDataSourceBaseUnit;
+        protected global::YordanCustomControls.YordanCustomOpenAccessLinqDataSource OpenAccessLinqDataSourceBaseUnit;
     }
 }

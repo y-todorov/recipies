@@ -28,7 +28,7 @@ namespace RecipiesWebFormApp.Production {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.OpenAccess.Web.OpenAccessLinqDataSource OpenAccessLinqDataSourceCategory;
+        protected global::YordanCustomControls.YordanCustomOpenAccessLinqDataSource OpenAccessLinqDataSourceCategory;
         
         /// <summary>
         /// OpenAccessLinqDataSourceRecipes control.
@@ -37,7 +37,7 @@ namespace RecipiesWebFormApp.Production {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.OpenAccess.Web.OpenAccessLinqDataSource OpenAccessLinqDataSourceRecipes;
+        protected global::YordanCustomControls.YordanCustomOpenAccessLinqDataSource OpenAccessLinqDataSourceRecipes;
         
         /// <summary>
         /// OpenAccessLinqDataSourceRecipeIngredients control.
@@ -46,7 +46,7 @@ namespace RecipiesWebFormApp.Production {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.OpenAccess.Web.OpenAccessLinqDataSource OpenAccessLinqDataSourceRecipeIngredients;
+        protected global::YordanCustomControls.YordanCustomOpenAccessLinqDataSource OpenAccessLinqDataSourceRecipeIngredients;
         
         /// <summary>
         /// OpenAccessLinqDataSourceProduct control.
@@ -55,7 +55,7 @@ namespace RecipiesWebFormApp.Production {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.OpenAccess.Web.OpenAccessLinqDataSource OpenAccessLinqDataSourceProduct;
+        protected global::YordanCustomControls.YordanCustomOpenAccessLinqDataSource OpenAccessLinqDataSourceProduct;
         
         /// <summary>
         /// OpenAccessLinqDataSourceRecipe control.
@@ -64,6 +64,6 @@ namespace RecipiesWebFormApp.Production {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.OpenAccess.Web.OpenAccessLinqDataSource OpenAccessLinqDataSourceRecipe;
+        protected global::YordanCustomControls.YordanCustomOpenAccessLinqDataSource OpenAccessLinqDataSourceRecipe;
     }
 }

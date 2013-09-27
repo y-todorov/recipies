@@ -20,14 +20,5 @@ namespace RecipiesWebFormApp.Sales {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::YordanCustomControls.YordanCustomRadGrid rgPaymentTypes;
-        
-        /// <summary>
-        /// OpenAccessLinqDataSourcePaymentTypes control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Telerik.OpenAccess.Web.OpenAccessLinqDataSource OpenAccessLinqDataSourcePaymentTypes;
     }
 }
