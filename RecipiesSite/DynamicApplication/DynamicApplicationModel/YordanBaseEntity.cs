@@ -41,17 +41,32 @@ namespace RecipiesModelNS
 
         }
 
-        public virtual void Inserted(RecipiesModel context)
+        public virtual void BeforeInsert(RecipiesModel context)
         {
 
         }
 
-        public virtual void Updated(RecipiesModel context)
+        public virtual void AfterInsert(RecipiesModel context)
+        {
+
+        }
+       
+        public virtual void BeforeUpdate(RecipiesModel context)
+        {
+
+        } 
+        
+        public virtual void AfterUpdate(RecipiesModel context)
         {
 
         }
 
-        public virtual void Deleted(RecipiesModel context)
+        public virtual void BeforeDelete(RecipiesModel context)
+        {
+
+        }
+
+        public virtual void AfterDelete(RecipiesModel context)
         {
 
         }

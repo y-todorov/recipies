@@ -38,7 +38,7 @@ namespace RecipiesModelNS
 
                 foreach (PurchaseOrderDetail pod in pods)
                 {
-                    double  tempBaseUnitsQuantity = pod.Product.GetBaseUnitMeasureQuantityForProduct(pod.StockedQuantity, pod.UnitMeasure);
+                    double  tempBaseUnitsQuantity = pod.Product.GetBaseUnitMeasureQuantityForProduct(pod.StockedQuantity, pod.UnitMeasure, pod);
                     baseUnitsQuantity += tempBaseUnitsQuantity;
                     totalPrice += (decimal)pod.StockedQuantity * pod.UnitPrice.GetValueOrDefault();
                     totalQuantity += pod.StockedQuantity;
@@ -55,7 +55,7 @@ namespace RecipiesModelNS
                 if (lastPod != null)
                 {
                     
-                        double tempBaseUnitsQuantity = lastPod.Product.GetBaseUnitMeasureQuantityForProduct(lastPod.StockedQuantity, lastPod.UnitMeasure);
+                        double tempBaseUnitsQuantity = lastPod.Product.GetBaseUnitMeasureQuantityForProduct(lastPod.StockedQuantity, lastPod.UnitMeasure, lastPod);
                         baseUnitsQuantity += tempBaseUnitsQuantity;
                         totalPrice += (decimal)lastPod.StockedQuantity * lastPod.UnitPrice.GetValueOrDefault();
                     
@@ -135,7 +135,7 @@ namespace RecipiesModelNS
             return 0;
         }
 
-        public double GetBaseUnitMeasureQuantityForProduct(double? quantity, UnitMeasure quantityUnitMeasure)
+        public double GetBaseUnitMeasureQuantityForProduct(double? quantity, UnitMeasure quantityUnitMeasure, PurchaseOrderDetail pod = null)
         {
             if (quantityUnitMeasure.BaseUnitId == this.UnitMeasureId)
             {
@@ -157,7 +157,13 @@ namespace RecipiesModelNS
             }
             else
             {
-                throw new ApplicationException("UnitMeasure mismatch in method GetBaseUnitMeasureQuantityForProduct!");
+                string podMessage = "None.";
+                if (pod != null)
+                {
+                    podMessage = string.Format("Purchase Order Id: {0}, purchase order detail Id: {1}", pod.PurchaseOrderId, pod.PurchaseOrderDetailId);
+                }
+                throw new ApplicationException(string.Format("UnitMeasure mismatch in method GetBaseUnitMeasureQuantityForProduct! Product id: {0}, product unit measure: {1}, quantity unit measure: {2}, More info: {3}",
+                    ProductId, UnitMeasure.Name, quantityUnitMeasure.Name, podMessage));
             }
         }
     }

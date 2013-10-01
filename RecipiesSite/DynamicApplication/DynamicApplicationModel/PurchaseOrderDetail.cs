@@ -128,5 +128,18 @@ namespace RecipiesModelNS
             }
 
         }
+
+        public override void BeforeInsert(RecipiesModel context)
+        {
+
+            base.BeforeInsert(context);
+        }
+
+        public override void BeforeUpdate(RecipiesModel context)
+        {
+            PurchaseOrderDetail updatedlObject = this;
+            PurchaseOrderDetail originalObject = ContextFactory.GetContextPerRequest().PurchaseOrderDetails.FirstOrDefault(pod => pod.PurchaseOrderDetailId == PurchaseOrderDetailId);
+            base.BeforeUpdate(context);
+        }
     }
 }

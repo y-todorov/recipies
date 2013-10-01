@@ -136,8 +136,18 @@ namespace YordanCustomControls
 
                             if (gbc.DataField.Equals("UnitPrice", StringComparison.InvariantCultureIgnoreCase))
                             {
-                                string unitPrice;
-                                product.GetAveragePriceLastDays(14, out unitPrice);
+                                string unitPrice = string.Empty;
+                                try
+                                {
+                                    product.GetAveragePriceLastDays(14, out unitPrice);
+                                }
+                                catch (Exception ex)
+                                {
+                                    string error = "Error: " + ex.Message;
+                                    gdi[gc].ToolTip = error;
+                                    (Page.Master as dynamic).MasterRadNotification.Show(error);
+                                    continue;
+                                }
                                 gdi[gc].ToolTip = unitPrice;
                             }
 

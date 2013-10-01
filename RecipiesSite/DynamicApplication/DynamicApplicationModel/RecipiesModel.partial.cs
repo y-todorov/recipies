@@ -139,11 +139,13 @@ namespace RecipiesModelNS
             List<object> updates = this.GetChanges().GetUpdates<object>().ToList();
             List<object> deletes = this.GetChanges().GetDeletes<object>().ToList();
 
-            inserts.OfType<YordanBaseEntity>().ToList().ForEach(ybe => ybe.Inserted(this));
-            updates.OfType<YordanBaseEntity>().ToList().ForEach(ybe => ybe.Updated(this));
-            deletes.OfType<YordanBaseEntity>().ToList().ForEach(ybe => ybe.Deleted(this));          
+            inserts.OfType<YordanBaseEntity>().ToList().ForEach(ybe => ybe.BeforeInsert(this));
+            updates.OfType<YordanBaseEntity>().ToList().ForEach(ybe => ybe.BeforeUpdate(this));
+            deletes.OfType<YordanBaseEntity>().ToList().ForEach(ybe => ybe.BeforeDelete(this));          
 
             base.SaveChanges(failureMode);
+
+
         }
 
         private void PopulateHistoryTables()

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RecipiesModelNS;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,6 +15,17 @@ namespace RecipiesWebFormApp.Production
             if (!IsPostBack)
             {
             }
+        }
+
+        protected void rbUpdateUnitPrice_Click(object sender, EventArgs e)
+        {
+            List<Product> products = ContextFactory.GetContextPerRequest().Products.ToList();
+            foreach (Product product in products)
+            {
+                product.UnitPrice = (decimal?)product.GetAveragePriceLastDays(14);
+            }
+            ContextFactory.GetContextPerRequest();
+            rgProducts.Rebind();
         }
     }
 }

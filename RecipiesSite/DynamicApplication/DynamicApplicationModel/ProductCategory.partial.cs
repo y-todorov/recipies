@@ -8,22 +8,22 @@ namespace RecipiesModelNS
 {
     public partial class ProductCategory : YordanBaseEntity
     {
-        public override void Inserted(RecipiesModel context)
+        public override void BeforeInsert(RecipiesModel context)
         {
             ProductCategory inserted = this;
-            base.Inserted(context);
+            base.BeforeInsert(context);
         }
 
-        public override void Updated(RecipiesModel context)
+        public override void BeforeUpdate(RecipiesModel context)
         {
             ProductCategory updated = this;
-            base.Updated(context);
+            base.BeforeUpdate(context);
         }
 
-        public override void Deleted(RecipiesModel context)
+        public override void BeforeDelete(RecipiesModel context)
         {
             ProductCategory deleted = this;
-            base.Deleted(context);
+            base.BeforeDelete(context);
         }
     }
 }

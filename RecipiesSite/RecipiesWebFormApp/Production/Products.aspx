@@ -125,4 +125,5 @@
      </yordan:YordanCustomOpenAccessLinqDataSource>
     <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceVendor" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="Vendors" />
     <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceCategory" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="ProductCategories" />
+    <asp:Label Text="Update product unit price from all purchase orders since the last 14 days" runat="server" /><telerik:RadButton ID="rbUpdateUnitPrice"  OnClick="rbUpdateUnitPrice_Click" runat="server" Text="Update"></telerik:RadButton>
 </asp:Content>
