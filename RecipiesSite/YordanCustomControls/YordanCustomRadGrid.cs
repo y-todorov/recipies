@@ -198,6 +198,11 @@ namespace YordanCustomControls
                         {
                             gridBoundColumn.DataFormatString = "{0:dd/MM/yyyy}";
                         }
+                        // validation
+                        gridBoundColumn.ColumnValidationSettings.EnableRequiredFieldValidation = true;
+                        gridBoundColumn.ColumnValidationSettings.RequiredFieldValidator.Text = "This field is required!";
+                        gridBoundColumn.ColumnValidationSettings.RequiredFieldValidator.ErrorMessage = "This field is required!";
+                        gridBoundColumn.ColumnValidationSettings.RequiredFieldValidator.ForeColor = Color.Red;
                     }
                     if (gridBoundColumn.DataType == typeof(decimal))
                     {
@@ -227,11 +232,7 @@ namespace YordanCustomControls
                     {
                         gridNumericColumn.DecimalDigits = 3;
                     }
-
-                    // validation
-                    //gridBoundColumn.ColumnValidationSettings.EnableRequiredFieldValidation = true;
-
-                    //gridBoundColumn.ColumnValidationSettings.RequiredFieldValidator = new RequiredFieldValidator() { ErrorMessage = "This field is required!" };
+                  
                 }
                 GridDropDownColumn gridDropDownColumn = gridColumn as GridDropDownColumn;
                 if (gridDropDownColumn != null)
