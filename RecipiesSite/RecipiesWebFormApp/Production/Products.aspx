@@ -52,7 +52,7 @@
                         <ModelErrorMessage Text=""></ModelErrorMessage>
                     </ColumnValidationSettings>
                 </telerik:GridDropDownColumn>
-                <telerik:GridDropDownColumn UniqueName="DropDownCategoryListColumn" ListTextField="Name"
+                <telerik:GridDropDownColumn UniqueName="DropDownCategoryListColumn" ListTextField="Name" 
                     ListValueField="CategoryID" DataSourceID="OpenAccessLinqDataSourceCategory" HeaderText="Category"
                     DataField="CategoryID" DropDownControlType="RadComboBox" EmptyListItemText="" EnableEmptyListItem="true" EmptyListItemValue="" ConvertEmptyStringToNull="true">
                     <ColumnValidationSettings>

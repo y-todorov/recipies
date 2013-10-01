@@ -89,9 +89,10 @@ namespace YordanCustomControls
                             RadComboBox radComboBox = c as RadComboBox;
                             if (radComboBox != null)
                             {
-                                radComboBox.MaxHeight = 500;
-                                radComboBox.MaxLength = 300;
-                                radComboBox.DropDownWidth = 250;
+                                //radComboBox.MaxHeight = 500;
+                                //radComboBox.MaxLength = 300;
+                                radComboBox.MaxHeight = 300;
+                                radComboBox.DropDownAutoWidth = RadComboBoxDropDownAutoWidth.Enabled;
                             }
                         }
                     }
@@ -282,6 +283,13 @@ namespace YordanCustomControls
                     gridDropDownColumn.ColumnValidationSettings.RequiredFieldValidator.Text = "This field is required!";
                     gridDropDownColumn.ColumnValidationSettings.RequiredFieldValidator.ErrorMessage = "This field is required!";
                     gridDropDownColumn.ColumnValidationSettings.RequiredFieldValidator.ForeColor = Color.Red;
+
+                    // load on demand
+                    gridDropDownColumn.AllowAutomaticLoadOnDemand = true;
+                    gridDropDownColumn.AllowVirtualScrolling = true;
+                    gridDropDownColumn.ShowMoreResultsBox = true;
+                    gridDropDownColumn.ItemsPerRequest = 7;
+                    
 
                 }
             }
