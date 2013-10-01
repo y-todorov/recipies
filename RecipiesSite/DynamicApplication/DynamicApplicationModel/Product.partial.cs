@@ -16,25 +16,35 @@ namespace RecipiesModelNS
 
         public double GetAveragePriceLastDays(int lastDays)
         {
+            string help;
+            return GetAveragePriceLastDays(lastDays, out help);
+        }
+
+        public double GetAveragePriceLastDays(int lastDays, out string text)
+        {
             RecipiesModel context = ContextFactory.GetContextPerRequest();
 
             List<PurchaseOrderDetail> pods = context.PurchaseOrderDetails.Where(pod => pod.ProductId == ProductId && pod.PurchaseOrderHeader.ShipDate.HasValue &&
                 pod.PurchaseOrderHeader.ShipDate.Value.Date > DateTime.Now.AddDays(-lastDays).Date && pod.PurchaseOrderHeader.ShipDate.Value.Date <= DateTime.Now.Date &&
-                pod.PurchaseOrderHeader.StatusId == (int)PurchaseOrderStatusEnum.Completed).ToList();
+                pod.PurchaseOrderHeader.StatusId == (int)PurchaseOrderStatusEnum.Completed).OrderByDescending(p => p.PurchaseOrderHeader.ShipDate).ToList();
+
+            StringBuilder result = new StringBuilder();
 
             decimal totalPrice = 0;
             double totalQuantity = 0;
             double baseUnitsQuantity = 0;
             if (pods.Count > 0)
             {
+
                 foreach (PurchaseOrderDetail pod in pods)
                 {
-                    if (pod.UnitPrice.HasValue)
-                    {
-                        baseUnitsQuantity += pod.Product.GetBaseUnitMeasureQuantityForProduct(pod.StockedQuantity, pod.UnitMeasure);
-                        totalPrice += (decimal)pod.StockedQuantity * pod.UnitPrice.Value; 
-                    }
+                    double  tempBaseUnitsQuantity = pod.Product.GetBaseUnitMeasureQuantityForProduct(pod.StockedQuantity, pod.UnitMeasure);
+                    baseUnitsQuantity += tempBaseUnitsQuantity;
+                    totalPrice += (decimal)pod.StockedQuantity * pod.UnitPrice.GetValueOrDefault();
                     totalQuantity += pod.StockedQuantity;
+
+                    result.AppendLine(string.Format("Purchase order id: {0}, ship date: {1:dd/MM/yyyy}, base unit quantity: {2}, stocked quantity: {3}, unitPrice of vendor measure: {4}",
+                        pod.PurchaseOrderHeader.PurchaseOrderId, pod.PurchaseOrderHeader.ShipDate, tempBaseUnitsQuantity, pod.StockedQuantity, pod.UnitPrice));
                 }
             }
             else
@@ -44,12 +54,14 @@ namespace RecipiesModelNS
                 pod.PurchaseOrderHeader.StatusId == (int)PurchaseOrderStatusEnum.Completed).OrderByDescending(pod => pod.PurchaseOrderHeader.ShipDate).FirstOrDefault();
                 if (lastPod != null)
                 {
-                    if (lastPod.UnitPrice.HasValue)
-                    {
-                        baseUnitsQuantity += lastPod.Product.GetBaseUnitMeasureQuantityForProduct(lastPod.StockedQuantity, lastPod.UnitMeasure);
-                        totalPrice += (decimal)lastPod.StockedQuantity * lastPod.UnitPrice.Value;
-                    }
+                    
+                        double tempBaseUnitsQuantity = lastPod.Product.GetBaseUnitMeasureQuantityForProduct(lastPod.StockedQuantity, lastPod.UnitMeasure);
+                        baseUnitsQuantity += tempBaseUnitsQuantity;
+                        totalPrice += (decimal)lastPod.StockedQuantity * lastPod.UnitPrice.GetValueOrDefault();
+                    
                     totalQuantity += lastPod.StockedQuantity;
+                    result.AppendLine(string.Format("Purchase order id: {0}, ship date: {1:dd/MM/yyyy}, base unit quantity: {2}, stocked quantity: {3}, unitPrice of vendor measure: {4}",
+                       lastPod.PurchaseOrderHeader.PurchaseOrderId, lastPod.PurchaseOrderHeader.ShipDate, tempBaseUnitsQuantity, lastPod.StockedQuantity, lastPod.UnitPrice));
                 }
             }
 
@@ -59,7 +71,10 @@ namespace RecipiesModelNS
 
             double averagePrice = Math.Round((double)totalPrice / totalQuantity / baseUnitsQuantity, 3);
 
+            result.AppendLine(string.Format("Total price: {0}, totalQuantity: {1}, baseUnitsQuantity: {2}", totalPrice, totalQuantity, baseUnitsQuantity));
+            result.AppendLine(string.Format("averagePrice: {0}", averagePrice));
 
+            text = result.ToString();
 
             if (double.IsNaN(averagePrice) || double.IsInfinity(averagePrice))
             {
@@ -81,7 +96,7 @@ namespace RecipiesModelNS
             // test
             double result = GetPurchaseOrderStockedQuantity(DateTime.Now.AddYears(-1), DateTime.Now.AddYears(1));
             double result2 = GetSalesOrderQuantity(DateTime.Now.AddYears(-1), DateTime.Now.AddYears(1));
-            
+
 
 
             if (inventory != null)
