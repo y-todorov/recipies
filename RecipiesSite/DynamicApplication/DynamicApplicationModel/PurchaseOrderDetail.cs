@@ -38,7 +38,10 @@ namespace RecipiesModelNS
             PurchaseOrderDetail oldPurchaseOrderDetail = e.OriginalObject as PurchaseOrderDetail;
             PurchaseOrderDetail newPurchaseOrderDetail = e.NewObject as PurchaseOrderDetail;
             double differenceOrderQuantity = newPurchaseOrderDetail.OrderQuantity.GetValueOrDefault() - oldPurchaseOrderDetail.OrderQuantity.GetValueOrDefault();
-            double differenceStockedQuantity = newPurchaseOrderDetail.StockedQuantity - oldPurchaseOrderDetail.StockedQuantity;
+            // newPurchaseOrderDetail.StockedQuantity THIS WILL BE CALCULATED AFTER SAVE. IT WILL BE 0 NOW
+            double newStockQuantity = newPurchaseOrderDetail.ReceivedQuantity.GetValueOrDefault() - newPurchaseOrderDetail.ReturnedQuantity.GetValueOrDefault();
+            double differenceStockedQuantity = newStockQuantity - oldPurchaseOrderDetail.StockedQuantity;
+            //double differenceStockedQuantity = newPurchaseOrderDetail.StockedQuantity - oldPurchaseOrderDetail.StockedQuantity;
 
             Product selectedProduct = ContextFactory.GetContextPerRequest().Products.FirstOrDefault(p => p.ProductId == newPurchaseOrderDetail.ProductId);
             UnitMeasure selectedUnitMeasure = ContextFactory.GetContextPerRequest().UnitMeasures.FirstOrDefault(um => um.UnitMeasureId == newPurchaseOrderDetail.UnitMeasureId);
@@ -53,13 +56,19 @@ namespace RecipiesModelNS
             {
                 selectedProduct.UnitsInStock += selectedProduct.GetBaseUnitMeasureQuantityForProduct(differenceStockedQuantity, selectedUnitMeasure);
             }
-            selectedProduct.UnitPrice = (decimal)selectedProduct.GetAveragePriceLastDays(14);
+            
+            //selectedProduct.UnitPrice = (decimal)selectedProduct.GetAveragePriceLastDays(14);
          
             base.OaldsUpdating(sender, e);
         }
 
         public override void OaldsUpdated(object sender, OpenAccessLinqDataSourceStatusEventArgs e)
         {
+            Product selectedProduct = ContextFactory.GetContextPerRequest().Products.FirstOrDefault(p => p.ProductId == ProductId);
+            if (selectedProduct != null)
+            {
+                selectedProduct.UnitPrice = (decimal)selectedProduct.GetAveragePriceLastDays(14);
+            }
             UpdatePurchaseOrderSubTotalFromPurchaseOrderDetails(PurchaseOrderId);
 
             base.OaldsUpdated(sender, e);
@@ -82,17 +91,22 @@ namespace RecipiesModelNS
                 selectedProduct.UnitsInStock -= selectedProduct.GetBaseUnitMeasureQuantityForProduct(deletedPurchaseOrderDetail.StockedQuantity, selectedUnitMeasure);
             }
 
-            deletedPurchaseOrderDetail.Product.UnitPrice = (decimal)deletedPurchaseOrderDetail.Product.GetAveragePriceLastDays(14);
-                    
+            //deletedPurchaseOrderDetail.Product.UnitPrice = (decimal)deletedPurchaseOrderDetail.Product.GetAveragePriceLastDays(14);
+            deletedProduct = selectedProduct;
             deletedPurchaseOrderHeaderId = PurchaseOrderId;
 
             base.OaldsDeleting(sender, e);
         }
 
         private static int? deletedPurchaseOrderHeaderId;
+        private static Product deletedProduct;
 
         public override void OaldsDeleted(object sender, OpenAccessLinqDataSourceStatusEventArgs e)
         {
+            if (deletedProduct != null)
+            {
+                deletedProduct.UnitPrice = (decimal)deletedProduct.GetAveragePriceLastDays(14);
+            }
             UpdatePurchaseOrderSubTotalFromPurchaseOrderDetails(deletedPurchaseOrderHeaderId);
             base.OaldsDeleted(sender, e);
         }

@@ -315,11 +315,14 @@ namespace RecipiesWebFormApp.Purchasing
 
         protected void OpenAccessLinqDataSourcePurchaseOrders_Updating(object sender, OpenAccessLinqDataSourceUpdateEventArgs e)
         {
-            PurchaseOrderHeader oldPurchaseOrderHeader = e.OriginalObject as PurchaseOrderHeader;
-            PurchaseOrderHeader newPurchaseOrderHeader = e.NewObject as PurchaseOrderHeader;
+            // Implemented in partial class
 
 
-            bool isValidStatusTransition = newPurchaseOrderHeader.UpdateProductsFromStatus(oldPurchaseOrderHeader.StatusId, newPurchaseOrderHeader.StatusId);
+            //PurchaseOrderHeader oldPurchaseOrderHeader = e.OriginalObject as PurchaseOrderHeader;
+            //PurchaseOrderHeader newPurchaseOrderHeader = e.NewObject as PurchaseOrderHeader;
+
+
+            //bool isValidStatusTransition = newPurchaseOrderHeader.UpdateProductsFromStatus(oldPurchaseOrderHeader.StatusId, newPurchaseOrderHeader.StatusId);
 
             
 

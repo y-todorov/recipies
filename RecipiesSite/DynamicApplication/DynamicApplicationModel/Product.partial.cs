@@ -24,13 +24,15 @@ namespace RecipiesModelNS
 
             decimal totalPrice = 0;
             double totalQuantity = 0;
+            double baseUnitsQuantity = 0;
             if (pods.Count > 0)
             {
                 foreach (PurchaseOrderDetail pod in pods)
                 {
                     if (pod.UnitPrice.HasValue)
                     {
-                        totalPrice += (decimal)pod.StockedQuantity * pod.UnitPrice.Value;
+                        baseUnitsQuantity += pod.Product.GetBaseUnitMeasureQuantityForProduct(pod.StockedQuantity, pod.UnitMeasure);
+                        totalPrice += (decimal)pod.StockedQuantity * pod.UnitPrice.Value; 
                     }
                     totalQuantity += pod.StockedQuantity;
                 }
@@ -44,13 +46,21 @@ namespace RecipiesModelNS
                 {
                     if (lastPod.UnitPrice.HasValue)
                     {
+                        baseUnitsQuantity += lastPod.Product.GetBaseUnitMeasureQuantityForProduct(lastPod.StockedQuantity, lastPod.UnitMeasure);
                         totalPrice += (decimal)lastPod.StockedQuantity * lastPod.UnitPrice.Value;
                     }
                     totalQuantity += lastPod.StockedQuantity;
                 }
             }
 
-            double averagePrice = Math.Round((double)totalPrice / totalQuantity, 2);
+            //double averagePrice = Math.Round((double)totalPrice / totalQuantity, 3);
+
+
+
+            double averagePrice = Math.Round((double)totalPrice / totalQuantity / baseUnitsQuantity, 3);
+
+
+
             if (double.IsNaN(averagePrice) || double.IsInfinity(averagePrice))
             {
                 averagePrice = 0;

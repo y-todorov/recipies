@@ -80,7 +80,18 @@ namespace RecipiesModelNS
                 return isValidStatusTransition;
             }
             return false;
-        }      
+        }
+
+        public override void OaldsUpdating(object sender, Telerik.OpenAccess.Web.OpenAccessLinqDataSourceUpdateEventArgs e)
+        {
+            PurchaseOrderHeader oldPurchaseOrderHeader = e.OriginalObject as PurchaseOrderHeader;
+            PurchaseOrderHeader newPurchaseOrderHeader = e.NewObject as PurchaseOrderHeader;
+
+
+            bool isValidStatusTransition = newPurchaseOrderHeader.UpdateProductsFromStatus(oldPurchaseOrderHeader.StatusId, newPurchaseOrderHeader.StatusId);
+
+            base.OaldsUpdating(sender, e);
+        }
 
     }
 }
