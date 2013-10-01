@@ -109,6 +109,7 @@
     <Compile Include="ProductCategory.generated.cs">
       <DependentUpon>EntitiesModel.rlinq</DependentUpon>
     </Compile>
+    <Compile Include="ProductCategory.partial.cs" />
     <Compile Include="ProductHistory.generated.cs">
       <DependentUpon>EntitiesModel.rlinq</DependentUpon>
     </Compile>
@@ -133,6 +134,7 @@
     <Compile Include="RecipeIngredient.generated.cs">
       <DependentUpon>EntitiesModel.rlinq</DependentUpon>
     </Compile>
+    <Compile Include="RecipeIngredient.partial.cs" />
     <Compile Include="RecipiesModel.partial.cs" />
     <Compile Include="SalesOrderDetail.generated.cs">
       <DependentUpon>EntitiesModel.rlinq</DependentUpon>
@@ -147,6 +149,7 @@
     <Compile Include="Shift.generated.cs">
       <DependentUpon>EntitiesModel.rlinq</DependentUpon>
     </Compile>
+    <Compile Include="Shift.partial.cs" />
     <Compile Include="ShipMethod.generated.cs">
       <DependentUpon>EntitiesModel.rlinq</DependentUpon>
     </Compile>
@@ -160,6 +163,7 @@
     <Compile Include="Vendor.generated.cs">
       <DependentUpon>EntitiesModel.rlinq</DependentUpon>
     </Compile>
+    <Compile Include="YordanBaseEntity.cs" />
   </ItemGroup>
   <ItemGroup>
     <OpenAccessDeploy Include="EntitiesModel.rlinq">

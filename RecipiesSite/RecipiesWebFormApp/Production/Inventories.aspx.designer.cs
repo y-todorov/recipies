@@ -13,6 +13,15 @@ namespace RecipiesWebFormApp.Production {
     public partial class Inventory {
         
         /// <summary>
+        /// OpenAccessLinqDataSourceProduct control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::YordanCustomControls.YordanCustomOpenAccessLinqDataSource OpenAccessLinqDataSourceProduct;
+        
+        /// <summary>
         /// YordanCustomRadGridInventory control.
         /// </summary>
         /// <remarks>
@@ -20,5 +29,14 @@ namespace RecipiesWebFormApp.Production {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::YordanCustomControls.YordanCustomRadGrid YordanCustomRadGridInventory;
+        
+        /// <summary>
+        /// OpenAccessLinqDataSourceInventory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::YordanCustomControls.YordanCustomOpenAccessLinqDataSource OpenAccessLinqDataSourceInventory;
     }
 }

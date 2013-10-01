@@ -37,7 +37,7 @@
 
 
     </telerik:RadCodeBlock>--%>
-    <yordan:YordanCustomRadGrid ID="rgProducts" runat="server" ItemType="RecipiesModelNS.Product" DataSourceID="OpenAccessLinqDataSourceProduct" CellSpacing="0" GridLines="None" EnableLinqExpressions="false">
+    <yordan:YordanCustomRadGrid ID="rgProducts" runat="server" ItemType="RecipiesModelNS.Product" DataSourceID="OpenAccessLinqDataSourceProduct" CellSpacing="0" GridLines="None" EnableLinqExpressions="true">
         <MasterTableView AutoGenerateColumns="False" DataKeyNames="ProductId" DataSourceID="OpenAccessLinqDataSourceProduct">
             <Columns>
                 <telerik:GridBoundColumn DataField="ProductId" DataType="System.Int32" FilterControlAltText="Filter ProductId column" HeaderText="ProductId" ReadOnly="True" SortExpression="ProductId" UniqueName="ProductId">
@@ -88,10 +88,10 @@
                     </ColumnValidationSettings>
                     
                 </telerik:GridNumericColumn>
-                <telerik:GridCalculatedColumn HeaderText="Total Price" UniqueName="TotalPrice" DataType="System.Decimal" DataFormatString="{0:C3}"
+             <%--   <telerik:GridCalculatedColumn HeaderText="Total Price" UniqueName="TotalPrice" DataType="System.Decimal" DataFormatString="{0:C3}"
                     DataFields="UnitPrice, UnitsInStock" Expression=" {0} * Convert({1}, 'System.Decimal')" FooterText="Total : "
                     Aggregate="Sum">
-                </telerik:GridCalculatedColumn>
+                </telerik:GridCalculatedColumn>--%>
                 <telerik:GridNumericColumn DataField="UnitsOnOrder" DataType="System.Double" FilterControlAltText="Filter UnitsOnOrder column" HeaderText="UnitsOnOrder" SortExpression="UnitsOnOrder" UniqueName="UnitsOnOrder">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />

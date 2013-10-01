@@ -1,10 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="PaymentTypes.aspx.cs" Inherits="RecipiesWebFormApp.Sales.PaymentTypes" %>
 
 <%@ Register Assembly="Telerik.OpenAccess.Web.40" Namespace="Telerik.OpenAccess.Web" TagPrefix="telerik" %>
-<%@ Register assembly="YordanCustomControls" namespace="YordanCustomControls" tagprefix="cc1" %>
+<%@ Register assembly="YordanCustomControls" namespace="YordanCustomControls" tagprefix="yordan" %>
 <%@ Register assembly="Telerik.Web.UI" namespace="Telerik.Web.UI" tagprefix="telerik" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <cc1:YordanCustomRadGrid ID="rgPaymentTypes" runat="server" CellSpacing="0" DataSourceID="OpenAccessLinqDataSourcePaymentTypes" GridLines="None">
+    <yordan:YordanCustomRadGrid ID="rgPaymentTypes" runat="server" CellSpacing="0" DataSourceID="OpenAccessLinqDataSourcePaymentTypes" GridLines="None">
     <MasterTableView AutoGenerateColumns="False" DataKeyNames="PaymentTypeId" DataSourceID="OpenAccessLinqDataSourcePaymentTypes">
         <Columns>
             <telerik:GridBoundColumn DataField="PaymentTypeId" DataType="System.Int32" FilterControlAltText="Filter PaymentTypeId column" HeaderText="PaymentTypeId" ReadOnly="True" SortExpression="PaymentTypeId" UniqueName="PaymentTypeId">
@@ -17,11 +17,11 @@
                     <modelerrormessage text=""></modelerrormessage>
                 </columnvalidationsettings>
             </telerik:GridBoundColumn>
-            <telerik:GridBoundColumn DataField="ModifiedDate" DataType="System.DateTime" FilterControlAltText="Filter ModifiedDate column" HeaderText="ModifiedDate" SortExpression="ModifiedDate" UniqueName="ModifiedDate">
+            <telerik:GridDateTimeColumn DataField="ModifiedDate" DataType="System.DateTime" FilterControlAltText="Filter ModifiedDate column" HeaderText="ModifiedDate" SortExpression="ModifiedDate" UniqueName="ModifiedDate">
                 <columnvalidationsettings>
                     <modelerrormessage text=""></modelerrormessage>
                 </columnvalidationsettings>
-            </telerik:GridBoundColumn>
+            </telerik:GridDateTimeColumn>
             <telerik:GridBoundColumn DataField="ModifiedByUser" FilterControlAltText="Filter ModifiedByUser column" HeaderText="ModifiedByUser" SortExpression="ModifiedByUser" UniqueName="ModifiedByUser">
                 <columnvalidationsettings>
                     <modelerrormessage text=""></modelerrormessage>
@@ -29,7 +29,7 @@
             </telerik:GridBoundColumn>
         </Columns>
     </MasterTableView>
-</cc1:YordanCustomRadGrid>
+</yordan:YordanCustomRadGrid>
     <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourcePaymentTypes" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="PaymentTypes">
      </yordan:YordanCustomOpenAccessLinqDataSource>
 </asp:Content>

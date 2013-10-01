@@ -3,11 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Telerik.OpenAccess;
 
 namespace RecipiesModelNS
 {
-    public partial class PurchaseOrderHeader
+    public partial class PurchaseOrderHeader : YordanBaseEntity
     {
+        public override void Removed(RecipiesModel context, RemoveEventArgs e)
+        {
+            base.Removed(context, e);
+        }
 
         public bool UpdateProductsFromStatus(PurchaseOrderStatusEnum oldStatus, PurchaseOrderStatusEnum newStatus)
         {

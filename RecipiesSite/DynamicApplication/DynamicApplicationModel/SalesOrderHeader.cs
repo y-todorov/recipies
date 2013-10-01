@@ -19,7 +19,7 @@ namespace RecipiesModelNS
                     {
                         if (ri.QuantityPerPortion.HasValue)
                         {
-                            ri.Product.UnitsInStock += (int)ri.QuantityPerPortion.Value; // TEST MUST BE FIXED NO CASTING
+                            ri.Product.UnitsInStock += ri.QuantityPerPortion.Value; // TEST MUST BE FIXED NO CASTING
                         }
                     }
                 }
@@ -33,7 +33,7 @@ namespace RecipiesModelNS
                     {
                         if (ri.QuantityPerPortion.HasValue)
                         {
-                            ri.Product.UnitsInStock -= (int)ri.QuantityPerPortion.Value; // TEST MUST BE FIXED NO CASTING
+                            ri.Product.UnitsInStock -= ri.QuantityPerPortion.Value; // TEST MUST BE FIXED NO CASTING
                         }
                     }
                 }

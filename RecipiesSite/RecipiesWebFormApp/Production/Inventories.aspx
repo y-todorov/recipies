@@ -1,10 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Inventories.aspx.cs" Inherits="RecipiesWebFormApp.Production.Inventory" %>
 <%@ Register assembly="Telerik.OpenAccess.Web.40" namespace="Telerik.OpenAccess.Web" tagprefix="telerik" %>
-<%@ Register assembly="YordanCustomControls" namespace="YordanCustomControls" tagprefix="cc1" %>
+<%@ Register assembly="YordanCustomControls" namespace="YordanCustomControls" tagprefix="yordan" %>
 <%@ Register assembly="Telerik.Web.UI" namespace="Telerik.Web.UI" tagprefix="telerik" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceProduct" Runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="Products" />
-    <cc1:YordanCustomRadGrid ID="YordanCustomRadGridInventory" runat="server" CellSpacing="0" ItemType="RecipiesModelNS.Inventory" DataSourceID="OpenAccessLinqDataSourceInventory" GridLines="None" OnItemCreated="YordanCustomRadGridInventory_ItemCreated" >
+    <yordan:YordanCustomRadGrid ID="YordanCustomRadGridInventory" runat="server" CellSpacing="0" ItemType="RecipiesModelNS.Inventory" DataSourceID="OpenAccessLinqDataSourceInventory" GridLines="None" OnItemCreated="YordanCustomRadGridInventory_ItemCreated" >
         <MasterTableView AutoGenerateColumns="False" DataKeyNames="InventoryId" DataSourceID="OpenAccessLinqDataSourceInventory">
             <Columns>
                 <telerik:GridBoundColumn DataField="InventoryId" DataType="System.Int32" FilterControlAltText="Filter InventoryId column" HeaderText="InventoryId" ReadOnly="True" SortExpression="InventoryId" UniqueName="InventoryId">
@@ -85,6 +85,6 @@
                 </telerik:GridBoundColumn>
             </Columns>
         </MasterTableView>
-    </cc1:YordanCustomRadGrid>
+    </yordan:YordanCustomRadGrid>
     <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceInventory" Runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="Inventories" />
 </asp:Content>

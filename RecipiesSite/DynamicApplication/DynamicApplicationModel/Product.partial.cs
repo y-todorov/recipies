@@ -3,11 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Telerik.OpenAccess;
 
 namespace RecipiesModelNS
 {
-    public partial class Product
+    public partial class Product : YordanBaseEntity
     {
+        public override void Added(RecipiesModel context, AddEventArgs e)
+        {
+            base.Added(context, e);
+        }
+
         public double GetAveragePriceLastDays(int lastDays)
         {
             RecipiesModel context = ContextFactory.GetContextPerRequest();
