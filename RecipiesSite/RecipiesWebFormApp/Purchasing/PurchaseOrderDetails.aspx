@@ -12,7 +12,7 @@
     <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceProduct" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="Products" />
     <yordan:YordanCustomRadGrid ID="rgPurchaseOrderDetails" runat="server" EnableLinqExpressions="true" ItemType="DynamicApplicationModel.PurchaseOrderDetail" DataSourceID="OpenAccessLinqDataSourcePurchaseOrderDetails">
         <MasterTableView AutoGenerateColumns="False" DataKeyNames="PurchaseOrderDetailId" DataSourceID="OpenAccessLinqDataSourcePurchaseOrderDetails">
-            <GroupByExpressions>
+<%--            <GroupByExpressions>
                 <telerik:GridGroupByExpression>
                     <GroupByFields>
                         <telerik:GridGroupByField FieldName="PurchaseOrderHeader.ShipDate" HeaderText="ShipDate" FormatString="{0:dd/MM/yyyy}" />
@@ -25,15 +25,7 @@
                          <telerik:GridGroupByField FieldName="Product.ProductCategory.Name"  HeaderText="Category"/>
                     </SelectFields>
                 </telerik:GridGroupByExpression>
-                <%--<telerik:GridGroupByExpression>
-                <GroupByFields>
-                    <telerik:GridGroupByField FieldName="PurchaseOrderHeader.Vendor.Name" />
-                </GroupByFields>
-                <SelectFields>
-                    <telerik:GridGroupByField FieldName="PurchaseOrderHeader.Vendor.Name" />
-                </SelectFields>
-            </telerik:GridGroupByExpression>--%>
-            </GroupByExpressions>
+            </GroupByExpressions>--%>
             <Columns>
                 <telerik:GridBoundColumn DataField="PurchaseOrderDetailId" DataType="System.Int32" FilterControlAltText="Filter PurchaseOrderDetailId column" HeaderText="PurchaseOrderDetailId" ReadOnly="True" SortExpression="PurchaseOrderDetailId" UniqueName="PurchaseOrderDetailId">
                     <ColumnValidationSettings>

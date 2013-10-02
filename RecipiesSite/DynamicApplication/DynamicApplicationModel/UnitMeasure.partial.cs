@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RecipiesModelNS
 {
-    public partial class UnitMeasure
+    public partial class UnitMeasure : YordanBaseEntity
     {
         public List<UnitMeasure> GetRelatedUnitMeasures()
         {

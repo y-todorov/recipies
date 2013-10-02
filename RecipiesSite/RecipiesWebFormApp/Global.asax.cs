@@ -112,7 +112,7 @@ namespace RecipiesWebFormApp
         void timer_Elapsed(object sender, ElapsedEventArgs e)
         {
             WebClient client = new WebClient();
-            string res = client.DownloadStringTaskAsync(new Uri("http://recipies.apphb.com/")).Result;
+            string res = client.DownloadStringTaskAsync(new Uri("http://bluesystems.azurewebsites.net/")).Result;
         }
 
         void Application_End(object sender, EventArgs e)

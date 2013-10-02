@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RecipiesModelNS
 {
-    public partial class SalesOrderHeader
+    public partial class SalesOrderHeader : YordanBaseEntity
     {
         public void UpdateProductsFromStatus(SalesOrderStatusEnum oldStatus, SalesOrderStatusEnum newStatus)
         {
