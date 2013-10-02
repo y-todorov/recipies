@@ -26,12 +26,17 @@ namespace RecipiesWebFormApp.Production
                 //attach SelectedIndexChanged event for the dropdown control  
                 dropDownProductListColumn.AutoPostBack = true;
                 dropDownProductListColumn.SelectedIndexChanged += dropDownProductListColumn_SelectedIndexChanged;
-
+                dropDownProductListColumn.PreRender += dropDownProductListColumn_PreRender;
+              
                 RadNumericTextBox quantityByDocumentsRadNumericTextBox = editedItem["QuantityByDocuments"].Controls[0] as RadNumericTextBox;
-                quantityByDocumentsRadNumericTextBox.ReadOnly = true;
-                
+                quantityByDocumentsRadNumericTextBox.ReadOnly = true;               
                 
             }  
+        }
+
+        void dropDownProductListColumn_PreRender(object sender, EventArgs e)
+        {
+            dropDownProductListColumn_SelectedIndexChanged(sender, new RadComboBoxSelectedIndexChangedEventArgs(string.Empty, string.Empty, string.Empty, string.Empty));
         }
 
         void dropDownProductListColumn_SelectedIndexChanged(object sender, RadComboBoxSelectedIndexChangedEventArgs e)
@@ -50,6 +55,8 @@ namespace RecipiesWebFormApp.Production
                     if (product != null)
                     {
                         RadNumericTextBox quantityByDocumentsRadNumericTextBox = editedItem["QuantityByDocuments"].Controls[0] as RadNumericTextBox;
+                        RadNumericTextBox averageUnitPriceRadNumericTextBox = editedItem["AverageUnitPrice"].Controls[0] as RadNumericTextBox;
+                        averageUnitPriceRadNumericTextBox.Text = product.UnitPrice.GetValueOrDefault().ToString();
                         quantityByDocumentsRadNumericTextBox.Text = product.GetQuantityByDocuments().ToString();
                     }
 

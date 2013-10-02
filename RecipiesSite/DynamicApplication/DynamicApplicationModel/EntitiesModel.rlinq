@@ -799,7 +799,7 @@
         <orm:field name="_valueByDocuments" property="ValueByDocuments" behavior="readonly" uniqueId="bd6fe512-37a0-47a6-96ed-68a84010f115" type="System.Nullable`1[[System.Double, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
           <orm:column name="ValueByDocuments" sql-type="float" nullable="true" length="0" scale="0" ado-type="Double" />
         </orm:field>
-        <orm:field name="_stocktakeQuantity" property="StocktakeQuantity" behavior="readonly" uniqueId="38dcc3f4-7937-4499-a445-3816a58738f8" type="System.Nullable`1[[System.Double, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+        <orm:field name="_stocktakeQuantity" property="StocktakeQuantity" behavior="readwrite" uniqueId="38dcc3f4-7937-4499-a445-3816a58738f8" type="System.Nullable`1[[System.Double, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
           <orm:column name="StocktakeQuantity" sql-type="float" nullable="true" length="0" scale="0" ado-type="Double" />
         </orm:field>
         <orm:field name="_stocktakeValue" property="StocktakeValue" behavior="readonly" uniqueId="253d7295-4f64-4dac-a48e-b8c4601127c3" type="System.Nullable`1[[System.Double, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
@@ -2105,7 +2105,7 @@
       <Property Id="be524162-e20a-4a4f-8961-e19482172cd5" name="ModifiedDate" type="DateTime" label="ModifiedDate : DateTime" nullable="true" kind="Persistent" fieldName="_modifiedDate" />
       <Property Id="04a4455c-e7d8-4945-a36f-46fd5787a5ff" name="ProductId" type="Int32" label="ProductId : Int32" nullable="true" kind="Persistent" fieldName="_productId" />
       <Property Id="277daeb6-ec43-405d-b513-fd3f2b5d71b5" name="QuantityByDocuments" type="Double" label="QuantityByDocuments : Double" nullable="true" kind="Persistent" fieldName="_quantityByDocuments" />
-      <Property Id="38dcc3f4-7937-4499-a445-3816a58738f8" name="StocktakeQuantity" type="Double" label="StocktakeQuantity : Double" nullable="true" kind="PersistentReadOnly" fieldName="_stocktakeQuantity" />
+      <Property Id="38dcc3f4-7937-4499-a445-3816a58738f8" name="StocktakeQuantity" type="Double" label="StocktakeQuantity : Double" nullable="true" kind="Persistent" fieldName="_stocktakeQuantity" />
       <Property Id="253d7295-4f64-4dac-a48e-b8c4601127c3" name="StocktakeValue" type="Double" label="StocktakeValue : Double" nullable="true" kind="PersistentReadOnly" fieldName="_stocktakeValue" />
       <Property Id="b138eba0-f24d-4e75-9125-8dfed27b95ac" name="SurplusQuantity" type="Double" label="SurplusQuantity : Double" nullable="true" kind="PersistentReadOnly" fieldName="_surplusQuantity" />
       <Property Id="4be6dc4e-2d8a-4c94-913c-eb36267f5658" name="SurplusValue" type="Double" label="SurplusValue : Double" nullable="true" kind="PersistentReadOnly" fieldName="_surplusValue" />

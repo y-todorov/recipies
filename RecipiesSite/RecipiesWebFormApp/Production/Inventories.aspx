@@ -44,7 +44,7 @@
                         <modelerrormessage text=""></modelerrormessage>
                     </columnvalidationsettings>
                 </telerik:GridNumericColumn>
-                <telerik:GridTemplateColumn DataField="StocktakeValue" DataType="System.Decimal" FilterControlAltText="Filter StocktakeValue column" HeaderText="StocktakeValue" SortExpression="StocktakeValue" UniqueName="StocktakeValue">
+                <telerik:GridTemplateColumn DataField="StocktakeValue" ReadOnly="true" DataType="System.Decimal" FilterControlAltText="Filter StocktakeValue column" HeaderText="StocktakeValue" SortExpression="StocktakeValue" UniqueName="StocktakeValue">
                     <EditItemTemplate>
                         <telerik:RadNumericTextBox ID="StocktakeValueRadNumericTextBox" runat="server" DbValue='<%# Bind("StocktakeValue") %>' Type="Number">
                         </telerik:RadNumericTextBox>
