@@ -17,10 +17,12 @@
                     <GroupByFields>
                         <telerik:GridGroupByField FieldName="PurchaseOrderHeader.ShipDate" HeaderText="ShipDate" FormatString="{0:dd/MM/yyyy}" />
                         <telerik:GridGroupByField FieldName="PurchaseOrderHeader.Vendor.Name" HeaderText="Vendor"  />
+                        <telerik:GridGroupByField FieldName="Product.ProductCategory.Name"  HeaderText="Category"/>
                     </GroupByFields>
                     <SelectFields>
                         <telerik:GridGroupByField FieldName="PurchaseOrderHeader.ShipDate"  HeaderText="ShipDate" FormatString="{0:dd/MM/yyyy}"/>
                         <telerik:GridGroupByField FieldName="PurchaseOrderHeader.Vendor.Name"  HeaderText="Vendor"/>
+                         <telerik:GridGroupByField FieldName="Product.ProductCategory.Name"  HeaderText="Category"/>
                     </SelectFields>
                 </telerik:GridGroupByExpression>
                 <%--<telerik:GridGroupByExpression>
@@ -58,6 +60,11 @@
                     </ColumnValidationSettings>
                 </telerik:GridDateTimeColumn>
                 <telerik:GridBoundColumn DataField="PurchaseOrderHeader.Vendor.Name" ReadOnly="true" DataType="System.String" FilterControlAltText="Filter PurchaseOrderHeader.ShipDate column" HeaderText="Vendor" SortExpression="PurchaseOrderHeader.Vendor.Name" UniqueName="PurchaseOrderHeader.Vendor.Name">
+                    <ColumnValidationSettings>
+                        <ModelErrorMessage Text="" />
+                    </ColumnValidationSettings>
+                </telerik:GridBoundColumn>
+                 <telerik:GridBoundColumn DataField="Product.ProductCategory.Name" ReadOnly="true" DataType="System.String" FilterControlAltText="Filter Product.ProductCategory.Name column" HeaderText="Category" SortExpression="Product.ProductCategory.Name" UniqueName="Product.ProductCategory.Name">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
