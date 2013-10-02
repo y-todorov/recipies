@@ -93,6 +93,7 @@ namespace YordanCustomControls
                                 //radComboBox.MaxLength = 300;
                                 radComboBox.MaxHeight = 300;
                                 radComboBox.DropDownAutoWidth = RadComboBoxDropDownAutoWidth.Enabled;
+                                radComboBox.MarkFirstMatch = true;                                
                             }
                         }
                     }
@@ -102,6 +103,11 @@ namespace YordanCustomControls
             }
 
             base.OnItemCreated(e);
+        }
+       
+        void radComboBox_ItemsRequested(object sender, RadComboBoxItemsRequestedEventArgs e)
+        {
+           
         }
 
         void exportButton_Click(object sender, EventArgs e)
@@ -285,10 +291,11 @@ namespace YordanCustomControls
                     gridDropDownColumn.ColumnValidationSettings.RequiredFieldValidator.ForeColor = Color.Red;
 
                     // load on demand
-                    gridDropDownColumn.AllowAutomaticLoadOnDemand = true;
-                    gridDropDownColumn.AllowVirtualScrolling = true;
-                    gridDropDownColumn.ShowMoreResultsBox = true;
-                    gridDropDownColumn.ItemsPerRequest = 7;
+                    
+                    //gridDropDownColumn.AllowAutomaticLoadOnDemand = true;
+                    //gridDropDownColumn.AllowVirtualScrolling = true;
+                    //gridDropDownColumn.ShowMoreResultsBox = true;
+                    //gridDropDownColumn.ItemsPerRequest = 7;
                     
 
                 }
