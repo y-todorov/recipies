@@ -64,22 +64,17 @@ namespace RecipiesModelNS
                        lastPod.PurchaseOrderHeader.PurchaseOrderId, lastPod.PurchaseOrderHeader.ShipDate, tempBaseUnitsQuantity, lastPod.StockedQuantity, lastPod.UnitPrice));
                 }
             }
-
-            //double averagePrice = Math.Round((double)totalPrice / totalQuantity, 3);
-
-
-
-            double averagePrice = Math.Round((double)totalPrice / totalQuantity / baseUnitsQuantity, 3);
-
-            result.AppendLine(string.Format("Total price: {0}, totalQuantity: {1}, baseUnitsQuantity: {2}", totalPrice, totalQuantity, baseUnitsQuantity));
-            result.AppendLine(string.Format("averagePrice: {0}", averagePrice));
-
-            text = result.ToString();
+          
+            double averagePrice = Math.Round((double)totalPrice / baseUnitsQuantity, 3);
 
             if (double.IsNaN(averagePrice) || double.IsInfinity(averagePrice))
             {
                 averagePrice = 0;
             }
+            result.AppendLine(string.Format("Total price: {0}, Total quantity in vendor units: {1}, Total quantity in product base units: {2}", totalPrice, totalQuantity, baseUnitsQuantity));
+            result.AppendLine(string.Format("averagePrice: {0}", averagePrice));
+
+            text = result.ToString();
             return averagePrice;
         }
 
