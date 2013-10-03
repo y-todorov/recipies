@@ -52,7 +52,7 @@
                         <ModelErrorMessage Text=""></ModelErrorMessage>
                     </ColumnValidationSettings>
                 </telerik:GridDropDownColumn>
-                <telerik:GridDropDownColumn UniqueName="DropDownCategoryListColumn" ListTextField="Name" 
+                <telerik:GridDropDownColumn UniqueName="DropDownCategoryListColumn" ListTextField="Name"
                     ListValueField="CategoryID" DataSourceID="OpenAccessLinqDataSourceCategory" HeaderText="Category"
                     DataField="CategoryID" DropDownControlType="RadComboBox" EmptyListItemText="" EnableEmptyListItem="true" EmptyListItemValue="" ConvertEmptyStringToNull="true">
                     <ColumnValidationSettings>
@@ -86,9 +86,9 @@
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
-                    
+
                 </telerik:GridNumericColumn>
-             <%--   <telerik:GridCalculatedColumn HeaderText="Total Price" UniqueName="TotalPrice" DataType="System.Decimal" DataFormatString="{0:C3}"
+                <%--   <telerik:GridCalculatedColumn HeaderText="Total Price" UniqueName="TotalPrice" DataType="System.Decimal" DataFormatString="{0:C3}"
                     DataFields="UnitPrice, UnitsInStock" Expression=" {0} * Convert({1}, 'System.Decimal')" FooterText="Total : "
                     Aggregate="Sum">
                 </telerik:GridCalculatedColumn>--%>
@@ -117,13 +117,21 @@
     </yordan:YordanCustomRadGrid>
     <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceStore" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="Stores" />
     <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceProduct" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="Products">
-     </yordan:YordanCustomOpenAccessLinqDataSource>
+    </yordan:YordanCustomOpenAccessLinqDataSource>
     <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceUnit" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="UnitMeasures" Where="IsBaseUnit == @IsBaseUnit">
         <WhereParameters>
             <asp:Parameter DefaultValue="True" Name="IsBaseUnit" Type="Boolean" />
         </WhereParameters>
-     </yordan:YordanCustomOpenAccessLinqDataSource>
+    </yordan:YordanCustomOpenAccessLinqDataSource>
     <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceVendor" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="Vendors" />
     <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceCategory" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="ProductCategories" />
-    <asp:Label Text="Update product unit price from all purchase orders since the last 14 days" runat="server" /><telerik:RadButton ID="rbUpdateUnitPrice"  OnClick="rbUpdateUnitPrice_Click" runat="server" Text="Update"></telerik:RadButton>
+    <asp:Label Text="Update product unit price from all purchase orders since the last 14 days" runat="server" />
+    <telerik:RadButton ID="rbUpdateUnitPrice" OnClick="rbUpdateUnitPrice_Click" runat="server" Text="Update UnitPrice"></telerik:RadButton>
+    <br />
+    <asp:Label ID="Label1" Text="Update product units in stock from all purchase orders that are completed" runat="server" />
+    <telerik:RadButton ID="rbUpdateUnitsInStock" OnClick="rbUpdateUnitsInStock_Click" runat="server" Text="Update UnitsInStock"></telerik:RadButton>
+    <br />
+     <asp:Label ID="Label2" Text="Update product units on order from all purchase orders that are approved" runat="server" />
+    <telerik:RadButton ID="rbUpdateUnitsOnOrder" OnClick="rbUpdateUnitsOnOrder_Click" runat="server" Text="Update UnitsOnOrder"></telerik:RadButton>
+
 </asp:Content>
