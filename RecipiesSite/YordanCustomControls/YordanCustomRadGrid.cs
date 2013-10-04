@@ -316,9 +316,27 @@ namespace YordanCustomControls
             base.OnColumnCreated(e);
         }
 
+        protected override void OnDataBound(EventArgs e)
+        {
+            base.OnDataBound(e);
+        }
+
         protected override void OnPreRender(EventArgs e)
         {
             ViewState.Remove("isExporting");
+            if (this.MasterTableView.Items.Count < MasterTableView.PageSize)
+            {              
+                this.ClientSettings.Scrolling.AllowScroll = false;
+                //this.Height = new Unit(600, UnitType.Pixel);
+                //this.ClientSettings.Scrolling.ScrollHeight = new Unit(600, UnitType.Pixel);
+                //this.ClientSettings.Scrolling.UseStaticHeaders = true;
+              
+                //this.ClientSettings.Scrolling.FrozenColumnsCount = PageSize;
+                //this.ClientSettings.Scrolling.EnableVirtualScrollPaging = true;
+                //this.ClientSettings.Scrolling.ScrollHeight = 600;
+                //this.ClientSettings.Scrolling.UseStaticHeaders = true;                   
+            }
+            
             base.OnPreRender(e);
         }
 
