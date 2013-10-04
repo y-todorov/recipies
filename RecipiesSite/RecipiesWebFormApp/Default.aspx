@@ -14,12 +14,12 @@
                 <telerik:RadHtmlChart runat="server" ID="rhcLast10ModifiedProducts">
                     <PlotArea>
                         <Series>
-                            <telerik:ColumnSeries DataFieldY="UnitsInStock" Name="Units In Stock">                                  
+                            <telerik:ColumnSeries DataFieldY="UnitsInStock" Name="Units In Stock">
                             </telerik:ColumnSeries>
-                            <telerik:ColumnSeries DataFieldY="UnitsOnOrder" Name="Units On Order">                                
+                            <telerik:ColumnSeries DataFieldY="UnitsOnOrder" Name="Units On Order">
                             </telerik:ColumnSeries>
                         </Series>
-                        <XAxis DataLabelsField="Name" >
+                        <XAxis DataLabelsField="Name">
                         </XAxis>
                         <YAxis>
                             <TitleAppearance Text="Units"></TitleAppearance>
@@ -27,7 +27,7 @@
                         </YAxis>
                     </PlotArea>
                     <ChartTitle Text="Last 10 modified products">
-                    </ChartTitle>           
+                    </ChartTitle>
                 </telerik:RadHtmlChart>
             </td>
             <td>
@@ -50,18 +50,54 @@
         </tr>
         <tr>
             <td>
-                <telerik:RadHtmlChart runat="server" ID="rhcProductsForReorder">
+                <telerik:RadHtmlChart runat="server" ID="rhcVendorsLastWeek">
                     <PlotArea>
                         <Series>
-                            <telerik:ColumnSeries DataFieldY="UnitsInStock" Name="Units In Stock">                                  
+                            <telerik:ColumnSeries DataFieldY="Price" Name="Euro">
                             </telerik:ColumnSeries>
-                            <telerik:ColumnSeries DataFieldY="UnitsOnOrder" Name="Units On Order">                                
-                            </telerik:ColumnSeries>
-                             <telerik:ColumnSeries DataFieldY="ReorderLevel" Name="Reorder Level">                                
+                        </Series>
+                        <XAxis DataLabelsField="VendorName">
+                        </XAxis>
+                        <YAxis>
+                            <TitleAppearance Text="Value"></TitleAppearance>
+                        </YAxis>
+                    </PlotArea>
+                    <ChartTitle Text="Purchases per vendor last 7 days">
+                    </ChartTitle>
+                </telerik:RadHtmlChart>
+            </td>
+            <td>
+                <telerik:RadHtmlChart runat="server" ID="rhcMostExpensiveProducts">
+                    <PlotArea>
+                        <Series>
+                            <telerik:ColumnSeries DataFieldY="UnitPrice" Name="Unit Price">
                             </telerik:ColumnSeries>
                         </Series>
                         <XAxis DataLabelsField="Name">
-                            <LabelsAppearance ></LabelsAppearance>                          
+                        </XAxis>
+                        <YAxis>
+                            <TitleAppearance Text="Price"></TitleAppearance>
+                        </YAxis>
+                    </PlotArea>
+                    <ChartTitle Text="Top 10 most expensive products">
+                    </ChartTitle>
+                </telerik:RadHtmlChart>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <telerik:RadHtmlChart runat="server" ID="rhcProductsForReorder">
+                    <PlotArea>
+                        <Series>
+                            <telerik:ColumnSeries DataFieldY="UnitsInStock" Name="Units In Stock">
+                            </telerik:ColumnSeries>
+                            <telerik:ColumnSeries DataFieldY="UnitsOnOrder" Name="Units On Order">
+                            </telerik:ColumnSeries>
+                            <telerik:ColumnSeries DataFieldY="ReorderLevel" Name="Reorder Level">
+                            </telerik:ColumnSeries>
+                        </Series>
+                        <XAxis DataLabelsField="Name">
+                            <LabelsAppearance></LabelsAppearance>
                         </XAxis>
                         <YAxis>
                             <TitleAppearance Text="Units"></TitleAppearance>
@@ -69,26 +105,11 @@
                         </YAxis>
                     </PlotArea>
                     <ChartTitle Text="Top 10 products for reorder">
-                    </ChartTitle> 
+                    </ChartTitle>
                 </telerik:RadHtmlChart>
+
             </td>
-           <td>
-                <telerik:RadHtmlChart runat="server" ID="rhcMostExpensiveProducts">
-                    <PlotArea>
-                        <Series>
-                            <telerik:ColumnSeries DataFieldY="UnitPrice" Name="Unit Price">   
-                            </telerik:ColumnSeries>                       
-                        </Series>
-                        <XAxis DataLabelsField="Name">                           
-                        </XAxis>
-                        <YAxis>
-                            <TitleAppearance Text="Price"></TitleAppearance>
-                        </YAxis>
-                    </PlotArea>
-                    <ChartTitle Text="Top 10 most expensive products">
-                    </ChartTitle>           
-                </telerik:RadHtmlChart>
-            </td>
+            <td></td>
         </tr>
     </table>
 </asp:Content>

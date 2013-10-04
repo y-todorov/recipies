@@ -23,6 +23,12 @@ namespace RecipiesWebFormApp
                 rhcProductsForReorder.DataSource = ContextFactory.GetContextPerRequest().Products.Where(product => product.UnitsInStock <= product.ReorderLevel).OrderByDescending(product => product.ReorderLevel).Take(10);
 
                 rhcMostExpensiveProducts.DataSource = ContextFactory.GetContextPerRequest().Products.OrderByDescending(product => product.UnitPrice).Take(10);
+                
+                List<PurchaseOrderDetail> pods = ContextFactory.GetContextPerRequest().PurchaseOrderDetails.Where(pod => pod.PurchaseOrderHeader.StatusId == (int)PurchaseOrderStatusEnum.Completed &&
+                    pod.PurchaseOrderHeader.OrderDate <= DateTime.Now.Date && pod.PurchaseOrderHeader.OrderDate > DateTime.Now.Date.AddDays(-7)).ToList();
+                var groupiong = pods.GroupBy(pod => pod.PurchaseOrderHeader.Vendor);
+
+                rhcVendorsLastWeek.DataSource = groupiong.Select(g => new { VendorName = g.Key.Name, Price = g.Sum(pod => pod.LineTotal) });
             }
         }
     }
