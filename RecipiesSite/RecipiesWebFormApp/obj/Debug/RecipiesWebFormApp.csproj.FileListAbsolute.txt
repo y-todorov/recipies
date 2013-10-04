@@ -54,3 +54,5 @@ C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\obj\Debug\RecipiesWebFormAp
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\obj\Debug\RecipiesWebFormApp.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\obj\Debug\RecipiesWebFormApp.pdb
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\NewRelic.Api.Agent.dll
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Telerik.Reporting.dll
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Telerik.ReportViewer.WebForms.dll
