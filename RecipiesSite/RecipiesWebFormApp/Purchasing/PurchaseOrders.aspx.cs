@@ -94,11 +94,13 @@ namespace RecipiesWebFormApp.Purchasing
                     salesOrderDetailsReport.DataSource = purchaseOrder.PurchaseOrderDetails;
                     instanceReportSource.ReportDocument = salesOrderDetailsReport;
 
-                    //PurchaseOrderHeaderReport salesOrderHeaderReport = new PurchaseOrderHeaderReport();
-                    //salesOrderHeaderReport.DataSource = purchaseOrder;
-                    //instanceReportSource.ReportDocument = salesOrderHeaderReport;
-                   
-                    RenderingResult result = reportProcessor.RenderReport("PDF", instanceReportSource, null);
+                    //specify the output format of the produced image.
+                    System.Collections.Hashtable deviceInfo =
+                        new System.Collections.Hashtable();
+
+                    //deviceInfo["OutputFormat"] = "DOCX";
+
+                    RenderingResult result = reportProcessor.RenderReport("MHTML", instanceReportSource, null);
 
                     string fileName = result.DocumentName + "." + result.Extension;
 
