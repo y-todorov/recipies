@@ -77,19 +77,6 @@ namespace RecipiesModelNS
 		    }
 		}
 		
-		private decimal? _valuePerPortion;
-		public virtual decimal? ValuePerPortion 
-		{ 
-		    get
-		    {
-		        return this._valuePerPortion;
-		    }
-		    set
-		    {
-		        this._valuePerPortion = value;
-		    }
-		}
-		
 		private DateTime? _modifiedDate;
 		public virtual DateTime? ModifiedDate 
 		{ 
@@ -113,6 +100,41 @@ namespace RecipiesModelNS
 		    set
 		    {
 		        this._modifiedByUser = value;
+		    }
+		}
+		
+		private decimal? _sellValuePerPortion;
+		public virtual decimal? SellValuePerPortion 
+		{ 
+		    get
+		    {
+		        return this._sellValuePerPortion;
+		    }
+		    set
+		    {
+		        this._sellValuePerPortion = value;
+		    }
+		}
+		
+		private decimal? _productionValuePerPortion;
+		public virtual decimal? ProductionValuePerPortion 
+		{ 
+		    get
+		    {
+		        return this._productionValuePerPortion;
+		    }
+		    set
+		    {
+		        this._productionValuePerPortion = value;
+		    }
+		}
+		
+		private decimal _grossProfit;
+		public virtual decimal GrossProfit 
+		{ 
+		    get
+		    {
+		        return this._grossProfit;
 		    }
 		}
 		

@@ -26,12 +26,22 @@
                         <ModelErrorMessage Text=""></ModelErrorMessage>
                     </ColumnValidationSettings>
                 </telerik:GridBoundColumn>
-                <telerik:GridHTMLEditorColumn DataField="Description" FilterControlAltText="Filter Description column" HeaderText="Description" SortExpression="Description" UniqueName="Description">
+                <telerik:GridHTMLEditorColumn DataField="Description" MaxLength="4000" FilterControlAltText="Filter Description column" HeaderText="Description" SortExpression="Description" UniqueName="Description">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text=""></ModelErrorMessage>
                     </ColumnValidationSettings>
                 </telerik:GridHTMLEditorColumn>
-                <telerik:GridNumericColumn DataField="ValuePerPortion" ReadOnly="true" DataType="System.Decimal" FilterControlAltText="Filter ValuePerPortion column" HeaderText="ValuePerPortion" SortExpression="ValuePerPortion" UniqueName="ValuePerPortion">
+                <telerik:GridNumericColumn DataField="ProductionValuePerPortion" ReadOnly="true" DataType="System.Decimal" FilterControlAltText="Filter ProductionValuePerPortion column" HeaderText="ProductionValuePerPortion" SortExpression="ProductionValuePerPortion" UniqueName="ProductionValuePerPortion">
+                    <ColumnValidationSettings>
+                        <ModelErrorMessage Text=""></ModelErrorMessage>
+                    </ColumnValidationSettings>
+                </telerik:GridNumericColumn>
+                 <telerik:GridNumericColumn DataField="SellValuePerPortion"  DataType="System.Decimal" FilterControlAltText="Filter SellValuePerPortion column" HeaderText="SellValuePerPortion" SortExpression="SellValuePerPortion" UniqueName="SellValuePerPortion">
+                    <ColumnValidationSettings>
+                        <ModelErrorMessage Text=""></ModelErrorMessage>
+                    </ColumnValidationSettings>
+                </telerik:GridNumericColumn>
+                      <telerik:GridNumericColumn DataField="GrossProfit" ReadOnly="true" DataType="System.Decimal" FilterControlAltText="Filter GrossProfit column" HeaderText="GrossProfit" SortExpression="GrossProfit" UniqueName="GrossProfit">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text=""></ModelErrorMessage>
                     </ColumnValidationSettings>
@@ -65,6 +75,12 @@
                                             <ModelErrorMessage Text=""></ModelErrorMessage>
                                         </ColumnValidationSettings>
                                     </telerik:GridNumericColumn>
+                                       <telerik:GridNumericColumn DataField="TotalValue" ReadOnly="true" DataType="System.Decimal" FilterControlAltText="Filter TotalValue column" HeaderText="TotalValue" SortExpression="TotalValue" UniqueName="TotalValue">
+                                        <ColumnValidationSettings>
+                                            <ModelErrorMessage Text=""></ModelErrorMessage>
+                                        </ColumnValidationSettings>
+                                    </telerik:GridNumericColumn>
+
                                     <telerik:GridBoundColumn DataField="ModifiedDate" DataType="System.DateTime" FilterControlAltText="Filter ModifiedDate column" HeaderText="ModifiedDate" SortExpression="ModifiedDate" UniqueName="ModifiedDate">
                                         <ColumnValidationSettings>
                                             <ModelErrorMessage Text=""></ModelErrorMessage>

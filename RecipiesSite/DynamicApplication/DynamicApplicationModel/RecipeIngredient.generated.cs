@@ -116,6 +116,15 @@ namespace RecipiesModelNS
 		    }
 		}
 		
+		private double _totalValue;
+		public virtual double TotalValue 
+		{ 
+		    get
+		    {
+		        return this._totalValue;
+		    }
+		}
+		
 		private Recipe _recipe;
 		public virtual Recipe Recipe 
 		{ 

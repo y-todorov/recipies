@@ -343,6 +343,9 @@
         <orm:field name="_modifiedByUser" property="ModifiedByUser" behavior="readwrite" uniqueId="fde1a3e8-7175-432c-91b9-053b2d0e6950" type="System.String">
           <orm:column name="ModifiedByUser" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
         </orm:field>
+        <orm:field name="_totalValue" property="TotalValue" behavior="readonly" uniqueId="c9b4c0fb-28de-4967-b844-75d1b4b2ec7a" type="System.Double">
+          <orm:column nullable="false" length="0" name="TotalValue" scale="0" sql-type="float" ado-type="Double" />
+        </orm:field>
         <orm:field name="_recipe" property="Recipe" behavior="readwrite" uniqueId="18349e83-e860-488f-9def-306665fd3295" type="RecipiesModelNS.Recipe">
           <orm:reference uniqueId="5bbae515-0dd0-4c63-a7c8-4ea184b152f6">
             <orm:sharedfield name="_recipeId" target-class="RecipiesModelNS.Recipe" target-field="_recipeId" />
@@ -373,16 +376,22 @@
           <orm:column name="Name" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
         </orm:field>
         <orm:field name="_description" property="Description" behavior="readwrite" uniqueId="457d0a10-3aac-455f-aaad-9f9621d878ba" type="System.String">
-          <orm:column name="Description" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
-        </orm:field>
-        <orm:field name="_valuePerPortion" property="ValuePerPortion" behavior="readwrite" uniqueId="d76b4cbd-e810-41b9-88bf-e2bb960fafac" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
-          <orm:column name="ValuePerPortion" sql-type="money" nullable="true" length="0" scale="0" ado-type="Currency" />
+          <orm:column name="Description" sql-type="nvarchar" nullable="true" length="4000" scale="0" ado-type="UnicodeStringVariableLength" />
         </orm:field>
         <orm:field name="_modifiedDate" property="ModifiedDate" behavior="readwrite" uniqueId="26a646db-9a8d-4f0a-9922-c1e75dd525a7" type="System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
           <orm:column name="ModifiedDate" sql-type="datetime" nullable="true" length="0" scale="0" has-default-value="true" ado-type="DateTime" />
         </orm:field>
         <orm:field name="_modifiedByUser" property="ModifiedByUser" behavior="readwrite" uniqueId="77c6f0a3-79d0-4c68-bb86-30deee6b03a7" type="System.String">
           <orm:column name="ModifiedByUser" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
+        <orm:field name="_sellValuePerPortion" property="SellValuePerPortion" behavior="readwrite" uniqueId="ab52050a-eaca-4e45-b88a-ce323527f296" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column nullable="true" length="0" name="SellValuePerPortion" scale="0" sql-type="money" ado-type="Currency" />
+        </orm:field>
+        <orm:field name="_productionValuePerPortion" property="ProductionValuePerPortion" behavior="readwrite" uniqueId="b509be9e-1f07-4cb2-b276-71ce068d0c0b" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column nullable="true" length="0" name="ProductionValuePerPortion" scale="0" sql-type="money" ado-type="Currency" />
+        </orm:field>
+        <orm:field name="_grossProfit" property="GrossProfit" behavior="readonly" uniqueId="2942f4f8-74e4-403f-8671-d756282fd852" type="System.Decimal">
+          <orm:column nullable="false" length="0" name="GrossProfit" scale="0" sql-type="money" ado-type="Currency" />
         </orm:field>
         <orm:field name="_productCategory" property="ProductCategory" behavior="readwrite" uniqueId="08e98bf1-221b-4465-b84d-432dcabf20e5" type="RecipiesModelNS.ProductCategory">
           <orm:reference uniqueId="8d22c89f-2ceb-4a52-a48c-4c56e36aa644">
@@ -471,6 +480,9 @@
         </orm:field>
         <orm:field name="_modifiedByUser" property="ModifiedByUser" behavior="readwrite" uniqueId="4accaa2b-c489-4d80-a55d-c6f6c01dab3f" type="System.String">
           <orm:column name="ModifiedByUser" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
+        <orm:field name="_notes" property="Notes" behavior="readwrite" uniqueId="900f5901-d707-4707-af85-7e8cdada4a9d" type="System.String">
+          <orm:column nullable="true" length="4000" name="Notes" scale="0" sql-type="nvarchar" ado-type="UnicodeStringVariableLength" />
         </orm:field>
         <orm:field name="_vendor" property="Vendor" behavior="readwrite" uniqueId="20172025-428d-400b-a564-71a709ec6bfa" type="RecipiesModelNS.Vendor">
           <orm:reference uniqueId="c8924dfa-0516-4dfd-bb8a-338b9a12eb56">
@@ -1109,6 +1121,7 @@
         <orm:column name="InvoiceNumber" sql-type="nvarchar" nullable="true" length="1000" scale="0" has-default-value="true" ado-type="UnicodeStringVariableLength" />
         <orm:column name="ModifiedDate" sql-type="datetime" nullable="true" length="0" scale="0" has-default-value="true" ado-type="DateTime" />
         <orm:column name="ModifiedByUser" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
+        <orm:column nullable="true" length="4000" name="Notes" scale="0" sql-type="nvarchar" ado-type="UnicodeStringVariableLength" />
         <orm:constraint name="FK_PurchaseOrderHeader_Vendor" schema="Purchasing" destination-table="Vendor">
           <orm:column name="VendorId" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
         </orm:constraint>
@@ -1194,6 +1207,7 @@
         <orm:column name="Cost" sql-type="money" nullable="true" length="0" scale="0" ado-type="Currency" />
         <orm:column name="ModifiedDate" sql-type="datetime" nullable="true" length="0" scale="0" has-default-value="true" ado-type="DateTime" />
         <orm:column name="ModifiedByUser" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
+        <orm:column nullable="false" length="0" name="TotalValue" scale="0" sql-type="float" ado-type="Double" />
         <orm:constraint name="FK_RecipeIngredient_Recipe" schema="Production" destination-table="Recipe">
           <orm:column name="RecipeId" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
         </orm:constraint>
@@ -1205,10 +1219,12 @@
         <orm:column name="RecipeId" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
         <orm:column name="CategoryId" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
         <orm:column name="Name" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
-        <orm:column name="Description" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
-        <orm:column name="ValuePerPortion" sql-type="money" nullable="true" length="0" scale="0" ado-type="Currency" />
+        <orm:column name="Description" sql-type="nvarchar" nullable="true" length="4000" scale="0" ado-type="UnicodeStringVariableLength" />
         <orm:column name="ModifiedDate" sql-type="datetime" nullable="true" length="0" scale="0" has-default-value="true" ado-type="DateTime" />
         <orm:column name="ModifiedByUser" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
+        <orm:column nullable="true" length="0" name="SellValuePerPortion" scale="0" sql-type="money" ado-type="Currency" />
+        <orm:column nullable="true" length="0" name="ProductionValuePerPortion" scale="0" sql-type="money" ado-type="Currency" />
+        <orm:column nullable="false" length="0" name="GrossProfit" scale="0" sql-type="money" ado-type="Currency" />
         <orm:constraint name="FK_Recipe_ProductCategory" schema="Production" destination-table="ProductCategory">
           <orm:column name="CategoryId" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
         </orm:constraint>
@@ -1421,7 +1437,7 @@
   </orm:orm>
   <ModelSettings xmlns="">
     <AppConfigConnectionPropertyName>Connection</AppConfigConnectionPropertyName>
-    <AppConfigConnectionString>data source=804b3a50-697f-4e00-b7cc-a1e6015cf402.sqlserver.sequelizer.com;persist security info=True;user id=uehevqpfoljtplku;password=uhffcctREdsiocbJhjETidnG5q5jWtB25oyDasHUYHNVtA8EzVMz5NPr4FiTgi3k</AppConfigConnectionString>
+    <AppConfigConnectionString>data source=tcp:eau5bkmdem.database.windows.net,1433;initial catalog=recipies;user id=sqladmin@eau5bkmdem;password=123x456!</AppConfigConnectionString>
     <NamingSettings>
       <ClassRules>
         <CaseMode>PascalCase</CaseMode>
@@ -1684,6 +1700,7 @@
       <Property Id="66954540-dc45-435e-a969-3069f242414c" name="ProductId" type="Int32" label="ProductId : Int32" nullable="true" kind="Persistent" fieldName="_productId" />
       <Property Id="ccaba226-7c05-4856-b5ed-bf0d3babcc80" name="QuantityPerPortion" type="Double" label="QuantityPerPortion : Double" nullable="true" kind="Persistent" fieldName="_quantityPerPortion" />
       <Property Id="e498242d-a964-479e-a9f5-df748d6bc989" name="RecipeId" type="Int32" label="RecipeId : Int32" nullable="true" kind="Persistent" fieldName="_recipeId" />
+      <Property Id="c9b4c0fb-28de-4967-b844-75d1b4b2ec7a" name="TotalValue" type="Double" label="TotalValue : Double" kind="PersistentReadOnly" fieldName="_totalValue" />
       <AssociationTargets>
         <Association Id="5bbae515-0dd0-4c63-a7c8-4ea184b152f6" SourceMultiplicity="ZeroOne" name="RecipeIngredientHasRecipe">
           <DomainClassMoniker name="/RecipiesModel/Recipe" />
@@ -1728,7 +1745,9 @@
       <Property Id="77c6f0a3-79d0-4c68-bb86-30deee6b03a7" name="ModifiedByUser" label="ModifiedByUser : String" kind="Persistent" fieldName="_modifiedByUser" />
       <Property Id="26a646db-9a8d-4f0a-9922-c1e75dd525a7" name="ModifiedDate" type="DateTime" label="ModifiedDate : DateTime" nullable="true" kind="Persistent" fieldName="_modifiedDate" />
       <Property Id="089c9b0f-7a5c-4fe0-8774-d65cd56bfea3" name="Name" label="Name : String" kind="Persistent" fieldName="_name" />
-      <Property Id="d76b4cbd-e810-41b9-88bf-e2bb960fafac" name="ValuePerPortion" type="Decimal" label="ValuePerPortion : Decimal" nullable="true" kind="Persistent" fieldName="_valuePerPortion" />
+      <Property Id="ab52050a-eaca-4e45-b88a-ce323527f296" name="SellValuePerPortion" type="Decimal" label="SellValuePerPortion : Decimal" nullable="true" kind="Persistent" fieldName="_sellValuePerPortion" />
+      <Property Id="b509be9e-1f07-4cb2-b276-71ce068d0c0b" name="ProductionValuePerPortion" type="Decimal" label="ProductionValuePerPortion : Decimal" nullable="true" kind="Persistent" fieldName="_productionValuePerPortion" />
+      <Property Id="2942f4f8-74e4-403f-8671-d756282fd852" name="GrossProfit" type="Decimal" label="GrossProfit : Decimal" kind="PersistentReadOnly" fieldName="_grossProfit" />
       <AssociationTargets>
         <Association Id="8d22c89f-2ceb-4a52-a48c-4c56e36aa644" SourceMultiplicity="ZeroOne" name="RecipeHasProductCategory">
           <DomainClassMoniker name="/RecipiesModel/ProductCategory" />
@@ -1783,6 +1802,7 @@
       <Property Id="a90dba77-6bbd-4734-81d0-fb8f9ee4b75a" name="TotalDue" type="Decimal" label="TotalDue : Decimal" nullable="true" kind="PersistentReadOnly" fieldName="_totalDue" />
       <Property Id="38079238-f866-4e79-a9f9-d9f686fb7933" name="VAT" type="Decimal" label="VAT : Decimal" nullable="true" kind="Persistent" fieldName="_vAT" />
       <Property Id="487a5755-b160-41de-b089-ba7cb9e7933d" name="VendorId" type="Int32" label="VendorId : Int32" nullable="true" kind="Persistent" fieldName="_vendorId" />
+      <Property Id="900f5901-d707-4707-af85-7e8cdada4a9d" name="Notes" label="Notes : String" kind="Persistent" fieldName="_notes" />
       <AssociationTargets>
         <Association Id="c8924dfa-0516-4dfd-bb8a-338b9a12eb56" SourceMultiplicity="ZeroOne" name="PurchaseOrderHeaderHasVendor">
           <DomainClassMoniker name="/RecipiesModel/Vendor" />

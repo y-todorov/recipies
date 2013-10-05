@@ -99,6 +99,11 @@
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
                 </telerik:GridNumericColumn>
+                   <telerik:GridHTMLEditorColumn DataField="Notes" MaxLength="4000" FilterControlAltText="Filter Notes column" HeaderText="Notes" SortExpression="Notes" UniqueName="Notes">
+                    <ColumnValidationSettings>
+                        <ModelErrorMessage Text=""></ModelErrorMessage>
+                    </ColumnValidationSettings>
+                </telerik:GridHTMLEditorColumn>
                 <telerik:GridBoundColumn DataField="ModifiedDate" ReadOnly="true" DataType="System.DateTime" FilterControlAltText="Filter ModifiedDate column" HeaderText="ModifiedDate" SortExpression="ModifiedDate" UniqueName="ModifiedDate">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />

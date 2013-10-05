@@ -203,6 +203,19 @@ namespace RecipiesModelNS
 		    }
 		}
 		
+		private string _notes;
+		public virtual string Notes 
+		{ 
+		    get
+		    {
+		        return this._notes;
+		    }
+		    set
+		    {
+		        this._notes = value;
+		    }
+		}
+		
 		private Vendor _vendor;
 		public virtual Vendor Vendor 
 		{ 
