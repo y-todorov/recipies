@@ -6,6 +6,8 @@
 
 <%@ Register Assembly="Telerik.OpenAccess.Web.40" Namespace="Telerik.OpenAccess.Web" TagPrefix="telerik" %>
 
+<%@ Register Assembly="YordanCustomControls" Namespace="YordanCustomControls" TagPrefix="cc1" %>
+
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
 
     <table>
@@ -50,14 +52,17 @@
         </tr>
         <tr>
             <td>
+                         
+                <telerik:RadComboBox runat="server" AutoPostBack="True" DataSourceID="YordanCustomOpenAccessLinqDataSource1" DataTextField="Name" DataValueField="VendorId" ID="rcbVendor" OnSelectedIndexChanged="rcbVendor_SelectedIndexChanged">
+                </telerik:RadComboBox>
                 <telerik:RadHtmlChart runat="server" ID="rhcVendorsLastWeek">
                     <PlotArea>
-                        <Series>                           
-                          <telerik:LineSeries DataFieldY="VendorValue" Name="Vendor Name">
+                        <Series>
+                            <telerik:LineSeries DataFieldY="VendorValue" Name="Vendor Name">
                             </telerik:LineSeries>
-                         <%-- <telerik:LineSeries DataFieldY="VendorValue" Name="DAIRY LAND CUISINE">
+                            <%-- <telerik:LineSeries DataFieldY="VendorValue" Name="DAIRY LAND CUISINE">
                             </telerik:LineSeries>--%>
-                             <%--  <telerik:LineSeries DataFieldY="VendorValue" Name="BD FOODS">
+                            <%--  <telerik:LineSeries DataFieldY="VendorValue" Name="BD FOODS">
                             </telerik:LineSeries>
                              <telerik:LineSeries DataFieldY="VendorValue" Name="McCLOSKEY's">
                             </telerik:LineSeries>
@@ -66,8 +71,8 @@
                              <telerik:LineSeries DataFieldY="VendorValue" Name="Hackets Family butchers">
                             </telerik:LineSeries>--%>
                         </Series>
-                        <XAxis DataLabelsField="Week" >
-                            <TitleAppearance Position="Center" RotationAngle="0" Text="Week" />                       
+                        <XAxis DataLabelsField="Week">
+                            <TitleAppearance Position="Center" RotationAngle="0" Text="Week" />
                         </XAxis>
                         <YAxis>
                             <TitleAppearance Text="Value"></TitleAppearance>
@@ -120,7 +125,10 @@
                 </telerik:RadHtmlChart>
 
             </td>
-            <td></td>
+            <td>
+                <cc1:YordanCustomOpenAccessLinqDataSource ID="YordanCustomOpenAccessLinqDataSource1" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="Vendors">
+                </cc1:YordanCustomOpenAccessLinqDataSource>
+            </td>
         </tr>
     </table>
 </asp:Content>
