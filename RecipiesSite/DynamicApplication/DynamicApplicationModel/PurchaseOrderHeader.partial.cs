@@ -95,8 +95,9 @@ namespace RecipiesModelNS
 
         public static List<PurchaseOrderHeader> GetSalesOrderHeadersInPeriod(DateTime fromDate, DateTime toDate, PurchaseOrderStatusEnum status)
         {
-            List<PurchaseOrderHeader> result = ContextFactory.GetContextPerRequest().PurchaseOrderHeaders.Where(pof => pof.ShipDate.GetValueOrDefault().Date >= fromDate.Date &&
-                pof.ShipDate.GetValueOrDefault() <= toDate.Date && pof.StatusId.GetValueOrDefault() == (int)status).ToList();
+            DateTime defaultDate = new DateTime(2000, 1, 1);
+            List<PurchaseOrderHeader> result = ContextFactory.GetContextPerRequest().PurchaseOrderHeaders.Where(pof => pof.ShipDate.GetValueOrDefault(defaultDate).Date >= fromDate.Date &&
+                pof.ShipDate.GetValueOrDefault(defaultDate) <= toDate.Date && pof.StatusId.GetValueOrDefault() == (int)status).ToList();
             return result;
         }
     }
