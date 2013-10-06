@@ -31,33 +31,6 @@ namespace RecipiesWebFormApp {
         protected global::Telerik.Web.UI.RadHtmlChart rhcProductsCountByCategory;
         
         /// <summary>
-        /// rcbVendor control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Telerik.Web.UI.RadComboBox rcbVendor;
-        
-        /// <summary>
-        /// rhcVendorsLastWeek control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Telerik.Web.UI.RadHtmlChart rhcVendorsLastWeek;
-        
-        /// <summary>
-        /// rhcMostExpensiveProducts control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Telerik.Web.UI.RadHtmlChart rhcMostExpensiveProducts;
-        
-        /// <summary>
         /// rhcProductsForReorder control.
         /// </summary>
         /// <remarks>
@@ -67,12 +40,12 @@ namespace RecipiesWebFormApp {
         protected global::Telerik.Web.UI.RadHtmlChart rhcProductsForReorder;
         
         /// <summary>
-        /// YordanCustomOpenAccessLinqDataSource1 control.
+        /// rhcMostExpensiveProducts control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::YordanCustomControls.YordanCustomOpenAccessLinqDataSource YordanCustomOpenAccessLinqDataSource1;
+        protected global::Telerik.Web.UI.RadHtmlChart rhcMostExpensiveProducts;
     }
 }
