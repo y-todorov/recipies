@@ -16,7 +16,7 @@ using System.Diagnostics;
 
 namespace RecipiesModelNS
 {
-    public enum PurchaseOrderStatusEnum
+    public enum PurchaseOrderStatusEnum : int
     {
         Pending = 1,
         Approved = 2,

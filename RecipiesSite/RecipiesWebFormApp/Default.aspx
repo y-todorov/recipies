@@ -10,6 +10,27 @@
 
     <table>
         <tr>
+            <td colspan="2">
+                <telerik:RadHtmlChart runat="server" ID="rhcGP" Visible="false">
+                    <PlotArea>
+                        <Series>
+                            <telerik:LineSeries DataFieldY="DayGp" Name="Value">
+                            </telerik:LineSeries>                           
+                        </Series>
+                        <XAxis DataLabelsField="Name">
+                            <TitleAppearance Position="Center" RotationAngle="0" Text="Day" />
+                        </XAxis>
+                   
+                        <YAxis>
+                            <TitleAppearance Text="Value"></TitleAppearance>
+                        </YAxis>
+                    </PlotArea>
+                    <ChartTitle Text="GP per day">
+                    </ChartTitle>
+                </telerik:RadHtmlChart>
+            </td>
+        </tr>
+        <tr>
             <td>
                 <telerik:RadHtmlChart runat="server" ID="rhcLast10ModifiedProducts">
                     <PlotArea>

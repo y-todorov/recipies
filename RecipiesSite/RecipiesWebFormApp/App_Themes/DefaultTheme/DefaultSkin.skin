@@ -24,7 +24,7 @@ Default skin template. The following skins are provided as examples only.
         <ClientSettings AllowColumnsReorder="True" AllowDragToGroup="True" ReorderColumnsOnClient="True">
             <Resizing AllowColumnResize="True" AllowResizeToFit="True" AllowRowResize="False" EnableRealTimeResize="True" ResizeGridOnColumnResize="True" />
             <Animation AllowColumnReorderAnimation="True" AllowColumnRevertAnimation="True" />
-           <Scrolling AllowScroll="True" UseStaticHeaders="True">
+           <Scrolling AllowScroll="True" UseStaticHeaders="True" ScrollHeight="500">
             </Scrolling>
         </ClientSettings>
         <MasterTableView ShowGroupFooter="true" AutoGenerateColumns="False" AllowMultiColumnSorting="True" EnableHeaderContextAggregatesMenu="True" EnableHeaderContextFilterMenu="True" EnableHeaderContextMenu="True" ShowFooter="True" CommandItemDisplay="TopAndBottom">

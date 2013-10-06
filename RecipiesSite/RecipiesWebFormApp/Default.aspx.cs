@@ -24,11 +24,12 @@ namespace RecipiesWebFormApp
 
                 rhcMostExpensiveProducts.DataSource = ContextFactory.GetContextPerRequest().Products.OrderByDescending(product => product.UnitPrice).Take(10);
 
-                //List<PurchaseOrderDetail> pods = ContextFactory.GetContextPerRequest().PurchaseOrderDetails.Where(pod => pod.PurchaseOrderHeader.StatusId == (int)PurchaseOrderStatusEnum.Completed &&
-                //    pod.PurchaseOrderHeader.OrderDate <= DateTime.Now.Date && pod.PurchaseOrderHeader.OrderDate > DateTime.Now.Date.AddDays(-7)).ToList();
-                //var groupiong = pods.GroupBy(pod => pod.PurchaseOrderHeader.Vendor);
+                //for (int i = 0; i < 30; i++)
+                //{
+                //    DateTime date = DateTime.Now.Date.AddDays(-i);
+                //    double sales = SalesOrderHeader.GetSalesOrderHeadersInPeriod(date, date, SalesOrderStatusEnum.Approved).Sum(soh => soh.SalesOrderDetails.Sum(sod => sod.LineTotal));
+                //}
 
-                //rhcVendorsLastWeek.DataSource = groupiong.Select(g => new { VendorName = g.Key.Name, Price = g.Sum(pod => pod.LineTotal) });
             }
         }
     }

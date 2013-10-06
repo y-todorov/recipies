@@ -58,5 +58,13 @@ namespace RecipiesModelNS
             UpdateProductsFromStatus(oldStatus, newStatus);
 
         }
+
+        public static List<SalesOrderHeader> GetSalesOrderHeadersInPeriod(DateTime fromDate, DateTime toDate, SalesOrderStatusEnum status)
+        {
+            DateTime defaultDate = new DateTime(2000, 1, 1);
+            List<SalesOrderHeader> result = ContextFactory.GetContextPerRequest().SalesOrderHeaders.Where(soh => soh.OrderDate.GetValueOrDefault(defaultDate).Date >= fromDate.Date &&
+                soh.OrderDate.GetValueOrDefault(defaultDate) <= toDate.Date && soh.StatusId.GetValueOrDefault() == (int)status).ToList();
+            return result;
+        }
     }
 }
