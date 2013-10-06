@@ -67,7 +67,7 @@ namespace RecipiesWebFormApp
             }
 
             List<HelperClass> helpers = new List<HelperClass>();
-            rhcVendorsLastWeek.PlotArea.Series[0].Name = vendor.Name;
+            rhcVendorsLastWeek.PlotArea.Series[0].Name = Server.HtmlEncode(vendor.Name);
             //  <telerik:LineSeries DataFieldY="VendorValue" Name="Euro">
             //</telerik:LineSeries>
             foreach (var item in grouping)

@@ -42,6 +42,13 @@
         <telerik:RadMenu runat="server" Width="100%" OnItemClick="Unnamed_ItemClick" OnClientItemClicking="OnClientItemClicking">
             <Items>
                 <telerik:RadMenuItem runat="server" Text="Dashboard" NavigateUrl="~/Default">
+                    <Items>
+                        <telerik:RadMenuItem Text="Vendors">
+                            <Items>
+                                <telerik:RadMenuItem Text="Vendor purchase value per week" NavigateUrl="Charts/Vendors.aspx"></telerik:RadMenuItem>
+                            </Items>
+                        </telerik:RadMenuItem>
+                    </Items>
                 </telerik:RadMenuItem>
                 <telerik:RadMenuItem IsSeparator="true"></telerik:RadMenuItem>
                 <telerik:RadMenuItem runat="server" Text="Production">
