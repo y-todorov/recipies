@@ -130,13 +130,13 @@
     </yordan:YordanCustomOpenAccessLinqDataSource>
     <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceVendor" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="Vendors" />
     <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceCategory" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="ProductCategories" />
-    <asp:Label Text="Update product unit price from all purchase orders since the last 14 days" runat="server" />
+    <%--<asp:Label Text="Update product unit price from all purchase orders since the last 14 days" runat="server" />
     <telerik:RadButton ID="rbUpdateUnitPrice" OnClick="rbUpdateUnitPrice_Click" runat="server" Text="Update UnitPrice"></telerik:RadButton>
     <br />
     <asp:Label ID="Label1" Text="Update product units in stock from all purchase orders that are completed" runat="server" />
     <telerik:RadButton ID="rbUpdateUnitsInStock" OnClick="rbUpdateUnitsInStock_Click" runat="server" Text="Update UnitsInStock"></telerik:RadButton>
     <br />
      <asp:Label ID="Label2" Text="Update product units on order from all purchase orders that are approved" runat="server" />
-    <telerik:RadButton ID="rbUpdateUnitsOnOrder" OnClick="rbUpdateUnitsOnOrder_Click" runat="server" Text="Update UnitsOnOrder"></telerik:RadButton>
+    <telerik:RadButton ID="rbUpdateUnitsOnOrder" OnClick="rbUpdateUnitsOnOrder_Click" runat="server" Text="Update UnitsOnOrder"></telerik:RadButton>--%>
 
 </asp:Content>
