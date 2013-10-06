@@ -52,17 +52,28 @@
             <td>
                 <telerik:RadHtmlChart runat="server" ID="rhcVendorsLastWeek">
                     <PlotArea>
-                        <Series>
-                            <telerik:ColumnSeries DataFieldY="Price" Name="Euro">
-                            </telerik:ColumnSeries>
+                        <Series>                           
+                          <telerik:LineSeries DataFieldY="VendorValue" Name="Vendor Name">
+                            </telerik:LineSeries>
+                         <%-- <telerik:LineSeries DataFieldY="VendorValue" Name="DAIRY LAND CUISINE">
+                            </telerik:LineSeries>--%>
+                             <%--  <telerik:LineSeries DataFieldY="VendorValue" Name="BD FOODS">
+                            </telerik:LineSeries>
+                             <telerik:LineSeries DataFieldY="VendorValue" Name="McCLOSKEY's">
+                            </telerik:LineSeries>
+                             <telerik:LineSeries DataFieldY="VendorValue" Name="Dillons Frozen Food Ltd.">
+                            </telerik:LineSeries>
+                             <telerik:LineSeries DataFieldY="VendorValue" Name="Hackets Family butchers">
+                            </telerik:LineSeries>--%>
                         </Series>
-                        <XAxis DataLabelsField="VendorName">
+                        <XAxis DataLabelsField="Week" >
+                            <TitleAppearance Position="Center" RotationAngle="0" Text="Week" />                       
                         </XAxis>
                         <YAxis>
                             <TitleAppearance Text="Value"></TitleAppearance>
                         </YAxis>
                     </PlotArea>
-                    <ChartTitle Text="Purchases per vendor last 7 days">
+                    <ChartTitle Text="Vendor purchases per week">
                     </ChartTitle>
                 </telerik:RadHtmlChart>
             </td>
