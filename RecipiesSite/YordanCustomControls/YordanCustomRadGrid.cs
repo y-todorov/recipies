@@ -326,7 +326,7 @@ namespace YordanCustomControls
             ViewState.Remove("isExporting");
             if (this.MasterTableView.Items.Count < MasterTableView.PageSize)
             {              
-                this.ClientSettings.Scrolling.AllowScroll = false;
+                //this.ClientSettings.Scrolling.AllowScroll = false;
                 //this.Height = new Unit(600, UnitType.Pixel);
                 //this.ClientSettings.Scrolling.ScrollHeight = new Unit(600, UnitType.Pixel);
                 //this.ClientSettings.Scrolling.UseStaticHeaders = true;

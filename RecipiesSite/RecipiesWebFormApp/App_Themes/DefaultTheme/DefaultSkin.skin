@@ -24,7 +24,7 @@ Default skin template. The following skins are provided as examples only.
         <ClientSettings AllowColumnsReorder="True" AllowDragToGroup="True" ReorderColumnsOnClient="True">
             <Resizing AllowColumnResize="True" AllowResizeToFit="True" AllowRowResize="False" EnableRealTimeResize="True" ResizeGridOnColumnResize="True" />
             <Animation AllowColumnReorderAnimation="True" AllowColumnRevertAnimation="True" />
-           <Scrolling AllowScroll="True" UseStaticHeaders="True" SaveScrollPosition="True" FrozenColumnsCount="20" ScrollHeight="520px" EnableVirtualScrollPaging="false">
+           <Scrolling AllowScroll="True" UseStaticHeaders="True">
             </Scrolling>
         </ClientSettings>
         <MasterTableView ShowGroupFooter="true" AutoGenerateColumns="False" AllowMultiColumnSorting="True" EnableHeaderContextAggregatesMenu="True" EnableHeaderContextFilterMenu="True" EnableHeaderContextMenu="True" ShowFooter="True" CommandItemDisplay="TopAndBottom">
@@ -54,7 +54,7 @@ Default skin template. The following skins are provided as examples only.
         <ClientSettings AllowColumnsReorder="True" AllowDragToGroup="True" ReorderColumnsOnClient="True">
             <Resizing AllowColumnResize="True" AllowResizeToFit="True" AllowRowResize="False" EnableRealTimeResize="True" ResizeGridOnColumnResize="True" />
             <Animation AllowColumnReorderAnimation="True" AllowColumnRevertAnimation="True" />
-           <Scrolling AllowScroll="True" UseStaticHeaders="True" SaveScrollPosition="True" FrozenColumnsCount="20" ScrollHeight="520px" EnableVirtualScrollPaging="false">
+          <Scrolling AllowScroll="True" UseStaticHeaders="True">
             </Scrolling>
         </ClientSettings>
         <MasterTableView ShowGroupFooter="true" AutoGenerateColumns="False" AllowMultiColumnSorting="True" EnableHeaderContextAggregatesMenu="True" EnableHeaderContextFilterMenu="True" EnableHeaderContextMenu="True" ShowFooter="True" CommandItemDisplay="TopAndBottom">
