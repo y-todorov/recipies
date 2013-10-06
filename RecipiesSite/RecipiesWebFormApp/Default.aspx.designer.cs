@@ -31,13 +31,13 @@ namespace RecipiesWebFormApp {
         protected global::Telerik.Web.UI.RadHtmlChart rhcProductsCountByCategory;
         
         /// <summary>
-        /// rhcProductsForReorder control.
+        /// rhcVendorsLastWeek control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadHtmlChart rhcProductsForReorder;
+        protected global::Telerik.Web.UI.RadHtmlChart rhcVendorsLastWeek;
         
         /// <summary>
         /// rhcMostExpensiveProducts control.
@@ -49,12 +49,12 @@ namespace RecipiesWebFormApp {
         protected global::Telerik.Web.UI.RadHtmlChart rhcMostExpensiveProducts;
         
         /// <summary>
-        /// rhcVendorsLastWeek control.
+        /// rhcProductsForReorder control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadHtmlChart rhcVendorsLastWeek;
+        protected global::Telerik.Web.UI.RadHtmlChart rhcProductsForReorder;
     }
 }

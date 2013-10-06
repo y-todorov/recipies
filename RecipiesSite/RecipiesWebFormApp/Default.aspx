@@ -104,7 +104,7 @@
                             <MinorGridLines Visible="false"></MinorGridLines>
                         </YAxis>
                     </PlotArea>
-                    <ChartTitle Text="Top 10 products for reorder">
+                    <ChartTitle Text="Low products">
                     </ChartTitle>
                 </telerik:RadHtmlChart>
 
