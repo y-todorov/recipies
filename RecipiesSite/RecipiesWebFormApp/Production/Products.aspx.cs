@@ -71,5 +71,17 @@ namespace RecipiesWebFormApp.Production
             ContextFactory.GetContextPerRequest().SaveChanges();
             rgProducts.Rebind();
         }
+
+        public decimal GetStocktackeValue(object productId)
+        {
+            Product product = ContextFactory.GetContextPerRequest().Products.FirstOrDefault(p => p.ProductId.ToString() == (string)productId);
+            if (product != null)
+            {
+                decimal result = product.UnitPrice.GetValueOrDefault() * (decimal)product.UnitsInStock.GetValueOrDefault();
+                return result;
+            }
+            return 0m;
+        }
+           
     }
 }

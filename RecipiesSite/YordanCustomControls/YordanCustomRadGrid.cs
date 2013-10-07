@@ -126,7 +126,7 @@ namespace YordanCustomControls
 
                     // for now every column will be trimmed and shown with tooltips. 
                     // If we want to exclude a column from being trimmed we have to add it here
-                    if (!(gc is GridButtonColumn || gc is GridEditCommandColumn || gc is GridDropDownColumn || gc is GridCheckBoxColumn))
+                    if (!(gc is GridButtonColumn || gc is GridEditCommandColumn || gc is GridDropDownColumn || gc is GridCheckBoxColumn || gc is GridTemplateColumn))
                     {
                         gdi[gc].ToolTip = HtmlToText.ConvertHtml(gdi[gc].Text);
 
@@ -141,7 +141,7 @@ namespace YordanCustomControls
                             Product product = (Product)gdi.DataItem;
 
 
-                            if (gbc.DataField.Equals("UnitPrice", StringComparison.InvariantCultureIgnoreCase))
+                            if (gbc != null && gbc.DataField != null && gbc.DataField.Equals("UnitPrice", StringComparison.InvariantCultureIgnoreCase))
                             {
                                 string unitPrice = string.Empty;
                                 try
@@ -267,6 +267,11 @@ namespace YordanCustomControls
                         gridNumericColumn.DecimalDigits = 3;
                     }
 
+                }
+                GridTemplateColumn gridTemplateColumn = gridColumn as GridTemplateColumn;
+                if (gridTemplateColumn != null)
+                {
+                    
                 }
                 GridDropDownColumn gridDropDownColumn = gridColumn as GridDropDownColumn;
                 if (gridDropDownColumn != null)

@@ -93,10 +93,18 @@
                     </ColumnValidationSettings>
 
                 </telerik:GridNumericColumn>
-                <%--   <telerik:GridCalculatedColumn HeaderText="Total Price" UniqueName="TotalPrice" DataType="System.Decimal" DataFormatString="{0:C3}"
-                    DataFields="UnitPrice, UnitsInStock" Expression=" {0} * Convert({1}, 'System.Decimal')" FooterText="Total : "
-                    Aggregate="Sum">
-                </telerik:GridCalculatedColumn>--%>
+                <telerik:GridTemplateColumn DataType="System.Decimal"  FilterControlAltText="Filter StockValue column" Aggregate="None" HeaderText="StockValue" SortExpression="StockValue" UniqueName="StockValue">
+        <ItemTemplate>
+            <%# GetStocktackeValue(Eval("ProductId")).ToString("C3") %>
+       <%--     <asp:Label ID="Label1" runat="server" Text='<%# GetStocktackeValue(Eval("ProductId")).ToString("C3") %>'></asp:Label>--%>
+        </ItemTemplate>
+    </telerik:GridTemplateColumn>
+           <%-- <telerik:GridTemplateColumn ReadOnly="true" DataType="System.String" FilterControlAltText="Filter StocktakeValue column" HeaderText="StockValue" SortExpression="StocktakeValue" UniqueName="StocktakeValue">
+                    <EditItemTemplate>          
+                    </EditItemTemplate>
+                    <ItemTemplate><%# GetStocktackeValue(Eval("ProductId")).ToString().Trim() %></ItemTemplate>
+                </telerik:GridTemplateColumn>--%>
+          
                 <telerik:GridNumericColumn DataField="UnitsOnOrder" DataType="System.Double" FilterControlAltText="Filter UnitsOnOrder column" HeaderText="UnitsOnOrder" SortExpression="UnitsOnOrder" UniqueName="UnitsOnOrder">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
