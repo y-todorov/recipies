@@ -41,7 +41,7 @@
 
         <telerik:RadMenu runat="server" Width="100%" OnItemClick="Unnamed_ItemClick" OnClientItemClicking="OnClientItemClicking">
             <Items>
-                <telerik:RadMenuItem Text="Home" NavigateUrl="~/Default">
+                <telerik:RadMenuItem Text="Dashboard" NavigateUrl="~/Default">
                 </telerik:RadMenuItem>
                 <telerik:RadMenuItem runat="server" Text="Charts" NavigateUrl="~/Default">
                     <Items>
