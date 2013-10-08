@@ -30,13 +30,15 @@ namespace RecipiesWebFormApp.Production
 
         protected void rbUpdateUnitsInStock_Click(object sender, EventArgs e)
         {
+            //List<Product> allProducts = new List<Product>() { ContextFactory.GetContextPerRequest().Products.FirstOrDefault(p => p.ProductId == 245)};
             List<Product> allProducts = ContextFactory.GetContextPerRequest().Products.ToList();
             List<PurchaseOrderDetail> allCompletedPurchaseOrderDetals = 
                 ContextFactory.GetContextPerRequest().PurchaseOrderDetails.Where(pod => pod.PurchaseOrderHeader.StatusId == (int)PurchaseOrderStatusEnum.Completed).ToList();
 
-            double unitsInStock = 0;
+            
             foreach (Product product in allProducts)
             {
+                double unitsInStock = 0;
                 foreach (PurchaseOrderDetail pod in allCompletedPurchaseOrderDetals)
                 {
                     if (pod.ProductId == product.ProductId)
@@ -55,10 +57,10 @@ namespace RecipiesWebFormApp.Production
             List<Product> allProducts = ContextFactory.GetContextPerRequest().Products.ToList();
             List<PurchaseOrderDetail> allCompletedPurchaseOrderDetals =
                 ContextFactory.GetContextPerRequest().PurchaseOrderDetails.Where(pod => pod.PurchaseOrderHeader.StatusId == (int)PurchaseOrderStatusEnum.Approved).ToList();
-
-            double unitsOnOrderk = 0;
+                      
             foreach (Product product in allProducts)
-            {
+            { 
+                double unitsOnOrderk = 0;
                 foreach (PurchaseOrderDetail pod in allCompletedPurchaseOrderDetals)
                 {
                     if (pod.ProductId == product.ProductId)
