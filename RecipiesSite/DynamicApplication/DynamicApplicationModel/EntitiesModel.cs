@@ -244,6 +244,22 @@ namespace RecipiesModelNS
 	    	}
 		}
 		
+		public IQueryable<RecipeWaste> RecipeWastes 
+		{
+	    	get
+	    	{
+	        	return this.GetAll<RecipeWaste>();
+	    	}
+		}
+		
+		public IQueryable<ProductWaste> ProductWastes 
+		{
+	    	get
+	    	{
+	        	return this.GetAll<ProductWaste>();
+	    	}
+		}
+		
 		public static BackendConfiguration GetBackendConfiguration()
 		{
 			BackendConfiguration backend = new BackendConfiguration();
@@ -373,6 +389,16 @@ namespace RecipiesModelNS
 		}
 
 		IQueryable<PaymentType> PaymentTypes 
+		{ 
+			get;
+		}
+
+		IQueryable<RecipeWaste> RecipeWastes 
+		{ 
+			get;
+		}
+
+		IQueryable<ProductWaste> ProductWastes 
 		{ 
 			get;
 		}

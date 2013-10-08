@@ -264,8 +264,10 @@
     <Content Include="Production\Inventories.aspx" />
     <Content Include="Production\ProductCategories.aspx" />
     <Content Include="Production\Products.aspx" />
+    <Content Include="Production\ProductWastes.aspx" />
     <Content Include="Production\RecipeIngredients.aspx" />
     <Content Include="Production\Recipes.aspx" />
+    <Content Include="Production\RecipeWastes.aspx" />
     <Content Include="Purchasing\ProductVendors.aspx" />
     <Content Include="Purchasing\PurchaseOrderDetails.aspx" />
     <Content Include="Purchasing\PurchaseOrders.aspx" />
@@ -478,6 +480,13 @@
     <Compile Include="Production\Products.aspx.designer.cs">
       <DependentUpon>Products.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Production\ProductWastes.aspx.cs">
+      <DependentUpon>ProductWastes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Production\ProductWastes.aspx.designer.cs">
+      <DependentUpon>ProductWastes.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Production\RecipeIngredients.aspx.cs">
       <DependentUpon>RecipeIngredients.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -491,6 +500,13 @@
     </Compile>
     <Compile Include="Production\Recipes.aspx.designer.cs">
       <DependentUpon>Recipes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Production\RecipeWastes.aspx.cs">
+      <DependentUpon>RecipeWastes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Production\RecipeWastes.aspx.designer.cs">
+      <DependentUpon>RecipeWastes.aspx</DependentUpon>
     </Compile>
     <Compile Include="Purchasing\ProductVendors.aspx.cs">
       <DependentUpon>ProductVendors.aspx</DependentUpon>

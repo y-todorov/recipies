@@ -23,10 +23,36 @@ using RecipiesModelNS;
 
 namespace RecipiesModelNS	
 {
-	public partial class UnitMeasure
+	public partial class RecipeWaste
 	{
-		private int _unitMeasureId;
-		public virtual int UnitMeasureId 
+		private int _recipeWasteId;
+		public virtual int RecipeWasteId 
+		{ 
+		    get
+		    {
+		        return this._recipeWasteId;
+		    }
+		    set
+		    {
+		        this._recipeWasteId = value;
+		    }
+		}
+		
+		private int? _recipeId;
+		public virtual int? RecipeId 
+		{ 
+		    get
+		    {
+		        return this._recipeId;
+		    }
+		    set
+		    {
+		        this._recipeId = value;
+		    }
+		}
+		
+		private int? _unitMeasureId;
+		public virtual int? UnitMeasureId 
 		{ 
 		    get
 		    {
@@ -38,55 +64,38 @@ namespace RecipiesModelNS
 		    }
 		}
 		
-		private string _name;
-		public virtual string Name 
+		private double? _quantity;
+		public virtual double? Quantity 
 		{ 
 		    get
 		    {
-		        return this._name;
+		        return this._quantity;
 		    }
 		    set
 		    {
-		        this._name = value;
+		        this._quantity = value;
 		    }
 		}
 		
-		private bool? _isBaseUnit;
-		public virtual bool? IsBaseUnit 
+		private double _wasteValue;
+		public virtual double WasteValue 
 		{ 
 		    get
 		    {
-		        return this._isBaseUnit;
-		    }
-		    set
-		    {
-		        this._isBaseUnit = value;
+		        return this._wasteValue;
 		    }
 		}
 		
-		private int? _baseUnitId;
-		public virtual int? BaseUnitId 
+		private decimal? _unitPrice;
+		public virtual decimal? UnitPrice 
 		{ 
 		    get
 		    {
-		        return this._baseUnitId;
+		        return this._unitPrice;
 		    }
 		    set
 		    {
-		        this._baseUnitId = value;
-		    }
-		}
-		
-		private double? _baseUnitFactor;
-		public virtual double? BaseUnitFactor 
-		{ 
-		    get
-		    {
-		        return this._baseUnitFactor;
-		    }
-		    set
-		    {
-		        this._baseUnitFactor = value;
+		        this._unitPrice = value;
 		    }
 		}
 		
@@ -116,48 +125,29 @@ namespace RecipiesModelNS
 		    }
 		}
 		
-		private IList<ProductVendor> _productVendors = new List<ProductVendor>();
-		public virtual IList<ProductVendor> ProductVendors 
+		private UnitMeasure _unitMeasure;
+		public virtual UnitMeasure UnitMeasure 
 		{ 
 		    get
 		    {
-		        return this._productVendors;
+		        return this._unitMeasure;
+		    }
+		    set
+		    {
+		        this._unitMeasure = value;
 		    }
 		}
 		
-		private IList<Product> _products = new List<Product>();
-		public virtual IList<Product> Products 
+		private Recipe _recipe;
+		public virtual Recipe Recipe 
 		{ 
 		    get
 		    {
-		        return this._products;
+		        return this._recipe;
 		    }
-		}
-		
-		private IList<PurchaseOrderDetail> _purchaseOrderDetails = new List<PurchaseOrderDetail>();
-		public virtual IList<PurchaseOrderDetail> PurchaseOrderDetails 
-		{ 
-		    get
+		    set
 		    {
-		        return this._purchaseOrderDetails;
-		    }
-		}
-		
-		private IList<RecipeWaste> _recipeWastes = new List<RecipeWaste>();
-		public virtual IList<RecipeWaste> RecipeWastes 
-		{ 
-		    get
-		    {
-		        return this._recipeWastes;
-		    }
-		}
-		
-		private IList<ProductWaste> _productWastes = new List<ProductWaste>();
-		public virtual IList<ProductWaste> ProductWastes 
-		{ 
-		    get
-		    {
-		        return this._productWastes;
+		        this._recipe = value;
 		    }
 		}
 		

@@ -86,6 +86,12 @@
         <orm:field name="_purchaseOrderDetails" property="PurchaseOrderDetails" behavior="readwrite" uniqueId="fa404499-681c-4ad4-ba0e-a5a3ab40cfee" type="RecipiesModelNS.PurchaseOrderDetail">
           <orm:collection element-class="RecipiesModelNS.PurchaseOrderDetail" inverse-field="_unitMeasure" order-by="" uniqueId="97d7f0d9-0e5c-46ed-9a3f-6e4092c15e83" />
         </orm:field>
+        <orm:field name="_recipeWastes" property="RecipeWastes" behavior="readwrite" uniqueId="f9dc64d7-4627-420e-96e8-67b1eaf51e4b" type="RecipiesModelNS.RecipeWaste">
+          <orm:collection element-class="RecipiesModelNS.RecipeWaste" inverse-field="_unitMeasure" order-by="" uniqueId="724d0189-0875-4a4e-922e-868bfb42d1f5" />
+        </orm:field>
+        <orm:field name="_productWastes" property="ProductWastes" behavior="readwrite" uniqueId="3fd3d2a0-d741-4d2f-8c7a-8a347ea163d9" type="RecipiesModelNS.ProductWaste">
+          <orm:collection element-class="RecipiesModelNS.ProductWaste" inverse-field="_unitMeasure" order-by="" uniqueId="ab6abcd5-66d2-4a8b-a28b-a1510e6aae3e" />
+        </orm:field>
       </orm:class>
       <orm:class name="Store" uniqueId="8a403510-c1f7-4127-90e0-7ee39320d865">
         <orm:table name="Store" schema="Production" />
@@ -344,7 +350,7 @@
           <orm:column name="ModifiedByUser" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
         </orm:field>
         <orm:field name="_totalValue" property="TotalValue" behavior="readonly" uniqueId="c9b4c0fb-28de-4967-b844-75d1b4b2ec7a" type="System.Double">
-          <orm:column nullable="false" length="0" name="TotalValue" scale="0" sql-type="float" ado-type="Double" />
+          <orm:column name="TotalValue" sql-type="float" nullable="false" length="0" scale="0" ado-type="Double" />
         </orm:field>
         <orm:field name="_recipe" property="Recipe" behavior="readwrite" uniqueId="18349e83-e860-488f-9def-306665fd3295" type="RecipiesModelNS.Recipe">
           <orm:reference uniqueId="5bbae515-0dd0-4c63-a7c8-4ea184b152f6">
@@ -385,13 +391,13 @@
           <orm:column name="ModifiedByUser" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
         </orm:field>
         <orm:field name="_sellValuePerPortion" property="SellValuePerPortion" behavior="readwrite" uniqueId="ab52050a-eaca-4e45-b88a-ce323527f296" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
-          <orm:column nullable="true" length="0" name="SellValuePerPortion" scale="0" sql-type="money" ado-type="Currency" />
+          <orm:column name="SellValuePerPortion" sql-type="money" nullable="true" length="0" scale="0" ado-type="Currency" />
         </orm:field>
         <orm:field name="_productionValuePerPortion" property="ProductionValuePerPortion" behavior="readwrite" uniqueId="b509be9e-1f07-4cb2-b276-71ce068d0c0b" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
-          <orm:column nullable="true" length="0" name="ProductionValuePerPortion" scale="0" sql-type="money" ado-type="Currency" />
+          <orm:column name="ProductionValuePerPortion" sql-type="money" nullable="true" length="0" scale="0" ado-type="Currency" />
         </orm:field>
         <orm:field name="_grossProfit" property="GrossProfit" behavior="readonly" uniqueId="2942f4f8-74e4-403f-8671-d756282fd852" type="System.Decimal">
-          <orm:column nullable="false" length="0" name="GrossProfit" scale="0" sql-type="money" ado-type="Currency" />
+          <orm:column name="GrossProfit" sql-type="numeric" nullable="false" length="26" scale="8" ado-type="Numeric" />
         </orm:field>
         <orm:field name="_productCategory" property="ProductCategory" behavior="readwrite" uniqueId="08e98bf1-221b-4465-b84d-432dcabf20e5" type="RecipiesModelNS.ProductCategory">
           <orm:reference uniqueId="8d22c89f-2ceb-4a52-a48c-4c56e36aa644">
@@ -404,6 +410,9 @@
         </orm:field>
         <orm:field name="_recipeIngredients" property="RecipeIngredients" behavior="readwrite" uniqueId="23ccb2d0-33b6-4f4d-a3d9-21c3509b7f41" type="RecipiesModelNS.RecipeIngredient">
           <orm:collection element-class="RecipiesModelNS.RecipeIngredient" inverse-field="_recipe" order-by="" uniqueId="5bbae515-0dd0-4c63-a7c8-4ea184b152f6" />
+        </orm:field>
+        <orm:field name="_recipeWastes" property="RecipeWastes" behavior="readwrite" uniqueId="bf8ee103-7160-49f9-b653-c788c5f877aa" type="RecipiesModelNS.RecipeWaste">
+          <orm:collection element-class="RecipiesModelNS.RecipeWaste" inverse-field="_recipe" order-by="" uniqueId="d4e3393a-bc38-4e95-9f8c-8c53e5f71921" />
         </orm:field>
       </orm:class>
       <orm:class name="PurchaseOrderStatus" uniqueId="3afe64be-c1c7-42b5-acfd-bb75b3d0070c">
@@ -482,7 +491,7 @@
           <orm:column name="ModifiedByUser" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
         </orm:field>
         <orm:field name="_notes" property="Notes" behavior="readwrite" uniqueId="900f5901-d707-4707-af85-7e8cdada4a9d" type="System.String">
-          <orm:column nullable="true" length="4000" name="Notes" scale="0" sql-type="nvarchar" ado-type="UnicodeStringVariableLength" />
+          <orm:column name="Notes" sql-type="nvarchar" nullable="true" length="4000" scale="0" ado-type="UnicodeStringVariableLength" />
         </orm:field>
         <orm:field name="_vendor" property="Vendor" behavior="readwrite" uniqueId="20172025-428d-400b-a564-71a709ec6bfa" type="RecipiesModelNS.Vendor">
           <orm:reference uniqueId="c8924dfa-0516-4dfd-bb8a-338b9a12eb56">
@@ -785,6 +794,9 @@
         <orm:field name="_inventories" property="Inventories" behavior="readwrite" uniqueId="63dbcfc0-99a9-43ae-8e3c-f1bcc9f89745" type="RecipiesModelNS.Inventory">
           <orm:collection element-class="RecipiesModelNS.Inventory" inverse-field="_product" order-by="" uniqueId="ffede158-3039-4d69-aefc-17cbea755621" />
         </orm:field>
+        <orm:field name="_productWastes" property="ProductWastes" behavior="readwrite" uniqueId="6c89e9a1-dcac-4260-b63b-25a295214bf0" type="RecipiesModelNS.ProductWaste">
+          <orm:collection element-class="RecipiesModelNS.ProductWaste" inverse-field="_product" order-by="" uniqueId="4f840255-ad80-4ccc-aa67-d0fa98fb622d" />
+        </orm:field>
       </orm:class>
       <orm:class name="Inventory" uniqueId="8ea4beca-6bea-4364-a533-983526e9bdae">
         <orm:table name="Inventory" schema="Production" />
@@ -1076,6 +1088,94 @@
           <orm:collection element-class="RecipiesModelNS.SalesOrderHeader" inverse-field="_paymentType" order-by="" uniqueId="7178b76e-ce3b-472c-9173-886677d93982" />
         </orm:field>
       </orm:class>
+      <orm:class name="RecipeWaste" uniqueId="fbab4b90-7e9c-41b4-905f-45dd17e61974">
+        <orm:table name="RecipeWaste" schema="Production" />
+        <orm:identity>
+          <orm:key-generator name="autoinc" />
+          <orm:single-field field-name="_recipeWasteId" />
+        </orm:identity>
+        <orm:concurrency strategy="changed" />
+        <orm:field name="_recipeWasteId" property="RecipeWasteId" behavior="readwrite" uniqueId="50052ee7-b65c-4420-9a0f-440e1db0c586" type="System.Int32">
+          <orm:column nullable="false" primary-key="true" length="0" name="RecipeWasteId" scale="0" sql-type="int" backend-calculated="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_recipeId" property="RecipeId" behavior="readwrite" uniqueId="a3351afa-5961-43ff-88cf-014d1655b5ad" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column nullable="true" length="0" name="RecipeId" scale="0" sql-type="int" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_unitMeasureId" property="UnitMeasureId" behavior="readwrite" uniqueId="47659d7d-f368-45c0-b637-d990b0867d83" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column nullable="true" length="0" name="UnitMeasureId" scale="0" sql-type="int" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_quantity" property="Quantity" behavior="readwrite" uniqueId="ee287dab-0edb-40c7-8103-9fbdf14e67cb" type="System.Nullable`1[[System.Double, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column nullable="true" length="0" name="Quantity" scale="0" sql-type="float" ado-type="Double" />
+        </orm:field>
+        <orm:field name="_wasteValue" property="WasteValue" behavior="readonly" uniqueId="debbe2cc-dc27-4abd-9384-997cb48460c2" type="System.Double">
+          <orm:column nullable="false" length="0" name="WasteValue" scale="0" sql-type="float" ado-type="Double" />
+        </orm:field>
+        <orm:field name="_unitPrice" property="UnitPrice" behavior="readwrite" uniqueId="6da13b61-7d4b-45b5-99fc-28d68caf5903" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column nullable="true" length="0" name="UnitPrice" scale="0" sql-type="money" ado-type="Currency" />
+        </orm:field>
+        <orm:field name="_modifiedDate" property="ModifiedDate" behavior="readwrite" uniqueId="0fc84144-541d-44b5-b984-4512df9fc484" type="System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column has-default-value="true" nullable="true" length="0" name="ModifiedDate" scale="0" sql-type="datetime" ado-type="DateTime" />
+        </orm:field>
+        <orm:field name="_modifiedByUser" property="ModifiedByUser" behavior="readwrite" uniqueId="6dc566bf-8d84-4ef8-bb7b-0ab071088596" type="System.String">
+          <orm:column nullable="true" length="1000" name="ModifiedByUser" scale="0" sql-type="nvarchar" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
+        <orm:field name="_unitMeasure" property="UnitMeasure" behavior="readwrite" uniqueId="e8182884-2065-42fe-8abf-bf53801b5bb0" type="RecipiesModelNS.UnitMeasure">
+          <orm:reference uniqueId="724d0189-0875-4a4e-922e-868bfb42d1f5">
+            <orm:sharedfield name="_unitMeasureId" target-class="RecipiesModelNS.UnitMeasure" target-field="_unitMeasureId" />
+            <orm:constraint name="FK_RecipeWaste_1" schema="Production" destination-table="UnitMeasure" />
+          </orm:reference>
+        </orm:field>
+        <orm:field name="_recipe" property="Recipe" behavior="readwrite" uniqueId="cf5b3b42-e5a6-41d9-85d4-c79461b92cc3" type="RecipiesModelNS.Recipe">
+          <orm:reference uniqueId="d4e3393a-bc38-4e95-9f8c-8c53e5f71921">
+            <orm:sharedfield name="_recipeId" target-class="RecipiesModelNS.Recipe" target-field="_recipeId" />
+            <orm:constraint name="FK_RecipeWaste_0" schema="Production" destination-table="Recipe" />
+          </orm:reference>
+        </orm:field>
+      </orm:class>
+      <orm:class name="ProductWaste" uniqueId="2ae0a40f-a25c-4fd6-bce1-4f3b0fec57fc">
+        <orm:table name="ProductWaste" schema="Production" />
+        <orm:identity>
+          <orm:key-generator name="autoinc" />
+          <orm:single-field field-name="_productWasteId" />
+        </orm:identity>
+        <orm:concurrency strategy="changed" />
+        <orm:field name="_productWasteId" property="ProductWasteId" behavior="readwrite" uniqueId="07da55ea-aded-4b15-a4d4-77f8be54af26" type="System.Int32">
+          <orm:column nullable="false" primary-key="true" length="0" name="ProductWasteId" scale="0" sql-type="int" backend-calculated="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_productId" property="ProductId" behavior="readwrite" uniqueId="15d75a47-7f93-46eb-bd73-d2c633fe4fcf" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column nullable="true" length="0" name="ProductId" scale="0" sql-type="int" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_unitMeasureId" property="UnitMeasureId" behavior="readwrite" uniqueId="3f157a55-46eb-4fd0-84f1-e2ec0f94781d" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column nullable="true" length="0" name="UnitMeasureId" scale="0" sql-type="int" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_quantity" property="Quantity" behavior="readwrite" uniqueId="a43e67b9-df7c-49fa-92a8-f0cf5cbfeec1" type="System.Nullable`1[[System.Double, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column nullable="true" length="0" name="Quantity" scale="0" sql-type="float" ado-type="Double" />
+        </orm:field>
+        <orm:field name="_wasteValue" property="WasteValue" behavior="readonly" uniqueId="de78e1ba-9618-43a8-8636-5eee0f0b39bc" type="System.Double">
+          <orm:column nullable="false" length="0" name="WasteValue" scale="0" sql-type="float" ado-type="Double" />
+        </orm:field>
+        <orm:field name="_unitPrice" property="UnitPrice" behavior="readwrite" uniqueId="c3912593-a36e-4ba3-9c77-61e47e4b3ac3" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column nullable="true" length="0" name="UnitPrice" scale="0" sql-type="money" ado-type="Currency" />
+        </orm:field>
+        <orm:field name="_modifiedDate" property="ModifiedDate" behavior="readwrite" uniqueId="f07fb6fc-8803-45f1-b895-21c902350bff" type="System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column has-default-value="true" nullable="true" length="0" name="ModifiedDate" scale="0" sql-type="datetime" ado-type="DateTime" />
+        </orm:field>
+        <orm:field name="_modifiedByUser" property="ModifiedByUser" behavior="readwrite" uniqueId="db954ba5-2749-4e56-a8bb-582d462d3473" type="System.String">
+          <orm:column nullable="true" length="1000" name="ModifiedByUser" scale="0" sql-type="nvarchar" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
+        <orm:field name="_unitMeasure" property="UnitMeasure" behavior="readwrite" uniqueId="9d53d550-ff07-4b69-9522-6ed7e4ecbeab" type="RecipiesModelNS.UnitMeasure">
+          <orm:reference uniqueId="ab6abcd5-66d2-4a8b-a28b-a1510e6aae3e">
+            <orm:sharedfield name="_unitMeasureId" target-class="RecipiesModelNS.UnitMeasure" target-field="_unitMeasureId" />
+            <orm:constraint name="FK_ProductWaste_1" schema="Production" destination-table="UnitMeasure" />
+          </orm:reference>
+        </orm:field>
+        <orm:field name="_product" property="Product" behavior="readwrite" uniqueId="42fdff03-7455-444a-b202-5592b67e10bf" type="RecipiesModelNS.Product">
+          <orm:reference uniqueId="4f840255-ad80-4ccc-aa67-d0fa98fb622d">
+            <orm:sharedfield name="_productId" target-class="RecipiesModelNS.Product" target-field="_productId" />
+            <orm:constraint name="FK_ProductWaste_0" schema="Production" destination-table="Product" />
+          </orm:reference>
+        </orm:field>
+      </orm:class>
     </orm:namespace>
     <orm:schema schema="Purchasing">
       <orm:table name="Vendor" schema="Purchasing">
@@ -1121,7 +1221,7 @@
         <orm:column name="InvoiceNumber" sql-type="nvarchar" nullable="true" length="1000" scale="0" has-default-value="true" ado-type="UnicodeStringVariableLength" />
         <orm:column name="ModifiedDate" sql-type="datetime" nullable="true" length="0" scale="0" has-default-value="true" ado-type="DateTime" />
         <orm:column name="ModifiedByUser" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
-        <orm:column nullable="true" length="4000" name="Notes" scale="0" sql-type="nvarchar" ado-type="UnicodeStringVariableLength" />
+        <orm:column name="Notes" sql-type="nvarchar" nullable="true" length="4000" scale="0" ado-type="UnicodeStringVariableLength" />
         <orm:constraint name="FK_PurchaseOrderHeader_Vendor" schema="Purchasing" destination-table="Vendor">
           <orm:column name="VendorId" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
         </orm:constraint>
@@ -1207,7 +1307,7 @@
         <orm:column name="Cost" sql-type="money" nullable="true" length="0" scale="0" ado-type="Currency" />
         <orm:column name="ModifiedDate" sql-type="datetime" nullable="true" length="0" scale="0" has-default-value="true" ado-type="DateTime" />
         <orm:column name="ModifiedByUser" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
-        <orm:column nullable="false" length="0" name="TotalValue" scale="0" sql-type="float" ado-type="Double" />
+        <orm:column name="TotalValue" sql-type="float" nullable="false" length="0" scale="0" ado-type="Double" />
         <orm:constraint name="FK_RecipeIngredient_Recipe" schema="Production" destination-table="Recipe">
           <orm:column name="RecipeId" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
         </orm:constraint>
@@ -1222,9 +1322,9 @@
         <orm:column name="Description" sql-type="nvarchar" nullable="true" length="4000" scale="0" ado-type="UnicodeStringVariableLength" />
         <orm:column name="ModifiedDate" sql-type="datetime" nullable="true" length="0" scale="0" has-default-value="true" ado-type="DateTime" />
         <orm:column name="ModifiedByUser" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
-        <orm:column nullable="true" length="0" name="SellValuePerPortion" scale="0" sql-type="money" ado-type="Currency" />
-        <orm:column nullable="true" length="0" name="ProductionValuePerPortion" scale="0" sql-type="money" ado-type="Currency" />
-        <orm:column nullable="false" length="0" name="GrossProfit" scale="0" sql-type="money" ado-type="Currency" />
+        <orm:column name="SellValuePerPortion" sql-type="money" nullable="true" length="0" scale="0" ado-type="Currency" />
+        <orm:column name="ProductionValuePerPortion" sql-type="money" nullable="true" length="0" scale="0" ado-type="Currency" />
+        <orm:column name="GrossProfit" sql-type="numeric" nullable="false" length="26" scale="8" ado-type="Numeric" />
         <orm:constraint name="FK_Recipe_ProductCategory" schema="Production" destination-table="ProductCategory">
           <orm:column name="CategoryId" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
         </orm:constraint>
@@ -1290,6 +1390,38 @@
         <orm:column name="ModifiedByUser" sql-type="nvarchar" nullable="true" length="1000" scale="0" ado-type="UnicodeStringVariableLength" />
         <orm:constraint name="FK_Inventory_Product" schema="Production" destination-table="Product">
           <orm:column name="ProductId" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:constraint>
+      </orm:table>
+      <orm:table name="RecipeWaste" schema="Production">
+        <orm:column nullable="false" primary-key="true" length="0" name="RecipeWasteId" scale="0" sql-type="int" backend-calculated="true" ado-type="Int32" />
+        <orm:column nullable="true" length="0" name="RecipeId" scale="0" sql-type="int" ado-type="Int32" />
+        <orm:column nullable="true" length="0" name="UnitMeasureId" scale="0" sql-type="int" ado-type="Int32" />
+        <orm:column nullable="true" length="0" name="Quantity" scale="0" sql-type="float" ado-type="Double" />
+        <orm:column nullable="false" length="0" name="WasteValue" scale="0" sql-type="float" ado-type="Double" />
+        <orm:column nullable="true" length="0" name="UnitPrice" scale="0" sql-type="money" ado-type="Currency" />
+        <orm:column has-default-value="true" nullable="true" length="0" name="ModifiedDate" scale="0" sql-type="datetime" ado-type="DateTime" />
+        <orm:column nullable="true" length="1000" name="ModifiedByUser" scale="0" sql-type="nvarchar" ado-type="UnicodeStringVariableLength" />
+        <orm:constraint name="FK_RecipeWaste_1" schema="Production" destination-table="UnitMeasure">
+          <orm:column nullable="true" length="0" name="UnitMeasureId" scale="0" sql-type="int" ado-type="Int32" />
+        </orm:constraint>
+        <orm:constraint name="FK_RecipeWaste_0" schema="Production" destination-table="Recipe">
+          <orm:column nullable="true" length="0" name="RecipeId" scale="0" sql-type="int" ado-type="Int32" />
+        </orm:constraint>
+      </orm:table>
+      <orm:table name="ProductWaste" schema="Production">
+        <orm:column nullable="false" primary-key="true" length="0" name="ProductWasteId" scale="0" sql-type="int" backend-calculated="true" ado-type="Int32" />
+        <orm:column nullable="true" length="0" name="ProductId" scale="0" sql-type="int" ado-type="Int32" />
+        <orm:column nullable="true" length="0" name="UnitMeasureId" scale="0" sql-type="int" ado-type="Int32" />
+        <orm:column nullable="true" length="0" name="Quantity" scale="0" sql-type="float" ado-type="Double" />
+        <orm:column nullable="false" length="0" name="WasteValue" scale="0" sql-type="float" ado-type="Double" />
+        <orm:column nullable="true" length="0" name="UnitPrice" scale="0" sql-type="money" ado-type="Currency" />
+        <orm:column has-default-value="true" nullable="true" length="0" name="ModifiedDate" scale="0" sql-type="datetime" ado-type="DateTime" />
+        <orm:column nullable="true" length="1000" name="ModifiedByUser" scale="0" sql-type="nvarchar" ado-type="UnicodeStringVariableLength" />
+        <orm:constraint name="FK_ProductWaste_1" schema="Production" destination-table="UnitMeasure">
+          <orm:column nullable="true" length="0" name="UnitMeasureId" scale="0" sql-type="int" ado-type="Int32" />
+        </orm:constraint>
+        <orm:constraint name="FK_ProductWaste_0" schema="Production" destination-table="Product">
+          <orm:column nullable="true" length="0" name="ProductId" scale="0" sql-type="int" ado-type="Int32" />
         </orm:constraint>
       </orm:table>
     </orm:schema>
@@ -1507,6 +1639,12 @@
         </classHasNavigationalProperties>
         <classHasNavigationalProperties Id="3ad4d8a9-9a46-41fd-a2aa-06db4651b0a7">
           <NavigationalProperty Id="fa404499-681c-4ad4-ba0e-a5a3ab40cfee" name="PurchaseOrderDetails" type="IList&lt;PurchaseOrderDetail&gt;" label="PurchaseOrderDetails : IList&lt;PurchaseOrderDetail&gt;" nullable="true" kind="Persistent" fieldName="_purchaseOrderDetails" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="ea10110d-1c6b-40da-962d-f2c12c5e1651">
+          <NavigationalProperty Id="f9dc64d7-4627-420e-96e8-67b1eaf51e4b" name="RecipeWastes" type="IList&lt;RecipeWaste&gt;" label="RecipeWastes : IList&lt;RecipeWaste&gt;" nullable="true" kind="Persistent" fieldName="_recipeWastes" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="645e19f3-9de1-4688-99b2-b62ae52af396">
+          <NavigationalProperty Id="3fd3d2a0-d741-4d2f-8c7a-8a347ea163d9" name="ProductWastes" type="IList&lt;ProductWaste&gt;" label="ProductWastes : IList&lt;ProductWaste&gt;" nullable="true" kind="Persistent" fieldName="_productWastes" isDependent="false" isManaged="false" />
         </classHasNavigationalProperties>
       </navigationalProperties>
     </DomainClass>
@@ -1772,6 +1910,9 @@
         </classHasNavigationalProperties>
         <classHasNavigationalProperties Id="f5a82fdb-e343-4d3e-b1b5-01c6def3abdb">
           <NavigationalProperty Id="08e98bf1-221b-4465-b84d-432dcabf20e5" name="ProductCategory" type="ProductCategory" label="ProductCategory : ProductCategory" nullable="true" kind="Persistent" fieldName="_productCategory" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="4162a5af-ced5-4725-a432-5d0f5a682e27">
+          <NavigationalProperty Id="bf8ee103-7160-49f9-b653-c788c5f877aa" name="RecipeWastes" type="IList&lt;RecipeWaste&gt;" label="RecipeWastes : IList&lt;RecipeWaste&gt;" nullable="true" kind="Persistent" fieldName="_recipeWastes" isDependent="false" isManaged="false" />
         </classHasNavigationalProperties>
       </navigationalProperties>
     </DomainClass>
@@ -2113,6 +2254,9 @@
         <classHasNavigationalProperties Id="f1fe4ad7-2fc0-4e87-bb04-7f494bdf7c73">
           <NavigationalProperty Id="63dbcfc0-99a9-43ae-8e3c-f1bcc9f89745" name="Inventories" type="IList&lt;Inventory&gt;" label="Inventories : IList&lt;Inventory&gt;" nullable="true" kind="Persistent" fieldName="_inventories" isDependent="false" isManaged="false" />
         </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="90cbfe3f-a010-4bfd-a0f2-011e11fe56d9">
+          <NavigationalProperty Id="6c89e9a1-dcac-4260-b63b-25a295214bf0" name="ProductWastes" type="IList&lt;ProductWaste&gt;" label="ProductWastes : IList&lt;ProductWaste&gt;" nullable="true" kind="Persistent" fieldName="_productWastes" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
       </navigationalProperties>
     </DomainClass>
     <DomainClass Id="8ea4beca-6bea-4364-a533-983526e9bdae" name="Inventory" namespace="RecipiesModelNS" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true">
@@ -2291,6 +2435,98 @@
         </classHasNavigationalProperties>
       </navigationalProperties>
     </DomainClass>
+    <DomainClass Id="fbab4b90-7e9c-41b4-905f-45dd17e61974" name="RecipeWaste" namespace="RecipiesModelNS" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true">
+      <Property Id="50052ee7-b65c-4420-9a0f-440e1db0c586" name="RecipeWasteId" type="Int32" label="RecipeWasteId : Int32" kind="Persistent" identity="true" fieldName="_recipeWasteId" />
+      <Property Id="6dc566bf-8d84-4ef8-bb7b-0ab071088596" name="ModifiedByUser" label="ModifiedByUser : String" kind="Persistent" fieldName="_modifiedByUser" />
+      <Property Id="0fc84144-541d-44b5-b984-4512df9fc484" name="ModifiedDate" type="DateTime" label="ModifiedDate : DateTime" nullable="true" kind="Persistent" fieldName="_modifiedDate" />
+      <Property Id="ee287dab-0edb-40c7-8103-9fbdf14e67cb" name="Quantity" type="Double" label="Quantity : Double" nullable="true" kind="Persistent" fieldName="_quantity" />
+      <Property Id="a3351afa-5961-43ff-88cf-014d1655b5ad" name="RecipeId" type="Int32" label="RecipeId : Int32" nullable="true" kind="Persistent" fieldName="_recipeId" />
+      <Property Id="47659d7d-f368-45c0-b637-d990b0867d83" name="UnitMeasureId" type="Int32" label="UnitMeasureId : Int32" nullable="true" kind="Persistent" fieldName="_unitMeasureId" />
+      <Property Id="6da13b61-7d4b-45b5-99fc-28d68caf5903" name="UnitPrice" type="Decimal" label="UnitPrice : Decimal" nullable="true" kind="Persistent" fieldName="_unitPrice" />
+      <Property Id="debbe2cc-dc27-4abd-9384-997cb48460c2" name="WasteValue" type="Double" label="WasteValue : Double" kind="PersistentReadOnly" fieldName="_wasteValue" />
+      <AssociationTargets>
+        <Association Id="724d0189-0875-4a4e-922e-868bfb42d1f5" SourceMultiplicity="ZeroOne" name="RecipeWasteHasUnitMeasure">
+          <DomainClassMoniker name="/RecipiesModel/UnitMeasure" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="a3416898-e8ba-41aa-9a3b-730253109611">
+              <NavigationalPropertyMoniker name="/RecipiesModel/UnitMeasure/RecipeWastes" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="4040bc81-486d-4542-83a9-e2ab0eb0208e">
+              <NavigationalPropertyMoniker name="/RecipiesModel/RecipeWaste/UnitMeasure" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+        <Association Id="d4e3393a-bc38-4e95-9f8c-8c53e5f71921" SourceMultiplicity="ZeroOne" name="RecipeWasteHasRecipe">
+          <DomainClassMoniker name="/RecipiesModel/Recipe" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="a98cdb60-c59a-46c2-aff5-4ff86cf23872">
+              <NavigationalPropertyMoniker name="/RecipiesModel/Recipe/RecipeWastes" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="a7c03c21-40b1-4cfa-a439-f8d93d449a87">
+              <NavigationalPropertyMoniker name="/RecipiesModel/RecipeWaste/Recipe" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+      </AssociationTargets>
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="40463ba8-2951-4ee1-b489-43dca9933cc7">
+          <NavigationalProperty Id="e8182884-2065-42fe-8abf-bf53801b5bb0" name="UnitMeasure" type="UnitMeasure" label="UnitMeasure : UnitMeasure" nullable="true" kind="Persistent" fieldName="_unitMeasure" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="c6932b2c-c86c-4ea6-ba97-87b2555171b2">
+          <NavigationalProperty Id="cf5b3b42-e5a6-41d9-85d4-c79461b92cc3" name="Recipe" type="Recipe" label="Recipe : Recipe" nullable="true" kind="Persistent" fieldName="_recipe" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+    <DomainClass Id="2ae0a40f-a25c-4fd6-bce1-4f3b0fec57fc" name="ProductWaste" namespace="RecipiesModelNS" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true">
+      <Property Id="07da55ea-aded-4b15-a4d4-77f8be54af26" name="ProductWasteId" type="Int32" label="ProductWasteId : Int32" kind="Persistent" identity="true" fieldName="_productWasteId" />
+      <Property Id="db954ba5-2749-4e56-a8bb-582d462d3473" name="ModifiedByUser" label="ModifiedByUser : String" kind="Persistent" fieldName="_modifiedByUser" />
+      <Property Id="f07fb6fc-8803-45f1-b895-21c902350bff" name="ModifiedDate" type="DateTime" label="ModifiedDate : DateTime" nullable="true" kind="Persistent" fieldName="_modifiedDate" />
+      <Property Id="15d75a47-7f93-46eb-bd73-d2c633fe4fcf" name="ProductId" type="Int32" label="ProductId : Int32" nullable="true" kind="Persistent" fieldName="_productId" />
+      <Property Id="a43e67b9-df7c-49fa-92a8-f0cf5cbfeec1" name="Quantity" type="Double" label="Quantity : Double" nullable="true" kind="Persistent" fieldName="_quantity" />
+      <Property Id="3f157a55-46eb-4fd0-84f1-e2ec0f94781d" name="UnitMeasureId" type="Int32" label="UnitMeasureId : Int32" nullable="true" kind="Persistent" fieldName="_unitMeasureId" />
+      <Property Id="c3912593-a36e-4ba3-9c77-61e47e4b3ac3" name="UnitPrice" type="Decimal" label="UnitPrice : Decimal" nullable="true" kind="Persistent" fieldName="_unitPrice" />
+      <Property Id="de78e1ba-9618-43a8-8636-5eee0f0b39bc" name="WasteValue" type="Double" label="WasteValue : Double" kind="PersistentReadOnly" fieldName="_wasteValue" />
+      <AssociationTargets>
+        <Association Id="ab6abcd5-66d2-4a8b-a28b-a1510e6aae3e" SourceMultiplicity="ZeroOne" name="ProductWasteHasUnitMeasure">
+          <DomainClassMoniker name="/RecipiesModel/UnitMeasure" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="84e4f70f-b7b0-48bd-9b81-759b8df9572f">
+              <NavigationalPropertyMoniker name="/RecipiesModel/UnitMeasure/ProductWastes" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="df3704b5-c977-44a8-8d50-3e9e778c1432">
+              <NavigationalPropertyMoniker name="/RecipiesModel/ProductWaste/UnitMeasure" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+        <Association Id="4f840255-ad80-4ccc-aa67-d0fa98fb622d" SourceMultiplicity="ZeroOne" name="ProductWasteHasProduct">
+          <DomainClassMoniker name="/RecipiesModel/Product" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="037d66c8-2b6c-498b-9cac-c42b4e9d91db">
+              <NavigationalPropertyMoniker name="/RecipiesModel/Product/ProductWastes" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="ce78f490-3ff4-4b73-a47a-bb24a7175ee2">
+              <NavigationalPropertyMoniker name="/RecipiesModel/ProductWaste/Product" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+      </AssociationTargets>
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="408c16ab-eae9-4a71-9b5d-24bd4aeb1f66">
+          <NavigationalProperty Id="9d53d550-ff07-4b69-9522-6ed7e4ecbeab" name="UnitMeasure" type="UnitMeasure" label="UnitMeasure : UnitMeasure" nullable="true" kind="Persistent" fieldName="_unitMeasure" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="9ed85c4f-46c3-46ad-9338-17ecc85fe47a">
+          <NavigationalProperty Id="42fdff03-7455-444a-b202-5592b67e10bf" name="Product" type="Product" label="Product : Product" nullable="true" kind="Persistent" fieldName="_product" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
   </Types>
   <domainContext>
     <domainModelHasDomainContext Id="4427cc43-2e74-4ae4-91f1-9c6640dee166">
@@ -2319,6 +2555,8 @@
         <entitySetProperty name="Departments" namespace="RecipiesModelNS" type="Department" label="Departments : IQueryable&lt;RecipiesModelNS.Department&gt;" />
         <entitySetProperty name="Customers" namespace="RecipiesModelNS" type="Customer" label="Customers : IQueryable&lt;RecipiesModelNS.Customer&gt;" />
         <entitySetProperty name="PaymentTypes" namespace="RecipiesModelNS" type="PaymentType" label="PaymentTypes : IQueryable&lt;RecipiesModelNS.PaymentType&gt;" />
+        <entitySetProperty name="RecipeWastes" namespace="RecipiesModelNS" type="RecipeWaste" label="RecipeWastes : IQueryable&lt;RecipiesModelNS.RecipeWaste&gt;" />
+        <entitySetProperty name="ProductWastes" namespace="RecipiesModelNS" type="ProductWaste" label="ProductWastes : IQueryable&lt;RecipiesModelNS.ProductWaste&gt;" />
       </domainContainer>
     </domainModelHasDomainContext>
   </domainContext>

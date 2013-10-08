@@ -66,6 +66,10 @@
                         <telerik:RadMenuItem Text="Recipe ingredients" Visible="false" NavigateUrl="Production/RecipeIngredients"></telerik:RadMenuItem>
                         <telerik:RadMenuItem runat="server" Text="Inventory" NavigateUrl="~/Production/Inventories">
                         </telerik:RadMenuItem>
+                          <telerik:RadMenuItem runat="server" Text="Product wastes" NavigateUrl="~/Production/ProductWastes">
+                        </telerik:RadMenuItem>
+                         <telerik:RadMenuItem runat="server" Text="Recipe wastes" NavigateUrl="~/Production/RecipeWastes">
+                        </telerik:RadMenuItem>
                     </Items>
                 </telerik:RadMenuItem>
                 <telerik:RadMenuItem IsSeparator="true"></telerik:RadMenuItem>

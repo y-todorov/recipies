@@ -125,6 +125,9 @@
       <DependentUpon>EntitiesModel.rlinq</DependentUpon>
     </Compile>
     <Compile Include="ProductVendor.partial.cs" />
+    <Compile Include="ProductWaste.generated.cs">
+      <DependentUpon>EntitiesModel.rlinq</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PurchaseOrderDetail.cs" />
     <Compile Include="PurchaseOrderDetail.generated.cs">
@@ -145,6 +148,9 @@
       <DependentUpon>EntitiesModel.rlinq</DependentUpon>
     </Compile>
     <Compile Include="RecipeIngredient.partial.cs" />
+    <Compile Include="RecipeWaste.generated.cs">
+      <DependentUpon>EntitiesModel.rlinq</DependentUpon>
+    </Compile>
     <Compile Include="RecipiesModel.partial.cs" />
     <Compile Include="SalesOrderDetail.generated.cs">
       <DependentUpon>EntitiesModel.rlinq</DependentUpon>

@@ -169,5 +169,14 @@ namespace RecipiesModelNS
 		    }
 		}
 		
+		private IList<RecipeWaste> _recipeWastes = new List<RecipeWaste>();
+		public virtual IList<RecipeWaste> RecipeWastes 
+		{ 
+		    get
+		    {
+		        return this._recipeWastes;
+		    }
+		}
+		
 	}
 }

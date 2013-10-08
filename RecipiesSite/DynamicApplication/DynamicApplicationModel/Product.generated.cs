@@ -256,5 +256,14 @@ namespace RecipiesModelNS
 		    }
 		}
 		
+		private IList<ProductWaste> _productWastes = new List<ProductWaste>();
+		public virtual IList<ProductWaste> ProductWastes 
+		{ 
+		    get
+		    {
+		        return this._productWastes;
+		    }
+		}
+		
 	}
 }
