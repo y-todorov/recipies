@@ -27,11 +27,21 @@ namespace RecipiesWebFormApp.Production
                 dropDownProductListColumn.AutoPostBack = true;
                 dropDownProductListColumn.SelectedIndexChanged += dropDownProductListColumn_SelectedIndexChanged;
                 dropDownProductListColumn.PreRender += dropDownProductListColumn_PreRender;
-              
+
+                RadDatePicker forDateRadDateTimePicker = editedItem["ForDate"].Controls[0] as RadDatePicker;
+                forDateRadDateTimePicker.AutoPostBack = true;
+                forDateRadDateTimePicker.SelectedDateChanged += ForDateRadDateTimePicker_SelectedDateChanged;
+
+
                 RadNumericTextBox quantityByDocumentsRadNumericTextBox = editedItem["QuantityByDocuments"].Controls[0] as RadNumericTextBox;
-                quantityByDocumentsRadNumericTextBox.ReadOnly = true;               
-                
-            }  
+                quantityByDocumentsRadNumericTextBox.ReadOnly = true;
+
+            }
+        }
+
+        void ForDateRadDateTimePicker_SelectedDateChanged(object sender, Telerik.Web.UI.Calendar.SelectedDateChangedEventArgs e)
+        {
+            dropDownProductListColumn_SelectedIndexChanged(sender, new RadComboBoxSelectedIndexChangedEventArgs(string.Empty, string.Empty, string.Empty, string.Empty));
         }
 
         void dropDownProductListColumn_PreRender(object sender, EventArgs e)
@@ -41,8 +51,8 @@ namespace RecipiesWebFormApp.Production
 
         void dropDownProductListColumn_SelectedIndexChanged(object sender, RadComboBoxSelectedIndexChangedEventArgs e)
         {
-            //first reference the edited grid item through the NamingContainer                                                     attribute  
-            GridEditableItem editedItem = (sender as RadComboBox).NamingContainer as GridEditableItem;
+            //first reference the edited grid item through the NamingContainer                                                       
+            GridEditableItem editedItem = (sender as Control).NamingContainer as GridEditableItem;
 
             RadComboBox dropDownProductListColumn = editedItem["DropDownProductListColumn"].Controls[0] as RadComboBox;
             string productId = dropDownProductListColumn.SelectedValue;
@@ -56,15 +66,24 @@ namespace RecipiesWebFormApp.Production
                     {
                         RadNumericTextBox quantityByDocumentsRadNumericTextBox = editedItem["QuantityByDocuments"].Controls[0] as RadNumericTextBox;
                         RadNumericTextBox averageUnitPriceRadNumericTextBox = editedItem["AverageUnitPrice"].Controls[0] as RadNumericTextBox;
+                        RadDatePicker ForDateRadDateTimePicker = editedItem["ForDate"].Controls[0] as RadDatePicker;
+
                         averageUnitPriceRadNumericTextBox.Text = product.UnitPrice.GetValueOrDefault().ToString();
-                        quantityByDocumentsRadNumericTextBox.Text = product.GetQuantityByDocuments().ToString();
+                        quantityByDocumentsRadNumericTextBox.Text = product.GetQuantityByDocumentsForDate(ForDateRadDateTimePicker.SelectedDate.GetValueOrDefault()).ToString();
                     }
-
-                    //ProductVendor productVendor = ContextFactory.GetContextPerRequest().ProductVendors.FirstOrDefault(pv => pv.ProductId == intProductId && pv.VendorId == VendorId);
-
-                    //tbUnitPrice.Text = productVendor.StandardPrice.ToString();
                 }
             }
         }
+
+        protected void YordanCustomRadGridInventory_ItemCommand(object sender, GridCommandEventArgs e)
+        {
+            if (e.CommandName == RadGrid.InitInsertCommandName)
+            {
+                RecipiesModelNS.Inventory inventory = new RecipiesModelNS.Inventory { ForDate = DateTime.Now.Date };
+                e.Item.OwnerTableView.InsertItem(inventory);
+
+            }
+        }
+
     }
 }

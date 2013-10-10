@@ -5,7 +5,7 @@
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceProduct" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="Products" />
-    <yordan:YordanCustomRadGrid ID="YordanCustomRadGridInventory" EnableLinqExpressions="false" runat="server" CellSpacing="0" ItemType="RecipiesModelNS.Inventory" DataSourceID="OpenAccessLinqDataSourceInventory" GridLines="None" OnItemCreated="YordanCustomRadGridInventory_ItemCreated">
+    <yordan:YordanCustomRadGrid ID="YordanCustomRadGridInventory" EnableLinqExpressions="false" runat="server" CellSpacing="0" ItemType="RecipiesModelNS.Inventory" DataSourceID="OpenAccessLinqDataSourceInventory" GridLines="None" OnItemCreated="YordanCustomRadGridInventory_ItemCreated" OnItemCommand="YordanCustomRadGridInventory_ItemCommand">
         <MasterTableView AutoGenerateColumns="False" DataKeyNames="InventoryId" DataSourceID="OpenAccessLinqDataSourceInventory">
             <%--<GroupByExpressions>
                 <telerik:GridGroupByExpression>
@@ -31,10 +31,8 @@
                     </ColumnValidationSettings>
                 </telerik:GridDropDownColumn>
                 <telerik:GridBoundColumn DataField="Product.ProductCategory.Name" ReadOnly="true" DataType="System.String" FilterControlAltText="Filter Product.ProductCategory.Name column" HeaderText="Category" SortExpression="Product.ProductCategory.Name" UniqueName="Product.ProductCategory.Name">
-                    <ColumnValidationSettings>
-                        <ModelErrorMessage Text="" />
-                    </ColumnValidationSettings>
-                </telerik:GridBoundColumn>
+    
+                </telerik:GridBoundColumn>            
                 <telerik:GridDateTimeColumn DataField="ForDate" DataType="System.DateTime" FilterControlAltText="Filter ForDate column" HeaderText="ForDate" SortExpression="ForDate" UniqueName="ForDate">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text=""></ModelErrorMessage>
@@ -65,15 +63,6 @@
                         <ModelErrorMessage Text=""></ModelErrorMessage>
                     </ColumnValidationSettings>
                 </telerik:GridNumericColumn>
-             <%--   <telerik:GridTemplateColumn DataField="StocktakeValue" ReadOnly="true" DataType="System.Decimal" FilterControlAltText="Filter StocktakeValue column" HeaderText="StocktakeValue" SortExpression="StocktakeValue" UniqueName="StocktakeValue">
-                    <EditItemTemplate>
-                        <telerik:RadNumericTextBox ID="StocktakeValueRadNumericTextBox" runat="server" DbValue='<%# Bind("StocktakeValue") %>' Type="Number">
-                        </telerik:RadNumericTextBox>
-                    </EditItemTemplate>
-                    <ItemTemplate>
-                        <asp:Label ID="StocktakeValueLabel" runat="server" Text='<%# Eval("StocktakeValue") %>'></asp:Label>
-                    </ItemTemplate>
-                </telerik:GridTemplateColumn>--%>
                 <telerik:GridNumericColumn DataField="DeficiencyQuantity" ReadOnly="true" DataType="System.Double" FilterControlAltText="Filter DeficiencyQuantity column" HeaderText="DeficiencyQuantity" SortExpression="DeficiencyQuantity" UniqueName="DeficiencyQuantity">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text=""></ModelErrorMessage>
@@ -107,5 +96,6 @@
             </Columns>
         </MasterTableView>
     </yordan:YordanCustomRadGrid>
-    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceInventory" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="Inventories" />
+    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceInventory" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="Inventories" Include="Product.ProductCategory" />
+
 </asp:Content>

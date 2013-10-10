@@ -6,7 +6,10 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <yordan:YordanCustomRadGrid ID="rgCategories" runat="server" ItemType="RecipiesModelNS.ProductCategory" DataSourceID="OpenAccessLinqDataSourceCategory" >
-    <MasterTableView AutoGenerateColumns="False" DataKeyNames="CategoryId" DataSourceID="OpenAccessLinqDataSourceCategory" OverrideDataSourceControlSorting="true" AllowNaturalSort="true" >
+        
+    <MasterTableView AutoGenerateColumns="False" DataKeyNames="CategoryId" DataSourceID="OpenAccessLinqDataSourceCategory" OverrideDataSourceControlSorting="true" AllowNaturalSort="true">
+        <CommandItemStyle Height="30" />
+       
         <Columns>
             <telerik:GridBoundColumn DataField="CategoryId" DataType="System.Int32" FilterControlAltText="Filter CategoryId column" HeaderText="CategoryId" ReadOnly="True" SortExpression="CategoryId" UniqueName="CategoryId">
                 <ColumnValidationSettings>

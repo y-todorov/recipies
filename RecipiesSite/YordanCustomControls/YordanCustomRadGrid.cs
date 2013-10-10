@@ -115,7 +115,12 @@ namespace YordanCustomControls
                     }
                 }             
             }
-
+            //if (e.Item is GridCommandItem)
+            //{
+            //    GridCommandItem gridCommandItem = e.Item as GridCommandItem;
+                
+            //    e.Item.Height = Unit.Pixel(10);
+            //}
             base.OnItemCreated(e);
         }
 

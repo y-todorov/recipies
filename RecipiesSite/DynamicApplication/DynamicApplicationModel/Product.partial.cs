@@ -109,28 +109,24 @@ namespace RecipiesModelNS
             return averagePrice;
         }
 
-        public Inventory GetLastInventory()
+        public Inventory GetLastInventoryForDate(DateTime forDate)
         {
-            Inventory lastInventory = ContextFactory.GetContextPerRequest().Inventories.Where(inv => inv.ProductId == ProductId).OrderByDescending(inv => inv.ForDate).FirstOrDefault();
+            Inventory lastInventory = ContextFactory.GetContextPerRequest().Inventories.Where(inv => inv.ProductId == ProductId && inv.ForDate <= forDate.Date)
+                .OrderByDescending(inv => inv.ForDate).FirstOrDefault();
             return lastInventory;
         }
 
-        public double GetQuantityByDocuments()
+        public double GetQuantityByDocumentsForDate(DateTime forDate)
         {
-            Inventory inventory = GetLastInventory();
-
-            // test
-            double result = GetPurchaseOrderStockedQuantity(DateTime.Now.AddYears(-1), DateTime.Now.AddYears(1));
-            double result2 = GetSalesOrderQuantity(DateTime.Now.AddYears(-1), DateTime.Now.AddYears(1));
-
-
+            Inventory inventory = GetLastInventoryForDate(forDate);
 
             if (inventory != null)
             {
-                if (inventory.StocktakeQuantity.HasValue)
-                {
+                double purchases = GetPurchaseOrderStockedQuantity(inventory.ForDate.GetValueOrDefault(), forDate.Date);
+                double sales = GetSalesOrderQuantity(inventory.ForDate.GetValueOrDefault(), forDate.Date);
 
-                }
+                double quantityByDocuments = inventory.StocktakeQuantity.GetValueOrDefault() + purchases - sales;
+                return quantityByDocuments;               
             }
             return 0;
         }

@@ -10,7 +10,6 @@
 namespace RecipiesModelNS
 {
     using System;
-    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
@@ -25,7 +24,7 @@ namespace RecipiesModelNS
         {
             throw new UnintentionalCodeFirstException();
         }
-               
+    
         public DbSet<EmailTemplate> EmailTemplates { get; set; }
         public DbSet<Department> Departments { get; set; }
         public DbSet<Employee> Employees { get; set; }
