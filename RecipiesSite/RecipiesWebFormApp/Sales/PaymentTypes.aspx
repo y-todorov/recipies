@@ -30,6 +30,6 @@
         </Columns>
     </MasterTableView>
 </yordan:YordanCustomRadGrid>
-    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourcePaymentTypes" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="PaymentTypes">
+    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourcePaymentTypes" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="PaymentTypes">
      </yordan:YordanCustomOpenAccessLinqDataSource>
 </asp:Content>

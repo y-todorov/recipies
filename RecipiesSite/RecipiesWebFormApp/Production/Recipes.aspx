@@ -14,8 +14,8 @@
                     </ColumnValidationSettings>
                 </telerik:GridBoundColumn>
                 <telerik:GridDropDownColumn UniqueName="DropDownCategoryListColumn" ListTextField="Name"
-                    ListValueField="CategoryID" DataSourceID="OpenAccessLinqDataSourceCategory" HeaderText="Category"
-                    DataField="CategoryID" DropDownControlType="RadComboBox" AllowAutomaticLoadOnDemand="true"
+                    ListValueField="CategoryId" DataSourceID="OpenAccessLinqDataSourceCategory" HeaderText="Category"
+                    DataField="CategoryId" DropDownControlType="RadComboBox" AllowAutomaticLoadOnDemand="true"
                     AllowVirtualScrolling="true" ShowMoreResultsBox="true" ItemsPerRequest="10">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text=""></ModelErrorMessage>
@@ -109,16 +109,16 @@
             </Columns>
         </MasterTableView>
     </yordan:YordanCustomRadGrid>
-    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceCategory" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="ProductCategories" />
-    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceRecipes" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="Recipes" />
+    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceCategory" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="ProductCategories" />
+    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceRecipes" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="Recipes" />
 
-    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceRecipeIngredients" runat="server" OnUpdated="OpenAccessLinqDataSourceRecipeIngredients_InsertedUpdatedDeleted" OnInserted="OpenAccessLinqDataSourceRecipeIngredients_InsertedUpdatedDeleted" OnDeleted="OpenAccessLinqDataSourceRecipeIngredients_InsertedUpdatedDeleted" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="RecipeIngredients" OnInserting="OpenAccessLinqDataSourceRecipeIngredients_Inserting" OnSelecting="OpenAccessLinqDataSourceRecipeIngredients_Selecting" Where="RecipeId == @RecipeId" >
+    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceRecipeIngredients" runat="server" OnUpdated="OpenAccessLinqDataSourceRecipeIngredients_InsertedUpdatedDeleted" OnInserted="OpenAccessLinqDataSourceRecipeIngredients_InsertedUpdatedDeleted" OnDeleted="OpenAccessLinqDataSourceRecipeIngredients_InsertedUpdatedDeleted"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="RecipeIngredients" OnInserting="OpenAccessLinqDataSourceRecipeIngredients_Inserting" OnSelecting="OpenAccessLinqDataSourceRecipeIngredients_Selecting" Where="RecipeId == @RecipeId" >
         <WhereParameters>
             <asp:Parameter DefaultValue="0" Name="RecipeId" Type="Int32" />
         </WhereParameters>
      </yordan:YordanCustomOpenAccessLinqDataSource>
-    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceProduct" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="Products" />
-    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceRecipe" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="Recipes" />
+    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceProduct" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="Products" />
+    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceRecipe" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="Recipes" />
 
 
 </asp:Content>

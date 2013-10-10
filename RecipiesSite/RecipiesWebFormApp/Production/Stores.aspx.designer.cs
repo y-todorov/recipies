@@ -13,13 +13,13 @@ namespace RecipiesWebFormApp.Sales {
     public partial class Stores {
         
         /// <summary>
-        /// rgStore control.
+        /// YordanCustomRadGrid1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::YordanCustomControls.YordanCustomRadGrid rgStore;
+        protected global::YordanCustomControls.YordanCustomRadGrid YordanCustomRadGrid1;
         
         /// <summary>
         /// OpenAccessLinqDataSourceStore control.

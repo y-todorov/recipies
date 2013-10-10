@@ -14,12 +14,12 @@ namespace RecipiesWebFormApp.Production
 
         }
 
-        protected void OpenAccessLinqDataSourceCategory_Inserting(object sender, Telerik.OpenAccess.Web.OpenAccessLinqDataSourceInsertEventArgs e)
+        protected void OpenAccessLinqDataSourceCategory_Inserting(object sender, LinqDataSourceInsertEventArgs e)
         {
 
         }
 
-        protected void OpenAccessLinqDataSourceCategory_Inserted(object sender, Telerik.OpenAccess.Web.OpenAccessLinqDataSourceStatusEventArgs e)
+        protected void OpenAccessLinqDataSourceCategory_Inserted(object sender, LinqDataSourceStatusEventArgs e)
         {
 
         }

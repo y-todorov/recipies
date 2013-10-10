@@ -1,6 +1,7 @@
 ﻿using RecipiesModelNS;
 using System;
 using System.Collections.Generic;
+using System.Data.Objects;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -83,6 +84,14 @@ namespace RecipiesWebFormApp.Production
                 return result;
             }
             return 0m;
+        }
+
+        protected void OpenAccessLinqDataSourceProduct_ContextCreating(object sender, EntityDataSourceContextCreatingEventArgs e)
+        {
+        }
+
+        protected void OpenAccessLinqDataSourceProduct_ContextCreated(object sender, EntityDataSourceContextCreatedEventArgs e)
+        {
         }
            
     }

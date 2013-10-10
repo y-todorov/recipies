@@ -47,20 +47,20 @@ namespace RecipiesWebFormApp.Sales
             }
         }       
 
-        protected void OpenAccessLinqDataSourceOrderDetail_Inserting(object sender, Telerik.OpenAccess.Web.OpenAccessLinqDataSourceInsertEventArgs e)
+        protected void OpenAccessLinqDataSourceOrderDetail_Inserting(object sender,EntityDataSourceChangingEventArgs e)
         {
-            SalesOrderDetail newSalesOrderDetail = e.NewObject as SalesOrderDetail;
+            SalesOrderDetail newSalesOrderDetail = e.Entity as SalesOrderDetail;
             if (newSalesOrderDetail != null)
             {
                 newSalesOrderDetail.SalesOrderHeaderId = SalesOrderId;
             }
         }
 
-        protected void OpenAccessLinqDataSourceOrderDetail_Selecting(object sender, Telerik.OpenAccess.Web.OpenAccessLinqDataSourceSelectEventArgs e)
+        protected void OpenAccessLinqDataSourceOrderDetail_Selecting(object sender, EntityDataSourceSelectingEventArgs e)
         {
-            if (e.WhereParameters.ContainsKey("SalesOrderHeaderId"))
+            if (e.DataSource.WhereParameters["SalesOrderHeaderId"] != null)
             {
-                e.WhereParameters["SalesOrderHeaderId"] = SalesOrderId;
+                e.DataSource.WhereParameters["SalesOrderHeaderId"].DefaultValue = SalesOrderId.ToString();
             }
         }
 
@@ -82,12 +82,20 @@ namespace RecipiesWebFormApp.Sales
             }
         }
 
-        protected void OpenAccessLinqDataSourceOrder_Updating(object sender, Telerik.OpenAccess.Web.OpenAccessLinqDataSourceUpdateEventArgs e)
+        protected void OpenAccessLinqDataSourceOrder_Updating(object sender, EntityDataSourceChangingEventArgs e)
         {
-            SalesOrderHeader oldPurchaseOrderHeader = e.OriginalObject as SalesOrderHeader;
-            SalesOrderHeader newPurchaseOrderHeader = e.NewObject as SalesOrderHeader;
+            //SalesOrderHeader oldPurchaseOrderHeader = e.OriginalObject as SalesOrderHeader;
+            //SalesOrderHeader newPurchaseOrderHeader = e.NewObject as SalesOrderHeader;
 
-            newPurchaseOrderHeader.UpdateProductsFromStatus(oldPurchaseOrderHeader.StatusId, newPurchaseOrderHeader.StatusId);
+            //newPurchaseOrderHeader.UpdateProductsFromStatus(oldPurchaseOrderHeader.StatusId, newPurchaseOrderHeader.StatusId);
+        }
+
+        protected void OpenAccessLinqDataSourceOrder_Updated(object sender, EntityDataSourceChangedEventArgs e)
+        {
+            //SalesOrderHeader oldPurchaseOrderHeader = e.Entity as SalesOrderHeader;
+            //SalesOrderHeader newPurchaseOrderHeader = e.NewObject as SalesOrderHeader;
+
+            //newPurchaseOrderHeader.UpdateProductsFromStatus(oldPurchaseOrderHeader.StatusId, newPurchaseOrderHeader.StatusId);
         }
     }
 }

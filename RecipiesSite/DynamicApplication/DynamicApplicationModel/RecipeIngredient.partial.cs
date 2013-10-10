@@ -3,54 +3,38 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.UI.WebControls;
 
 namespace RecipiesModelNS
 {
     public partial class RecipeIngredient : YordanBaseEntity
     {
-        public override void OaldsDeleting(object sender, Telerik.OpenAccess.Web.OpenAccessLinqDataSourceDeleteEventArgs e)
-        {
-            recipeIdToUpdate = RecipeId;
-            base.OaldsDeleting(sender, e);
-        }
-
         private static int? recipeIdToUpdate;
 
-        public override void OaldsDeleted(object sender, Telerik.OpenAccess.Web.OpenAccessLinqDataSourceStatusEventArgs e)
+        public override void Added(System.Data.Entity.Infrastructure.DbEntityEntry e = null)
+        {
+            UpdateRecipesValuePerPortionFromIngredientsChange(RecipeId);
+            base.Added(e);
+        }
+
+        public override void Changed(System.Data.Entity.Infrastructure.DbEntityEntry e = null)
+        {
+            UpdateRecipesValuePerPortionFromIngredientsChange(RecipeId);
+            base.Changed(e);
+        }
+
+        public override void Removing(System.Data.Entity.Infrastructure.DbEntityEntry e = null)
+        {
+            recipeIdToUpdate = RecipeId;
+            base.Removing(e);
+        }
+
+        public override void Removed(System.Data.Entity.Infrastructure.DbEntityEntry e = null)
         {
             UpdateRecipesValuePerPortionFromIngredientsChange(recipeIdToUpdate);
-            base.OaldsDeleted(sender, e);
+            base.Removed(e);
         }
-
-        public override void OaldsUpdated(object sender, Telerik.OpenAccess.Web.OpenAccessLinqDataSourceStatusEventArgs e)
-        {
-            UpdateRecipesValuePerPortionFromIngredientsChange(RecipeId);
-            base.OaldsUpdated(sender, e);
-        }
-
-        public override void OaldsInserted(object sender, Telerik.OpenAccess.Web.OpenAccessLinqDataSourceStatusEventArgs e)
-        {
-            UpdateRecipesValuePerPortionFromIngredientsChange(RecipeId);
-            base.OaldsInserted(sender, e);
-        }
-
-        public override void Adding(RecipiesModel context, Telerik.OpenAccess.AddEventArgs e)
-        {
-            //UpdateRecipesValuePerPortionFromIngredientsChange(RecipeId, context);
-            base.Adding(context, e);
-        }
-
-        public override void Changing(RecipiesModel context, Telerik.OpenAccess.ChangeEventArgs e)
-        {
-            //UpdateRecipesValuePerPortionFromIngredientsChange(RecipeId, context);
-            base.Changing(context, e);
-        }
-
-        public override void Removing(RecipiesModel context, Telerik.OpenAccess.RemoveEventArgs e)
-        {
-            //UpdateRecipesValuePerPortionFromIngredientsChange(RecipeId, context);
-            base.Removing(context, e);
-        }
+               
 
         private void UpdateRecipesValuePerPortionFromIngredientsChange(int? recipeId)
         {
@@ -65,6 +49,7 @@ namespace RecipiesModelNS
                         valuePerPortion += (decimal?)ri.TotalValue;
                     }
                     recipe.ProductionValuePerPortion = valuePerPortion;
+                    ContextFactory.GetContextPerRequest().SaveChanges();
                 }
             }
 

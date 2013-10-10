@@ -22,24 +22,6 @@ namespace RecipiesWebFormApp.Production {
         protected global::YordanCustomControls.YordanCustomRadGrid rgRecipes;
         
         /// <summary>
-        /// lblProductIngredients control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblProductIngredients;
-        
-        /// <summary>
-        /// rgRecipeIngredients control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::YordanCustomControls.YordanCustomRadGrid rgRecipeIngredients;
-        
-        /// <summary>
         /// OpenAccessLinqDataSourceCategory control.
         /// </summary>
         /// <remarks>

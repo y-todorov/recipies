@@ -27,7 +27,7 @@ namespace RecipiesWebFormApp
     public class Global : HttpApplication
     {
         void Application_Start(object sender, EventArgs e)
-        {           
+        {
             // Code that runs on application startup
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterOpenAuth();
@@ -64,7 +64,7 @@ namespace RecipiesWebFormApp
             //MethodInfo generic = method.MakeGenericMethod(typeof(Product));
             //var res = generic.Invoke(ContextFactory.GetContextPerRequest(), null) as IEnumerable;
 
-            DateTime? lastModifiedDate = ContextFactory.GetContextPerRequest().Products.OrderByDescending(p => p.ModifiedDate).Select( p => p.ModifiedDate).FirstOrDefault();
+            DateTime? lastModifiedDate = ContextFactory.GetContextPerRequest().Products.OrderByDescending(p => p.ModifiedDate).Select(p => p.ModifiedDate).FirstOrDefault();
             if (Application["ProductDate"] == null)
             {
                 Application.Add("ProductDate", lastModifiedDate);
@@ -98,7 +98,7 @@ namespace RecipiesWebFormApp
                     // Here we refresh only grids with ItemType product. We should do notification system on wathcing the sql database. SQL WATCH or something
                     context.Clients.Group(typeof(Product).FullName).rebindRadGrid();
                     Application["ProductCount"] = lastProductCount;
-                    return;                        
+                    return;
                 }
             }
 
@@ -106,7 +106,7 @@ namespace RecipiesWebFormApp
             s.Stop();
             var mills = s.ElapsedMilliseconds;
             var ticks = s.ElapsedTicks;
-                        
+
         }
 
         void timer_Elapsed(object sender, ElapsedEventArgs e)
@@ -122,8 +122,18 @@ namespace RecipiesWebFormApp
 
         void Application_Error(object sender, EventArgs e)
         {
-            Debugger.Break();
+
             Exception ex = Server.GetLastError();
+            string exMessage = ex.Message;
+            string exStackTrace = ex.StackTrace;
+            Exception innerEx = ex.InnerException;
+            if (innerEx != null)
+            {
+                string innerExMessage = innerEx.Message;
+                string innerExstackTrace = innerEx.StackTrace;
+                Debugger.Break();
+            }
+            Debugger.Break();
         }
     }
 }

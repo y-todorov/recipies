@@ -4,7 +4,7 @@
 <%@ Register Assembly="YordanCustomControls" Namespace="YordanCustomControls" TagPrefix="yordan" %>
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceProduct" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="Products" />
+    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceProduct" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="Products" />
     <yordan:YordanCustomRadGrid ID="YordanCustomRadGridInventory" EnableLinqExpressions="false" runat="server" CellSpacing="0" ItemType="RecipiesModelNS.Inventory" DataSourceID="OpenAccessLinqDataSourceInventory" GridLines="None" OnItemCreated="YordanCustomRadGridInventory_ItemCreated">
         <MasterTableView AutoGenerateColumns="False" DataKeyNames="InventoryId" DataSourceID="OpenAccessLinqDataSourceInventory">
             <%--<GroupByExpressions>
@@ -107,5 +107,5 @@
             </Columns>
         </MasterTableView>
     </yordan:YordanCustomRadGrid>
-    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceInventory" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="Inventories" />
+    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceInventory" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="Inventories" />
 </asp:Content>

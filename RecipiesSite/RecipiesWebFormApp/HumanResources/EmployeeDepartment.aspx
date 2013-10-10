@@ -58,9 +58,9 @@
             </Columns>
         </MasterTableView>
     </yordan:YordanCustomRadGrid>
-    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceEmployeeDepartment" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="EmployeeDepartments">
+    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceEmployeeDepartment" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="EmployeeDepartments">
      </yordan:YordanCustomOpenAccessLinqDataSource>
-    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceEmployee" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="Employees" />
-    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceShift" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="Shifts" />
-    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceDepartment" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="Departments" />
+    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceEmployee" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="Employees" />
+    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceShift" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="Shifts" />
+    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceDepartment" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="Departments" />
 </asp:Content>

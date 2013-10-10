@@ -45,7 +45,7 @@
                 </telerik:RadMenuItem>
                 <telerik:RadMenuItem runat="server" Text="Charts" NavigateUrl="~/Default">
                     <Items>
-                        <telerik:RadMenuItem Text="Vendors">
+                        <telerik:RadMenuItem Text="Vendors" NavigateUrl="Charts/Vendors.aspx">
                             <Items>
                                 <telerik:RadMenuItem Text="Vendor purchase value per week" NavigateUrl="Charts/Vendors.aspx"></telerik:RadMenuItem>
                             </Items>

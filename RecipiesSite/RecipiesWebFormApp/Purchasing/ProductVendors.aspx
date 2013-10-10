@@ -83,9 +83,9 @@
             </Columns>
         </MasterTableView>
     </yordan:YordanCustomRadGrid>
-    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceProductVendors" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="ProductVendors">
+    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceProductVendors" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="ProductVendors">
      </yordan:YordanCustomOpenAccessLinqDataSource>
-    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceProduct" Runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="Products" />
-    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceVendor" Runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="Vendors" />
-    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceUnitMeasure" Runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="UnitMeasures" />
+    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceProduct" Runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="Products" />
+    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceVendor" Runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="Vendors" />
+    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceUnitMeasure" Runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="UnitMeasures" />
 </asp:Content>

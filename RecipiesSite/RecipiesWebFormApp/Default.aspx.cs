@@ -15,20 +15,20 @@ namespace RecipiesWebFormApp
         {
             if (!IsPostBack)
             {
-                rhcLast10ModifiedProducts.DataSource = ContextFactory.GetContextPerRequest().Products.OrderByDescending(pr => pr.ModifiedDate).Take(10);
+                rhcLast10ModifiedProducts.DataSource = ContextFactory.GetContextPerRequest().Products.OrderByDescending(pr => pr.ModifiedDate).Take(10).ToList();
 
-                rhcProductsCountByCategory.DataSource = ContextFactory.GetContextPerRequest().ProductCategories.Select(cat => new { CategoryName = cat.Name, ProductCount = cat.Products.Count }).OrderByDescending(res => res.ProductCount);
+                rhcProductsCountByCategory.DataSource = ContextFactory.GetContextPerRequest().ProductCategories.Select(cat => new { CategoryName = cat.Name, ProductCount = cat.Products.Count }).OrderByDescending(res => res.ProductCount).ToList();
 
-                rhcProductsForReorder.DataSource = ContextFactory.GetContextPerRequest().Products.Where(product => product.UnitsInStock <= product.ReorderLevel).OrderByDescending(product => product.ReorderLevel).Take(10);
+                rhcProductsForReorder.DataSource = ContextFactory.GetContextPerRequest().Products.Where(product => product.UnitsInStock <= product.ReorderLevel).OrderByDescending(product => product.ReorderLevel).Take(10).ToList();
 
-                rhcMostExpensiveProducts.DataSource = ContextFactory.GetContextPerRequest().Products.OrderByDescending(product => product.UnitPrice).Take(10);
+                rhcMostExpensiveProducts.DataSource = ContextFactory.GetContextPerRequest().Products.OrderByDescending(product => product.UnitPrice).Take(10).ToList();
 
                 List<GpHelper> list = new List<GpHelper>();
                 for (int i = 29; i >= 0; i--)
                 {
                     DateTime date = DateTime.Now.Date.AddDays(-i);
                     double sales = SalesOrderHeader.GetSalesOrderHeadersInPeriod(date, date, SalesOrderStatusEnum.Approved).Sum(soh => soh.SalesOrderDetails.Sum(sod => sod.LineTotal));
-                    double purchases = (double)PurchaseOrderHeader.GetSalesOrderHeadersInPeriod(date, date, PurchaseOrderStatusEnum.Completed).Sum(poh => poh.TotalDue).GetValueOrDefault();
+                    double purchases = (double)PurchaseOrderHeader.GetPurchaseOrderHeadersInPeriod(date, date, PurchaseOrderStatusEnum.Completed).Sum(poh => poh.TotalDue).GetValueOrDefault();
                     double dayGp = sales - purchases;
 
                     GpHelper gh = new GpHelper() { Days = date.ToString("dd/MM"), DayGp = dayGp };

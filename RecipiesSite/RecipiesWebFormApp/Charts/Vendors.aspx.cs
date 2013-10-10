@@ -58,7 +58,8 @@ namespace RecipiesWebFormApp.Charts
                 Vendor vendor;
                 if (!string.IsNullOrEmpty(rcbVendor.SelectedValue))
                 {
-                    vendor = ContextFactory.GetContextPerRequest().Vendors.Where(v => v.VendorId.ToString() == rcbVendor.SelectedValue).FirstOrDefault();
+                    int vendorId = int.Parse(rcbVendor.SelectedValue);
+                    vendor = ContextFactory.GetContextPerRequest().Vendors.Where(v => v.VendorId == vendorId).FirstOrDefault();
                 }
                 else
                 {
@@ -70,7 +71,8 @@ namespace RecipiesWebFormApp.Charts
 
                 if (!string.IsNullOrEmpty(rcbVendor.SelectedValue))
                 {
-                    vendor = ContextFactory.GetContextPerRequest().Vendors.Where(v => v.VendorId.ToString() == rcbVendor.SelectedValue).FirstOrDefault();
+                    int vendorId = int.Parse(rcbVendor.SelectedValue);
+                    vendor = ContextFactory.GetContextPerRequest().Vendors.Where(v => v.VendorId == vendorId).FirstOrDefault();
                 }
                 else
                 {
@@ -84,32 +86,21 @@ namespace RecipiesWebFormApp.Charts
 
                 List<HelperClass> helpers = new List<HelperClass>();
                 rhcVendorsLastWeek.PlotArea.Series[0].Name = Server.HtmlEncode(vendor.Name);
-                //  <telerik:LineSeries DataFieldY="VendorValue" Name="Euro">
-                //</telerik:LineSeries>
 
                 foreach (var item in grouping)
                 {
-                    //foreach (Vendor vendor in vendors)
-                    {
-                        HelperClass h = new HelperClass();
-                        h.Week = item.Key;
-                        h.VendorValue = item.Where(pod => pod.PurchaseOrderHeader.VendorId == vendor.VendorId).Sum(pod => pod.LineTotal);
-                        helpers.Add(h);
-                        //rhcVendorsLastWeek.PlotArea.Series[0].Name = vendor.Name;
-                        //break;
-
-                        //rhcVendorsLastWeek.PlotArea.Series.Add(new LineSeries() { DataFieldY = "VendorValue", Name = vendor.Name });
-                    }
-                    //break;
+                    HelperClass h = new HelperClass();
+                    h.Week = item.Key;
+                    h.VendorValue = item.Where(pod => pod.PurchaseOrderHeader.VendorId == vendor.VendorId).Sum(pod => pod.LineTotal);
+                    helpers.Add(h);
                 }
-
-
+                
                 rhcVendorsLastWeek.DataSource = helpers.OrderBy(h => h.Week);
             }
             catch (Exception ex)
             {
                 Debugger.Break();
-                    
+
             }
         }
     }

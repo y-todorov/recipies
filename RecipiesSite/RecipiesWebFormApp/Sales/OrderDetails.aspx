@@ -56,8 +56,8 @@
             </Columns>
         </MasterTableView>
     </yordan:YordanCustomRadGrid>
-    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceOrderDetail" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="SalesOrderDetails">
+    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceOrderDetail" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="SalesOrderDetails">
      </yordan:YordanCustomOpenAccessLinqDataSource>
-    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceSalesOrderHeader" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="SalesOrderHeaders" />
-    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceRecipe" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="Recipes" />
+    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceSalesOrderHeader" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="SalesOrderHeaders" />
+    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceRecipe" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="Recipes" />
 </asp:Content>

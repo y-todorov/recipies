@@ -15,12 +15,12 @@
                     </ColumnValidationSettings>
                 </telerik:GridBoundColumn>
                 <telerik:GridDropDownColumn UniqueName="DropDownCustomerListColumn" ListTextField="CompanyName"
-                    ListValueField="CustomerID" DataSourceID="OpenAccessLinqDataSourceCustomer" HeaderText="Customer"
-                    DataField="CustomerID" DropDownControlType="RadComboBox" EmptyListItemText="" EnableEmptyListItem="true" EmptyListItemValue="" ConvertEmptyStringToNull="true">
+                    ListValueField="CustomerId" DataSourceID="OpenAccessLinqDataSourceCustomer" HeaderText="Customer"
+                    DataField="CustomerId" DropDownControlType="RadComboBox" EmptyListItemText="" EnableEmptyListItem="true" EmptyListItemValue="" ConvertEmptyStringToNull="true">
                 </telerik:GridDropDownColumn>
                 <telerik:GridDropDownColumn UniqueName="DropDownEmployeeListColumn" ListTextField="FirstName"
-                    ListValueField="EmployeeID" DataSourceID="OpenAccessLinqDataSourceEmployee" HeaderText="Employee"
-                    DataField="EmployeeID" DropDownControlType="RadComboBox" EmptyListItemText="" EnableEmptyListItem="true" EmptyListItemValue="" ConvertEmptyStringToNull="true">
+                    ListValueField="EmployeeId" DataSourceID="OpenAccessLinqDataSourceEmployee" HeaderText="Employee"
+                    DataField="EmployeeId" DropDownControlType="RadComboBox" EmptyListItemText="" EnableEmptyListItem="true" EmptyListItemValue="" ConvertEmptyStringToNull="true">
                 </telerik:GridDropDownColumn>
                 <telerik:GridDropDownColumn UniqueName="DropDownStatusListColumn" ListTextField="Name"
                     ListValueField="SalesOrderStatusId" DataSourceID="OpenAccessLinqDataSourceStatus" HeaderText="Status"
@@ -70,7 +70,7 @@
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
                 </telerik:GridBoundColumn>
-                <telerik:GridTemplateColumn>
+                <telerik:GridTemplateColumn Visible="false">
                     <ItemStyle />
                     <EditItemTemplate>
                         <asp:Label runat="server" ID="lblSalesOrderDetails" ForeColor="Blue" Text="Please save the sales order so recipies can be added to it." OnPreRender="lblSalesOrderDetails_PreRender"></asp:Label>
@@ -120,23 +120,23 @@
             </Columns>
         </MasterTableView>
     </yordan:YordanCustomRadGrid>
-    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceOrder" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="SalesOrderHeaders" OnUpdating="OpenAccessLinqDataSourceOrder_Updating">
+    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceOrder" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="SalesOrderHeaders" OnUpdating="OpenAccessLinqDataSourceOrder_Updating" OnUpdated="OpenAccessLinqDataSourceOrder_Updated">
      </yordan:YordanCustomOpenAccessLinqDataSource>
-    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceCustomer" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="Customers" />
-    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceEmployee" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="Employees" />
-    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceStatus" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="SalesOrderStatus" Where="IsVisible == @IsVisible" >
+    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceCustomer" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="Customers" />
+    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceEmployee" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="Employees" />
+    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceStatus" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="SalesOrderStatus" Where="IsVisible == @IsVisible" >
         <WhereParameters>
             <asp:Parameter DefaultValue="True" Name="IsVisible" Type="Boolean" />
         </WhereParameters>
      </yordan:YordanCustomOpenAccessLinqDataSource>
 
-    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceOrderDetail" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="SalesOrderDetails" OnInserting="OpenAccessLinqDataSourceOrderDetail_Inserting" OnSelecting="OpenAccessLinqDataSourceOrderDetail_Selecting" Where="SalesOrderHeaderId == @SalesOrderHeaderId" >
+    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceOrderDetail" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="SalesOrderDetails" OnInserting="OpenAccessLinqDataSourceOrderDetail_Inserting" OnSelecting="OpenAccessLinqDataSourceOrderDetail_Selecting" Where="SalesOrderHeaderId == @SalesOrderHeaderId" >
         <WhereParameters>
             <asp:Parameter DefaultValue="0" Name="SalesOrderHeaderId" Type="Int32" />
         </WhereParameters>
  </yordan:YordanCustomOpenAccessLinqDataSource>
-    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourcePaymentType" Runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="PaymentTypes" />
-    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceSalesOrderHeader" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="SalesOrderHeaders" />
-    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceRecipe" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="Recipes" />
+    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourcePaymentType" Runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="PaymentTypes" />
+    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceSalesOrderHeader" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="SalesOrderHeaders" />
+    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceRecipe" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="Recipes" />
 
 </asp:Content>

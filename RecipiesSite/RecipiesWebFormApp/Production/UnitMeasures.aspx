@@ -42,9 +42,9 @@
             </Columns>
         </MasterTableView>
     </yordan:YordanCustomRadGrid>
-    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceUnit" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="UnitMeasures">
+    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceUnit" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="UnitMeasures">
      </yordan:YordanCustomOpenAccessLinqDataSource>
-    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceBaseUnit" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="UnitMeasures" Where="IsBaseUnit == @IsBaseUnit">
+    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceBaseUnit" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="UnitMeasures" Where="" AutoGenerateWhereClause="True" ConnectionString="name=recipiesEntities" ContextTypeName="" DefaultContainerName="RecipiesEntities" EntityTypeFilter="" Select="">
         <WhereParameters>
             <asp:Parameter DefaultValue="True" Name="IsBaseUnit" Type="Boolean" />
         </WhereParameters>

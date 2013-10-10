@@ -6,7 +6,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
-    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourcePurchaseOrderStatuses" Runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="PurchaseOrderStatus" />
+    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourcePurchaseOrderStatuses" Runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="PurchaseOrderStatus" />
 <yordan:YordanCustomRadGrid ID="rgPurchaseOrderStatuses" runat="server" ItemType="RecipiesModelNS.PurchaseOrderStatus" CellSpacing="0" DataSourceID="OpenAccessLinqDataSourcePurchaseOrderStatuses" GridLines="None">
     <MasterTableView AutoGenerateColumns="False" DataKeyNames="PurchaseOrderStatusId" DataSourceID="OpenAccessLinqDataSourcePurchaseOrderStatuses">
         <Columns>

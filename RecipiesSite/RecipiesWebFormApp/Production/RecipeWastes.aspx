@@ -2,8 +2,8 @@
 <%@ Register assembly="YordanCustomControls" namespace="YordanCustomControls" tagprefix="yordan" %>
 <%@ Register assembly="Telerik.Web.UI" namespace="Telerik.Web.UI" tagprefix="telerik" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-        <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceRecipe" Runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="Recipes" />
-        <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceUnit" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="UnitMeasures">
+        <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceRecipe" Runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="Recipes" />
+        <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceUnit" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="UnitMeasures">
     </yordan:YordanCustomOpenAccessLinqDataSource>
     <yordan:YordanCustomRadGrid ID="YordanCustomRadGrid1" runat="server" DataSourceID="oaldsRecipeWastes">
 
@@ -25,26 +25,26 @@
                         <ModelErrorMessage Text=""></ModelErrorMessage>
                     </ColumnValidationSettings>
                 </telerik:GridDropDownColumn>
-                <telerik:GridBoundColumn DataField="Quantity" DataType="System.Double" FilterControlAltText="Filter Quantity column" HeaderText="Quantity" SortExpression="Quantity" UniqueName="Quantity">
+                <telerik:GridNumericColumn DataField="Quantity" DataType="System.Double" FilterControlAltText="Filter Quantity column" HeaderText="Quantity" SortExpression="Quantity" UniqueName="Quantity">
                     <columnvalidationsettings>
                         <modelerrormessage text=""></modelerrormessage>
                     </columnvalidationsettings>
-                </telerik:GridBoundColumn>
-                <telerik:GridBoundColumn DataField="WasteValue" DataType="System.Double" FilterControlAltText="Filter WasteValue column" HeaderText="WasteValue" ReadOnly="True" SortExpression="WasteValue" UniqueName="WasteValue">
+                </telerik:GridNumericColumn>
+                <telerik:GridNumericColumn DataField="WasteValue" DataType="System.Double" FilterControlAltText="Filter WasteValue column" HeaderText="WasteValue" ReadOnly="True" SortExpression="WasteValue" UniqueName="WasteValue">
                     <columnvalidationsettings>
                         <modelerrormessage text=""></modelerrormessage>
                     </columnvalidationsettings>
-                </telerik:GridBoundColumn>
-                <telerik:GridBoundColumn DataField="UnitPrice" DataType="System.Decimal" FilterControlAltText="Filter UnitPrice column" HeaderText="UnitPrice" SortExpression="UnitPrice" UniqueName="UnitPrice">
+                </telerik:GridNumericColumn>
+                <telerik:GridNumericColumn DataField="UnitPrice" DataType="System.Decimal" FilterControlAltText="Filter UnitPrice column" HeaderText="UnitPrice" SortExpression="UnitPrice" UniqueName="UnitPrice">
                     <columnvalidationsettings>
                         <modelerrormessage text=""></modelerrormessage>
                     </columnvalidationsettings>
-                </telerik:GridBoundColumn>
-                <telerik:GridBoundColumn DataField="ModifiedDate" DataType="System.DateTime" FilterControlAltText="Filter ModifiedDate column" HeaderText="ModifiedDate" SortExpression="ModifiedDate" UniqueName="ModifiedDate">
+                </telerik:GridNumericColumn>
+                <telerik:GridDateTimeColumn DataField="ModifiedDate" DataType="System.DateTime" FilterControlAltText="Filter ModifiedDate column" HeaderText="ModifiedDate" SortExpression="ModifiedDate" UniqueName="ModifiedDate">
                     <columnvalidationsettings>
                         <modelerrormessage text=""></modelerrormessage>
                     </columnvalidationsettings>
-                </telerik:GridBoundColumn>
+                </telerik:GridDateTimeColumn>
                 <telerik:GridBoundColumn DataField="ModifiedByUser" FilterControlAltText="Filter ModifiedByUser column" HeaderText="ModifiedByUser" SortExpression="ModifiedByUser" UniqueName="ModifiedByUser">
                     <columnvalidationsettings>
                         <modelerrormessage text=""></modelerrormessage>
@@ -53,6 +53,6 @@
             </Columns>
         </MasterTableView>
     </yordan:YordanCustomRadGrid>
-    <yordan:YordanCustomOpenAccessLinqDataSource ID="oaldsRecipeWastes" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="RecipeWastes">
+    <yordan:YordanCustomOpenAccessLinqDataSource ID="oaldsRecipeWastes" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="RecipeWastes">
     </yordan:YordanCustomOpenAccessLinqDataSource>
 </asp:Content>

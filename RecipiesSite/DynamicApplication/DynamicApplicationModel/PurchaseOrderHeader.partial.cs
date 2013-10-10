@@ -1,18 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.UI.WebControls;
 using Telerik.OpenAccess;
 
 namespace RecipiesModelNS
 {
     public partial class PurchaseOrderHeader : YordanBaseEntity
     {
-        public override void Removed(RecipiesModel context, RemoveEventArgs e)
-        {
-            base.Removed(context, e);
-        }
+        //public override void Removed(RecipiesModel context, RemoveEventArgs e)
+        //{
+        //    base.Removed(context, e);
+        //}
 
         public bool UpdateProductsFromStatus(PurchaseOrderStatusEnum oldStatus, PurchaseOrderStatusEnum newStatus)
         {
@@ -43,7 +45,7 @@ namespace RecipiesModelNS
                 foreach (PurchaseOrderDetail pod in purchaseOrderDetails)
                 {
                     pod.Product.UnitsInStock += pod.Product.GetBaseUnitMeasureQuantityForProduct(pod.StockedQuantity, pod.UnitMeasure);
-                    pod.Product.UnitsOnOrder -= pod.Product.GetBaseUnitMeasureQuantityForProduct(pod.OrderQuantity, pod.UnitMeasure); 
+                    pod.Product.UnitsOnOrder -= pod.Product.GetBaseUnitMeasureQuantityForProduct(pod.OrderQuantity, pod.UnitMeasure);
                 }
             }
             if (oldStatus == PurchaseOrderStatusEnum.Completed && newStatus == PurchaseOrderStatusEnum.Approved)
@@ -52,7 +54,7 @@ namespace RecipiesModelNS
                 foreach (PurchaseOrderDetail pod in purchaseOrderDetails)
                 {
                     pod.Product.UnitsInStock -= pod.Product.GetBaseUnitMeasureQuantityForProduct(pod.StockedQuantity, pod.UnitMeasure);
-                    pod.Product.UnitsOnOrder += pod.Product.GetBaseUnitMeasureQuantityForProduct(pod.StockedQuantity, pod.UnitMeasure); 
+                    pod.Product.UnitsOnOrder += pod.Product.GetBaseUnitMeasureQuantityForProduct(pod.StockedQuantity, pod.UnitMeasure);
                 }
             }
 
@@ -82,22 +84,22 @@ namespace RecipiesModelNS
             return false;
         }
 
-        public override void OaldsUpdating(object sender, Telerik.OpenAccess.Web.OpenAccessLinqDataSourceUpdateEventArgs e)
-        {
-            PurchaseOrderHeader oldPurchaseOrderHeader = e.OriginalObject as PurchaseOrderHeader;
-            PurchaseOrderHeader newPurchaseOrderHeader = e.NewObject as PurchaseOrderHeader;
+        //public override void OaldsUpdating(DbEntityEntry e)
+        //{
+            //PurchaseOrderHeader oldPurchaseOrderHeader = e.OriginalObject as PurchaseOrderHeader;
+            //PurchaseOrderHeader newPurchaseOrderHeader = e.NewObject as PurchaseOrderHeader;
 
 
-            bool isValidStatusTransition = newPurchaseOrderHeader.UpdateProductsFromStatus(oldPurchaseOrderHeader.StatusId, newPurchaseOrderHeader.StatusId);
+            //bool isValidStatusTransition = newPurchaseOrderHeader.UpdateProductsFromStatus(oldPurchaseOrderHeader.StatusId, newPurchaseOrderHeader.StatusId);
 
-            base.OaldsUpdating(sender, e);
-        }
+            //base.OaldsUpdating(e);
+        //}
 
-        public static List<PurchaseOrderHeader> GetSalesOrderHeadersInPeriod(DateTime fromDate, DateTime toDate, PurchaseOrderStatusEnum status)
+        public static List<PurchaseOrderHeader> GetPurchaseOrderHeadersInPeriod(DateTime fromDate, DateTime toDate, PurchaseOrderStatusEnum status)
         {
             DateTime defaultDate = new DateTime(2000, 1, 1);
-            List<PurchaseOrderHeader> result = ContextFactory.GetContextPerRequest().PurchaseOrderHeaders.Where(pof => pof.ShipDate.GetValueOrDefault(defaultDate).Date >= fromDate.Date &&
-                pof.ShipDate.GetValueOrDefault(defaultDate) <= toDate.Date && pof.StatusId.GetValueOrDefault() == (int)status).ToList();
+            List<PurchaseOrderHeader> result = ContextFactory.GetContextPerRequest().PurchaseOrderHeaders.Where(pof => pof.ShipDate >= fromDate.Date &&
+                pof.ShipDate <= toDate.Date && pof.StatusId == (int)status).ToList();
             return result;
         }
     }

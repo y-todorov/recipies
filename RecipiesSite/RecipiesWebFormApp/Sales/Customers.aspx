@@ -6,11 +6,11 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
    <%-- <telerik:RadComboBox runat="server" DropDownWidth="300" Height="500"></telerik:RadComboBox>--%>
 
-    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceCustomer" Runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="Customers" />
+    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceCustomer" Runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="Customers" />
 <yordan:YordanCustomRadGrid ID="rgCustomers" runat="server" ItemType="RecipiesModelNS.Customer" DataSourceID="OpenAccessLinqDataSourceCustomer">
-    <MasterTableView AutoGenerateColumns="False" DataKeyNames="CustomerID" DataSourceID="OpenAccessLinqDataSourceCustomer">
+    <MasterTableView AutoGenerateColumns="False" DataKeyNames="CustomerId" DataSourceID="OpenAccessLinqDataSourceCustomer">
         <Columns>
-            <telerik:GridBoundColumn DataField="CustomerID" DataType="System.Int32" FilterControlAltText="Filter CustomerID column" HeaderText="CustomerID" ReadOnly="True" SortExpression="CustomerID" UniqueName="CustomerID">
+            <telerik:GridBoundColumn DataField="CustomerId" DataType="System.Int32" FilterControlAltText="Filter CustomerId column" HeaderText="CustomerId" ReadOnly="True" SortExpression="CustomerId" UniqueName="CustomerId">
                 <ColumnValidationSettings>
                     <ModelErrorMessage Text="" />
                 </ColumnValidationSettings>

@@ -9,22 +9,22 @@ namespace RecipiesModelNS
 {
     public class ContextFactory
     {
-        private static readonly string contextKey = typeof(RecipiesModel).FullName;
+        private static readonly string contextKey = typeof(RecipiesEntities).FullName;
 
-        public static RecipiesModel GetContextPerRequest()
+        public static RecipiesEntities GetContextPerRequest()
         {
             HttpContext httpContext = HttpContext.Current;
             if (httpContext == null)
             {
-                return new RecipiesModel();
+                return new RecipiesEntities();
             }
             else
             {
-                RecipiesModel context = httpContext.Items[contextKey] as RecipiesModel;
+                RecipiesEntities context = httpContext.Items[contextKey] as RecipiesEntities;
 
                 if (context == null)
                 {
-                    context = new RecipiesModel();
+                    context = new RecipiesEntities();
                     httpContext.Items[contextKey] = context;
                 }
 
@@ -38,7 +38,7 @@ namespace RecipiesModelNS
 
             if (httpContext != null)
             {
-                RecipiesModel context = httpContext.Items[contextKey] as RecipiesModel;
+                RecipiesEntities context = httpContext.Items[contextKey] as RecipiesEntities;
 
                 if (context != null)
                 {

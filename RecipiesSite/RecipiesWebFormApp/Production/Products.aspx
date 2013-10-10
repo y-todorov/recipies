@@ -58,8 +58,8 @@
                     </ColumnValidationSettings>
                 </telerik:GridDropDownColumn>
                 <telerik:GridDropDownColumn UniqueName="DropDownCategoryListColumn" ListTextField="Name"
-                    ListValueField="CategoryID" DataSourceID="OpenAccessLinqDataSourceCategory" HeaderText="Category"
-                    DataField="CategoryID" DropDownControlType="RadComboBox" EmptyListItemText="" EnableEmptyListItem="true" EmptyListItemValue="" ConvertEmptyStringToNull="true">
+                    ListValueField="CategoryId" DataSourceID="OpenAccessLinqDataSourceCategory" HeaderText="Category"
+                    DataField="CategoryId" DropDownControlType="RadComboBox" EmptyListItemText="" EnableEmptyListItem="true" EmptyListItemValue="" ConvertEmptyStringToNull="true">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text=""></ModelErrorMessage>
                     </ColumnValidationSettings>
@@ -91,20 +91,12 @@
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
-
                 </telerik:GridNumericColumn>
-                <telerik:GridTemplateColumn DataType="System.Decimal"  FilterControlAltText="Filter StockValue column" Aggregate="None" HeaderText="StockValue" SortExpression="StockValue" UniqueName="StockValue">
-        <ItemTemplate>
-            <%# GetStocktackeValue(Eval("ProductId")).ToString("C3") %>
-       <%--     <asp:Label ID="Label1" runat="server" Text='<%# GetStocktackeValue(Eval("ProductId")).ToString("C3") %>'></asp:Label>--%>
-        </ItemTemplate>
-    </telerik:GridTemplateColumn>
-           <%-- <telerik:GridTemplateColumn ReadOnly="true" DataType="System.String" FilterControlAltText="Filter StocktakeValue column" HeaderText="StockValue" SortExpression="StocktakeValue" UniqueName="StocktakeValue">
-                    <EditItemTemplate>          
-                    </EditItemTemplate>
-                    <ItemTemplate><%# GetStocktackeValue(Eval("ProductId")).ToString().Trim() %></ItemTemplate>
-                </telerik:GridTemplateColumn>--%>
-          
+                 <telerik:GridNumericColumn DataField="StockValue" ReadOnly="true" DataType="System.Double" FilterControlAltText="Filter StockValue column" HeaderText="StockValue" SortExpression="StockValue" UniqueName="StockValue">
+                    <ColumnValidationSettings>
+                        <ModelErrorMessage Text="" />
+                    </ColumnValidationSettings>
+                </telerik:GridNumericColumn>
                 <telerik:GridNumericColumn DataField="UnitsOnOrder" DataType="System.Double" FilterControlAltText="Filter UnitsOnOrder column" HeaderText="UnitsOnOrder" SortExpression="UnitsOnOrder" UniqueName="UnitsOnOrder">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
@@ -128,16 +120,16 @@
             </Columns>
         </MasterTableView>
     </yordan:YordanCustomRadGrid>
-    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceStore" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="Stores" />
-    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceProduct" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="Products">
+    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceStore" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="Stores" />
+    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceProduct" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="Products" OnContextCreated="OpenAccessLinqDataSourceProduct_ContextCreated" OnContextCreating="OpenAccessLinqDataSourceProduct_ContextCreating">
     </yordan:YordanCustomOpenAccessLinqDataSource>
-    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceUnit" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="UnitMeasures" Where="IsBaseUnit == @IsBaseUnit">
+    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceUnit" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="UnitMeasures" Where="IsBaseUnit == @IsBaseUnit" ConnectionString="name=recipiesEntities" ContextTypeName="" DefaultContainerName="RecipiesEntities" EntityTypeFilter="" Select="">
         <WhereParameters>
             <asp:Parameter DefaultValue="True" Name="IsBaseUnit" Type="Boolean" />
         </WhereParameters>
     </yordan:YordanCustomOpenAccessLinqDataSource>
-    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceVendor" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="Vendors" />
-    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceCategory" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="ProductCategories" />
+    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceVendor" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="Vendors" />
+    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceCategory" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="ProductCategories" />
     <asp:Label Text="Update product unit price from all purchase orders since the last 14 days" runat="server" />
     <telerik:RadButton ID="rbUpdateUnitPrice" OnClick="rbUpdateUnitPrice_Click" runat="server" Text="Update UnitPrice"></telerik:RadButton>
     <br />

@@ -29,7 +29,7 @@ namespace RecipiesWebFormApp.Production
 
         }
 
-        protected void OpenAccessLinqDataSourceRecipeIngredients_InsertedUpdatedDeleted(object sender, Telerik.OpenAccess.Web.OpenAccessLinqDataSourceStatusEventArgs e)
+        protected void OpenAccessLinqDataSourceRecipeIngredients_InsertedUpdatedDeleted(object sender, EntityDataSourceChangedEventArgs e)
         {
             // So value per portion will be updated
             rgRecipes.Rebind();
@@ -53,20 +53,22 @@ namespace RecipiesWebFormApp.Production
             }
         }
 
-        protected void OpenAccessLinqDataSourceRecipeIngredients_Inserting(object sender, Telerik.OpenAccess.Web.OpenAccessLinqDataSourceInsertEventArgs e)
+        protected void OpenAccessLinqDataSourceRecipeIngredients_Inserting(object sender, EntityDataSourceChangingEventArgs e)
         {
-            RecipeIngredient newRecipeIngredient = e.NewObject as RecipeIngredient;
+            RecipeIngredient newRecipeIngredient = e.Entity as RecipeIngredient;
             if (newRecipeIngredient != null)
             {
                 newRecipeIngredient.RecipeId = RecipeId;
             }
         }
 
-        protected void OpenAccessLinqDataSourceRecipeIngredients_Selecting(object sender, Telerik.OpenAccess.Web.OpenAccessLinqDataSourceSelectEventArgs e)
+        protected void OpenAccessLinqDataSourceRecipeIngredients_Selecting(object sender, EntityDataSourceSelectingEventArgs e)
         {
-            if (e.WhereParameters.ContainsKey("RecipeId"))
+            // TO DO
+            var test = e.SelectArguments;
+            if (e.DataSource.WhereParameters["RecipeId"] != null)
             {
-                e.WhereParameters["RecipeId"] = RecipeId;
+                e.DataSource.WhereParameters["RecipeId"].DefaultValue = RecipeId.ToString();
             }
         }
 
@@ -129,6 +131,8 @@ namespace RecipiesWebFormApp.Production
                 }
             }    
         }
+
+        
 
       
     }

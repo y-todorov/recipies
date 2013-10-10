@@ -42,6 +42,6 @@
         </Columns>
     </MasterTableView>
 </yordan:YordanCustomRadGrid>
-    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceShipMethod" runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="ShipMethods">
+    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceShipMethod" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="ShipMethods">
      </yordan:YordanCustomOpenAccessLinqDataSource>
 </asp:Content>

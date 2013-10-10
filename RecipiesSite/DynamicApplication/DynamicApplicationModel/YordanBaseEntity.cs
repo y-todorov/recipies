@@ -1,122 +1,43 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
-using Telerik.OpenAccess;
-using Telerik.OpenAccess.Web;
+using System.Web.UI.WebControls;
 
 namespace RecipiesModelNS
 {
     public class YordanBaseEntity
     {
-        public virtual void Adding(RecipiesModel context, AddEventArgs e)
+        public virtual void Adding(DbEntityEntry e = null)
         {
-
+            //object att = ContextFactory.GetContextPerRequest().Set(this.GetType()).Attach(this);
+            //DbEntityEntry dbEntry = ContextFactory.GetContextPerRequest().Entry(att);
+            SetModifiedDateAndModifiedByUserFields();
         }
 
-        public virtual void Added(RecipiesModel context, AddEventArgs e)
+        public virtual void Added(DbEntityEntry e = null)
+        {
+        }
+
+        public virtual void Changing(DbEntityEntry e = null)
         {
             SetModifiedDateAndModifiedByUserFields();
         }
 
-        public virtual void Changing(RecipiesModel context, ChangeEventArgs e)
+        public virtual void Changed(DbEntityEntry e = null)
         {
-
         }
 
-        public virtual void Changed(RecipiesModel context, ChangeEventArgs e)
+        public virtual void Removing(DbEntityEntry e = null)
         {
-            SetModifiedDateAndModifiedByUserFields();
         }
 
-        public virtual void Removing(RecipiesModel context, RemoveEventArgs e)
+        public virtual void Removed(DbEntityEntry e = null)
         {
-
-        }
-
-        public virtual void Removed(RecipiesModel context, RemoveEventArgs e)
-        {
-
-        }
-
-        public virtual void BeforeInsert(RecipiesModel context)
-        {
-
-        }
-
-        public virtual void AfterInsert(RecipiesModel context)
-        {
-
-        }
-       
-        public virtual void BeforeUpdate(RecipiesModel context)
-        {
-
-        } 
-        
-        public virtual void AfterUpdate(RecipiesModel context)
-        {
-
-        }
-
-        public virtual void BeforeDelete(RecipiesModel context)
-        {
-
-        }
-
-        public virtual void AfterDelete(RecipiesModel context)
-        {
-
-        }
-
-        public virtual void OaldsInserting(object sender, OpenAccessLinqDataSourceInsertEventArgs e)
-        {
-            if (ContextFactory.GetContextPerRequest().HasChanges)
-            {
-                ContextFactory.GetContextPerRequest().SaveChanges();
-            }
-        }
-
-        public virtual void OaldsInserted(object sender, OpenAccessLinqDataSourceStatusEventArgs e)
-        {
-            if (ContextFactory.GetContextPerRequest().HasChanges)
-            {
-                ContextFactory.GetContextPerRequest().SaveChanges();
-            }
-        }
-
-        public virtual void OaldsUpdating(object sender, OpenAccessLinqDataSourceUpdateEventArgs e)
-        {
-            if (ContextFactory.GetContextPerRequest().HasChanges)
-            {
-                ContextFactory.GetContextPerRequest().SaveChanges();
-            }
-        }
-
-        public virtual void OaldsUpdated(object sender, OpenAccessLinqDataSourceStatusEventArgs e)
-        {
-            if (ContextFactory.GetContextPerRequest().HasChanges)
-            {
-                ContextFactory.GetContextPerRequest().SaveChanges();
-            }
-        }
-
-        public virtual void OaldsDeleting(object sender, OpenAccessLinqDataSourceDeleteEventArgs e)
-        {
-            if (ContextFactory.GetContextPerRequest().HasChanges)
-            {
-                ContextFactory.GetContextPerRequest().SaveChanges();
-            }
-        }
-
-        public virtual void OaldsDeleted(object sender, OpenAccessLinqDataSourceStatusEventArgs e)
-        {
-            if (ContextFactory.GetContextPerRequest().HasChanges)
-            {
-                ContextFactory.GetContextPerRequest().SaveChanges();
-            }
         }
 
         private void SetModifiedDateAndModifiedByUserFields()
@@ -127,14 +48,76 @@ namespace RecipiesModelNS
                 userName = HttpContext.Current.User.Identity.Name;
             }
             Type type = this.GetType();
-            if (type.GetProperties().Any(p => p.Name.Equals("ModifiedDate")))
+            PropertyInfo piModifiedDate = type.GetProperties().FirstOrDefault(p => p.Name.Equals("ModifiedDate"));
+            if (piModifiedDate != null)
             {
                 DateTime modifiedDate = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, TimeZoneInfo.FindSystemTimeZoneById("GMT Standard Time"));
-                this.SetFieldValue<DateTime>("ModifiedDate", modifiedDate);
-                this.SetFieldValue<string>("ModifiedByUser", userName);
+                piModifiedDate.SetValue(this, modifiedDate);
+            }
+            PropertyInfo piModifiedByUser = type.GetProperties().FirstOrDefault(p => p.Name.Equals("ModifiedByUser"));
+            if (piModifiedByUser != null)
+            {
+                piModifiedByUser.SetValue(this, userName);
             }
         }
 
-               
+        private void PopulateHistoryTables()
+        {
+
+            //object historyEntity = GetHistoryObjectForEntity(this);
+            //if (historyEntity != null)
+            //{
+            //    var productFields = this.GetType().GetProperties(BindingFlags.Instance |
+            //           BindingFlags.Static |
+            //           BindingFlags.NonPublic |
+            //           BindingFlags.Public);
+            //    var productProperties = this.GetType().GetProperties();
+
+            //    var productHistoryFields = historyEntity.GetType().GetFields(BindingFlags.Instance |
+            //           BindingFlags.Static |
+            //           BindingFlags.NonPublic |
+            //           BindingFlags.Public);
+            //    var productHistoryProperties = historyEntity.GetType().GetProperties();
+
+            //    ContextFactory.GetContextPerRequest().ProductHistories.Add((ProductHistory)historyEntity);
+
+            //    foreach (prop field in productFields)
+            //    {
+            //        // Check if this is actual property
+            //        if (productProperties.Any(p => ("_" + p.Name).Equals(field.Name, StringComparison.InvariantCultureIgnoreCase)))
+            //        {
+            //            //object theValue = prop.GetValue(product); This is property and we get exception when deleting products
+            //            var field2 = productHistoryFields.FirstOrDefault(f => f.Name.Equals(field.Name));
+            //            if (field2 != null)
+            //            {
+            //                try
+            //                {
+            //                    object theValue = field.GetValue(this);
+            //                    field2.setf .SetFieldValue(field.Name, theValue);
+            //                }
+            //                catch (Exception)
+            //                {
+
+            //                }
+            //            }
+            //        }
+
+            //    }
+            //}
+        }
+
+
+        private object GetHistoryObjectForEntity(object obj)
+        {
+            if (obj is Product)
+            {
+                return new ProductHistory();
+            }
+            return null;
+        }
+
+
+
+
     }
 }

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="73912e72fab34b3aac9b8dc59a70f0eb" Name="Diagram1" ZoomLevel="114">
+        <EntityTypeShape EntityType="RecipiesModelNS.EmailTemplate" Width="1.5" PointX="9.28033666744844" PointY="2.9951221658825511" />
+        <EntityTypeShape EntityType="RecipiesModelNS.Department" Width="1.5" PointX="5.389049087366578" PointY="15.288704327907741" />
+        <EntityTypeShape EntityType="RecipiesModelNS.Employee" Width="1.5" PointX="11.842006886304359" PointY="9.7996070877647057" />
+        <EntityTypeShape EntityType="RecipiesModelNS.EmployeeDepartment" Width="1.5" PointX="7.6134359592634429" PointY="6.0950556723843592" />
+        <EntityTypeShape EntityType="RecipiesModelNS.Shift" Width="1.5" PointX="10.065889314779028" PointY="5.9510863451059377" />
+        <EntityTypeShape EntityType="RecipiesModelNS.Inventory" Width="1.5" PointX="3.9872478935808164" PointY="14.220168179934923" />
+        <EntityTypeShape EntityType="RecipiesModelNS.Product" Width="1.5" PointX="4.30441639400293" PointY="18.986619987984476" />
+        <EntityTypeShape EntityType="RecipiesModelNS.ProductCategory" Width="1.5" PointX="9.5761960901209129" PointY="12.641673913524334" />
+        <EntityTypeShape EntityType="RecipiesModelNS.ProductHistory" Width="1.5" PointX="5.7135411974571371" PointY="19.314985626989504" />
+        <EntityTypeShape EntityType="RecipiesModelNS.ProductWaste" Width="1.5" PointX="5.3049621643987308" PointY="11.135974919021118" />
+        <EntityTypeShape EntityType="RecipiesModelNS.Recipe" Width="1.5" PointX="3.4626117159904037" PointY="4.503989042948926" />
+        <EntityTypeShape EntityType="RecipiesModelNS.RecipeIngredient" Width="1.5" PointX="6.8592397826068288" PointY="4.5981117806388587" />
+        <EntityTypeShape EntityType="RecipiesModelNS.RecipeWaste" Width="1.5" PointX="7.324854269309367" PointY="24.470293995211968" />
+        <EntityTypeShape EntityType="RecipiesModelNS.Store" Width="1.5" PointX="7.3390295595578063" PointY="15.845330618249871" />
+        <EntityTypeShape EntityType="RecipiesModelNS.UnitMeasure" Width="1.5" PointX="3.7697311415196078" PointY="27.653965873482623" />
+        <EntityTypeShape EntityType="RecipiesModelNS.ProductVendor" Width="1.5" PointX="3.5043048670069803" PointY="28.768177492901767" />
+        <EntityTypeShape EntityType="RecipiesModelNS.PurchaseOrderDetail" Width="1.5" PointX="11.293991066186685" PointY="20.726776758547302" />
+        <EntityTypeShape EntityType="RecipiesModelNS.PurchaseOrderHeader" Width="1.5" PointX="6.8266523791601195" PointY="25.034710865949613" />
+        <EntityTypeShape EntityType="RecipiesModelNS.PurchaseOrderStatu" Width="1.5" PointX="5.3970919090309613" PointY="6.3449212342244206" />
+        <EntityTypeShape EntityType="RecipiesModelNS.ShipMethod" Width="1.5" PointX="2.7156381805965855" PointY="9.46401949667559" />
+        <EntityTypeShape EntityType="RecipiesModelNS.Vendor" Width="1.5" PointX="9.0485747088904382" PointY="7.1981593254945055" />
+        <EntityTypeShape EntityType="RecipiesModelNS.Customer" Width="1.5" PointX="6.2320081713758455" PointY="19.777081200749187" />
+        <EntityTypeShape EntityType="RecipiesModelNS.PaymentType" Width="1.5" PointX="9.6093409068925961" PointY="3.224367620062254" />
+        <EntityTypeShape EntityType="RecipiesModelNS.SalesOrderDetail" Width="1.5" PointX="11.775340111821583" PointY="22.829261104962445" />
+        <EntityTypeShape EntityType="RecipiesModelNS.SalesOrderHeader" Width="1.5" PointX="1.7149920285283553" PointY="6.181602197783814" />
+        <EntityTypeShape EntityType="RecipiesModelNS.SalesOrderStatu" Width="1.5" PointX="8.1670841165665" PointY="30.380295246085289" />
+        <AssociationConnector Association="RecipiesModelNS.FK_EmployeeDepartment_Department" />
+        <AssociationConnector Association="RecipiesModelNS.FK_EmployeeDepartment_Employee" />
+        <AssociationConnector Association="RecipiesModelNS.FK_Order_Employee" />
+        <AssociationConnector Association="RecipiesModelNS.FK_PurchaseOrderHeader_Employee" />
+        <AssociationConnector Association="RecipiesModelNS.FK_EmployeeDepartment_Shift" />
+        <AssociationConnector Association="RecipiesModelNS.FK_Inventory_Product" />
+        <AssociationConnector Association="RecipiesModelNS.FK_Product_Store" />
+        <AssociationConnector Association="RecipiesModelNS.FK_ProductVendor_Product1" />
+        <AssociationConnector Association="RecipiesModelNS.FK_ProductWaste_0" />
+        <AssociationConnector Association="RecipiesModelNS.FK_PurchaseOrderDetail_Product" />
+        <AssociationConnector Association="RecipiesModelNS.FK_RecipeIngredient_Product" />
+        <AssociationConnector Association="RecipiesModelNS.FK_xProduct_xCategory" />
+        <AssociationConnector Association="RecipiesModelNS.FK_xProduct_xUnit" />
+        <AssociationConnector Association="RecipiesModelNS.FK_Recipe_ProductCategory" />
+        <AssociationConnector Association="RecipiesModelNS.FK_ProductWaste_1" />
+        <AssociationConnector Association="RecipiesModelNS.FK_OrderDetail_Recipe" />
+        <AssociationConnector Association="RecipiesModelNS.FK_RecipeIngredient_Recipe" />
+        <AssociationConnector Association="RecipiesModelNS.FK_RecipeWaste_0" />
+        <AssociationConnector Association="RecipiesModelNS.FK_RecipeWaste_1" />
+        <AssociationConnector Association="RecipiesModelNS.FK_ProductVendor_UnitMeasure" />
+        <AssociationConnector Association="RecipiesModelNS.FK_PurchaseOrderDetail_UnitMeasure" />
+        <AssociationConnector Association="RecipiesModelNS.FK_ProductVendor_Vendor" />
+        <AssociationConnector Association="RecipiesModelNS.FK_PurchaseOrderDetail_PurchaseOrderHeader" />
+        <AssociationConnector Association="RecipiesModelNS.FK_PurchaseOrderHeader_PurchaseOrderStatus" />
+        <AssociationConnector Association="RecipiesModelNS.FK_PurchaseOrderHeader_ShipMethod" />
+        <AssociationConnector Association="RecipiesModelNS.FK_PurchaseOrderHeader_Vendor" />
+        <AssociationConnector Association="RecipiesModelNS.FK_Order_Customer" />
+        <AssociationConnector Association="RecipiesModelNS.FK_SalesOrderHeader_PaymentType" />
+        <AssociationConnector Association="RecipiesModelNS.FK_OrderDetail_Order" />
+        <AssociationConnector Association="RecipiesModelNS.FK_SalesOrderHeader_SalesOrderStatus" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

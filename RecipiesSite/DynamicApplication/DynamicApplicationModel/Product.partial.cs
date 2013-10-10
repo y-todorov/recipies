@@ -1,31 +1,40 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Telerik.OpenAccess;
 
 namespace RecipiesModelNS
 {
     public partial class Product : YordanBaseEntity
     {
-        public override void Added(RecipiesModel context, AddEventArgs e)
-        {
-            base.Added(context, e);
-        }
+        //public override void Added(RecipiesModel context, AddEventArgs e)
+        //{
+        //    base.Added(context, e);
+        //}
+        //[Required]
+        //[DisplayName("Unit price")]
+        //[DataType(DataType.Currency)]
+        //[Range(0, int.MaxValue)]
+        //public Nullable<decimal> UnitPrice { get; set; }
 
         public double GetAveragePriceLastDays(int lastDays)
         {
+            return 0;
             string help;
             return GetAveragePriceLastDays(lastDays, out help);
         }
 
         public double GetAveragePriceLastDays(int lastDays, out string text)
         {
-            RecipiesModel context = ContextFactory.GetContextPerRequest();
+            RecipiesEntities context = ContextFactory.GetContextPerRequest();
 
+            DateTime fromDate = DateTime.Now.AddDays(-lastDays).Date;
+            DateTime toDate = DateTime.Now.Date;
             List<PurchaseOrderDetail> pods = context.PurchaseOrderDetails.Where(pod => pod.ProductId == ProductId && pod.PurchaseOrderHeader.ShipDate.HasValue &&
-                pod.PurchaseOrderHeader.ShipDate.Value.Date > DateTime.Now.AddDays(-lastDays).Date && pod.PurchaseOrderHeader.ShipDate.Value.Date <= DateTime.Now.Date &&
+                pod.PurchaseOrderHeader.ShipDate >= fromDate && pod.PurchaseOrderHeader.ShipDate <= toDate &&
                 pod.PurchaseOrderHeader.StatusId == (int)PurchaseOrderStatusEnum.Completed).OrderByDescending(p => p.PurchaseOrderHeader.ShipDate).ToList();
 
             StringBuilder result = new StringBuilder();
@@ -38,33 +47,55 @@ namespace RecipiesModelNS
 
                 foreach (PurchaseOrderDetail pod in pods)
                 {
-                    double  tempBaseUnitsQuantity = pod.Product.GetBaseUnitMeasureQuantityForProduct(pod.StockedQuantity, pod.UnitMeasure, pod);
+                    double tempBaseUnitsQuantity = pod.Product.GetBaseUnitMeasureQuantityForProduct(pod.StockedQuantity, pod.UnitMeasure, pod);
                     baseUnitsQuantity += tempBaseUnitsQuantity;
                     totalPrice += (decimal)pod.StockedQuantity * pod.UnitPrice.GetValueOrDefault();
                     totalQuantity += pod.StockedQuantity;
 
-                    result.AppendLine(string.Format("Purchase order id: {0}, ship date: {1:dd/MM/yyyy}, base unit quantity: {2}, stocked quantity: {3}, unitPrice of vendor measure: {4}",
-                        pod.PurchaseOrderHeader.PurchaseOrderId, pod.PurchaseOrderHeader.ShipDate, tempBaseUnitsQuantity, pod.StockedQuantity, pod.UnitPrice));
+                    string productMeasureName = string.Empty;
+                    if (pod.Product != null && pod.Product.UnitMeasure != null)
+                    {
+                        productMeasureName = pod.Product.UnitMeasure.Name;
+                    }
+                    string podUnitMeasureName = string.Empty;
+                    if (pod.UnitMeasure != null)
+                    {
+                        podUnitMeasureName = pod.UnitMeasure.Name;
+                    }
+                    result.AppendLine(string.Format("Purchase order id: {0}, ship date: {1:dd/MM/yyyy}, base unit quantity: {2} {5}, stocked quantity: {3} {6}, unitPrice of vendor measure: {4}",
+                        pod.PurchaseOrderHeader.PurchaseOrderId, pod.PurchaseOrderHeader.ShipDate, tempBaseUnitsQuantity, pod.StockedQuantity, pod.UnitPrice, productMeasureName, podUnitMeasureName));
                 }
             }
             else
             {
-                PurchaseOrderDetail lastPod = context.PurchaseOrderDetails.Where(pod => pod.ProductId == ProductId && pod.PurchaseOrderHeader.ShipDate.HasValue &&
-                pod.PurchaseOrderHeader.ShipDate.Value.Date <= DateTime.Now.Date &&
+                DateTime nowDate = DateTime.Now.Date;
+                PurchaseOrderDetail lastPod = context.PurchaseOrderDetails.Where(pod => pod.ProductId == ProductId && 
+                pod.PurchaseOrderHeader.ShipDate <= nowDate &&
                 pod.PurchaseOrderHeader.StatusId == (int)PurchaseOrderStatusEnum.Completed).OrderByDescending(pod => pod.PurchaseOrderHeader.ShipDate).FirstOrDefault();
                 if (lastPod != null)
                 {
-                    
-                        double tempBaseUnitsQuantity = lastPod.Product.GetBaseUnitMeasureQuantityForProduct(lastPod.StockedQuantity, lastPod.UnitMeasure, lastPod);
-                        baseUnitsQuantity += tempBaseUnitsQuantity;
-                        totalPrice += (decimal)lastPod.StockedQuantity * lastPod.UnitPrice.GetValueOrDefault();
-                    
+
+                    double tempBaseUnitsQuantity = lastPod.Product.GetBaseUnitMeasureQuantityForProduct(lastPod.StockedQuantity, lastPod.UnitMeasure, lastPod);
+                    baseUnitsQuantity += tempBaseUnitsQuantity;
+                    totalPrice += (decimal)lastPod.StockedQuantity * lastPod.UnitPrice.GetValueOrDefault();
+
                     totalQuantity += lastPod.StockedQuantity;
-                    result.AppendLine(string.Format("Purchase order id: {0}, ship date: {1:dd/MM/yyyy}, base unit quantity: {2}, stocked quantity: {3}, unitPrice of vendor measure: {4}",
-                       lastPod.PurchaseOrderHeader.PurchaseOrderId, lastPod.PurchaseOrderHeader.ShipDate, tempBaseUnitsQuantity, lastPod.StockedQuantity, lastPod.UnitPrice));
+                    string productMeasureName = string.Empty;
+                    if (lastPod.Product != null && lastPod.Product.UnitMeasure != null)
+                    {
+                        productMeasureName = lastPod.Product.UnitMeasure.Name;
+                    }
+                    string podUnitMeasureName = string.Empty;
+                    if (lastPod.UnitMeasure != null)
+                    {
+                        podUnitMeasureName = lastPod.UnitMeasure.Name;
+                    }
+                    result.AppendLine(string.Format("Purchase order id: {0}, ship date: {1:dd/MM/yyyy}, base unit quantity: {2} {5}, stocked quantity: {3} {6}, unitPrice of vendor measure: {4}",
+                       lastPod.PurchaseOrderHeader.PurchaseOrderId, lastPod.PurchaseOrderHeader.ShipDate, tempBaseUnitsQuantity, lastPod.StockedQuantity, lastPod.UnitPrice,
+                       productMeasureName, podUnitMeasureName));
                 }
             }
-          
+
             double averagePrice = Math.Round((double)totalPrice / baseUnitsQuantity, 3);
 
             if (double.IsNaN(averagePrice) || double.IsInfinity(averagePrice))
@@ -107,8 +138,8 @@ namespace RecipiesModelNS
         public double GetPurchaseOrderStockedQuantity(DateTime fromDate, DateTime toDate)
         {
             List<PurchaseOrderHeader> purchaseOrderHeaders = ContextFactory.GetContextPerRequest().PurchaseOrderHeaders.Where(pu => pu.ShipDate.HasValue &&
-                pu.ShipDate.Value.Date >= fromDate.Date &&
-                pu.ShipDate.Value.Date <= toDate.Date && pu.PurchaseOrderDetails.Any(pod => pod.ProductId == ProductId)).ToList();
+                pu.ShipDate >= fromDate.Date &&
+                pu.ShipDate <= toDate.Date && pu.PurchaseOrderDetails.Any(pod => pod.ProductId == ProductId)).ToList();
             double stockedQuantityForPeriod = 0;
             foreach (PurchaseOrderHeader poh in purchaseOrderHeaders)
             {
@@ -123,8 +154,8 @@ namespace RecipiesModelNS
         public double GetSalesOrderQuantity(DateTime fromDate, DateTime toDate)
         {
             List<SalesOrderHeader> salesOrderHeaders = ContextFactory.GetContextPerRequest().SalesOrderHeaders.Where(soh => soh.ShippedDate.HasValue &&
-                soh.ShippedDate.Value.Date >= fromDate.Date &&
-                soh.ShippedDate.Value.Date <= toDate.Date &&
+                soh.ShippedDate >= fromDate.Date &&
+                soh.ShippedDate <= toDate.Date &&
                 soh.SalesOrderDetails.Any(sod => sod.Recipe.RecipeIngredients.Any(ri => ri.ProductId == ProductId))).ToList();
 
             return 0;

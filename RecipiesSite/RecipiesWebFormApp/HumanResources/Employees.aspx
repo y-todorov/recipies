@@ -5,11 +5,11 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceEmployee" Runat="server" ContextTypeName="RecipiesModelNS.RecipiesModel" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" ResourceSetName="Employees" />
+    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceEmployee" Runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="Employees" />
     <yordan:YordanCustomRadGrid ID="rgEmployee" runat="server" CellSpacing="0" ItemType="RecipiesModelNS.Employee" DataSourceID="OpenAccessLinqDataSourceEmployee" GridLines="None">
-        <MasterTableView AutoGenerateColumns="False" DataKeyNames="EmployeeID" DataSourceID="OpenAccessLinqDataSourceEmployee">
+        <MasterTableView AutoGenerateColumns="False" DataKeyNames="EmployeeId" DataSourceID="OpenAccessLinqDataSourceEmployee">
             <Columns>
-                <telerik:GridBoundColumn DataField="EmployeeID" DataType="System.Int32" FilterControlAltText="Filter EmployeeID column" HeaderText="EmployeeID" ReadOnly="True" SortExpression="EmployeeID" UniqueName="EmployeeID">
+                <telerik:GridBoundColumn DataField="EmployeeId" DataType="System.Int32" FilterControlAltText="Filter EmployeeId column" HeaderText="EmployeeId" ReadOnly="True" SortExpression="EmployeeId" UniqueName="EmployeeId">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
@@ -63,12 +63,7 @@
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
-                </telerik:GridBoundColumn>
-                <telerik:GridBoundColumn DataField="Extension" FilterControlAltText="Filter Extension column" HeaderText="Extension" SortExpression="Extension" UniqueName="Extension">
-                    <ColumnValidationSettings>
-                        <ModelErrorMessage Text="" />
-                    </ColumnValidationSettings>
-                </telerik:GridBoundColumn>
+                </telerik:GridBoundColumn>             
                 <telerik:GridBoundColumn DataField="PreviousExperience" FilterControlAltText="Filter PreviousExperience column" HeaderText="PreviousExperience" SortExpression="PreviousExperience" UniqueName="PreviousExperience">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />

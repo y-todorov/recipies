@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNet.SignalR.Client">
       <HintPath>..\..\packages\Microsoft.AspNet.SignalR.Client.1.1.3\lib\net45\Microsoft.AspNet.SignalR.Client.dll</HintPath>
     </Reference>
@@ -43,8 +46,13 @@
       <HintPath>OpenAccessAssemblies\Mono.Cecil.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
@@ -76,130 +84,151 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ContextFactory.cs" />
-    <Compile Include="Customer.generated.cs">
-      <DependentUpon>EntitiesModel.rlinq</DependentUpon>
+    <Compile Include="Customer.cs">
+      <DependentUpon>RecipiesModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Customer.partial.cs" />
-    <Compile Include="Department.generated.cs">
-      <DependentUpon>EntitiesModel.rlinq</DependentUpon>
+    <Compile Include="Department.cs">
+      <DependentUpon>RecipiesModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Department.partial.cs" />
-    <Compile Include="EmailTemplate.generated.cs">
-      <DependentUpon>EntitiesModel.rlinq</DependentUpon>
+    <Compile Include="EmailTemplate.cs">
+      <DependentUpon>RecipiesModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EmailTemplate.partial.cs" />
-    <Compile Include="Employee.partial.cs" />
-    <Compile Include="Employee.generated.cs">
-      <DependentUpon>EntitiesModel.rlinq</DependentUpon>
+    <Compile Include="Employee.cs">
+      <DependentUpon>RecipiesModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="EmployeeDepartment.generated.cs">
-      <DependentUpon>EntitiesModel.rlinq</DependentUpon>
+    <Compile Include="Employee.partial.cs" />
+    <Compile Include="EmployeeDepartment.cs">
+      <DependentUpon>RecipiesModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EmployeeDepartment.partial.cs" />
-    <Compile Include="EntitiesModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EntitiesModel.rlinq</DependentUpon>
-    </Compile>
-    <Compile Include="Inventory.generated.cs">
-      <DependentUpon>EntitiesModel.rlinq</DependentUpon>
+    <Compile Include="Inventory.cs">
+      <DependentUpon>RecipiesModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Inventory.partial.cs" />
-    <Compile Include="PaymentType.generated.cs">
-      <DependentUpon>EntitiesModel.rlinq</DependentUpon>
+    <Compile Include="PaymentType.cs">
+      <DependentUpon>RecipiesModel.tt</DependentUpon>
     </Compile>
     <Compile Include="PaymentType.partial.cs" />
-    <Compile Include="Product.generated.cs">
-      <DependentUpon>EntitiesModel.rlinq</DependentUpon>
+    <Compile Include="Product.cs">
+      <DependentUpon>RecipiesModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Product.partial.cs" />
-    <Compile Include="ProductCategory.generated.cs">
-      <DependentUpon>EntitiesModel.rlinq</DependentUpon>
+    <Compile Include="ProductCategory.cs">
+      <DependentUpon>RecipiesModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ProductCategory.partial.cs" />
-    <Compile Include="ProductHistory.generated.cs">
-      <DependentUpon>EntitiesModel.rlinq</DependentUpon>
+    <Compile Include="ProductHistory.cs">
+      <DependentUpon>RecipiesModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ProductHistory.partial.cs" />
-    <Compile Include="ProductVendor.generated.cs">
-      <DependentUpon>EntitiesModel.rlinq</DependentUpon>
+    <Compile Include="ProductVendor.cs">
+      <DependentUpon>RecipiesModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ProductVendor.partial.cs" />
-    <Compile Include="ProductWaste.generated.cs">
-      <DependentUpon>EntitiesModel.rlinq</DependentUpon>
+    <Compile Include="ProductWaste.cs">
+      <DependentUpon>RecipiesModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ProductWaste.partial.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PurchaseOrderDetail.cs" />
-    <Compile Include="PurchaseOrderDetail.generated.cs">
-      <DependentUpon>EntitiesModel.rlinq</DependentUpon>
+    <Compile Include="PurchaseOrderDetail.cs">
+      <DependentUpon>RecipiesModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="PurchaseOrderHeader.generated.cs">
-      <DependentUpon>EntitiesModel.rlinq</DependentUpon>
+    <Compile Include="PurchaseOrderDetail.partial.cs" />
+    <Compile Include="PurchaseOrderHeader.cs">
+      <DependentUpon>RecipiesModel.tt</DependentUpon>
     </Compile>
     <Compile Include="PurchaseOrderHeader.partial.cs" />
-    <Compile Include="PurchaseOrderStatus.generated.cs">
-      <DependentUpon>EntitiesModel.rlinq</DependentUpon>
+    <Compile Include="PurchaseOrderStatu.cs">
+      <DependentUpon>RecipiesModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Recipe.generated.cs">
-      <DependentUpon>EntitiesModel.rlinq</DependentUpon>
+    <Compile Include="Recipe.cs">
+      <DependentUpon>RecipiesModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Recipe.partial.cs" />
-    <Compile Include="RecipeIngredient.generated.cs">
-      <DependentUpon>EntitiesModel.rlinq</DependentUpon>
+    <Compile Include="RecipeIngredient.cs">
+      <DependentUpon>RecipiesModel.tt</DependentUpon>
     </Compile>
     <Compile Include="RecipeIngredient.partial.cs" />
-    <Compile Include="RecipeWaste.generated.cs">
-      <DependentUpon>EntitiesModel.rlinq</DependentUpon>
+    <Compile Include="RecipeWaste.cs">
+      <DependentUpon>RecipiesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RecipeWaste.partial.cs" />
+    <Compile Include="RecipiesEntities.partial.cs" />
+    <Compile Include="RecipiesModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RecipiesModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RecipiesModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RecipiesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RecipiesModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RecipiesModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="RecipiesModel.partial.cs" />
-    <Compile Include="SalesOrderDetail.generated.cs">
-      <DependentUpon>EntitiesModel.rlinq</DependentUpon>
+    <Compile Include="SalesOrderDetail.cs">
+      <DependentUpon>RecipiesModel.tt</DependentUpon>
     </Compile>
     <Compile Include="SalesOrderDetail.partial.cs" />
-    <Compile Include="SalesOrderHeader.cs" />
-    <Compile Include="SalesOrderHeader.generated.cs">
-      <DependentUpon>EntitiesModel.rlinq</DependentUpon>
+    <Compile Include="SalesOrderHeader.cs">
+      <DependentUpon>RecipiesModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="SalesOrderStatus.generated.cs">
-      <DependentUpon>EntitiesModel.rlinq</DependentUpon>
+    <Compile Include="SalesOrderHeader.partial.cs" />
+    <Compile Include="SalesOrderStatu.cs">
+      <DependentUpon>RecipiesModel.tt</DependentUpon>
     </Compile>
     <Compile Include="SalesOrderStatus.partial.cs" />
-    <Compile Include="Shift.generated.cs">
-      <DependentUpon>EntitiesModel.rlinq</DependentUpon>
+    <Compile Include="Shift.cs">
+      <DependentUpon>RecipiesModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Shift.partial.cs" />
-    <Compile Include="ShipMethod.generated.cs">
-      <DependentUpon>EntitiesModel.rlinq</DependentUpon>
+    <Compile Include="ShipMethod.cs">
+      <DependentUpon>RecipiesModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ShipMethod.partial.cs" />
-    <Compile Include="Store.generated.cs">
-      <DependentUpon>EntitiesModel.rlinq</DependentUpon>
+    <Compile Include="Store.cs">
+      <DependentUpon>RecipiesModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Store.partial.cs" />
-    <Compile Include="UnitMeasure.generated.cs">
-      <DependentUpon>EntitiesModel.rlinq</DependentUpon>
+    <Compile Include="UnitMeasure.cs">
+      <DependentUpon>RecipiesModel.tt</DependentUpon>
     </Compile>
     <Compile Include="UnitMeasure.partial.cs" />
-    <Compile Include="Vendor.generated.cs">
-      <DependentUpon>EntitiesModel.rlinq</DependentUpon>
+    <Compile Include="Vendor.cs">
+      <DependentUpon>RecipiesModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Vendor.partial.cs" />
     <Compile Include="YordanBaseEntity.cs" />
   </ItemGroup>
   <ItemGroup>
-    <OpenAccessDeploy Include="EntitiesModel.rlinq">
-      <Generator>MetaModelCodeGenerator</Generator>
-      <LastGenOutput>EntitiesModel.cs</LastGenOutput>
-    </OpenAccessDeploy>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.Config" />
-    <None Include="EntitiesModel.rlinq.diagram">
-      <DependentUpon>EntitiesModel.rlinq</DependentUpon>
-    </None>
     <None Include="OpenAccessAssemblies\enhancer.exe.config" />
     <None Include="OpenAccessAssemblies\OpenAccess.targets" />
     <None Include="OpenAccessAssemblies\venhance.exe.config" />
+    <EntityDeploy Include="RecipiesModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>RecipiesModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="RecipiesModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>RecipiesModel.edmx</DependentUpon>
+      <LastGenOutput>RecipiesModel.Context.cs</LastGenOutput>
+    </None>
+    <None Include="RecipiesModel.edmx.diagram">
+      <DependentUpon>RecipiesModel.edmx</DependentUpon>
+    </None>
+    <None Include="RecipiesModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>RecipiesModel.edmx</DependentUpon>
+      <LastGenOutput>RecipiesModel.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="OpenAccessAssemblies\enhancer.exe" />
@@ -219,6 +248,9 @@
       <Project>{a241735c-b9a0-4f9a-903c-e248c1c97990}</Project>
       <Name>Helpers</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="OpenAccessAssemblies\OpenAccess.targets" />
