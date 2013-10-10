@@ -69,7 +69,7 @@ namespace RecipiesModelNS
             else
             {
                 DateTime nowDate = DateTime.Now.Date;
-                PurchaseOrderDetail lastPod = context.PurchaseOrderDetails.Where(pod => pod.ProductId == ProductId && 
+                PurchaseOrderDetail lastPod = context.PurchaseOrderDetails.Where(pod => pod.ProductId == ProductId &&
                 pod.PurchaseOrderHeader.ShipDate <= nowDate &&
                 pod.PurchaseOrderHeader.StatusId == (int)PurchaseOrderStatusEnum.Completed).OrderByDescending(pod => pod.PurchaseOrderHeader.ShipDate).FirstOrDefault();
                 if (lastPod != null)
@@ -191,6 +191,60 @@ namespace RecipiesModelNS
                 throw new ApplicationException(string.Format("UnitMeasure mismatch in method GetBaseUnitMeasureQuantityForProduct! Product id: {0}, product unit measure: {1}, quantity unit measure: {2}, More info: {3}",
                     ProductId, UnitMeasure.Name, quantityUnitMeasure.Name, podMessage));
             }
+        }
+
+        public static void UpdateUnitPriceOfAllProducts()
+        {
+            List<Product> products = ContextFactory.GetContextPerRequest().Products.ToList();
+            foreach (Product product in products)
+            {
+                product.UnitPrice = (decimal?)product.GetAveragePriceLastDays(14);
+            }
+            ContextFactory.GetContextPerRequest().SaveChanges();
+        }
+
+        public static void UpdateUnitsInStockOfAllProducts()
+        {
+            List<Product> allProducts = ContextFactory.GetContextPerRequest().Products.ToList();
+            List<PurchaseOrderDetail> allCompletedPurchaseOrderDetals =
+                ContextFactory.GetContextPerRequest()
+                .PurchaseOrderDetails.Where(pod => pod.PurchaseOrderHeader.StatusId == (int)PurchaseOrderStatusEnum.Completed).ToList();
+
+            foreach (Product product in allProducts)
+            {
+                double unitsInStock = 0;
+                foreach (PurchaseOrderDetail pod in allCompletedPurchaseOrderDetals)
+                {
+                    if (pod.ProductId == product.ProductId)
+                    {
+                        unitsInStock += product.GetBaseUnitMeasureQuantityForProduct(pod.StockedQuantity, pod.UnitMeasure);
+                    }
+                }
+                product.UnitsInStock = unitsInStock;
+            }
+            ContextFactory.GetContextPerRequest().SaveChanges();
+        }
+
+        public static void UpdateUnitsOnOrderOfAllProducts()
+        {
+            List<Product> allProducts = ContextFactory.GetContextPerRequest().Products.ToList();
+            List<PurchaseOrderDetail> allCompletedPurchaseOrderDetals =
+                ContextFactory.GetContextPerRequest()
+                .PurchaseOrderDetails.Where(pod => pod.PurchaseOrderHeader.StatusId == (int)PurchaseOrderStatusEnum.Approved).ToList();
+
+            foreach (Product product in allProducts)
+            {
+                double unitsOnOrderk = 0;
+                foreach (PurchaseOrderDetail pod in allCompletedPurchaseOrderDetals)
+                {
+                    if (pod.ProductId == product.ProductId)
+                    {
+                        unitsOnOrderk += product.GetBaseUnitMeasureQuantityForProduct(pod.OrderQuantity, pod.UnitMeasure);
+                    }
+                }
+                product.UnitsOnOrder = unitsOnOrderk;
+            }
+            ContextFactory.GetContextPerRequest().SaveChanges();
         }
     }
 }

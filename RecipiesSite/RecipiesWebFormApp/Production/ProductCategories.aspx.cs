@@ -12,16 +12,6 @@ namespace RecipiesWebFormApp.Production
         protected void Page_Load(object sender, EventArgs e)
         {
 
-        }
-
-        protected void OpenAccessLinqDataSourceCategory_Inserting(object sender, LinqDataSourceInsertEventArgs e)
-        {
-
-        }
-
-        protected void OpenAccessLinqDataSourceCategory_Inserted(object sender, LinqDataSourceStatusEventArgs e)
-        {
-
-        }
+        }          
     }
 }
