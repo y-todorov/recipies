@@ -15,12 +15,10 @@
                     <PlotArea>
                         <Series>
                             <telerik:LineSeries DataFieldY="DayGp" Name="Value per day">
-                            </telerik:LineSeries>                           
+                            </telerik:LineSeries>
                         </Series>
                         <XAxis DataLabelsField="Days">
-                           <%-- <TitleAppearance Position="Center" RotationAngle="0" Text="Day" />--%>
                         </XAxis>
-                   
                         <YAxis>
                             <TitleAppearance Text="Value"></TitleAppearance>
                         </YAxis>
@@ -29,7 +27,7 @@
                     </ChartTitle>
                 </telerik:RadHtmlChart>
             </td>
-            
+
         </tr>
         <tr>
             <td>
@@ -57,13 +55,10 @@
                         <Series>
                             <telerik:ColumnSeries DataFieldY="ProductCount" Name="Product count">
                             </telerik:ColumnSeries>
-                             <telerik:ColumnSeries DataFieldY="ProductValue" Name="Product value">
+                            <telerik:ColumnSeries DataFieldY="ProductValue" Name="Product value">
                             </telerik:ColumnSeries>
                         </Series>
-                      <XAxis DataLabelsField="CategoryName">
-                              <%--<LabelsAppearance DataFormatString="{0:####}">
-                                <TextStyle  />
-                            </LabelsAppearance>--%>
+                        <XAxis DataLabelsField="CategoryName">
                         </XAxis>
                         <YAxis>
                             <TitleAppearance Text="Count"></TitleAppearance>
@@ -87,11 +82,9 @@
                             </telerik:ColumnSeries>
                         </Series>
                         <XAxis DataLabelsField="Name">
-                            <LabelsAppearance></LabelsAppearance>
                         </XAxis>
                         <YAxis>
                             <TitleAppearance Text="Units"></TitleAppearance>
-                            <MinorGridLines Visible="false"></MinorGridLines>
                         </YAxis>
                     </PlotArea>
                     <ChartTitle Text="Low products">
@@ -116,11 +109,6 @@
                     </ChartTitle>
                 </telerik:RadHtmlChart>
             </td>
-        </tr>
-        <tr>
-            <td>
-                &nbsp;</td>
-            <td></td>
         </tr>
     </table>
 </asp:Content>
