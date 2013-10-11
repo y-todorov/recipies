@@ -45,7 +45,6 @@
                         </XAxis>
                         <YAxis>
                             <TitleAppearance Text="Units"></TitleAppearance>
-                            <MinorGridLines Visible="false"></MinorGridLines>
                         </YAxis>
                     </PlotArea>
                     <ChartTitle Text="Last 10 modified products">

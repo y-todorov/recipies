@@ -18,16 +18,20 @@ namespace RecipiesWebFormApp
                 int maxXLabelTextLenght = 10;
 
                 rhcLast10ModifiedProducts.DataSource = ContextFactory.GetContextPerRequest().Products
-                    .OrderByDescending(pr => pr.ModifiedDate).Take(10).ToList();
+                    .OrderByDescending(pr => pr.ModifiedDate)
+                    .Select(p => new {p.UnitsInStock, p.UnitsOnOrder, p.ReorderLevel, Name = p.Name.Substring(0, maxXLabelTextLenght)}).Take(10).ToList();
 
                 rhcProductsCountByCategory.DataSource = ContextFactory.GetContextPerRequest().ProductCategories
                     .Select(cat => new { CategoryName = cat.Name.Substring(0, maxXLabelTextLenght), ProductCount = cat.Products.Count, ProductValue = cat.Products.Sum(p => p.StockValue) }).OrderByDescending(res => res.ProductCount).ToList();
 
                 rhcProductsForReorder.DataSource = ContextFactory.GetContextPerRequest().Products
-                    .Where(product => product.UnitsInStock <= product.ReorderLevel).OrderByDescending(product => product.ReorderLevel).Take(10).ToList();
+                    .Where(product => product.UnitsInStock <= product.ReorderLevel).OrderByDescending(product => product.ReorderLevel)
+                    .Select(p => new { p.UnitsInStock, p.UnitsOnOrder, p.ReorderLevel, Name = p.Name.Substring(0, maxXLabelTextLenght) }).Take(10).ToList();
 
                 rhcMostExpensiveProducts.DataSource = ContextFactory.GetContextPerRequest()
-                    .Products.OrderByDescending(product => product.UnitPrice).Take(10).ToList();
+                    .Products.OrderByDescending(product => product.UnitPrice)
+                    .Select(p => new { p.UnitPrice, Name = p.Name.Substring(0, maxXLabelTextLenght) })
+                    .Take(10).ToList();
 
                 List<GpHelper> list = new List<GpHelper>();
                 for (int i = 29; i >= 0; i--)
