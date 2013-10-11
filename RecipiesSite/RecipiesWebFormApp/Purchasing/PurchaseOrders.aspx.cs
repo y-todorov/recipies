@@ -299,6 +299,7 @@ namespace RecipiesWebFormApp.Purchasing
                     if (product != null)
                     {
                         //tbUnitPrice.Text = product.GetAveragePriceLastDays(14).ToString();
+                        //double vendorPrice = product.UnitPrice.GetValueOrDefault() * 
                         tbUnitPrice.Text = product.UnitPrice.GetValueOrDefault().ToString();
 
                         //dropDownUnitListColumn.DataSource = product.UnitMeasure.GetRelatedUnitMeasures();

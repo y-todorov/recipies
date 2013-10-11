@@ -58,8 +58,13 @@
                         <Series>
                             <telerik:ColumnSeries DataFieldY="ProductCount" Name="Product count">
                             </telerik:ColumnSeries>
+                             <telerik:ColumnSeries DataFieldY="ProductValue" Name="Product value">
+                            </telerik:ColumnSeries>
                         </Series>
-                        <XAxis DataLabelsField="CategoryName">
+                      <XAxis DataLabelsField="CategoryName">
+                              <%--<LabelsAppearance DataFormatString="{0:####}">
+                                <TextStyle  />
+                            </LabelsAppearance>--%>
                         </XAxis>
                         <YAxis>
                             <TitleAppearance Text="Count"></TitleAppearance>
