@@ -330,7 +330,9 @@ namespace RecipiesWebFormApp.Purchasing
                             coef = (decimal)product.GetBaseUnitMeasureQuantityForProduct(1, vendorUnitMeasure);
                         }
 
-                        tbUnitPrice.Text = (coef * product.UnitPrice.GetValueOrDefault()).ToString();
+                        //tbUnitPrice.Text = (coef * product.UnitPrice.GetValueOrDefault()).ToString();
+                        tbUnitPrice.Text = (coef * (decimal)product.GetAveragePriceLastDays(14)).ToString(); // .UnitPrice.GetValueOrDefault()).ToString();
+
 
                     }
                 }

@@ -22,7 +22,7 @@ namespace RecipiesModelNS
 
         public double GetAveragePriceLastDays(int lastDays)
         {
-            return 0;
+            //return 0;
             string help;
             return GetAveragePriceLastDays(lastDays, out help);
         }
