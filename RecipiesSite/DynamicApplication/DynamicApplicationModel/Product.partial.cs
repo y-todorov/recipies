@@ -126,7 +126,7 @@ namespace RecipiesModelNS
                 double sales = GetSalesOrderQuantity(inventory.ForDate.GetValueOrDefault(), forDate.Date);
 
                 double quantityByDocuments = inventory.StocktakeQuantity.GetValueOrDefault() + purchases - sales;
-                return quantityByDocuments;               
+                return quantityByDocuments;
             }
             return 0;
         }
@@ -194,7 +194,11 @@ namespace RecipiesModelNS
             List<Product> products = ContextFactory.GetContextPerRequest().Products.ToList();
             foreach (Product product in products)
             {
-                product.UnitPrice = (decimal?)product.GetAveragePriceLastDays(14);
+                decimal? averagePriceLastDays = (decimal?)product.GetAveragePriceLastDays(14);
+                if (averagePriceLastDays != product.UnitPrice)
+                {
+                    product.UnitPrice = averagePriceLastDays;
+                }
             }
             ContextFactory.GetContextPerRequest().SaveChanges();
         }
@@ -216,7 +220,10 @@ namespace RecipiesModelNS
                         unitsInStock += product.GetBaseUnitMeasureQuantityForProduct(pod.StockedQuantity, pod.UnitMeasure);
                     }
                 }
-                product.UnitsInStock = unitsInStock;
+                if (product.UnitsInStock != unitsInStock)
+                {
+                    product.UnitsInStock = unitsInStock;
+                }
             }
             ContextFactory.GetContextPerRequest().SaveChanges();
         }
@@ -238,7 +245,10 @@ namespace RecipiesModelNS
                         unitsOnOrderk += product.GetBaseUnitMeasureQuantityForProduct(pod.OrderQuantity, pod.UnitMeasure);
                     }
                 }
-                product.UnitsOnOrder = unitsOnOrderk;
+                if (product.UnitsOnOrder != unitsOnOrderk)
+                {
+                    product.UnitsOnOrder = unitsOnOrderk;
+                }
             }
             ContextFactory.GetContextPerRequest().SaveChanges();
         }
