@@ -305,9 +305,21 @@ namespace RecipiesWebFormApp.Purchasing
                 {
                     Product product = ContextFactory.GetContextPerRequest().Products.FirstOrDefault(p => p.ProductId == intProductId);
                     if (product != null)
-                    {
-                        //tbUnitPrice.Text = product.GetAveragePriceLastDays(14).ToString();
-                        //double vendorPrice = product.UnitPrice.GetValueOrDefault() * 
+                    {                       
+                        PurchaseOrderHeader purchaseOrder = ContextFactory.GetContextPerRequest().PurchaseOrderHeaders.FirstOrDefault(p => p.PurchaseOrderId == PurchaseOrderId);
+
+                        if (purchaseOrder.Vendor != null)
+                        {
+                            ProductVendor productVendor = ContextFactory.GetContextPerRequest().ProductVendors
+                                .Where(pv => pv.ProductId == product.ProductId && pv.VendorId == VendorId).ToList().FirstOrDefault();
+
+                            if (productVendor != null)
+                            {
+                                dropDownUnitListColumn.DataSource = new List<UnitMeasure>() { productVendor.UnitMeasure };
+                                dropDownUnitListColumn.DataBind();
+                            }
+                        }
+                        
                         int unitId;
                         int.TryParse(dropDownUnitListColumn.SelectedValue, out unitId);
 
@@ -319,22 +331,6 @@ namespace RecipiesWebFormApp.Purchasing
                         }
 
                         tbUnitPrice.Text = (coef * product.UnitPrice.GetValueOrDefault()).ToString();
-
-                        //dropDownUnitListColumn.DataSource = product.UnitMeasure.GetRelatedUnitMeasures();
-                        PurchaseOrderHeader purchaseOrder = ContextFactory.GetContextPerRequest().PurchaseOrderHeaders.FirstOrDefault(p => p.PurchaseOrderId == PurchaseOrderId);
-
-                        if (purchaseOrder.Vendor != null)
-                        {
-                            //ProductVendor productVendor = purchaseOrder.Vendor.ProductVendors.FirstOrDefault(pv => pv.ProductId == product.ProductId);
-                            ProductVendor productVendor = ContextFactory.GetContextPerRequest().ProductVendors
-                                .Where(pv => pv.ProductId == product.ProductId && pv.VendorId == VendorId).ToList().FirstOrDefault();
-
-                            if (productVendor != null)
-                            {
-                                dropDownUnitListColumn.DataSource = new List<UnitMeasure>() { productVendor.UnitMeasure };
-                                dropDownUnitListColumn.DataBind();
-                            }
-                        }
 
                     }
                 }

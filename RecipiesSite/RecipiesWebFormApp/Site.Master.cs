@@ -117,6 +117,8 @@ namespace RecipiesWebFormApp
         protected void RadScriptManager1_AsyncPostBackError(object sender, AsyncPostBackErrorEventArgs e)
         {
             Debugger.Break();
+            MasterRadNotification.Show("Error: " + e.Exception.Message);
+            //MasterRadWindowManager.RadAlert(e.Exception.Message, 400, 200, "Error", string.Empty);
         }
 
         public override void DataBind()
