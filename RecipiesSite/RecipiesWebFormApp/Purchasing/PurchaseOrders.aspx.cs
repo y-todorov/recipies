@@ -255,8 +255,11 @@ namespace RecipiesWebFormApp.Purchasing
                 dropDownProductListColumn.DataSource = filteredProducts;
                 dropDownProductListColumn.DataBind();
                 dropDownProductListColumn.SelectedIndexChanged += dropDownProductListColumn_SelectedIndexChanged;
-
                 dropDownProductListColumn.PreRender += dropDownProductListColumn_PreRender;
+
+                RadComboBox dropDownUnitListColumn = editedItem["DropDownUnitListColumn"].Controls[0] as RadComboBox;
+                dropDownUnitListColumn.AutoPostBack = true;
+                dropDownUnitListColumn.PreRender += dropDownUnitListColumn_PreRender;
 
                 if (e.Item is GridEditFormInsertItem || e.Item is GridDataInsertItem)
                 {
@@ -264,13 +267,18 @@ namespace RecipiesWebFormApp.Purchasing
                 }
                 else
                 {
-                    RadComboBox dropDownUnitListColumn = editedItem["DropDownUnitListColumn"].Controls[0] as RadComboBox;
+                    //RadComboBox dropDownUnitListColumn = editedItem["DropDownUnitListColumn"].Controls[0] as RadComboBox;
                     dropDownProductListColumn.Enabled = false;
                     dropDownUnitListColumn.Enabled = false;
 
                     // edit item
                 }
             }
+        }
+
+        void dropDownUnitListColumn_PreRender(object sender, EventArgs e)
+        {
+            dropDownProductListColumn_SelectedIndexChanged(sender, new RadComboBoxSelectedIndexChangedEventArgs(string.Empty, string.Empty, string.Empty, string.Empty));
         }
 
         void dropDownProductListColumn_PreRender(object sender, EventArgs e)
@@ -300,7 +308,17 @@ namespace RecipiesWebFormApp.Purchasing
                     {
                         //tbUnitPrice.Text = product.GetAveragePriceLastDays(14).ToString();
                         //double vendorPrice = product.UnitPrice.GetValueOrDefault() * 
-                        tbUnitPrice.Text = product.UnitPrice.GetValueOrDefault().ToString();
+                        int unitId;
+                        int.TryParse(dropDownUnitListColumn.SelectedValue, out unitId);
+
+                        UnitMeasure vendorUnitMeasure  = ContextFactory.GetContextPerRequest().UnitMeasures.Where(um => um.UnitMeasureId == unitId).FirstOrDefault();
+                        decimal coef = 1;
+                        if (vendorUnitMeasure != null)
+                        {
+                            coef = (decimal)product.GetBaseUnitMeasureQuantityForProduct(1, vendorUnitMeasure);
+                        }
+
+                        tbUnitPrice.Text = (coef * product.UnitPrice.GetValueOrDefault()).ToString();
 
                         //dropDownUnitListColumn.DataSource = product.UnitMeasure.GetRelatedUnitMeasures();
                         PurchaseOrderHeader purchaseOrder = ContextFactory.GetContextPerRequest().PurchaseOrderHeaders.FirstOrDefault(p => p.PurchaseOrderId == PurchaseOrderId);
