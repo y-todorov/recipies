@@ -44,10 +44,6 @@
             <End Role="Shift" EntitySet="Shift" />
             <End Role="EmployeeDepartment" EntitySet="EmployeeDepartment" />
           </AssociationSet>
-          <AssociationSet Name="FK_Inventory_Product" Association="RecipiesModelNS.Store.FK_Inventory_Product">
-            <End Role="Product" EntitySet="Product" />
-            <End Role="Inventory" EntitySet="Inventory" />
-          </AssociationSet>
           <AssociationSet Name="FK_Order_Customer" Association="RecipiesModelNS.Store.FK_Order_Customer">
             <End Role="Customer" EntitySet="Customer" />
             <End Role="SalesOrderHeader" EntitySet="SalesOrderHeader" />
@@ -64,11 +60,19 @@
             <End Role="Recipe" EntitySet="Recipe" />
             <End Role="SalesOrderDetail" EntitySet="SalesOrderDetail" />
           </AssociationSet>
+          <AssociationSet Name="FK_Product_Category" Association="RecipiesModelNS.Store.FK_Product_Category">
+            <End Role="ProductCategory" EntitySet="ProductCategory" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
           <AssociationSet Name="FK_Product_Store" Association="RecipiesModelNS.Store.FK_Product_Store">
             <End Role="Store" EntitySet="Store" />
             <End Role="Product" EntitySet="Product" />
           </AssociationSet>
-          <AssociationSet Name="FK_ProductVendor_Product1" Association="RecipiesModelNS.Store.FK_ProductVendor_Product1">
+          <AssociationSet Name="FK_Product_Unit" Association="RecipiesModelNS.Store.FK_Product_Unit">
+            <End Role="UnitMeasure" EntitySet="UnitMeasure" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductVendor_Product" Association="RecipiesModelNS.Store.FK_ProductVendor_Product">
             <End Role="Product" EntitySet="Product" />
             <End Role="ProductVendor" EntitySet="ProductVendor" />
           </AssociationSet>
@@ -80,11 +84,11 @@
             <End Role="Vendor" EntitySet="Vendor" />
             <End Role="ProductVendor" EntitySet="ProductVendor" />
           </AssociationSet>
-          <AssociationSet Name="FK_ProductWaste_0" Association="RecipiesModelNS.Store.FK_ProductWaste_0">
+          <AssociationSet Name="FK_ProductWaste_Product" Association="RecipiesModelNS.Store.FK_ProductWaste_Product">
             <End Role="Product" EntitySet="Product" />
             <End Role="ProductWaste" EntitySet="ProductWaste" />
           </AssociationSet>
-          <AssociationSet Name="FK_ProductWaste_1" Association="RecipiesModelNS.Store.FK_ProductWaste_1">
+          <AssociationSet Name="FK_ProductWaste_UnitMeasure" Association="RecipiesModelNS.Store.FK_ProductWaste_UnitMeasure">
             <End Role="UnitMeasure" EntitySet="UnitMeasure" />
             <End Role="ProductWaste" EntitySet="ProductWaste" />
           </AssociationSet>
@@ -128,11 +132,11 @@
             <End Role="Recipe" EntitySet="Recipe" />
             <End Role="RecipeIngredient" EntitySet="RecipeIngredient" />
           </AssociationSet>
-          <AssociationSet Name="FK_RecipeWaste_0" Association="RecipiesModelNS.Store.FK_RecipeWaste_0">
+          <AssociationSet Name="FK_RecipeWaste_Recipe" Association="RecipiesModelNS.Store.FK_RecipeWaste_Recipe">
             <End Role="Recipe" EntitySet="Recipe" />
             <End Role="RecipeWaste" EntitySet="RecipeWaste" />
           </AssociationSet>
-          <AssociationSet Name="FK_RecipeWaste_1" Association="RecipiesModelNS.Store.FK_RecipeWaste_1">
+          <AssociationSet Name="FK_RecipeWaste_UnitMeasure" Association="RecipiesModelNS.Store.FK_RecipeWaste_UnitMeasure">
             <End Role="UnitMeasure" EntitySet="UnitMeasure" />
             <End Role="RecipeWaste" EntitySet="RecipeWaste" />
           </AssociationSet>
@@ -143,14 +147,6 @@
           <AssociationSet Name="FK_SalesOrderHeader_SalesOrderStatus" Association="RecipiesModelNS.Store.FK_SalesOrderHeader_SalesOrderStatus">
             <End Role="SalesOrderStatus" EntitySet="SalesOrderStatus" />
             <End Role="SalesOrderHeader" EntitySet="SalesOrderHeader" />
-          </AssociationSet>
-          <AssociationSet Name="FK_xProduct_xCategory" Association="RecipiesModelNS.Store.FK_xProduct_xCategory">
-            <End Role="ProductCategory" EntitySet="ProductCategory" />
-            <End Role="Product" EntitySet="Product" />
-          </AssociationSet>
-          <AssociationSet Name="FK_xProduct_xUnit" Association="RecipiesModelNS.Store.FK_xProduct_xUnit">
-            <End Role="UnitMeasure" EntitySet="UnitMeasure" />
-            <End Role="Product" EntitySet="Product" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="EmailTemplate">
@@ -239,6 +235,8 @@
           <Property Name="SurplusValue" Type="float" StoreGeneratedPattern="Computed" />
           <Property Name="ModifiedDate" Type="datetime" />
           <Property Name="ModifiedByUser" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Descriminator" Type="nvarchar" MaxLength="1000" />
+          <Property Name="RecipeId" Type="int" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -552,18 +550,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Inventory_Product">
-          <End Role="Product" Type="RecipiesModelNS.Store.Product" Multiplicity="0..1" />
-          <End Role="Inventory" Type="RecipiesModelNS.Store.Inventory" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="ProductId" />
-            </Principal>
-            <Dependent Role="Inventory">
-              <PropertyRef Name="ProductId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Order_Customer">
           <End Role="Customer" Type="RecipiesModelNS.Store.Customer" Multiplicity="0..1" />
           <End Role="SalesOrderHeader" Type="RecipiesModelNS.Store.SalesOrderHeader" Multiplicity="*" />
@@ -612,6 +598,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Product_Category">
+          <End Role="ProductCategory" Type="RecipiesModelNS.Store.ProductCategory" Multiplicity="0..1" />
+          <End Role="Product" Type="RecipiesModelNS.Store.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductCategory">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Product_Store">
           <End Role="Store" Type="RecipiesModelNS.Store.Store" Multiplicity="0..1" />
           <End Role="Product" Type="RecipiesModelNS.Store.Product" Multiplicity="*" />
@@ -624,7 +622,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ProductVendor_Product1">
+        <Association Name="FK_Product_Unit">
+          <End Role="UnitMeasure" Type="RecipiesModelNS.Store.UnitMeasure" Multiplicity="0..1" />
+          <End Role="Product" Type="RecipiesModelNS.Store.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UnitMeasure">
+              <PropertyRef Name="UnitMeasureId" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="UnitMeasureId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductVendor_Product">
           <End Role="Product" Type="RecipiesModelNS.Store.Product" Multiplicity="0..1" />
           <End Role="ProductVendor" Type="RecipiesModelNS.Store.ProductVendor" Multiplicity="*" />
           <ReferentialConstraint>
@@ -660,7 +670,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ProductWaste_0">
+        <Association Name="FK_ProductWaste_Product">
           <End Role="Product" Type="RecipiesModelNS.Store.Product" Multiplicity="0..1" />
           <End Role="ProductWaste" Type="RecipiesModelNS.Store.ProductWaste" Multiplicity="*" />
           <ReferentialConstraint>
@@ -672,7 +682,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ProductWaste_1">
+        <Association Name="FK_ProductWaste_UnitMeasure">
           <End Role="UnitMeasure" Type="RecipiesModelNS.Store.UnitMeasure" Multiplicity="0..1" />
           <End Role="ProductWaste" Type="RecipiesModelNS.Store.ProductWaste" Multiplicity="*" />
           <ReferentialConstraint>
@@ -806,7 +816,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_RecipeWaste_0">
+        <Association Name="FK_RecipeWaste_Recipe">
           <End Role="Recipe" Type="RecipiesModelNS.Store.Recipe" Multiplicity="0..1" />
           <End Role="RecipeWaste" Type="RecipiesModelNS.Store.RecipeWaste" Multiplicity="*" />
           <ReferentialConstraint>
@@ -818,7 +828,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_RecipeWaste_1">
+        <Association Name="FK_RecipeWaste_UnitMeasure">
           <End Role="UnitMeasure" Type="RecipiesModelNS.Store.UnitMeasure" Multiplicity="0..1" />
           <End Role="RecipeWaste" Type="RecipiesModelNS.Store.RecipeWaste" Multiplicity="*" />
           <ReferentialConstraint>
@@ -851,30 +861,6 @@
             </Principal>
             <Dependent Role="SalesOrderHeader">
               <PropertyRef Name="StatusId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_xProduct_xCategory">
-          <End Role="ProductCategory" Type="RecipiesModelNS.Store.ProductCategory" Multiplicity="0..1" />
-          <End Role="Product" Type="RecipiesModelNS.Store.Product" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ProductCategory">
-              <PropertyRef Name="CategoryId" />
-            </Principal>
-            <Dependent Role="Product">
-              <PropertyRef Name="CategoryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_xProduct_xUnit">
-          <End Role="UnitMeasure" Type="RecipiesModelNS.Store.UnitMeasure" Multiplicity="0..1" />
-          <End Role="Product" Type="RecipiesModelNS.Store.Product" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UnitMeasure">
-              <PropertyRef Name="UnitMeasureId" />
-            </Principal>
-            <Dependent Role="Product">
-              <PropertyRef Name="UnitMeasureId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1125,6 +1111,8 @@
           <Property Type="DateTime" Name="ModifiedDate" Precision="3" />
           <Property Type="String" Name="ModifiedByUser" MaxLength="1000" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Product" Relationship="RecipiesModelNS.FK_Inventory_Product" FromRole="Inventory" ToRole="Product" />
+          <Property Type="String" Name="Descriminator" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="RecipeId" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -1380,9 +1368,9 @@
         </EntityType>
         <EntityType Name="Customer">
           <Key>
-            <PropertyRef Name="CustomerID" />
+            <PropertyRef Name="CustomerId" />
           </Key>
-          <Property Type="Int32" Name="CustomerID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="CustomerId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="CompanyName" MaxLength="1000" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="ContactName" MaxLength="1000" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Address" MaxLength="1000" FixedLength="false" Unicode="true" />
@@ -1772,7 +1760,7 @@
           <End Type="RecipiesModelNS.SalesOrderHeader" Role="SalesOrderHeader" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Customer">
-              <PropertyRef Name="CustomerID" />
+              <PropertyRef Name="CustomerId" />
             </Principal>
             <Dependent Role="SalesOrderHeader">
               <PropertyRef Name="CustomerId" />
@@ -1897,6 +1885,8 @@
           <EntitySetMapping Name="Inventories">
             <EntityTypeMapping TypeName="RecipiesModelNS.Inventory">
               <MappingFragment StoreEntitySet="Inventory">
+                <ScalarProperty Name="RecipeId" ColumnName="RecipeId" />
+                <ScalarProperty Name="Descriminator" ColumnName="Descriminator" />
                 <ScalarProperty Name="ModifiedByUser" ColumnName="ModifiedByUser" />
                 <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
                 <ScalarProperty Name="SurplusValue" ColumnName="SurplusValue" />
@@ -2151,7 +2141,7 @@
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="ContactName" ColumnName="ContactName" />
                 <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
-                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
