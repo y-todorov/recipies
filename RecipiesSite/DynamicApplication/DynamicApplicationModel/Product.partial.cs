@@ -111,6 +111,9 @@ namespace RecipiesModelNS
 
         public Inventory GetLastInventoryForDate(DateTime forDate)
         {
+            //Inventory lastInventory = ContextFactory.GetContextPerRequest().Inventories.Where(inv => inv.ProductId == ProductId && inv.ForDate <= forDate.Date)
+            //    .OrderByDescending(inv => inv.ForDate).FirstOrDefault();
+            //return lastInventory;
             Inventory lastInventory = ContextFactory.GetContextPerRequest().Inventories.Where(inv => inv.ProductId == ProductId && inv.ForDate <= forDate.Date)
                 .OrderByDescending(inv => inv.ForDate).FirstOrDefault();
             return lastInventory;

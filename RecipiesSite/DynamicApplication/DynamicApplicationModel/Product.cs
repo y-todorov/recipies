@@ -16,7 +16,6 @@ namespace RecipiesModelNS
     {
         public Product()
         {
-            this.Inventories = new HashSet<Inventory>();
             this.ProductVendors = new HashSet<ProductVendor>();
             this.ProductWastes = new HashSet<ProductWaste>();
             this.PurchaseOrderDetails = new HashSet<PurchaseOrderDetail>();
@@ -37,13 +36,12 @@ namespace RecipiesModelNS
         public string ModifiedByUser { get; set; }
         public double StockValue { get; set; }
     
-        public virtual ICollection<Inventory> Inventories { get; set; }
+        public virtual ProductCategory ProductCategory { get; set; }
         public virtual Store Store { get; set; }
+        public virtual UnitMeasure UnitMeasure { get; set; }
         public virtual ICollection<ProductVendor> ProductVendors { get; set; }
         public virtual ICollection<ProductWaste> ProductWastes { get; set; }
         public virtual ICollection<PurchaseOrderDetail> PurchaseOrderDetails { get; set; }
         public virtual ICollection<RecipeIngredient> RecipeIngredients { get; set; }
-        public virtual ProductCategory ProductCategory { get; set; }
-        public virtual UnitMeasure UnitMeasure { get; set; }
     }
 }

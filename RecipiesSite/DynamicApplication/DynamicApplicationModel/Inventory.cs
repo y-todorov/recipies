@@ -30,7 +30,5 @@ namespace RecipiesModelNS
         public string ModifiedByUser { get; set; }
         public string Descriminator { get; set; }
         public Nullable<int> RecipeId { get; set; }
-    
-        public virtual Product Product { get; set; }
     }
 }
