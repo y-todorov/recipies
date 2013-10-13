@@ -4,10 +4,10 @@
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
-    <yordan:YordanCustomOpenAccessLinqDataSource ID="YordanCustomOpenAccessLinqDataSource1" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="ProductWastes">
+    <yordan:YordanCustomOpenAccessLinqDataSource ID="YordanCustomOpenAccessLinqDataSource1" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="Wastes" ConnectionString="name=recipiesEntities" DefaultContainerName="RecipiesEntities" EnableFlattening="False" EntityTypeFilter="ProductWaste">
     </yordan:YordanCustomOpenAccessLinqDataSource>
     <yordan:YordanCustomRadGrid ID="YordanCustomRadGrid1" runat="server" DataSourceID="YordanCustomOpenAccessLinqDataSource1">
-        <MasterTableView AutoGenerateColumns="False" DataKeyNames="ProductWasteId" DataSourceID="YordanCustomOpenAccessLinqDataSource1">
+        <MasterTableView AutoGenerateColumns="False" DataKeyNames="WasteId" DataSourceID="YordanCustomOpenAccessLinqDataSource1">
             <Columns>
                 <telerik:GridBoundColumn DataField="ProductWasteId" DataType="System.Int32" FilterControlAltText="Filter ProductWasteId column" HeaderText="ProductWasteId" ReadOnly="True" SortExpression="ProductWasteId" UniqueName="ProductWasteId">
                     <ColumnValidationSettings>

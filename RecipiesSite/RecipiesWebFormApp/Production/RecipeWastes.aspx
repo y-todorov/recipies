@@ -7,7 +7,7 @@
     </yordan:YordanCustomOpenAccessLinqDataSource>
     <yordan:YordanCustomRadGrid ID="YordanCustomRadGrid1" runat="server" DataSourceID="oaldsRecipeWastes">
 
-        <MasterTableView AutoGenerateColumns="False" DataKeyNames="RecipeWasteId" DataSourceID="oaldsRecipeWastes">
+        <MasterTableView AutoGenerateColumns="False" DataKeyNames="WasteId" DataSourceID="oaldsRecipeWastes">
             <Columns>
                 <telerik:GridBoundColumn DataField="RecipeWasteId" DataType="System.Int32" FilterControlAltText="Filter RecipeWasteId column" HeaderText="RecipeWasteId" ReadOnly="True" SortExpression="RecipeWasteId" UniqueName="RecipeWasteId">
                     <columnvalidationsettings>
@@ -53,6 +53,6 @@
             </Columns>
         </MasterTableView>
     </yordan:YordanCustomRadGrid>
-    <yordan:YordanCustomOpenAccessLinqDataSource ID="oaldsRecipeWastes" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="RecipeWastes">
+    <yordan:YordanCustomOpenAccessLinqDataSource ID="oaldsRecipeWastes" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="Wastes" ConnectionString="name=recipiesEntities" DefaultContainerName="RecipiesEntities" EnableFlattening="False" EntityTypeFilter="RecipeWaste">
     </yordan:YordanCustomOpenAccessLinqDataSource>
 </asp:Content>

@@ -17,10 +17,10 @@ namespace RecipiesModelNS
         public Product()
         {
             this.ProductVendors = new HashSet<ProductVendor>();
-            this.ProductWastes = new HashSet<ProductWaste>();
             this.PurchaseOrderDetails = new HashSet<PurchaseOrderDetail>();
             this.RecipeIngredients = new HashSet<RecipeIngredient>();
             this.ProductInventories = new HashSet<ProductInventory>();
+            this.ProductWastes = new HashSet<ProductWaste>();
         }
     
         public int ProductId { get; set; }
@@ -41,9 +41,9 @@ namespace RecipiesModelNS
         public virtual Store Store { get; set; }
         public virtual UnitMeasure UnitMeasure { get; set; }
         public virtual ICollection<ProductVendor> ProductVendors { get; set; }
-        public virtual ICollection<ProductWaste> ProductWastes { get; set; }
         public virtual ICollection<PurchaseOrderDetail> PurchaseOrderDetails { get; set; }
         public virtual ICollection<RecipeIngredient> RecipeIngredients { get; set; }
         public virtual ICollection<ProductInventory> ProductInventories { get; set; }
+        public virtual ICollection<ProductWaste> ProductWastes { get; set; }
     }
 }

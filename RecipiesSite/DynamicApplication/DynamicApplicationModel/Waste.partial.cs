@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RecipiesModelNS
 {
-    public partial class RecipeWaste : YordanBaseEntity
+    public partial class Waste : YordanBaseEntity
     {
     }
 }

@@ -17,10 +17,9 @@ namespace RecipiesModelNS
         public UnitMeasure()
         {
             this.Products = new HashSet<Product>();
-            this.ProductWastes = new HashSet<ProductWaste>();
-            this.RecipeWastes = new HashSet<RecipeWaste>();
             this.ProductVendors = new HashSet<ProductVendor>();
             this.PurchaseOrderDetails = new HashSet<PurchaseOrderDetail>();
+            this.Wastes = new HashSet<Waste>();
         }
     
         public int UnitMeasureId { get; set; }
@@ -32,9 +31,8 @@ namespace RecipiesModelNS
         public string ModifiedByUser { get; set; }
     
         public virtual ICollection<Product> Products { get; set; }
-        public virtual ICollection<ProductWaste> ProductWastes { get; set; }
-        public virtual ICollection<RecipeWaste> RecipeWastes { get; set; }
         public virtual ICollection<ProductVendor> ProductVendors { get; set; }
         public virtual ICollection<PurchaseOrderDetail> PurchaseOrderDetails { get; set; }
+        public virtual ICollection<Waste> Wastes { get; set; }
     }
 }

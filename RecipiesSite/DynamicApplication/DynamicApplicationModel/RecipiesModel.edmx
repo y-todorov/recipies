@@ -23,6 +23,7 @@
           <EntitySet Name="RecipeWaste" EntityType="RecipiesModelNS.Store.RecipeWaste" store:Type="Tables" Schema="Production" />
           <EntitySet Name="Store" EntityType="RecipiesModelNS.Store.Store" store:Type="Tables" Schema="Production" />
           <EntitySet Name="UnitMeasure" EntityType="RecipiesModelNS.Store.UnitMeasure" store:Type="Tables" Schema="Production" />
+          <EntitySet Name="Waste" EntityType="RecipiesModelNS.Store.Waste" store:Type="Tables" Schema="Production" />
           <EntitySet Name="ProductVendor" EntityType="RecipiesModelNS.Store.ProductVendor" store:Type="Tables" Schema="Purchasing" />
           <EntitySet Name="PurchaseOrderDetail" EntityType="RecipiesModelNS.Store.PurchaseOrderDetail" store:Type="Tables" Schema="Purchasing" />
           <EntitySet Name="PurchaseOrderHeader" EntityType="RecipiesModelNS.Store.PurchaseOrderHeader" store:Type="Tables" Schema="Purchasing" />
@@ -100,6 +101,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_ProductWaste_UnitMeasure" Association="RecipiesModelNS.Store.FK_ProductWaste_UnitMeasure">
             <End Role="UnitMeasure" EntitySet="UnitMeasure" />
+            <End Role="Waste" EntitySet="Waste" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductWaste_Waste" Association="RecipiesModelNS.Store.FK_ProductWaste_Waste">
+            <End Role="Waste" EntitySet="Waste" />
             <End Role="ProductWaste" EntitySet="ProductWaste" />
           </AssociationSet>
           <AssociationSet Name="FK_PurchaseOrderDetail_Product" Association="RecipiesModelNS.Store.FK_PurchaseOrderDetail_Product">
@@ -154,8 +159,8 @@
             <End Role="Recipe" EntitySet="Recipe" />
             <End Role="RecipeWaste" EntitySet="RecipeWaste" />
           </AssociationSet>
-          <AssociationSet Name="FK_RecipeWaste_UnitMeasure" Association="RecipiesModelNS.Store.FK_RecipeWaste_UnitMeasure">
-            <End Role="UnitMeasure" EntitySet="UnitMeasure" />
+          <AssociationSet Name="FK_RecipeWaste_Waste" Association="RecipiesModelNS.Store.FK_RecipeWaste_Waste">
+            <End Role="Waste" EntitySet="Waste" />
             <End Role="RecipeWaste" EntitySet="RecipeWaste" />
           </AssociationSet>
           <AssociationSet Name="FK_SalesOrderHeader_PaymentType" Association="RecipiesModelNS.Store.FK_SalesOrderHeader_PaymentType">
@@ -307,16 +312,10 @@
         </EntityType>
         <EntityType Name="ProductWaste">
           <Key>
-            <PropertyRef Name="ProductWasteId" />
+            <PropertyRef Name="WasteId" />
           </Key>
-          <Property Name="ProductWasteId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="WasteId" Type="int" Nullable="false" />
           <Property Name="ProductId" Type="int" />
-          <Property Name="UnitMeasureId" Type="int" />
-          <Property Name="Quantity" Type="float" />
-          <Property Name="WasteValue" Type="float" Nullable="false" StoreGeneratedPattern="Computed" />
-          <Property Name="UnitPrice" Type="money" />
-          <Property Name="ModifiedDate" Type="datetime" />
-          <Property Name="ModifiedByUser" Type="nvarchar" MaxLength="1000" />
         </EntityType>
         <EntityType Name="Recipe">
           <Key>
@@ -354,16 +353,10 @@
         </EntityType>
         <EntityType Name="RecipeWaste">
           <Key>
-            <PropertyRef Name="RecipeWasteId" />
+            <PropertyRef Name="WasteId" />
           </Key>
-          <Property Name="RecipeWasteId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="WasteId" Type="int" Nullable="false" />
           <Property Name="RecipeId" Type="int" />
-          <Property Name="UnitMeasureId" Type="int" />
-          <Property Name="Quantity" Type="float" />
-          <Property Name="WasteValue" Type="float" Nullable="false" StoreGeneratedPattern="Computed" />
-          <Property Name="UnitPrice" Type="money" />
-          <Property Name="ModifiedDate" Type="datetime" />
-          <Property Name="ModifiedByUser" Type="nvarchar" MaxLength="1000" />
         </EntityType>
         <EntityType Name="Store">
           <Key>
@@ -383,6 +376,18 @@
           <Property Name="IsBaseUnit" Type="bit" />
           <Property Name="BaseUnitId" Type="int" />
           <Property Name="BaseUnitFactor" Type="float" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="ModifiedByUser" Type="nvarchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="Waste">
+          <Key>
+            <PropertyRef Name="WasteId" />
+          </Key>
+          <Property Name="WasteId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UnitMeasureId" Type="int" />
+          <Property Name="Quantity" Type="float" />
+          <Property Name="WasteValue" Type="float" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="UnitPrice" Type="money" />
           <Property Name="ModifiedDate" Type="datetime" />
           <Property Name="ModifiedByUser" Type="nvarchar" MaxLength="1000" />
         </EntityType>
@@ -737,13 +742,25 @@
         </Association>
         <Association Name="FK_ProductWaste_UnitMeasure">
           <End Role="UnitMeasure" Type="RecipiesModelNS.Store.UnitMeasure" Multiplicity="0..1" />
-          <End Role="ProductWaste" Type="RecipiesModelNS.Store.ProductWaste" Multiplicity="*" />
+          <End Role="Waste" Type="RecipiesModelNS.Store.Waste" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UnitMeasure">
               <PropertyRef Name="UnitMeasureId" />
             </Principal>
-            <Dependent Role="ProductWaste">
+            <Dependent Role="Waste">
               <PropertyRef Name="UnitMeasureId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductWaste_Waste">
+          <End Role="Waste" Type="RecipiesModelNS.Store.Waste" Multiplicity="1" />
+          <End Role="ProductWaste" Type="RecipiesModelNS.Store.ProductWaste" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Waste">
+              <PropertyRef Name="WasteId" />
+            </Principal>
+            <Dependent Role="ProductWaste">
+              <PropertyRef Name="WasteId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -905,15 +922,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_RecipeWaste_UnitMeasure">
-          <End Role="UnitMeasure" Type="RecipiesModelNS.Store.UnitMeasure" Multiplicity="0..1" />
-          <End Role="RecipeWaste" Type="RecipiesModelNS.Store.RecipeWaste" Multiplicity="*" />
+        <Association Name="FK_RecipeWaste_Waste">
+          <End Role="Waste" Type="RecipiesModelNS.Store.Waste" Multiplicity="1" />
+          <End Role="RecipeWaste" Type="RecipiesModelNS.Store.RecipeWaste" Multiplicity="0..1" />
           <ReferentialConstraint>
-            <Principal Role="UnitMeasure">
-              <PropertyRef Name="UnitMeasureId" />
+            <Principal Role="Waste">
+              <PropertyRef Name="WasteId" />
             </Principal>
             <Dependent Role="RecipeWaste">
-              <PropertyRef Name="UnitMeasureId" />
+              <PropertyRef Name="WasteId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -955,10 +972,8 @@
           <EntitySet Name="Products" EntityType="RecipiesModelNS.Product" />
           <EntitySet Name="ProductCategories" EntityType="RecipiesModelNS.ProductCategory" />
           <EntitySet Name="ProductHistories" EntityType="RecipiesModelNS.ProductHistory" />
-          <EntitySet Name="ProductWastes" EntityType="RecipiesModelNS.ProductWaste" />
           <EntitySet Name="Recipes" EntityType="RecipiesModelNS.Recipe" />
           <EntitySet Name="RecipeIngredients" EntityType="RecipiesModelNS.RecipeIngredient" />
-          <EntitySet Name="RecipeWastes" EntityType="RecipiesModelNS.RecipeWaste" />
           <EntitySet Name="Stores" EntityType="RecipiesModelNS.Store" />
           <EntitySet Name="UnitMeasures" EntityType="RecipiesModelNS.UnitMeasure" />
           <EntitySet Name="ProductVendors" EntityType="RecipiesModelNS.ProductVendor" />
@@ -1008,10 +1023,6 @@
             <End Role="Product" EntitySet="Products" />
             <End Role="ProductVendor" EntitySet="ProductVendors" />
           </AssociationSet>
-          <AssociationSet Name="FK_ProductWaste_Product" Association="RecipiesModelNS.FK_ProductWaste_Product">
-            <End Role="Product" EntitySet="Products" />
-            <End Role="ProductWaste" EntitySet="ProductWastes" />
-          </AssociationSet>
           <AssociationSet Name="FK_PurchaseOrderDetail_Product" Association="RecipiesModelNS.FK_PurchaseOrderDetail_Product">
             <End Role="Product" EntitySet="Products" />
             <End Role="PurchaseOrderDetail" EntitySet="PurchaseOrderDetails" />
@@ -1024,10 +1035,6 @@
             <End Role="ProductCategory" EntitySet="ProductCategories" />
             <End Role="Recipe" EntitySet="Recipes" />
           </AssociationSet>
-          <AssociationSet Name="FK_ProductWaste_UnitMeasure" Association="RecipiesModelNS.FK_ProductWaste_UnitMeasure">
-            <End Role="UnitMeasure" EntitySet="UnitMeasures" />
-            <End Role="ProductWaste" EntitySet="ProductWastes" />
-          </AssociationSet>
           <AssociationSet Name="FK_OrderDetail_Recipe" Association="RecipiesModelNS.FK_OrderDetail_Recipe">
             <End Role="Recipe" EntitySet="Recipes" />
             <End Role="SalesOrderDetail" EntitySet="SalesOrderDetails" />
@@ -1035,14 +1042,6 @@
           <AssociationSet Name="FK_RecipeIngredient_Recipe" Association="RecipiesModelNS.FK_RecipeIngredient_Recipe">
             <End Role="Recipe" EntitySet="Recipes" />
             <End Role="RecipeIngredient" EntitySet="RecipeIngredients" />
-          </AssociationSet>
-          <AssociationSet Name="FK_RecipeWaste_Recipe" Association="RecipiesModelNS.FK_RecipeWaste_Recipe">
-            <End Role="Recipe" EntitySet="Recipes" />
-            <End Role="RecipeWaste" EntitySet="RecipeWastes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_RecipeWaste_UnitMeasure" Association="RecipiesModelNS.FK_RecipeWaste_UnitMeasure">
-            <End Role="UnitMeasure" EntitySet="UnitMeasures" />
-            <End Role="RecipeWaste" EntitySet="RecipeWastes" />
           </AssociationSet>
           <AssociationSet Name="FK_ProductVendor_UnitMeasure" Association="RecipiesModelNS.FK_ProductVendor_UnitMeasure">
             <End Role="UnitMeasure" EntitySet="UnitMeasures" />
@@ -1103,6 +1102,27 @@
           <AssociationSet Name="FK_RecipeInventory_Inventory" Association="RecipiesModelNS.FK_RecipeInventory_Inventory">
             <End Role="RecipeInventory" EntitySet="Inventories" />
             <End Role="RecipeInventory1" EntitySet="Inventories" />
+          </AssociationSet>
+          <EntitySet Name="Wastes" EntityType="RecipiesModelNS.Waste" />
+          <AssociationSet Name="FK_ProductWaste_Product" Association="RecipiesModelNS.FK_ProductWaste_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="ProductWaste" EntitySet="Wastes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductWaste_Waste" Association="RecipiesModelNS.FK_ProductWaste_Waste">
+            <End Role="Waste" EntitySet="Wastes" />
+            <End Role="ProductWaste" EntitySet="Wastes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RecipeWaste_Recipe" Association="RecipiesModelNS.FK_RecipeWaste_Recipe">
+            <End Role="Recipe" EntitySet="Recipes" />
+            <End Role="RecipeWaste" EntitySet="Wastes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RecipeWaste_Waste" Association="RecipiesModelNS.FK_RecipeWaste_Waste">
+            <End Role="Waste" EntitySet="Wastes" />
+            <End Role="RecipeWaste" EntitySet="Wastes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductWaste_UnitMeasure" Association="RecipiesModelNS.FK_ProductWaste_UnitMeasure">
+            <End Role="UnitMeasure" EntitySet="UnitMeasures" />
+            <End Role="Waste" EntitySet="Wastes" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="EmailTemplate">
@@ -1220,10 +1240,10 @@
           <NavigationProperty Name="Store" Relationship="RecipiesModelNS.FK_Product_Store" FromRole="Product" ToRole="Store" />
           <NavigationProperty Name="UnitMeasure" Relationship="RecipiesModelNS.FK_Product_Unit" FromRole="Product" ToRole="UnitMeasure" />
           <NavigationProperty Name="ProductVendors" Relationship="RecipiesModelNS.FK_ProductVendor_Product" FromRole="Product" ToRole="ProductVendor" />
-          <NavigationProperty Name="ProductWastes" Relationship="RecipiesModelNS.FK_ProductWaste_Product" FromRole="Product" ToRole="ProductWaste" />
           <NavigationProperty Name="PurchaseOrderDetails" Relationship="RecipiesModelNS.FK_PurchaseOrderDetail_Product" FromRole="Product" ToRole="PurchaseOrderDetail" />
           <NavigationProperty Name="RecipeIngredients" Relationship="RecipiesModelNS.FK_RecipeIngredient_Product" FromRole="Product" ToRole="RecipeIngredient" />
           <NavigationProperty Name="ProductInventories" Relationship="RecipiesModelNS.FK_ProductInventory_Product" FromRole="Product" ToRole="ProductInventory" />
+          <NavigationProperty Name="ProductWastes" Relationship="RecipiesModelNS.FK_ProductWaste_Product" FromRole="Product" ToRole="ProductWaste" />
         </EntityType>
         <EntityType Name="ProductCategory">
           <Key>
@@ -1254,21 +1274,6 @@
           <Property Type="DateTime" Name="ModifiedDate" Precision="3" />
           <Property Type="String" Name="ModifiedByUser" MaxLength="1000" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="ProductWaste">
-          <Key>
-            <PropertyRef Name="ProductWasteId" />
-          </Key>
-          <Property Type="Int32" Name="ProductWasteId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="ProductId" />
-          <Property Type="Int32" Name="UnitMeasureId" />
-          <Property Type="Double" Name="Quantity" />
-          <Property Type="Double" Name="WasteValue" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
-          <Property Type="Decimal" Name="UnitPrice" Precision="19" Scale="4" />
-          <Property Type="DateTime" Name="ModifiedDate" Precision="3" />
-          <Property Type="String" Name="ModifiedByUser" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Product" Relationship="RecipiesModelNS.FK_ProductWaste_Product" FromRole="ProductWaste" ToRole="Product" />
-          <NavigationProperty Name="UnitMeasure" Relationship="RecipiesModelNS.FK_ProductWaste_UnitMeasure" FromRole="ProductWaste" ToRole="UnitMeasure" />
-        </EntityType>
         <EntityType Name="Recipe">
           <Key>
             <PropertyRef Name="RecipeId" />
@@ -1285,8 +1290,8 @@
           <NavigationProperty Name="ProductCategory" Relationship="RecipiesModelNS.FK_Recipe_ProductCategory" FromRole="Recipe" ToRole="ProductCategory" />
           <NavigationProperty Name="SalesOrderDetails" Relationship="RecipiesModelNS.FK_OrderDetail_Recipe" FromRole="Recipe" ToRole="SalesOrderDetail" />
           <NavigationProperty Name="RecipeIngredients" Relationship="RecipiesModelNS.FK_RecipeIngredient_Recipe" FromRole="Recipe" ToRole="RecipeIngredient" />
-          <NavigationProperty Name="RecipeWastes" Relationship="RecipiesModelNS.FK_RecipeWaste_Recipe" FromRole="Recipe" ToRole="RecipeWaste" />
           <NavigationProperty Name="RecipeInventories" Relationship="RecipiesModelNS.FK_RecipeInventory_Recipe" FromRole="Recipe" ToRole="RecipeInventory" />
+          <NavigationProperty Name="RecipeWastes" Relationship="RecipiesModelNS.FK_RecipeWaste_Recipe" FromRole="Recipe" ToRole="RecipeWaste" />
         </EntityType>
         <EntityType Name="RecipeIngredient">
           <Key>
@@ -1302,21 +1307,6 @@
           <Property Type="Double" Name="TotalValue" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
           <NavigationProperty Name="Product" Relationship="RecipiesModelNS.FK_RecipeIngredient_Product" FromRole="RecipeIngredient" ToRole="Product" />
           <NavigationProperty Name="Recipe" Relationship="RecipiesModelNS.FK_RecipeIngredient_Recipe" FromRole="RecipeIngredient" ToRole="Recipe" />
-        </EntityType>
-        <EntityType Name="RecipeWaste">
-          <Key>
-            <PropertyRef Name="RecipeWasteId" />
-          </Key>
-          <Property Type="Int32" Name="RecipeWasteId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="RecipeId" />
-          <Property Type="Int32" Name="UnitMeasureId" />
-          <Property Type="Double" Name="Quantity" />
-          <Property Type="Double" Name="WasteValue" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
-          <Property Type="Decimal" Name="UnitPrice" Precision="19" Scale="4" />
-          <Property Type="DateTime" Name="ModifiedDate" Precision="3" />
-          <Property Type="String" Name="ModifiedByUser" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Recipe" Relationship="RecipiesModelNS.FK_RecipeWaste_Recipe" FromRole="RecipeWaste" ToRole="Recipe" />
-          <NavigationProperty Name="UnitMeasure" Relationship="RecipiesModelNS.FK_RecipeWaste_UnitMeasure" FromRole="RecipeWaste" ToRole="UnitMeasure" />
         </EntityType>
         <EntityType Name="Store">
           <Key>
@@ -1340,10 +1330,9 @@
           <Property Type="DateTime" Name="ModifiedDate" Precision="3" />
           <Property Type="String" Name="ModifiedByUser" MaxLength="1000" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Products" Relationship="RecipiesModelNS.FK_Product_Unit" FromRole="UnitMeasure" ToRole="Product" />
-          <NavigationProperty Name="ProductWastes" Relationship="RecipiesModelNS.FK_ProductWaste_UnitMeasure" FromRole="UnitMeasure" ToRole="ProductWaste" />
-          <NavigationProperty Name="RecipeWastes" Relationship="RecipiesModelNS.FK_RecipeWaste_UnitMeasure" FromRole="UnitMeasure" ToRole="RecipeWaste" />
           <NavigationProperty Name="ProductVendors" Relationship="RecipiesModelNS.FK_ProductVendor_UnitMeasure" FromRole="UnitMeasure" ToRole="ProductVendor" />
           <NavigationProperty Name="PurchaseOrderDetails" Relationship="RecipiesModelNS.FK_PurchaseOrderDetail_UnitMeasure" FromRole="UnitMeasure" ToRole="PurchaseOrderDetail" />
+          <NavigationProperty Name="Wastes" Relationship="RecipiesModelNS.FK_ProductWaste_UnitMeasure" FromRole="UnitMeasure" ToRole="Waste" />
         </EntityType>
         <EntityType Name="ProductVendor">
           <Key>
@@ -1635,18 +1624,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ProductWaste_Product">
-          <End Type="RecipiesModelNS.Product" Role="Product" Multiplicity="0..1" />
-          <End Type="RecipiesModelNS.ProductWaste" Role="ProductWaste" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="ProductId" />
-            </Principal>
-            <Dependent Role="ProductWaste">
-              <PropertyRef Name="ProductId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_PurchaseOrderDetail_Product">
           <End Type="RecipiesModelNS.Product" Role="Product" Multiplicity="0..1" />
           <End Type="RecipiesModelNS.PurchaseOrderDetail" Role="PurchaseOrderDetail" Multiplicity="*" />
@@ -1683,18 +1660,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ProductWaste_UnitMeasure">
-          <End Type="RecipiesModelNS.UnitMeasure" Role="UnitMeasure" Multiplicity="0..1" />
-          <End Type="RecipiesModelNS.ProductWaste" Role="ProductWaste" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UnitMeasure">
-              <PropertyRef Name="UnitMeasureId" />
-            </Principal>
-            <Dependent Role="ProductWaste">
-              <PropertyRef Name="UnitMeasureId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_OrderDetail_Recipe">
           <End Type="RecipiesModelNS.Recipe" Role="Recipe" Multiplicity="0..1" />
           <End Type="RecipiesModelNS.SalesOrderDetail" Role="SalesOrderDetail" Multiplicity="*" />
@@ -1716,30 +1681,6 @@
             </Principal>
             <Dependent Role="RecipeIngredient">
               <PropertyRef Name="RecipeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_RecipeWaste_Recipe">
-          <End Type="RecipiesModelNS.Recipe" Role="Recipe" Multiplicity="0..1" />
-          <End Type="RecipiesModelNS.RecipeWaste" Role="RecipeWaste" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Recipe">
-              <PropertyRef Name="RecipeId" />
-            </Principal>
-            <Dependent Role="RecipeWaste">
-              <PropertyRef Name="RecipeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_RecipeWaste_UnitMeasure">
-          <End Type="RecipiesModelNS.UnitMeasure" Role="UnitMeasure" Multiplicity="0..1" />
-          <End Type="RecipiesModelNS.RecipeWaste" Role="RecipeWaste" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UnitMeasure">
-              <PropertyRef Name="UnitMeasureId" />
-            </Principal>
-            <Dependent Role="RecipeWaste">
-              <PropertyRef Name="UnitMeasureId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1933,6 +1874,89 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="ProductWaste" BaseType="RecipiesModelNS.Waste">
+          <Property Type="Int32" Name="ProductId" />
+          <NavigationProperty Name="Product" Relationship="RecipiesModelNS.FK_ProductWaste_Product" FromRole="ProductWaste" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="RecipeWaste" BaseType="RecipiesModelNS.Waste">
+          <Property Type="Int32" Name="RecipeId" />
+          <NavigationProperty Name="Recipe" Relationship="RecipiesModelNS.FK_RecipeWaste_Recipe" FromRole="RecipeWaste" ToRole="Recipe" />
+        </EntityType>
+        <EntityType Name="Waste" Abstract="true">
+          <Key>
+            <PropertyRef Name="WasteId" />
+          </Key>
+          <Property Type="Int32" Name="WasteId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="UnitMeasureId" />
+          <Property Type="Double" Name="Quantity" />
+          <Property Type="Double" Name="WasteValue" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Type="Decimal" Name="UnitPrice" Precision="19" Scale="4" />
+          <Property Type="DateTime" Name="ModifiedDate" Precision="3" />
+          <Property Type="String" Name="ModifiedByUser" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ProductWaste" Relationship="RecipiesModelNS.FK_ProductWaste_Waste" FromRole="Waste" ToRole="ProductWaste" />
+          <NavigationProperty Name="RecipeWaste" Relationship="RecipiesModelNS.FK_RecipeWaste_Waste" FromRole="Waste" ToRole="RecipeWaste" />
+          <NavigationProperty Name="UnitMeasure" Relationship="RecipiesModelNS.FK_ProductWaste_UnitMeasure" FromRole="Waste" ToRole="UnitMeasure" />
+        </EntityType>
+        <Association Name="FK_ProductWaste_Product">
+          <End Type="RecipiesModelNS.Product" Role="Product" Multiplicity="0..1" />
+          <End Type="RecipiesModelNS.ProductWaste" Role="ProductWaste" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="ProductWaste">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductWaste_Waste">
+          <End Type="RecipiesModelNS.Waste" Role="Waste" Multiplicity="1" />
+          <End Type="RecipiesModelNS.ProductWaste" Role="ProductWaste" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Waste">
+              <PropertyRef Name="WasteId" />
+            </Principal>
+            <Dependent Role="ProductWaste">
+              <PropertyRef Name="WasteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RecipeWaste_Recipe">
+          <End Type="RecipiesModelNS.Recipe" Role="Recipe" Multiplicity="0..1" />
+          <End Type="RecipiesModelNS.RecipeWaste" Role="RecipeWaste" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Recipe">
+              <PropertyRef Name="RecipeId" />
+            </Principal>
+            <Dependent Role="RecipeWaste">
+              <PropertyRef Name="RecipeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RecipeWaste_Waste">
+          <End Type="RecipiesModelNS.Waste" Role="Waste" Multiplicity="1" />
+          <End Type="RecipiesModelNS.RecipeWaste" Role="RecipeWaste" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Waste">
+              <PropertyRef Name="WasteId" />
+            </Principal>
+            <Dependent Role="RecipeWaste">
+              <PropertyRef Name="WasteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductWaste_UnitMeasure">
+          <End Type="RecipiesModelNS.UnitMeasure" Role="UnitMeasure" Multiplicity="0..1" />
+          <End Type="RecipiesModelNS.Waste" Role="Waste" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UnitMeasure">
+              <PropertyRef Name="UnitMeasureId" />
+            </Principal>
+            <Dependent Role="Waste">
+              <PropertyRef Name="UnitMeasureId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2093,20 +2117,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ProductWastes">
-            <EntityTypeMapping TypeName="RecipiesModelNS.ProductWaste">
-              <MappingFragment StoreEntitySet="ProductWaste">
-                <ScalarProperty Name="ModifiedByUser" ColumnName="ModifiedByUser" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
-                <ScalarProperty Name="WasteValue" ColumnName="WasteValue" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="UnitMeasureId" ColumnName="UnitMeasureId" />
-                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
-                <ScalarProperty Name="ProductWasteId" ColumnName="ProductWasteId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Recipes">
             <EntityTypeMapping TypeName="RecipiesModelNS.Recipe">
               <MappingFragment StoreEntitySet="Recipe">
@@ -2133,20 +2143,6 @@
                 <ScalarProperty Name="ProductId" ColumnName="ProductId" />
                 <ScalarProperty Name="RecipeId" ColumnName="RecipeId" />
                 <ScalarProperty Name="RecipeIngredientId" ColumnName="RecipeIngredientId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="RecipeWastes">
-            <EntityTypeMapping TypeName="RecipiesModelNS.RecipeWaste">
-              <MappingFragment StoreEntitySet="RecipeWaste">
-                <ScalarProperty Name="ModifiedByUser" ColumnName="ModifiedByUser" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
-                <ScalarProperty Name="WasteValue" ColumnName="WasteValue" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="UnitMeasureId" ColumnName="UnitMeasureId" />
-                <ScalarProperty Name="RecipeId" ColumnName="RecipeId" />
-                <ScalarProperty Name="RecipeWasteId" ColumnName="RecipeWasteId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2338,6 +2334,31 @@
                 <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="SalesOrderStatusId" ColumnName="SalesOrderStatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Wastes">
+            <EntityTypeMapping TypeName="IsTypeOf(RecipiesModelNS.Waste)">
+              <MappingFragment StoreEntitySet="Waste">
+                <ScalarProperty Name="WasteId" ColumnName="WasteId" />
+                <ScalarProperty Name="ModifiedByUser" ColumnName="ModifiedByUser" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="WasteValue" ColumnName="WasteValue" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="UnitMeasureId" ColumnName="UnitMeasureId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="IsTypeOf(RecipiesModelNS.RecipeWaste)">
+              <MappingFragment StoreEntitySet="RecipeWaste">
+                <ScalarProperty Name="WasteId" ColumnName="WasteId" />
+                <ScalarProperty Name="RecipeId" ColumnName="RecipeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="IsTypeOf(RecipiesModelNS.ProductWaste)">
+              <MappingFragment StoreEntitySet="ProductWaste">
+                <ScalarProperty Name="WasteId" ColumnName="WasteId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

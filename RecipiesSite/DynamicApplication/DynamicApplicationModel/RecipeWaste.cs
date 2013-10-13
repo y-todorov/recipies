@@ -12,18 +12,10 @@ namespace RecipiesModelNS
     using System;
     using System.Collections.Generic;
     
-    public partial class RecipeWaste
+    public partial class RecipeWaste : Waste
     {
-        public int RecipeWasteId { get; set; }
         public Nullable<int> RecipeId { get; set; }
-        public Nullable<int> UnitMeasureId { get; set; }
-        public Nullable<double> Quantity { get; set; }
-        public double WasteValue { get; set; }
-        public Nullable<decimal> UnitPrice { get; set; }
-        public Nullable<System.DateTime> ModifiedDate { get; set; }
-        public string ModifiedByUser { get; set; }
     
         public virtual Recipe Recipe { get; set; }
-        public virtual UnitMeasure UnitMeasure { get; set; }
     }
 }
