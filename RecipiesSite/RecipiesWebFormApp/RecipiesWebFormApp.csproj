@@ -261,7 +261,7 @@
     <Content Include="newrelic\NewRelic.Profiler.dll" />
     <Content Include="packages.config" />
     <Content Include="App_Themes\DefaultTheme\DefaultSkin.skin" />
-    <Content Include="Production\Inventories.aspx" />
+    <Content Include="Production\ProductInventories.aspx" />
     <Content Include="Production\ProductCategories.aspx" />
     <Content Include="Production\Products.aspx" />
     <Content Include="Production\ProductWastes.aspx" />
@@ -459,12 +459,12 @@
     <Compile Include="HumanResources\Shifts.aspx.designer.cs">
       <DependentUpon>Shifts.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Production\Inventories.aspx.cs">
-      <DependentUpon>Inventories.aspx</DependentUpon>
+    <Compile Include="Production\ProductInventories.aspx.cs">
+      <DependentUpon>ProductInventories.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Production\Inventories.aspx.designer.cs">
-      <DependentUpon>Inventories.aspx</DependentUpon>
+    <Compile Include="Production\ProductInventories.aspx.designer.cs">
+      <DependentUpon>ProductInventories.aspx</DependentUpon>
     </Compile>
     <Compile Include="Production\ProductCategories.aspx.cs">
       <DependentUpon>ProductCategories.aspx</DependentUpon>

@@ -64,7 +64,7 @@
                         <telerik:RadMenuItem Text="Stores" NavigateUrl="~/Production/Stores"></telerik:RadMenuItem>
                         <telerik:RadMenuItem Text="Recipes" NavigateUrl="Production/Recipes.aspx"></telerik:RadMenuItem>
                         <telerik:RadMenuItem Text="Recipe ingredients" Visible="false" NavigateUrl="Production/RecipeIngredients"></telerik:RadMenuItem>
-                        <telerik:RadMenuItem runat="server" Text="Inventory" NavigateUrl="~/Production/Inventories">
+                        <telerik:RadMenuItem runat="server" Text="Product inventories" NavigateUrl="~/Production/ProductInventories">
                         </telerik:RadMenuItem>
                           <telerik:RadMenuItem runat="server" Text="Product wastes" NavigateUrl="~/Production/ProductWastes">
                         </telerik:RadMenuItem>
