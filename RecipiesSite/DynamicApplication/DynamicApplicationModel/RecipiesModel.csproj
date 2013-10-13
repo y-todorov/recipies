@@ -124,6 +124,9 @@
       <DependentUpon>RecipiesModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ProductHistory.partial.cs" />
+    <Compile Include="ProductInventory.cs">
+      <DependentUpon>RecipiesModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="ProductVendor.cs">
       <DependentUpon>RecipiesModel.tt</DependentUpon>
     </Compile>
@@ -152,6 +155,9 @@
       <DependentUpon>RecipiesModel.tt</DependentUpon>
     </Compile>
     <Compile Include="RecipeIngredient.partial.cs" />
+    <Compile Include="RecipeInventory.cs">
+      <DependentUpon>RecipiesModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="RecipeWaste.cs">
       <DependentUpon>RecipiesModel.tt</DependentUpon>
     </Compile>

@@ -79,7 +79,7 @@ namespace RecipiesWebFormApp.Production
         {
             if (e.CommandName == RadGrid.InitInsertCommandName)
             {
-                RecipiesModelNS.Inventory inventory = new RecipiesModelNS.Inventory { ForDate = DateTime.Now.Date };
+                RecipiesModelNS.ProductInventory inventory = new RecipiesModelNS.ProductInventory { ForDate = DateTime.Now.Date };
                 e.Item.OwnerTableView.InsertItem(inventory);
 
             }

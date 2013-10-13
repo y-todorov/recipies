@@ -19,6 +19,7 @@ namespace RecipiesModelNS
             this.SalesOrderDetails = new HashSet<SalesOrderDetail>();
             this.RecipeIngredients = new HashSet<RecipeIngredient>();
             this.RecipeWastes = new HashSet<RecipeWaste>();
+            this.RecipeInventories = new HashSet<RecipeInventory>();
         }
     
         public int RecipeId { get; set; }
@@ -35,5 +36,6 @@ namespace RecipiesModelNS
         public virtual ICollection<SalesOrderDetail> SalesOrderDetails { get; set; }
         public virtual ICollection<RecipeIngredient> RecipeIngredients { get; set; }
         public virtual ICollection<RecipeWaste> RecipeWastes { get; set; }
+        public virtual ICollection<RecipeInventory> RecipeInventories { get; set; }
     }
 }

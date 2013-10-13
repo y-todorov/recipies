@@ -12,10 +12,9 @@ namespace RecipiesModelNS
     using System;
     using System.Collections.Generic;
     
-    public partial class Inventory
+    public abstract partial class Inventory
     {
         public int InventoryId { get; set; }
-        public Nullable<int> ProductId { get; set; }
         public Nullable<System.DateTime> ForDate { get; set; }
         public Nullable<decimal> AverageUnitPrice { get; set; }
         public Nullable<double> QuantityByDocuments { get; set; }
@@ -28,7 +27,5 @@ namespace RecipiesModelNS
         public Nullable<double> SurplusValue { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
         public string ModifiedByUser { get; set; }
-        public string Descriminator { get; set; }
-        public Nullable<int> RecipeId { get; set; }
     }
 }

@@ -15,9 +15,11 @@
           <EntitySet Name="Product" EntityType="RecipiesModelNS.Store.Product" store:Type="Tables" Schema="Production" />
           <EntitySet Name="ProductCategory" EntityType="RecipiesModelNS.Store.ProductCategory" store:Type="Tables" Schema="Production" />
           <EntitySet Name="ProductHistory" EntityType="RecipiesModelNS.Store.ProductHistory" store:Type="Tables" Schema="Production" />
+          <EntitySet Name="ProductInventory" EntityType="RecipiesModelNS.Store.ProductInventory" store:Type="Tables" Schema="Production" />
           <EntitySet Name="ProductWaste" EntityType="RecipiesModelNS.Store.ProductWaste" store:Type="Tables" Schema="Production" />
           <EntitySet Name="Recipe" EntityType="RecipiesModelNS.Store.Recipe" store:Type="Tables" Schema="Production" />
           <EntitySet Name="RecipeIngredient" EntityType="RecipiesModelNS.Store.RecipeIngredient" store:Type="Tables" Schema="Production" />
+          <EntitySet Name="RecipeInventory" EntityType="RecipiesModelNS.Store.RecipeInventory" store:Type="Tables" Schema="Production" />
           <EntitySet Name="RecipeWaste" EntityType="RecipiesModelNS.Store.RecipeWaste" store:Type="Tables" Schema="Production" />
           <EntitySet Name="Store" EntityType="RecipiesModelNS.Store.Store" store:Type="Tables" Schema="Production" />
           <EntitySet Name="UnitMeasure" EntityType="RecipiesModelNS.Store.UnitMeasure" store:Type="Tables" Schema="Production" />
@@ -71,6 +73,14 @@
           <AssociationSet Name="FK_Product_Unit" Association="RecipiesModelNS.Store.FK_Product_Unit">
             <End Role="UnitMeasure" EntitySet="UnitMeasure" />
             <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductInventory_Inventory" Association="RecipiesModelNS.Store.FK_ProductInventory_Inventory">
+            <End Role="ProductInventory" EntitySet="ProductInventory" />
+            <End Role="ProductInventory1" EntitySet="ProductInventory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductInventory_Product" Association="RecipiesModelNS.Store.FK_ProductInventory_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ProductInventory" EntitySet="ProductInventory" />
           </AssociationSet>
           <AssociationSet Name="FK_ProductVendor_Product" Association="RecipiesModelNS.Store.FK_ProductVendor_Product">
             <End Role="Product" EntitySet="Product" />
@@ -131,6 +141,14 @@
           <AssociationSet Name="FK_RecipeIngredient_Recipe" Association="RecipiesModelNS.Store.FK_RecipeIngredient_Recipe">
             <End Role="Recipe" EntitySet="Recipe" />
             <End Role="RecipeIngredient" EntitySet="RecipeIngredient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RecipeInventory_Inventory" Association="RecipiesModelNS.Store.FK_RecipeInventory_Inventory">
+            <End Role="RecipeInventory" EntitySet="RecipeInventory" />
+            <End Role="RecipeInventory1" EntitySet="RecipeInventory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RecipeInventory_Recipe" Association="RecipiesModelNS.Store.FK_RecipeInventory_Recipe">
+            <End Role="Recipe" EntitySet="Recipe" />
+            <End Role="RecipeInventory" EntitySet="RecipeInventory" />
           </AssociationSet>
           <AssociationSet Name="FK_RecipeWaste_Recipe" Association="RecipiesModelNS.Store.FK_RecipeWaste_Recipe">
             <End Role="Recipe" EntitySet="Recipe" />
@@ -222,7 +240,6 @@
             <PropertyRef Name="InventoryId" />
           </Key>
           <Property Name="InventoryId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="ProductId" Type="int" />
           <Property Name="ForDate" Type="date" />
           <Property Name="AverageUnitPrice" Type="money" />
           <Property Name="QuantityByDocuments" Type="float" />
@@ -235,8 +252,6 @@
           <Property Name="SurplusValue" Type="float" StoreGeneratedPattern="Computed" />
           <Property Name="ModifiedDate" Type="datetime" />
           <Property Name="ModifiedByUser" Type="nvarchar" MaxLength="1000" />
-          <Property Name="Descriminator" Type="nvarchar" MaxLength="1000" />
-          <Property Name="RecipeId" Type="int" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -283,6 +298,13 @@
           <Property Name="ModifiedDate" Type="datetime" />
           <Property Name="ModifiedByUser" Type="nvarchar" MaxLength="1000" />
         </EntityType>
+        <EntityType Name="ProductInventory">
+          <Key>
+            <PropertyRef Name="InventoryId" />
+          </Key>
+          <Property Name="InventoryId" Type="int" Nullable="false" />
+          <Property Name="ProductId" Type="int" />
+        </EntityType>
         <EntityType Name="ProductWaste">
           <Key>
             <PropertyRef Name="ProductWasteId" />
@@ -322,6 +344,13 @@
           <Property Name="ModifiedDate" Type="datetime" />
           <Property Name="ModifiedByUser" Type="nvarchar" MaxLength="1000" />
           <Property Name="TotalValue" Type="float" Nullable="false" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="RecipeInventory">
+          <Key>
+            <PropertyRef Name="InventoryId" />
+          </Key>
+          <Property Name="InventoryId" Type="int" Nullable="false" />
+          <Property Name="RecipeId" Type="int" />
         </EntityType>
         <EntityType Name="RecipeWaste">
           <Key>
@@ -634,6 +663,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ProductInventory_Inventory">
+          <End Role="ProductInventory" Type="RecipiesModelNS.Store.ProductInventory" Multiplicity="1" />
+          <End Role="ProductInventory1" Type="RecipiesModelNS.Store.ProductInventory" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="ProductInventory">
+              <PropertyRef Name="InventoryId" />
+            </Principal>
+            <Dependent Role="ProductInventory1">
+              <PropertyRef Name="InventoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductInventory_Product">
+          <End Role="Product" Type="RecipiesModelNS.Store.Product" Multiplicity="0..1" />
+          <End Role="ProductInventory" Type="RecipiesModelNS.Store.ProductInventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="ProductInventory">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ProductVendor_Product">
           <End Role="Product" Type="RecipiesModelNS.Store.Product" Multiplicity="0..1" />
           <End Role="ProductVendor" Type="RecipiesModelNS.Store.ProductVendor" Multiplicity="*" />
@@ -812,6 +865,30 @@
               <PropertyRef Name="RecipeId" />
             </Principal>
             <Dependent Role="RecipeIngredient">
+              <PropertyRef Name="RecipeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RecipeInventory_Inventory">
+          <End Role="RecipeInventory" Type="RecipiesModelNS.Store.RecipeInventory" Multiplicity="1" />
+          <End Role="RecipeInventory1" Type="RecipiesModelNS.Store.RecipeInventory" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="RecipeInventory">
+              <PropertyRef Name="InventoryId" />
+            </Principal>
+            <Dependent Role="RecipeInventory1">
+              <PropertyRef Name="InventoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RecipeInventory_Recipe">
+          <End Role="Recipe" Type="RecipiesModelNS.Store.Recipe" Multiplicity="0..1" />
+          <End Role="RecipeInventory" Type="RecipiesModelNS.Store.RecipeInventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Recipe">
+              <PropertyRef Name="RecipeId" />
+            </Principal>
+            <Dependent Role="RecipeInventory">
               <PropertyRef Name="RecipeId" />
             </Dependent>
           </ReferentialConstraint>
@@ -1011,6 +1088,22 @@
             <End Role="SalesOrderStatu" EntitySet="SalesOrderStatus" />
             <End Role="SalesOrderHeader" EntitySet="SalesOrderHeaders" />
           </AssociationSet>
+          <AssociationSet Name="FK_ProductInventory_Product" Association="RecipiesModelNS.FK_ProductInventory_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="ProductInventory" EntitySet="Inventories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductInventory_Inventory" Association="RecipiesModelNS.FK_ProductInventory_Inventory">
+            <End Role="ProductInventory" EntitySet="Inventories" />
+            <End Role="ProductInventory1" EntitySet="Inventories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RecipeInventory_Recipe" Association="RecipiesModelNS.FK_RecipeInventory_Recipe">
+            <End Role="Recipe" EntitySet="Recipes" />
+            <End Role="RecipeInventory" EntitySet="Inventories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RecipeInventory_Inventory" Association="RecipiesModelNS.FK_RecipeInventory_Inventory">
+            <End Role="RecipeInventory" EntitySet="Inventories" />
+            <End Role="RecipeInventory1" EntitySet="Inventories" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="EmailTemplate">
           <Key>
@@ -1088,12 +1181,11 @@
           <Property Type="String" Name="ModifiedByUser" MaxLength="1000" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="EmployeeDepartments" Relationship="RecipiesModelNS.FK_EmployeeDepartment_Shift" FromRole="Shift" ToRole="EmployeeDepartment" />
         </EntityType>
-        <EntityType Name="Inventory">
+        <EntityType Name="Inventory" Abstract="true">
           <Key>
             <PropertyRef Name="InventoryId" />
           </Key>
           <Property Type="Int32" Name="InventoryId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="ProductId" />
           <Property Type="DateTime" Name="ForDate" Precision="0" />
           <Property Type="Decimal" Name="AverageUnitPrice" Precision="19" Scale="4" />
           <Property Type="Double" Name="QuantityByDocuments" />
@@ -1106,8 +1198,6 @@
           <Property Type="Double" Name="SurplusValue" annotation:StoreGeneratedPattern="Computed" />
           <Property Type="DateTime" Name="ModifiedDate" Precision="3" />
           <Property Type="String" Name="ModifiedByUser" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Descriminator" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="RecipeId" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -1133,6 +1223,7 @@
           <NavigationProperty Name="ProductWastes" Relationship="RecipiesModelNS.FK_ProductWaste_Product" FromRole="Product" ToRole="ProductWaste" />
           <NavigationProperty Name="PurchaseOrderDetails" Relationship="RecipiesModelNS.FK_PurchaseOrderDetail_Product" FromRole="Product" ToRole="PurchaseOrderDetail" />
           <NavigationProperty Name="RecipeIngredients" Relationship="RecipiesModelNS.FK_RecipeIngredient_Product" FromRole="Product" ToRole="RecipeIngredient" />
+          <NavigationProperty Name="ProductInventories" Relationship="RecipiesModelNS.FK_ProductInventory_Product" FromRole="Product" ToRole="ProductInventory" />
         </EntityType>
         <EntityType Name="ProductCategory">
           <Key>
@@ -1195,6 +1286,7 @@
           <NavigationProperty Name="SalesOrderDetails" Relationship="RecipiesModelNS.FK_OrderDetail_Recipe" FromRole="Recipe" ToRole="SalesOrderDetail" />
           <NavigationProperty Name="RecipeIngredients" Relationship="RecipiesModelNS.FK_RecipeIngredient_Recipe" FromRole="Recipe" ToRole="RecipeIngredient" />
           <NavigationProperty Name="RecipeWastes" Relationship="RecipiesModelNS.FK_RecipeWaste_Recipe" FromRole="Recipe" ToRole="RecipeWaste" />
+          <NavigationProperty Name="RecipeInventories" Relationship="RecipiesModelNS.FK_RecipeInventory_Recipe" FromRole="Recipe" ToRole="RecipeInventory" />
         </EntityType>
         <EntityType Name="RecipeIngredient">
           <Key>
@@ -1785,6 +1877,62 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="ProductInventory" BaseType="RecipiesModelNS.Inventory">
+          <Property Type="Int32" Name="ProductId" />
+          <NavigationProperty Name="Product" Relationship="RecipiesModelNS.FK_ProductInventory_Product" FromRole="ProductInventory" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="RecipeInventory" BaseType="RecipiesModelNS.Inventory">
+          <Property Type="Int32" Name="RecipeId" />
+          <NavigationProperty Name="Recipe" Relationship="RecipiesModelNS.FK_RecipeInventory_Recipe" FromRole="RecipeInventory" ToRole="Recipe" />
+        </EntityType>
+        <Association Name="FK_ProductInventory_Product">
+          <End Type="RecipiesModelNS.Product" Role="Product" Multiplicity="0..1" />
+          <End Type="RecipiesModelNS.ProductInventory" Role="ProductInventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="ProductInventory">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductInventory_Inventory">
+          <End Type="RecipiesModelNS.ProductInventory" Role="ProductInventory" Multiplicity="1" />
+          <End Type="RecipiesModelNS.ProductInventory" Role="ProductInventory1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="ProductInventory">
+              <PropertyRef Name="InventoryId" />
+            </Principal>
+            <Dependent Role="ProductInventory1">
+              <PropertyRef Name="InventoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RecipeInventory_Recipe">
+          <End Type="RecipiesModelNS.Recipe" Role="Recipe" Multiplicity="0..1" />
+          <End Type="RecipiesModelNS.RecipeInventory" Role="RecipeInventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Recipe">
+              <PropertyRef Name="RecipeId" />
+            </Principal>
+            <Dependent Role="RecipeInventory">
+              <PropertyRef Name="RecipeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RecipeInventory_Inventory">
+          <End Type="RecipiesModelNS.RecipeInventory" Role="RecipeInventory" Multiplicity="1" />
+          <End Type="RecipiesModelNS.RecipeInventory" Role="RecipeInventory1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="RecipeInventory">
+              <PropertyRef Name="InventoryId" />
+            </Principal>
+            <Dependent Role="RecipeInventory1">
+              <PropertyRef Name="InventoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1865,24 +2013,35 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Inventories">
-            <EntityTypeMapping TypeName="RecipiesModelNS.Inventory">
+            <EntityTypeMapping TypeName="IsTypeOf(RecipiesModelNS.Inventory)">
               <MappingFragment StoreEntitySet="Inventory">
-                <ScalarProperty Name="RecipeId" ColumnName="RecipeId" />
-                <ScalarProperty Name="Descriminator" ColumnName="Descriminator" />
-                <ScalarProperty Name="ModifiedByUser" ColumnName="ModifiedByUser" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="SurplusValue" ColumnName="SurplusValue" />
-                <ScalarProperty Name="SurplusQuantity" ColumnName="SurplusQuantity" />
-                <ScalarProperty Name="DeficiencyValue" ColumnName="DeficiencyValue" />
-                <ScalarProperty Name="DeficiencyQuantity" ColumnName="DeficiencyQuantity" />
-                <ScalarProperty Name="StocktakeValue" ColumnName="StocktakeValue" />
-                <ScalarProperty Name="StocktakeQuantity" ColumnName="StocktakeQuantity" />
-                <ScalarProperty Name="ValueByDocuments" ColumnName="ValueByDocuments" />
-                <ScalarProperty Name="QuantityByDocuments" ColumnName="QuantityByDocuments" />
-                <ScalarProperty Name="AverageUnitPrice" ColumnName="AverageUnitPrice" />
+                <ScalarProperty Name="InventoryId" ColumnName="InventoryId" />
                 <ScalarProperty Name="ForDate" ColumnName="ForDate" />
+                <ScalarProperty Name="AverageUnitPrice" ColumnName="AverageUnitPrice" />
+                <ScalarProperty Name="QuantityByDocuments" ColumnName="QuantityByDocuments" />
+                <ScalarProperty Name="ValueByDocuments" ColumnName="ValueByDocuments" />
+                <ScalarProperty Name="StocktakeQuantity" ColumnName="StocktakeQuantity" />
+                <ScalarProperty Name="StocktakeValue" ColumnName="StocktakeValue" />
+                <ScalarProperty Name="DeficiencyQuantity" ColumnName="DeficiencyQuantity" />
+                <ScalarProperty Name="DeficiencyValue" ColumnName="DeficiencyValue" />
+                <ScalarProperty Name="SurplusQuantity" ColumnName="SurplusQuantity" />
+                <ScalarProperty Name="SurplusValue" ColumnName="SurplusValue" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedByUser" ColumnName="ModifiedByUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="IsTypeOf(RecipiesModelNS.ProductInventory)">
+              <MappingFragment StoreEntitySet="ProductInventory">
                 <ScalarProperty Name="ProductId" ColumnName="ProductId" />
                 <ScalarProperty Name="InventoryId" ColumnName="InventoryId" />
+                
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="IsTypeOf(RecipiesModelNS.RecipeInventory)">
+              <MappingFragment StoreEntitySet="RecipeInventory">
+                <ScalarProperty Name="RecipeId" ColumnName="RecipeId" />
+                <ScalarProperty Name="InventoryId" ColumnName="InventoryId" />
+                
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
