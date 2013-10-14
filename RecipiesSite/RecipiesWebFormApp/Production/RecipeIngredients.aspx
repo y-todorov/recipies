@@ -1,5 +1,4 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="RecipeIngredients.aspx.cs" Inherits="RecipiesWebFormApp.Production.RecipeIngredients" %>
-<%@ Register assembly="Telerik.OpenAccess.Web.40" namespace="Telerik.OpenAccess.Web" tagprefix="telerik" %>
 <%@ Register assembly="YordanCustomControls" namespace="YordanCustomControls" tagprefix="yordan" %>
 <%@ Register assembly="Telerik.Web.UI" namespace="Telerik.Web.UI" tagprefix="telerik" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">

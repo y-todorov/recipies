@@ -10,8 +10,7 @@
 namespace RecipiesModelNS
 {
     using System;
-    using System.Collections.Generic;
-    
+
     public partial class ProductWaste : Waste
     {
         public Nullable<int> ProductId { get; set; }

@@ -10,8 +10,7 @@
 namespace RecipiesModelNS
 {
     using System;
-    using System.Collections.Generic;
-    
+
     public partial class EmployeeDepartment
     {
         public int EmployeeDepartmentId { get; set; }

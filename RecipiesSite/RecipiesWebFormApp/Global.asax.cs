@@ -1,25 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Optimization;
 using System.Web.Routing;
-using System.Web.Security;
-using RecipiesWebFormApp;
 using System.Timers;
 using System.Net;
-using Microsoft.SqlServer.Management.Smo;
-using Microsoft.SqlServer.Management.Common;
-using System.IO;
-using System.Text;
 using RecipiesModelNS;
 using System.Diagnostics;
 using Microsoft.AspNet.SignalR;
 //using System.Threading;
-using System.Globalization;
-using System.Web.Caching;
-using System.Reflection;
-using System.Collections;
+
 //using PubNubMessaging.Core;
 
 namespace RecipiesWebFormApp

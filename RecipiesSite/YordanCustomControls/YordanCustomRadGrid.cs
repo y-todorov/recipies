@@ -1,21 +1,11 @@
-﻿using HtmlAgilityPack;
+﻿using Helpers.Extensions;
+using HtmlAgilityPack;
 using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Telerik.Web.UI;
-using Helpers.Extensions;
 using System.Diagnostics;
 using System.Drawing;
-using RecipiesWebFormApp;
-using Microsoft.AspNet.SignalR;
-using System.Reflection;
-using Telerik.OpenAccess.Web;
 using RecipiesModelNS;
 
 namespace YordanCustomControls

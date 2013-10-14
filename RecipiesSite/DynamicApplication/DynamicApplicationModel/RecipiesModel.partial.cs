@@ -1,20 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Telerik.OpenAccess;
-using Telerik.OpenAccess.Metadata;
-using Telerik.OpenAccess.Data.Common;
-using Telerik.OpenAccess.Metadata.Fluent;
-using Telerik.OpenAccess.Metadata.Fluent.Advanced;
-using System.Reflection;
-using System.Web;
-using Microsoft.AspNet.SignalR;
-using RecipiesWebFormApp;
-using System.Diagnostics;
-
-namespace RecipiesModelNS
+﻿namespace RecipiesModelNS
 {
     public enum PurchaseOrderStatusEnum : int
     {

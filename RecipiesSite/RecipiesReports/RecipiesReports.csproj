@@ -33,12 +33,6 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
     <Reference Include="Telerik.Reporting, Version=7.1.13.802, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\DynamicApplication\DynamicApplicationModel\OpenAccessAssemblies\Telerik.Reporting.dll</HintPath>
@@ -82,12 +76,6 @@
     <Compile Include="PurchaseOrderDetailsReport.Designer.cs">
       <DependentUpon>PurchaseOrderDetailsReport.cs</DependentUpon>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DynamicApplication\DynamicApplicationModel\RecipiesModel.csproj">
-      <Project>{c50145e6-a244-4f1f-b41f-90d1925b4a00}</Project>
-      <Name>RecipiesModel</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="PurchaseOrderHeaderReport.resx">

@@ -1,6 +1,4 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="PurchaseOrderDetails.aspx.cs" Inherits="RecipiesWebFormApp.Purchasing.PurchaseOrderDetails" %>
-
-<%@ Register Assembly="Telerik.OpenAccess.Web.40" Namespace="Telerik.OpenAccess.Web" TagPrefix="telerik" %>
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
 <%@ Register Assembly="YordanCustomControls" Namespace="YordanCustomControls" TagPrefix="yordan" %>
 
@@ -10,7 +8,7 @@
      </yordan:YordanCustomOpenAccessLinqDataSource>
     <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourcePurchaseOrder" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="PurchaseOrderHeaders" />
     <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceProduct" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="Products" />
-    <yordan:YordanCustomRadGrid ID="rgPurchaseOrderDetails" runat="server" EnableLinqExpressions="true" ItemType="DynamicApplicationModel.PurchaseOrderDetail" DataSourceID="OpenAccessLinqDataSourcePurchaseOrderDetails">
+    <yordan:YordanCustomRadGrid ID="rgPurchaseOrderDetails" runat="server" EnableLinqExpressions="true" DataSourceID="OpenAccessLinqDataSourcePurchaseOrderDetails">
         <MasterTableView AutoGenerateColumns="False" DataKeyNames="PurchaseOrderDetailId" DataSourceID="OpenAccessLinqDataSourcePurchaseOrderDetails">
 <%--            <GroupByExpressions>
                 <telerik:GridGroupByExpression>

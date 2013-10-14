@@ -1,11 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="OrderDetails.aspx.cs" Inherits="RecipiesWebFormApp.Sales.OrderDetails" %>
-
-<%@ Register Assembly="Telerik.OpenAccess.Web.40" Namespace="Telerik.OpenAccess.Web" TagPrefix="telerik" %>
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
 <%@ Register Assembly="YordanCustomControls" Namespace="YordanCustomControls" TagPrefix="yordan" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <yordan:YordanCustomRadGrid ID="rgSalesOrderDetails" runat="server" ItemType="DynamicApplicationModel.PurchaseOrderDetail" DataSourceID="OpenAccessLinqDataSourceOrderDetail" CellSpacing="0" GridLines="None">
+    <yordan:YordanCustomRadGrid ID="rgSalesOrderDetails" runat="server" DataSourceID="OpenAccessLinqDataSourceOrderDetail" CellSpacing="0" GridLines="None">
 
         <HeaderStyle />
         <MasterTableView AutoGenerateColumns="False" DataKeyNames="SalesOrderDetailId" DataSourceID="OpenAccessLinqDataSourceOrderDetail">

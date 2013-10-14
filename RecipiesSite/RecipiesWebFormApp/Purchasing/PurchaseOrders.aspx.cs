@@ -3,21 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 using Telerik.Web.UI;
 //using Telerik.OpenAccess;
-using Telerik.OpenAccess.Web;
-using Telerik.ReportViewer.WebForms;
 using Telerik.Reporting.Processing;
-using RecipiesReports;
-using Helpers;
-using System.Web.Security;
-using System.IO;
-using System.Threading.Tasks;
-using RestSharp;
-using HtmlAgilityPack;
-using System.Data.Objects;
 
 
 namespace RecipiesWebFormApp.Purchasing

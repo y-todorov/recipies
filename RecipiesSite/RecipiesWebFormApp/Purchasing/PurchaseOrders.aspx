@@ -1,6 +1,4 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="PurchaseOrders.aspx.cs" Inherits="RecipiesWebFormApp.Purchasing.PurchaseOrders" %>
-
-<%@ Register Assembly="Telerik.OpenAccess.Web.40" Namespace="Telerik.OpenAccess.Web" TagPrefix="telerik" %>
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
 <%@ Register Assembly="YordanCustomControls" Namespace="YordanCustomControls" TagPrefix="yordan" %>
 
@@ -118,7 +116,7 @@
                     <ItemTemplate />
                     <EditItemTemplate>
                         <asp:Label runat="server" ID="lblPurchaseOrderDetails" ForeColor="Blue" Text="Please save the purchase order so products can be added to it." OnPreRender="lblPurchaseOrderDetails_PreRender"></asp:Label>
-                        <yordan:YordanCustomRadGrid ID="rgPurchaseOrderDetails" runat="server" ItemType="DynamicApplicationModel.PurchaseOrderDetail" DataSourceID="OpenAccessLinqDataSourcePurchaseOrderDetails" OnItemCreated="rgPurchaseOrderDetails_ItemCreated" OnItemDataBound="rgPurchaseOrderDetails_ItemDataBound" OnCreateColumnEditor="rgPurchaseOrderDetails_CreateColumnEditor" OnPreRender="rgPurchaseOrderDetails_PreRender" OnItemCommand="rgPurchaseOrderDetails_ItemCommand">
+                        <yordan:YordanCustomRadGrid ID="rgPurchaseOrderDetails" runat="server" DataSourceID="OpenAccessLinqDataSourcePurchaseOrderDetails" OnItemCreated="rgPurchaseOrderDetails_ItemCreated" OnItemDataBound="rgPurchaseOrderDetails_ItemDataBound" OnCreateColumnEditor="rgPurchaseOrderDetails_CreateColumnEditor" OnPreRender="rgPurchaseOrderDetails_PreRender" OnItemCommand="rgPurchaseOrderDetails_ItemCommand">
                             <MasterTableView AutoGenerateColumns="False" DataKeyNames="PurchaseOrderDetailId" DataSourceID="OpenAccessLinqDataSourcePurchaseOrderDetails">
                                 <Columns>
                                     <telerik:GridDropDownColumn UniqueName="DropDownPurchaseOrderListColumn" Visible="false" ListTextField="PurchaseOrderId" EmptyListItemText="" EnableEmptyListItem="true" EmptyListItemValue="" ConvertEmptyStringToNull="true"

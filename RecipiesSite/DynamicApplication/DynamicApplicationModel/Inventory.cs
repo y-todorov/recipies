@@ -10,8 +10,7 @@
 namespace RecipiesModelNS
 {
     using System;
-    using System.Collections.Generic;
-    
+
     public abstract partial class Inventory
     {
         public int InventoryId { get; set; }

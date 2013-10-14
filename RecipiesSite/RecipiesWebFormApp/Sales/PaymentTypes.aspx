@@ -1,6 +1,4 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="PaymentTypes.aspx.cs" Inherits="RecipiesWebFormApp.Sales.PaymentTypes" %>
-
-<%@ Register Assembly="Telerik.OpenAccess.Web.40" Namespace="Telerik.OpenAccess.Web" TagPrefix="telerik" %>
 <%@ Register assembly="YordanCustomControls" namespace="YordanCustomControls" tagprefix="yordan" %>
 <%@ Register assembly="Telerik.Web.UI" namespace="Telerik.Web.UI" tagprefix="telerik" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">

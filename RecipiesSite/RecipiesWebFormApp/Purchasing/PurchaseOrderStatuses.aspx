@@ -1,13 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="PurchaseOrderStatuses.aspx.cs" Inherits="RecipiesWebFormApp.Purchasing.PurchaseOrderStatuses" %>
 <%@ Register assembly="Telerik.Web.UI" namespace="Telerik.Web.UI" tagprefix="telerik" %>
-<%@ Register assembly="Telerik.OpenAccess.Web.40" namespace="Telerik.OpenAccess.Web" tagprefix="telerik" %>
 <%@ Register Assembly="YordanCustomControls" Namespace="YordanCustomControls" TagPrefix="yordan" %>
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourcePurchaseOrderStatuses" Runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="PurchaseOrderStatus" />
-<yordan:YordanCustomRadGrid ID="rgPurchaseOrderStatuses" runat="server" ItemType="RecipiesModelNS.PurchaseOrderStatus" CellSpacing="0" DataSourceID="OpenAccessLinqDataSourcePurchaseOrderStatuses" GridLines="None">
+<yordan:YordanCustomRadGrid ID="rgPurchaseOrderStatuses" runat="server" CellSpacing="0" DataSourceID="OpenAccessLinqDataSourcePurchaseOrderStatuses" GridLines="None">
     <MasterTableView AutoGenerateColumns="False" DataKeyNames="PurchaseOrderStatusId" DataSourceID="OpenAccessLinqDataSourcePurchaseOrderStatuses">
         <Columns>
             <telerik:GridBoundColumn DataField="PurchaseOrderStatusId" DataType="System.Int32" FilterControlAltText="Filter PurchaseOrderStatusId column" HeaderText="PurchaseOrderStatusId" ReadOnly="True" SortExpression="PurchaseOrderStatusId" UniqueName="PurchaseOrderStatusId">

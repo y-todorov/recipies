@@ -1,7 +1,5 @@
 ﻿<%@ Page Title="Log in" Language="C#" MasterPageFile="~/SiteLogin.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="RecipiesWebFormApp.Account.Login" %>
 
-<%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
-
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">   
     <section id="loginForm">

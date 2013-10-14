@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Web;
-using System.Web.Security;
 using Microsoft.AspNet.Membership.OpenAuth;
 
 namespace RecipiesWebFormApp.Account
