@@ -6,7 +6,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <yordan:YordanCustomRadGrid ID="rgProductVendors" runat="server" ItemType="RecipiesModelNS.ProductVendor" DataSourceID="OpenAccessLinqDataSourceProductVendors">
         <MasterTableView AutoGenerateColumns="False" DataKeyNames="ProductVendorId" DataSourceID="OpenAccessLinqDataSourceProductVendors">
-            <GroupByExpressions>
+<%--            <GroupByExpressions>
                 <telerik:GridGroupByExpression>
                     <SelectFields>
                         <telerik:GridGroupByField FieldName="ProductId" HeaderText="Yordan Price" />
@@ -15,7 +15,7 @@
                         <telerik:GridGroupByField FieldName="ProductId" SortOrder="Descending" />
                     </GroupByFields>
                 </telerik:GridGroupByExpression>
-            </GroupByExpressions>
+            </GroupByExpressions>--%>
             <Columns>
                 <telerik:GridBoundColumn DataField="ProductVendorId" DataType="System.Int32" FilterControlAltText="Filter ProductVendorId column" HeaderText="ProductVendorId" ReadOnly="True" SortExpression="ProductVendorId" UniqueName="ProductVendorId">
                     <ColumnValidationSettings>
