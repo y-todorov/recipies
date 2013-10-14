@@ -113,6 +113,7 @@ namespace RecipiesWebFormApp
         {
             WebClient client = new WebClient();
             string res = client.DownloadStringTaskAsync(new Uri("http://bluesystems.azurewebsites.net/")).Result;
+            res = client.DownloadStringTaskAsync(new Uri("http://recipies.azurewebsites.net/")).Result;
         }
 
         void Application_End(object sender, EventArgs e)
