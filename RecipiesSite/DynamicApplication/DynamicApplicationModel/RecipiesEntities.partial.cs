@@ -6,7 +6,8 @@ namespace RecipiesModelNS
 {
     public partial class RecipiesEntities : DbContext
     {
-        protected override System.Data.Entity.Validation.DbEntityValidationResult ValidateEntity(System.Data.Entity.Infrastructure.DbEntityEntry entityEntry, IDictionary<object, object> items)
+        protected override System.Data.Entity.Validation.DbEntityValidationResult ValidateEntity(
+            System.Data.Entity.Infrastructure.DbEntityEntry entityEntry, IDictionary<object, object> items)
         {
             return base.ValidateEntity(entityEntry, items);
         }

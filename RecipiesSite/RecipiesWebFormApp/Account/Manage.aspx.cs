@@ -4,17 +4,13 @@ namespace RecipiesWebFormApp.Account
 {
     public partial class Manage : System.Web.UI.Page
     {
-        protected string SuccessMessage
-        {
-            get;
-            private set;
-        }
+        protected string SuccessMessage { get; private set; }
 
-       
+
         protected void Page_Load()
         {
             if (!IsPostBack)
-            {               
+            {
                 // Render success message
                 var message = Request.QueryString["m"];
                 if (message != null)
@@ -23,15 +19,18 @@ namespace RecipiesWebFormApp.Account
                     Form.Action = ResolveUrl("~/Account/Manage");
 
                     SuccessMessage =
-                        message == "ChangePwdSuccess" ? "Your password has been changed."
-                        : message == "SetPwdSuccess" ? "Your password has been set."
-                        : message == "RemoveLoginSuccess" ? "The external login was removed."
-                        : String.Empty;
+                        message == "ChangePwdSuccess"
+                            ? "Your password has been changed."
+                            : message == "SetPwdSuccess"
+                                ? "Your password has been set."
+                                : message == "RemoveLoginSuccess"
+                                    ? "The external login was removed."
+                                    : String.Empty;
                     successMessage.Visible = !String.IsNullOrEmpty(SuccessMessage);
                 }
             }
-        }              
-        
+        }
+
         protected static string ConvertToDisplayDateTime(DateTime? utcDateTime)
         {
             // You can change this method to convert the UTC date time into the desired display

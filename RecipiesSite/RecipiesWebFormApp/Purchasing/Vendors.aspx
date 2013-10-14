@@ -16,7 +16,7 @@
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
                 </telerik:GridBoundColumn>
-                   <telerik:GridBoundColumn DataField="ReportAccountNumber" FilterControlAltText="Filter ReportAccountNumber column" HeaderText="ReportAccountNumber" SortExpression="ReportAccountNumber" UniqueName="ReportAccountNumber">
+                <telerik:GridBoundColumn DataField="ReportAccountNumber" FilterControlAltText="Filter ReportAccountNumber column" HeaderText="ReportAccountNumber" SortExpression="ReportAccountNumber" UniqueName="ReportAccountNumber">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
@@ -57,7 +57,7 @@
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
                 </telerik:GridBoundColumn>
-                  <telerik:GridBoundColumn DataField="ModifiedByUser" ReadOnly="true" FilterControlAltText="Filter ModifiedByUser column" HeaderText="ModifiedByUser" SortExpression="ModifiedByUser" UniqueName="ModifiedByUser">
+                <telerik:GridBoundColumn DataField="ModifiedByUser" ReadOnly="true" FilterControlAltText="Filter ModifiedByUser column" HeaderText="ModifiedByUser" SortExpression="ModifiedByUser" UniqueName="ModifiedByUser">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
@@ -66,5 +66,5 @@
         </MasterTableView>
     </yordan:YordanCustomRadGrid>
     <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceVendor" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="Vendors">
-     </yordan:YordanCustomOpenAccessLinqDataSource>
+    </yordan:YordanCustomOpenAccessLinqDataSource>
 </asp:Content>

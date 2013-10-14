@@ -16,7 +16,6 @@ namespace RecipiesWebFormApp
 
             Uri urlReferrer = Request.UrlReferrer;
             //Response.Redirect(u.ToString(), false);
-            
         }
     }
 }

@@ -39,7 +39,8 @@ namespace RecipiesModelNS
         private void SetModifiedDateAndModifiedByUserFields()
         {
             string userName = null;
-            if (HttpContext.Current != null && HttpContext.Current.User != null && HttpContext.Current.User.Identity != null)
+            if (HttpContext.Current != null && HttpContext.Current.User != null &&
+                HttpContext.Current.User.Identity != null)
             {
                 userName = HttpContext.Current.User.Identity.Name;
             }
@@ -47,7 +48,8 @@ namespace RecipiesModelNS
             PropertyInfo piModifiedDate = type.GetProperties().FirstOrDefault(p => p.Name.Equals("ModifiedDate"));
             if (piModifiedDate != null)
             {
-                DateTime modifiedDate = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, TimeZoneInfo.FindSystemTimeZoneById("GMT Standard Time"));
+                DateTime modifiedDate = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow,
+                    TimeZoneInfo.FindSystemTimeZoneById("GMT Standard Time"));
                 piModifiedDate.SetValue(this, modifiedDate);
             }
             PropertyInfo piModifiedByUser = type.GetProperties().FirstOrDefault(p => p.Name.Equals("ModifiedByUser"));
@@ -59,7 +61,6 @@ namespace RecipiesModelNS
 
         private void PopulateHistoryTables()
         {
-
             //object historyEntity = GetHistoryObjectForEntity(this);
             //if (historyEntity != null)
             //{
@@ -111,9 +112,5 @@ namespace RecipiesModelNS
             }
             return null;
         }
-
-
-
-
     }
 }

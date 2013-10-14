@@ -12,21 +12,18 @@ namespace RecipiesWebFormApp.Production
         {
             get
             {
-                int recipeId = (int)ViewState["RecipeId"];
+                int recipeId = (int) ViewState["RecipeId"];
                 return recipeId;
             }
-            set
-            {
-                ViewState["RecipeId"] = value;
-            }
+            set { ViewState["RecipeId"] = value; }
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
         }
 
-        protected void OpenAccessLinqDataSourceRecipeIngredients_InsertedUpdatedDeleted(object sender, EntityDataSourceChangedEventArgs e)
+        protected void OpenAccessLinqDataSourceRecipeIngredients_InsertedUpdatedDeleted(object sender,
+            EntityDataSourceChangedEventArgs e)
         {
             // So value per portion will be updated
             rgRecipes.Rebind();
@@ -39,9 +36,10 @@ namespace RecipiesWebFormApp.Production
                 GridEditableItem editableItem = e.Item as GridEditableItem;
                 if (editableItem != null)
                 {
-                    int recipeId = (int)editableItem.GetDataKeyValue(rgRecipes.MasterTableView.DataKeyNames[0]);
-                    Recipe recipe = ContextFactory.GetContextPerRequest().Recipes.FirstOrDefault(r => r.RecipeId == recipeId);
-                    RecipeId = recipe.RecipeId;                   
+                    int recipeId = (int) editableItem.GetDataKeyValue(rgRecipes.MasterTableView.DataKeyNames[0]);
+                    Recipe recipe =
+                        ContextFactory.GetContextPerRequest().Recipes.FirstOrDefault(r => r.RecipeId == recipeId);
+                    RecipeId = recipe.RecipeId;
                 }
             }
             if (e.CommandName == RadGrid.InitInsertCommandName)
@@ -50,7 +48,8 @@ namespace RecipiesWebFormApp.Production
             }
         }
 
-        protected void OpenAccessLinqDataSourceRecipeIngredients_Inserting(object sender, EntityDataSourceChangingEventArgs e)
+        protected void OpenAccessLinqDataSourceRecipeIngredients_Inserting(object sender,
+            EntityDataSourceChangingEventArgs e)
         {
             RecipeIngredient newRecipeIngredient = e.Entity as RecipeIngredient;
             if (newRecipeIngredient != null)
@@ -59,7 +58,8 @@ namespace RecipiesWebFormApp.Production
             }
         }
 
-        protected void OpenAccessLinqDataSourceRecipeIngredients_Selecting(object sender, EntityDataSourceSelectingEventArgs e)
+        protected void OpenAccessLinqDataSourceRecipeIngredients_Selecting(object sender,
+            EntityDataSourceSelectingEventArgs e)
         {
             // TO DO
             var test = e.SelectArguments;
@@ -73,7 +73,7 @@ namespace RecipiesWebFormApp.Production
         {
             if (RecipeId > 0)
             {
-                Label lblRecipeIngredients = (Label)sender;
+                Label lblRecipeIngredients = (Label) sender;
                 lblRecipeIngredients.Visible = false;
             }
         }
@@ -82,7 +82,7 @@ namespace RecipiesWebFormApp.Production
         {
             if (RecipeId <= 0)
             {
-                RadGrid rgRecipeIngredients = (RadGrid)sender;
+                RadGrid rgRecipeIngredients = (RadGrid) sender;
                 rgRecipeIngredients.Visible = false;
             }
         }
@@ -92,17 +92,20 @@ namespace RecipiesWebFormApp.Production
             if (e.Item is GridEditableItem && e.Item.IsInEditMode)
             {
                 GridEditableItem editedItem = (e.Item as GridEditableItem);
-                RadComboBox dropDownProductListColumn = editedItem["DropDownProductListColumn"].Controls[0] as RadComboBox;
+                RadComboBox dropDownProductListColumn =
+                    editedItem["DropDownProductListColumn"].Controls[0] as RadComboBox;
 
                 //attach SelectedIndexChanged event for the dropdown control  
                 dropDownProductListColumn.AutoPostBack = true;
                 dropDownProductListColumn.SelectedIndexChanged += dropDownProductListColumn_SelectedIndexChanged;
-            }  
+            }
         }
 
-        void dropDownProductListColumn_SelectedIndexChanged(object sender, RadComboBoxSelectedIndexChangedEventArgs e)
+        private void dropDownProductListColumn_SelectedIndexChanged(object sender,
+            RadComboBoxSelectedIndexChangedEventArgs e)
         {
-            (sender as RadComboBox).ToolTip = (sender as RadComboBox).SelectedValue + (sender as RadComboBox).SelectedItem.Text;
+            (sender as RadComboBox).ToolTip = (sender as RadComboBox).SelectedValue +
+                                              (sender as RadComboBox).SelectedItem.Text;
 
             //first reference the edited grid item through the NamingContainer                                                     attribute  
             GridEditableItem editedItem = (sender as RadComboBox).NamingContainer as GridEditableItem;
@@ -116,7 +119,8 @@ namespace RecipiesWebFormApp.Production
                 int intProductId;
                 if (int.TryParse(productId, out intProductId))
                 {
-                    Product product = ContextFactory.GetContextPerRequest().Products.FirstOrDefault(p => p.ProductId == intProductId);
+                    Product product =
+                        ContextFactory.GetContextPerRequest().Products.FirstOrDefault(p => p.ProductId == intProductId);
                     if (product != null)
                     {
                         tbCost.Text = product.GetAveragePriceLastDays(14).ToString();
@@ -126,11 +130,7 @@ namespace RecipiesWebFormApp.Production
 
                     //tbUnitPrice.Text = productVendor.StandardPrice.ToString();
                 }
-            }    
+            }
         }
-
-        
-
-      
     }
 }

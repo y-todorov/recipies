@@ -4,10 +4,10 @@
      
       
       
-        <ul>
-            <li><a runat="server" href="~/">Home</a></li>
-            <li><a runat="server" href="~/About">About</a></li>
-            <li><a runat="server" href="~/Contact">Contact</a></li>
-        </ul>
+    <ul>
+        <li><a runat="server" href="~/">Home</a></li>
+        <li><a runat="server" href="~/About">About</a></li>
+        <li><a runat="server" href="~/Contact">Contact</a></li>
+    </ul>
    
 </asp:Content>

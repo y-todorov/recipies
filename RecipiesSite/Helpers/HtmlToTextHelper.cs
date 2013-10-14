@@ -58,7 +58,7 @@ namespace HtmlAgilityPack
                         break;
 
                     // get text
-                    html = ((HtmlTextNode)node).Text;
+                    html = ((HtmlTextNode) node).Text;
 
                     // is it in fact a special closing node output as text?
                     if (HtmlNode.IsOverlappedClosingElement(html))

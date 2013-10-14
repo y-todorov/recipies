@@ -29,25 +29,25 @@ namespace RecipiesModelNS
             UpdateRecipesValuePerPortionFromIngredientsChange(recipeIdToUpdate);
             base.Removed(e);
         }
-               
+
 
         private void UpdateRecipesValuePerPortionFromIngredientsChange(int? recipeId)
         {
             if (recipeId.HasValue)
             {
-                Recipe recipe = ContextFactory.GetContextPerRequest().Recipes.FirstOrDefault(re => re.RecipeId == recipeId.Value);
+                Recipe recipe =
+                    ContextFactory.GetContextPerRequest().Recipes.FirstOrDefault(re => re.RecipeId == recipeId.Value);
                 if (recipe != null)
                 {
                     decimal? valuePerPortion = 0;
                     foreach (RecipeIngredient ri in recipe.RecipeIngredients)
                     {
-                        valuePerPortion += (decimal?)ri.TotalValue;
+                        valuePerPortion += (decimal?) ri.TotalValue;
                     }
                     recipe.ProductionValuePerPortion = valuePerPortion;
                     ContextFactory.GetContextPerRequest().SaveChanges();
                 }
             }
-
         }
     }
 }

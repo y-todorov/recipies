@@ -12,7 +12,7 @@ namespace RecipiesWebFormApp.Account
             {
                 if (User.Identity.IsAuthenticated)
                 {
-                    FormsAuthentication.SignOut();             
+                    FormsAuthentication.SignOut();
                 }
             }
         }

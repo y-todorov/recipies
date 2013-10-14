@@ -5,12 +5,12 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourcePurchaseOrderDetails" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="PurchaseOrderDetails">
-     </yordan:YordanCustomOpenAccessLinqDataSource>
+    </yordan:YordanCustomOpenAccessLinqDataSource>
     <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourcePurchaseOrder" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="PurchaseOrderHeaders" />
     <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceProduct" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="Products" />
     <yordan:YordanCustomRadGrid ID="rgPurchaseOrderDetails" runat="server" EnableLinqExpressions="true" DataSourceID="OpenAccessLinqDataSourcePurchaseOrderDetails">
         <MasterTableView AutoGenerateColumns="False" DataKeyNames="PurchaseOrderDetailId" DataSourceID="OpenAccessLinqDataSourcePurchaseOrderDetails">
-<%--            <GroupByExpressions>
+            <%--            <GroupByExpressions>
                 <telerik:GridGroupByExpression>
                     <GroupByFields>
                         <telerik:GridGroupByField FieldName="PurchaseOrderHeader.ShipDate" HeaderText="ShipDate" FormatString="{0:dd/MM/yyyy}" />
@@ -31,15 +31,15 @@
                     </ColumnValidationSettings>
                 </telerik:GridBoundColumn>
                 <telerik:GridDropDownColumn UniqueName="DropDownPurchaseOrderListColumn" ListTextField="PurchaseOrderId" EmptyListItemText="" EnableEmptyListItem="true" EmptyListItemValue="" ConvertEmptyStringToNull="true"
-                    ListValueField="PurchaseOrderId" DataSourceID="OpenAccessLinqDataSourcePurchaseOrder" HeaderText="PurchaseOrder"
-                    DataField="PurchaseOrderId" DropDownControlType="RadComboBox">
+                                            ListValueField="PurchaseOrderId" DataSourceID="OpenAccessLinqDataSourcePurchaseOrder" HeaderText="PurchaseOrder"
+                                            DataField="PurchaseOrderId" DropDownControlType="RadComboBox">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text=""></ModelErrorMessage>
                     </ColumnValidationSettings>
                 </telerik:GridDropDownColumn>
                 <telerik:GridDropDownColumn UniqueName="DropDownProductListColumn" ListTextField="Name" EmptyListItemText="" EnableEmptyListItem="true" EmptyListItemValue="" ConvertEmptyStringToNull="true"
-                    ListValueField="ProductId" DataSourceID="OpenAccessLinqDataSourceProduct" HeaderText="Product"
-                    DataField="ProductId" DropDownControlType="RadComboBox">
+                                            ListValueField="ProductId" DataSourceID="OpenAccessLinqDataSourceProduct" HeaderText="Product"
+                                            DataField="ProductId" DropDownControlType="RadComboBox">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text=""></ModelErrorMessage>
                     </ColumnValidationSettings>
@@ -54,7 +54,7 @@
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
                 </telerik:GridBoundColumn>
-                 <telerik:GridBoundColumn DataField="Product.ProductCategory.Name" ReadOnly="true" DataType="System.String" FilterControlAltText="Filter Product.ProductCategory.Name column" HeaderText="Category" SortExpression="Product.ProductCategory.Name" UniqueName="Product.ProductCategory.Name">
+                <telerik:GridBoundColumn DataField="Product.ProductCategory.Name" ReadOnly="true" DataType="System.String" FilterControlAltText="Filter Product.ProductCategory.Name column" HeaderText="Category" SortExpression="Product.ProductCategory.Name" UniqueName="Product.ProductCategory.Name">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>

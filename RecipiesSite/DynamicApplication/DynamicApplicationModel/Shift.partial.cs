@@ -26,7 +26,7 @@ namespace RecipiesModelNS
         public override void Changing(DbEntityEntry e)
         {
             Shift shift = this;
-            
+
             //if (e.FieldName.Equals("_StartHour", StringComparison.InvariantCultureIgnoreCase))
             //{
             //    DateTime? newStartHour = e.NewValue as DateTime?;
@@ -51,7 +51,7 @@ namespace RecipiesModelNS
         }
 
         public override void Changed(DbEntityEntry e)
-        {           
+        {
             base.Changed(e);
         }
     }

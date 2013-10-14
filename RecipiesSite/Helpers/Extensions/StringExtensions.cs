@@ -8,7 +8,8 @@ namespace Helpers.Extensions
         {
             if (ConfigurationManager.AppSettings["YordanRadGridColumnMaxVisualLength"] != null)
             {
-                int yordanRadGridColumnMaxVisualLength = int.Parse(ConfigurationManager.AppSettings["YordanRadGridColumnMaxVisualLength"]);
+                int yordanRadGridColumnMaxVisualLength =
+                    int.Parse(ConfigurationManager.AppSettings["YordanRadGridColumnMaxVisualLength"]);
                 string result = stringToTrim;
                 if (stringToTrim.Length >= yordanRadGridColumnMaxVisualLength)
                 {
@@ -17,7 +18,6 @@ namespace Helpers.Extensions
                 return result;
             }
             return string.Empty;
-        }    
-    
+        }
     }
 }

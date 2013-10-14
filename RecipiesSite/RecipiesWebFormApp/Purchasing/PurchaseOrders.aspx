@@ -5,7 +5,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourcePurchaseOrders" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="PurchaseOrderHeaders" OnUpdating="OpenAccessLinqDataSourcePurchaseOrders_Updating">
-     </yordan:YordanCustomOpenAccessLinqDataSource>
+    </yordan:YordanCustomOpenAccessLinqDataSource>
     <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceVendor" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="Vendors" />
     <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceShipMethod" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="ShipMethods" />
     <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceEmployee" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="Employees" />
@@ -17,14 +17,14 @@
         <WhereParameters>
             <asp:Parameter DefaultValue="0" Name="PurchaseOrderId" Type="Int32" />
         </WhereParameters>
-     </yordan:YordanCustomOpenAccessLinqDataSource>
+    </yordan:YordanCustomOpenAccessLinqDataSource>
     <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceUnit" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="UnitMeasures" />
 
     <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceStatus" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="PurchaseOrderStatus" Where="IsVisible == @IsVisible">
         <WhereParameters>
             <asp:Parameter DefaultValue="True" Name="IsVisible" Type="Boolean" />
         </WhereParameters>
-     </yordan:YordanCustomOpenAccessLinqDataSource>
+    </yordan:YordanCustomOpenAccessLinqDataSource>
     <yordan:YordanCustomRadGrid ID="rgPurchaseOrders" runat="server" ItemType="RecipiesModelNS.PurchaseOrderHeader" DataSourceID="OpenAccessLinqDataSourcePurchaseOrders" OnItemCommand="rgPurchaseOrders_ItemCommand" OnItemCreated="rgPurchaseOrders_ItemCreated">
         <MasterTableView AutoGenerateColumns="False" DataKeyNames="PurchaseOrderId" DataSourceID="OpenAccessLinqDataSourcePurchaseOrders">
             <Columns>
@@ -34,29 +34,29 @@
                     </ColumnValidationSettings>
                 </telerik:GridBoundColumn>
                 <telerik:GridDropDownColumn UniqueName="DropDownEmployeeListColumn" ListTextField="FirstName"
-                    ListValueField="EmployeeId" DataSourceID="OpenAccessLinqDataSourceEmployee" HeaderText="Employee"
-                    DataField="EmployeeId" DropDownControlType="RadComboBox" EmptyListItemText="" EnableEmptyListItem="true" EmptyListItemValue="" ConvertEmptyStringToNull="true">
+                                            ListValueField="EmployeeId" DataSourceID="OpenAccessLinqDataSourceEmployee" HeaderText="Employee"
+                                            DataField="EmployeeId" DropDownControlType="RadComboBox" EmptyListItemText="" EnableEmptyListItem="true" EmptyListItemValue="" ConvertEmptyStringToNull="true">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text=""></ModelErrorMessage>
                     </ColumnValidationSettings>
                 </telerik:GridDropDownColumn>
                 <telerik:GridDropDownColumn UniqueName="DropDownVendorListVendor" ListTextField="Name"
-                    ListValueField="VendorId" DataSourceID="OpenAccessLinqDataSourceVendor" HeaderText="Vendor"
-                    DataField="VendorId" DropDownControlType="RadComboBox" EmptyListItemText="" EnableEmptyListItem="true" EmptyListItemValue="" ConvertEmptyStringToNull="true">
+                                            ListValueField="VendorId" DataSourceID="OpenAccessLinqDataSourceVendor" HeaderText="Vendor"
+                                            DataField="VendorId" DropDownControlType="RadComboBox" EmptyListItemText="" EnableEmptyListItem="true" EmptyListItemValue="" ConvertEmptyStringToNull="true">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text=""></ModelErrorMessage>
                     </ColumnValidationSettings>
                 </telerik:GridDropDownColumn>
                 <telerik:GridDropDownColumn UniqueName="DropDownShipMethodListColumn" ListTextField="Name"
-                    ListValueField="ShipMethodId" DataSourceID="OpenAccessLinqDataSourceShipMethod" HeaderText="ShipMethod"
-                    DataField="ShipMethodId" DropDownControlType="RadComboBox" EmptyListItemText="" EnableEmptyListItem="true" EmptyListItemValue="" ConvertEmptyStringToNull="true">
+                                            ListValueField="ShipMethodId" DataSourceID="OpenAccessLinqDataSourceShipMethod" HeaderText="ShipMethod"
+                                            DataField="ShipMethodId" DropDownControlType="RadComboBox" EmptyListItemText="" EnableEmptyListItem="true" EmptyListItemValue="" ConvertEmptyStringToNull="true">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text=""></ModelErrorMessage>
                     </ColumnValidationSettings>
                 </telerik:GridDropDownColumn>
                 <telerik:GridDropDownColumn UniqueName="DropDownStatusListColumn" ListTextField="Name"
-                    ListValueField="PurchaseOrderStatusId" DataSourceID="OpenAccessLinqDataSourceStatus" HeaderText="Status"
-                    DataField="StatusId" DropDownControlType="RadComboBox">
+                                            ListValueField="PurchaseOrderStatusId" DataSourceID="OpenAccessLinqDataSourceStatus" HeaderText="Status"
+                                            DataField="StatusId" DropDownControlType="RadComboBox">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text=""></ModelErrorMessage>
                     </ColumnValidationSettings>
@@ -97,7 +97,7 @@
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
                 </telerik:GridNumericColumn>
-                   <telerik:GridHTMLEditorColumn DataField="Notes" MaxLength="4000" FilterControlAltText="Filter Notes column" HeaderText="Notes" SortExpression="Notes" UniqueName="Notes">
+                <telerik:GridHTMLEditorColumn DataField="Notes" MaxLength="4000" FilterControlAltText="Filter Notes column" HeaderText="Notes" SortExpression="Notes" UniqueName="Notes">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text=""></ModelErrorMessage>
                     </ColumnValidationSettings>
@@ -120,8 +120,8 @@
                             <MasterTableView AutoGenerateColumns="False" DataKeyNames="PurchaseOrderDetailId" DataSourceID="OpenAccessLinqDataSourcePurchaseOrderDetails">
                                 <Columns>
                                     <telerik:GridDropDownColumn UniqueName="DropDownPurchaseOrderListColumn" Visible="false" ListTextField="PurchaseOrderId" EmptyListItemText="" EnableEmptyListItem="true" EmptyListItemValue="" ConvertEmptyStringToNull="true"
-                                        ListValueField="PurchaseOrderId" DataSourceID="OpenAccessLinqDataSourcePurchaseOrder" ReadOnly="true" HeaderText="PurchaseOrder"
-                                        DataField="PurchaseOrderId" DropDownControlType="RadComboBox">
+                                                                ListValueField="PurchaseOrderId" DataSourceID="OpenAccessLinqDataSourcePurchaseOrder" ReadOnly="true" HeaderText="PurchaseOrder"
+                                                                DataField="PurchaseOrderId" DropDownControlType="RadComboBox">
                                         <ColumnValidationSettings>
                                             <ModelErrorMessage Text=""></ModelErrorMessage>
                                         </ColumnValidationSettings>
@@ -132,20 +132,20 @@
                                         </ColumnValidationSettings>
                                     </telerik:GridBoundColumn>
                                     <telerik:GridDropDownColumn UniqueName="DropDownProductListColumn" DataSourceID="OpenAccessLinqDataSourceProduct" ListTextField="Name" EmptyListItemText="" EnableEmptyListItem="true" EmptyListItemValue="" ConvertEmptyStringToNull="true"
-                                        ListValueField="ProductId" HeaderText="Product"
-                                        DataField="ProductId" DropDownControlType="RadComboBox">
+                                                                ListValueField="ProductId" HeaderText="Product"
+                                                                DataField="ProductId" DropDownControlType="RadComboBox">
                                         <ColumnValidationSettings>
                                             <ModelErrorMessage Text=""></ModelErrorMessage>
                                         </ColumnValidationSettings>
                                     </telerik:GridDropDownColumn>
-                                  <%--  <telerik:GridBoundColumn ReadOnly="true" DataField="Product.Code" FilterControlAltText="Filter Product.Code column" HeaderText="Product Code" SortExpression="Product.Code" UniqueName="Product.Code">
+                                    <%--  <telerik:GridBoundColumn ReadOnly="true" DataField="Product.Code" FilterControlAltText="Filter Product.Code column" HeaderText="Product Code" SortExpression="Product.Code" UniqueName="Product.Code">
                                         <ColumnValidationSettings>
                                             <ModelErrorMessage Text="" />
                                         </ColumnValidationSettings>
                                     </telerik:GridBoundColumn>--%>
                                     <telerik:GridDropDownColumn UniqueName="DropDownUnitListColumn" ListTextField="Name" EmptyListItemText="" EnableEmptyListItem="true" EmptyListItemValue="" ConvertEmptyStringToNull="true"
-                                        ListValueField="UnitMeasureId" DataSourceID="OpenAccessLinqDataSourceUnit" HeaderText="UnitMeasure"
-                                        DataField="UnitMeasureId" DropDownControlType="RadComboBox">
+                                                                ListValueField="UnitMeasureId" DataSourceID="OpenAccessLinqDataSourceUnit" HeaderText="UnitMeasure"
+                                                                DataField="UnitMeasureId" DropDownControlType="RadComboBox">
                                         <ColumnValidationSettings>
                                             <ModelErrorMessage Text=""></ModelErrorMessage>
                                         </ColumnValidationSettings>

@@ -14,12 +14,12 @@
                     </ColumnValidationSettings>
                 </telerik:GridBoundColumn>
                 <telerik:GridDropDownColumn UniqueName="DropDownSalesOrderHeaderListColumn" ListTextField="OrderId"
-                    ListValueField="OrderId" DataSourceID="OpenAccessLinqDataSourceSalesOrderHeader" HeaderText="SalesOrder"
-                    DataField="SalesOrderId" DropDownControlType="RadComboBox" EmptyListItemText="" EnableEmptyListItem="true" EmptyListItemValue="" ConvertEmptyStringToNull="true">
+                                            ListValueField="OrderId" DataSourceID="OpenAccessLinqDataSourceSalesOrderHeader" HeaderText="SalesOrder"
+                                            DataField="SalesOrderId" DropDownControlType="RadComboBox" EmptyListItemText="" EnableEmptyListItem="true" EmptyListItemValue="" ConvertEmptyStringToNull="true">
                 </telerik:GridDropDownColumn>
                 <telerik:GridDropDownColumn UniqueName="DropDownRecipeListColumn" ListTextField="Name"
-                    ListValueField="RecipeId" DataSourceID="OpenAccessLinqDataSourceRecipe" HeaderText="Recipe"
-                    DataField="RecipeId" DropDownControlType="RadComboBox" EmptyListItemText="" EnableEmptyListItem="true" EmptyListItemValue="" ConvertEmptyStringToNull="true">
+                                            ListValueField="RecipeId" DataSourceID="OpenAccessLinqDataSourceRecipe" HeaderText="Recipe"
+                                            DataField="RecipeId" DropDownControlType="RadComboBox" EmptyListItemText="" EnableEmptyListItem="true" EmptyListItemValue="" ConvertEmptyStringToNull="true">
                 </telerik:GridDropDownColumn>
                 <telerik:GridNumericColumn DataField="OrderQuantity" DataType="System.Int32" FilterControlAltText="Filter OrderQuantity column" HeaderText="OrderQuantity" SortExpression="OrderQuantity" UniqueName="OrderQuantity">
                     <ColumnValidationSettings>
@@ -55,7 +55,7 @@
         </MasterTableView>
     </yordan:YordanCustomRadGrid>
     <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceOrderDetail" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="SalesOrderDetails">
-     </yordan:YordanCustomOpenAccessLinqDataSource>
+    </yordan:YordanCustomOpenAccessLinqDataSource>
     <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceSalesOrderHeader" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="SalesOrderHeaders" />
     <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceRecipe" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="Recipes" />
 </asp:Content>

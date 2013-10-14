@@ -8,6 +8,7 @@ using System.Net;
 using RecipiesModelNS;
 using System.Diagnostics;
 using Microsoft.AspNet.SignalR;
+
 //using System.Threading;
 
 //using PubNubMessaging.Core;
@@ -16,7 +17,7 @@ namespace RecipiesWebFormApp
 {
     public class Global : HttpApplication
     {
-        void Application_Start(object sender, EventArgs e)
+        private void Application_Start(object sender, EventArgs e)
         {
             // Code that runs on application startup
             BundleConfig.RegisterBundles(BundleTable.Bundles);
@@ -42,10 +43,9 @@ namespace RecipiesWebFormApp
             //timerCheckDatabaseForChanges.Start();
 
             //int mnt = System.Threading.Thread.CurrentThread.ManagedThreadId;
-
         }
 
-        void timerCheckDatabaseForChanges_Elapsed(object sender, ElapsedEventArgs e)
+        private void timerCheckDatabaseForChanges_Elapsed(object sender, ElapsedEventArgs e)
         {
             Stopwatch s = new Stopwatch();
             s.Start();
@@ -54,7 +54,11 @@ namespace RecipiesWebFormApp
             //MethodInfo generic = method.MakeGenericMethod(typeof(Product));
             //var res = generic.Invoke(ContextFactory.GetContextPerRequest(), null) as IEnumerable;
 
-            DateTime? lastModifiedDate = ContextFactory.GetContextPerRequest().Products.OrderByDescending(p => p.ModifiedDate).Select(p => p.ModifiedDate).FirstOrDefault();
+            DateTime? lastModifiedDate =
+                ContextFactory.GetContextPerRequest()
+                    .Products.OrderByDescending(p => p.ModifiedDate)
+                    .Select(p => p.ModifiedDate)
+                    .FirstOrDefault();
             if (Application["ProductDate"] == null)
             {
                 Application.Add("ProductDate", lastModifiedDate);
@@ -66,7 +70,7 @@ namespace RecipiesWebFormApp
                 {
                     var context = GlobalHost.ConnectionManager.GetHubContext<RebindHub>();
                     // Here we refresh only grids with ItemType product. We should do notification system on wathcing the sql database. SQL WATCH or something
-                    context.Clients.Group(typeof(Product).FullName).rebindRadGrid();
+                    context.Clients.Group(typeof (Product).FullName).rebindRadGrid();
                     Application["ProductDate"] = lastModifiedDate.Value;
                     return;
                 }
@@ -80,13 +84,13 @@ namespace RecipiesWebFormApp
             }
             else
             {
-                int productCountCacheValue = (int)Application["ProductCount"];
+                int productCountCacheValue = (int) Application["ProductCount"];
                 if (productCountCacheValue != lastProductCount)
                 {
                     var context = GlobalHost.ConnectionManager.GetHubContext<RebindHub>();
 
                     // Here we refresh only grids with ItemType product. We should do notification system on wathcing the sql database. SQL WATCH or something
-                    context.Clients.Group(typeof(Product).FullName).rebindRadGrid();
+                    context.Clients.Group(typeof (Product).FullName).rebindRadGrid();
                     Application["ProductCount"] = lastProductCount;
                     return;
                 }
@@ -96,24 +100,22 @@ namespace RecipiesWebFormApp
             s.Stop();
             var mills = s.ElapsedMilliseconds;
             var ticks = s.ElapsedTicks;
-
         }
 
-        void timer_Elapsed(object sender, ElapsedEventArgs e)
+        private void timer_Elapsed(object sender, ElapsedEventArgs e)
         {
             WebClient client = new WebClient();
             string res = client.DownloadStringTaskAsync(new Uri("http://bluesystems.azurewebsites.net/")).Result;
             res = client.DownloadStringTaskAsync(new Uri("http://recipies.azurewebsites.net/")).Result;
         }
 
-        void Application_End(object sender, EventArgs e)
+        private void Application_End(object sender, EventArgs e)
         {
             //  Code that runs on application shutdown
         }
 
-        void Application_Error(object sender, EventArgs e)
+        private void Application_Error(object sender, EventArgs e)
         {
-
             Exception ex = Server.GetLastError();
             string exMessage = ex.Message;
             string exStackTrace = ex.StackTrace;

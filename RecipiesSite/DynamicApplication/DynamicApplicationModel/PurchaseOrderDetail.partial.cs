@@ -5,7 +5,6 @@ namespace RecipiesModelNS
 {
     public partial class PurchaseOrderDetail : YordanBaseEntity
     {
-
         private static int? purchaseOrderHeaderId;
 
         public override void Added(DbEntityEntry e = null)
@@ -37,19 +36,20 @@ namespace RecipiesModelNS
         {
             if (purchaseOrderHeaderId.HasValue)
             {
-                PurchaseOrderHeader poh = ContextFactory.GetContextPerRequest().PurchaseOrderHeaders.FirstOrDefault(po => po.PurchaseOrderId == purchaseOrderHeaderId.Value);
+                PurchaseOrderHeader poh =
+                    ContextFactory.GetContextPerRequest()
+                        .PurchaseOrderHeaders.FirstOrDefault(po => po.PurchaseOrderId == purchaseOrderHeaderId.Value);
                 if (poh != null)
                 {
                     decimal? subTotal = 0;
                     foreach (PurchaseOrderDetail pod in poh.PurchaseOrderDetails)
                     {
-                        subTotal += (decimal?)pod.LineTotal;
+                        subTotal += (decimal?) pod.LineTotal;
                     }
                     poh.SubTotal = subTotal;
                     ContextFactory.GetContextPerRequest().SaveChanges();
                 }
             }
-
         }
     }
 }

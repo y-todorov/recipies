@@ -15,20 +15,14 @@ namespace RecipiesWebFormApp
 
         public RadWindowManager MasterRadWindowManager
         {
-            get
-            {
-                return RadWindowManager1;
-            }
+            get { return RadWindowManager1; }
         }
 
         public RadNotification MasterRadNotification
         {
-            get
-            {
-                return RadNotification1;
-            }
+            get { return RadNotification1; }
         }
-        
+
         protected void Page_Init(object sender, EventArgs e)
         {
             // This prevents back button after log out 
@@ -81,8 +75,8 @@ namespace RecipiesWebFormApp
             else
             {
                 // Validate the Anti-XSRF token
-                if ((string)ViewState[AntiXsrfTokenKey] != _antiXsrfTokenValue
-                    || (string)ViewState[AntiXsrfUserNameKey] != (Context.User.Identity.Name ?? String.Empty))
+                if ((string) ViewState[AntiXsrfTokenKey] != _antiXsrfTokenValue
+                    || (string) ViewState[AntiXsrfUserNameKey] != (Context.User.Identity.Name ?? String.Empty))
                 {
                     throw new InvalidOperationException("Validation of Anti-XSRF token failed.");
                 }
@@ -90,8 +84,7 @@ namespace RecipiesWebFormApp
         }
 
         protected void Page_Load(object sender, EventArgs e)
-        {            
-           
+        {
         }
 
         protected void Unnamed_Load(object sender, EventArgs e)

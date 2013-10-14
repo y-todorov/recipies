@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 
 namespace RecipiesWebFormApp.Purchasing
 {
@@ -9,7 +8,6 @@ namespace RecipiesWebFormApp.Purchasing
         {
             if (!IsPostBack)
             {
-              
             }
         }
     }

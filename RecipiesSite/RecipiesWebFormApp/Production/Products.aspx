@@ -46,22 +46,22 @@
                     </ColumnValidationSettings>
                 </telerik:GridBoundColumn>
                 <telerik:GridDropDownColumn UniqueName="DropDownUnitListColumn" ListTextField="Name" EmptyListItemText="" EnableEmptyListItem="true" EmptyListItemValue="" ConvertEmptyStringToNull="true"
-                    ListValueField="UnitMeasureId" DataSourceID="OpenAccessLinqDataSourceUnit" HeaderText="UnitMeasure"
-                    DataField="UnitMeasureId" DropDownControlType="RadComboBox">
+                                            ListValueField="UnitMeasureId" DataSourceID="OpenAccessLinqDataSourceUnit" HeaderText="UnitMeasure"
+                                            DataField="UnitMeasureId" DropDownControlType="RadComboBox">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text=""></ModelErrorMessage>
                     </ColumnValidationSettings>
                 </telerik:GridDropDownColumn>
                 <telerik:GridDropDownColumn UniqueName="DropDownCategoryListColumn" ListTextField="Name"
-                    ListValueField="CategoryId" DataSourceID="OpenAccessLinqDataSourceCategory" HeaderText="Category"
-                    DataField="CategoryId" DropDownControlType="RadComboBox" EmptyListItemText="" EnableEmptyListItem="true" EmptyListItemValue="" ConvertEmptyStringToNull="true">
+                                            ListValueField="CategoryId" DataSourceID="OpenAccessLinqDataSourceCategory" HeaderText="Category"
+                                            DataField="CategoryId" DropDownControlType="RadComboBox" EmptyListItemText="" EnableEmptyListItem="true" EmptyListItemValue="" ConvertEmptyStringToNull="true">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text=""></ModelErrorMessage>
                     </ColumnValidationSettings>
                 </telerik:GridDropDownColumn>
                 <telerik:GridDropDownColumn UniqueName="DropDownStoreListColumn" ListTextField="Name"
-                    ListValueField="StoreId" DataSourceID="OpenAccessLinqDataSourceStore" HeaderText="Store"
-                    DataField="StoreId" DropDownControlType="RadComboBox">
+                                            ListValueField="StoreId" DataSourceID="OpenAccessLinqDataSourceStore" HeaderText="Store"
+                                            DataField="StoreId" DropDownControlType="RadComboBox">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text=""></ModelErrorMessage>
                     </ColumnValidationSettings>
@@ -87,7 +87,7 @@
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
                 </telerik:GridNumericColumn>
-                 <telerik:GridNumericColumn DataField="StockValue" ReadOnly="true" DataType="System.Double" FilterControlAltText="Filter StockValue column" HeaderText="StockValue" SortExpression="StockValue" UniqueName="StockValue">
+                <telerik:GridNumericColumn DataField="StockValue" ReadOnly="true" DataType="System.Double" FilterControlAltText="Filter StockValue column" HeaderText="StockValue" SortExpression="StockValue" UniqueName="StockValue">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
@@ -131,7 +131,7 @@
     <asp:Label ID="Label1" Text="Update product units in stock from all purchase orders that are completed" runat="server" />
     <telerik:RadButton ID="rbUpdateUnitsInStock" OnClick="rbUpdateUnitsInStock_Click" runat="server" Text="Update UnitsInStock"></telerik:RadButton>
     <br />
-     <asp:Label ID="Label2" Text="Update product units on order from all purchase orders that are approved" runat="server" />
+    <asp:Label ID="Label2" Text="Update product units on order from all purchase orders that are approved" runat="server" />
     <telerik:RadButton ID="rbUpdateUnitsOnOrder" OnClick="rbUpdateUnitsOnOrder_Click" runat="server" Text="Update UnitsOnOrder"></telerik:RadButton>
 
 </asp:Content>

@@ -29,8 +29,8 @@
                                 </td>
                                 <td>
                                     <asp:RequiredFieldValidator runat="server" ControlToValidate="CurrentPassword"
-                                        ErrorMessage="The current password field is required."
-                                        ValidationGroup="ChangePassword" />
+                                                                ErrorMessage="The current password field is required."
+                                                                ValidationGroup="ChangePassword" />
                                 </td>
                                 <td></td>
                             </tr>
@@ -43,8 +43,8 @@
                                 </td>
                                 <td>
                                     <asp:RequiredFieldValidator runat="server" ControlToValidate="NewPassword"
-                                        ErrorMessage="The new password is required."
-                                        ValidationGroup="ChangePassword" />
+                                                                ErrorMessage="The new password is required."
+                                                                ValidationGroup="ChangePassword" />
                                 </td>
                                 <td></td>
                             </tr>
@@ -57,25 +57,25 @@
                                 </td>
                                 <td>
                                     <asp:RequiredFieldValidator runat="server" ControlToValidate="ConfirmNewPassword"
-                                        Display="Dynamic" ErrorMessage="Confirm new password is required."
-                                        ValidationGroup="ChangePassword" />
+                                                                Display="Dynamic" ErrorMessage="Confirm new password is required."
+                                                                ValidationGroup="ChangePassword" />
                                 </td>
                                 <td>
                                     <asp:CompareValidator runat="server" ControlToCompare="NewPassword" ControlToValidate="ConfirmNewPassword"
-                                        Display="Dynamic" ErrorMessage="The new password and confirmation password do not match."
-                                        ValidationGroup="ChangePassword" />
+                                                          Display="Dynamic" ErrorMessage="The new password and confirmation password do not match."
+                                                          ValidationGroup="ChangePassword" />
                                 </td>
                             </tr>
                             <tr>
-                                <tr>
-                                    <td>
-                                        <asp:Button runat="server" CommandName="ChangePassword" Text="Change password" ValidationGroup="ChangePassword" />
-                                    </td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
+                            <tr>
+                                <td>
+                                    <asp:Button runat="server" CommandName="ChangePassword" Text="Change password" ValidationGroup="ChangePassword" />
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
                             </tr>
+                        </tr>
                         </table>
                     </fieldset>
                 </ChangePasswordTemplate>

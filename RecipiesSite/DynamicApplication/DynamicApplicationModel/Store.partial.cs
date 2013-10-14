@@ -2,6 +2,5 @@
 {
     public partial class Store : YordanBaseEntity
     {
-
     }
 }

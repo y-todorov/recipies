@@ -2,6 +2,5 @@
 {
     public partial class Inventory : YordanBaseEntity
     {
-
     }
 }

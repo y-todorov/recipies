@@ -17,35 +17,29 @@ namespace RecipiesWebFormApp.Purchasing
         {
             get
             {
-                int poId = (int)ViewState["PurchaseOrderId"];
+                int poId = (int) ViewState["PurchaseOrderId"];
                 return poId;
             }
-            set
-            {
-                ViewState["PurchaseOrderId"] = value;
-            }
+            set { ViewState["PurchaseOrderId"] = value; }
         }
 
         public int? VendorId
         {
             get
             {
-                int? vendorId = (int)ViewState["VendorId"];
+                int? vendorId = (int) ViewState["VendorId"];
                 return vendorId;
             }
-            set
-            {
-                ViewState["VendorId"] = value;
-            }
+            set { ViewState["VendorId"] = value; }
         }
-             
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
         }
 
-        protected void OpenAccessLinqDataSourcePurchaseOrderDetails_Selecting(object sender, EntityDataSourceSelectingEventArgs e)
+        protected void OpenAccessLinqDataSourcePurchaseOrderDetails_Selecting(object sender,
+            EntityDataSourceSelectingEventArgs e)
         {
             if (e.DataSource.WhereParameters["PurchaseOrderId"] != null)
             {
@@ -60,8 +54,11 @@ namespace RecipiesWebFormApp.Purchasing
                 GridEditableItem editableItem = e.Item as GridEditableItem;
                 if (editableItem != null)
                 {
-                    int purchaseOrderId = (int)editableItem.GetDataKeyValue(rgPurchaseOrders.MasterTableView.DataKeyNames[0]);
-                    PurchaseOrderHeader purchaseOrder = ContextFactory.GetContextPerRequest().PurchaseOrderHeaders.FirstOrDefault(p => p.PurchaseOrderId == purchaseOrderId);
+                    int purchaseOrderId =
+                        (int) editableItem.GetDataKeyValue(rgPurchaseOrders.MasterTableView.DataKeyNames[0]);
+                    PurchaseOrderHeader purchaseOrder =
+                        ContextFactory.GetContextPerRequest()
+                            .PurchaseOrderHeaders.FirstOrDefault(p => p.PurchaseOrderId == purchaseOrderId);
                     VendorId = purchaseOrder.VendorId;
                     PurchaseOrderId = purchaseOrderId;
                 }
@@ -75,13 +72,17 @@ namespace RecipiesWebFormApp.Purchasing
                 GridDataItem dataItem = e.Item as GridDataItem;
                 if (dataItem != null)
                 {
-                    int purchaseOrderId = (int)dataItem.GetDataKeyValue(rgPurchaseOrders.MasterTableView.DataKeyNames[0]);
-                    PurchaseOrderHeader purchaseOrder = ContextFactory.GetContextPerRequest().PurchaseOrderHeaders.FirstOrDefault(p => p.PurchaseOrderId == purchaseOrderId);
+                    int purchaseOrderId =
+                        (int) dataItem.GetDataKeyValue(rgPurchaseOrders.MasterTableView.DataKeyNames[0]);
+                    PurchaseOrderHeader purchaseOrder =
+                        ContextFactory.GetContextPerRequest()
+                            .PurchaseOrderHeaders.FirstOrDefault(p => p.PurchaseOrderId == purchaseOrderId);
 
                     ReportProcessor reportProcessor = new ReportProcessor();
 
                     var instanceReportSource = new Telerik.Reporting.InstanceReportSource();
-                    RecipiesReports.PurchaseOrderDetailsReport salesOrderDetailsReport = new RecipiesReports.PurchaseOrderDetailsReport();
+                    RecipiesReports.PurchaseOrderDetailsReport salesOrderDetailsReport =
+                        new RecipiesReports.PurchaseOrderDetailsReport();
                     salesOrderDetailsReport.DataSource = purchaseOrder.PurchaseOrderDetails;
                     instanceReportSource.ReportDocument = salesOrderDetailsReport;
 
@@ -102,9 +103,9 @@ namespace RecipiesWebFormApp.Purchasing
                     Response.Buffer = true;
 
                     Response.AddHeader("Content-Disposition",
-                                       string.Format("{0};FileName=\"{1}\"",
-                                                     "attachment",
-                                                     fileName));
+                        string.Format("{0};FileName=\"{1}\"",
+                            "attachment",
+                            fileName));
 
                     Response.BinaryWrite(result.DocumentBytes);
                     Response.End();
@@ -115,7 +116,8 @@ namespace RecipiesWebFormApp.Purchasing
                 GridDataItem dataItem = e.Item as GridDataItem;
                 if (dataItem != null)
                 {
-                    (Master as SiteMaster).MasterRadNotification.Show("Sending Emails is temporary disabled. Will be enabled when the product is tested enough! ");
+                    (Master as SiteMaster).MasterRadNotification.Show(
+                        "Sending Emails is temporary disabled. Will be enabled when the product is tested enough! ");
                     return;
 
                     //int purchaseOrderId = (int)dataItem.GetDataKeyValue(rgPurchaseOrders.MasterTableView.DataKeyNames[0]);
@@ -154,7 +156,6 @@ namespace RecipiesWebFormApp.Purchasing
             }
             if (e.CommandName == RadGrid.UpdateCommandName)
             {
-
             }
         }
 
@@ -166,10 +167,11 @@ namespace RecipiesWebFormApp.Purchasing
                 // We should get the default product price ot item changed of the products. Thats tough.
                 if (VendorId.HasValue)
                 {
-                    Vendor vendor = ContextFactory.GetContextPerRequest().Vendors.FirstOrDefault(v => v.VendorId == VendorId);
+                    Vendor vendor =
+                        ContextFactory.GetContextPerRequest().Vendors.FirstOrDefault(v => v.VendorId == VendorId);
                     if (vendor != null)
                     {
-                        PurchaseOrderDetail newPod = new PurchaseOrderDetail() { UnitPrice = null };
+                        PurchaseOrderDetail newPod = new PurchaseOrderDetail() {UnitPrice = null};
                         e.Item.OwnerTableView.InsertItem(newPod);
                     }
                 }
@@ -177,25 +179,29 @@ namespace RecipiesWebFormApp.Purchasing
             if (e.CommandName == RadGrid.DeleteCommandName)
             {
                 //this works fine
-                PurchaseOrderHeader purchaseOrder = ContextFactory.GetContextPerRequest().PurchaseOrderHeaders.FirstOrDefault(p => p.PurchaseOrderId == PurchaseOrderId);
-                if (purchaseOrder != null && purchaseOrder.StatusId == (int)PurchaseOrderStatusEnum.Completed)
+                PurchaseOrderHeader purchaseOrder =
+                    ContextFactory.GetContextPerRequest()
+                        .PurchaseOrderHeaders.FirstOrDefault(p => p.PurchaseOrderId == PurchaseOrderId);
+                if (purchaseOrder != null && purchaseOrder.StatusId == (int) PurchaseOrderStatusEnum.Completed)
                 {
-                    (Master as SiteMaster).MasterRadWindowManager.RadAlert("You can not delete products from a purchase order with completed status!", 300, 200, "Can not delete!", "");
+                    (Master as SiteMaster).MasterRadWindowManager.RadAlert(
+                        "You can not delete products from a purchase order with completed status!", 300, 200,
+                        "Can not delete!", "");
                     e.Canceled = true;
                 }
             }
         }
 
-        protected void OpenAccessLinqDataSourcePurchaseOrderDetails_Selected(object sender, EntityDataSourceSelectedEventArgs e)
+        protected void OpenAccessLinqDataSourcePurchaseOrderDetails_Selected(object sender,
+            EntityDataSourceSelectedEventArgs e)
         {
-
         }
 
         protected void rgPurchaseOrderDetails_PreRender(object sender, EventArgs e)
         {
             if (PurchaseOrderId <= 0)
             {
-                RadGrid rgPurchaseOrderDetails = (RadGrid)sender;
+                RadGrid rgPurchaseOrderDetails = (RadGrid) sender;
                 rgPurchaseOrderDetails.Visible = false;
             }
         }
@@ -204,7 +210,7 @@ namespace RecipiesWebFormApp.Purchasing
         {
             if (PurchaseOrderId > 0)
             {
-                Label lblPurchaseOrderDetails = (Label)sender;
+                Label lblPurchaseOrderDetails = (Label) sender;
                 lblPurchaseOrderDetails.Visible = false;
             }
         }
@@ -223,7 +229,6 @@ namespace RecipiesWebFormApp.Purchasing
 
         protected void rgPurchaseOrderDetails_CreateColumnEditor(object sender, GridCreateColumnEditorEventArgs e)
         {
-
         }
 
         protected void rgPurchaseOrderDetails_ItemCreated(object sender, GridItemEventArgs e)
@@ -231,13 +236,14 @@ namespace RecipiesWebFormApp.Purchasing
             if (e.Item is GridEditableItem && e.Item.IsInEditMode)
             {
                 GridEditableItem editedItem = (e.Item as GridEditableItem);
-                RadComboBox dropDownProductListColumn = editedItem["DropDownProductListColumn"].Controls[0] as RadComboBox;
+                RadComboBox dropDownProductListColumn =
+                    editedItem["DropDownProductListColumn"].Controls[0] as RadComboBox;
 
                 //attach SelectedIndexChanged event for the dropdown control  
                 dropDownProductListColumn.AutoPostBack = true;
 
                 List<Product> filteredProducts = ContextFactory.GetContextPerRequest().ProductVendors.
-           Where(pv => pv.VendorId == VendorId && pv.Product != null).Select(pv => pv.Product).ToList();
+                    Where(pv => pv.VendorId == VendorId && pv.Product != null).Select(pv => pv.Product).ToList();
 
                 dropDownProductListColumn.DataTextField = "Name";
                 dropDownProductListColumn.DataValueField = "ProductId";
@@ -265,19 +271,21 @@ namespace RecipiesWebFormApp.Purchasing
             }
         }
 
-        void dropDownUnitListColumn_PreRender(object sender, EventArgs e)
+        private void dropDownUnitListColumn_PreRender(object sender, EventArgs e)
         {
-            dropDownProductListColumn_SelectedIndexChanged(sender, new RadComboBoxSelectedIndexChangedEventArgs(string.Empty, string.Empty, string.Empty, string.Empty));
+            dropDownProductListColumn_SelectedIndexChanged(sender,
+                new RadComboBoxSelectedIndexChangedEventArgs(string.Empty, string.Empty, string.Empty, string.Empty));
         }
 
-        void dropDownProductListColumn_PreRender(object sender, EventArgs e)
+        private void dropDownProductListColumn_PreRender(object sender, EventArgs e)
         {
-            dropDownProductListColumn_SelectedIndexChanged(sender, new RadComboBoxSelectedIndexChangedEventArgs(string.Empty, string.Empty, string.Empty, string.Empty));
+            dropDownProductListColumn_SelectedIndexChanged(sender,
+                new RadComboBoxSelectedIndexChangedEventArgs(string.Empty, string.Empty, string.Empty, string.Empty));
         }
 
 
-
-        void dropDownProductListColumn_SelectedIndexChanged(object sender, RadComboBoxSelectedIndexChangedEventArgs e)
+        private void dropDownProductListColumn_SelectedIndexChanged(object sender,
+            RadComboBoxSelectedIndexChangedEventArgs e)
         {
             //first reference the edited grid item through the NamingContainer                                                     attribute  
             GridEditableItem editedItem = (sender as RadComboBox).NamingContainer as GridEditableItem;
@@ -292,43 +300,51 @@ namespace RecipiesWebFormApp.Purchasing
                 int intProductId;
                 if (int.TryParse(productId, out intProductId))
                 {
-                    Product product = ContextFactory.GetContextPerRequest().Products.FirstOrDefault(p => p.ProductId == intProductId);
+                    Product product =
+                        ContextFactory.GetContextPerRequest().Products.FirstOrDefault(p => p.ProductId == intProductId);
                     if (product != null)
-                    {                       
-                        PurchaseOrderHeader purchaseOrder = ContextFactory.GetContextPerRequest().PurchaseOrderHeaders.FirstOrDefault(p => p.PurchaseOrderId == PurchaseOrderId);
+                    {
+                        PurchaseOrderHeader purchaseOrder =
+                            ContextFactory.GetContextPerRequest()
+                                .PurchaseOrderHeaders.FirstOrDefault(p => p.PurchaseOrderId == PurchaseOrderId);
 
                         if (purchaseOrder.Vendor != null)
                         {
                             ProductVendor productVendor = ContextFactory.GetContextPerRequest().ProductVendors
-                                .Where(pv => pv.ProductId == product.ProductId && pv.VendorId == VendorId).ToList().FirstOrDefault();
+                                .Where(pv => pv.ProductId == product.ProductId && pv.VendorId == VendorId)
+                                .ToList()
+                                .FirstOrDefault();
 
                             if (productVendor != null)
                             {
-                                dropDownUnitListColumn.DataSource = new List<UnitMeasure>() { productVendor.UnitMeasure };
+                                dropDownUnitListColumn.DataSource = new List<UnitMeasure>() {productVendor.UnitMeasure};
                                 dropDownUnitListColumn.DataBind();
                             }
                         }
-                        
+
                         int unitId;
                         int.TryParse(dropDownUnitListColumn.SelectedValue, out unitId);
 
-                        UnitMeasure vendorUnitMeasure  = ContextFactory.GetContextPerRequest().UnitMeasures.Where(um => um.UnitMeasureId == unitId).FirstOrDefault();
+                        UnitMeasure vendorUnitMeasure =
+                            ContextFactory.GetContextPerRequest()
+                                .UnitMeasures.Where(um => um.UnitMeasureId == unitId)
+                                .FirstOrDefault();
                         decimal coef = 1;
                         if (vendorUnitMeasure != null)
                         {
-                            coef = (decimal)product.GetBaseUnitMeasureQuantityForProduct(1, vendorUnitMeasure);
+                            coef = (decimal) product.GetBaseUnitMeasureQuantityForProduct(1, vendorUnitMeasure);
                         }
 
                         //tbUnitPrice.Text = (coef * product.UnitPrice.GetValueOrDefault()).ToString();
-                        tbUnitPrice.Text = (coef * (decimal)product.GetAveragePriceLastDays(14)).ToString(); // .UnitPrice.GetValueOrDefault()).ToString();
-
-
+                        tbUnitPrice.Text = (coef*(decimal) product.GetAveragePriceLastDays(14)).ToString();
+                            // .UnitPrice.GetValueOrDefault()).ToString();
                     }
                 }
             }
         }
 
-        protected void OpenAccessLinqDataSourcePurchaseOrders_Updating(object sender, EntityDataSourceChangingEventArgs e)
+        protected void OpenAccessLinqDataSourcePurchaseOrders_Updating(object sender,
+            EntityDataSourceChangingEventArgs e)
         {
             // Implemented in partial class
 
@@ -338,7 +354,6 @@ namespace RecipiesWebFormApp.Purchasing
 
 
             //bool isValidStatusTransition = newPurchaseOrderHeader.UpdateProductsFromStatus(oldPurchaseOrderHeader.StatusId, newPurchaseOrderHeader.StatusId);
-
 
 
             //if (!isValidStatusTransition)
@@ -364,38 +379,43 @@ namespace RecipiesWebFormApp.Purchasing
                     // insert item
 
                     GridEditableItem editedItem = (e.Item as GridEditableItem);
-                    RadComboBox dropDownStatusListColumn = editedItem["DropDownStatusListColumn"].Controls[0] as RadComboBox;
+                    RadComboBox dropDownStatusListColumn =
+                        editedItem["DropDownStatusListColumn"].Controls[0] as RadComboBox;
                     dropDownStatusListColumn.Enabled = false;
                 }
             }
         }
 
-        protected void OpenAccessLinqDataSourcePurchaseOrderDetails_InsertedUpdatedDeleted(object sender, EntityDataSourceChangedEventArgs e)
+        protected void OpenAccessLinqDataSourcePurchaseOrderDetails_InsertedUpdatedDeleted(object sender,
+            EntityDataSourceChangedEventArgs e)
         {
             // So SubTotal and Total value  will be updated
             //rgPurchaseOrders.Rebind();
         }
 
-        protected void OpenAccessLinqDataSourcePurchaseOrderDetails_Inserted(object sender, EntityDataSourceChangedEventArgs e)
+        protected void OpenAccessLinqDataSourcePurchaseOrderDetails_Inserted(object sender,
+            EntityDataSourceChangedEventArgs e)
         {
             // So SubTotal and Total value  will be updated
             rgPurchaseOrders.Rebind();
         }
 
-        protected void OpenAccessLinqDataSourcePurchaseOrderDetails_Updated(object sender, EntityDataSourceChangedEventArgs e)
+        protected void OpenAccessLinqDataSourcePurchaseOrderDetails_Updated(object sender,
+            EntityDataSourceChangedEventArgs e)
         {
             // So SubTotal and Total value  will be updated
             rgPurchaseOrders.Rebind();
         }
 
-        protected void OpenAccessLinqDataSourcePurchaseOrderDetails_Deleted(object sender, EntityDataSourceChangedEventArgs e)
+        protected void OpenAccessLinqDataSourcePurchaseOrderDetails_Deleted(object sender,
+            EntityDataSourceChangedEventArgs e)
         {
-
             // So SubTotal and Total value  will be updated
             rgPurchaseOrders.Rebind();
         }
 
-        protected void OpenAccessLinqDataSourcePurchaseOrderDetails_Inserting(object sender, EntityDataSourceChangingEventArgs e)
+        protected void OpenAccessLinqDataSourcePurchaseOrderDetails_Inserting(object sender,
+            EntityDataSourceChangingEventArgs e)
         {
             PurchaseOrderDetail newPurchaseOrderDetail = e.Entity as PurchaseOrderDetail;
             if (newPurchaseOrderDetail != null)
@@ -404,12 +424,13 @@ namespace RecipiesWebFormApp.Purchasing
             }
         }
 
-        protected void OpenAccessLinqDataSourcePurchaseOrderDetails_Updating(object sender, EntityDataSourceChangingEventArgs e)
+        protected void OpenAccessLinqDataSourcePurchaseOrderDetails_Updating(object sender,
+            EntityDataSourceChangingEventArgs e)
         {
-
         }
 
-        protected void OpenAccessLinqDataSourcePurchaseOrderDetails_Deleting(object sender, EntityDataSourceChangingEventArgs e)
+        protected void OpenAccessLinqDataSourcePurchaseOrderDetails_Deleting(object sender,
+            EntityDataSourceChangingEventArgs e)
         {
             if (e.Exception != null)
             {
@@ -420,13 +441,10 @@ namespace RecipiesWebFormApp.Purchasing
 
         protected void OpenAccessLinqDataSourceProduct_Selecting(object sender, EntityDataSourceSelectingEventArgs e)
         {
-
         }
 
         protected void OpenAccessLinqDataSourcePurchaseOrderDetails_QueryCreated(object sender, QueryCreatedEventArgs e)
         {
-
         }
-
     }
 }

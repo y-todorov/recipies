@@ -15,7 +15,6 @@
         Canceled = 6
     }
 
-    
 
     //public partial class RecipiesModel
     //{
@@ -155,7 +154,7 @@
     //                       BindingFlags.NonPublic |
     //                       BindingFlags.Public);
     //                var productProperties = obj.GetType().GetProperties();
-                    
+
     //                var productHistoryFields = historyEntity.GetType().GetFields(BindingFlags.Instance |
     //                       BindingFlags.Static |
     //                       BindingFlags.NonPublic |

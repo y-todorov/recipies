@@ -12,25 +12,21 @@ namespace RecipiesWebFormApp.Sales
         {
             get
             {
-                int salesOrderId = (int)ViewState["SalesOrderId"];
+                int salesOrderId = (int) ViewState["SalesOrderId"];
                 return salesOrderId;
             }
-            set
-            {
-                ViewState["SalesOrderId"] = value;
-            }
+            set { ViewState["SalesOrderId"] = value; }
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
         }
 
         protected void lblSalesOrderDetails_PreRender(object sender, EventArgs e)
         {
             if (SalesOrderId > 0)
             {
-                Label lblSalesOrderDetails = (Label)sender;
+                Label lblSalesOrderDetails = (Label) sender;
                 lblSalesOrderDetails.Visible = false;
             }
         }
@@ -39,12 +35,12 @@ namespace RecipiesWebFormApp.Sales
         {
             if (SalesOrderId <= 0)
             {
-                RadGrid rgSalesOrderDetails = (RadGrid)sender;
+                RadGrid rgSalesOrderDetails = (RadGrid) sender;
                 rgSalesOrderDetails.Visible = false;
             }
-        }       
+        }
 
-        protected void OpenAccessLinqDataSourceOrderDetail_Inserting(object sender,EntityDataSourceChangingEventArgs e)
+        protected void OpenAccessLinqDataSourceOrderDetail_Inserting(object sender, EntityDataSourceChangingEventArgs e)
         {
             SalesOrderDetail newSalesOrderDetail = e.Entity as SalesOrderDetail;
             if (newSalesOrderDetail != null)
@@ -68,9 +64,12 @@ namespace RecipiesWebFormApp.Sales
                 GridEditableItem editableItem = e.Item as GridEditableItem;
                 if (editableItem != null)
                 {
-                    int salesOrderId = (int)editableItem.GetDataKeyValue(rgSalesOrderHeaders.MasterTableView.DataKeyNames[0]);
-                    SalesOrderHeader salesOrderHeader = ContextFactory.GetContextPerRequest().SalesOrderHeaders.FirstOrDefault(s => s.SalesOrderHeaderId == salesOrderId);
-                    SalesOrderId = salesOrderHeader.SalesOrderHeaderId;                  
+                    int salesOrderId =
+                        (int) editableItem.GetDataKeyValue(rgSalesOrderHeaders.MasterTableView.DataKeyNames[0]);
+                    SalesOrderHeader salesOrderHeader =
+                        ContextFactory.GetContextPerRequest()
+                            .SalesOrderHeaders.FirstOrDefault(s => s.SalesOrderHeaderId == salesOrderId);
+                    SalesOrderId = salesOrderHeader.SalesOrderHeaderId;
                 }
             }
             if (e.CommandName == RadGrid.InitInsertCommandName)

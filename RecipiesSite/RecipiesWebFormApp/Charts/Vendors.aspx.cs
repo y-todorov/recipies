@@ -32,7 +32,8 @@ namespace RecipiesWebFormApp.Charts
             }
 
             // Return the week of our adjusted day
-            return CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(time, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
+            return CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(time, CalendarWeekRule.FirstFourDayWeek,
+                DayOfWeek.Monday);
         }
 
         public class HelperClass
@@ -51,25 +52,36 @@ namespace RecipiesWebFormApp.Charts
         {
             try
             {
-
                 Vendor vendor;
                 if (!string.IsNullOrEmpty(rcbVendor.SelectedValue))
                 {
                     int vendorId = int.Parse(rcbVendor.SelectedValue);
-                    vendor = ContextFactory.GetContextPerRequest().Vendors.Where(v => v.VendorId == vendorId).FirstOrDefault();
+                    vendor =
+                        ContextFactory.GetContextPerRequest()
+                            .Vendors.Where(v => v.VendorId == vendorId)
+                            .FirstOrDefault();
                 }
                 else
                 {
                     vendor = ContextFactory.GetContextPerRequest().Vendors.FirstOrDefault();
                 }
-                List<PurchaseOrderDetail> pods = ContextFactory.GetContextPerRequest().PurchaseOrderDetails.Where(pod => pod.PurchaseOrderHeader.StatusId == (int)PurchaseOrderStatusEnum.Completed).ToList();
+                List<PurchaseOrderDetail> pods =
+                    ContextFactory.GetContextPerRequest()
+                        .PurchaseOrderDetails.Where(
+                            pod => pod.PurchaseOrderHeader.StatusId == (int) PurchaseOrderStatusEnum.Completed)
+                        .ToList();
 
-                var grouping = pods.OrderByDescending(pod => pod.PurchaseOrderHeader.OrderDate).GroupBy(pod => GetIso8601WeekOfYear(pod.PurchaseOrderHeader.OrderDate.GetValueOrDefault()));
+                var grouping =
+                    pods.OrderByDescending(pod => pod.PurchaseOrderHeader.OrderDate)
+                        .GroupBy(pod => GetIso8601WeekOfYear(pod.PurchaseOrderHeader.OrderDate.GetValueOrDefault()));
 
                 if (!string.IsNullOrEmpty(rcbVendor.SelectedValue))
                 {
                     int vendorId = int.Parse(rcbVendor.SelectedValue);
-                    vendor = ContextFactory.GetContextPerRequest().Vendors.Where(v => v.VendorId == vendorId).FirstOrDefault();
+                    vendor =
+                        ContextFactory.GetContextPerRequest()
+                            .Vendors.Where(v => v.VendorId == vendorId)
+                            .FirstOrDefault();
                 }
                 else
                 {
@@ -88,16 +100,16 @@ namespace RecipiesWebFormApp.Charts
                 {
                     HelperClass h = new HelperClass();
                     h.Week = item.Key;
-                    h.VendorValue = item.Where(pod => pod.PurchaseOrderHeader.VendorId == vendor.VendorId).Sum(pod => pod.LineTotal);
+                    h.VendorValue =
+                        item.Where(pod => pod.PurchaseOrderHeader.VendorId == vendor.VendorId).Sum(pod => pod.LineTotal);
                     helpers.Add(h);
                 }
-                
+
                 rhcVendorsLastWeek.DataSource = helpers.OrderBy(h => h.Week);
             }
             catch (Exception ex)
             {
                 Debugger.Break();
-
             }
         }
     }

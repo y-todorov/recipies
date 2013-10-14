@@ -4,7 +4,8 @@ namespace Helpers
 {
     public static class EmailHelper
     {
-        public static RestResponse SendComplexMessage(string from, string to, string cc, string bcc, string subject, string textBody, string htmlBody, byte[] attachmentBytes, string attachmentNameWithExtension)
+        public static RestResponse SendComplexMessage(string from, string to, string cc, string bcc, string subject,
+            string textBody, string htmlBody, byte[] attachmentBytes, string attachmentNameWithExtension)
         {
             RestClient client = new RestClient();
             client.BaseUrl = "https://api.mailgun.net/v2";
@@ -26,7 +27,7 @@ namespace Helpers
             request.AddFile("attachment", attachmentBytes, attachmentNameWithExtension);
             request.Method = Method.POST;
             RestResponse response = client.Execute(request) as RestResponse;
-            
+
             return response;
         }
     }

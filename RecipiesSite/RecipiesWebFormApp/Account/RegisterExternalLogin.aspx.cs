@@ -7,25 +7,25 @@ namespace RecipiesWebFormApp.Account
     {
         protected string ProviderName
         {
-            get { return (string)ViewState["ProviderName"] ?? String.Empty; }
+            get { return (string) ViewState["ProviderName"] ?? String.Empty; }
             private set { ViewState["ProviderName"] = value; }
         }
 
         protected string ProviderDisplayName
         {
-            get { return (string)ViewState["ProviderDisplayName"] ?? String.Empty; }
+            get { return (string) ViewState["ProviderDisplayName"] ?? String.Empty; }
             private set { ViewState["ProviderDisplayName"] = value; }
         }
 
         protected string ProviderUserId
         {
-            get { return (string)ViewState["ProviderUserId"] ?? String.Empty; }
+            get { return (string) ViewState["ProviderUserId"] ?? String.Empty; }
             private set { ViewState["ProviderUserId"] = value; }
         }
 
         protected string ProviderUserName
         {
-            get { return (string)ViewState["ProviderUserName"] ?? String.Empty; }
+            get { return (string) ViewState["ProviderUserName"] ?? String.Empty; }
             private set { ViewState["ProviderUserName"] = value; }
         }
 
@@ -118,9 +118,7 @@ namespace RecipiesWebFormApp.Account
             var createResult = OpenAuth.CreateUser(ProviderName, ProviderUserId, ProviderUserName, userName.Text);
             if (!createResult.IsSuccessful)
             {
-
                 ModelState.AddModelError("UserName", createResult.ErrorMessage);
-
             }
             else
             {

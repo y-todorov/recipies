@@ -558,6 +558,9 @@
     <Content Include="SiteLogin.Master" />
     <Content Include="Site.Mobile.Master" />
     <Content Include="Scripts\jquery-2.0.3.min.map" />
+    <Content Include="Scripts\jquery.signalR-1.1.3.min.js.map">
+      <DependentUpon>jquery.signalR-1.1.3.js</DependentUpon>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

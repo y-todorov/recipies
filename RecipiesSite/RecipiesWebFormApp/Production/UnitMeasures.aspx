@@ -18,11 +18,11 @@
                 </telerik:GridBoundColumn>
                 <telerik:GridCheckBoxColumn DataField="IsBaseUnit" FilterControlAltText="Filter IsBaseUnit column" HeaderText="IsBaseUnit" SortExpression="IsBaseUnit" UniqueName="IsBaseUnit">
                 </telerik:GridCheckBoxColumn>
-                  <telerik:GridNumericColumn DataField="BaseUnitFactor" DataType="System.Double" FilterControlAltText="Filter BaseUnitFactor column" HeaderText="BaseUnitFactor" SortExpression="BaseUnitFactor" UniqueName="BaseUnitFactor">                  
+                <telerik:GridNumericColumn DataField="BaseUnitFactor" DataType="System.Double" FilterControlAltText="Filter BaseUnitFactor column" HeaderText="BaseUnitFactor" SortExpression="BaseUnitFactor" UniqueName="BaseUnitFactor">                  
                 </telerik:GridNumericColumn>
-                   <telerik:GridDropDownColumn UniqueName="DropDownCategoryListColumn" ListTextField="Name"
-                    ListValueField="UnitMeasureId" DataSourceID="OpenAccessLinqDataSourceBaseUnit" HeaderText="BaseUnit"
-                    DataField="BaseUnitId" DropDownControlType="RadComboBox" EmptyListItemText="" EnableEmptyListItem="true" EmptyListItemValue="" ConvertEmptyStringToNull="true">
+                <telerik:GridDropDownColumn UniqueName="DropDownCategoryListColumn" ListTextField="Name"
+                                            ListValueField="UnitMeasureId" DataSourceID="OpenAccessLinqDataSourceBaseUnit" HeaderText="BaseUnit"
+                                            DataField="BaseUnitId" DropDownControlType="RadComboBox" EmptyListItemText="" EnableEmptyListItem="true" EmptyListItemValue="" ConvertEmptyStringToNull="true">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text=""></ModelErrorMessage>
                     </ColumnValidationSettings>
@@ -41,10 +41,10 @@
         </MasterTableView>
     </yordan:YordanCustomRadGrid>
     <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceUnit" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="UnitMeasures">
-     </yordan:YordanCustomOpenAccessLinqDataSource>
+    </yordan:YordanCustomOpenAccessLinqDataSource>
     <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceBaseUnit" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="UnitMeasures" Where="" AutoGenerateWhereClause="True" ConnectionString="name=recipiesEntities" ContextTypeName="" DefaultContainerName="RecipiesEntities" EntityTypeFilter="" Select="">
         <WhereParameters>
             <asp:Parameter DefaultValue="True" Name="IsBaseUnit" Type="Boolean" />
         </WhereParameters>
-     </yordan:YordanCustomOpenAccessLinqDataSource>
+    </yordan:YordanCustomOpenAccessLinqDataSource>
 </asp:Content>

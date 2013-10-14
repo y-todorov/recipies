@@ -40,5 +40,5 @@
         </MasterTableView>
     </yordan:YordanCustomRadGrid>
     <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceShifts" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="Shifts">
-     </yordan:YordanCustomOpenAccessLinqDataSource>
+    </yordan:YordanCustomOpenAccessLinqDataSource>
 </asp:Content>

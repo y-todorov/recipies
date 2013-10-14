@@ -1766,13 +1766,13 @@
 //            }
 //            return isUnsafe;
 //        }
-		
+
 //        string CreateRequest(Uri requestUri)
 //        {
 //            StringBuilder requestBuilder = new StringBuilder();
 //            requestBuilder.Append("GET ");
 //            requestBuilder.Append(requestUri.OriginalString);
-			
+
 //            if (ssl)
 //            {
 //                requestBuilder.Append(string.Format(" HTTP/1.1\r\nConnection: close\r\nHost: {0}:443\r\n\r\n", this.domainName));
@@ -1783,14 +1783,14 @@
 //            }
 //            return requestBuilder.ToString();
 //        }
-		
+
 //        void ConnectToHostAndSendRequest<T>(bool sslEnabled, TcpClient tcpClient, RequestState<T> pubnubRequestState, string requestString)
 //        {
 //            NetworkStream stream = tcpClient.GetStream();
-			
+
 //            string proxyAuth = string.Format("{0}:{1}", _pubnubProxy.ProxyUserName, _pubnubProxy.ProxyPassword);
 //            byte[] proxyAuthBytes = Encoding.UTF8.GetBytes(proxyAuth);
-			
+
 //            //Proxy-Authenticate: authentication mode Basic, Digest and NTLM
 //            string connectRequest = "";
 //            if (sslEnabled)
@@ -1801,26 +1801,26 @@
 //            {
 //                connectRequest = string.Format("CONNECT {0}:80  HTTP/1.1\r\nProxy-Authorization: Basic {1}\r\nHost: {0}\r\n\r\n", this.domainName, Convert.ToBase64String(proxyAuthBytes));
 //            }
-			
+
 //            byte[] tunnelRequest = Encoding.UTF8.GetBytes(connectRequest);
 //            stream.Write(tunnelRequest, 0, tunnelRequest.Length);
 //            stream.Flush();
-			
+
 //            stream.ReadTimeout = pubnubRequestState.Request.Timeout * 5;
-			
+
 //            StateObject<T> state = new StateObject<T>();
 //            state.tcpClient = tcpClient;
 //            state.RequestState = pubnubRequestState;
 //            state.requestString = requestString;
 //            state.netStream = stream;
-			
+
 //            //stream.BeginRead(state.buffer, 0, state.buffer.Length, new AsyncCallback(ConnectToHostAndSendRequestCallback<T>), state);
-			
+
 //            StringBuilder response = new StringBuilder();
 //            var responseStream = new StreamReader(stream);
-			
+
 //            char[] buffer = new char[2048];
-			
+
 //            int charsRead = responseStream.Read(buffer, 0, buffer.Length);
 //            bool connEstablished = false;
 //            while (charsRead > 0)
@@ -1833,7 +1833,7 @@
 //                }
 //                charsRead = responseStream.Read(buffer, 0, buffer.Length);
 //            }
-			
+
 //            if (connEstablished)
 //            {
 //                if (sslEnabled)
@@ -1844,7 +1844,7 @@
 //                {
 //                    SendRequest<T>(tcpClient, pubnubRequestState, requestString);
 //                }
-				
+
 //            }
 //            else if (response.ToString().IndexOf("407 Proxy Authentication Required") > 0)
 //            {
@@ -1861,7 +1861,7 @@
 //                throw new WebException("Couldn't connect to the server");
 //            }
 //        }
-		
+
 //#if(MONODROID)      
 //        /// <summary>
 //        /// Workaround for the bug described here 
@@ -1882,7 +1882,7 @@
 //                           System.Reflection.BindingFlags.NonPublic |
 //                           System.Reflection.BindingFlags.Static)
 //                    .GetValue (null);
-			
+
 //            Func<Java.Security.Cert.CertificateFactory,
 //            System.Security.Cryptography.X509Certificates.X509Certificate,
 //            Java.Security.Cert.X509Certificate> c = (f, v) =>
@@ -1911,7 +1911,7 @@
 //            }
 //        }
 //#endif
-		
+
 //#if(UNITY_ANDROID)      
 //        /// <summary>
 //        /// Workaround for the bug described here 
@@ -1931,30 +1931,30 @@
 //            return true;
 //        }
 //#endif
-		
+
 //        private void ConnectToHostAndSendRequestCallback<T>(IAsyncResult asynchronousResult)
 //        {
 //            StateObject<T> asynchStateObject = asynchronousResult.AsyncState as StateObject<T>;
 //            RequestState<T> asynchRequestState = asynchStateObject.RequestState;
-			
+
 //            string channels = "";
 //            if (asynchRequestState != null && asynchRequestState.Channels != null)
 //            {
 //                channels = string.Join(",", asynchRequestState.Channels);
 //            }
-			
+
 //            try
 //            {
 //                string requestString = asynchStateObject.requestString;
 //                TcpClient tcpClient = asynchStateObject.tcpClient;
-				
+
 //                NetworkStream netStream = asynchStateObject.netStream;
 //                int bytesRead = netStream.EndRead(asynchronousResult);
-				
+
 //                if (bytesRead > 0)
 //                {
 //                    asynchStateObject.sb.Append(Encoding.ASCII.GetString(asynchStateObject.buffer, 0, bytesRead));
-					
+
 //                    netStream.BeginRead(asynchStateObject.buffer, 0, StateObject<T>.BufferSize,
 //                                        new AsyncCallback(ConnectToHostAndSendRequestCallback<T>), asynchStateObject);
 //                }
@@ -1998,7 +1998,7 @@
 //                ProcessResponseCallbackExceptionHandler<T>(ex, asynchRequestState);
 //            }
 //        }
-		
+
 //        void SendSslRequest<T>(NetworkStream netStream, TcpClient tcpClient, RequestState<T> pubnubRequestState, string requestString)
 //        {
 //#if(MONODROID)
@@ -2017,12 +2017,12 @@
 //            sslStream.AuthenticateAsClient(this.domainName);
 //            AfterAuthentication(state);
 //        }
-		
+
 //        void AfterAuthentication<T> (StateObject<T> state)
 //        {
 //            SslStream sslStream = state.sslns;
 //            byte[] sendBuffer = UTF8Encoding.UTF8.GetBytes(state.requestString);
-			
+
 //            sslStream.Write(sendBuffer);
 //            sslStream.Flush();
 //#if(!MONODROID && !UNITY_ANDROID)         
@@ -2030,7 +2030,7 @@
 //#endif
 //            sslStream.BeginRead(state.buffer, 0, state.buffer.Length, new AsyncCallback(SendRequestUsingTcpClientCallback<T>), state);
 //        }
-		
+
 //        private void SendSslRequestAuthenticationCallback<T>(IAsyncResult asynchronousResult)
 //        {
 //            StateObject<T> state = asynchronousResult.AsyncState as StateObject<T>;
@@ -2070,16 +2070,16 @@
 //                ProcessResponseCallbackExceptionHandler<T>(ex, asynchRequestState);
 //            }
 //        }
-		
+
 //        void SendRequest<T>(TcpClient tcpClient, RequestState<T> pubnubRequestState, string requestString)
 //        {
 //            NetworkStream netStream = tcpClient.GetStream();
-			
+
 //            StateObject<T> state = new StateObject<T>();
 //            state.tcpClient = tcpClient;
 //            state.netStream = netStream;
 //            state.RequestState = pubnubRequestState;
-			
+
 //            System.IO.StreamWriter streamWriter = new System.IO.StreamWriter(netStream);
 //            streamWriter.Write(requestString);
 //            streamWriter.Flush();
@@ -2087,9 +2087,9 @@
 //            netStream.ReadTimeout = pubnubRequestState.Request.Timeout;
 //#endif
 //            netStream.BeginRead(state.buffer, 0, state.buffer.Length, new AsyncCallback(SendRequestUsingTcpClientCallback<T>), state);
-			
+
 //        }
-		
+
 //        private void SendRequestUsingTcpClient<T>(Uri requestUri, RequestState<T> pubnubRequestState)
 //        {
 //            TcpClient tcpClient = new TcpClient();
@@ -2097,15 +2097,15 @@
 //#if(!MONODROID && !UNITY_ANDROID)
 //            tcpClient.SendTimeout = pubnubRequestState.Request.Timeout;
 //#endif          
-			
+
 //            string requestString = CreateRequest(requestUri);
-			
+
 //            if (ssl)
 //            {
 //                if (pubnubEnableProxyConfig && _pubnubProxy != null)
 //                {
 //                    tcpClient.Connect(_pubnubProxy.ProxyServer, _pubnubProxy.ProxyPort);
-					
+
 //                    ConnectToHostAndSendRequest<T>(ssl, tcpClient, pubnubRequestState, requestString);
 //                }
 //                else
@@ -2120,7 +2120,7 @@
 //                if (pubnubEnableProxyConfig && _pubnubProxy != null)
 //                {
 //                    tcpClient.Connect(_pubnubProxy.ProxyServer, _pubnubProxy.ProxyPort);
-					
+
 //                    ConnectToHostAndSendRequest(ssl, tcpClient, pubnubRequestState, requestString);
 //                }
 //                else
@@ -2130,7 +2130,7 @@
 //                }
 //            }
 //        }
-		
+
 //        private void SendRequestUsingTcpClientCallback<T>(IAsyncResult asynchronousResult)
 //        {
 //            StateObject<T> state = asynchronousResult.AsyncState as StateObject<T>;
@@ -2147,14 +2147,14 @@
 //                {
 //                    SslStream sslns = state.sslns;
 //                    int bytesRead = sslns.EndRead(asynchronousResult);
-					
+
 //                    if (bytesRead > 0)
 //                    {
 //                        Decoder decoder = Encoding.UTF8.GetDecoder();
 //                        char[] chars = new char[decoder.GetCharCount(state.buffer, 0, bytesRead)];
 //                        decoder.GetChars(state.buffer, 0, bytesRead, chars, 0);
 //                        state.sb.Append(chars);
-						
+
 //                        sslns.BeginRead(state.buffer, 0, StateObject<T>.BufferSize,
 //                                        new AsyncCallback(SendRequestUsingTcpClientCallback<T>), state);
 //                    }
@@ -2167,11 +2167,11 @@
 //                {
 //                    NetworkStream netStream = state.netStream;
 //                    int bytesRead = netStream.EndRead(asynchronousResult);
-					
+
 //                    if (bytesRead > 0)
 //                    {
 //                        state.sb.Append(Encoding.ASCII.GetString(state.buffer, 0, bytesRead));
-						
+
 //                        netStream.BeginRead(state.buffer, 0, StateObject<T>.BufferSize,
 //                                            new AsyncCallback(SendRequestUsingTcpClientCallback<T>), state);
 //                    }
@@ -2190,7 +2190,7 @@
 //                ProcessResponseCallbackExceptionHandler<T>(ex, asynchRequestState);
 //            }
 //        }
-		
+
 //        void HandleTcpClientResponse<T>(StateObject<T> state, RequestState<T> asynchRequestState, string channel, IAsyncResult asynchronousResult)
 //        {
 //            List<object> result = new List<object>();
@@ -2198,36 +2198,36 @@
 //            {
 //                string jsonString = ParseResponse<T>(state.sb.ToString(), asynchronousResult);
 //                LoggingMethod.WriteToLog(string.Format("DateTime {0}, JSON for channel={1} ({2}) ={3}", DateTime.Now.ToString(), channel, asynchRequestState.Type.ToString(), jsonString), LoggingMethod.LevelInfo);
-				
+
 //                if (overrideTcpKeepAlive)
 //                {
 //                    TerminateHeartbeatTimer(state.RequestState.Request.RequestUri);
 //                }
-				
+
 //                if (jsonString != null && !string.IsNullOrEmpty(jsonString) && !string.IsNullOrEmpty(channel.Trim()))
 //                {
 //                    result = WrapResultBasedOnResponseType(asynchRequestState.Type, jsonString, asynchRequestState.Channels, asynchRequestState.Reconnect, asynchRequestState.Timetoken, asynchRequestState.ErrorCallback);
 //                }
-				
+
 //                ProcessResponseCallbacks<T>(result, asynchRequestState);
 //            }
 //            if (state.tcpClient != null)
 //                state.tcpClient.Close();
 //        }
-		
+
 //        string ParseResponse<T>(string responseString, IAsyncResult asynchronousResult)
 //        {
 //            string json = "";
 //            int pos = responseString.LastIndexOf('\n');
 //            if ((responseString.StartsWith("HTTP/1.1 ") || responseString.StartsWith("HTTP/1.0 "))
 //                && (pos != -1) && responseString.Length >= pos + 1)
-				
+
 //            {
 //                json = responseString.Substring(pos + 1);
 //            }
 //            return json;
 //        }
-		
+
 //#endif
 
 //        void ProcessResponseCallbackExceptionHandler<T>(Exception ex, RequestState<T> asynchRequestState)
@@ -4427,7 +4427,7 @@
 //                    sae.RemoteEndPoint = new DnsEndPoint("pubsub.pubnub.com", 80);
 //                    sae.Completed += new EventHandler<SocketAsyncEventArgs>(socketAsync_Completed<T>);
 //                    bool test = socket.ConnectAsync(sae);
-					
+
 //                    mreSocketAsync.WaitOne(1000);
 //                    sae.Completed -= new EventHandler<SocketAsyncEventArgs>(socketAsync_Completed<T>);
 //                    socket.Close();
@@ -4474,7 +4474,6 @@
 //                }
 //            }
 //        }
-
 
 
 //        private static void JsonResponseToCallback<T>(List<object> result, Action<T> callback)
@@ -5030,21 +5029,21 @@
 //            string json = writer.Write(objectToSerialize);
 //            return json;
 //        }
-		
+
 //        public List<object> DeserializeToListOfObject(string jsonString)
 //        {
 //            var reader = new JsonFx.Json.JsonReader();
 //            var output = reader.Read<List<object>>(jsonString);
 //            return output;
 //        }
-		
+
 //        public object DeserializeToObject(string jsonString)
 //        {
 //            var reader = new JsonFx.Json.JsonReader();
 //            var output = reader.Read<object>(jsonString);
 //            return output;
 //        }
-		
+
 //        public Dictionary<string, object> DeserializeToDictionaryOfObject(string jsonString)
 //        {
 //            var reader = new JsonFx.Json.JsonReader();
@@ -5060,19 +5059,19 @@
 //            JavaScriptSerializer jS = new JavaScriptSerializer();
 //            return jS.Serialize(objectToSerialize);
 //        }
-		
+
 //        public List<object> DeserializeToListOfObject(string jsonString)
 //        {
 //            JavaScriptSerializer jS = new JavaScriptSerializer();
 //            return (List<object>)jS.Deserialize<List<object>>(jsonString);
 //        }
-		
+
 //        public object DeserializeToObject(string jsonString)
 //        {
 //            JavaScriptSerializer jS = new JavaScriptSerializer();
 //            return (object)jS.Deserialize<object>(jsonString);
 //        }
-		
+
 //        public Dictionary<string, object> DeserializeToDictionaryOfObject(string jsonString)
 //        {
 //            JavaScriptSerializer jS = new JavaScriptSerializer();
@@ -5140,7 +5139,7 @@
 //            get;
 //            set;
 //        }
-		
+
 //        public TcpClient tcpClient = null;
 //        public NetworkStream netStream = null;
 //        public SslStream sslns = null;
@@ -5151,3 +5150,4 @@
 //    }
 //#endif
 //}
+

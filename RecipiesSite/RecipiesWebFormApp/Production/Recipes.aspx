@@ -12,9 +12,9 @@
                     </ColumnValidationSettings>
                 </telerik:GridBoundColumn>
                 <telerik:GridDropDownColumn UniqueName="DropDownCategoryListColumn" ListTextField="Name"
-                    ListValueField="CategoryId" DataSourceID="OpenAccessLinqDataSourceCategory" HeaderText="Category"
-                    DataField="CategoryId" DropDownControlType="RadComboBox" AllowAutomaticLoadOnDemand="true"
-                    AllowVirtualScrolling="true" ShowMoreResultsBox="true" ItemsPerRequest="10">
+                                            ListValueField="CategoryId" DataSourceID="OpenAccessLinqDataSourceCategory" HeaderText="Category"
+                                            DataField="CategoryId" DropDownControlType="RadComboBox" AllowAutomaticLoadOnDemand="true"
+                                            AllowVirtualScrolling="true" ShowMoreResultsBox="true" ItemsPerRequest="10">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text=""></ModelErrorMessage>
                     </ColumnValidationSettings>
@@ -34,12 +34,12 @@
                         <ModelErrorMessage Text=""></ModelErrorMessage>
                     </ColumnValidationSettings>
                 </telerik:GridNumericColumn>
-                 <telerik:GridNumericColumn DataField="SellValuePerPortion"  DataType="System.Decimal" FilterControlAltText="Filter SellValuePerPortion column" HeaderText="SellValuePerPortion" SortExpression="SellValuePerPortion" UniqueName="SellValuePerPortion">
+                <telerik:GridNumericColumn DataField="SellValuePerPortion"  DataType="System.Decimal" FilterControlAltText="Filter SellValuePerPortion column" HeaderText="SellValuePerPortion" SortExpression="SellValuePerPortion" UniqueName="SellValuePerPortion">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text=""></ModelErrorMessage>
                     </ColumnValidationSettings>
                 </telerik:GridNumericColumn>
-                      <telerik:GridNumericColumn DataField="GrossProfit" ReadOnly="true" DataType="System.Decimal" FilterControlAltText="Filter GrossProfit column" HeaderText="GrossProfit" SortExpression="GrossProfit" UniqueName="GrossProfit">
+                <telerik:GridNumericColumn DataField="GrossProfit" ReadOnly="true" DataType="System.Decimal" FilterControlAltText="Filter GrossProfit column" HeaderText="GrossProfit" SortExpression="GrossProfit" UniqueName="GrossProfit">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text=""></ModelErrorMessage>
                     </ColumnValidationSettings>
@@ -57,8 +57,8 @@
                                         </ColumnValidationSettings>
                                     </telerik:GridBoundColumn>                                   
                                     <telerik:GridDropDownColumn UniqueName="DropDownProductListColumn" ListTextField="Name"
-                                        ListValueField="ProductId" DataSourceID="OpenAccessLinqDataSourceProduct" HeaderText="Product"
-                                        DataField="ProductId" DropDownControlType="RadComboBox">
+                                                                ListValueField="ProductId" DataSourceID="OpenAccessLinqDataSourceProduct" HeaderText="Product"
+                                                                DataField="ProductId" DropDownControlType="RadComboBox">
                                         <ColumnValidationSettings>
                                             <ModelErrorMessage Text=""></ModelErrorMessage>
                                         </ColumnValidationSettings>
@@ -73,7 +73,7 @@
                                             <ModelErrorMessage Text=""></ModelErrorMessage>
                                         </ColumnValidationSettings>
                                     </telerik:GridNumericColumn>
-                                       <telerik:GridNumericColumn DataField="TotalValue" ReadOnly="true" DataType="System.Decimal" FilterControlAltText="Filter TotalValue column" HeaderText="TotalValue" SortExpression="TotalValue" UniqueName="TotalValue">
+                                    <telerik:GridNumericColumn DataField="TotalValue" ReadOnly="true" DataType="System.Decimal" FilterControlAltText="Filter TotalValue column" HeaderText="TotalValue" SortExpression="TotalValue" UniqueName="TotalValue">
                                         <ColumnValidationSettings>
                                             <ModelErrorMessage Text=""></ModelErrorMessage>
                                         </ColumnValidationSettings>
@@ -114,7 +114,7 @@
         <WhereParameters>
             <asp:Parameter DefaultValue="0" Name="RecipeId" Type="Int32" />
         </WhereParameters>
-     </yordan:YordanCustomOpenAccessLinqDataSource>
+    </yordan:YordanCustomOpenAccessLinqDataSource>
     <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceProduct" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="Products" />
     <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceRecipe" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="Recipes" />
 

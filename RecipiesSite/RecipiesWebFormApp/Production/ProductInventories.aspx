@@ -22,8 +22,8 @@
                     </ColumnValidationSettings>
                 </telerik:GridBoundColumn>
                 <telerik:GridDropDownColumn UniqueName="DropDownProductListColumn" ListTextField="Name" EmptyListItemText="" EnableEmptyListItem="true" EmptyListItemValue="" ConvertEmptyStringToNull="true"
-                    ListValueField="ProductId" DataSourceID="OpenAccessLinqDataSourceProduct" HeaderText="Product"
-                    DataField="ProductId" DropDownControlType="RadComboBox">
+                                            ListValueField="ProductId" DataSourceID="OpenAccessLinqDataSourceProduct" HeaderText="Product"
+                                            DataField="ProductId" DropDownControlType="RadComboBox">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text=""></ModelErrorMessage>
                     </ColumnValidationSettings>
@@ -56,7 +56,7 @@
                         <ModelErrorMessage Text=""></ModelErrorMessage>
                     </ColumnValidationSettings>
                 </telerik:GridNumericColumn>
-                 <telerik:GridNumericColumn ReadOnly="true" DataField="StocktakeValue" DataType="System.Decimal" FilterControlAltText="Filter StocktakeValue column" HeaderText="StocktakeValue" SortExpression="StocktakeValue" UniqueName="StocktakeValue">
+                <telerik:GridNumericColumn ReadOnly="true" DataField="StocktakeValue" DataType="System.Decimal" FilterControlAltText="Filter StocktakeValue column" HeaderText="StocktakeValue" SortExpression="StocktakeValue" UniqueName="StocktakeValue">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text=""></ModelErrorMessage>
                     </ColumnValidationSettings>

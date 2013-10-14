@@ -23,7 +23,7 @@ namespace RecipiesWebFormApp
         public void AddToGroup(string connectionId, string groupName)
         {
             Groups.Add(connectionId, groupName);
-        }             
+        }
 
         public void RebindRadGrid()
         {

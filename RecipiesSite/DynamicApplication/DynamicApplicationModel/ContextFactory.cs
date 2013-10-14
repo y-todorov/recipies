@@ -4,7 +4,7 @@ namespace RecipiesModelNS
 {
     public class ContextFactory
     {
-        private static readonly string contextKey = typeof(RecipiesEntities).FullName;
+        private static readonly string contextKey = typeof (RecipiesEntities).FullName;
 
         public static RecipiesEntities GetContextPerRequest()
         {
@@ -44,4 +44,3 @@ namespace RecipiesModelNS
         }
     }
 }
-

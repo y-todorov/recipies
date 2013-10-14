@@ -25,7 +25,7 @@ namespace YordanCustomControls
             //ContextTypeName = typeof(RecipiesEntities).FullName; // string.Empty;
             EnableDelete = true;
             EnableInsert = true;
-            EnableUpdate = true; 
+            EnableUpdate = true;
 
 
             // These events will fire first. Next will fire the events in custom pages that this control resides.
@@ -39,17 +39,16 @@ namespace YordanCustomControls
             Deleted += YordanCustomOpenAccessLinqDataSource_Deleted;
 
             ContextCreating += YordanCustomOpenAccessLinqDataSource_ContextCreating;
-            
         }
 
-        void YordanCustomOpenAccessLinqDataSource_ContextCreating(object sender, EntityDataSourceContextCreatingEventArgs e)
+        private void YordanCustomOpenAccessLinqDataSource_ContextCreating(object sender,
+            EntityDataSourceContextCreatingEventArgs e)
         {
             //RecipiesEntities recipiesEntities = new RecipiesEntities();
             //e.Context = ((IObjectContextAdapter)recipiesEntities).ObjectContext;
-                
         }
 
-        void YordanCustomOpenAccessLinqDataSource_Deleted(object sender, EntityDataSourceChangedEventArgs e)
+        private void YordanCustomOpenAccessLinqDataSource_Deleted(object sender, EntityDataSourceChangedEventArgs e)
         {
             YordanBaseEntity ybe = e.Entity as YordanBaseEntity;
             // object ob = ViewState["test"]; NO USE
@@ -59,7 +58,7 @@ namespace YordanCustomControls
             }
         }
 
-        void YordanCustomOpenAccessLinqDataSource_Deleting(object sender, EntityDataSourceChangingEventArgs e)
+        private void YordanCustomOpenAccessLinqDataSource_Deleting(object sender, EntityDataSourceChangingEventArgs e)
         {
             YordanBaseEntity ybe = e.Entity as YordanBaseEntity;
             //ViewState.Add("test", ybe); NO use
@@ -69,7 +68,7 @@ namespace YordanCustomControls
             }
         }
 
-        void YordanCustomOpenAccessLinqDataSource_Updated(object sender, EntityDataSourceChangedEventArgs e)
+        private void YordanCustomOpenAccessLinqDataSource_Updated(object sender, EntityDataSourceChangedEventArgs e)
         {
             YordanBaseEntity ybe = e.Entity as YordanBaseEntity;
             if (ybe != null)
@@ -78,7 +77,7 @@ namespace YordanCustomControls
             }
         }
 
-        void YordanCustomOpenAccessLinqDataSource_Updating(object sender, EntityDataSourceChangingEventArgs e)
+        private void YordanCustomOpenAccessLinqDataSource_Updating(object sender, EntityDataSourceChangingEventArgs e)
         {
             YordanBaseEntity ybe = e.Entity as YordanBaseEntity;
             if (ybe != null)
@@ -87,7 +86,7 @@ namespace YordanCustomControls
             }
         }
 
-        void YordanCustomOpenAccessLinqDataSource_Inserted(object sender, EntityDataSourceChangedEventArgs e)
+        private void YordanCustomOpenAccessLinqDataSource_Inserted(object sender, EntityDataSourceChangedEventArgs e)
         {
             YordanBaseEntity ybe = e.Entity as YordanBaseEntity;
             if (ybe != null)
@@ -96,7 +95,7 @@ namespace YordanCustomControls
             }
         }
 
-        void YordanCustomOpenAccessLinqDataSource_Inserting(object sender, EntityDataSourceChangingEventArgs e)
+        private void YordanCustomOpenAccessLinqDataSource_Inserting(object sender, EntityDataSourceChangingEventArgs e)
         {
             YordanBaseEntity ybe = e.Entity as YordanBaseEntity;
             if (ybe != null)
@@ -105,13 +104,9 @@ namespace YordanCustomControls
             }
         }
 
-        
-
-
 
         protected override void OnInit(EventArgs e)
         {
-            
             if (WhereParameters.Count > 0)
             {
                 AutoGenerateWhereClause = true; // MUST BE TESTED ????
@@ -130,7 +125,7 @@ namespace YordanCustomControls
             //EnableDelete = true;
             //EnableInsert = true;
             //EnableUpdate = true; 
-            
+
             base.OnInit(e);
         }
     }

@@ -9,7 +9,6 @@ namespace RecipiesWebFormApp.Account
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
             if (IsPostBack)
             {
                 var provider = Request.Form["provider"];
@@ -30,7 +29,6 @@ namespace RecipiesWebFormApp.Account
         }
 
 
-
         public string ReturnUrl { get; set; }
 
 
@@ -38,6 +36,5 @@ namespace RecipiesWebFormApp.Account
         {
             return OpenAuth.AuthenticationClients.GetAll();
         }
-
     }
 }

@@ -5,7 +5,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceEmailTemplates" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="EmailTemplates">
-     </yordan:YordanCustomOpenAccessLinqDataSource>
+    </yordan:YordanCustomOpenAccessLinqDataSource>
     <yordan:YordanCustomRadGrid ID="rgEmailTemplates" runat="server" CellSpacing="0" DataSourceID="OpenAccessLinqDataSourceEmailTemplates" GridLines="None">
         <MasterTableView AutoGenerateColumns="False" DataKeyNames="EmailTemplateId" DataSourceID="OpenAccessLinqDataSourceEmailTemplates">
             <Columns>
@@ -44,7 +44,7 @@
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
                 </telerik:GridHTMLEditorColumn>
-                    <telerik:GridBoundColumn DataField="AttachmentName" FilterControlAltText="Filter AttachmentName column" HeaderText="AttachmentName" SortExpression="AttachmentName" UniqueName="AttachmentName">
+                <telerik:GridBoundColumn DataField="AttachmentName" FilterControlAltText="Filter AttachmentName column" HeaderText="AttachmentName" SortExpression="AttachmentName" UniqueName="AttachmentName">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>

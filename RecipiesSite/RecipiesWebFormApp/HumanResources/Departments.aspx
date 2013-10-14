@@ -30,5 +30,5 @@
         </MasterTableView>
     </yordan:YordanCustomRadGrid>
     <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceDepartments" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="Departments">
-     </yordan:YordanCustomOpenAccessLinqDataSource>
+    </yordan:YordanCustomOpenAccessLinqDataSource>
 </asp:Content>

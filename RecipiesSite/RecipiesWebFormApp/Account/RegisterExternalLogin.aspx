@@ -22,7 +22,7 @@
                     <asp:Label runat="server" AssociatedControlID="userName">User name</asp:Label>
                     <asp:TextBox runat="server" ID="userName" />
                     <asp:RequiredFieldValidator runat="server" ControlToValidate="userName"
-                        Display="Dynamic" ErrorMessage="User name is required" ValidationGroup="NewUser" />
+                                                Display="Dynamic" ErrorMessage="User name is required" ValidationGroup="NewUser" />
                     
                     <asp:ModelErrorMessage runat="server" ModelStateKey="UserName" CssClass="field-validation-error" />
                     
