@@ -33,7 +33,7 @@ namespace RecipiesWebFormApp
                             {
                                 CategoryName = cat.Name.Substring(0, maxXLabelTextLenght),
                                 ProductCount = cat.Products.Count,
-                                ProductValue = cat.Products.Sum(p => p.StockValue)
+                                ProductValue = Math.Round(cat.Products.Sum(p => p.StockValue), 3)
                             })
                     .OrderByDescending(res => res.ProductCount)
                     .ToList();

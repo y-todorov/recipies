@@ -49,7 +49,7 @@
                 <telerik:RadHtmlChart runat="server" ID="rhcProductsCountByCategory">
                     <PlotArea>
                         <Series>
-                            <telerik:ColumnSeries DataFieldY="ProductCount" Name="Product count">
+                            <telerik:ColumnSeries DataFieldY="ProductCount" Name="Product count">                                
                             </telerik:ColumnSeries>
                             <telerik:ColumnSeries DataFieldY="ProductValue" Name="Product value">
                             </telerik:ColumnSeries>
