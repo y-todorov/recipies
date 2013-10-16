@@ -76,6 +76,7 @@ namespace RecipiesWebFormApp.Production
                         quantityByDocumentsRadNumericTextBox.Text =
                             product.GetQuantityByDocumentsForDate(
                                 ForDateRadDateTimePicker.SelectedDate.GetValueOrDefault()).ToString();
+                        quantityByDocumentsRadNumericTextBox.ToolTip = "Price";
                     }
                 }
             }

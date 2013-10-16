@@ -161,6 +161,7 @@ namespace RecipiesModelNS
                 ContextFactory.GetContextPerRequest().PurchaseOrderHeaders.Where(pu => pu.ShipDate.HasValue &&
                                                                                        pu.ShipDate >= fromDate.Date &&
                                                                                        pu.ShipDate <= toDate.Date &&
+                                                                                       pu.StatusId == (int)PurchaseOrderStatusEnum.Completed &&
                                                                                        pu.PurchaseOrderDetails.Any(
                                                                                            pod =>
                                                                                                pod.ProductId ==
@@ -170,7 +171,10 @@ namespace RecipiesModelNS
             {
                 foreach (PurchaseOrderDetail pod in poh.PurchaseOrderDetails)
                 {
-                    stockedQuantityForPeriod += pod.StockedQuantity;
+                    if (pod.ProductId == ProductId)
+                    {
+                        stockedQuantityForPeriod += this.GetBaseUnitMeasureQuantityForProduct(pod.StockedQuantity, pod.UnitMeasure);
+                    }
                 }
             }
             return stockedQuantityForPeriod;
