@@ -10,7 +10,8 @@
 namespace RecipiesModelNS
 {
     using System;
-
+    using System.Collections.Generic;
+    
     public abstract partial class Waste
     {
         public int WasteId { get; set; }

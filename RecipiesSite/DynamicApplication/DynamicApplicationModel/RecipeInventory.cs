@@ -10,7 +10,8 @@
 namespace RecipiesModelNS
 {
     using System;
-
+    using System.Collections.Generic;
+    
     public partial class RecipeInventory : Inventory
     {
         public Nullable<int> RecipeId { get; set; }

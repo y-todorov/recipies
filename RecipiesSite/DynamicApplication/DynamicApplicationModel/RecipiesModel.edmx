@@ -5,74 +5,46 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="RecipiesModelNS.Store" Alias="Self" Provider="System.Data.SqlClient"
-              ProviderManifestToken="2008"
-              xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator"
-              xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="RecipiesModelNS.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="RecipiesModelNSStoreContainer">
-          <EntitySet Name="EmailTemplate" EntityType="RecipiesModelNS.Store.EmailTemplate" store:Type="Tables"
-                     Schema="Admin" />
-          <EntitySet Name="Department" EntityType="RecipiesModelNS.Store.Department" store:Type="Tables"
-                     Schema="HumanResources" />
-          <EntitySet Name="Employee" EntityType="RecipiesModelNS.Store.Employee" store:Type="Tables"
-                     Schema="HumanResources" />
-          <EntitySet Name="EmployeeDepartment" EntityType="RecipiesModelNS.Store.EmployeeDepartment"
-                     store:Type="Tables" Schema="HumanResources" />
+          <EntitySet Name="EmailTemplate" EntityType="RecipiesModelNS.Store.EmailTemplate" store:Type="Tables" Schema="Admin" />
+          <EntitySet Name="Department" EntityType="RecipiesModelNS.Store.Department" store:Type="Tables" Schema="HumanResources" />
+          <EntitySet Name="Employee" EntityType="RecipiesModelNS.Store.Employee" store:Type="Tables" Schema="HumanResources" />
+          <EntitySet Name="EmployeeDepartment" EntityType="RecipiesModelNS.Store.EmployeeDepartment" store:Type="Tables" Schema="HumanResources" />
           <EntitySet Name="Shift" EntityType="RecipiesModelNS.Store.Shift" store:Type="Tables" Schema="HumanResources" />
-          <EntitySet Name="Inventory" EntityType="RecipiesModelNS.Store.Inventory" store:Type="Tables"
-                     Schema="Production" />
+          <EntitySet Name="Inventory" EntityType="RecipiesModelNS.Store.Inventory" store:Type="Tables" Schema="Production" />
           <EntitySet Name="Product" EntityType="RecipiesModelNS.Store.Product" store:Type="Tables" Schema="Production" />
-          <EntitySet Name="ProductCategory" EntityType="RecipiesModelNS.Store.ProductCategory" store:Type="Tables"
-                     Schema="Production" />
-          <EntitySet Name="ProductHistory" EntityType="RecipiesModelNS.Store.ProductHistory" store:Type="Tables"
-                     Schema="Production" />
-          <EntitySet Name="ProductInventory" EntityType="RecipiesModelNS.Store.ProductInventory" store:Type="Tables"
-                     Schema="Production" />
-          <EntitySet Name="ProductWaste" EntityType="RecipiesModelNS.Store.ProductWaste" store:Type="Tables"
-                     Schema="Production" />
+          <EntitySet Name="ProductCategory" EntityType="RecipiesModelNS.Store.ProductCategory" store:Type="Tables" Schema="Production" />
+          <EntitySet Name="ProductHistory" EntityType="RecipiesModelNS.Store.ProductHistory" store:Type="Tables" Schema="Production" />
+          <EntitySet Name="ProductInventory" EntityType="RecipiesModelNS.Store.ProductInventory" store:Type="Tables" Schema="Production" />
+          <EntitySet Name="ProductWaste" EntityType="RecipiesModelNS.Store.ProductWaste" store:Type="Tables" Schema="Production" />
           <EntitySet Name="Recipe" EntityType="RecipiesModelNS.Store.Recipe" store:Type="Tables" Schema="Production" />
-          <EntitySet Name="RecipeIngredient" EntityType="RecipiesModelNS.Store.RecipeIngredient" store:Type="Tables"
-                     Schema="Production" />
-          <EntitySet Name="RecipeInventory" EntityType="RecipiesModelNS.Store.RecipeInventory" store:Type="Tables"
-                     Schema="Production" />
-          <EntitySet Name="RecipeWaste" EntityType="RecipiesModelNS.Store.RecipeWaste" store:Type="Tables"
-                     Schema="Production" />
+          <EntitySet Name="RecipeIngredient" EntityType="RecipiesModelNS.Store.RecipeIngredient" store:Type="Tables" Schema="Production" />
+          <EntitySet Name="RecipeInventory" EntityType="RecipiesModelNS.Store.RecipeInventory" store:Type="Tables" Schema="Production" />
+          <EntitySet Name="RecipeWaste" EntityType="RecipiesModelNS.Store.RecipeWaste" store:Type="Tables" Schema="Production" />
           <EntitySet Name="Store" EntityType="RecipiesModelNS.Store.Store" store:Type="Tables" Schema="Production" />
-          <EntitySet Name="UnitMeasure" EntityType="RecipiesModelNS.Store.UnitMeasure" store:Type="Tables"
-                     Schema="Production" />
+          <EntitySet Name="UnitMeasure" EntityType="RecipiesModelNS.Store.UnitMeasure" store:Type="Tables" Schema="Production" />
           <EntitySet Name="Waste" EntityType="RecipiesModelNS.Store.Waste" store:Type="Tables" Schema="Production" />
-          <EntitySet Name="ProductVendor" EntityType="RecipiesModelNS.Store.ProductVendor" store:Type="Tables"
-                     Schema="Purchasing" />
-          <EntitySet Name="PurchaseOrderDetail" EntityType="RecipiesModelNS.Store.PurchaseOrderDetail"
-                     store:Type="Tables" Schema="Purchasing" />
-          <EntitySet Name="PurchaseOrderHeader" EntityType="RecipiesModelNS.Store.PurchaseOrderHeader"
-                     store:Type="Tables" Schema="Purchasing" />
-          <EntitySet Name="PurchaseOrderStatus" EntityType="RecipiesModelNS.Store.PurchaseOrderStatus"
-                     store:Type="Tables" Schema="Purchasing" />
-          <EntitySet Name="ShipMethod" EntityType="RecipiesModelNS.Store.ShipMethod" store:Type="Tables"
-                     Schema="Purchasing" />
+          <EntitySet Name="ProductVendor" EntityType="RecipiesModelNS.Store.ProductVendor" store:Type="Tables" Schema="Purchasing" />
+          <EntitySet Name="PurchaseOrderDetail" EntityType="RecipiesModelNS.Store.PurchaseOrderDetail" store:Type="Tables" Schema="Purchasing" />
+          <EntitySet Name="PurchaseOrderHeader" EntityType="RecipiesModelNS.Store.PurchaseOrderHeader" store:Type="Tables" Schema="Purchasing" />
+          <EntitySet Name="PurchaseOrderStatus" EntityType="RecipiesModelNS.Store.PurchaseOrderStatus" store:Type="Tables" Schema="Purchasing" />
+          <EntitySet Name="ShipMethod" EntityType="RecipiesModelNS.Store.ShipMethod" store:Type="Tables" Schema="Purchasing" />
           <EntitySet Name="Vendor" EntityType="RecipiesModelNS.Store.Vendor" store:Type="Tables" Schema="Purchasing" />
           <EntitySet Name="Customer" EntityType="RecipiesModelNS.Store.Customer" store:Type="Tables" Schema="Sales" />
-          <EntitySet Name="PaymentType" EntityType="RecipiesModelNS.Store.PaymentType" store:Type="Tables"
-                     Schema="Sales" />
-          <EntitySet Name="SalesOrderDetail" EntityType="RecipiesModelNS.Store.SalesOrderDetail" store:Type="Tables"
-                     Schema="Sales" />
-          <EntitySet Name="SalesOrderHeader" EntityType="RecipiesModelNS.Store.SalesOrderHeader" store:Type="Tables"
-                     Schema="Sales" />
-          <EntitySet Name="SalesOrderStatus" EntityType="RecipiesModelNS.Store.SalesOrderStatus" store:Type="Tables"
-                     Schema="Sales" />
-          <AssociationSet Name="FK_EmployeeDepartment_Department"
-                          Association="RecipiesModelNS.Store.FK_EmployeeDepartment_Department">
+          <EntitySet Name="PaymentType" EntityType="RecipiesModelNS.Store.PaymentType" store:Type="Tables" Schema="Sales" />
+          <EntitySet Name="SalesOrderDetail" EntityType="RecipiesModelNS.Store.SalesOrderDetail" store:Type="Tables" Schema="Sales" />
+          <EntitySet Name="SalesOrderHeader" EntityType="RecipiesModelNS.Store.SalesOrderHeader" store:Type="Tables" Schema="Sales" />
+          <EntitySet Name="SalesOrderStatus" EntityType="RecipiesModelNS.Store.SalesOrderStatus" store:Type="Tables" Schema="Sales" />
+          <AssociationSet Name="FK_EmployeeDepartment_Department" Association="RecipiesModelNS.Store.FK_EmployeeDepartment_Department">
             <End Role="Department" EntitySet="Department" />
             <End Role="EmployeeDepartment" EntitySet="EmployeeDepartment" />
           </AssociationSet>
-          <AssociationSet Name="FK_EmployeeDepartment_Employee"
-                          Association="RecipiesModelNS.Store.FK_EmployeeDepartment_Employee">
+          <AssociationSet Name="FK_EmployeeDepartment_Employee" Association="RecipiesModelNS.Store.FK_EmployeeDepartment_Employee">
             <End Role="Employee" EntitySet="Employee" />
             <End Role="EmployeeDepartment" EntitySet="EmployeeDepartment" />
           </AssociationSet>
-          <AssociationSet Name="FK_EmployeeDepartment_Shift"
-                          Association="RecipiesModelNS.Store.FK_EmployeeDepartment_Shift">
+          <AssociationSet Name="FK_EmployeeDepartment_Shift" Association="RecipiesModelNS.Store.FK_EmployeeDepartment_Shift">
             <End Role="Shift" EntitySet="Shift" />
             <End Role="EmployeeDepartment" EntitySet="EmployeeDepartment" />
           </AssociationSet>
@@ -104,13 +76,11 @@
             <End Role="UnitMeasure" EntitySet="UnitMeasure" />
             <End Role="Product" EntitySet="Product" />
           </AssociationSet>
-          <AssociationSet Name="FK_ProductInventory_Inventory"
-                          Association="RecipiesModelNS.Store.FK_ProductInventory_Inventory">
+          <AssociationSet Name="FK_ProductInventory_Inventory" Association="RecipiesModelNS.Store.FK_ProductInventory_Inventory">
             <End Role="ProductInventory" EntitySet="ProductInventory" />
             <End Role="ProductInventory1" EntitySet="ProductInventory" />
           </AssociationSet>
-          <AssociationSet Name="FK_ProductInventory_Product"
-                          Association="RecipiesModelNS.Store.FK_ProductInventory_Product">
+          <AssociationSet Name="FK_ProductInventory_Product" Association="RecipiesModelNS.Store.FK_ProductInventory_Product">
             <End Role="Product" EntitySet="Product" />
             <End Role="ProductInventory" EntitySet="ProductInventory" />
           </AssociationSet>
@@ -118,8 +88,7 @@
             <End Role="Product" EntitySet="Product" />
             <End Role="ProductVendor" EntitySet="ProductVendor" />
           </AssociationSet>
-          <AssociationSet Name="FK_ProductVendor_UnitMeasure"
-                          Association="RecipiesModelNS.Store.FK_ProductVendor_UnitMeasure">
+          <AssociationSet Name="FK_ProductVendor_UnitMeasure" Association="RecipiesModelNS.Store.FK_ProductVendor_UnitMeasure">
             <End Role="UnitMeasure" EntitySet="UnitMeasure" />
             <End Role="ProductVendor" EntitySet="ProductVendor" />
           </AssociationSet>
@@ -131,8 +100,7 @@
             <End Role="Product" EntitySet="Product" />
             <End Role="ProductWaste" EntitySet="ProductWaste" />
           </AssociationSet>
-          <AssociationSet Name="FK_ProductWaste_UnitMeasure"
-                          Association="RecipiesModelNS.Store.FK_ProductWaste_UnitMeasure">
+          <AssociationSet Name="FK_ProductWaste_UnitMeasure" Association="RecipiesModelNS.Store.FK_ProductWaste_UnitMeasure">
             <End Role="UnitMeasure" EntitySet="UnitMeasure" />
             <End Role="Waste" EntitySet="Waste" />
           </AssociationSet>
@@ -140,63 +108,51 @@
             <End Role="Waste" EntitySet="Waste" />
             <End Role="ProductWaste" EntitySet="ProductWaste" />
           </AssociationSet>
-          <AssociationSet Name="FK_PurchaseOrderDetail_Product"
-                          Association="RecipiesModelNS.Store.FK_PurchaseOrderDetail_Product">
+          <AssociationSet Name="FK_PurchaseOrderDetail_Product" Association="RecipiesModelNS.Store.FK_PurchaseOrderDetail_Product">
             <End Role="Product" EntitySet="Product" />
             <End Role="PurchaseOrderDetail" EntitySet="PurchaseOrderDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK_PurchaseOrderDetail_PurchaseOrderHeader"
-                          Association="RecipiesModelNS.Store.FK_PurchaseOrderDetail_PurchaseOrderHeader">
+          <AssociationSet Name="FK_PurchaseOrderDetail_PurchaseOrderHeader" Association="RecipiesModelNS.Store.FK_PurchaseOrderDetail_PurchaseOrderHeader">
             <End Role="PurchaseOrderHeader" EntitySet="PurchaseOrderHeader" />
             <End Role="PurchaseOrderDetail" EntitySet="PurchaseOrderDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK_PurchaseOrderDetail_UnitMeasure"
-                          Association="RecipiesModelNS.Store.FK_PurchaseOrderDetail_UnitMeasure">
+          <AssociationSet Name="FK_PurchaseOrderDetail_UnitMeasure" Association="RecipiesModelNS.Store.FK_PurchaseOrderDetail_UnitMeasure">
             <End Role="UnitMeasure" EntitySet="UnitMeasure" />
             <End Role="PurchaseOrderDetail" EntitySet="PurchaseOrderDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK_PurchaseOrderHeader_Employee"
-                          Association="RecipiesModelNS.Store.FK_PurchaseOrderHeader_Employee">
+          <AssociationSet Name="FK_PurchaseOrderHeader_Employee" Association="RecipiesModelNS.Store.FK_PurchaseOrderHeader_Employee">
             <End Role="Employee" EntitySet="Employee" />
             <End Role="PurchaseOrderHeader" EntitySet="PurchaseOrderHeader" />
           </AssociationSet>
-          <AssociationSet Name="FK_PurchaseOrderHeader_PurchaseOrderStatus"
-                          Association="RecipiesModelNS.Store.FK_PurchaseOrderHeader_PurchaseOrderStatus">
+          <AssociationSet Name="FK_PurchaseOrderHeader_PurchaseOrderStatus" Association="RecipiesModelNS.Store.FK_PurchaseOrderHeader_PurchaseOrderStatus">
             <End Role="PurchaseOrderStatus" EntitySet="PurchaseOrderStatus" />
             <End Role="PurchaseOrderHeader" EntitySet="PurchaseOrderHeader" />
           </AssociationSet>
-          <AssociationSet Name="FK_PurchaseOrderHeader_ShipMethod"
-                          Association="RecipiesModelNS.Store.FK_PurchaseOrderHeader_ShipMethod">
+          <AssociationSet Name="FK_PurchaseOrderHeader_ShipMethod" Association="RecipiesModelNS.Store.FK_PurchaseOrderHeader_ShipMethod">
             <End Role="ShipMethod" EntitySet="ShipMethod" />
             <End Role="PurchaseOrderHeader" EntitySet="PurchaseOrderHeader" />
           </AssociationSet>
-          <AssociationSet Name="FK_PurchaseOrderHeader_Vendor"
-                          Association="RecipiesModelNS.Store.FK_PurchaseOrderHeader_Vendor">
+          <AssociationSet Name="FK_PurchaseOrderHeader_Vendor" Association="RecipiesModelNS.Store.FK_PurchaseOrderHeader_Vendor">
             <End Role="Vendor" EntitySet="Vendor" />
             <End Role="PurchaseOrderHeader" EntitySet="PurchaseOrderHeader" />
           </AssociationSet>
-          <AssociationSet Name="FK_Recipe_ProductCategory"
-                          Association="RecipiesModelNS.Store.FK_Recipe_ProductCategory">
+          <AssociationSet Name="FK_Recipe_ProductCategory" Association="RecipiesModelNS.Store.FK_Recipe_ProductCategory">
             <End Role="ProductCategory" EntitySet="ProductCategory" />
             <End Role="Recipe" EntitySet="Recipe" />
           </AssociationSet>
-          <AssociationSet Name="FK_RecipeIngredient_Product"
-                          Association="RecipiesModelNS.Store.FK_RecipeIngredient_Product">
+          <AssociationSet Name="FK_RecipeIngredient_Product" Association="RecipiesModelNS.Store.FK_RecipeIngredient_Product">
             <End Role="Product" EntitySet="Product" />
             <End Role="RecipeIngredient" EntitySet="RecipeIngredient" />
           </AssociationSet>
-          <AssociationSet Name="FK_RecipeIngredient_Recipe"
-                          Association="RecipiesModelNS.Store.FK_RecipeIngredient_Recipe">
+          <AssociationSet Name="FK_RecipeIngredient_Recipe" Association="RecipiesModelNS.Store.FK_RecipeIngredient_Recipe">
             <End Role="Recipe" EntitySet="Recipe" />
             <End Role="RecipeIngredient" EntitySet="RecipeIngredient" />
           </AssociationSet>
-          <AssociationSet Name="FK_RecipeInventory_Inventory"
-                          Association="RecipiesModelNS.Store.FK_RecipeInventory_Inventory">
+          <AssociationSet Name="FK_RecipeInventory_Inventory" Association="RecipiesModelNS.Store.FK_RecipeInventory_Inventory">
             <End Role="RecipeInventory" EntitySet="RecipeInventory" />
             <End Role="RecipeInventory1" EntitySet="RecipeInventory" />
           </AssociationSet>
-          <AssociationSet Name="FK_RecipeInventory_Recipe"
-                          Association="RecipiesModelNS.Store.FK_RecipeInventory_Recipe">
+          <AssociationSet Name="FK_RecipeInventory_Recipe" Association="RecipiesModelNS.Store.FK_RecipeInventory_Recipe">
             <End Role="Recipe" EntitySet="Recipe" />
             <End Role="RecipeInventory" EntitySet="RecipeInventory" />
           </AssociationSet>
@@ -208,13 +164,11 @@
             <End Role="Waste" EntitySet="Waste" />
             <End Role="RecipeWaste" EntitySet="RecipeWaste" />
           </AssociationSet>
-          <AssociationSet Name="FK_SalesOrderHeader_PaymentType"
-                          Association="RecipiesModelNS.Store.FK_SalesOrderHeader_PaymentType">
+          <AssociationSet Name="FK_SalesOrderHeader_PaymentType" Association="RecipiesModelNS.Store.FK_SalesOrderHeader_PaymentType">
             <End Role="PaymentType" EntitySet="PaymentType" />
             <End Role="SalesOrderHeader" EntitySet="SalesOrderHeader" />
           </AssociationSet>
-          <AssociationSet Name="FK_SalesOrderHeader_SalesOrderStatus"
-                          Association="RecipiesModelNS.Store.FK_SalesOrderHeader_SalesOrderStatus">
+          <AssociationSet Name="FK_SalesOrderHeader_SalesOrderStatus" Association="RecipiesModelNS.Store.FK_SalesOrderHeader_SalesOrderStatus">
             <End Role="SalesOrderStatus" EntitySet="SalesOrderStatus" />
             <End Role="SalesOrderHeader" EntitySet="SalesOrderHeader" />
           </AssociationSet>
@@ -262,6 +216,8 @@
           <Property Name="PreviousExperience" Type="nvarchar" MaxLength="1000" />
           <Property Name="ModifiedDate" Type="datetime" />
           <Property Name="ModifiedByUser" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Email" Type="nvarchar" MaxLength="1000" />
+          <Property Name="MobilePhone" Type="nvarchar" MaxLength="1000" />
         </EntityType>
         <EntityType Name="EmployeeDepartment">
           <Key>
@@ -376,8 +332,7 @@
           <Property Name="ModifiedDate" Type="datetime" />
           <Property Name="ModifiedByUser" Type="nvarchar" MaxLength="1000" />
           <Property Name="SellValuePerPortion" Type="money" />
-          <Property Name="GrossProfit" Type="numeric" Nullable="false" Precision="26" Scale="8"
-                    StoreGeneratedPattern="Computed" />
+          <Property Name="GrossProfit" Type="numeric" Nullable="false" Precision="26" Scale="8" StoreGeneratedPattern="Computed" />
         </EntityType>
         <EntityType Name="RecipeIngredient">
           <Key>
@@ -1006,8 +961,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="RecipiesModelNS" Alias="Self" p1:UseStrongSpatialTypes="false"
@@ -1244,6 +1198,8 @@
           <NavigationProperty Name="PurchaseOrderHeaders"
                               Relationship="RecipiesModelNS.FK_PurchaseOrderHeader_Employee" FromRole="Employee"
                               ToRole="PurchaseOrderHeader" />
+          <Property Type="String" Name="Email" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MobilePhone" MaxLength="1000" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="EmployeeDepartment">
           <Key>
@@ -2136,6 +2092,8 @@
           <EntitySetMapping Name="Employees">
             <EntityTypeMapping TypeName="RecipiesModelNS.Employee">
               <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="MobilePhone" ColumnName="MobilePhone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="ModifiedByUser" ColumnName="ModifiedByUser" />
                 <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
                 <ScalarProperty Name="PreviousExperience" ColumnName="PreviousExperience" />

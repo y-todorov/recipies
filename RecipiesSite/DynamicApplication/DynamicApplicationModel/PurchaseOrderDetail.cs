@@ -10,7 +10,8 @@
 namespace RecipiesModelNS
 {
     using System;
-
+    using System.Collections.Generic;
+    
     public partial class PurchaseOrderDetail
     {
         public int PurchaseOrderDetailId { get; set; }

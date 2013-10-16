@@ -35,6 +35,8 @@ namespace RecipiesModelNS
         public string PreviousExperience { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
         public string ModifiedByUser { get; set; }
+        public string Email { get; set; }
+        public string MobilePhone { get; set; }
     
         public virtual ICollection<EmployeeDepartment> EmployeeDepartments { get; set; }
         public virtual ICollection<SalesOrderHeader> SalesOrderHeaders { get; set; }

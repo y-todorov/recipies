@@ -62,7 +62,17 @@
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
-                </telerik:GridBoundColumn>             
+                </telerik:GridBoundColumn>        
+                 <telerik:GridBoundColumn DataField="MobilePhone" FilterControlAltText="Filter MobilePhone column" HeaderText="MobilePhone" SortExpression="MobilePhone" UniqueName="MobilePhone">
+                    <ColumnValidationSettings>
+                        <ModelErrorMessage Text="" />
+                    </ColumnValidationSettings>
+                </telerik:GridBoundColumn>       
+                  <telerik:GridBoundColumn DataField="Email" FilterControlAltText="Filter Email column" HeaderText="Email" SortExpression="Email" UniqueName="Email">
+                    <ColumnValidationSettings>
+                        <ModelErrorMessage Text="" />
+                    </ColumnValidationSettings>
+                </telerik:GridBoundColumn>           
                 <telerik:GridBoundColumn DataField="PreviousExperience" FilterControlAltText="Filter PreviousExperience column" HeaderText="PreviousExperience" SortExpression="PreviousExperience" UniqueName="PreviousExperience">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
