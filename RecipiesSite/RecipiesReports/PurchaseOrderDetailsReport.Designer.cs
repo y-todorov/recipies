@@ -366,7 +366,7 @@ namespace RecipiesReports
             this.textBox23.Name = "textBox23";
             this.textBox23.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.7999210357666016D), Telerik.Reporting.Drawing.Unit.Inch(0.22287717461585999D));
             this.textBox23.StyleName = "Data";
-            this.textBox23.Value = "=Fields.PurchaseOrderHeader.Vendor.AccountNumber";
+            this.textBox23.Value = "=Fields.PurchaseOrderHeader.Vendor.ReportAccountNumber";
             // 
             // detail
             // 
