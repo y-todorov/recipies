@@ -72,8 +72,8 @@ namespace RecipiesWebFormApp.Charts
                         .ToList();
 
                 var grouping =
-                    pods.OrderByDescending(pod => pod.PurchaseOrderHeader.OrderDate)
-                        .GroupBy(pod => GetIso8601WeekOfYear(pod.PurchaseOrderHeader.OrderDate.GetValueOrDefault()));
+                    pods.OrderByDescending(pod => pod.PurchaseOrderHeader.ShipDate)
+                        .GroupBy(pod => GetIso8601WeekOfYear(pod.PurchaseOrderHeader.ShipDate.GetValueOrDefault()));
 
                 if (!string.IsNullOrEmpty(rcbVendor.SelectedValue))
                 {
