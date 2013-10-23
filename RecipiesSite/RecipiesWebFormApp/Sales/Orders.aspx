@@ -68,7 +68,7 @@
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
                 </telerik:GridBoundColumn>
-<%--                <telerik:GridTemplateColumn Visible="false">
+                <telerik:GridTemplateColumn Visible="false">
                     <ItemStyle />
                     <EditItemTemplate>
                         <asp:Label runat="server" ID="lblSalesOrderDetails" ForeColor="Blue" Text="Please save the sales order so recipies can be added to it." OnPreRender="lblSalesOrderDetails_PreRender"></asp:Label>
@@ -114,7 +114,7 @@
                             </MasterTableView>
                         </yordan:YordanCustomRadGrid>
                     </EditItemTemplate>
-                </telerik:GridTemplateColumn>--%>
+                </telerik:GridTemplateColumn>
             </Columns>
         </MasterTableView>
     </yordan:YordanCustomRadGrid>
