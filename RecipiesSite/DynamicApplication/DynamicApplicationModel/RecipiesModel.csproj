@@ -175,9 +175,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
-    <None Include="OpenAccessAssemblies\enhancer.exe.config" />
-    <None Include="OpenAccessAssemblies\OpenAccess.targets" />
-    <None Include="OpenAccessAssemblies\venhance.exe.config" />
     <EntityDeploy Include="RecipiesModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>RecipiesModel.Designer.cs</LastGenOutput>
@@ -197,23 +194,14 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="OpenAccessAssemblies\enhancer.exe" />
-    <Content Include="OpenAccessAssemblies\Telerik.OpenAccess.35.Extensions.dll" />
-    <Content Include="OpenAccessAssemblies\Telerik.OpenAccess.Config.dll" />
-    <Content Include="OpenAccessAssemblies\Telerik.OpenAccess.dll" />
-    <Content Include="OpenAccessAssemblies\Telerik.OpenAccess.Runtime.dll" />
-    <Content Include="OpenAccessAssemblies\Telerik.OpenAccess.SDK.dll" />
-    <Content Include="OpenAccessAssemblies\Telerik.OpenAccess.Web.40.dll" />
     <Content Include="OpenAccessAssemblies\Telerik.Reporting.dll" />
     <Content Include="OpenAccessAssemblies\Telerik.ReportViewer.WebForms.dll" />
     <Content Include="OpenAccessAssemblies\Typesafe.Mailgun.dll" />
-    <Content Include="OpenAccessAssemblies\venhance.exe" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="OpenAccessAssemblies\OpenAccess.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
