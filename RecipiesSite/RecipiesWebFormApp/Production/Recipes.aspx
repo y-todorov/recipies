@@ -13,8 +13,7 @@
                 </telerik:GridBoundColumn>
                 <telerik:GridDropDownColumn UniqueName="DropDownCategoryListColumn" ListTextField="Name"
                                             ListValueField="CategoryId" DataSourceID="OpenAccessLinqDataSourceCategory" HeaderText="Category"
-                                            DataField="CategoryId" DropDownControlType="RadComboBox" AllowAutomaticLoadOnDemand="true"
-                                            AllowVirtualScrolling="true" ShowMoreResultsBox="true" ItemsPerRequest="10">
+                                            DataField="CategoryId" DropDownControlType="RadComboBox">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text=""></ModelErrorMessage>
                     </ColumnValidationSettings>
