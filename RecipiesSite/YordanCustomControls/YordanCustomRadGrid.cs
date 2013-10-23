@@ -84,7 +84,7 @@ namespace YordanCustomControls
                                 //radComboBox.MaxLength = 300;
                                 radComboBox.MaxHeight = 300;
                                 radComboBox.DropDownAutoWidth = RadComboBoxDropDownAutoWidth.Enabled;
-                                //radComboBox.MarkFirstMatch = true;
+                                radComboBox.MarkFirstMatch = true;
                             }
                         }
                     }
