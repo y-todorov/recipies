@@ -17,6 +17,19 @@ namespace RecipiesModelNS
         //[Range(0, int.MaxValue)]
         //public Nullable<decimal> UnitPrice { get; set; }
 
+        public static void UpdateUnitsInStock(int? productId)
+        {
+            if (productId.HasValue)
+            {
+                Product product = ContextFactory.GetContextPerRequest().Products.FirstOrDefault(p => p.ProductId == productId);
+                if (product != null)
+                {
+                    product.UnitsInStock = product.GetQuantityByDocumentsForDate(DateTime.Now);
+                    ContextFactory.GetContextPerRequest().SaveChanges();
+                }
+            }
+        }
+
         public double GetAveragePriceLastDays(int lastDays)
         {
             //return 0;

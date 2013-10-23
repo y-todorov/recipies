@@ -24,7 +24,6 @@ C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Telerik.Web.UI.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Telerik.Web.UI.Skins.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\YordanCustomControls.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\HtmlAgilityPack.dll
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Newtonsoft.Json.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\DynamicApplicationModel.pdb
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Helpers.pdb
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\RecipiesReports.pdb
@@ -39,7 +38,6 @@ C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\EntityFramework.xml
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.AspNet.Membership.OpenAuth.xml
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\HtmlAgilityPack.pdb
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\HtmlAgilityPack.xml
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Newtonsoft.Json.xml
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\obj\Debug\RecipiesWebFormApp.csprojResolveAssemblyReference.cache
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\obj\Debug\RecipiesWebFormApp.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\obj\Debug\RecipiesWebFormApp.pdb
