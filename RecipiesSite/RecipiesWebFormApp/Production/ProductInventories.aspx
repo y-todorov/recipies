@@ -3,7 +3,7 @@
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceProduct" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="Products" />
-    <yordan:YordanCustomRadGrid ID="YordanCustomRadGridInventory" EnableLinqExpressions="False" runat="server" CellSpacing="0" ItemType="RecipiesModelNS.Inventory" DataSourceID="OpenAccessLinqDataSourceInventory" GridLines="None" OnItemCreated="YordanCustomRadGridInventory_ItemCreated" OnItemCommand="YordanCustomRadGridInventory_ItemCommand">
+    <yordan:YordanCustomRadGrid ID="YordanCustomRadGridInventory"  runat="server" CellSpacing="0" ItemType="RecipiesModelNS.Inventory" DataSourceID="OpenAccessLinqDataSourceInventory" GridLines="None" OnItemCreated="YordanCustomRadGridInventory_ItemCreated" OnItemCommand="YordanCustomRadGridInventory_ItemCommand">
         <MasterTableView AutoGenerateColumns="False" DataKeyNames="InventoryId" DataSourceID="OpenAccessLinqDataSourceInventory">
             <%--<GroupByExpressions>
                 <telerik:GridGroupByExpression>
@@ -94,6 +94,6 @@
             </Columns>
         </MasterTableView>
     </yordan:YordanCustomRadGrid>
-    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceInventory" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="Inventories" Include="Product.ProductCategory" ConnectionString="name=recipiesEntities" DefaultContainerName="RecipiesEntities" EnableFlattening="False" EntityTypeFilter="ProductInventory" />
+    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceInventory" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="Inventories" Include="Product.ProductCategory, Product" ConnectionString="name=recipiesEntities" DefaultContainerName="RecipiesEntities" EnableFlattening="False" EntityTypeFilter="ProductInventory" />
 
 </asp:Content>

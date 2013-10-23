@@ -1886,8 +1886,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_OrderDetail_Order">
-          <End Type="RecipiesModelNS.SalesOrderHeader" Role="SalesOrderHeader" Multiplicity="0..1" />
-          <End Type="RecipiesModelNS.SalesOrderDetail" Role="SalesOrderDetail" Multiplicity="*" />
+          <End Type="RecipiesModelNS.SalesOrderHeader" Role="SalesOrderHeader" Multiplicity="0..1" >
+          </End>
+          <End Type="RecipiesModelNS.SalesOrderDetail" Role="SalesOrderDetail" Multiplicity="*" >
+          </End>
           <ReferentialConstraint>
             <Principal Role="SalesOrderHeader">
               <PropertyRef Name="SalesOrderHeaderId" />

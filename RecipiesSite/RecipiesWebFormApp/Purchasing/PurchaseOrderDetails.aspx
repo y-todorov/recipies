@@ -4,7 +4,7 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourcePurchaseOrderDetails" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="PurchaseOrderDetails" Include="PurchaseOrderHeader, PurchaseOrderHeader.Vendor, Product.ProductCategory">
+    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourcePurchaseOrderDetails" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="PurchaseOrderDetails" Include="PurchaseOrderHeader, PurchaseOrderHeader.Vendor, Product.ProductCategory, PurchaseOrderHeader.PurchaseOrderStatu">
     </yordan:YordanCustomOpenAccessLinqDataSource>
     <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourcePurchaseOrder" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="PurchaseOrderHeaders" />
     <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceProduct" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="Products" />
@@ -50,6 +50,21 @@
                     </ColumnValidationSettings>
                 </telerik:GridDateTimeColumn>
                 <telerik:GridBoundColumn DataField="PurchaseOrderHeader.Vendor.Name" ReadOnly="true" DataType="System.String" FilterControlAltText="Filter PurchaseOrderHeader.ShipDate column" HeaderText="Vendor" SortExpression="PurchaseOrderHeader.Vendor.Name" UniqueName="PurchaseOrderHeader.Vendor.Name">
+                    <ColumnValidationSettings>
+                        <ModelErrorMessage Text="" />
+                    </ColumnValidationSettings>
+                </telerik:GridBoundColumn>
+                <telerik:GridBoundColumn DataField="PurchaseOrderHeader.OrderDate" ReadOnly="true" DataType="System.DateTime" FilterControlAltText="Filter PurchaseOrderHeader.OrderDate column" HeaderText="OrderDate" SortExpression="PurchaseOrderHeader.OrderDate" UniqueName="PurchaseOrderHeader.OrderDate">
+                    <ColumnValidationSettings>
+                        <ModelErrorMessage Text="" />
+                    </ColumnValidationSettings>
+                </telerik:GridBoundColumn>
+                  <telerik:GridBoundColumn DataField="PurchaseOrderHeader.ShipDate" ReadOnly="true" DataType="System.DateTime" FilterControlAltText="Filter PurchaseOrderHeader.OrderDate column" HeaderText="ShipDate" SortExpression="PurchaseOrderHeader.ShipDate" UniqueName="PurchaseOrderHeader.ShipDate">
+                    <ColumnValidationSettings>
+                        <ModelErrorMessage Text="" />
+                    </ColumnValidationSettings>
+                </telerik:GridBoundColumn>
+                 <telerik:GridBoundColumn DataField="PurchaseOrderHeader.PurchaseOrderStatu.Name" ReadOnly="true" DataType="System.DateTime" FilterControlAltText="Filter PurchaseOrderHeader.PurchaseOrderStatu.Name column" HeaderText="Status" SortExpression="PurchaseOrderHeader.PurchaseOrderStatu.Name" UniqueName="PurchaseOrderHeader.PurchaseOrderStatu.Name">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>

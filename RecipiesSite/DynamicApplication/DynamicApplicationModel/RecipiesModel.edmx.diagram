@@ -26,7 +26,7 @@
         <EntityTypeShape EntityType="RecipiesModelNS.Vendor" Width="1.5" PointX="6" PointY="4" />
         <EntityTypeShape EntityType="RecipiesModelNS.Customer" Width="1.5" PointX="6.75" PointY="26.375" />
         <EntityTypeShape EntityType="RecipiesModelNS.PaymentType" Width="1.5" PointX="6.75" PointY="30.125" />
-        <EntityTypeShape EntityType="RecipiesModelNS.SalesOrderDetail" Width="1.5" PointX="11.25" PointY="17.875" />
+        <EntityTypeShape EntityType="RecipiesModelNS.SalesOrderDetail" Width="1.5" PointX="11.625" PointY="17.875" />
         <EntityTypeShape EntityType="RecipiesModelNS.SalesOrderHeader" Width="1.5" PointX="9" PointY="19.5" />
         <EntityTypeShape EntityType="RecipiesModelNS.SalesOrderStatu" Width="1.5" PointX="6.75" PointY="32.875" />
         <AssociationConnector Association="RecipiesModelNS.FK_EmployeeDepartment_Department" />
@@ -64,7 +64,7 @@
         <InheritanceConnector EntityType="RecipiesModelNS.RecipeInventory" />
         <EntityTypeShape EntityType="RecipiesModelNS.ProductWaste" Width="1.5" PointX="10.046904879644004" PointY="5.4953817303736612" />
         <EntityTypeShape EntityType="RecipiesModelNS.RecipeWaste" Width="1.5" PointX="1.5607876580025941" PointY="27.497832325984646" />
-        <EntityTypeShape EntityType="RecipiesModelNS.Waste" Width="1.5" PointX="11.53934738204784" PointY="16.789506651828766" />
+        <EntityTypeShape EntityType="RecipiesModelNS.Waste" Width="1.5" PointX="13.625" PointY="16.75" />
         <AssociationConnector Association="RecipiesModelNS.FK_ProductWaste_Product" />
         <AssociationConnector Association="RecipiesModelNS.FK_ProductWaste_Waste" />
         <AssociationConnector Association="RecipiesModelNS.FK_RecipeWaste_Recipe" />
