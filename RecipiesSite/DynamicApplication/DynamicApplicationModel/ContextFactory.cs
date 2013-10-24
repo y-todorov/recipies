@@ -27,6 +27,15 @@ namespace RecipiesModelNS
             }
         }
 
+        public static RecipiesEntities Current
+        {
+            get
+            {
+                RecipiesEntities current = GetContextPerRequest();
+                return current;
+            }
+        }
+
         public static void Dispose()
         {
             HttpContext httpContext = HttpContext.Current;

@@ -21,7 +21,8 @@ namespace RecipiesModelNS
         {
             if (productId.HasValue)
             {
-                Product product = ContextFactory.GetContextPerRequest().Products.FirstOrDefault(p => p.ProductId == productId);
+                Product product =
+                    ContextFactory.GetContextPerRequest().Products.FirstOrDefault(p => p.ProductId == productId);
                 if (product != null)
                 {
                     product.UnitsInStock = product.GetQuantityByDocumentsForDate(DateTime.Now);
@@ -47,9 +48,10 @@ namespace RecipiesModelNS
                 context.PurchaseOrderDetails.Where(
                     pod => pod.ProductId == ProductId && pod.PurchaseOrderHeader.ShipDate.HasValue &&
                            pod.PurchaseOrderHeader.ShipDate >= fromDate && pod.PurchaseOrderHeader.ShipDate <= toDate &&
-                           pod.PurchaseOrderHeader.StatusId == (int)PurchaseOrderStatusEnum.Completed)
+                           pod.PurchaseOrderHeader.StatusId == (int) PurchaseOrderStatusEnum.Completed)
                     .OrderByDescending(p => p.PurchaseOrderHeader.ShipDate)
                     .ToList();
+
 
             StringBuilder result = new StringBuilder();
 
@@ -63,7 +65,7 @@ namespace RecipiesModelNS
                     double tempBaseUnitsQuantity = pod.Product.GetBaseUnitMeasureQuantityForProduct(
                         pod.StockedQuantity, pod.UnitMeasure, pod);
                     baseUnitsQuantity += tempBaseUnitsQuantity;
-                    totalPrice += (decimal)pod.StockedQuantity * pod.UnitPrice.GetValueOrDefault();
+                    totalPrice += (decimal) pod.StockedQuantity*pod.UnitPrice.GetValueOrDefault();
                     totalQuantity += pod.StockedQuantity;
 
                     string productMeasureName = string.Empty;
@@ -102,7 +104,7 @@ namespace RecipiesModelNS
                         lastPod.Product.GetBaseUnitMeasureQuantityForProduct(lastPod.StockedQuantity,
                             lastPod.UnitMeasure, lastPod);
                     baseUnitsQuantity += tempBaseUnitsQuantity;
-                    totalPrice += (decimal)lastPod.StockedQuantity * lastPod.UnitPrice.GetValueOrDefault();
+                    totalPrice += (decimal) lastPod.StockedQuantity*lastPod.UnitPrice.GetValueOrDefault();
 
                     totalQuantity += lastPod.StockedQuantity;
                     string productMeasureName = string.Empty;
@@ -122,9 +124,27 @@ namespace RecipiesModelNS
                             tempBaseUnitsQuantity, lastPod.StockedQuantity, lastPod.UnitPrice,
                             productMeasureName, podUnitMeasureName));
                 }
+                else
+                {
+                    // няма никакви поръчки -> значи вземаме цената от последната инвентаризация;
+
+                    ProductInventory productInventory =
+                        ContextFactory.Current.Inventories.OfType<ProductInventory>()
+                            .FirstOrDefault(pi => pi.ProductId == ProductId && pi.ForDate <= DateTime.Now);
+                    if (productInventory != null)
+                    {
+                        totalPrice = productInventory.AverageUnitPrice.GetValueOrDefault();
+                        totalQuantity = 1;
+                        baseUnitsQuantity = 1;
+                        result.AppendLine(
+                            string.Format(
+                                "Total price from last inventory : {0}",
+                                totalPrice));
+                    }
+                }
             }
 
-            double averagePrice = Math.Round((double)totalPrice / baseUnitsQuantity, 3);
+            double averagePrice = Math.Round((double) totalPrice/baseUnitsQuantity, 3);
 
             if (double.IsNaN(averagePrice) || double.IsInfinity(averagePrice))
             {
@@ -169,7 +189,6 @@ namespace RecipiesModelNS
                 sales = GetSalesOrderQuantity(inventory.ForDate.GetValueOrDefault(), forDate.Date);
 
                 quantityByDocuments = inventory.StocktakeQuantity.GetValueOrDefault() + purchases - sales;
-
             }
             else
             {
@@ -187,7 +206,10 @@ namespace RecipiesModelNS
                 ContextFactory.GetContextPerRequest().PurchaseOrderHeaders.Where(pu => pu.ShipDate.HasValue &&
                                                                                        pu.ShipDate >= fromDate.Date &&
                                                                                        pu.ShipDate <= toDate.Date &&
-                                                                                       pu.StatusId == (int)PurchaseOrderStatusEnum.Completed &&
+                                                                                       pu.StatusId ==
+                                                                                       (int)
+                                                                                           PurchaseOrderStatusEnum
+                                                                                               .Completed &&
                                                                                        pu.PurchaseOrderDetails.Any(
                                                                                            pod =>
                                                                                                pod.ProductId ==
@@ -199,7 +221,8 @@ namespace RecipiesModelNS
                 {
                     if (pod.ProductId == ProductId)
                     {
-                        stockedQuantityForPeriod += this.GetBaseUnitMeasureQuantityForProduct(pod.StockedQuantity, pod.UnitMeasure);
+                        stockedQuantityForPeriod += this.GetBaseUnitMeasureQuantityForProduct(pod.StockedQuantity,
+                            pod.UnitMeasure);
                     }
                 }
             }
@@ -232,7 +255,7 @@ namespace RecipiesModelNS
                 UnitMeasure baseUnitMeasure = this.UnitMeasure;
                 if (quantityUnitMeasure.BaseUnitFactor.HasValue)
                 {
-                    double result = quantity.Value * quantityUnitMeasure.BaseUnitFactor.Value;
+                    double result = quantity.Value*quantityUnitMeasure.BaseUnitFactor.Value;
                     return Math.Round(result, 3);
                 }
                 else
@@ -266,7 +289,7 @@ namespace RecipiesModelNS
             List<Product> products = ContextFactory.GetContextPerRequest().Products.ToList();
             foreach (Product product in products)
             {
-                decimal? averagePriceLastDays = (decimal?)product.GetAveragePriceLastDays(14);
+                decimal? averagePriceLastDays = (decimal?) product.GetAveragePriceLastDays(14);
                 if (averagePriceLastDays != product.UnitPrice)
                 {
                     product.UnitPrice = averagePriceLastDays;
@@ -281,7 +304,7 @@ namespace RecipiesModelNS
             List<PurchaseOrderDetail> allCompletedPurchaseOrderDetals =
                 ContextFactory.GetContextPerRequest()
                     .PurchaseOrderDetails.Where(
-                        pod => pod.PurchaseOrderHeader.StatusId == (int)PurchaseOrderStatusEnum.Completed).ToList();
+                        pod => pod.PurchaseOrderHeader.StatusId == (int) PurchaseOrderStatusEnum.Completed).ToList();
 
             foreach (Product product in allProducts)
             {
@@ -308,7 +331,7 @@ namespace RecipiesModelNS
             List<PurchaseOrderDetail> allCompletedPurchaseOrderDetals =
                 ContextFactory.GetContextPerRequest()
                     .PurchaseOrderDetails.Where(
-                        pod => pod.PurchaseOrderHeader.StatusId == (int)PurchaseOrderStatusEnum.Approved).ToList();
+                        pod => pod.PurchaseOrderHeader.StatusId == (int) PurchaseOrderStatusEnum.Approved).ToList();
 
             foreach (Product product in allProducts)
             {
