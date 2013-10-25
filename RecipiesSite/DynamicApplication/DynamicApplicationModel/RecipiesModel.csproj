@@ -31,10 +31,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>OpenAccessAssemblies\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>OpenAccessAssemblies\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Web" />
@@ -194,6 +200,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="OpenAccessAssemblies\EntityFramework.dll" />
+    <Content Include="OpenAccessAssemblies\EntityFramework.SqlServer.dll" />
     <Content Include="OpenAccessAssemblies\Telerik.Reporting.dll" />
     <Content Include="OpenAccessAssemblies\Telerik.ReportViewer.WebForms.dll" />
     <Content Include="OpenAccessAssemblies\Typesafe.Mailgun.dll" />

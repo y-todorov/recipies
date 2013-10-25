@@ -34,7 +34,6 @@ C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.AspNet.Signal
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.Owin.Host.SystemWeb.xml
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\RestSharp.xml
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\EntityFramework.xml
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.AspNet.Membership.OpenAuth.xml
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\HtmlAgilityPack.pdb
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\HtmlAgilityPack.xml
