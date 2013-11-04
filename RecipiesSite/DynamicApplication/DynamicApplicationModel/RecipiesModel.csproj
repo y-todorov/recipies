@@ -31,7 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>OpenAccessAssemblies\EntityFramework.dll</HintPath>
     </Reference>
@@ -180,7 +180,9 @@
     <Compile Include="YordanBaseEntity.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.Config" />
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
     <EntityDeploy Include="RecipiesModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>RecipiesModel.Designer.cs</LastGenOutput>
