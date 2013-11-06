@@ -19,7 +19,14 @@
     <body>
         <header>
             @* @Html.Partial("_LoginPartial")*@
-@*            @(
+
+
+ @(
+        Html.Kendo().Menu()
+            .Name("Menu")
+)
+
+            @*            @(
         Html.Kendo().Menu()
             .Name("Menu")
             .BindTo("sitemap")
@@ -42,7 +49,7 @@
                 kendo.culture("en-IE");
 
                 function error_handler(e) {
-                    if (e.errors) {
+                    if (e.errors) { 
                         var message = "Errors:\n";
                         $.each(e.errors, function(key, value) {
                             if ('errors' in value) {

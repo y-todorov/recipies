@@ -5,7 +5,7 @@
     <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceProduct" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="Products" />
     <yordan:YordanCustomRadGrid ID="YordanCustomRadGridInventory"  runat="server" CellSpacing="0" ItemType="RecipiesModelNS.Inventory" DataSourceID="OpenAccessLinqDataSourceInventory" GridLines="None" OnItemCreated="YordanCustomRadGridInventory_ItemCreated" OnItemCommand="YordanCustomRadGridInventory_ItemCommand">
         <MasterTableView AutoGenerateColumns="False" DataKeyNames="InventoryId" DataSourceID="OpenAccessLinqDataSourceInventory">
-            <%--<GroupByExpressions>
+            <GroupByExpressions>
                 <telerik:GridGroupByExpression>
                     <GroupByFields>
                         <telerik:GridGroupByField FieldName="Product.ProductCategory.Name" HeaderText="Category" Aggregate="None"  />
@@ -14,7 +14,7 @@
                         <telerik:GridGroupByField FieldName="Product.ProductCategory.Name" HeaderText="Category" Aggregate="None" />
                     </SelectFields>
                 </telerik:GridGroupByExpression>
-            </GroupByExpressions>--%>
+            </GroupByExpressions>
             <Columns>
                 <telerik:GridBoundColumn DataField="InventoryId" DataType="System.Int32" FilterControlAltText="Filter InventoryId column" HeaderText="InventoryId" ReadOnly="True" SortExpression="InventoryId" UniqueName="InventoryId">
                     <ColumnValidationSettings>

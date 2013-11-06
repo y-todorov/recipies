@@ -8,10 +8,8 @@
 
 }
 
-test
 
-@*@{
-    @(Html.Kendo().Chart<productspercategory>()
+    @(Html.Kendo().Chart<ProductsPerCategory>()
           .Name("chart").Theme("blueopal")
           .Title("Products count and stock value by category")
           .Legend(legend => legend
@@ -37,4 +35,3 @@ test
               .Format("{0:N0}")
           )
           )
-}*@
