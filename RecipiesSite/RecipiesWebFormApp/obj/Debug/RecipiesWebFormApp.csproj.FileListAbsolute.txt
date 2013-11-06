@@ -4,6 +4,7 @@ C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\AppfailReporting.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\DynamicApplicationModel.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\EntityFramework.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Helpers.dll
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Kendo.Mvc.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.AspNet.FriendlyUrls.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.AspNet.Membership.OpenAuth.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.AspNet.SignalR.Core.dll
@@ -16,8 +17,14 @@ C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.SqlServer.Smo
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Owin.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\RecipiesReports.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\RestSharp.dll
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\System.Web.Helpers.dll
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\System.Web.Mvc.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\System.Web.Optimization.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\System.Web.Providers.dll
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\System.Web.Razor.dll
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\System.Web.WebPages.Deployment.dll
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\System.Web.WebPages.dll
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\System.Web.WebPages.Razor.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Telerik.Reporting.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Telerik.ReportViewer.WebForms.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Telerik.Web.UI.dll
@@ -34,6 +41,12 @@ C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.AspNet.Signal
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.Owin.Host.SystemWeb.xml
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\RestSharp.xml
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\System.Web.Helpers.xml
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\System.Web.Mvc.xml
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\System.Web.Razor.xml
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\System.Web.WebPages.xml
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\System.Web.WebPages.Deployment.xml
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\System.Web.WebPages.Razor.xml
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.AspNet.Membership.OpenAuth.xml
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\HtmlAgilityPack.pdb
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\HtmlAgilityPack.xml

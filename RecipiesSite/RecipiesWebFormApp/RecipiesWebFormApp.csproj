@@ -46,6 +46,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\DynamicApplication\DynamicApplicationModel\OpenAccessAssemblies\EntityFramework.dll</HintPath>
     </Reference>
+    <Reference Include="Kendo.Mvc, Version=2013.2.918.340, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DynamicApplication\DynamicApplicationModel\OpenAccessAssemblies\Kendo.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNet.FriendlyUrls, Version=1.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.FriendlyUrls.Core.1.0.1\lib\net45\Microsoft.AspNet.FriendlyUrls.dll</HintPath>
@@ -86,9 +90,36 @@
       <HintPath>..\packages\RestSharp.104.1\lib\net4\RestSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.0.0\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.0.0\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Entity" />
@@ -333,6 +364,18 @@
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\Charts\ChartController.cs" />
+    <Compile Include="Controllers\Dashboard\HomeController.cs" />
+    <Compile Include="Controllers\Production\CategoryController.cs" />
+    <Compile Include="Controllers\Production\ProductController.cs" />
+    <Compile Include="Controllers\Production\ProductInventoryController.cs" />
+    <Compile Include="Controllers\Production\StoreController.cs" />
+    <Compile Include="Controllers\Production\UnitMeasureController.cs" />
+    <Compile Include="Controllers\Purchasing\PurchaseOrderDetailController.cs" />
+    <Compile Include="Controllers\Purchasing\PurchaseOrderHeaderController.cs" />
+    <Compile Include="Controllers\Shared\ControllerHelper.cs" />
+    <Compile Include="Controllers\Shared\CustomControllerBase.cs" />
+    <Compile Include="DataAnnotations\RelationAttribute.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -354,6 +397,8 @@
     <Compile Include="ErrorPages\Error404.aspx.designer.cs">
       <DependentUpon>Error404.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Extensions\GridBuilderExtension.cs" />
+    <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -392,6 +437,17 @@
     <Compile Include="HumanResources\Shifts.aspx.designer.cs">
       <DependentUpon>Shifts.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Account\AccountModels.cs" />
+    <Compile Include="Models\Account\IdentityModels.cs" />
+    <Compile Include="Models\Chart\ProductsPerCategory.cs" />
+    <Compile Include="Models\Production\CategoryViewModel.cs" />
+    <Compile Include="Models\Production\InventoryViewModel.cs" />
+    <Compile Include="Models\Production\ProductInventoryViewModel.cs" />
+    <Compile Include="Models\Production\ProductViewModel.cs" />
+    <Compile Include="Models\Production\StoreViewModel.cs" />
+    <Compile Include="Models\Production\UnitMeasureViewModel.cs" />
+    <Compile Include="Models\Purchasing\PurchaseOrderDetailViewModel.cs" />
+    <Compile Include="Models\Purchasing\PurchaseOrderHeaderViewModel.cs" />
     <Compile Include="Production\ProductInventories.aspx.cs">
       <DependentUpon>ProductInventories.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -566,6 +622,44 @@
     <Content Include="Scripts\jquery.signalR-1.1.3.min.js.map">
       <DependentUpon>jquery.signalR-1.1.3.js</DependentUpon>
     </Content>
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Manage.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\_RemoveExternalLoginsPartial.cshtml" />
+    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
+    <Content Include="Views\Category\Index.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\ProductInventory\Index.cshtml" />
+    <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\PurchaseOrderDetail\Index.cshtml" />
+    <Content Include="Views\PurchaseOrderHeader\Index.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\ClientCategory.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Currency.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Date.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Email.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\EmailAddress.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\GridForeignKey.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Integer.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Number.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Password.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Time.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Url.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Store\Index.cshtml" />
+    <Content Include="Views\UnitMeasure\Index.cshtml" />
+    <Content Include="Views\web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="sitemap.sitemap" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -590,6 +684,12 @@
       <Project>{25f012a1-c5bb-4dfe-be22-64cdd9c1b65b}</Project>
       <Name>YordanCustomControls</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controllers\HumanResources\" />
+    <Folder Include="Controllers\Sales\" />
+    <Folder Include="Models\HumanResources\" />
+    <Folder Include="Models\Sales\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

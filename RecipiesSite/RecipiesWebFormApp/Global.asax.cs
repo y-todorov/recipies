@@ -5,6 +5,7 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using System.Timers;
 using System.Net;
+using Kendo.Mvc;
 using RecipiesModelNS;
 using System.Diagnostics;
 using Microsoft.AspNet.SignalR;
@@ -19,6 +20,12 @@ namespace RecipiesWebFormApp
     {
         private void Application_Start(object sender, EventArgs e)
         {
+            if (!SiteMapManager.SiteMaps.ContainsKey("sitemap"))
+            {
+                SiteMapManager.SiteMaps.Register<XmlSiteMap>("sitemap", sitemap =>
+                    sitemap.LoadFrom("~/sitemap.sitemap"));
+            }
+
             // Code that runs on application startup
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterOpenAuth();
