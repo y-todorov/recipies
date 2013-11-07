@@ -23,7 +23,30 @@
                     </ChartTitle>
                 </telerik:RadHtmlChart>
             </td>
-
+        </tr>
+        <tr>
+            <td colspan="2">
+                <telerik:RadHtmlChart runat="server" ID="rhcGpRecipies" Width="1000">
+                    <PlotArea>
+                        <Series>
+                            <telerik:LineSeries DataFieldY="GrossProfit" Name="GP (Gross Profit)">
+                                <LabelsAppearance DataFormatString="{0:P2}"></LabelsAppearance>
+                                <TooltipsAppearance DataFormatString="{0:P2}" />
+                            </telerik:LineSeries>
+                          <%--  <telerik:LineSeries DataFieldY="SellValuePerPortion" Name="Sell Value Per Portion">
+                                  <LabelsAppearance DataFormatString="{0:F2}"></LabelsAppearance>
+                            </telerik:LineSeries>--%>
+                        </Series>
+                        <XAxis DataLabelsField="Name">
+                        </XAxis>
+                        <YAxis>
+                            <TitleAppearance Text="Value"></TitleAppearance>
+                        </YAxis>
+                    </PlotArea>
+                    <ChartTitle Text="Recipies by GP descending">
+                    </ChartTitle>
+                </telerik:RadHtmlChart>
+            </td>
         </tr>
         <tr>
             <td>
@@ -49,7 +72,7 @@
                 <telerik:RadHtmlChart runat="server" ID="rhcProductsCountByCategory">
                     <PlotArea>
                         <Series>
-                            <telerik:ColumnSeries DataFieldY="ProductCount" Name="Product count">                                
+                            <telerik:ColumnSeries DataFieldY="ProductCount" Name="Product count">
                             </telerik:ColumnSeries>
                             <telerik:ColumnSeries DataFieldY="ProductValue" Name="Product value">
                             </telerik:ColumnSeries>

@@ -54,8 +54,18 @@ namespace RecipiesWebFormApp
 
                 rhcMostExpensiveProducts.DataSource = ContextFactory.GetContextPerRequest()
                     .Products.OrderByDescending(product => product.UnitPrice)
-                    .Select(p => new {p.UnitPrice, Name = p.Name.Substring(0, maxXLabelTextLenght)})
+                    .Select(p => new { p.UnitPrice, Name = p.Name.Substring(0, maxXLabelTextLenght) })
                     .Take(10).ToList();
+
+                rhcGpRecipies.DataSource = ContextFactory.GetContextPerRequest().Recipes.OrderByDescending(r => r.GrossProfit)
+                    .Select(recipie => new
+                    {
+                        recipie.Name,
+                        GrossProfit = recipie.GrossProfit,
+                        SellValuePerPortion = recipie.SellValuePerPortion
+                    })
+                        .ToList();
+
 
                 List<GpHelper> list = new List<GpHelper>();
                 for (int i = 29; i >= 0; i--)
@@ -70,7 +80,7 @@ namespace RecipiesWebFormApp
                                 PurchaseOrderStatusEnum.Completed).Sum(poh => poh.TotalDue).GetValueOrDefault();
                     double dayGp = sales - purchases;
 
-                    GpHelper gh = new GpHelper() {Days = date.ToString("dd/MM"), DayGp = dayGp};
+                    GpHelper gh = new GpHelper() { Days = date.ToString("dd/MM"), DayGp = dayGp };
                     //if (gh.DayGp != 0)
                     {
                         list.Add(gh);
