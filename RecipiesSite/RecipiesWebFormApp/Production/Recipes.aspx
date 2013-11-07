@@ -38,7 +38,7 @@
                         <ModelErrorMessage Text=""></ModelErrorMessage>
                     </ColumnValidationSettings>
                 </telerik:GridNumericColumn>
-                <telerik:GridNumericColumn DataField="GrossProfit" ReadOnly="true" DataType="System.Decimal" FilterControlAltText="Filter GrossProfit column" HeaderText="GrossProfit" SortExpression="GrossProfit" UniqueName="GrossProfit">
+                <telerik:GridNumericColumn DataField="GrossProfit" ReadOnly="true" DataFormatString="{0:P2}" DataType="System.Decimal" FilterControlAltText="Filter GrossProfit column" HeaderText="GrossProfit" SortExpression="GrossProfit" UniqueName="GrossProfit">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text=""></ModelErrorMessage>
                     </ColumnValidationSettings>
