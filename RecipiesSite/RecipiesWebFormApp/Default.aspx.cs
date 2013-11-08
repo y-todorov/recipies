@@ -26,7 +26,7 @@ namespace RecipiesWebFormApp
                                 Name = p.Name.Substring(0, maxXLabelTextLenght)
                             }).Take(10).ToList();
 
-                rhcProductsCountByCategory.DataSource = ContextFactory.GetContextPerRequest().ProductCategories
+                rhcProductsCountByCategory.DataSource = ContextFactory.GetContextPerRequest().ProductCategories.Take(20)
                     .Select(
                         cat =>
                             new
@@ -57,7 +57,7 @@ namespace RecipiesWebFormApp
                     .Select(p => new { p.UnitPrice, Name = p.Name.Substring(0, maxXLabelTextLenght) })
                     .Take(10).ToList();
 
-                rhcGpRecipies.DataSource = ContextFactory.GetContextPerRequest().Recipes.OrderByDescending(r => r.GrossProfit)
+                rhcGpRecipies.DataSource = ContextFactory.GetContextPerRequest().Recipes.OrderByDescending(r => r.GrossProfit).Take(20)
                     .Select(recipie => new
                     {
                         recipie.Name,

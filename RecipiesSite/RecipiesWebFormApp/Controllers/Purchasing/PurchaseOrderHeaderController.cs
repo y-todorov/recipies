@@ -12,6 +12,7 @@ namespace InventoryManagementMVC.Controllers.Purchasing
 {
     public class PurchaseOrderHeaderController : Controller
     {
+        //[OutputCache(Duration = 120)]
         public ActionResult Index()
         {
             List<PurchaseOrderHeaderViewModel> purchaseOrderHeaderViewModels =
@@ -23,6 +24,7 @@ namespace InventoryManagementMVC.Controllers.Purchasing
             return View(purchaseOrderHeaderViewModels);
         }
 
+        //[OutputCache(Duration=120)]
         public ActionResult Read([DataSourceRequest] DataSourceRequest request)
         {
             List<PurchaseOrderHeaderViewModel> purchaseOrderHeaderViewModels =

@@ -87,7 +87,7 @@ Default skin template. The following skins are provided as examples only.
 <%-- <telerik:RadComboBox runat="server" DropDownWidth="300px" Height="500px"></telerik:RadComboBox>--%>
 
  
-<telerik:RadHtmlChart runat="server"  Width="500px" Height="400px">
+<telerik:RadHtmlChart runat="server"  Width="600px" Height="400px">
     <Legend>
         <Appearance Position="Top"></Appearance>
     </Legend>
