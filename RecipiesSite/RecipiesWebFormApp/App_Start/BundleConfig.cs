@@ -11,6 +11,7 @@ namespace RecipiesWebFormApp
         {
             
             bundles.UseCdn = true;
+            BundleTable.EnableOptimizations = true;
 
             bundles.Add(new ScriptBundle("~/bundles/modernizr", "http://ajax.aspnetcdn.com/ajax/modernizr/modernizr-2.0.6-development-only.js"));//.Include(
 
@@ -27,7 +28,7 @@ namespace RecipiesWebFormApp
 
 
 
-            BundleTable.EnableOptimizations = true;
+         
 
             
 
