@@ -7,7 +7,7 @@
     <table>
         <tr>
             <td colspan="2">
-                <telerik:RadHtmlChart runat="server" ID="rhcGP" Width="1200">
+                <telerik:RadHtmlChart runat="server" ID="rhcGP" Width="1600">
                     <PlotArea>
                         <Series>
                             <telerik:LineSeries DataFieldY="DayGp" Name="Value per day">
@@ -26,12 +26,12 @@
         </tr>
         <tr>
             <td colspan="2">
-                <telerik:RadHtmlChart runat="server" ID="rhcGpRecipies" Width="1200">
+                <telerik:RadHtmlChart runat="server" ID="rhcGpRecipies" Width="1600">
                     <PlotArea>
                         <Series>
                             <telerik:LineSeries DataFieldY="GrossProfit" Name="GP (Gross Profit)">
-                                <LabelsAppearance DataFormatString="{0:P2}"></LabelsAppearance>
-                                <TooltipsAppearance DataFormatString="{0:P2}" />
+                                <LabelsAppearance DataFormatString="{0:P0}"></LabelsAppearance>
+                                <TooltipsAppearance DataFormatString="{0:P0}" />
                             </telerik:LineSeries>
                           <%--  <telerik:LineSeries DataFieldY="SellValuePerPortion" Name="Sell Value Per Portion">
                                   <LabelsAppearance DataFormatString="{0:F2}"></LabelsAppearance>

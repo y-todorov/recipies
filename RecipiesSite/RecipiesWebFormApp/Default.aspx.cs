@@ -57,7 +57,7 @@ namespace RecipiesWebFormApp
                     .Select(p => new { p.UnitPrice, Name = p.Name.Substring(0, maxXLabelTextLenght) })
                     .Take(10).ToList();
 
-                rhcGpRecipies.DataSource = ContextFactory.GetContextPerRequest().Recipes.OrderByDescending(r => r.GrossProfit).Take(20)
+                rhcGpRecipies.DataSource = ContextFactory.GetContextPerRequest().Recipes.OrderByDescending(r => r.GrossProfit)//.Take(20)
                     .Select(recipie => new
                     {
                         recipie.Name,
