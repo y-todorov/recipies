@@ -204,6 +204,10 @@
     <Content Include="App_Data\RadCaptcha\Z.wav" />
     <Content Include="Charts\Vendors.aspx" />
     <Content Include="Contact.aspx" />
+    <Content Include="Content\Bundles\kendocommon.css" />
+    <Content Include="Content\Bundles\kendodataviz.css" />
+    <Content Include="Content\Bundles\kendodataviztheme.css" />
+    <Content Include="Content\Bundles\kendotheme.css" />
     <Content Include="ErrorPages\Error.aspx" />
     <Content Include="ErrorPages\Error404.aspx" />
     <Content Include="googled46c83e07f33d665.html" />
@@ -266,6 +270,11 @@
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
     <Content Include="Production\Stores.aspx" />
     <Content Include="Sales\PaymentTypes.aspx" />
+    <Content Include="Scripts\Bundles\jquery.js" />
+    <Content Include="Scripts\Bundles\kendoall.js" />
+    <Content Include="Scripts\Bundles\kendoaspnetmvc.js" />
+    <Content Include="Scripts\Bundles\kendoculture.js" />
+    <Content Include="Scripts\Bundles\modernizr.js" />
     <Content Include="Scripts\GoogleAnalytics.js" />
     <Content Include="Scripts\jquery-2.0.3.js" />
     <Content Include="Scripts\jquery-2.0.3.min.js" />

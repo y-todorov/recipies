@@ -13,23 +13,26 @@ namespace RecipiesWebFormApp
             bundles.UseCdn = true;
             BundleTable.EnableOptimizations = true;
 
-            bundles.Add(new ScriptBundle("~/bundles/modernizr", "http://ajax.aspnetcdn.com/ajax/modernizr/modernizr-2.0.6-development-only.js"));//.Include(
+            //bundles.Add(new ScriptBundle("~/bundles/modernizr", "http://ajax.aspnetcdn.com/ajax/modernizr/modernizr-2.0.6-development-only.js"));//.Include(
 
-            bundles.Add(new ScriptBundle("~/bundles/jquery", "http://cdn.kendostatic.com/2013.2.918/js/jquery.min.js"));//.Include(
-            //"~/Scripts/jquery-{version}.js"));
+            //bundles.Add(new ScriptBundle("~/bundles/jquery", "http://cdn.kendostatic.com/2013.2.918/js/jquery.min.js"));//.Include(
+            ////"~/Scripts/jquery-{version}.js"));
 
-            //bundles.Add(new ScriptBundle("~/bundles/kendo", "http://cdn.kendostatic.com/2013.2.918/js/jquery.min.js"));
+            ////bundles.Add(new ScriptBundle("~/bundles/kendo", "http://cdn.kendostatic.com/2013.2.918/js/jquery.min.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/kendoall", "http://cdn.kendostatic.com/2013.2.918/js/kendo.all.min.js"));
+            //bundles.Add(new ScriptBundle("~/bundles/kendoall", "http://cdn.kendostatic.com/2013.2.918/js/kendo.all.min.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/kendoaspnetmvc", "http://cdn.kendostatic.com/2013.2.918/js/kendo.aspnetmvc.min.js"));
+            //bundles.Add(new ScriptBundle("~/bundles/kendoaspnetmvc", "http://cdn.kendostatic.com/2013.2.918/js/kendo.aspnetmvc.min.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/kendoculture", "http://cdn.kendostatic.com/2013.2.918/js/cultures/kendo.culture.en-IE.min.js"));
+            //bundles.Add(new ScriptBundle("~/bundles/kendoculture", "http://cdn.kendostatic.com/2013.2.918/js/cultures/kendo.culture.en-IE.min.js"));
 
 
+            bundles.Add(new ScriptBundle("~/bundles/js").Include(
+                        "~/Scripts/Bundles/*.js"));
 
-         
 
+            bundles.Add(new StyleBundle("~/Content/bundles/css").Include(
+                       "~/Content/Bundles/*.css"));
             
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
