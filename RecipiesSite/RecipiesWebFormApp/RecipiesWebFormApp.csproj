@@ -398,7 +398,7 @@
     <Compile Include="Controllers\Purchasing\PurchaseOrderDetailController.cs" />
     <Compile Include="Controllers\Purchasing\PurchaseOrderHeaderController.cs" />
     <Compile Include="Controllers\Shared\ControllerHelper.cs" />
-    <Compile Include="Controllers\Shared\CustomControllerBase.cs" />
+    <Compile Include="Controllers\Shared\BatchControllerBase.cs" />
     <Compile Include="DataAnnotations\RelationAttribute.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>

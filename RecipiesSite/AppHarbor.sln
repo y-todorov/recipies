@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipiesModel", "DynamicApplication\DynamicApplicationModel\RecipiesModel.csproj", "{C50145E6-A244-4F1F-B41F-90D1925B4A00}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipiesWebFormApp", "RecipiesWebFormApp\RecipiesWebFormApp.csproj", "{86BDCA89-36F0-4884-99A5-DE0576D01188}"
@@ -21,9 +23,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcDonutCaching", "DevTrends.MvcDonutCaching\MvcDonutCaching.csproj", "{854E90C7-8320-4EB6-A286-24A8EE5EBE9B}"
 EndProject
 Global
-	GlobalSection(TestCaseManagementSettings) = postSolution
-		CategoryFile = AppHarbor.vsmdi
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release.Public|Any CPU = Release.Public|Any CPU
@@ -69,5 +68,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(Performance) = preSolution
+		HasPerformanceSessions = true
+	EndGlobalSection
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = AppHarbor.vsmdi
 	EndGlobalSection
 EndGlobal

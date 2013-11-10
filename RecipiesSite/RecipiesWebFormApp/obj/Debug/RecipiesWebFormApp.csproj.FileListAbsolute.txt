@@ -60,3 +60,4 @@ C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\DevTrends.MvcDonutCachi
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\DevTrends.MvcDonutCaching.pdb
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Autofac.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Autofac.xml
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\RecipiesWebFormApp.dll.config

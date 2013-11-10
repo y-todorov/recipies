@@ -9,7 +9,7 @@ using System.Data.Entity; // .Include !!!!!!! THIS IS SO IMPROTANT
 
 namespace InventoryManagementMVC.Controllers
 {
-    public class ChartController : CustomControllerBase
+    public class ChartController : BatchControllerBase
     {
         public ActionResult ProductsCountByCategory()
         {

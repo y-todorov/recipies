@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using DevTrends.MvcDonutCaching;
 using DevTrends.MvcDonutCaching.Annotations;
+using Kendo.Mvc.UI;
 using RecipiesWebFormApp.Caching;
 using System;
 using System.Collections.Generic;
@@ -11,21 +12,20 @@ using System.Web.Mvc;
 
 namespace InventoryManagementMVC.Controllers
 {
-    public class CustomControllerBase : Controller
-    {
-        //public OutputCacheManager OutputCacheManager
-        //{
-        //    get
-        //    {
-        //        return MyCacheManager.Instance;
-        //    }
+    public class BatchControllerBase : Controller
+    {      
+        [DonutOutputCache(Duration = 24 * 3600)]
+        public virtual ActionResult Index()
+        {
+            return new ContentResult();
+        }
 
-        //    [UsedImplicitly]
-        //    set
-        //    {
-
-        //    }
-        //}
+        [DonutOutputCache(Duration = 24 * 3600)]
+        public virtual ActionResult Read([DataSourceRequest] DataSourceRequest request)
+        {
+            return new ContentResult();
+        }
+        
 
         public long ActionMilliseconds { get; set; }
 

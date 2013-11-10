@@ -13,20 +13,18 @@ using DevTrends.MvcDonutCaching;
 
 namespace InventoryManagementMVC.Controllers
 {
-    public class ProductController : CustomControllerBase
+    public class ProductController : BatchControllerBase
     {
-        [DonutOutputCache(Duration = 24 * 3600)]
-        public ActionResult Index()
+       
+        public override ActionResult Index()
         {
             List<Product> allProducts = ContextFactory.Current.Products.ToList();
             List<ProductViewModel> productViewModels =
                 allProducts.Select(p => ProductViewModel.ConvertFromProductEntity(p, new ProductViewModel())).ToList();
             return View(productViewModels);
-            
         }
 
-        [DonutOutputCache(Duration = 24 * 3600)]
-        public ActionResult Read([DataSourceRequest] DataSourceRequest request)
+        public override ActionResult Read([DataSourceRequest] DataSourceRequest request)
         {
             List<Product> allProducts = ContextFactory.Current.Products.ToList();
             List<ProductViewModel> productViewModels =
