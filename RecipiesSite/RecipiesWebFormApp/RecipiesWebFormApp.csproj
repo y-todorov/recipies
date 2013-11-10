@@ -207,6 +207,7 @@
     <Content Include="App_Data\RadCaptcha\Z.wav" />
     <Content Include="Charts\Vendors.aspx" />
     <Content Include="Contact.aspx" />
+    <Content Include="Content\Bundles\BlueOpal\sprite.png" />
     <Content Include="Content\Bundles\kendocommon.css" />
     <Content Include="Content\Bundles\kendodataviz.css" />
     <Content Include="Content\Bundles\kendodataviztheme.css" />

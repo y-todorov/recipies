@@ -31,8 +31,10 @@ namespace RecipiesWebFormApp
                         "~/Scripts/Bundles/*.js"));
 
 
-            bundles.Add(new StyleBundle("~/Content/bundles/css").Include(
-                       "~/Content/Bundles/*.css"));
+            bundles.Add(new StyleBundle("~/Content/bundles/css")
+                .Include("~/Content/Bundles/*.css")
+                .Include("~/Content/Bundles/BlueOpal/*.png"))
+                ;
             
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're

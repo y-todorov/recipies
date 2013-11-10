@@ -11,6 +11,8 @@ using System.Diagnostics;
 using Microsoft.AspNet.SignalR;
 using System.Web.Mvc;
 using RecipiesWebFormApp.Caching;
+using System.Reflection;
+using System.Collections.Specialized;
 
 namespace RecipiesWebFormApp
 {
@@ -42,97 +44,49 @@ namespace RecipiesWebFormApp
             timerRequestPage.Elapsed += timer_Elapsed;
             timerRequestPage.Start();
 
-            // Test for database refresh
-            Timer timerCheckDatabaseForChanges = new Timer(TimeSpan.FromSeconds(1).TotalMilliseconds);
-            timerCheckDatabaseForChanges.Elapsed += timerCheckDatabaseForChanges_Elapsed;
-            //timerCheckDatabaseForChanges.Start();
-
-            //int mnt = System.Threading.Thread.CurrentThread.ManagedThreadId;
-
             DatabaseTableChangeWatcher.StartWathching(1);
             DatabaseTableChangeWatcher.DatabaseChange += DatabaseTableChangeWatcher_DatabaseChange;
-            //DatabaseTableChangeWatcher.ProductChange += DatabaseTableChangeWatcher_ProductChange;
         }
 
         void DatabaseTableChangeWatcher_DatabaseChange(object arg1, EventArgs arg2)
         {
             MyCacheManager.Instance.RemoveItems();
-        }
+    //        var controllersType = Assembly.GetExecutingAssembly().GetTypes().Where(t => t.ReflectedType != null &&
+    //            t.ReflectedType.BaseType.Name == typeof(ControllerBase).Name).ToList();
 
-        void DatabaseTableChangeWatcher_ProductChange(object arg1, EventArgs arg2)
-        {
-            //yes it gets here
-            //HttpContext.Current.Response.Write("Product Chanhe!");
+    //        //CookieAwareWebClient client = new CookieAwareWebClient();
 
-            // remove my MVC controller action's output
-            
-            //HttpResponse.RemoveOutputCacheItem("/product/index");
-            //HttpResponse.RemoveOutputCacheItem("/product/read");
-          //  HttpResponse.RemoveOutputCacheItem(Url.Action("details", "product", new { id = 1234 }));
-        }
+    //        using (var client = new CookieAwareWebClient())
+    //        {
+    //            var values = new NameValueCollection
+    //{
+    //    { "username", "admin" },
+    //    { "password", "admin1!!" },
+    //};
+    //            client.UploadValues("http://bluesystems.azurewebsites.net", values);
 
-        private void timerCheckDatabaseForChanges_Elapsed(object sender, ElapsedEventArgs e)
-        {
-            Stopwatch s = new Stopwatch();
-            s.Start();
-
-            //MethodInfo method = ContextFactory.GetContextPerRequest().GetType().GetMethod("GetAll");
-            //MethodInfo generic = method.MakeGenericMethod(typeof(Product));
-            //var res = generic.Invoke(ContextFactory.GetContextPerRequest(), null) as IEnumerable;
-
-            DateTime? lastModifiedDate =
-                ContextFactory.GetContextPerRequest()
-                    .Products.OrderByDescending(p => p.ModifiedDate)
-                    .Select(p => p.ModifiedDate)
-                    .FirstOrDefault();
-            if (Application["ProductDate"] == null)
-            {
-                Application.Add("ProductDate", lastModifiedDate);
-            }
-            else
-            {
-                DateTime? lastModifiedDateCacheValue = Application["ProductDate"] as DateTime?;
-                if (lastModifiedDateCacheValue.Value != lastModifiedDate.Value)
-                {
-                    var context = GlobalHost.ConnectionManager.GetHubContext<RebindHub>();
-                    // Here we refresh only grids with ItemType product. We should do notification system on wathcing the sql database. SQL WATCH or something
-                    context.Clients.Group(typeof (Product).FullName).rebindRadGrid();
-                    Application["ProductDate"] = lastModifiedDate.Value;
-                    return;
-                }
-                Application["ProductDate"] = lastModifiedDate;
-            }
-
-            int lastProductCount = ContextFactory.GetContextPerRequest().Products.Count();
-            if (Application["ProductCount"] == null)
-            {
-                Application.Add("ProductCount", lastProductCount);
-            }
-            else
-            {
-                int productCountCacheValue = (int) Application["ProductCount"];
-                if (productCountCacheValue != lastProductCount)
-                {
-                    var context = GlobalHost.ConnectionManager.GetHubContext<RebindHub>();
-
-                    // Here we refresh only grids with ItemType product. We should do notification system on wathcing the sql database. SQL WATCH or something
-                    context.Clients.Group(typeof (Product).FullName).rebindRadGrid();
-                    Application["ProductCount"] = lastProductCount;
-                    return;
-                }
-            }
+    //            // If the previous call succeeded we now have a valid authentication cookie
+    //            // so we could download the protected page
+    //            //string result = client.DownloadString("http://domain.loc/testpage.aspx");
 
 
-            s.Stop();
-            var mills = s.ElapsedMilliseconds;
-            var ticks = s.ElapsedTicks;
+    //            foreach (Type ct in controllersType)
+    //            {
+    //                string controllerFullName = ct.ReflectedType.Name;
+    //                string controllerName = controllerFullName.Substring(0, controllerFullName.IndexOf("Controller"));
+    //                string res = client.DownloadStringTaskAsync(new Uri("http://bluesystems.azurewebsites.net/" + controllerName)).Result;
+    //                client.UploadValues("http://bluesystems.azurewebsites.net/" + controllerName, values);
+    //                res = client.DownloadStringTaskAsync(new Uri("http://bluesystems.azurewebsites.net/" + controllerName)).Result;
+    //            }
+    //        }
+
+
         }
 
         private void timer_Elapsed(object sender, ElapsedEventArgs e)
         {
             WebClient client = new WebClient();
             string res = client.DownloadStringTaskAsync(new Uri("http://bluesystems.azurewebsites.net/")).Result;
-            res = client.DownloadStringTaskAsync(new Uri("http://recipies.azurewebsites.net/")).Result;
         }
 
         private void Application_End(object sender, EventArgs e)
@@ -153,6 +107,21 @@ namespace RecipiesWebFormApp
                 Debugger.Break();
             }
             Debugger.Break();
+        }
+    }
+    public class CookieAwareWebClient : WebClient
+    {
+        public CookieAwareWebClient()
+        {
+            CookieContainer = new CookieContainer();
+        }
+        public CookieContainer CookieContainer { get; private set; }
+
+        protected override WebRequest GetWebRequest(Uri address)
+        {
+            var request = (HttpWebRequest)base.GetWebRequest(address);
+            request.CookieContainer = CookieContainer;
+            return request;
         }
     }
 }
