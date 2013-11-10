@@ -1,5 +1,7 @@
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\RecipiesWebFormApp.dll.config
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\RecipiesWebFormApp.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\RecipiesWebFormApp.pdb
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Antlr3.Runtime.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\AppfailReporting.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\DynamicApplicationModel.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\EntityFramework.dll
@@ -29,12 +31,14 @@ C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Telerik.Reporting.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Telerik.ReportViewer.WebForms.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Telerik.Web.UI.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Telerik.Web.UI.Skins.dll
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\WebGrease.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\YordanCustomControls.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\HtmlAgilityPack.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\DynamicApplicationModel.pdb
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Helpers.pdb
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\RecipiesReports.pdb
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\YordanCustomControls.pdb
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Antlr3.Runtime.pdb
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.AspNet.FriendlyUrls.xml
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.AspNet.SignalR.Core.xml
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.AspNet.SignalR.Owin.xml
@@ -53,7 +57,7 @@ C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\HtmlAgilityPack.xml
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\obj\Debug\RecipiesWebFormApp.csprojResolveAssemblyReference.cache
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\obj\Debug\RecipiesWebFormApp.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\obj\Debug\RecipiesWebFormApp.pdb
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\RecipiesWebFormApp.dll.config
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Antlr3.Runtime.dll
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\WebGrease.dll
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Antlr3.Runtime.pdb
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\DevTrends.MvcDonutCaching.dll
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\DevTrends.MvcDonutCaching.pdb
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Autofac.dll
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Autofac.xml

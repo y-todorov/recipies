@@ -9,10 +9,8 @@ using Kendo.Mvc;
 using RecipiesModelNS;
 using System.Diagnostics;
 using Microsoft.AspNet.SignalR;
-
-//using System.Threading;
-
-//using PubNubMessaging.Core;
+using System.Web.Mvc;
+using RecipiesWebFormApp.Caching;
 
 namespace RecipiesWebFormApp
 {
@@ -50,6 +48,27 @@ namespace RecipiesWebFormApp
             //timerCheckDatabaseForChanges.Start();
 
             //int mnt = System.Threading.Thread.CurrentThread.ManagedThreadId;
+
+            DatabaseTableChangeWatcher.StartWathching(1);
+            DatabaseTableChangeWatcher.DatabaseChange += DatabaseTableChangeWatcher_DatabaseChange;
+            //DatabaseTableChangeWatcher.ProductChange += DatabaseTableChangeWatcher_ProductChange;
+        }
+
+        void DatabaseTableChangeWatcher_DatabaseChange(object arg1, EventArgs arg2)
+        {
+            MyCacheManager.Instance.RemoveItems();
+        }
+
+        void DatabaseTableChangeWatcher_ProductChange(object arg1, EventArgs arg2)
+        {
+            //yes it gets here
+            //HttpContext.Current.Response.Write("Product Chanhe!");
+
+            // remove my MVC controller action's output
+            
+            //HttpResponse.RemoveOutputCacheItem("/product/index");
+            //HttpResponse.RemoveOutputCacheItem("/product/read");
+          //  HttpResponse.RemoveOutputCacheItem(Url.Action("details", "product", new { id = 1234 }));
         }
 
         private void timerCheckDatabaseForChanges_Elapsed(object sender, ElapsedEventArgs e)

@@ -46,6 +46,9 @@
     <Reference Include="AppfailReporting">
       <HintPath>..\packages\Appfail.WebForms.1.1.0\lib\35\AppfailReporting.dll</HintPath>
     </Reference>
+    <Reference Include="Autofac">
+      <HintPath>..\packages\Autofac.3.1.5\lib\net40\Autofac.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\DynamicApplication\DynamicApplicationModel\OpenAccessAssemblies\EntityFramework.dll</HintPath>
@@ -208,6 +211,7 @@
     <Content Include="Content\Bundles\kendodataviz.css" />
     <Content Include="Content\Bundles\kendodataviztheme.css" />
     <Content Include="Content\Bundles\kendotheme.css" />
+    <Content Include="DevTrends.MvcDonutCaching.README.txt" />
     <Content Include="ErrorPages\Error.aspx" />
     <Content Include="ErrorPages\Error404.aspx" />
     <Content Include="googled46c83e07f33d665.html" />
@@ -365,7 +369,11 @@
     <Compile Include="Account\RegisterExternalLogin.aspx.designer.cs">
       <DependentUpon>RegisterExternalLogin.aspx</DependentUpon>
     </Compile>
+    <Compile Include="App_Start\DatabaseTableChangeWatcher.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Caching\CacheDependencyManager.cs" />
+    <Compile Include="Caching\ExplicitCacheDependency.cs" />
+    <Compile Include="Caching\MyCacheManager.cs" />
     <Compile Include="Charts\Vendors.aspx.cs">
       <DependentUpon>Vendors.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -684,6 +692,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DevTrends.MvcDonutCaching\MvcDonutCaching.csproj">
+      <Project>{854e90c7-8320-4eb6-a286-24a8ee5ebe9b}</Project>
+      <Name>MvcDonutCaching</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DynamicApplication\DynamicApplicationModel\RecipiesModel.csproj">
       <Project>{c50145e6-a244-4f1f-b41f-90d1925b4a00}</Project>
       <Name>RecipiesModel</Name>

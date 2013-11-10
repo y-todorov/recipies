@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Autofac;
+using DevTrends.MvcDonutCaching;
+using DevTrends.MvcDonutCaching.Annotations;
+using RecipiesWebFormApp.Caching;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -9,6 +13,20 @@ namespace InventoryManagementMVC.Controllers
 {
     public class CustomControllerBase : Controller
     {
+        //public OutputCacheManager OutputCacheManager
+        //{
+        //    get
+        //    {
+        //        return MyCacheManager.Instance;
+        //    }
+
+        //    [UsedImplicitly]
+        //    set
+        //    {
+
+        //    }
+        //}
+
         public long ActionMilliseconds { get; set; }
 
         public long ResultMilliseconds { get; set; }
