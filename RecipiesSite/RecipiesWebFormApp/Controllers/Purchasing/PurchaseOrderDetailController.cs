@@ -8,12 +8,14 @@ using InventoryManagementMVC.Models.Purchasing;
 using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
 using RecipiesModelNS;
-using System.Data.Entity; // .Include !!!!!!! THIS IS SO IMPROTANT
+using System.Data.Entity;
+using DevTrends.MvcDonutCaching; // .Include !!!!!!! THIS IS SO IMPROTANT
 
 namespace InventoryManagementMVC.Controllers
 {
     public class PurchaseOrderDetailController : Controller
     {
+        [DonutOutputCache(Duration = 24 * 3600)]
         public ActionResult Index()
         {
             List<PurchaseOrderDetailViewModel> purchaseOrderDetailViewModels =
@@ -28,6 +30,7 @@ namespace InventoryManagementMVC.Controllers
             return View(purchaseOrderDetailViewModels);
         }
 
+        [DonutOutputCache(Duration = 24 * 3600)]
         public ActionResult Read(int? purchaseOrderHeaderId, [DataSourceRequest] DataSourceRequest request)
         {
             List<PurchaseOrderDetailViewModel> purchaseOrderDetailViewModels =

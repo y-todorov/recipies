@@ -10,10 +10,9 @@ using Kendo.Mvc.Extensions;
 
 namespace InventoryManagementMVC.Controllers.Purchasing
 {
-    public class PurchaseOrderHeaderController : Controller
-    {
-        //[OutputCache(Duration = 120)]
-        public ActionResult Index()
+    public class PurchaseOrderHeaderController : BatchControllerBase
+    {       
+        public override ActionResult Index()
         {
             List<PurchaseOrderHeaderViewModel> purchaseOrderHeaderViewModels =
                 ContextFactory.Current.PurchaseOrderHeaders
@@ -23,9 +22,8 @@ namespace InventoryManagementMVC.Controllers.Purchasing
                             new PurchaseOrderHeaderViewModel())).ToList();
             return View(purchaseOrderHeaderViewModels);
         }
-
-        //[OutputCache(Duration=120)]
-        public ActionResult Read([DataSourceRequest] DataSourceRequest request)
+               
+        public override ActionResult Read([DataSourceRequest] DataSourceRequest request)
         {
             List<PurchaseOrderHeaderViewModel> purchaseOrderHeaderViewModels =
                 ContextFactory.Current.PurchaseOrderHeaders

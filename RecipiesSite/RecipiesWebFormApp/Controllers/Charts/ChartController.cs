@@ -5,12 +5,14 @@ using System.Web;
 using System.Web.Mvc;
 using InventoryManagementMVC.Models.Chart;
 using RecipiesModelNS;
-using System.Data.Entity; // .Include !!!!!!! THIS IS SO IMPROTANT
+using System.Data.Entity;
+using DevTrends.MvcDonutCaching; // .Include !!!!!!! THIS IS SO IMPROTANT
 
 namespace InventoryManagementMVC.Controllers
 {
-    public class ChartController : BatchControllerBase
+    public class ChartController : Controller
     {
+        [DonutOutputCache(Duration = 24 * 3600)]
         public ActionResult ProductsCountByCategory()
         {
             var pc = ContextFactory.Current.ProductCategories.Include(c => c.Products).ToList()
