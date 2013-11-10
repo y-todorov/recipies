@@ -10,16 +10,16 @@ using System.Web.Mvc;
 
 namespace InventoryManagementMVC.Controllers
 {
-    public class StoreController : BatchControllerBase
+    public class StoreController : ControllerBase
     {
-        public override ActionResult Index()
+        public ActionResult Index()
         {
             List<StoreViewModel> categoryViewModels = ContextFactory.Current.Stores.ToList().Select
                 (c => StoreViewModel.ConvertFromStoreEntity(c, new StoreViewModel())).ToList();
             return View(categoryViewModels);
         }
 
-        public override ActionResult Read([DataSourceRequest] DataSourceRequest request)
+        public ActionResult Read([DataSourceRequest] DataSourceRequest request)
         {
             List<StoreViewModel> categoryViewModels = ContextFactory.Current.Stores.ToList().Select
                 (c => StoreViewModel.ConvertFromStoreEntity(c, new StoreViewModel())).ToList();

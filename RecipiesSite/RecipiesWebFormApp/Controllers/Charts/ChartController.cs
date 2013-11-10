@@ -10,9 +10,8 @@ using DevTrends.MvcDonutCaching; // .Include !!!!!!! THIS IS SO IMPROTANT
 
 namespace InventoryManagementMVC.Controllers
 {
-    public class ChartController : Controller
-    {
-        [DonutOutputCache(Duration = 24 * 3600)]
+    public class ChartController : ControllerBase
+    {        
         public ActionResult ProductsCountByCategory()
         {
             var pc = ContextFactory.Current.ProductCategories.Include(c => c.Products).ToList()

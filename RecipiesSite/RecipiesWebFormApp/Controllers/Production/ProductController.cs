@@ -13,10 +13,10 @@ using DevTrends.MvcDonutCaching;
 
 namespace InventoryManagementMVC.Controllers
 {
-    public class ProductController : BatchControllerBase
+    public class ProductController : ControllerBase
     {
        
-        public override ActionResult Index()
+        public ActionResult Index()
         {
             List<Product> allProducts = ContextFactory.Current.Products.ToList();
             List<ProductViewModel> productViewModels =
@@ -24,7 +24,7 @@ namespace InventoryManagementMVC.Controllers
             return View(productViewModels);
         }
 
-        public override ActionResult Read([DataSourceRequest] DataSourceRequest request)
+        public ActionResult Read([DataSourceRequest] DataSourceRequest request)
         {
             List<Product> allProducts = ContextFactory.Current.Products.ToList();
             List<ProductViewModel> productViewModels =

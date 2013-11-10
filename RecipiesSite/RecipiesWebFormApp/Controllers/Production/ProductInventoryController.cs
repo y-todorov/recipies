@@ -11,9 +11,9 @@ using System.Data.Entity; // .Include !!!!!!! THIS IS SO IMPROTANT
 
 namespace InventoryManagementMVC.Controllers
 {
-    public class ProductInventoryController : BatchControllerBase
+    public class ProductInventoryController : ControllerBase
     {
-        public override ActionResult Index()
+        public ActionResult Index()
         {
             List<ProductInventoryViewModel> productInventoriesViewModels =
                 ContextFactory.Current.Inventories.OfType<ProductInventory>().ToList().Select
@@ -23,7 +23,7 @@ namespace InventoryManagementMVC.Controllers
             return View(productInventoriesViewModels);
         }
 
-        public override ActionResult Read([DataSourceRequest] DataSourceRequest request)
+        public ActionResult Read([DataSourceRequest] DataSourceRequest request)
         {
             List<ProductInventoryViewModel> productInventoriesViewModels =
                 ContextFactory.Current.Inventories.OfType<ProductInventory>().ToList().Select

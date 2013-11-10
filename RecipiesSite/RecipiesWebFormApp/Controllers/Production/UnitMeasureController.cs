@@ -8,16 +8,16 @@ using RecipiesModelNS;
 
 namespace InventoryManagementMVC.Controllers
 {
-    public class UnitMeasureController : BatchControllerBase
+    public class UnitMeasureController : ControllerBase
     {
-        public override ActionResult Index()
+        public ActionResult Index()
         {
             List<UnitMeasureViewModel> unitMeasuresViewModels = ContextFactory.Current.UnitMeasures.ToList().Select
                 (unit => UnitMeasureViewModel.ConvertFromUnitMeasureEntity(unit, new UnitMeasureViewModel())).ToList();
             return View(unitMeasuresViewModels);
         }
 
-        public override ActionResult Read([DataSourceRequest] DataSourceRequest request)
+        public ActionResult Read([DataSourceRequest] DataSourceRequest request)
         {
             List<UnitMeasureViewModel> unitMeasuresViewModels = ContextFactory.Current.UnitMeasures.ToList().Select
                 (unit => UnitMeasureViewModel.ConvertFromUnitMeasureEntity(unit, new UnitMeasureViewModel())).ToList();

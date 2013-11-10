@@ -13,9 +13,8 @@ using DevTrends.MvcDonutCaching; // .Include !!!!!!! THIS IS SO IMPROTANT
 
 namespace InventoryManagementMVC.Controllers
 {
-    public class PurchaseOrderDetailController : Controller
+    public class PurchaseOrderDetailController : ControllerBase
     {
-        [DonutOutputCache(Duration = 24 * 3600)]
         public ActionResult Index()
         {
             List<PurchaseOrderDetailViewModel> purchaseOrderDetailViewModels =
@@ -30,7 +29,6 @@ namespace InventoryManagementMVC.Controllers
             return View(purchaseOrderDetailViewModels);
         }
 
-        [DonutOutputCache(Duration = 24 * 3600)]
         public ActionResult Read(int? purchaseOrderHeaderId, [DataSourceRequest] DataSourceRequest request)
         {
             List<PurchaseOrderDetailViewModel> purchaseOrderDetailViewModels =

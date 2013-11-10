@@ -12,21 +12,9 @@ using System.Web.Mvc;
 
 namespace InventoryManagementMVC.Controllers
 {
-    public class BatchControllerBase : Controller
-    {      
-        [DonutOutputCache(Duration = 24 * 3600)]
-        public virtual ActionResult Index()
-        {
-            return new ContentResult();
-        }
-
-        [DonutOutputCache(Duration = 24 * 3600)]
-        public virtual ActionResult Read([DataSourceRequest] DataSourceRequest request)
-        {
-            return new ContentResult();
-        }
-        
-
+    [DonutOutputCache(Duration = 24 * 3600)]
+    public class ControllerBase : Controller
+    {  
         public long ActionMilliseconds { get; set; }
 
         public long ResultMilliseconds { get; set; }
