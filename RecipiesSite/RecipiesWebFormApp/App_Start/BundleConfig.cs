@@ -33,7 +33,8 @@ namespace RecipiesWebFormApp
 
             bundles.Add(new StyleBundle("~/Content/bundles/css")
                 .Include("~/Content/Bundles/*.css")
-                .Include("~/Content/Bundles/BlueOpal/*.png"))
+                .Include("~/Content/Bundles/BlueOpal/*.png")
+                .Include("~/Content/Bundles/BlueOpal/*.gif"))
                 ;
             
 

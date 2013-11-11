@@ -207,7 +207,15 @@
     <Content Include="App_Data\RadCaptcha\Z.wav" />
     <Content Include="Charts\Vendors.aspx" />
     <Content Include="Contact.aspx" />
+    <Content Include="Content\Bundles\BlueOpal\editor.png" />
+    <Content Include="Content\Bundles\BlueOpal\imagebrowser.png" />
+    <Content Include="Content\Bundles\BlueOpal\loading-image.gif" />
+    <Content Include="Content\Bundles\BlueOpal\loading.gif" />
+    <Content Include="Content\Bundles\BlueOpal\loading_2x.gif" />
+    <Content Include="Content\Bundles\BlueOpal\slider-h.gif" />
+    <Content Include="Content\Bundles\BlueOpal\slider-v.gif" />
     <Content Include="Content\Bundles\BlueOpal\sprite.png" />
+    <Content Include="Content\Bundles\BlueOpal\sprite_2x.png" />
     <Content Include="Content\Bundles\kendocommon.css" />
     <Content Include="Content\Bundles\kendodataviz.css" />
     <Content Include="Content\Bundles\kendodataviztheme.css" />
