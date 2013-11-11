@@ -14,7 +14,7 @@
     <RootNamespace>RecipiesWebFormApp</RootNamespace>
     <AssemblyName>RecipiesWebFormApp</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <UseIISExpress>true</UseIISExpress>
+    <UseIISExpress>false</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -212,6 +212,7 @@
     <Content Include="Content\Bundles\kendodataviz.css" />
     <Content Include="Content\Bundles\kendodataviztheme.css" />
     <Content Include="Content\Bundles\kendotheme.css" />
+    <Content Include="Content\Bundles\Site.css" />
     <Content Include="DevTrends.MvcDonutCaching.README.txt" />
     <Content Include="ErrorPages\Error.aspx" />
     <Content Include="ErrorPages\Error404.aspx" />
@@ -280,6 +281,7 @@
     <Content Include="Scripts\Bundles\kendoaspnetmvc.js" />
     <Content Include="Scripts\Bundles\kendoculture.js" />
     <Content Include="Scripts\Bundles\modernizr.js" />
+    <Content Include="Scripts\Bundles\Site.js" />
     <Content Include="Scripts\GoogleAnalytics.js" />
     <Content Include="Scripts\jquery-2.0.3.js" />
     <Content Include="Scripts\jquery-2.0.3.min.js" />
@@ -426,6 +428,7 @@
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="History\ProductHistories.aspx.cs">
       <DependentUpon>ProductHistories.aspx</DependentUpon>
@@ -735,7 +738,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>16575</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:61591/</IISUrl>
+          <IISUrl>http://localhost/RecipiesWebFormApp</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

@@ -3,13 +3,13 @@
 <head>
     <title>@ViewBag.Title</title>
     @* <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />*@
-    <style>
+    @*<style>
         * {
             margin: 0;
             padding: 0;
             border: 0;
         }
-    </style>
+    </style>*@
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
     @*<link href="http://cdn.kendostatic.com/2013.2.918/styles/kendo.common.min.css" rel="stylesheet" type="text/css" />
@@ -35,6 +35,7 @@
  Html.Kendo().Menu()
             .Name("Menu")
             .BindTo("sitemap")
+            .SecurityTrimming(false) // causes EXTREMELY slow debugging.
 
         )
 
@@ -47,7 +48,7 @@
         @*<script src="http://cdn.kendostatic.com/2013.2.918/js/kendo.all.min.js"> </script>
             <script src="http://cdn.kendostatic.com/2013.2.918/js/kendo.aspnetmvc.min.js"> </script>
             <script src="http://cdn.kendostatic.com/2013.2.918/js/cultures/kendo.culture.en-IE.min.js"> </script>*@
-        <script type="text/javascript">
+        @*<script type="text/javascript">
             //set current to the "en-IE" culture script
             kendo.culture("en-IE");
 
@@ -64,7 +65,7 @@
                     alert(message);
                 }
             }
-        </script>
+        </script>*@
     </footer>
 </body>
 </html>

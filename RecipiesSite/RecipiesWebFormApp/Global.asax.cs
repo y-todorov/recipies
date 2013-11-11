@@ -51,8 +51,17 @@ namespace RecipiesWebFormApp
         void DatabaseTableChangeWatcher_DatabaseChange(object arg1, EventArgs arg2)
         {
             MyCacheManager.Instance.RemoveItems();
-    //        var controllersType = Assembly.GetExecutingAssembly().GetTypes().Where(t => t.ReflectedType != null &&
-    //            t.ReflectedType.BaseType.Name == typeof(ControllerBase).Name).ToList();
+            var controllersType = Assembly.GetExecutingAssembly().GetTypes().Where(t => t.ReflectedType != null &&
+                t.ReflectedType.BaseType.Name == typeof(ControllerBase).Name).ToList();
+
+            foreach (Type ct in controllersType)
+            {
+                string controllerFullName = ct.ReflectedType.Name;
+                string controllerName = controllerFullName.Substring(0, controllerFullName.IndexOf("Controller"));
+
+                var instance = Activator.CreateInstance(ct.ReflectedType);
+                var res = ct.ReflectedType.GetMethod("Index").Invoke(instance, null);
+            }
 
     //        //CookieAwareWebClient client = new CookieAwareWebClient();
 
