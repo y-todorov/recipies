@@ -2,9 +2,11 @@
 using RecipiesModelNS;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace InventoryManagementMVC.Models
 {
@@ -12,6 +14,10 @@ namespace InventoryManagementMVC.Models
     {
         [Key]
         public int InventoryId { get; set; }
+
+        [ReadOnly(true)]
+        [HiddenInput(DisplayValue = false)]     
+        public int? PurchaseOrderHeaderDetailId { get; set; }
 
         [Relation(EntityType = typeof (Product), DataFieldValue = "ProductId", DataFieldText = "Name")]
         [Display(Name = "Product")]

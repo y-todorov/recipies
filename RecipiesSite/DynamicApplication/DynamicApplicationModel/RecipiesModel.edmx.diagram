@@ -72,6 +72,8 @@
         <AssociationConnector Association="RecipiesModelNS.FK_ProductWaste_UnitMeasure" />
         <InheritanceConnector EntityType="RecipiesModelNS.RecipeWaste" />
         <InheritanceConnector EntityType="RecipiesModelNS.ProductWaste" />
+        <EntityTypeShape EntityType="RecipiesModelNS.ProductInventoryHeader" Width="2.25" PointX="3.375" PointY="0.875" />
+        <AssociationConnector Association="RecipiesModelNS.FK_ProductInventory_ProductInventoryHeader" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

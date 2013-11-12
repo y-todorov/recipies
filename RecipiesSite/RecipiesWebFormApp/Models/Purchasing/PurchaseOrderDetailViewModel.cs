@@ -6,6 +6,7 @@ using System.Web;
 using RecipiesModelNS;
 using System.ComponentModel;
 using InventoryManagementMVC.DataAnnotations;
+using System.Web.Mvc;
 
 namespace InventoryManagementMVC.Models
 {
@@ -13,18 +14,18 @@ namespace InventoryManagementMVC.Models
     {
         [Key]
         public int PurchaseOrderDetailId { get; set; }
-
+        
         [ReadOnly(true)]
-        [Relation(EntityType = typeof (PurchaseOrderHeader), DataFieldValue = "PurchaseOrderId",
+        [Relation(EntityType = typeof(PurchaseOrderHeader), DataFieldValue = "PurchaseOrderId",
             DataFieldText = "PurchaseOrderId")]
         [Display(Name = "Purchase Order")]
         public int? PurchaseOrderHeaderId { get; set; }
 
-        [Relation(EntityType = typeof (Product), DataFieldValue = "ProductId", DataFieldText = "Name")]
+        [Relation(EntityType = typeof(Product), DataFieldValue = "ProductId", DataFieldText = "Name")]
         [Display(Name = "Product")]
         public int? ProductId { get; set; }
 
-        [Relation(EntityType = typeof (UnitMeasure), DataFieldValue = "UnitMeasureId", DataFieldText = "Name")]
+        [Relation(EntityType = typeof(UnitMeasure), DataFieldValue = "UnitMeasureId", DataFieldText = "Name")]
         [Display(Name = "Unit Measure")]
         public int? UnitMeasureId { get; set; }
 
@@ -75,7 +76,7 @@ namespace InventoryManagementMVC.Models
                     "PurchaseOrderDetailViewModel is null in method ConvertFromPurchaseOrderDetailEntity!");
             }
 
-            podViewModel.LineTotal = (decimal) newOrExistingPod.LineTotal;
+            podViewModel.LineTotal = (decimal)newOrExistingPod.LineTotal;
             podViewModel.ModifiedByUser = newOrExistingPod.ModifiedByUser;
             podViewModel.ModifiedDate = newOrExistingPod.ModifiedDate;
             podViewModel.OrderQuantity = newOrExistingPod.OrderQuantity;
@@ -123,7 +124,7 @@ namespace InventoryManagementMVC.Models
                     "PurchaseOrderDetailViewModel is null in method ConvertToPurchaseOrderDetailEntity!");
             }
 
-            newOrExistingPod.LineTotal = (double) podViewModel.LineTotal;
+            newOrExistingPod.LineTotal = (double)podViewModel.LineTotal;
             newOrExistingPod.ModifiedByUser = podViewModel.ModifiedByUser;
             newOrExistingPod.ModifiedDate = podViewModel.ModifiedDate;
             newOrExistingPod.OrderQuantity = podViewModel.OrderQuantity;

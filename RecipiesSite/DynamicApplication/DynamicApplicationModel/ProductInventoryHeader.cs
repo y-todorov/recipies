@@ -12,12 +12,18 @@ namespace RecipiesModelNS
     using System;
     using System.Collections.Generic;
     
-    public partial class ProductInventory : Inventory
+    public partial class ProductInventoryHeader
     {
-        public Nullable<int> ProductId { get; set; }
-        public Nullable<int> ProductInventoryHeaderId { get; set; }
+        public ProductInventoryHeader()
+        {
+            this.ProductInventories = new HashSet<ProductInventory>();
+        }
     
-        public virtual Product Product { get; set; }
-        public virtual ProductInventoryHeader ProductInventoryHeader { get; set; }
+        public int ProductInventoryHeaderId { get; set; }
+        public Nullable<System.DateTime> ForDate { get; set; }
+        public Nullable<System.DateTime> ModifiedDate { get; set; }
+        public string ModifiedByUser { get; set; }
+    
+        public virtual ICollection<ProductInventory> ProductInventories { get; set; }
     }
 }

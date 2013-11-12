@@ -17,6 +17,8 @@
       <siteMapNode controller="unitmeasure" action="index" title="Unit measures" />
       <siteMapNode controller="store" action="index" title="Stores" />
       <siteMapNode controller="recipie" action="index" title="Recipies" />
+      <siteMapNode controller="productinventoryheader" action="index" title="Product inventory header" />
+
       <siteMapNode controller="productinventory" action="index" title="Product inventories" />
       <siteMapNode controller="productwaste" action="index" title="Product wastes" />
       <siteMapNode controller="recipiewaste" action="index" title="Recipie wastes" />

@@ -94,6 +94,7 @@ namespace InventoryManagementMVC.Extensions
         }
 
         // Problems with aggregates in client mode !!!!!!!!!!!!
+        // When model is empty collection there are problems with aggregates!!!!!!!!!!!
         public static GridBuilder<T> AddColumnOptions<T>(this GridBuilder<T> builder, bool isClient = false,
             bool isDeleteColumnVisible = true,
             bool isEditColumnVisible = true, bool isSelectColumnVisible = true) where T : class

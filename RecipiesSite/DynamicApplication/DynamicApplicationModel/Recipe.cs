@@ -30,7 +30,7 @@ namespace RecipiesModelNS
         public Nullable<System.DateTime> ModifiedDate { get; set; }
         public string ModifiedByUser { get; set; }
         public Nullable<decimal> SellValuePerPortion { get; set; }
-        public decimal GrossProfit { get; set; }
+        public Nullable<decimal> GrossProfit { get; set; }
     
         public virtual ProductCategory ProductCategory { get; set; }
         public virtual ICollection<SalesOrderDetail> SalesOrderDetails { get; set; }

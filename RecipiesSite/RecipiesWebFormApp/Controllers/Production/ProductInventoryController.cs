@@ -23,10 +23,12 @@ namespace InventoryManagementMVC.Controllers
             return View(productInventoriesViewModels);
         }
 
-        public ActionResult Read([DataSourceRequest] DataSourceRequest request)
+        public ActionResult Read(int? productInventoryHeaderId, [DataSourceRequest] DataSourceRequest request)
         {
+
             List<ProductInventoryViewModel> productInventoriesViewModels =
-                ContextFactory.Current.Inventories.OfType<ProductInventory>().ToList().Select
+                ContextFactory.Current.Inventories.OfType<ProductInventory>().Where(
+                    pih => productInventoryHeaderId.HasValue ? pih.ProductInventoryHeaderId == productInventoryHeaderId.Value : true).ToList().Select
                     (pi =>
                         ProductInventoryViewModel.ConvertFromProductInventoryEntity(pi, new ProductInventoryViewModel()))
                     .ToList();

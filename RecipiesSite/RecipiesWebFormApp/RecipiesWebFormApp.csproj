@@ -14,7 +14,7 @@
     <RootNamespace>RecipiesWebFormApp</RootNamespace>
     <AssemblyName>RecipiesWebFormApp</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <UseIISExpress>false</UseIISExpress>
+    <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -403,6 +403,7 @@
     <Compile Include="Controllers\Dashboard\HomeController.cs" />
     <Compile Include="Controllers\Production\CategoryController.cs" />
     <Compile Include="Controllers\Production\ProductController.cs" />
+    <Compile Include="Controllers\Production\ProductInventoryHeaderController.cs" />
     <Compile Include="Controllers\Production\ProductInventoryController.cs" />
     <Compile Include="Controllers\Production\StoreController.cs" />
     <Compile Include="Controllers\Production\UnitMeasureController.cs" />
@@ -478,6 +479,7 @@
     <Compile Include="Models\Chart\ProductsPerCategory.cs" />
     <Compile Include="Models\Production\CategoryViewModel.cs" />
     <Compile Include="Models\Production\InventoryViewModel.cs" />
+    <Compile Include="Models\Production\ProductInventoryHeaderViewModel.cs" />
     <Compile Include="Models\Production\ProductInventoryViewModel.cs" />
     <Compile Include="Models\Production\ProductViewModel.cs" />
     <Compile Include="Models\Production\StoreViewModel.cs" />
@@ -696,6 +698,7 @@
     <Content Include="Views\web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="sitemap.sitemap" />
+    <Content Include="Views\ProductInventoryHeader\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -746,7 +749,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>16575</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost/RecipiesWebFormApp</IISUrl>
+          <IISUrl>http://localhost:16575/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

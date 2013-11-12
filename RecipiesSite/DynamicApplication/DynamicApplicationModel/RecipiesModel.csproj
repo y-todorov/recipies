@@ -91,6 +91,9 @@
       <DependentUpon>RecipiesModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ProductInventory.partial.cs" />
+    <Compile Include="ProductInventoryHeader.cs">
+      <DependentUpon>RecipiesModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="ProductVendor.cs">
       <DependentUpon>RecipiesModel.tt</DependentUpon>
     </Compile>

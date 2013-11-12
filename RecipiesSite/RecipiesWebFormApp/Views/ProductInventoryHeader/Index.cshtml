@@ -1,0 +1,42 @@
+﻿@using InventoryManagementMVC.Extensions
+@using InventoryManagementMVC.Models;
+
+@model IEnumerable<ProductInventoryHeaderViewModel>
+
+@(
+ Html.Kendo().Grid(Model)
+            .AddDefaultOptions()
+            .DataSource(dataSource => dataSource
+                .Ajax()
+                    .Create("Create", "ProductInventoryHeader")
+                        .Read("Read", "ProductInventoryHeader")
+                        .Update("Update", "ProductInventoryHeader")
+                            .Destroy("Destroy", "ProductInventoryHeader")).ClientDetailTemplateId("template")
+)
+
+
+<script id="template" type="text/kendo-tmpl">
+    @(Html.Kendo().Grid<ProductInventoryViewModel>()
+          .Name("test")
+          .AddDefaultOptions(true)
+          .DataSource(dataSource => dataSource
+              .Ajax()
+              .Batch(true)
+              .PageSize(5).Model(m => m.Id(p => p.PurchaseOrderHeaderDetailId))
+                                              .Read(read => read.Action("Read", "ProductInventory", new { productInventoryHeaderId = "#=ProductInventoryHeaderId#" }))
+                                                              .Create("Create", "ProductInventory", new { productInventoryHeaderId = "#=ProductInventoryHeaderId#" })
+                      .Update("Update", "ProductInventory")
+                      .Destroy("Destroy", "ProductInventory")
+          )
+          .ToClientTemplate()
+            //  .DataSource(dataSource => dataSource
+            //.Ajax()
+            //.Read("Read", "PurchaseOrderHeader")
+            //.Create("Create", "PurchaseOrderHeader")
+            //.Update("Update", "PurchaseOrderHeader")
+            //.Destroy("Destroy", "PurchaseOrderHeader"))
+
+          //.ToClientTemplate()
+
+    )
+</script>

@@ -50,5 +50,6 @@ namespace RecipiesModelNS
         public DbSet<SalesOrderHeader> SalesOrderHeaders { get; set; }
         public DbSet<SalesOrderStatu> SalesOrderStatus { get; set; }
         public DbSet<Waste> Wastes { get; set; }
+        public DbSet<ProductInventoryHeader> ProductInventoryHeaders { get; set; }
     }
 }
