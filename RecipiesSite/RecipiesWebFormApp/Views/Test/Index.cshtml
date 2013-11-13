@@ -18,13 +18,16 @@
             .ClientFooterTemplate("Average: #=average#")
             .ClientGroupFooterTemplate("Average: #=average#");
         columns.Bound(p => p.UnitsInStock)
-            .ClientGroupHeaderTemplate("Units In Stock: #= value # (Count: #= count#)")
+            //.ClientGroupHeaderTemplate("Units In Stock: #= value # (Count: #= count#)")
             .ClientFooterTemplate("<div>Min: #= min #</div><div>Max: #= max #</div>");
+        columns.Command(d => d.Destroy());
     })
     .Pageable()
     .Sortable()
     .DataSource(dataSource => dataSource
         .Ajax()
+        .ServerOperation(false)        
+        .Model(m => m.Id(a => a.ProductId))
         .Aggregates(aggregates =>
         {
             aggregates.Add(p => p.UnitsInStock).Min().Max().Count();
@@ -32,37 +35,42 @@
             aggregates.Add(p => p.Name).Count();
             aggregates.Add(p => p.UnitPrice).Sum();
         })
-        .Group(groups => groups.Add(p => p.UnitsInStock))
+        //.Group(groups => groups.Add(p => p.UnitsInStock))
         .Read(read => read.Action("Read", "Test"))
-    )
+              .Destroy("Destroy", "Test"))
+
+    
     .ClientDetailTemplateId("template")
 )
 
 
+
 <script id="template" type="text/kendo-tmpl">
 @(
- Html.Kendo().Grid(Model)
+ Html.Kendo().Grid<ProductViewModel>()
        .Name("Grid1")
     .Columns(columns =>
     {
         columns.Bound(p => p.Name)
-            .FooterTemplate(FT => FT.Count)
+            .FooterTemplate(FT => FT.Count);
 //.FooterTemplate(@<text>Total Count: @item.Count</text>)
-            .GroupFooterTemplate(@<text>Count: @item.Count</text>);
+            //.GroupFooterTemplate(@<text>Count: @item.Count</text>);
         columns.Bound(p => p.UnitPrice).Format("{0:C}");
         columns.Bound(p => p.UnitsOnOrder)
-            .FooterTemplate(@<text>Average: @item.Average</text>)
-            .GroupFooterTemplate(@<text>Average: @item.Average</text>);
+            .FooterTemplate(@<text>Average: @item.Average</text>);
+            //.GroupFooterTemplate(@<text>Average: @item.Average</text>);
         columns.Bound(p => p.UnitsInStock)
             .FooterTemplate(@<text>
                 <div>Min: @item.Min </div>
-                <div>Max: @item.Max </div></text>)
-            .GroupHeaderTemplate(@<text>@item.Title: @item.Key (Count: @item.Count)</text>);
+                <div>Max: @item.Max </div></text>);
+            //.GroupHeaderTemplate(@<text>@item.Title: @item.Key (Count: @item.Count)</text>);
     })
     .Pageable()
     .Sortable()
+    .Groupable()
     .DataSource(dataSource => dataSource
         .Ajax()
+                             .ServerOperation(false)        
             .Aggregates(aggregates =>
             {
                 aggregates.Add(p => p.UnitsInStock).Min().Max().Count();

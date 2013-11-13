@@ -68,7 +68,7 @@ namespace InventoryManagementMVC.Extensions
                 .Filterable()
                 .Reorderable(r => r.Columns(true))
                 .Resizable(resize => resize.Columns(true))
-                .Navigatable(n => n.Enabled(true))
+                .Navigatable(n => n.Enabled(true))                
                 //.Selectable(s => s.Enabled(true).Mode(GridSelectionMode.Single).Type(GridSelectionType.Row))
                 .ColumnMenu();
             return builder;
