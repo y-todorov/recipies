@@ -59,7 +59,7 @@ namespace InventoryManagementMVC.Extensions
                             .Enabled(true))
                 .Pageable(
                     pb =>
-                        pb.PageSizes(new[] {10, 20, 50, 100, 500, 999})
+                        pb.PageSizes(new[] { 10, 20, 50, 100, 500, 999 })
                             .Refresh(true)
                             .Info(true)
                             .Enabled(true)
@@ -68,6 +68,8 @@ namespace InventoryManagementMVC.Extensions
                 .Filterable()
                 .Reorderable(r => r.Columns(true))
                 .Resizable(resize => resize.Columns(true))
+                .Navigatable(n => n.Enabled(true))
+                //.Selectable(s => s.Enabled(true).Mode(GridSelectionMode.Single).Type(GridSelectionType.Row))
                 .ColumnMenu();
             return builder;
         }
