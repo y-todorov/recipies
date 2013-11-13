@@ -1,0 +1,15 @@
+﻿@using InventoryManagementMVC.Extensions
+@using InventoryManagementMVC.Models;
+
+@model IEnumerable<RecipeViewModel>
+
+@(
+ Html.Kendo().Grid(Model)
+            .AddDefaultOptions()
+            .DataSource(dataSource => dataSource
+                .Ajax()
+                .Create("Create", "Recipe")
+                    .Read("Read", "Recipe")
+                    .Update("Update", "Recipe")
+                    .Destroy("Destroy", "Recipe"))
+)

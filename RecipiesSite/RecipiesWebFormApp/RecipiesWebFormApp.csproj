@@ -401,6 +401,7 @@
     </Compile>
     <Compile Include="Controllers\Charts\ChartController.cs" />
     <Compile Include="Controllers\Dashboard\HomeController.cs" />
+    <Compile Include="Controllers\Production\RecipieController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\Production\CategoryController.cs" />
     <Compile Include="Controllers\Production\ProductController.cs" />
@@ -478,6 +479,7 @@
     <Compile Include="Models\Account\AccountModels.cs" />
     <Compile Include="Models\Account\IdentityModels.cs" />
     <Compile Include="Models\Chart\ProductsPerCategory.cs" />
+    <Compile Include="Models\Production\RecipeViewModel.cs" />
     <Compile Include="Models\Production\CategoryViewModel.cs" />
     <Compile Include="Models\Production\InventoryViewModel.cs" />
     <Compile Include="Models\Production\ProductInventoryHeaderViewModel.cs" />
@@ -701,6 +703,7 @@
     <Content Include="sitemap.sitemap" />
     <Content Include="Views\ProductInventoryHeader\Index.cshtml" />
     <Content Include="Views\Test\Index.cshtml" />
+    <Content Include="Views\Recipe\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
