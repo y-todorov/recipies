@@ -409,6 +409,11 @@ namespace InventoryManagementMVC.Extensions
 
         private static object GetDefaultValueForType(Type t)
         {
+            if (t == typeof(DateTime) || t == typeof(DateTime?))
+            {
+                return DateTime.Now;
+            }
+
             Type baseType = Nullable.GetUnderlyingType(t);
             if (baseType != null)
             {

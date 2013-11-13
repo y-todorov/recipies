@@ -12,6 +12,7 @@ namespace InventoryManagementMVC.Models
         [Key]
         public int ProductInventoryHeaderId { get; set; }
 
+        [DataType(DataType.Date)]
         public DateTime? ForDate { get; set; }
 
         public DateTime? ModifiedDate { get; set; }

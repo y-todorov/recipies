@@ -78,6 +78,7 @@
     <Compile Include="Product.cs">
       <DependentUpon>RecipiesModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ProductInventoryHeader.partial.cs" />
     <Compile Include="Product.partial.cs" />
     <Compile Include="ProductCategory.cs">
       <DependentUpon>RecipiesModel.tt</DependentUpon>

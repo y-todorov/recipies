@@ -32,7 +32,7 @@
               .Update("Update", "PurchaseOrderDetail")
               .Destroy("Destroy", "PurchaseOrderDetail")
           )
-          .ToClientTemplate()
+          .ToClientTemplate().ToMvcClientTemplate()
           //  .DataSource(dataSource => dataSource
           //.Ajax()
           //.Read("Read", "PurchaseOrderHeader")

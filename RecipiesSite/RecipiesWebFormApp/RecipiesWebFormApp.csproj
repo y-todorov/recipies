@@ -401,6 +401,7 @@
     </Compile>
     <Compile Include="Controllers\Charts\ChartController.cs" />
     <Compile Include="Controllers\Dashboard\HomeController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\Production\CategoryController.cs" />
     <Compile Include="Controllers\Production\ProductController.cs" />
     <Compile Include="Controllers\Production\ProductInventoryHeaderController.cs" />
@@ -699,6 +700,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="sitemap.sitemap" />
     <Content Include="Views\ProductInventoryHeader\Index.cshtml" />
+    <Content Include="Views\Test\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

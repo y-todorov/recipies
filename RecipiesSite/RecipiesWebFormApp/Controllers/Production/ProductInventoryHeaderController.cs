@@ -32,5 +32,52 @@ namespace InventoryManagementMVC.Controllers
                     .ToList();
             return Json(productInventoriesViewModels.ToDataSourceResult(request));
         }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Create([DataSourceRequest] DataSourceRequest request,
+            [Bind(Prefix = "models")] IEnumerable<ProductInventoryHeaderViewModel> pihModels)
+        {
+            if (pihModels != null && ModelState.IsValid)
+            {
+                foreach (ProductInventoryHeaderViewModel pihModel in pihModels)
+                {
+                    ProductInventoryHeader pihEntity =
+                        ProductInventoryHeaderViewModel.ConvertToProductInventoryHeaderEntity(pihModel,
+                            new ProductInventoryHeader());
+
+
+
+
+                    ContextFactory.Current.ProductInventoryHeaders.Add(pihEntity);
+                    ContextFactory.Current.SaveChanges();
+
+                    List<Product> allProducts = ContextFactory.Current.Products.ToList();
+
+                    foreach (Product product in allProducts)
+                    {
+                        ProductInventory pi = new ProductInventory();
+                        pi.ForDate = pihModel.ForDate;
+                        pi.AverageUnitPrice = product.UnitPrice;
+                        pi.QuantityByDocuments = product.GetQuantityByDocumentsForDate(pihModel.ForDate.GetValueOrDefault());
+
+                        pi.ProductInventoryHeaderId = pihEntity.ProductInventoryHeaderId;
+
+                        ContextFactory.Current.Inventories.Add(pi);
+                        ContextFactory.Current.SaveChanges();
+
+                        //product.UnitPrice.GetValueOrDefault().ToString();
+                        //quantityByDocumentsRadNumericTextBox.Text =
+                        //    product.GetQuantityByDocumentsForDate(
+                        //        ForDateRadDateTimePicker.SelectedDate.GetValueOrDefault()).ToString();
+                    }
+
+                    //ContextFactory.Current.SaveChanges();
+
+                    ProductInventoryHeaderViewModel.ConvertFromProductInventoryHeaderEntity(pihEntity, pihModel);
+                }
+            }
+
+            return Json(pihModels.ToDataSourceResult(request, ModelState));
+        }
     }
 }

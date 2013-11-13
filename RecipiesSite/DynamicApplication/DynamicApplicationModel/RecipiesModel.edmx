@@ -2095,7 +2095,7 @@
           <Key>
             <PropertyRef Name="ProductInventoryHeaderId" />
           </Key>
-          <Property Name="ProductInventoryHeaderId" Type="Int32" Nullable="false" />
+          <Property Name="ProductInventoryHeaderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ForDate" Type="DateTime" Precision="0" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
           <Property Name="ModifiedByUser" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />

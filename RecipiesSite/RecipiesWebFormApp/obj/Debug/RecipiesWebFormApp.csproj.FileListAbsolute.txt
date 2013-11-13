@@ -1,3 +1,4 @@
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\RecipiesWebFormApp.dll.config
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\RecipiesWebFormApp.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\RecipiesWebFormApp.pdb
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Antlr3.Runtime.dll
@@ -60,4 +61,3 @@ C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\HtmlAgilityPack.xml
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\obj\Debug\RecipiesWebFormApp.csprojResolveAssemblyReference.cache
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\obj\Debug\RecipiesWebFormApp.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\obj\Debug\RecipiesWebFormApp.pdb
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\RecipiesWebFormApp.dll.config
