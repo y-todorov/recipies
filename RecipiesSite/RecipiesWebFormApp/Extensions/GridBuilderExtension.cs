@@ -59,7 +59,7 @@ namespace InventoryManagementMVC.Extensions
                             .Enabled(true))
                 .Pageable(
                     pb =>
-                        pb.PageSizes(new[] { 10, 20, 50, 100, 500, 999 })
+                        pb.PageSizes(new[] {5, 10, 20, 50, 100, 500, 999 })
                             .Refresh(true)
                             .Info(true)
                             .Enabled(true)
@@ -371,7 +371,7 @@ namespace InventoryManagementMVC.Extensions
                             }
                         }
                     })
-                    .ServerOperation(true)
+                    .ServerOperation(false) // This must be false so aggregates can appear.
                     .Events(events => events.Error("error_handler")));
             return builder;
         }

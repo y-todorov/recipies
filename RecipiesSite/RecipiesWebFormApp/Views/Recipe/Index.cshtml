@@ -12,4 +12,24 @@
                     .Read("Read", "Recipe")
                     .Update("Update", "Recipe")
                     .Destroy("Destroy", "Recipe"))
+                    .ClientDetailTemplateId("template")
 )
+
+<script id="template" type="text/kendo-tmpl">
+    @(Html.Kendo().Grid<ProductIngredientViewModel>()
+          .Name("test")
+          .AddDefaultOptions(true)
+          .DataSource(dataSource => dataSource
+              .Ajax()
+              .Batch(true)
+              .PageSize(5)
+              .Model(m => m.Id(p => p.ProductIngredientId))
+                              .Read(read => read.Action("Read", "ProductIngredient", new { recipeId = "#=RecipeId#" }))
+                                      .Create("Create", "ProductIngredient", new { recipeId = "#=RecipeId#" })
+                      .Update("Update", "ProductIngredient")
+                      .Destroy("Destroy", "ProductIngredient")
+          )
+          .ToClientTemplate()
+          .ToMvcClientTemplate()        
+    )
+</script>
