@@ -12,9 +12,9 @@ namespace RecipiesModelNS
     using System;
     using System.Collections.Generic;
     
-    public partial class RecipeIngredient
+    public partial class ProductIngredient
     {
-        public int RecipeIngredientId { get; set; }
+        public int ProductIngredientId { get; set; }
         public Nullable<int> RecipeId { get; set; }
         public Nullable<int> ProductId { get; set; }
         public Nullable<double> QuantityPerPortion { get; set; }

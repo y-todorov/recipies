@@ -238,7 +238,7 @@ namespace RecipiesModelNS
                                                                                      soh.SalesOrderDetails.Any(
                                                                                          sod =>
                                                                                              sod.Recipe
-                                                                                                 .RecipeIngredients.Any(
+                                                                                                 .ProductIngredients.Any(
                                                                                                      ri =>
                                                                                                          ri.ProductId ==
                                                                                                          ProductId)))

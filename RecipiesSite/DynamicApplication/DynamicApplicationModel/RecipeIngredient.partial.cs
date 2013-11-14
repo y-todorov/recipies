@@ -2,7 +2,7 @@
 
 namespace RecipiesModelNS
 {
-    public partial class RecipeIngredient : YordanBaseEntity
+    public partial class ProductIngredient : YordanBaseEntity
     {
         private static int? recipeIdToUpdate;
 
@@ -40,7 +40,7 @@ namespace RecipiesModelNS
                 if (recipe != null)
                 {
                     decimal? valuePerPortion = 0;
-                    foreach (RecipeIngredient ri in recipe.RecipeIngredients)
+                    foreach (ProductIngredient ri in recipe.ProductIngredients)
                     {
                         valuePerPortion += (decimal?) ri.TotalValue;
                     }

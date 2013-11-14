@@ -54,7 +54,7 @@ namespace RecipiesModelNS
             {
                 if (salesOrderDetail.Recipe != null)
                 {
-                    foreach (RecipeIngredient recipeIngredient in salesOrderDetail.Recipe.RecipeIngredients)
+                    foreach (ProductIngredient recipeIngredient in salesOrderDetail.Recipe.ProductIngredients)
                     {
                         Product.UpdateUnitsInStock(recipeIngredient.ProductId);
                     }

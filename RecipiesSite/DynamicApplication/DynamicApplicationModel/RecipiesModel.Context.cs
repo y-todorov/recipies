@@ -35,7 +35,6 @@ namespace RecipiesModelNS
         public DbSet<ProductCategory> ProductCategories { get; set; }
         public DbSet<ProductHistory> ProductHistories { get; set; }
         public DbSet<Recipe> Recipes { get; set; }
-        public DbSet<RecipeIngredient> RecipeIngredients { get; set; }
         public DbSet<Store> Stores { get; set; }
         public DbSet<UnitMeasure> UnitMeasures { get; set; }
         public DbSet<ProductVendor> ProductVendors { get; set; }
@@ -51,5 +50,6 @@ namespace RecipiesModelNS
         public DbSet<SalesOrderStatu> SalesOrderStatus { get; set; }
         public DbSet<Waste> Wastes { get; set; }
         public DbSet<ProductInventoryHeader> ProductInventoryHeaders { get; set; }
+        public DbSet<ProductIngredient> ProductIngredients { get; set; }
     }
 }

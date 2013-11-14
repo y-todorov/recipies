@@ -15,7 +15,6 @@
         <EntityTypeShape EntityType="RecipiesModelNS.ProductCategory" Width="1.5" PointX="3.75" PointY="7.25" />
         <EntityTypeShape EntityType="RecipiesModelNS.ProductHistory" Width="1.5" PointX="10.75" PointY="0.75" />
         <EntityTypeShape EntityType="RecipiesModelNS.Recipe" Width="1.5" PointX="9" PointY="14.875" />
-        <EntityTypeShape EntityType="RecipiesModelNS.RecipeIngredient" Width="1.5" PointX="11.25" PointY="10.25" />
         <EntityTypeShape EntityType="RecipiesModelNS.Store" Width="1.5" PointX="3.75" PointY="14.25" />
         <EntityTypeShape EntityType="RecipiesModelNS.UnitMeasure" Width="1.5" PointX="0.75" PointY="10.125" />
         <EntityTypeShape EntityType="RecipiesModelNS.ProductVendor" Width="1.5" PointX="8.25" PointY="4.625" />
@@ -39,10 +38,8 @@
         <AssociationConnector Association="RecipiesModelNS.FK_Product_Unit" />
         <AssociationConnector Association="RecipiesModelNS.FK_ProductVendor_Product" />
         <AssociationConnector Association="RecipiesModelNS.FK_PurchaseOrderDetail_Product" />
-        <AssociationConnector Association="RecipiesModelNS.FK_RecipeIngredient_Product" />
         <AssociationConnector Association="RecipiesModelNS.FK_Recipe_ProductCategory" />
         <AssociationConnector Association="RecipiesModelNS.FK_OrderDetail_Recipe" />
-        <AssociationConnector Association="RecipiesModelNS.FK_RecipeIngredient_Recipe" />
         <AssociationConnector Association="RecipiesModelNS.FK_ProductVendor_UnitMeasure" />
         <AssociationConnector Association="RecipiesModelNS.FK_PurchaseOrderDetail_UnitMeasure" />
         <AssociationConnector Association="RecipiesModelNS.FK_ProductVendor_Vendor" />
@@ -74,6 +71,9 @@
         <InheritanceConnector EntityType="RecipiesModelNS.ProductWaste" />
         <EntityTypeShape EntityType="RecipiesModelNS.ProductInventoryHeader" Width="2.25" PointX="3.375" PointY="0.875" />
         <AssociationConnector Association="RecipiesModelNS.FK_ProductInventory_ProductInventoryHeader" />
+        <EntityTypeShape EntityType="RecipiesModelNS.ProductIngredient" Width="1.5" PointX="14.25" PointY="12.5" />
+        <AssociationConnector Association="RecipiesModelNS.FK_RecipeIngredient_Product1" />
+        <AssociationConnector Association="RecipiesModelNS.FK_RecipeIngredient_Recipe1" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

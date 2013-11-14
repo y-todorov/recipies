@@ -78,6 +78,9 @@
     <Compile Include="Product.cs">
       <DependentUpon>RecipiesModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ProductIngredient.cs">
+      <DependentUpon>RecipiesModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="ProductInventoryHeader.partial.cs" />
     <Compile Include="Product.partial.cs" />
     <Compile Include="ProductCategory.cs">
@@ -118,9 +121,6 @@
       <DependentUpon>RecipiesModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Recipe.partial.cs" />
-    <Compile Include="RecipeIngredient.cs">
-      <DependentUpon>RecipiesModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="RecipeIngredient.partial.cs" />
     <Compile Include="RecipeInventory.cs">
       <DependentUpon>RecipiesModel.tt</DependentUpon>

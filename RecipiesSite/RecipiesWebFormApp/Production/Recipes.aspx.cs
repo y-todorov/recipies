@@ -51,7 +51,7 @@ namespace RecipiesWebFormApp.Production
         protected void OpenAccessLinqDataSourceRecipeIngredients_Inserting(object sender,
             EntityDataSourceChangingEventArgs e)
         {
-            RecipeIngredient newRecipeIngredient = e.Entity as RecipeIngredient;
+            ProductIngredient newRecipeIngredient = e.Entity as ProductIngredient;
             if (newRecipeIngredient != null)
             {
                 newRecipeIngredient.RecipeId = RecipeId;
