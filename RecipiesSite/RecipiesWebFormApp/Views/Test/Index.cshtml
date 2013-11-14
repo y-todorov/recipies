@@ -22,6 +22,8 @@
             .ClientFooterTemplate("<div>Min: #= min #</div><div>Max: #= max #</div>");
         columns.Command(d => d.Destroy());
     })
+    .Groupable()
+    .Filterable()
     .Pageable()
     .Sortable()
     .DataSource(dataSource => dataSource
@@ -52,9 +54,9 @@
     .Columns(columns =>
     {
         columns.Bound(p => p.Name)
-            .FooterTemplate(FT => FT.Count);
+            .FooterTemplate(FT => FT.Count)
 //.FooterTemplate(@<text>Total Count: @item.Count</text>)
-            //.GroupFooterTemplate(@<text>Count: @item.Count</text>);
+            .GroupFooterTemplate(@<text>Count: @item.Count</text>);
         columns.Bound(p => p.UnitPrice).Format("{0:C}");
         columns.Bound(p => p.UnitsOnOrder)
             .FooterTemplate(@<text>Average: @item.Average</text>);
@@ -62,8 +64,8 @@
         columns.Bound(p => p.UnitsInStock)
             .FooterTemplate(@<text>
                 <div>Min: @item.Min </div>
-                <div>Max: @item.Max </div></text>);
-            //.GroupHeaderTemplate(@<text>@item.Title: @item.Key (Count: @item.Count)</text>);
+                <div>Max: @item.Max </div></text>)
+            .GroupHeaderTemplate(@<text>@item.Title: @item.Key (Count: @item.Count)</text>);
     })
     .Pageable()
     .Sortable()

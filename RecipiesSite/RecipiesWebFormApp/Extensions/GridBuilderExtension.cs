@@ -68,7 +68,7 @@ namespace InventoryManagementMVC.Extensions
                 .Filterable()
                 .Reorderable(r => r.Columns(true))
                 .Resizable(resize => resize.Columns(true))
-                .Navigatable(n => n.Enabled(true))                
+                //.Navigatable(n => n.Enabled(true))                
                 //.Selectable(s => s.Enabled(true).Mode(GridSelectionMode.Single).Type(GridSelectionType.Row))
                 .ColumnMenu();
             return builder;
@@ -147,7 +147,9 @@ namespace InventoryManagementMVC.Extensions
                             {
                                 columns.Bound(propertyInfo.Name)
                                     .FooterTemplate(f => f.Count.Format("Count: {0}"))
+                                    
                                     .GroupFooterTemplate(f => f.Count.Format("Count: {0}"));
+                                
                             }
                             else
                             {
@@ -369,7 +371,7 @@ namespace InventoryManagementMVC.Extensions
                             }
                         }
                     })
-                    .ServerOperation(false)
+                    .ServerOperation(true)
                     .Events(events => events.Error("error_handler")));
             return builder;
         }
