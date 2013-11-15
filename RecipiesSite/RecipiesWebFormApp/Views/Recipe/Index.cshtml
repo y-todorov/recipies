@@ -16,9 +16,9 @@
 )
 
 <script id="template" type="text/kendo-tmpl">
-    @(Html.Kendo().Grid<ProductIngredientViewModel>()
+    @(Html.Kendo().Grid(new List<ProductIngredientViewModel>())
           .Name("test")
-          //.AddDefaultOptions(true)
+          .AddDefaultOptions(true)
           .DataSource(dataSource => dataSource
               .Ajax()
               .Batch(true)

@@ -170,11 +170,11 @@ namespace InventoryManagementMVC.Extensions
                             }
                             else
                             {
-                                columns.Bound(propertyInfo.Name)
+                                columns.Bound(propertyInfo.Name);
                                     //.FooterTemplate(f => f.Count)
                                     //.GroupFooterTemplate(f => f.Count);
-                                .ClientFooterTemplate("Count: #= kendo.format('{0}', count)#")
-                                .ClientGroupFooterTemplate("Count: #= kendo.format('{0}', count)#");
+                                //.ClientFooterTemplate("Count: #= kendo.format('{0}', count)#")
+                                //.ClientGroupFooterTemplate("Count: #= kendo.format('{0}', count)#");
                             }
                         }
                         if (propertyInfo.PropertyType == typeof (double) ||

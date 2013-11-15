@@ -2,6 +2,8 @@
 using System.ComponentModel.DataAnnotations;
 using RecipiesModelNS;
 using InventoryManagementMVC.DataAnnotations;
+using System.ComponentModel;
+using System.Web.Mvc;
 
 namespace InventoryManagementMVC.Models
 {
@@ -10,8 +12,10 @@ namespace InventoryManagementMVC.Models
         [Key]
         public int ProductIngredientId { get; set; }
 
+        [ReadOnly(true)]
         [Relation(EntityType = typeof(Recipe), DataFieldValue = "RecipeId", DataFieldText = "Name")]
         [Display(Name = "Recipe")]
+        [HiddenInput(DisplayValue = false)]  
         public int? RecipeId { get; set; }
 
 
