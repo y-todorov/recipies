@@ -48,13 +48,8 @@
                     <EditItemTemplate>
                         <asp:Label runat="server" ID="lblProductIngredients" ForeColor="Blue" Text="Please save the recipe so recipe ingredients can be added to it." OnPreRender="lblProductIngredients_PreRender"></asp:Label>
                         <yordan:YordanCustomRadGrid ID="rgRecipeIngredients" runat="server" ItemType="RecipiesModelNS.RecipeIngredient" CellSpacing="0" DataSourceID="OpenAccessLinqDataSourceRecipeIngredients" GridLines="None" OnItemCreated="rgRecipeIngredients_ItemCreated" OnPreRender="rgRecipeIngredients_PreRender">
-                            <MasterTableView AutoGenerateColumns="False" DataKeyNames="RecipeIngredientId" DataSourceID="OpenAccessLinqDataSourceRecipeIngredients">
-                                <Columns>
-                                    <telerik:GridBoundColumn DataField="RecipeIngredientId" Visible="false" DataType="System.Int32" FilterControlAltText="Filter RecipeIngredientId column" HeaderText="RecipeIngredientId" ReadOnly="True" SortExpression="RecipeIngredientId" UniqueName="RecipeIngredientId">
-                                        <ColumnValidationSettings>
-                                            <ModelErrorMessage Text=""></ModelErrorMessage>
-                                        </ColumnValidationSettings>
-                                    </telerik:GridBoundColumn>                                   
+                            <MasterTableView AutoGenerateColumns="False" DataKeyNames="ProductIngredientId" DataSourceID="OpenAccessLinqDataSourceRecipeIngredients">
+                                <Columns>                                                   
                                     <telerik:GridDropDownColumn UniqueName="DropDownProductListColumn" ListTextField="Name"
                                                                 ListValueField="ProductId" DataSourceID="OpenAccessLinqDataSourceProduct" HeaderText="Product"
                                                                 DataField="ProductId" DropDownControlType="RadComboBox">
@@ -109,7 +104,7 @@
     <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceCategory" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="ProductCategories" />
     <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceRecipes" runat="server"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="Recipes" />
 
-    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceRecipeIngredients" runat="server" OnUpdated="OpenAccessLinqDataSourceRecipeIngredients_InsertedUpdatedDeleted" OnInserted="OpenAccessLinqDataSourceRecipeIngredients_InsertedUpdatedDeleted" OnDeleted="OpenAccessLinqDataSourceRecipeIngredients_InsertedUpdatedDeleted"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="RecipeIngredients" OnInserting="OpenAccessLinqDataSourceRecipeIngredients_Inserting" OnSelecting="OpenAccessLinqDataSourceRecipeIngredients_Selecting" Where="RecipeId == @RecipeId" >
+    <yordan:YordanCustomOpenAccessLinqDataSource ID="OpenAccessLinqDataSourceRecipeIngredients" runat="server" OnUpdated="OpenAccessLinqDataSourceRecipeIngredients_InsertedUpdatedDeleted" OnInserted="OpenAccessLinqDataSourceRecipeIngredients_InsertedUpdatedDeleted" OnDeleted="OpenAccessLinqDataSourceRecipeIngredients_InsertedUpdatedDeleted"   EnableDelete="True" EnableInsert="True" EnableUpdate="True"   EntitySetName="ProductIngredients" OnInserting="OpenAccessLinqDataSourceRecipeIngredients_Inserting" OnSelecting="OpenAccessLinqDataSourceRecipeIngredients_Selecting" Where="RecipeId == @RecipeId" >
         <WhereParameters>
             <asp:Parameter DefaultValue="0" Name="RecipeId" Type="Int32" />
         </WhereParameters>
