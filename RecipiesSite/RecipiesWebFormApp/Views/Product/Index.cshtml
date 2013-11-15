@@ -7,7 +7,7 @@
 
 @(
         Html.Kendo().Grid(Model)
-            .AddDefaultOptions(true)
+            .AddDefaultOptions()
             .DataSource(dataSource => dataSource
                 .Ajax()
                 .Create("Create", "Product")
