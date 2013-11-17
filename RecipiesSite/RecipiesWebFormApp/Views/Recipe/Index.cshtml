@@ -19,7 +19,7 @@
 <script id="template" type="text/kendo-tmpl">
     @(Html.Kendo().Grid<ProductIngredientViewModel>()
                           .Name("ProductIngredientViewModelGrid_#=RecipeId#")
-          .AddDefaultOptions(true)
+          .AddDefaultOptions(true, false)
           .DataSource(dataSource => dataSource
               .Ajax()
               .Batch(true)

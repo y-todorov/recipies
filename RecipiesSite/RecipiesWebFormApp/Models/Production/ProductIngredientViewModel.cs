@@ -13,12 +13,12 @@ namespace InventoryManagementMVC.Models
         public int ProductIngredientId { get; set; }
 
         [ReadOnly(true)]
-        [Relation(EntityType = typeof(Recipe), DataFieldValue = "RecipeId", DataFieldText = "Name")]
+        //[Relation(EntityType = typeof(Recipe), DataFieldValue = "RecipeId", DataFieldText = "Name")]
         [Display(Name = "Recipe")]
         [HiddenInput(DisplayValue = false)]  
         public int? RecipeId { get; set; }
-
-
+        
+       
         [Relation(EntityType = typeof(Product), DataFieldValue = "ProductId", DataFieldText = "Name")]
         [Display(Name = "Product")]
         public int? ProductId { get; set; }
@@ -27,6 +27,7 @@ namespace InventoryManagementMVC.Models
 
         public decimal? Cost { get; set; }
 
+        [ReadOnly(true)]
         public decimal? TotalValue { get; set; }
 
         public DateTime? ModifiedDate { get; set; }
