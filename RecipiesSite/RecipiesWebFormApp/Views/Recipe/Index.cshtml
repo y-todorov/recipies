@@ -17,7 +17,14 @@
 )
 
 <script id="template" type="text/kendo-tmpl">
-    @(Html.Kendo().Grid<ProductIngredientViewModel>()
+    @(Html.Kendo().TabStrip()
+                    .Name("tabStrip_#=RecipeId#")
+            .SelectedIndex(0)
+            .Animation(animation => animation.Open(open => open.Fade(FadeDirection.In)))
+            .Items(items =>
+            {
+                items.Add().Text("Products").Content(@<text>
+                    @(Html.Kendo().Grid<ProductIngredientViewModel>()
                           .Name("ProductIngredientViewModelGrid_#=RecipeId#")
           .AddDefaultOptions(true, false)
           .DataSource(dataSource => dataSource
@@ -31,6 +38,10 @@
                       .Destroy("Destroy", "ProductIngredient")
           )
           .ToClientTemplate()
-          .ToMvcClientTemplate()        
-    )
+          .ToMvcClientTemplate()
+                    )
+                </text>
+                );
+            })
+           .ToClientTemplate())
 </script>
