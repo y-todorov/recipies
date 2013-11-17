@@ -5,6 +5,7 @@
 
 @(
         Html.Kendo().Grid(Model)
+            .Name("ProductInventoryViewModelGrid")
             .AddDefaultOptions()
             .DataSource(dataSource => dataSource
                 .Ajax()

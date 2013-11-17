@@ -16,9 +16,11 @@ namespace InventoryManagementMVC.Models
         public int PurchaseOrderDetailId { get; set; }
         
         [ReadOnly(true)]
-        [Relation(EntityType = typeof(PurchaseOrderHeader), DataFieldValue = "PurchaseOrderId",
-            DataFieldText = "PurchaseOrderId")]
+        //[Relation(EntityType = typeof(PurchaseOrderHeader), DataFieldValue = "PurchaseOrderId",
+        //    DataFieldText = "PurchaseOrderId")]
         [Display(Name = "Purchase Order")]
+        [Editable(false)]
+        [HiddenInput(DisplayValue = false)]
         public int? PurchaseOrderHeaderId { get; set; }
 
         [Relation(EntityType = typeof(Product), DataFieldValue = "ProductId", DataFieldText = "Name")]
@@ -34,6 +36,7 @@ namespace InventoryManagementMVC.Models
 
         public decimal? UnitPrice { get; set; }
 
+        [ReadOnly(true)]
         public decimal LineTotal { get; set; }
 
         [Display(Name = "Received QTY")]
@@ -50,94 +53,102 @@ namespace InventoryManagementMVC.Models
 
         public string ModifiedByUser { get; set; }
 
+        [HiddenInput(DisplayValue = false)]
         [ReadOnly(true)]
         public DateTime? ShipDate { get; set; }
 
+        [HiddenInput(DisplayValue = false)]
         [ReadOnly(true)]
         public string Vendor { get; set; }
 
+        [HiddenInput(DisplayValue = false)]
         [ReadOnly(true)]
         public string Category { get; set; }
 
+        [HiddenInput(DisplayValue = false)]
         [ReadOnly(true)]
         public string Status { get; set; }
 
         public static PurchaseOrderDetailViewModel ConvertFromPurchaseOrderDetailEntity(
-            PurchaseOrderDetail newOrExistingPod, PurchaseOrderDetailViewModel podViewModel)
+            PurchaseOrderDetail entity, PurchaseOrderDetailViewModel model)
         {
-            if (newOrExistingPod == null)
+            if (entity == null)
             {
                 throw new ApplicationException(
                     "PurchaseOrderDetail is null in method ConvertFromPurchaseOrderDetailEntity!");
             }
-            if (podViewModel == null)
+            if (model == null)
             {
                 throw new ApplicationException(
                     "PurchaseOrderDetailViewModel is null in method ConvertFromPurchaseOrderDetailEntity!");
             }
 
-            podViewModel.LineTotal = (decimal)newOrExistingPod.LineTotal;
-            podViewModel.ModifiedByUser = newOrExistingPod.ModifiedByUser;
-            podViewModel.ModifiedDate = newOrExistingPod.ModifiedDate;
-            podViewModel.OrderQuantity = newOrExistingPod.OrderQuantity;
-            podViewModel.ProductId = newOrExistingPod.ProductId;
-            podViewModel.PurchaseOrderDetailId = newOrExistingPod.PurchaseOrderDetailId;
-            podViewModel.PurchaseOrderHeaderId = newOrExistingPod.PurchaseOrderId;
-            podViewModel.ReceivedQuantity = newOrExistingPod.ReceivedQuantity;
-            podViewModel.ReturnedQuantity = newOrExistingPod.ReturnedQuantity;
-            podViewModel.StockedQuantity = newOrExistingPod.StockedQuantity;
+            model.LineTotal = (decimal)entity.LineTotal;
+            model.ModifiedByUser = entity.ModifiedByUser;
+            model.ModifiedDate = entity.ModifiedDate;
+            model.OrderQuantity = entity.OrderQuantity;
+            model.ProductId = entity.ProductId;
+            model.PurchaseOrderDetailId = entity.PurchaseOrderDetailId;
+            model.PurchaseOrderHeaderId = entity.PurchaseOrderId;
+            model.ReceivedQuantity = entity.ReceivedQuantity;
+            model.ReturnedQuantity = entity.ReturnedQuantity;
+            model.StockedQuantity = entity.StockedQuantity;
 
-            podViewModel.UnitMeasureId = newOrExistingPod.UnitMeasureId;
-            podViewModel.UnitPrice = newOrExistingPod.UnitPrice;
-            if (newOrExistingPod.PurchaseOrderHeader != null)
+            model.UnitMeasureId = entity.UnitMeasureId;
+            model.UnitPrice = entity.UnitPrice;
+            if (entity.PurchaseOrderHeader != null)
             {
-                podViewModel.ShipDate = newOrExistingPod.PurchaseOrderHeader.ShipDate;
+                model.ShipDate = entity.PurchaseOrderHeader.ShipDate;
             }
-            if (newOrExistingPod.PurchaseOrderHeader != null && newOrExistingPod.PurchaseOrderHeader.Vendor != null)
+            if (entity.PurchaseOrderHeader != null && entity.PurchaseOrderHeader.Vendor != null)
             {
-                podViewModel.Vendor = newOrExistingPod.PurchaseOrderHeader.Vendor.Name;
+                model.Vendor = entity.PurchaseOrderHeader.Vendor.Name;
             }
-            if (newOrExistingPod.Product != null && newOrExistingPod.Product.ProductCategory != null)
+            if (entity.Product != null && entity.Product.ProductCategory != null)
             {
-                podViewModel.Category = newOrExistingPod.Product.ProductCategory.Name;
+                model.Category = entity.Product.ProductCategory.Name;
             }
-            if (newOrExistingPod.PurchaseOrderHeader != null &&
-                newOrExistingPod.PurchaseOrderHeader.PurchaseOrderStatu != null)
+            if (entity.PurchaseOrderHeader != null &&
+                entity.PurchaseOrderHeader.PurchaseOrderStatu != null)
             {
-                podViewModel.Status = newOrExistingPod.PurchaseOrderHeader.PurchaseOrderStatu.Name;
+                model.Status = entity.PurchaseOrderHeader.PurchaseOrderStatu.Name;
             }
 
-            return podViewModel;
+            return model;
         }
 
-        public static PurchaseOrderDetail ConvertToPurchaseOrderDetailEntity(PurchaseOrderDetailViewModel podViewModel,
-            PurchaseOrderDetail newOrExistingPod)
+        public static PurchaseOrderDetail ConvertToPurchaseOrderDetailEntity(PurchaseOrderDetailViewModel model,
+            PurchaseOrderDetail entity)
         {
-            if (newOrExistingPod == null)
+            if (entity == null)
             {
                 throw new ApplicationException(
                     "PurchaseOrderDetail is null in method ConvertToPurchaseOrderDetailEntity!");
             }
-            if (podViewModel == null)
+            if (model == null)
             {
                 throw new ApplicationException(
                     "PurchaseOrderDetailViewModel is null in method ConvertToPurchaseOrderDetailEntity!");
             }
 
-            newOrExistingPod.LineTotal = (double)podViewModel.LineTotal;
-            newOrExistingPod.ModifiedByUser = podViewModel.ModifiedByUser;
-            newOrExistingPod.ModifiedDate = podViewModel.ModifiedDate;
-            newOrExistingPod.OrderQuantity = podViewModel.OrderQuantity;
-            newOrExistingPod.ProductId = podViewModel.ProductId;
-            newOrExistingPod.PurchaseOrderDetailId = podViewModel.PurchaseOrderDetailId;
-            newOrExistingPod.PurchaseOrderId = podViewModel.PurchaseOrderHeaderId;
-            newOrExistingPod.ReceivedQuantity = podViewModel.ReceivedQuantity;
-            newOrExistingPod.ReturnedQuantity = podViewModel.ReturnedQuantity;
-            newOrExistingPod.StockedQuantity = podViewModel.StockedQuantity;
-            newOrExistingPod.UnitMeasureId = podViewModel.UnitMeasureId;
-            newOrExistingPod.UnitPrice = podViewModel.UnitPrice;
+            //entity.LineTotal = (double)model.LineTotal;
+            entity.ModifiedByUser = model.ModifiedByUser;
+            entity.ModifiedDate = model.ModifiedDate;
+            entity.OrderQuantity = model.OrderQuantity;
+            entity.ProductId = model.ProductId;
+        
+            entity.PurchaseOrderDetailId = model.PurchaseOrderDetailId;
+            if (model.PurchaseOrderHeaderId.HasValue)
+            {
+                entity.PurchaseOrderId = model.PurchaseOrderHeaderId;
+            }
+            entity.ReceivedQuantity = model.ReceivedQuantity;
+            entity.ReturnedQuantity = model.ReturnedQuantity;
+            entity.StockedQuantity = model.StockedQuantity;
+            entity.UnitMeasureId = model.UnitMeasureId;
+            entity.UnitPrice = model.UnitPrice;
 
-            return newOrExistingPod;
+            return entity;
         }
     }
 }

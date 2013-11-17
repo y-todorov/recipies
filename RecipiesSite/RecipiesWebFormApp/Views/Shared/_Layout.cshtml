@@ -4,21 +4,25 @@
     <title>@ViewBag.Title</title>
     @* <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />*@
     @*<style>
-        * {
-            margin: 0;
-            padding: 0;
-            border: 0;
-        }
-    </style>*@
+            * {
+                margin: 0;
+                padding: 0;
+                border: 0;
+            }
+        </style>*@
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
     @*<link href="http://cdn.kendostatic.com/2013.2.918/styles/kendo.common.min.css" rel="stylesheet" type="text/css" />
-    <link href="http://cdn.kendostatic.com/2013.2.918/styles/kendo.dataviz.min.css" rel="stylesheet" type="text/css" />
-    <link href="http://cdn.kendostatic.com/2013.2.918/styles/kendo.blueopal.min.css" rel="stylesheet" type="text/css" />
-    <link href="http://cdn.kendostatic.com/2013.2.918/styles/kendo.dataviz.blueopal.min.css" rel="stylesheet" type="text/css" />*@
+        <link href="http://cdn.kendostatic.com/2013.2.918/styles/kendo.dataviz.min.css" rel="stylesheet" type="text/css" />
+        <link href="http://cdn.kendostatic.com/2013.2.918/styles/kendo.blueopal.min.css" rel="stylesheet" type="text/css" />
+        <link href="http://cdn.kendostatic.com/2013.2.918/styles/kendo.dataviz.blueopal.min.css" rel="stylesheet" type="text/css" />*@
 
     @Styles.Render("~/Content/bundles/css")
     @Scripts.Render("~/bundles/js")
+    @*<script src="~/Scripts/Bundles/jquery.js"></script>*@
+    @*<script src="~/Scripts/kendo.custom-2013.2.918.min.js"></script>
+        <script src="~/Scripts/Bundles/Site.js"></script>*@
+
 
     @*<script src="http://cdn.kendostatic.com/2013.2.918/js/jquery.min.js"> </script>*@
 
@@ -46,26 +50,26 @@
     </div>
     <footer>
         @*<script src="http://cdn.kendostatic.com/2013.2.918/js/kendo.all.min.js"> </script>
-            <script src="http://cdn.kendostatic.com/2013.2.918/js/kendo.aspnetmvc.min.js"> </script>
-            <script src="http://cdn.kendostatic.com/2013.2.918/js/cultures/kendo.culture.en-IE.min.js"> </script>*@
-        @*<script type="text/javascript">
-            //set current to the "en-IE" culture script
-            kendo.culture("en-IE");
+                 <script src="http://cdn.kendostatic.com/2013.2.918/js/kendo.aspnetmvc.min.js"> </script>
+                 <script src="http://cdn.kendostatic.com/2013.2.918/js/cultures/kendo.culture.en-IE.min.js"> </script>
+            <script type="text/javascript">
+                 //set current to the "en-IE" culture script
+                 kendo.culture("en-IE");
 
-            function error_handler(e) {
-                if (e.errors) {
-                    var message = "Errors:\n";
-                    $.each(e.errors, function (key, value) {
-                        if ('errors' in value) {
-                            $.each(value.errors, function () {
-                                message += this + "\n";
-                            });
-                        }
-                    });
-                    alert(message);
-                }
-            }
-        </script>*@
+                 function error_handler(e) {
+                     if (e.errors) {
+                         var message = "Errors:\n";
+                         $.each(e.errors, function (key, value) {
+                             if ('errors' in value) {
+                                 $.each(value.errors, function () {
+                                     message += this + "\n";
+                                 });
+                             }
+                         });
+                         alert(message);
+                     }
+                 }
+             </script>*@
     </footer>
 </body>
 </html>

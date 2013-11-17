@@ -5,6 +5,7 @@
 
 @(
  Html.Kendo().Grid(Model)
+     .Name("ProductInventoryHeaderViewModelGrid")
             .AddDefaultOptions()
             .DataSource(dataSource => dataSource
                 .Ajax()
@@ -17,7 +18,7 @@
 
 <script id="template" type="text/kendo-tmpl">
     @(Html.Kendo().Grid<ProductInventoryViewModel>()
-          .Name("test")
+                          .Name("ProductInventoryViewModelGrid_#=ProductInventoryHeaderId#")
           .AddDefaultOptions(true)
           .DataSource(dataSource => dataSource
               .Ajax()

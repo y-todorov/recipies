@@ -5,6 +5,7 @@
 
 @(
  Html.Kendo().Grid(Model)
+     .Name("RecipeViewModelGrid")
             .AddDefaultOptions()
             .DataSource(dataSource => dataSource
                 .Ajax()
@@ -16,8 +17,8 @@
 )
 
 <script id="template" type="text/kendo-tmpl">
-    @(Html.Kendo().Grid(new List<ProductIngredientViewModel>())
-          .Name("test")
+    @(Html.Kendo().Grid<ProductIngredientViewModel>()
+                          .Name("ProductIngredientViewModelGrid_#=RecipeId#")
           .AddDefaultOptions(true)
           .DataSource(dataSource => dataSource
               .Ajax()

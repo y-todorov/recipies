@@ -5,6 +5,7 @@
 
 @(
         Html.Kendo().Grid(Model)
+            .Name("StoreViewModelGrid")
             .AddDefaultOptions()
             .DataSource(dataSource => dataSource
                 .Ajax()

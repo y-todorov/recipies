@@ -5,6 +5,7 @@
 
 @(
         Html.Kendo().Grid(Model)
+            .Name("CategoryViewModelGrid")
             .AddDefaultOptions()
             .DataSource(dataSource => dataSource
                 .Ajax()

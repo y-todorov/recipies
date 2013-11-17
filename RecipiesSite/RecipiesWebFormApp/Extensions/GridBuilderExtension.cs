@@ -47,12 +47,12 @@ namespace InventoryManagementMVC.Extensions
             return builder;
         }
 
+        // It is EXTREMELY important NOT to set the name here. This is because of details grids. There name MUST be  .Name("ProductInventoryViewModelGrid_#=ProductInventoryHeaderId#")
         public static GridBuilder<T> AddBaseOptions<T>(this GridBuilder<T> builder) where T : class
         {
             Type modelEntityType = typeof(T);
 
             builder
-                .Name(modelEntityType.Name + "Grid")
                 .Groupable(
                     gsb =>
                         gsb.Messages(mb => mb.Empty("Drag a column header and drop it here to group by that column"))
@@ -99,7 +99,7 @@ namespace InventoryManagementMVC.Extensions
         // When model is empty collection there are problems with aggregates!!!!!!!!!!!
         public static GridBuilder<T> AddColumnOptions<T>(this GridBuilder<T> builder, bool isClient = false,
             bool isDeleteColumnVisible = true,
-            bool isEditColumnVisible = true, bool isSelectColumnVisible = true) where T : class
+            bool isEditColumnVisible = true, bool isSelectColumnVisible = true, bool areHiddenColumnsVisible = true) where T : class
         {
             Type modelEntityType = typeof(T);
             PropertyInfo[] modelEntityProperties = modelEntityType.GetProperties();
@@ -135,7 +135,8 @@ namespace InventoryManagementMVC.Extensions
 
                         // do not show foreign key columns
                         if (propertyInfo.GetCustomAttributes<RelationAttribute>().Any() ||
-                            propertyInfo.GetCustomAttributes<KeyAttribute>().Any())
+                            propertyInfo.GetCustomAttributes<KeyAttribute>().Any() ||
+                            (propertyInfo.GetCustomAttributes<HiddenInputAttribute>().Any() && !areHiddenColumnsVisible))
                         {
                             continue;
                         }
@@ -302,7 +303,7 @@ namespace InventoryManagementMVC.Extensions
                 .DataSource(dataSource => dataSource
                     .Ajax()
                     .Batch(isBatch)
-                    .PageSize(10)
+                    .PageSize(5)
                     .Model(
                         model =>
                         {
@@ -381,7 +382,7 @@ namespace InventoryManagementMVC.Extensions
             return builder;
         }
 
-        public static GridBuilder<T> AddDefaultOptions<T>(this GridBuilder<T> builder, bool isClient = false)
+        public static GridBuilder<T> AddDefaultOptions<T>(this GridBuilder<T> builder, bool isClient = false, bool areHiddenColumnsVisible = true)
             where T : class
         {
             Stopwatch s = new Stopwatch();
@@ -393,7 +394,7 @@ namespace InventoryManagementMVC.Extensions
                 .AddBaseOptions()
                 .Editable(editable => editable.Mode(GridEditMode.InCell))
                 .AddToolbarOptions(true, true)
-                .AddColumnOptions(isClient, true, false, false)
+                .AddColumnOptions(isClient, true, false, false, areHiddenColumnsVisible)
                 .AddDataSourceOptions();
 
             s.Stop();
