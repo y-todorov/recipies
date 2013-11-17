@@ -74,6 +74,9 @@
         <EntityTypeShape EntityType="RecipiesModelNS.ProductIngredient" Width="1.5" PointX="14.25" PointY="12.5" />
         <AssociationConnector Association="RecipiesModelNS.FK_RecipeIngredient_Product1" />
         <AssociationConnector Association="RecipiesModelNS.FK_RecipeIngredient_Recipe1" />
+        <EntityTypeShape EntityType="RecipiesModelNS.RecipeIngredient" Width="1.5" PointX="11.25" PointY="13.5" />
+        <AssociationConnector Association="RecipiesModelNS.FK_RecipeIngredient_IngredientRecipe" />
+        <AssociationConnector Association="RecipiesModelNS.FK_RecipeIngredient_ParentRecipe" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

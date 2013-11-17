@@ -190,6 +190,19 @@
           <Property Name="SellValuePerPortion" Type="money" />
           <Property Name="GrossProfit" Type="numeric" Precision="38" Scale="16" StoreGeneratedPattern="Computed" />
         </EntityType>
+        <EntityType Name="RecipeIngredient">
+          <Key>
+            <PropertyRef Name="RecipeIngredientId" />
+          </Key>
+          <Property Name="RecipeIngredientId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ParentRecipeId" Type="int" />
+          <Property Name="IngredientRecipeId" Type="int" />
+          <Property Name="QuantityPerPortion" Type="float" />
+          <Property Name="Cost" Type="money" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="ModifiedByUser" Type="nvarchar" MaxLength="1000" />
+          <Property Name="TotalValue" Type="float" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
         <EntityType Name="RecipeInventory">
           <Key>
             <PropertyRef Name="InventoryId" />
@@ -720,6 +733,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_RecipeIngredient_IngredientRecipe">
+          <End Role="Recipe" Type="Self.Recipe" Multiplicity="0..1" />
+          <End Role="RecipeIngredient" Type="Self.RecipeIngredient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Recipe">
+              <PropertyRef Name="RecipeId" />
+            </Principal>
+            <Dependent Role="RecipeIngredient">
+              <PropertyRef Name="IngredientRecipeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RecipeIngredient_ParentRecipe">
+          <End Role="Recipe" Type="Self.Recipe" Multiplicity="0..1" />
+          <End Role="RecipeIngredient" Type="Self.RecipeIngredient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Recipe">
+              <PropertyRef Name="RecipeId" />
+            </Principal>
+            <Dependent Role="RecipeIngredient">
+              <PropertyRef Name="ParentRecipeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_RecipeIngredient_Product">
           <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
           <End Role="ProductIngredient" Type="Self.ProductIngredient" Multiplicity="*" />
@@ -831,6 +868,7 @@
           <EntitySet Name="ProductInventoryHeader" EntityType="Self.ProductInventoryHeader" Schema="Production" store:Type="Tables" />
           <EntitySet Name="ProductWaste" EntityType="Self.ProductWaste" Schema="Production" store:Type="Tables" />
           <EntitySet Name="Recipe" EntityType="Self.Recipe" Schema="Production" store:Type="Tables" />
+          <EntitySet Name="RecipeIngredient" EntityType="Self.RecipeIngredient" Schema="Production" store:Type="Tables" />
           <EntitySet Name="RecipeInventory" EntityType="Self.RecipeInventory" Schema="Production" store:Type="Tables" />
           <EntitySet Name="RecipeWaste" EntityType="Self.RecipeWaste" Schema="Production" store:Type="Tables" />
           <EntitySet Name="Store" EntityType="Self.Store" Schema="Production" store:Type="Tables" />
@@ -954,6 +992,14 @@
           <AssociationSet Name="FK_Recipe_ProductCategory" Association="Self.FK_Recipe_ProductCategory">
             <End Role="ProductCategory" EntitySet="ProductCategory" />
             <End Role="Recipe" EntitySet="Recipe" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RecipeIngredient_IngredientRecipe" Association="Self.FK_RecipeIngredient_IngredientRecipe">
+            <End Role="Recipe" EntitySet="Recipe" />
+            <End Role="RecipeIngredient" EntitySet="RecipeIngredient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RecipeIngredient_ParentRecipe" Association="Self.FK_RecipeIngredient_ParentRecipe">
+            <End Role="Recipe" EntitySet="Recipe" />
+            <End Role="RecipeIngredient" EntitySet="RecipeIngredient" />
           </AssociationSet>
           <AssociationSet Name="FK_RecipeIngredient_Product" Association="Self.FK_RecipeIngredient_Product">
             <End Role="Product" EntitySet="Product" />
@@ -1176,6 +1222,15 @@
             <End Role="Recipe" EntitySet="Recipes" />
             <End Role="ProductIngredient" EntitySet="ProductIngredients" />
           </AssociationSet>
+          <EntitySet Name="RecipeIngredients" EntityType="RecipiesModelNS.RecipeIngredient" />
+          <AssociationSet Name="FK_RecipeIngredient_IngredientRecipe" Association="RecipiesModelNS.FK_RecipeIngredient_IngredientRecipe">
+            <End Role="Recipe" EntitySet="Recipes" />
+            <End Role="RecipeIngredient" EntitySet="RecipeIngredients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RecipeIngredient_ParentRecipe" Association="RecipiesModelNS.FK_RecipeIngredient_ParentRecipe">
+            <End Role="Recipe" EntitySet="Recipes" />
+            <End Role="RecipeIngredient" EntitySet="RecipeIngredients" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="EmailTemplate">
           <Key>
@@ -1371,6 +1426,8 @@
           <NavigationProperty Name="RecipeWastes" Relationship="RecipiesModelNS.FK_RecipeWaste_Recipe"
                               FromRole="Recipe" ToRole="RecipeWaste" />
           <NavigationProperty Name="ProductIngredients" Relationship="RecipiesModelNS.FK_RecipeIngredient_Recipe1" FromRole="Recipe" ToRole="ProductIngredient" />
+          <NavigationProperty Name="RecipeIngredients" Relationship="RecipiesModelNS.FK_RecipeIngredient_IngredientRecipe" FromRole="Recipe" ToRole="RecipeIngredient" />
+          <NavigationProperty Name="RecipeIngredients1" Relationship="RecipiesModelNS.FK_RecipeIngredient_ParentRecipe" FromRole="Recipe" ToRole="RecipeIngredient" />
         </EntityType>
         <EntityType Name="Store">
           <Key>
@@ -2109,6 +2166,45 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="RecipeIngredient">
+          <Key>
+            <PropertyRef Name="RecipeIngredientId" />
+          </Key>
+          <Property Name="RecipeIngredientId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ParentRecipeId" Type="Int32" />
+          <Property Name="IngredientRecipeId" Type="Int32" />
+          <Property Name="QuantityPerPortion" Type="Double" />
+          <Property Name="Cost" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedByUser" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="TotalValue" Type="Double" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="IngredientRecipe" Relationship="RecipiesModelNS.FK_RecipeIngredient_IngredientRecipe" FromRole="RecipeIngredient" ToRole="Recipe" />
+          <NavigationProperty Name="ParentRecipe" Relationship="RecipiesModelNS.FK_RecipeIngredient_ParentRecipe" FromRole="RecipeIngredient" ToRole="Recipe" />
+        </EntityType>
+        <Association Name="FK_RecipeIngredient_IngredientRecipe">
+          <End Type="RecipiesModelNS.Recipe" Role="Recipe" Multiplicity="0..1" />
+          <End Type="RecipiesModelNS.RecipeIngredient" Role="RecipeIngredient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Recipe">
+              <PropertyRef Name="RecipeId" />
+            </Principal>
+            <Dependent Role="RecipeIngredient">
+              <PropertyRef Name="IngredientRecipeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RecipeIngredient_ParentRecipe">
+          <End Type="RecipiesModelNS.Recipe" Role="Recipe" Multiplicity="0..1" />
+          <End Type="RecipiesModelNS.RecipeIngredient" Role="RecipeIngredient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Recipe">
+              <PropertyRef Name="RecipeId" />
+            </Principal>
+            <Dependent Role="RecipeIngredient">
+              <PropertyRef Name="ParentRecipeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2525,6 +2621,20 @@
                 <ScalarProperty Name="ProductId" ColumnName="ProductId" />
                 <ScalarProperty Name="RecipeId" ColumnName="RecipeId" />
                 <ScalarProperty Name="ProductIngredientId" ColumnName="ProductIngredientId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RecipeIngredients">
+            <EntityTypeMapping TypeName="RecipiesModelNS.RecipeIngredient">
+              <MappingFragment StoreEntitySet="RecipeIngredient">
+                <ScalarProperty Name="TotalValue" ColumnName="TotalValue" />
+                <ScalarProperty Name="ModifiedByUser" ColumnName="ModifiedByUser" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="QuantityPerPortion" ColumnName="QuantityPerPortion" />
+                <ScalarProperty Name="IngredientRecipeId" ColumnName="IngredientRecipeId" />
+                <ScalarProperty Name="ParentRecipeId" ColumnName="ParentRecipeId" />
+                <ScalarProperty Name="RecipeIngredientId" ColumnName="RecipeIngredientId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

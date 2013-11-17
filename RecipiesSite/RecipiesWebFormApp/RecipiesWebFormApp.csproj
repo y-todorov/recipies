@@ -481,6 +481,7 @@
     <Compile Include="Models\Account\AccountModels.cs" />
     <Compile Include="Models\Account\IdentityModels.cs" />
     <Compile Include="Models\Chart\ProductsPerCategory.cs" />
+    <Compile Include="Models\Production\RecipeIngredientViewModel.cs" />
     <Compile Include="Models\Production\ProductIngredientViewModel.cs" />
     <Compile Include="Models\Production\RecipeViewModel.cs" />
     <Compile Include="Models\Production\CategoryViewModel.cs" />

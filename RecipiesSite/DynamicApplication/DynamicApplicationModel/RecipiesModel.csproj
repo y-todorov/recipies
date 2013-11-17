@@ -121,6 +121,9 @@
       <DependentUpon>RecipiesModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Recipe.partial.cs" />
+    <Compile Include="RecipeIngredient.cs">
+      <DependentUpon>RecipiesModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="RecipeIngredient.partial.cs" />
     <Compile Include="RecipeInventory.cs">
       <DependentUpon>RecipiesModel.tt</DependentUpon>

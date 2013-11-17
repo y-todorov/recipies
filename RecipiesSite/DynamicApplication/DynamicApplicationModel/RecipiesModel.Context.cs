@@ -51,5 +51,6 @@ namespace RecipiesModelNS
         public DbSet<Waste> Wastes { get; set; }
         public DbSet<ProductInventoryHeader> ProductInventoryHeaders { get; set; }
         public DbSet<ProductIngredient> ProductIngredients { get; set; }
+        public DbSet<RecipeIngredient> RecipeIngredients { get; set; }
     }
 }
