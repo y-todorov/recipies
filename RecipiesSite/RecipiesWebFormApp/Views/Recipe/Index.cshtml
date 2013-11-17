@@ -20,7 +20,7 @@
     @(Html.Kendo().TabStrip()
                     .Name("tabStrip_#=RecipeId#")
             .SelectedIndex(0)
-            .Animation(animation => animation.Open(open => open.Fade(FadeDirection.In)))
+            .Animation(animation => animation.Open(open => open.Fade(FadeDirection.In).Duration(AnimationDuration.Fast)))
             .Items(items =>
             {
                 items.Add().Text("Products").Content(@<text>
@@ -42,6 +42,28 @@
                     )
                 </text>
                 );
+                
+                
+                items.Add().Text("Recipies").Content(@<text>
+                    @(Html.Kendo().Grid<RecipeIngredientViewModel>()
+                          .Name("RecipeIngredientViewModelGrid_#=RecipeId#")
+          .AddDefaultOptions(true, false)
+          .DataSource(dataSource => dataSource
+              .Ajax()
+              .Batch(true)
+              .PageSize(5)
+              .Model(m => m.Id(p => p.RecipeIngredientId))
+                                      .Read(read => read.Action("Read", "RecipeIngredient", new { recipeId = "#=RecipeId#" }))
+                                              .Create("Create", "RecipeIngredient", new { recipeId = "#=RecipeId#" })
+                              .Update("Update", "RecipeIngredient")
+                              .Destroy("Destroy", "RecipeIngredient")
+          )
+          .ToClientTemplate()
+          .ToMvcClientTemplate()
+                    )
+                </text>
+                );
+                
             })
            .ToClientTemplate())
 </script>
