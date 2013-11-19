@@ -22,7 +22,7 @@ namespace InventoryManagementMVC.Models
         [ReadOnly(true)]
         public decimal? ValueByDocuments { get; set; }
 
-        [ReadOnly(true)]
+        //[ReadOnly(true)]
         public double? StocktakeQuantity { get; set; }
 
         [ReadOnly(true)]

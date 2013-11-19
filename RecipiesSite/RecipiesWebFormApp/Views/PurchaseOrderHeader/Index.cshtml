@@ -37,6 +37,7 @@
     @(Html.Kendo().Grid<PurchaseOrderDetailViewModel>()
                                           .Name("PurchaseOrderDetailViewModelGrid_#=PurchaseOrderHeaderId#")
                    .AddDefaultOptions(true, false)
+                   //.Events(e => e.Edit("podEdit"))
             // .ToolBar(t => t.Create())
           .DataSource(dataSource => dataSource
               .Ajax()
@@ -48,6 +49,38 @@
                               .Destroy("DestroyDetail", "PurchaseOrderHeader")
           )
           .ToClientTemplate()
+          
+          
 
     )
+
+   
+</script>
+
+<script>
+    function podEdit(e) {
+        debugger;
+        //execute your custom logic to get the max value
+        var maxValue = 5;
+
+        //check if record is new
+        if (e.model.isNew()) {
+
+            //set the required field value
+            e.model.set("UnitPrice", 222222222);
+        }
+        else {
+            //set the required field value
+            e.model.set("UnitPrice", 1111111);
+        }
+    }
+</script>
+
+<script>
+    function ddlChange(e, e2, e3) {
+        debugger;
+
+        //$("")
+
+    }
 </script>

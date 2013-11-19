@@ -19,11 +19,11 @@
 <script id="template" type="text/kendo-tmpl">
     @(Html.Kendo().Grid<ProductInventoryViewModel>()
                           .Name("ProductInventoryViewModelGrid_#=ProductInventoryHeaderId#")
-          .AddDefaultOptions(true)
+          .AddDefaultOptions(true, false)
           .DataSource(dataSource => dataSource
               .Ajax()
               .Batch(true)
-              .PageSize(5).Model(m => m.Id(p => p.PurchaseOrderHeaderDetailId))
+                      .PageSize(5).Model(m => m.Id(p => p.ProductInventoryId))
                                               .Read(read => read.Action("Read", "ProductInventory", new { productInventoryHeaderId = "#=ProductInventoryHeaderId#" }))
                                                               .Create("Create", "ProductInventory", new { productInventoryHeaderId = "#=ProductInventoryHeaderId#" })
                       .Update("Update", "ProductInventory")
