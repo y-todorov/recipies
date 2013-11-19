@@ -9,18 +9,19 @@
  Html.Kendo().Grid(Model)
      .Name("PurchaseOrderHeaderViewModelGrid")
             .AddDefaultOptions()
-            .Columns(columns =>
+            .Columns(columns => {
                 //          columns.Bound(p => p.PurchaseOrderHeaderId).ClientTemplate(
                 //"<a href='" +
                 //            Url.Action("Download", "PurchaseOrderHeader", new { purchaseOrderHeaderId = "#=PurchaseOrderHeaderId#" }) +
                 //        "'" +
-                //">Download</a>"
+                //">Download</a>");
                   columns.Bound(p => p.PurchaseOrderHeaderId).ClientTemplate(
     "<a href='" +
                 Url.Action("SendEmail", "PurchaseOrderHeader", new { purchaseOrderHeaderId = "#=PurchaseOrderHeaderId#" }) +
             "'" +
     ">Send Email</a>"
-))
+);
+            })
         //.Columns(columns => columns.Command(c => c.Custom("Download").Text("Download").Action("Download", "PurchaseOrderHeader", new {purchaseOrderHeaderId = "#=PurchaseOrderHeaderId#"}).SendDataKeys.SendState(true)))
             .DataSource(dataSource => dataSource
                 .Ajax()
@@ -49,12 +50,12 @@
                               .Destroy("DestroyDetail", "PurchaseOrderHeader")
           )
           .ToClientTemplate()
-          
-          
+
+
 
     )
 
-   
+
 </script>
 
 <script>

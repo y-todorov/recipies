@@ -54,6 +54,24 @@ namespace InventoryManagementMVC.Controllers.Purchasing
                             new PurchaseOrderHeader());
                     ContextFactory.Current.PurchaseOrderHeaders.Add(newPohEntity);
                     ContextFactory.Current.SaveChanges();
+
+                    List<ProductVendor> productsForVendor = ContextFactory.Current.ProductVendors.Where(pv => pv.VendorId == newPohEntity.VendorId && pv.ProductId != null).ToList();
+
+                    foreach (ProductVendor pv in productsForVendor)
+                    {
+                        PurchaseOrderDetail pod = new PurchaseOrderDetail()
+                        {
+                            PurchaseOrderId = newPohEntity.PurchaseOrderId,
+                            ProductId = pv.Product.ProductId,
+                            UnitPrice = pv.Product.UnitPrice,
+                            UnitMeasureId = pv.UnitMeasureId,                           
+                        };
+                        ContextFactory.Current.PurchaseOrderDetails.Add(pod);
+                    }
+
+                    ContextFactory.Current.SaveChanges();
+
+
                     PurchaseOrderHeaderViewModel.ConvertFromPurchaseOrderHeaderEntity(newPohEntity, pohViewModel);
                 }
             }
@@ -114,7 +132,11 @@ namespace InventoryManagementMVC.Controllers.Purchasing
             var instanceReportSource = new Telerik.Reporting.InstanceReportSource();
             RecipiesReports.PurchaseOrderDetailsReport salesOrderDetailsReport =
                 new RecipiesReports.PurchaseOrderDetailsReport();
-            salesOrderDetailsReport.DataSource = purchaseOrder.PurchaseOrderDetails;
+
+            List<PurchaseOrderDetail> nonEmptyOrders = purchaseOrder.PurchaseOrderDetails.Where(pod => pod.OrderQuantity.GetValueOrDefault() != 0).ToList();
+
+            salesOrderDetailsReport.DataSource = nonEmptyOrders;
+
             instanceReportSource.ReportDocument = salesOrderDetailsReport;
 
             //specify the output format of the produced image.
@@ -136,13 +158,26 @@ namespace InventoryManagementMVC.Controllers.Purchasing
                 // the browser to try to show the file inline
                 Inline = false,
             };
-            Response.AppendHeader("Content-Disposition", cd.ToString());
+            //Response.AppendHeader("Content-Disposition", cd.ToString());
 
+       
 
-            return File(result.DocumentBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
+            //return File(result.DocumentBytes, result.MimeType, fileName);
 
+            //FileStream MyFileStream;
+            //long FileSize;
 
-            return File(result.DocumentBytes, result.MimeType);
+            //MyFileStream = new FileStream("sometext.txt", FileMode.Open);
+            //FileSize = MyFileStream.Length;
+
+            //byte[] Buffer = new byte[(int)FileSize];
+            //MyFileStream.Read(Buffer, 0, (int)FileSize);
+            //MyFileStream.Close();
+
+            //Response.Write("<b>File Contents: </b>");
+            //Response.BinaryWrite(result.DocumentBytes);
+
+            return File(new byte[1], "txt");
         }
 
          public ActionResult SendEmail(int? purchaseOrderHeaderId)
@@ -157,7 +192,10 @@ namespace InventoryManagementMVC.Controllers.Purchasing
 
              var instanceReportSource = new Telerik.Reporting.InstanceReportSource();
              RecipiesReports.PurchaseOrderDetailsReport salesOrderDetailsReport = new RecipiesReports.PurchaseOrderDetailsReport();
-             salesOrderDetailsReport.DataSource = purchaseOrder.PurchaseOrderDetails;
+
+             List<PurchaseOrderDetail> nonEmptyOrders = purchaseOrder.PurchaseOrderDetails.Where(pod => pod.OrderQuantity.GetValueOrDefault() != 0).ToList();
+
+             salesOrderDetailsReport.DataSource = nonEmptyOrders;
              instanceReportSource.ReportDocument = salesOrderDetailsReport;
 
              RenderingResult result = reportProcessor.RenderReport("Image", instanceReportSource, null);
