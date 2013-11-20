@@ -29,9 +29,11 @@ namespace InventoryManagementMVC.Models
         public string Code { get; set; }
 
         [Range(0, int.MaxValue)]
+        //[DataType(DataType.Currency)]
         public decimal? UnitPrice { get; set; }
 
         [Range(0, int.MaxValue)]
+        [ReadOnly(true)]
         public double? UnitsInStock { get; set; }
 
         [ReadOnly(true)]
@@ -39,6 +41,7 @@ namespace InventoryManagementMVC.Models
         public decimal? StockValue { get; set; }
 
         [Range(0, int.MaxValue)]
+        [ReadOnly(true)]
         public double? UnitsOnOrder { get; set; }
 
         [Range(0, int.MaxValue)]

@@ -200,13 +200,13 @@ namespace InventoryManagementMVC.Extensions
                         {
                             if (!isClient)
                             {
-                                columns.Bound(propertyInfo.Name).Format("{0:C3}")
+                                columns.Bound(propertyInfo.Name).Format("{0:C3}").EditorTemplateName("Currency")
                                    .ClientFooterTemplate("Sum: #= kendo.format('{0:C3}', sum)#")
                                 .ClientGroupFooterTemplate("Sum: #= kendo.format('{0:C3}', sum)#");
                             }
                             else
                             {
-                                columns.Bound(propertyInfo.Name);
+                                columns.Bound(propertyInfo.Name).EditorTemplateName("Currency");
                                 //.ClientFooterTemplate("Sum: #= kendo.format('{0:C3}', sum)#")
                                 //.ClientGroupFooterTemplate("Sum: #= kendo.format('{0:C3}', sum)#");
                             }
@@ -246,7 +246,7 @@ namespace InventoryManagementMVC.Extensions
                                 else
                                 {
                                     columns.Bound(propertyInfo.Name)
-                                        .Format("{0:dd/MM/yyyy}")
+                                        .Format("{0:dd/MM/yyyy}").EditorTemplateName("Date")
                                           .ClientFooterTemplate("Count: #= kendo.format('{0}', count)#")
                                     .ClientGroupFooterTemplate("Count: #= kendo.format('{0}', count)#");
                                 }
@@ -263,7 +263,7 @@ namespace InventoryManagementMVC.Extensions
                                 else
                                 {
                                     columns.Bound(propertyInfo.Name)
-                                        .Format("{0:dd/MM/yyyy}");
+                                        .Format("{0:dd/MM/yyyy}").EditorTemplateName("Date");
                                     //.ClientFooterTemplate("Count: #= kendo.format('{0}', count)#")
                                     //.ClientGroupFooterTemplate("Count: #= kendo.format('{0}', count)#");
                                 }
