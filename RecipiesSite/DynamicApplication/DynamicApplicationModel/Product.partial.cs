@@ -160,12 +160,12 @@ namespace RecipiesModelNS
             return averagePrice;
         }
 
-        public Inventory GetLastInventoryForDate(DateTime forDate)
+        public ProductInventory GetLastInventoryForDate(DateTime forDate)
         {
             //Inventory lastInventory = ContextFactory.GetContextPerRequest().Inventories.Where(inv => inv.ProductId == ProductId && inv.ForDate <= forDate.Date)
             //    .OrderByDescending(inv => inv.ForDate).FirstOrDefault();
             //return lastInventory;
-            Inventory lastInventory =
+            ProductInventory lastInventory =
                 ContextFactory.GetContextPerRequest()
                     .Inventories.OfType<ProductInventory>()
                     .Where(inv => inv.ProductId == ProductId && inv.ForDate <= forDate.Date)
@@ -308,18 +308,38 @@ namespace RecipiesModelNS
 
             foreach (Product product in allProducts)
             {
-                double unitsInStock = 0;
-                foreach (PurchaseOrderDetail pod in allCompletedPurchaseOrderDetals)
+                ProductInventory pi = product.GetLastInventoryForDate(DateTime.Now);
+                //if (product.ProductId == 23)
                 {
-                    if (pod.ProductId == product.ProductId)
+                    double unitsInStock = 0;
+                    if (pi != null)
                     {
-                        unitsInStock += product.GetBaseUnitMeasureQuantityForProduct(pod.StockedQuantity,
-                            pod.UnitMeasure);
+                        unitsInStock = pi.StocktakeQuantity.GetValueOrDefault();
                     }
-                }
-                if (product.UnitsInStock != unitsInStock)
-                {
-                    product.UnitsInStock = unitsInStock;
+                    foreach (PurchaseOrderDetail pod in allCompletedPurchaseOrderDetals)
+                    {
+                        if (pod.ProductId == product.ProductId)
+                        {
+
+                            if (pi != null)
+                            {
+                                if (pod.PurchaseOrderHeader.ShipDate.GetValueOrDefault().Date >= pi.ForDate.GetValueOrDefault().Date)
+                                {
+                                    unitsInStock += product.GetBaseUnitMeasureQuantityForProduct(pod.StockedQuantity,
+                                        pod.UnitMeasure);
+                                }
+                            }
+                            else
+                            {
+                                unitsInStock += product.GetBaseUnitMeasureQuantityForProduct(pod.StockedQuantity,
+                                       pod.UnitMeasure);
+                            }
+                        }
+                    }
+                    if (product.UnitsInStock != unitsInStock)
+                    {
+                        product.UnitsInStock = unitsInStock;
+                    }
                 }
             }
             ContextFactory.GetContextPerRequest().SaveChanges();
