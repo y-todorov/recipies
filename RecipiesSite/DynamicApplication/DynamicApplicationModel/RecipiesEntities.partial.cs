@@ -21,6 +21,14 @@ namespace RecipiesModelNS
         public override int SaveChanges()
         {
             IEnumerable<DbEntityEntry> entries = ChangeTracker.Entries();
+
+            List<YordanBaseEntity> addedEntities = new List<YordanBaseEntity>();
+            List<YordanBaseEntity> modifiedEntities = new List<YordanBaseEntity>();
+            List<YordanBaseEntity> deletedEntities = new List<YordanBaseEntity>();
+
+
+           
+
             foreach (DbEntityEntry entry in entries)
             {
                 if (entry.State == EntityState.Added)
@@ -29,6 +37,8 @@ namespace RecipiesModelNS
                     if (ybe != null)
                     {
                         ybe.Adding(entry);
+                        addedEntities.Add(ybe);
+
                     }
                 }
                 else if (entry.State == EntityState.Deleted)
@@ -37,6 +47,8 @@ namespace RecipiesModelNS
                     if (ybe != null)
                     {
                         ybe.Removing(entry);
+                        deletedEntities.Add(ybe);
+
                     }
                 }
                 else if (entry.State == EntityState.Modified)
@@ -45,6 +57,8 @@ namespace RecipiesModelNS
                     if (ybe != null)
                     {
                         ybe.Changing(entry);
+                        modifiedEntities.Add(ybe);
+                           
                     }
                 }
             }
@@ -59,10 +73,18 @@ namespace RecipiesModelNS
    //at RecipiesModelNS.RecipiesEntities.SaveChanges() in c:\Projects\recipies\RecipiesSite\DynamicApplication\DynamicApplicationModel\RecipiesEntities.partial.cs:line 35
    //at InventoryManagementMVC.Controllers.CategoryController.Destroy(DataSourceRequest request, IEnumerable`1 categories) in c:\Projects\InventoryManagement\InventoryManagement\InventoryManagementMVC\Controllers\CategoryController.cs:line 98}
 
-            //foreach (DbEntityEntry entry in entries)
-            //{
-            //}
-
+            foreach (YordanBaseEntity ybe in addedEntities)
+            {
+                ybe.Added();
+            }
+            foreach (YordanBaseEntity ybe in modifiedEntities)
+            {
+                ybe.Changed();
+            }
+            foreach (YordanBaseEntity ybe in deletedEntities)
+            {
+                ybe.Removed();
+            }
 
             return result;
         }

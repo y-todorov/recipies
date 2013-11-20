@@ -1,5 +1,6 @@
 ﻿using System.Data.Entity.Infrastructure;
 using System.Linq;
+using System.Data.Entity;
 
 namespace RecipiesModelNS
 {
@@ -23,7 +24,8 @@ namespace RecipiesModelNS
 
         public override void Removing(DbEntityEntry e = null)
         {
-            _purchaseOrderHeaderId = PurchaseOrderId;
+
+            _purchaseOrderHeaderId = e.OriginalValues.GetValue<int?>("PurchaseOrderId");
             base.Removing(e);
         }
 

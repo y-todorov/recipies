@@ -66,9 +66,19 @@ namespace InventoryManagementMVC.Controllers.Purchasing
                             UnitPrice = pv.Product.UnitPrice,
                             UnitMeasureId = pv.UnitMeasureId,                           
                         };
+
+                        decimal coef = 1;
+                        if (pv.UnitMeasure != null)
+                        {
+                            coef = (decimal)pv.Product.GetBaseUnitMeasureQuantityForProduct(1, pv.UnitMeasure);
+                        }
+                        pod.UnitPrice = coef * (decimal)pv.Product.GetAveragePriceLastDays(14);                      
+
                         ContextFactory.Current.PurchaseOrderDetails.Add(pod);
                     }
-
+                                       
+                    ContextFactory.Current.SaveChanges();
+                    newPohEntity.ModifiedDate = DateTime.Now;
                     ContextFactory.Current.SaveChanges();
 
 
@@ -247,7 +257,7 @@ namespace InventoryManagementMVC.Controllers.Purchasing
                      PurchaseOrderDetailViewModel.ConvertFromPurchaseOrderDetailEntity(newPodEntity, podViewModel);
                  }
              }
-
+             //return View("Index");
              return Json(purchaseOrderDetails.ToDataSourceResult(request, ModelState));
          }
 
@@ -273,6 +283,8 @@ namespace InventoryManagementMVC.Controllers.Purchasing
                  }
              }
 
+             //return View("Index");
+
              return Json(purchaseOrderDetails.ToDataSourceResult(request, ModelState));
          }
 
@@ -291,6 +303,8 @@ namespace InventoryManagementMVC.Controllers.Purchasing
              }
 
              return Json(purchaseOrderDetails.ToDataSourceResult(request, ModelState));
+             //return View("Index");
+
          }
         
     }
