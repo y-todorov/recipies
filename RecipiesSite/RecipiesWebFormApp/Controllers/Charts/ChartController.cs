@@ -26,7 +26,7 @@ namespace InventoryManagementMVC.Controllers
                                 (decimal)
                                     (cat.Products.Count != 0 ? Math.Round(cat.Products.Sum(p => p.StockValue), 3) : 0)
                         })
-                .OrderByDescending(res => res.ProductCount)
+                .OrderByDescending(res => res.ProductCount).Where(ppc => ppc.ProductCount != 0)
                 .ToList();
 
 
