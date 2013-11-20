@@ -405,6 +405,7 @@
     <Compile Include="Controllers\Production\RecipeIngredientController.cs" />
     <Compile Include="Controllers\Production\ProductIngredientController.cs" />
     <Compile Include="Controllers\Production\RecipieController.cs" />
+    <Compile Include="Controllers\Sales\SalesOrderHeaderController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\Production\CategoryController.cs" />
     <Compile Include="Controllers\Production\ProductController.cs" />
@@ -494,6 +495,7 @@
     <Compile Include="Models\Production\UnitMeasureViewModel.cs" />
     <Compile Include="Models\Purchasing\PurchaseOrderDetailViewModel.cs" />
     <Compile Include="Models\Purchasing\PurchaseOrderHeaderViewModel.cs" />
+    <Compile Include="Models\Sales\SalesOrderHeaderViewModel.cs" />
     <Compile Include="Production\ProductInventories.aspx.cs">
       <DependentUpon>ProductInventories.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -709,6 +711,7 @@
     <Content Include="Views\ProductInventoryHeader\Index.cshtml" />
     <Content Include="Views\Test\Index.cshtml" />
     <Content Include="Views\Recipe\Index.cshtml" />
+    <Content Include="Views\SalesOrderHeader\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -740,9 +743,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\HumanResources\" />
-    <Folder Include="Controllers\Sales\" />
     <Folder Include="Models\HumanResources\" />
-    <Folder Include="Models\Sales\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
