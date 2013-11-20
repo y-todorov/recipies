@@ -4,7 +4,7 @@
     {
         public override void Added(System.Data.Entity.Infrastructure.DbEntityEntry e = null)
         {
-            SalesOrderHeader.UpdateProductsUnitsInStock(SalesOrderHeaderId);
+            //SalesOrderHeader.UpdateProductsUnitsInStock(SalesOrderHeaderId);
 
             base.Added(e);
         }

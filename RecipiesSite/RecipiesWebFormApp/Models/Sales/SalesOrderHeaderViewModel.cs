@@ -13,7 +13,7 @@ namespace InventoryManagementMVC.Models
         [Key]
         public int SalesOrderHeaderId { get; set; }
 
-        [Relation(EntityType = typeof(Customer), DataFieldValue = "CustomerId",
+        [Relation(EntityType = typeof(Customer), DataFieldValue = "CustomerID",
             DataFieldText = "ContactName")]
         [Display(Name = "Customer")]
         public int? CustomerId { get; set; }

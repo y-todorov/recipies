@@ -25,8 +25,12 @@ namespace RecipiesModelNS
                     ContextFactory.GetContextPerRequest().Products.FirstOrDefault(p => p.ProductId == productId);
                 if (product != null)
                 {
-                    product.UnitsInStock = product.GetQuantityByDocumentsForDate(DateTime.Now);
-                    ContextFactory.GetContextPerRequest().SaveChanges();
+                    double quantityByDocumentsForDate =  product.GetQuantityByDocumentsForDate(DateTime.Now);
+                    if (product.UnitsInStock != quantityByDocumentsForDate)
+                    {
+                        product.UnitsInStock = quantityByDocumentsForDate;
+                        ContextFactory.GetContextPerRequest().SaveChanges();
+                    }                                        
                 }
             }
         }

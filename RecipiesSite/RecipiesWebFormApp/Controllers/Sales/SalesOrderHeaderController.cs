@@ -32,197 +32,77 @@ namespace InventoryManagementMVC.Controllers.Purchasing
 
         public ActionResult Read([DataSourceRequest] DataSourceRequest request)
         {
-            List<PurchaseOrderHeaderViewModel> purchaseOrderHeaderViewModels =
-                ContextFactory.Current.PurchaseOrderHeaders
-                    .ToList().Select
-                    (pod =>
-                        PurchaseOrderHeaderViewModel.ConvertFromPurchaseOrderHeaderEntity(pod,
-                            new PurchaseOrderHeaderViewModel())).ToList();
+            List<SalesOrderHeaderViewModel> purchaseOrderHeaderViewModels =
+               ContextFactory.Current.SalesOrderHeaders
+                   .ToList().Select
+                   (pod =>
+                       SalesOrderHeaderViewModel.ConvertFromSalesOrderHeaderEntity(pod,
+                           new SalesOrderHeaderViewModel())).ToList();
             return Json(purchaseOrderHeaderViewModels.ToDataSourceResult(request));
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Create([DataSourceRequest] DataSourceRequest request,
-            [Bind(Prefix = "models")] IEnumerable<PurchaseOrderHeaderViewModel> purchaseOrderHeaders)
+            [Bind(Prefix = "models")] IEnumerable<SalesOrderHeaderViewModel> salesOrderHeaders)
         {
-            if (purchaseOrderHeaders != null && ModelState.IsValid)
+            if (salesOrderHeaders != null && ModelState.IsValid)
             {
-                foreach (PurchaseOrderHeaderViewModel pohViewModel in purchaseOrderHeaders)
+                foreach (SalesOrderHeaderViewModel sohViewModel in salesOrderHeaders)
                 {
-                    PurchaseOrderHeader newPohEntity =
-                        PurchaseOrderHeaderViewModel.ConvertToPurchaseOrderHeaderEntity(pohViewModel,
-                            new PurchaseOrderHeader());
-                    ContextFactory.Current.PurchaseOrderHeaders.Add(newPohEntity);
+                    SalesOrderHeader newPohEntity =
+                        SalesOrderHeaderViewModel.ConvertToSalesOrderHeaderEntity(sohViewModel,
+                            new SalesOrderHeader());
+                    ContextFactory.Current.SalesOrderHeaders.Add(newPohEntity);
                     ContextFactory.Current.SaveChanges();
-
-                    List<ProductVendor> productsForVendor = ContextFactory.Current.ProductVendors.Where(pv => pv.VendorId == newPohEntity.VendorId && pv.ProductId != null).ToList();
-
-                    foreach (ProductVendor pv in productsForVendor)
-                    {
-                        PurchaseOrderDetail pod = new PurchaseOrderDetail()
-                        {
-                            PurchaseOrderId = newPohEntity.PurchaseOrderId,
-                            ProductId = pv.Product.ProductId,
-                            UnitPrice = pv.Product.UnitPrice,
-                            UnitMeasureId = pv.UnitMeasureId,                           
-                        };
-
-                        decimal coef = 1;
-                        if (pv.UnitMeasure != null)
-                        {
-                            coef = (decimal)pv.Product.GetBaseUnitMeasureQuantityForProduct(1, pv.UnitMeasure);
-                        }
-                        pod.UnitPrice = coef * (decimal)pv.Product.GetAveragePriceLastDays(14);                      
-
-                        ContextFactory.Current.PurchaseOrderDetails.Add(pod);
-                    }
-                                       
-                    ContextFactory.Current.SaveChanges();
-                    newPohEntity.ModifiedDate = DateTime.Now;
-                    ContextFactory.Current.SaveChanges();
-
-
-                    PurchaseOrderHeaderViewModel.ConvertFromPurchaseOrderHeaderEntity(newPohEntity, pohViewModel);
+                                     
+                    SalesOrderHeaderViewModel.ConvertFromSalesOrderHeaderEntity(newPohEntity, sohViewModel);
                 }
             }
 
-            return Json(purchaseOrderHeaders.ToDataSourceResult(request, ModelState));
+            return Json(salesOrderHeaders.ToDataSourceResult(request, ModelState));
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Update([DataSourceRequest] DataSourceRequest request,
-            [Bind(Prefix = "models")] IEnumerable<PurchaseOrderHeaderViewModel> purchaseOrderHeaders)
+            [Bind(Prefix = "models")] IEnumerable<SalesOrderHeaderViewModel> sohs)
         {
-            if (purchaseOrderHeaders != null && ModelState.IsValid)
+            if (sohs != null && ModelState.IsValid)
             {
-                foreach (PurchaseOrderHeaderViewModel pohViewModel in purchaseOrderHeaders)
+                foreach (SalesOrderHeaderViewModel sohViewModel in sohs)
                 {
-                    PurchaseOrderHeader pohEntity =
-                        ContextFactory.Current.PurchaseOrderHeaders.FirstOrDefault(
-                            c => c.PurchaseOrderId == pohViewModel.PurchaseOrderHeaderId);
+                    SalesOrderHeader pohEntity =
+                        ContextFactory.Current.SalesOrderHeaders.FirstOrDefault(
+                            c => c.SalesOrderHeaderId == sohViewModel.SalesOrderHeaderId);
 
-                    PurchaseOrderHeaderViewModel.ConvertToPurchaseOrderHeaderEntity(pohViewModel, pohEntity);
+                    SalesOrderHeaderViewModel.ConvertToSalesOrderHeaderEntity(sohViewModel, pohEntity);
 
                     ContextFactory.Current.SaveChanges();
 
-                    PurchaseOrderHeaderViewModel.ConvertFromPurchaseOrderHeaderEntity(pohEntity, pohViewModel);
+                    SalesOrderHeaderViewModel.ConvertFromSalesOrderHeaderEntity(pohEntity, sohViewModel);
                 }
             }
 
-            return Json(purchaseOrderHeaders.ToDataSourceResult(request, ModelState));
+            return Json(sohs.ToDataSourceResult(request, ModelState));
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Destroy([DataSourceRequest] DataSourceRequest request,
-            [Bind(Prefix = "models")] IEnumerable<PurchaseOrderHeaderViewModel> purchaseOrderHeaders)
+            [Bind(Prefix = "models")] IEnumerable<SalesOrderHeaderViewModel> sohs)
         {
-            foreach (PurchaseOrderHeaderViewModel poh in purchaseOrderHeaders)
+            foreach (SalesOrderHeaderViewModel poh in sohs)
             {
-                PurchaseOrderHeader pod =
-                    ContextFactory.Current.PurchaseOrderHeaders.FirstOrDefault(
-                        c => c.PurchaseOrderId == poh.PurchaseOrderHeaderId);
-                ContextFactory.Current.PurchaseOrderHeaders.Remove(pod);
+                SalesOrderHeader pod =
+                    ContextFactory.Current.SalesOrderHeaders.FirstOrDefault(
+                        c => c.SalesOrderHeaderId == poh.SalesOrderHeaderId);
+                ContextFactory.Current.SalesOrderHeaders.Remove(pod);
 
                 ContextFactory.Current.SaveChanges();
             }
 
-            return Json(purchaseOrderHeaders.ToDataSourceResult(request, ModelState));
+            return Json(sohs.ToDataSourceResult(request, ModelState));
         }
           
-        public ActionResult Download(int? purchaseOrderHeaderId)
-        {
-
-            
-            PurchaseOrderHeader purchaseOrder =
-                ContextFactory.GetContextPerRequest()
-                    .PurchaseOrderHeaders.FirstOrDefault(p => p.PurchaseOrderId == purchaseOrderHeaderId);
-
-            ReportProcessor reportProcessor = new ReportProcessor();
-
-            var instanceReportSource = new Telerik.Reporting.InstanceReportSource();
-            RecipiesReports.PurchaseOrderDetailsReport salesOrderDetailsReport =
-                new RecipiesReports.PurchaseOrderDetailsReport();
-
-            List<PurchaseOrderDetail> nonEmptyOrders = purchaseOrder.PurchaseOrderDetails.Where(pod => pod.OrderQuantity.GetValueOrDefault() != 0).ToList();
-
-            salesOrderDetailsReport.DataSource = nonEmptyOrders;
-
-            instanceReportSource.ReportDocument = salesOrderDetailsReport;
-
-            //specify the output format of the produced image.
-            System.Collections.Hashtable deviceInfo =
-                new System.Collections.Hashtable();
-
-            //deviceInfo["OutputFormat"] = "DOCX";
-
-            RenderingResult result = reportProcessor.RenderReport("Image", instanceReportSource, null);
-
-            string fileName = result.DocumentName + "." + result.Extension;
-
-            var cd = new System.Net.Mime.ContentDisposition
-            {
-                // for example foo.bak
-                FileName = fileName,
-
-                // always prompt the user for downloading, set to true if you want 
-                // the browser to try to show the file inline
-                Inline = false,
-            };
-            //Response.AppendHeader("Content-Disposition", cd.ToString());
-
-       
-
-            //return File(result.DocumentBytes, result.MimeType, fileName);
-
-            //FileStream MyFileStream;
-            //long FileSize;
-
-            //MyFileStream = new FileStream("sometext.txt", FileMode.Open);
-            //FileSize = MyFileStream.Length;
-
-            //byte[] Buffer = new byte[(int)FileSize];
-            //MyFileStream.Read(Buffer, 0, (int)FileSize);
-            //MyFileStream.Close();
-
-            //Response.Write("<b>File Contents: </b>");
-            //Response.BinaryWrite(result.DocumentBytes);
-
-            return File(new byte[1], "txt");
-        }
-
-         public ActionResult SendEmail(int? purchaseOrderHeaderId)
-         {
-             //(Master as SiteMaster).MasterRadNotification.Show(
-             //    "Sending Emails is temporary disabled. Will be enabled when the product is tested enough! ");
-             //return;
-
-             PurchaseOrderHeader purchaseOrder = ContextFactory.GetContextPerRequest().PurchaseOrderHeaders.FirstOrDefault(p => p.PurchaseOrderId == purchaseOrderHeaderId);
-
-             ReportProcessor reportProcessor = new ReportProcessor();
-
-             var instanceReportSource = new Telerik.Reporting.InstanceReportSource();
-             RecipiesReports.PurchaseOrderDetailsReport salesOrderDetailsReport = new RecipiesReports.PurchaseOrderDetailsReport();
-
-             List<PurchaseOrderDetail> nonEmptyOrders = purchaseOrder.PurchaseOrderDetails.Where(pod => pod.OrderQuantity.GetValueOrDefault() != 0).ToList();
-
-             salesOrderDetailsReport.DataSource = nonEmptyOrders;
-             instanceReportSource.ReportDocument = salesOrderDetailsReport;
-
-             RenderingResult result = reportProcessor.RenderReport("Image", instanceReportSource, null);
-
-             EmailTemplate defaultTemplate = ContextFactory.GetContextPerRequest().EmailTemplates.FirstOrDefault(et => et.IsDefault);
-             if (defaultTemplate != null)
-             {
-                 RestResponse restResponse = EmailHelper.SendComplexMessage(defaultTemplate.From, purchaseOrder.Vendor.Email, defaultTemplate.Cc,
-                     defaultTemplate.Bcc, defaultTemplate.Subject, defaultTemplate.TextBody, defaultTemplate.HtmlBody,
-                     result.DocumentBytes, defaultTemplate.AttachmentName + "." + result.Extension);                
-             }
-             else
-             {
-             }
-
-             return View("Index");
-         }
+      
 
          public ActionResult ReadDetail(int? purchaseOrderHeaderId, [DataSourceRequest] DataSourceRequest request)
          {
