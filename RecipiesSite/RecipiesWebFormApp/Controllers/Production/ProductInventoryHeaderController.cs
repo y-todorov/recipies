@@ -79,5 +79,31 @@ namespace InventoryManagementMVC.Controllers
 
             return Json(pihModels.ToDataSourceResult(request, ModelState));
         }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Destroy([DataSourceRequest] DataSourceRequest request,
+            [Bind(Prefix = "models")] IEnumerable<ProductInventoryHeaderViewModel> products)
+        {
+            if (products.Any())
+            {
+                foreach (ProductInventoryHeaderViewModel pihModel in products)
+                {
+                    ProductInventoryHeader inv =
+                        ContextFactory.Current.ProductInventoryHeaders.FirstOrDefault(p => p.ProductInventoryHeaderId == pihModel.ProductInventoryHeaderId);
+                    ContextFactory.Current.ProductInventoryHeaders.Remove(inv);
+
+                    List<ProductInventory> pis = ContextFactory.Current.Inventories.OfType<ProductInventory>().Where(pi => pi.ProductInventoryHeaderId == pihModel.ProductInventoryHeaderId).ToList();
+
+                    foreach (ProductInventory pInventory in pis)
+                    {
+                        ContextFactory.Current.Inventories.Remove(pInventory);
+                    }
+
+                    ContextFactory.Current.SaveChanges();
+                }
+            }
+
+            return Json(products.ToDataSourceResult(request, ModelState));
+        }
     }
 }
