@@ -66,7 +66,10 @@ namespace InventoryManagementMVC.Models
             entity.OrderQuantity = model.OrderQuantity;
             entity.RecipeId = model.RecipeId;
             entity.SalesOrderDetailId = model.SalesOrderDetailId;
-            entity.SalesOrderHeaderId = model.SalesOrderHeaderId;
+            if (model.SalesOrderHeaderId != null)
+            {
+                entity.SalesOrderHeaderId = model.SalesOrderHeaderId;
+            }
             entity.UnitPrice = model.UnitPrice;
             entity.UnitPriceDiscount = model.UnitPriceDiscount;
 
