@@ -8,8 +8,30 @@
 
 }
 
+@(Html.Kendo().Chart<GpPerDay>()
+              .Name("chartGPperDay").Theme("blueopal")
+              .Title("GP per day (Last 30 days)")
+          .Legend(legend => legend
+              .Position(ChartLegendPosition.Top)
+          )
+              .DataSource(ds => ds.Read(read => read.Action("GpPerDayLastDays", "Chart")))
 
-    @(Html.Kendo().Chart<ProductsPerCategory>()
+          .Series(series =>
+          {
+              series.Line(p => p.DayGp).Name("Value per day").Labels(l => l.Visible(true)).Axis("ValuePerDay");
+          })
+          .CategoryAxis(axis => axis.Categories(p => p.Days)
+              .Labels(labels => labels.Rotation(90)).AxisCrossingValue(0, int.MaxValue)
+          )
+              .ValueAxis(axis => axis.Numeric("ValuePerDay")
+          )
+          .Tooltip(tooltip => tooltip
+              .Visible(true)
+          )
+)
+
+
+@(Html.Kendo().Chart<ProductsPerCategory>()
           .Name("chart").Theme("blueopal")
           .Title("Products count and stock value by category")
           .Legend(legend => legend
@@ -34,4 +56,4 @@
               .Visible(true)
               .Format("{0:N0}")
           )
-          )
+)

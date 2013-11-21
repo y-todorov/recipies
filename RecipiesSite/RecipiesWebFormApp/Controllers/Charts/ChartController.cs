@@ -6,12 +6,13 @@ using System.Web.Mvc;
 using InventoryManagementMVC.Models.Chart;
 using RecipiesModelNS;
 using System.Data.Entity;
-using DevTrends.MvcDonutCaching; // .Include !!!!!!! THIS IS SO IMPROTANT
+using DevTrends.MvcDonutCaching;
+using InventoryManagementMVC.Models.Chart;
 
 namespace InventoryManagementMVC.Controllers
 {
     public class ChartController : ControllerBase
-    {        
+    {
         public ActionResult ProductsCountByCategory()
         {
             var pc = ContextFactory.Current.ProductCategories.Include(c => c.Products).ToList()
@@ -31,6 +32,30 @@ namespace InventoryManagementMVC.Controllers
 
 
             return Json(pc);
+        }
+
+        public ActionResult GpPerDayLastDays()
+        {
+            int lastNdays = 30;
+
+            List<GpPerDay> list = new List<GpPerDay>();
+            for (int i = 29; i >= 0; i--)
+            {
+                DateTime date = DateTime.Now.Date.AddDays(-i);
+                double sales =
+                    SalesOrderHeader.GetSalesOrderHeadersInPeriod(date, date, SalesOrderStatusEnum.Approved)
+                        .Sum(soh => soh.SalesOrderDetails.Sum(sod => sod.LineTotal));
+                double purchases =
+                    (double)
+                        PurchaseOrderHeader.GetPurchaseOrderHeadersInPeriod(date, date,
+                            PurchaseOrderStatusEnum.Completed).Sum(poh => poh.TotalDue).GetValueOrDefault();
+                double dayGp = sales - purchases;
+
+                GpPerDay gh = new GpPerDay() { Days = date.ToString("dd/MM"), DayGp = dayGp };
+                list.Add(gh);
+            }
+
+            return Json(list);
         }
     }
 }
