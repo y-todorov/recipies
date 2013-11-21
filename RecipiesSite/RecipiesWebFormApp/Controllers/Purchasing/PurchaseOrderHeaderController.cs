@@ -221,7 +221,7 @@ namespace InventoryManagementMVC.Controllers.Purchasing
              {
              }
 
-             return View("Index");
+             return RedirectToAction("Index");
          }
 
          public ActionResult ReadDetail(int? purchaseOrderHeaderId, [DataSourceRequest] DataSourceRequest request)
