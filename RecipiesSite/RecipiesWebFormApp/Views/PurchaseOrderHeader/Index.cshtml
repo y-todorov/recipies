@@ -9,17 +9,18 @@
  Html.Kendo().Grid(Model)
      .Name("PurchaseOrderHeaderViewModelGrid")
             .AddDefaultOptions()
-            .Columns(columns => {
+            .Columns(columns =>
+            {
                 //          columns.Bound(p => p.PurchaseOrderHeaderId).ClientTemplate(
                 //"<a href='" +
                 //            Url.Action("Download", "PurchaseOrderHeader", new { purchaseOrderHeaderId = "#=PurchaseOrderHeaderId#" }) +
                 //        "'" +
                 //">Download</a>");
-                  columns.Bound(p => p.PurchaseOrderHeaderId).ClientTemplate(
-    "<a href='" +
-                Url.Action("SendEmail", "PurchaseOrderHeader", new { purchaseOrderHeaderId = "#=PurchaseOrderHeaderId#" }) +
-            "'" +
-    ">Send Email</a>"
+                columns.Bound(p => p.PurchaseOrderHeaderId).ClientTemplate(
+  "<a href='" +
+              Url.Action("SendEmail", "PurchaseOrderHeader", new { purchaseOrderHeaderId = "#=PurchaseOrderHeaderId#" }) +
+          "'" +
+  ">Send Email</a>"
 );
             })
         //.Columns(columns => columns.Command(c => c.Custom("Download").Text("Download").Action("Download", "PurchaseOrderHeader", new {purchaseOrderHeaderId = "#=PurchaseOrderHeaderId#"}).SendDataKeys.SendState(true)))
@@ -38,12 +39,13 @@
     @(Html.Kendo().Grid<PurchaseOrderDetailViewModel>()
                                           .Name("PurchaseOrderDetailViewModelGrid_#=PurchaseOrderHeaderId#")
                    .AddDefaultOptions(true, false)
-                   //.Events(e => e.Edit("podEdit"))
+            //.Events(e => e.Edit("podEdit"))
             // .ToolBar(t => t.Create())
           .DataSource(dataSource => dataSource
               .Ajax()
               .Batch(true)
-              .PageSize(5).Model(m => m.Id(p => p.PurchaseOrderDetailId))
+              .PageSize(5)
+              .Model(m => m.Id(p => p.PurchaseOrderDetailId))
                                                       .Read(read => read.Action("ReadDetail", "PurchaseOrderHeader", new { purchaseOrderHeaderId = "#=PurchaseOrderHeaderId#" }))
                                                       .Create("CreateDetail", "PurchaseOrderHeader", new { purchaseOrderHeaderId = "#=PurchaseOrderHeaderId#" })
                                       .Update("UpdateDetail", "PurchaseOrderHeader")

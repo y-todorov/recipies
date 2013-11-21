@@ -11,7 +11,7 @@ using System.Data.Entity;
 
 namespace InventoryManagementMVC.Controllers
 {
-    public class ProductInventoryHeaderController : ControllerBase
+    public class ProductInventoryHeaderController : Controller
     {
         public ActionResult Index()
         {
@@ -52,10 +52,11 @@ namespace InventoryManagementMVC.Controllers
                     ContextFactory.Current.SaveChanges();
 
                     List<Product> allProducts = ContextFactory.Current.Products.ToList();
-
+                    // Move this to the database project in ProductInventoryHeader
                     foreach (Product product in allProducts)
                     {
                         ProductInventory pi = new ProductInventory();
+                        pi.ProductId = product.ProductId;
                         pi.ForDate = pihModel.ForDate;
                         pi.AverageUnitPrice = product.UnitPrice;
                         pi.QuantityByDocuments = product.GetQuantityByDocumentsForDate(pihModel.ForDate.GetValueOrDefault());
@@ -82,28 +83,28 @@ namespace InventoryManagementMVC.Controllers
 
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Destroy([DataSourceRequest] DataSourceRequest request,
-            [Bind(Prefix = "models")] IEnumerable<ProductInventoryHeaderViewModel> products)
+            [Bind(Prefix = "models")] IEnumerable<ProductInventoryHeaderViewModel> pihs)
         {
-            if (products.Any())
+            if (pihs.Any())
             {
-                foreach (ProductInventoryHeaderViewModel pihModel in products)
+                foreach (ProductInventoryHeaderViewModel pihModel in pihs)
                 {
                     ProductInventoryHeader inv =
                         ContextFactory.Current.ProductInventoryHeaders.FirstOrDefault(p => p.ProductInventoryHeaderId == pihModel.ProductInventoryHeaderId);
                     ContextFactory.Current.ProductInventoryHeaders.Remove(inv);
 
-                    List<ProductInventory> pis = ContextFactory.Current.Inventories.OfType<ProductInventory>().Where(pi => pi.ProductInventoryHeaderId == pihModel.ProductInventoryHeaderId).ToList();
+                    //List<ProductInventory> pis = ContextFactory.Current.Inventories.OfType<ProductInventory>().Where(pi => pi.ProductInventoryHeaderId == pihModel.ProductInventoryHeaderId).ToList();
 
-                    foreach (ProductInventory pInventory in pis)
-                    {
-                        ContextFactory.Current.Inventories.Remove(pInventory);
-                    }
+                    //foreach (ProductInventory pInventory in pis)
+                    //{
+                    //    ContextFactory.Current.Inventories.Remove(pInventory);
+                    //}
 
                     ContextFactory.Current.SaveChanges();
                 }
             }
 
-            return Json(products.ToDataSourceResult(request, ModelState));
+            return Json(pihs.ToDataSourceResult(request, ModelState));
         }
     }
 }

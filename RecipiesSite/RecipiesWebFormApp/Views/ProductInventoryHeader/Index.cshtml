@@ -23,21 +23,15 @@
           .DataSource(dataSource => dataSource
               .Ajax()
               .Batch(true)
-                      .PageSize(5).Model(m => m.Id(p => p.ProductInventoryId))
-                                              .Read(read => read.Action("Read", "ProductInventory", new { productInventoryHeaderId = "#=ProductInventoryHeaderId#" }))
+                      .PageSize(5)
+                      .Model(m => m.Id(p => p.InventoryId))
+
+                                              .Read("Read", "ProductInventory", new { productInventoryHeaderId = "#=ProductInventoryHeaderId#" })
                                                               .Create("Create", "ProductInventory", new { productInventoryHeaderId = "#=ProductInventoryHeaderId#" })
                       .Update("Update", "ProductInventory")
                       .Destroy("Destroy", "ProductInventory")
           )
           .ToClientTemplate()
-            //  .DataSource(dataSource => dataSource
-            //.Ajax()
-            //.Read("Read", "PurchaseOrderHeader")
-            //.Create("Create", "PurchaseOrderHeader")
-            //.Update("Update", "PurchaseOrderHeader")
-            //.Destroy("Destroy", "PurchaseOrderHeader"))
-
-          //.ToClientTemplate()
 
     )
 </script>

@@ -20,6 +20,7 @@ namespace RecipiesModelNS
 
         public override int SaveChanges()
         {
+            ChangeTracker.DetectChanges();
             IEnumerable<DbEntityEntry> entries = ChangeTracker.Entries();
 
             List<YordanBaseEntity> addedEntities = new List<YordanBaseEntity>();

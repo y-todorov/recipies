@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace InventoryManagementMVC.Models
 {
@@ -13,6 +14,8 @@ namespace InventoryManagementMVC.Models
         [Key]
         public int InventoryId { get; set; }
 
+        [HiddenInput(DisplayValue = false)]
+        [ReadOnly(true)]
         public DateTime? ForDate { get; set; }
 
         public decimal? AverageUnitPrice { get; set; }
