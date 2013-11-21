@@ -9,7 +9,7 @@
  Html.Kendo().Grid(Model)
          .Name("SalesOrderHeaderViewModelGrid")
             .AddDefaultOptions()
-            
+
             .DataSource(dataSource => dataSource
                 .Ajax()
                 .Read("Read", "SalesOrderHeader")
@@ -18,5 +18,29 @@
                     .Destroy("Destroy", "SalesOrderHeader")
 
             )
-            //.ClientDetailTemplateId("template")
+            .ClientDetailTemplateId("template")
 )
+
+
+<script id="template" type="text/kendo-tmpl">
+    @(Html.Kendo().Grid<SalesOrderDetailViewModel>()
+                                                          .Name("SalesOrderDetailViewModel_#=SalesOrderHeaderId#")
+                   .AddDefaultOptions(true, false)
+          .DataSource(dataSource => dataSource
+              .Ajax()
+              .Batch(true)
+              .PageSize(5).Model(m => m.Id(p => p.SalesOrderHeaderId))
+                                                      .Read(read => read.Action("Read", "SalesOrderDetail", new { salesOrderHeaderId = "#=SalesOrderHeaderId#" }))
+                                                                                      .Create("Create", "SalesOrderDetail", new { salesOrderHeaderId = "#=SalesOrderHeaderId#" })
+                                                      .Update("Update", "SalesOrderDetail")
+                                              .Destroy("Destroy", "SalesOrderDetail")
+          )
+          .ToClientTemplate()
+
+
+
+    )
+
+
+</script>
+

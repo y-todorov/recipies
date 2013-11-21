@@ -405,6 +405,7 @@
     <Compile Include="Controllers\Production\RecipeIngredientController.cs" />
     <Compile Include="Controllers\Production\ProductIngredientController.cs" />
     <Compile Include="Controllers\Production\RecipieController.cs" />
+    <Compile Include="Controllers\Sales\SalesOrderDetailController.cs" />
     <Compile Include="Controllers\Sales\SalesOrderHeaderController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\Production\CategoryController.cs" />
@@ -495,6 +496,7 @@
     <Compile Include="Models\Production\UnitMeasureViewModel.cs" />
     <Compile Include="Models\Purchasing\PurchaseOrderDetailViewModel.cs" />
     <Compile Include="Models\Purchasing\PurchaseOrderHeaderViewModel.cs" />
+    <Compile Include="Models\Sales\SalesOrderDetailViewModel.cs" />
     <Compile Include="Models\Sales\SalesOrderHeaderViewModel.cs" />
     <Compile Include="Production\ProductInventories.aspx.cs">
       <DependentUpon>ProductInventories.aspx</DependentUpon>
