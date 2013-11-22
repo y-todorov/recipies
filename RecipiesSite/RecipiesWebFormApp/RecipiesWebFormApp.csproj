@@ -407,6 +407,7 @@
     <Compile Include="Controllers\Production\RecipieController.cs" />
     <Compile Include="Controllers\Sales\SalesOrderDetailController.cs" />
     <Compile Include="Controllers\Sales\SalesOrderHeaderController.cs" />
+    <Compile Include="Controllers\Shared\DownloadController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\Production\CategoryController.cs" />
     <Compile Include="Controllers\Production\ProductController.cs" />

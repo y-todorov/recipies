@@ -13,7 +13,7 @@
             {
                 columns.Bound(p => p.PurchaseOrderHeaderId).Title("Download").ClientTemplate(
       "<a href='" +
-                  Url.Action("Download", "PurchaseOrderHeader", new { purchaseOrderHeaderId = "#=PurchaseOrderHeaderId#" }) +
+                  Url.Action("DownloadPurchaseOrder", "Download", new { purchaseOrderHeaderId = "#=PurchaseOrderHeaderId#" }) +
               "'" +
       ">Download</a>");
                 columns.Bound(p => p.PurchaseOrderHeaderId).Title("SendEmail").ClientTemplate(

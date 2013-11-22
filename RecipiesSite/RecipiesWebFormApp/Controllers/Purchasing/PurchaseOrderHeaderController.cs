@@ -18,7 +18,7 @@ using RecipiesWebFormApp.Extensions;
 
 namespace InventoryManagementMVC.Controllers.Purchasing
 {
-    public class PurchaseOrderHeaderController : Controller // Do not use ControlllerBase becaouse Donut caching breaks downlod of the file ignore cache for actions that download files
+    public class PurchaseOrderHeaderController : ControllerBase // Do not use ControlllerBase becaouse Donut caching breaks downlod of the file ignore cache for actions that download files
     {
         public ActionResult Index()
         {
@@ -80,6 +80,7 @@ namespace InventoryManagementMVC.Controllers.Purchasing
 
                     ContextFactory.Current.SaveChanges();
                     newPohEntity.ModifiedDate = DateTime.Now;
+                    PurchaseOrderHeader.UpdatePurchaseOrderHeaderSubTotalFromPurchaseOrderDetails(newPohEntity.PurchaseOrderId);
                     ContextFactory.Current.SaveChanges();
 
 
