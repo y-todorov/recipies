@@ -54,11 +54,11 @@
        .ToolBar(t => t.Create())
     .Columns(columns =>
     {
-        columns.Bound(p => p.Name)
-            .FooterTemplate(@<text>Count: @item.Count</text>)
-    .GroupFooterTemplate(@<text>Count: @item.Count</text>);
-        //.ClientGroupFooterTemplate("Count: #=count#");
-        //.GroupFooterTemplate(@<text>Count: @item.Count</text>);
+        columns.Bound(p => p.Name);
+            //.FooterTemplate(@<text>Count: @item.Count</text>)
+    //.GroupFooterTemplate(@<text>Count: @item.Count</text>);
+        //.ClientGroupFooterTemplate("Count: #=count#")
+        //.ClientGroupFooterTemplate(@<text>Count: @item.Count</text>);
         @*columns.Bound(p => p.UnitPrice).Format("{0:C}");
             columns.Bound(p => p.UnitsOnOrder)
                 .FooterTemplate(@<text>Average: @item.Average</text>);

@@ -133,9 +133,26 @@ namespace InventoryManagementMVC.Extensions
                             //.GroupFooterTemplate(f => f.Count.Format("Count: {0}"));
                         }
 
+                        if (propertyInfo.GetCustomAttributes<KeyAttribute>().Any()) // The primary key
+                        {
+                            if (!isClient)
+                            {
+                                columns.Bound(propertyInfo.Name).Format("{0}").Title("Id")
+                                    //.FooterTemplate(f => f.Sum.Format("Sum: {0:N}"))
+                                    //.GroupFooterTemplate(f => f.Sum.Format("Sum: {0:N}"));
+                                     .ClientFooterTemplate("Count: #= kendo.format('{0}', count)#")
+                                .ClientGroupFooterTemplate("Count: #= kendo.format('{0}', count)#");
+                            }
+                            else
+                            {
+                                columns.Bound(propertyInfo.Name).Title("Id");
+                                //.ClientFooterTemplate("Sum: #= kendo.format('{0:N}', sum)#")
+                                //.ClientGroupFooterTemplate("Sum: #= kendo.format('{0:N}', sum)#");
+                            }
+                        }
                         // do not show foreign key columns
                         if (propertyInfo.GetCustomAttributes<RelationAttribute>().Any() ||
-                            propertyInfo.GetCustomAttributes<KeyAttribute>().Any() ||
+                            propertyInfo.GetCustomAttributes<KeyAttribute>().Any() || // Just show the PK
                             (propertyInfo.GetCustomAttributes<HiddenInputAttribute>().Any() && !areHiddenColumnsVisible))
                         {
                             continue;
