@@ -41,8 +41,9 @@ namespace InventoryManagementMVC.Controllers
 
             //deviceInfo["OutputFormat"] = "DOCX";
 
-            //RenderingResult result = reportProcessor.RenderReport("Image", instanceReportSource, null);
-            RenderingResult result = reportProcessor.RenderReport("pdf", instanceReportSource, null);
+            RenderingResult result = reportProcessor.RenderReport("Image", instanceReportSource, null);
+            //RenderingResult result = reportProcessor.RenderReport("pdf", instanceReportSource, null); // PROBLEMS
+            //  http://www.telerik.com/community/forums/reporting/telerik-reporting/out-of-memory-in-azure-websites.aspx
 
 
             string fileName = result.DocumentName + "." + result.Extension;
