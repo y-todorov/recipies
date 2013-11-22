@@ -27,8 +27,13 @@ namespace RecipiesWebFormApp
             //bundles.Add(new ScriptBundle("~/bundles/kendoculture", "http://cdn.kendostatic.com/2013.2.918/js/cultures/kendo.culture.en-IE.min.js"));
 
 
+            //bundles.Add(new ScriptBundle("~/bundles/js").Include(
+            //            "~/Scripts/Bundles/*.js"));
+
+            // this way no other request is made for the map file
             bundles.Add(new ScriptBundle("~/bundles/js").Include(
-                        "~/Scripts/Bundles/*.js"));
+                       "~/Scripts/WebEssentials/WebEssentialsJsBundle.min.js"));
+            
 
 
             bundles.Add(new StyleBundle("~/Content/bundles/css")

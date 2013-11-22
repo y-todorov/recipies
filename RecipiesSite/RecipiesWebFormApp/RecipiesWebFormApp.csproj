@@ -300,6 +300,38 @@
     <Content Include="Scripts\kendo.custom-2013.2.918.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\MyJavaScript.js" />
+    <Content Include="Scripts\WebEssentials\jquery.js" />
+    <Content Include="Scripts\WebEssentials\jquery.min.js">
+      <DependentUpon>jquery.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\WebEssentials\kendo.AllAndMvc.2013.3.1119.min.js" />
+    <Content Include="Scripts\WebEssentials\kendoall.js" />
+    <Content Include="Scripts\WebEssentials\kendoall.min.js">
+      <DependentUpon>kendoall.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\WebEssentials\kendoaspnetmvc.js" />
+    <Content Include="Scripts\WebEssentials\kendoaspnetmvc.min.js">
+      <DependentUpon>kendoaspnetmvc.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\WebEssentials\kendoculture.js" />
+    <Content Include="Scripts\WebEssentials\kendoculture.min.js">
+      <DependentUpon>kendoculture.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\WebEssentials\modernizr.js" />
+    <Content Include="Scripts\WebEssentials\modernizr.min.js">
+      <DependentUpon>modernizr.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\WebEssentials\Site.js" />
+    <Content Include="Scripts\WebEssentials\Site.min.js">
+      <DependentUpon>Site.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\WebEssentials\test.js" />
+    <Content Include="Scripts\WebEssentials\WebEssentialsJsBundle.js">
+      <DependentUpon>WebEssentialsJsBundle.js.bundle</DependentUpon>
+    </Content>
+    <Content Include="Scripts\WebEssentials\WebEssentialsJsBundle.min.js">
+      <DependentUpon>WebEssentialsJsBundle.js.bundle</DependentUpon>
+    </Content>
     <Content Include="Scripts\WebForms\DetailsView.js" />
     <Content Include="Scripts\WebForms\Focus.js" />
     <Content Include="Scripts\WebForms\GridView.js" />
@@ -717,6 +749,28 @@
     <Content Include="Views\Test\Index.cshtml" />
     <Content Include="Views\Recipe\Index.cshtml" />
     <Content Include="Views\SalesOrderHeader\Index.cshtml" />
+    <Content Include="Scripts\WebEssentials\jquery.min.js.map">
+      <DependentUpon>jquery.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\WebEssentials\kendoall.min.js.map">
+      <DependentUpon>kendoall.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\WebEssentials\kendoaspnetmvc.min.js.map">
+      <DependentUpon>kendoaspnetmvc.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\WebEssentials\kendoculture.min.js.map">
+      <DependentUpon>kendoculture.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\WebEssentials\modernizr.min.js.map">
+      <DependentUpon>modernizr.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\WebEssentials\Site.min.js.map">
+      <DependentUpon>Site.js</DependentUpon>
+    </Content>
+    <None Include="Scripts\WebEssentials\WebEssentialsJsBundle.js.bundle" />
+    <Content Include="Scripts\WebEssentials\WebEssentialsJsBundle.min.js.map">
+      <DependentUpon>WebEssentialsJsBundle.js.bundle</DependentUpon>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
