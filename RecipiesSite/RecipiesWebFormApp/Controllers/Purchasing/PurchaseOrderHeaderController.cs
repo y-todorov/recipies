@@ -14,10 +14,11 @@ using RestSharp;
 using System.Net;
 using System.Data.Entity;
 using InventoryManagementMVC.Models;
+using RecipiesWebFormApp.Extensions;
 
 namespace InventoryManagementMVC.Controllers.Purchasing
 {
-    public class PurchaseOrderHeaderController : ControllerBase
+    public class PurchaseOrderHeaderController : Controller // Do not use ControlllerBase becaouse Donut caching breaks downlod of the file ignore cache for actions that download files
     {
         public ActionResult Index()
         {
@@ -187,7 +188,9 @@ namespace InventoryManagementMVC.Controllers.Purchasing
             //Response.Write("<b>File Contents: </b>");
             //Response.BinaryWrite(result.DocumentBytes);
 
-            return File(new byte[1], "txt");
+            //MyFileResult m = new MyFileResult(result);
+            //return m;
+            return File(result.DocumentBytes, result.MimeType, fileName);
         }
 
          public ActionResult SendEmail(int? purchaseOrderHeaderId)

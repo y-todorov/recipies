@@ -23,31 +23,31 @@ namespace InventoryManagementMVC.Controllers
 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            stopwatch.Start();
+            //stopwatch.Start();
             base.OnActionExecuting(filterContext);
         }
 
         protected override void OnActionExecuted(ActionExecutedContext filterContext)
         {
-            base.OnActionExecuted(filterContext);
-            stopwatch.Stop();
-            ActionMilliseconds = stopwatch.ElapsedMilliseconds;
-            ViewData.Add("ActionMilliseconds", ActionMilliseconds);
+            //base.OnActionExecuted(filterContext);
+            //stopwatch.Stop();
+           // ActionMilliseconds = stopwatch.ElapsedMilliseconds;
+            //ViewData.Add("ActionMilliseconds", ActionMilliseconds);
             stopwatch.Reset();
         }
 
         protected override void OnResultExecuting(ResultExecutingContext filterContext)
         {
-            stopwatch.Start();
+           // stopwatch.Start();
             base.OnResultExecuting(filterContext);
         }
 
         protected override void OnResultExecuted(ResultExecutedContext filterContext)
         {
-            base.OnResultExecuted(filterContext);
-            stopwatch.Stop();
-            ResultMilliseconds = stopwatch.ElapsedMilliseconds;
-            ViewData.Add("ResultMilliseconds", ResultMilliseconds);
+            //base.OnResultExecuted(filterContext);
+            //stopwatch.Stop();
+            //ResultMilliseconds = stopwatch.ElapsedMilliseconds;
+            //ViewData.Add("ResultMilliseconds", ResultMilliseconds);
             stopwatch.Reset();
         }
     }

@@ -11,11 +11,11 @@
             .AddDefaultOptions()
             .Columns(columns =>
             {
-                //          columns.Bound(p => p.PurchaseOrderHeaderId).ClientTemplate(
-                //"<a href='" +
-                //            Url.Action("Download", "PurchaseOrderHeader", new { purchaseOrderHeaderId = "#=PurchaseOrderHeaderId#" }) +
-                //        "'" +
-                //">Download</a>");
+                columns.Bound(p => p.PurchaseOrderHeaderId).ClientTemplate(
+      "<a href='" +
+                  Url.Action("Download", "PurchaseOrderHeader", new { purchaseOrderHeaderId = "#=PurchaseOrderHeaderId#" }) +
+              "'" +
+      ">Download</a>");
                 columns.Bound(p => p.PurchaseOrderHeaderId).ClientTemplate(
   "<a href='" +
               Url.Action("SendEmail", "PurchaseOrderHeader", new { purchaseOrderHeaderId = "#=PurchaseOrderHeaderId#" }) +
