@@ -116,6 +116,26 @@ namespace RecipiesModelNS
             }
         }
 
+        public static void UpdatePurchaseOrderHeaderSubTotalFromPurchaseOrderDetails(int? purchaseOrderHeaderId)
+        {
+            if (purchaseOrderHeaderId.HasValue)
+            {
+                PurchaseOrderHeader poh =
+                    ContextFactory.GetContextPerRequest()
+                        .PurchaseOrderHeaders.FirstOrDefault(po => po.PurchaseOrderId == purchaseOrderHeaderId.Value);
+                if (poh != null)
+                {
+                    decimal? subTotal = 0;
+                    foreach (PurchaseOrderDetail pod in poh.PurchaseOrderDetails)
+                    {
+                        subTotal += (decimal?)pod.LineTotal;
+                    }
+                    poh.SubTotal = subTotal;
+                    ContextFactory.GetContextPerRequest().SaveChanges();
+                }
+            }
+        }
+
         public override void Added(System.Data.Entity.Infrastructure.DbEntityEntry e = null)
         {
             UpdateProductsUnitsInStock(PurchaseOrderId);

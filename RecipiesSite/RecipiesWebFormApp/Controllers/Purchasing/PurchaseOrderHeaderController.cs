@@ -65,7 +65,7 @@ namespace InventoryManagementMVC.Controllers.Purchasing
                             PurchaseOrderId = newPohEntity.PurchaseOrderId,
                             ProductId = pv.Product.ProductId,
                             UnitPrice = pv.Product.UnitPrice,
-                            UnitMeasureId = pv.UnitMeasureId,                           
+                            UnitMeasureId = pv.UnitMeasureId,
                         };
 
                         decimal coef = 1;
@@ -73,11 +73,11 @@ namespace InventoryManagementMVC.Controllers.Purchasing
                         {
                             coef = (decimal)pv.Product.GetBaseUnitMeasureQuantityForProduct(1, pv.UnitMeasure);
                         }
-                        pod.UnitPrice = coef * (decimal)pv.Product.GetAveragePriceLastDays(14);                      
+                        pod.UnitPrice = coef * (decimal)pv.Product.GetAveragePriceLastDays(14);
 
                         ContextFactory.Current.PurchaseOrderDetails.Add(pod);
                     }
-                                       
+
                     ContextFactory.Current.SaveChanges();
                     newPohEntity.ModifiedDate = DateTime.Now;
                     ContextFactory.Current.SaveChanges();
@@ -129,11 +129,25 @@ namespace InventoryManagementMVC.Controllers.Purchasing
 
             return Json(purchaseOrderHeaders.ToDataSourceResult(request, ModelState));
         }
-          
+
+        public ActionResult CorrectTotals()
+        {
+            List<PurchaseOrderHeader> headers = ContextFactory.Current.PurchaseOrderHeaders.ToList();
+
+            foreach (PurchaseOrderHeader header in headers)
+            {
+                PurchaseOrderHeader.UpdatePurchaseOrderHeaderSubTotalFromPurchaseOrderDetails(header.PurchaseOrderId);
+            }
+            ContextFactory.Current.SaveChanges();
+
+            return RedirectToAction("Index");
+
+        }
+
         public ActionResult Download(int? purchaseOrderHeaderId)
         {
 
-            
+
             PurchaseOrderHeader purchaseOrder =
                 ContextFactory.GetContextPerRequest()
                     .PurchaseOrderHeaders.FirstOrDefault(p => p.PurchaseOrderId == purchaseOrderHeaderId);
@@ -171,7 +185,7 @@ namespace InventoryManagementMVC.Controllers.Purchasing
             };
             //Response.AppendHeader("Content-Disposition", cd.ToString());
 
-       
+
 
             //return File(result.DocumentBytes, result.MimeType, fileName);
 
@@ -193,123 +207,123 @@ namespace InventoryManagementMVC.Controllers.Purchasing
             return File(result.DocumentBytes, result.MimeType, fileName);
         }
 
-         public ActionResult SendEmail(int? purchaseOrderHeaderId)
-         {
-             //(Master as SiteMaster).MasterRadNotification.Show(
-             //    "Sending Emails is temporary disabled. Will be enabled when the product is tested enough! ");
-             //return;
+        public ActionResult SendEmail(int? purchaseOrderHeaderId)
+        {
+            //(Master as SiteMaster).MasterRadNotification.Show(
+            //    "Sending Emails is temporary disabled. Will be enabled when the product is tested enough! ");
+            //return;
 
-             PurchaseOrderHeader purchaseOrder = ContextFactory.GetContextPerRequest().PurchaseOrderHeaders.FirstOrDefault(p => p.PurchaseOrderId == purchaseOrderHeaderId);
+            PurchaseOrderHeader purchaseOrder = ContextFactory.GetContextPerRequest().PurchaseOrderHeaders.FirstOrDefault(p => p.PurchaseOrderId == purchaseOrderHeaderId);
 
-             ReportProcessor reportProcessor = new ReportProcessor();
+            ReportProcessor reportProcessor = new ReportProcessor();
 
-             var instanceReportSource = new Telerik.Reporting.InstanceReportSource();
-             RecipiesReports.PurchaseOrderDetailsReport salesOrderDetailsReport = new RecipiesReports.PurchaseOrderDetailsReport();
+            var instanceReportSource = new Telerik.Reporting.InstanceReportSource();
+            RecipiesReports.PurchaseOrderDetailsReport salesOrderDetailsReport = new RecipiesReports.PurchaseOrderDetailsReport();
 
-             List<PurchaseOrderDetail> nonEmptyOrders = purchaseOrder.PurchaseOrderDetails.Where(pod => pod.OrderQuantity.GetValueOrDefault() != 0).ToList();
+            List<PurchaseOrderDetail> nonEmptyOrders = purchaseOrder.PurchaseOrderDetails.Where(pod => pod.OrderQuantity.GetValueOrDefault() != 0).ToList();
 
-             salesOrderDetailsReport.DataSource = nonEmptyOrders;
-             instanceReportSource.ReportDocument = salesOrderDetailsReport;
+            salesOrderDetailsReport.DataSource = nonEmptyOrders;
+            instanceReportSource.ReportDocument = salesOrderDetailsReport;
 
-             RenderingResult result = reportProcessor.RenderReport("Image", instanceReportSource, null);
+            RenderingResult result = reportProcessor.RenderReport("Image", instanceReportSource, null);
 
-             EmailTemplate defaultTemplate = ContextFactory.GetContextPerRequest().EmailTemplates.FirstOrDefault(et => et.IsDefault);
-             if (defaultTemplate != null)
-             {
-                 RestResponse restResponse = EmailHelper.SendComplexMessage(defaultTemplate.From, purchaseOrder.Vendor.Email, defaultTemplate.Cc,
-                     defaultTemplate.Bcc, defaultTemplate.Subject, defaultTemplate.TextBody, defaultTemplate.HtmlBody,
-                     result.DocumentBytes, defaultTemplate.AttachmentName + "." + result.Extension);                
-             }
-             else
-             {
-             }
+            EmailTemplate defaultTemplate = ContextFactory.GetContextPerRequest().EmailTemplates.FirstOrDefault(et => et.IsDefault);
+            if (defaultTemplate != null)
+            {
+                RestResponse restResponse = EmailHelper.SendComplexMessage(defaultTemplate.From, purchaseOrder.Vendor.Email, defaultTemplate.Cc,
+                    defaultTemplate.Bcc, defaultTemplate.Subject, defaultTemplate.TextBody, defaultTemplate.HtmlBody,
+                    result.DocumentBytes, defaultTemplate.AttachmentName + "." + result.Extension);
+            }
+            else
+            {
+            }
 
-             return RedirectToAction("Index");
-         }
+            return RedirectToAction("Index");
+        }
 
-         public ActionResult ReadDetail(int? purchaseOrderHeaderId, [DataSourceRequest] DataSourceRequest request)
-         {
-             List<PurchaseOrderDetailViewModel> purchaseOrderDetailViewModels =
-                 ContextFactory.Current.PurchaseOrderDetails.Where(
-                     pod => purchaseOrderHeaderId.HasValue ? pod.PurchaseOrderId == purchaseOrderHeaderId.Value : true)
-                     .Include(pod => pod.PurchaseOrderHeader.Vendor)
-                     .Include(pod => pod.Product.ProductCategory)
-                     .ToList().Select
-                     (pod =>
-                         PurchaseOrderDetailViewModel.ConvertFromPurchaseOrderDetailEntity(pod,
-                             new PurchaseOrderDetailViewModel())).ToList();
-             return Json(purchaseOrderDetailViewModels.ToDataSourceResult(request));
-         }
+        public ActionResult ReadDetail(int? purchaseOrderHeaderId, [DataSourceRequest] DataSourceRequest request)
+        {
+            List<PurchaseOrderDetailViewModel> purchaseOrderDetailViewModels =
+                ContextFactory.Current.PurchaseOrderDetails.Where(
+                    pod => purchaseOrderHeaderId.HasValue ? pod.PurchaseOrderId == purchaseOrderHeaderId.Value : true)
+                    .Include(pod => pod.PurchaseOrderHeader.Vendor)
+                    .Include(pod => pod.Product.ProductCategory)
+                    .ToList().Select
+                    (pod =>
+                        PurchaseOrderDetailViewModel.ConvertFromPurchaseOrderDetailEntity(pod,
+                            new PurchaseOrderDetailViewModel())).ToList();
+            return Json(purchaseOrderDetailViewModels.ToDataSourceResult(request));
+        }
 
-         [AcceptVerbs(HttpVerbs.Post)]
-         public ActionResult CreateDetail(int? purchaseOrderHeaderId, [DataSourceRequest] DataSourceRequest request,
-             [Bind(Prefix = "models")] IEnumerable<PurchaseOrderDetailViewModel> purchaseOrderDetails)
-         {
-             if (purchaseOrderDetails != null && ModelState.IsValid)
-             {
-                 foreach (PurchaseOrderDetailViewModel podViewModel in purchaseOrderDetails)
-                 {
-                     podViewModel.PurchaseOrderHeaderId = purchaseOrderHeaderId;
-                     PurchaseOrderDetail newPodEntity =
-                         PurchaseOrderDetailViewModel.ConvertToPurchaseOrderDetailEntity(podViewModel, new PurchaseOrderDetail());
-                     ContextFactory.Current.PurchaseOrderDetails.Add(newPodEntity);
-                     ContextFactory.Current.SaveChanges();
-                     // Prefetch Product and others ...
-                     newPodEntity = ContextFactory.Current.PurchaseOrderDetails.Include(pod => pod.PurchaseOrderHeader.Vendor)
-                     .Include(pod => pod.Product.ProductCategory).FirstOrDefault(pod => pod.PurchaseOrderDetailId == newPodEntity.PurchaseOrderDetailId);
-                     PurchaseOrderDetailViewModel.ConvertFromPurchaseOrderDetailEntity(newPodEntity, podViewModel);
-                 }
-             }
-             //return View("Index");
-             return Json(purchaseOrderDetails.ToDataSourceResult(request, ModelState));
-         }
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult CreateDetail(int? purchaseOrderHeaderId, [DataSourceRequest] DataSourceRequest request,
+            [Bind(Prefix = "models")] IEnumerable<PurchaseOrderDetailViewModel> purchaseOrderDetails)
+        {
+            if (purchaseOrderDetails != null && ModelState.IsValid)
+            {
+                foreach (PurchaseOrderDetailViewModel podViewModel in purchaseOrderDetails)
+                {
+                    podViewModel.PurchaseOrderHeaderId = purchaseOrderHeaderId;
+                    PurchaseOrderDetail newPodEntity =
+                        PurchaseOrderDetailViewModel.ConvertToPurchaseOrderDetailEntity(podViewModel, new PurchaseOrderDetail());
+                    ContextFactory.Current.PurchaseOrderDetails.Add(newPodEntity);
+                    ContextFactory.Current.SaveChanges();
+                    // Prefetch Product and others ...
+                    newPodEntity = ContextFactory.Current.PurchaseOrderDetails.Include(pod => pod.PurchaseOrderHeader.Vendor)
+                    .Include(pod => pod.Product.ProductCategory).FirstOrDefault(pod => pod.PurchaseOrderDetailId == newPodEntity.PurchaseOrderDetailId);
+                    PurchaseOrderDetailViewModel.ConvertFromPurchaseOrderDetailEntity(newPodEntity, podViewModel);
+                }
+            }
+            //return View("Index");
+            return Json(purchaseOrderDetails.ToDataSourceResult(request, ModelState));
+        }
 
-         [AcceptVerbs(HttpVerbs.Post)]
-         public ActionResult UpdateDetail([DataSourceRequest] DataSourceRequest request,
-             [Bind(Prefix = "models")] IEnumerable<PurchaseOrderDetailViewModel> purchaseOrderDetails)
-         {
-             if (purchaseOrderDetails != null && ModelState.IsValid)
-             {
-                 foreach (PurchaseOrderDetailViewModel podViewModel in purchaseOrderDetails)
-                 {
-                     PurchaseOrderDetail pohEntity =
-                         ContextFactory.Current.PurchaseOrderDetails.FirstOrDefault(
-                             c => c.PurchaseOrderDetailId == podViewModel.PurchaseOrderDetailId);
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult UpdateDetail([DataSourceRequest] DataSourceRequest request,
+            [Bind(Prefix = "models")] IEnumerable<PurchaseOrderDetailViewModel> purchaseOrderDetails)
+        {
+            if (purchaseOrderDetails != null && ModelState.IsValid)
+            {
+                foreach (PurchaseOrderDetailViewModel podViewModel in purchaseOrderDetails)
+                {
+                    PurchaseOrderDetail pohEntity =
+                        ContextFactory.Current.PurchaseOrderDetails.FirstOrDefault(
+                            c => c.PurchaseOrderDetailId == podViewModel.PurchaseOrderDetailId);
 
-                     PurchaseOrderDetailViewModel.ConvertToPurchaseOrderDetailEntity(podViewModel, pohEntity);
+                    PurchaseOrderDetailViewModel.ConvertToPurchaseOrderDetailEntity(podViewModel, pohEntity);
 
-                     ContextFactory.Current.SaveChanges();
-                     // Prefetch Product and others ...
-                     pohEntity = ContextFactory.Current.PurchaseOrderDetails.Include(pod => pod.PurchaseOrderHeader.Vendor)
-                    .Include(pod => pod.Product.ProductCategory).FirstOrDefault(pod => pod.PurchaseOrderDetailId == pohEntity.PurchaseOrderDetailId);
-                     PurchaseOrderDetailViewModel.ConvertFromPurchaseOrderDetailEntity(pohEntity, podViewModel);
-                 }
-             }
+                    ContextFactory.Current.SaveChanges();
+                    // Prefetch Product and others ...
+                    pohEntity = ContextFactory.Current.PurchaseOrderDetails.Include(pod => pod.PurchaseOrderHeader.Vendor)
+                   .Include(pod => pod.Product.ProductCategory).FirstOrDefault(pod => pod.PurchaseOrderDetailId == pohEntity.PurchaseOrderDetailId);
+                    PurchaseOrderDetailViewModel.ConvertFromPurchaseOrderDetailEntity(pohEntity, podViewModel);
+                }
+            }
 
-             //return View("Index");
+            //return View("Index");
 
-             return Json(purchaseOrderDetails.ToDataSourceResult(request, ModelState));
-         }
+            return Json(purchaseOrderDetails.ToDataSourceResult(request, ModelState));
+        }
 
-         [AcceptVerbs(HttpVerbs.Post)]
-         public ActionResult DestroyDetail([DataSourceRequest] DataSourceRequest request,
-             [Bind(Prefix = "models")] IEnumerable<PurchaseOrderDetailViewModel> purchaseOrderDetails)
-         {
-             foreach (PurchaseOrderDetailViewModel pod in purchaseOrderDetails)
-             {
-                 PurchaseOrderDetail podEntity =
-                     ContextFactory.Current.PurchaseOrderDetails.FirstOrDefault(
-                         c => c.PurchaseOrderDetailId == pod.PurchaseOrderDetailId);
-                 ContextFactory.Current.PurchaseOrderDetails.Remove(podEntity);
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult DestroyDetail([DataSourceRequest] DataSourceRequest request,
+            [Bind(Prefix = "models")] IEnumerable<PurchaseOrderDetailViewModel> purchaseOrderDetails)
+        {
+            foreach (PurchaseOrderDetailViewModel pod in purchaseOrderDetails)
+            {
+                PurchaseOrderDetail podEntity =
+                    ContextFactory.Current.PurchaseOrderDetails.FirstOrDefault(
+                        c => c.PurchaseOrderDetailId == pod.PurchaseOrderDetailId);
+                ContextFactory.Current.PurchaseOrderDetails.Remove(podEntity);
 
-                 ContextFactory.Current.SaveChanges();
-             }
+                ContextFactory.Current.SaveChanges();
+            }
 
-             return Json(purchaseOrderDetails.ToDataSourceResult(request, ModelState));
-             //return View("Index");
+            return Json(purchaseOrderDetails.ToDataSourceResult(request, ModelState));
+            //return View("Index");
 
-         }
-        
+        }
+
     }
-    
+
 }

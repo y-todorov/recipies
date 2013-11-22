@@ -11,12 +11,12 @@
             .AddDefaultOptions()
             .Columns(columns =>
             {
-                columns.Bound(p => p.PurchaseOrderHeaderId).ClientTemplate(
+                columns.Bound(p => p.PurchaseOrderHeaderId).Title("Download").ClientTemplate(
       "<a href='" +
                   Url.Action("Download", "PurchaseOrderHeader", new { purchaseOrderHeaderId = "#=PurchaseOrderHeaderId#" }) +
               "'" +
       ">Download</a>");
-                columns.Bound(p => p.PurchaseOrderHeaderId).ClientTemplate(
+                columns.Bound(p => p.PurchaseOrderHeaderId).Title("SendEmail").ClientTemplate(
   "<a href='" +
               Url.Action("SendEmail", "PurchaseOrderHeader", new { purchaseOrderHeaderId = "#=PurchaseOrderHeaderId#" }) +
           "'" +
@@ -33,6 +33,13 @@
 
             ).ClientDetailTemplateId("template")
 
+            //Html.Kendo().MobileButton()
+            //    .Name("updateTotals")
+            //    .
+   
+)
+@(
+ Html.ActionLink("CorrectTotals", "CorrectTotals")
 )
 
 <script id="template" type="text/kendo-tmpl">
@@ -52,13 +59,9 @@
                               .Destroy("DestroyDetail", "PurchaseOrderHeader")
           )
           .ToClientTemplate()
-
-
-
     )
-
-
 </script>
+
 
 <script>
     function podEdit(e) {
