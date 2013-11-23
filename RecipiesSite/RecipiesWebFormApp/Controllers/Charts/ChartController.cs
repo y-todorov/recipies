@@ -13,6 +13,7 @@ namespace InventoryManagementMVC.Controllers
 {
     public class ChartController : ControllerBase
     {
+        int maxXLabelTextLenght = 10;
         public ActionResult ProductsCountByCategory()
         {
             var pc = ContextFactory.Current.ProductCategories.Include(c => c.Products).ToList()
@@ -20,7 +21,7 @@ namespace InventoryManagementMVC.Controllers
                     cat =>
                         new ProductsPerCategory
                         {
-                            CategoryName = cat.Name.Substring(0, cat.Name.Length >= 10 ? 10 : cat.Name.Length),
+                            CategoryName = cat.Name.Substring(0, cat.Name.Length >= maxXLabelTextLenght ? maxXLabelTextLenght : cat.Name.Length),
                             //CategoryName = cat.Name,
                             ProductCount = cat.Products.Count,
                             ProductValue =
@@ -54,6 +55,24 @@ namespace InventoryManagementMVC.Controllers
                 GpPerDay gh = new GpPerDay() { Days = date.ToString("dd/MM"), DayGp = dayGp };
                 list.Add(gh);
             }
+
+            return Json(list);
+        }
+
+        public ActionResult LowProducts()
+        {
+            var list = ContextFactory.GetContextPerRequest().Products
+                    .Where(product => product.UnitsInStock <= product.ReorderLevel)
+                    .OrderByDescending(product => product.ReorderLevel)
+                    .Select(
+                        p =>
+                            new LowProduct
+                            {
+                                UnitsInStock = p.UnitsInStock,
+                                UnitsOnOrder = p.UnitsOnOrder,
+                                ReorderLevel = p.ReorderLevel,
+                                ProductName = p.Name.Substring(0, maxXLabelTextLenght)
+                            }).Take(10).ToList();
 
             return Json(list);
         }
