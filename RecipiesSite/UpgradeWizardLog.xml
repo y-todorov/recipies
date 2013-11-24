@@ -9,20 +9,6 @@
   <event action="Analyze" type="Success" name="Render Extensions" path="C:\Projects\recipies\RecipiesSite\DynamicApplication\DynamicApplicationModel\App.Config" />
   <event action="Analyze" type="Success" name="Session State Providers" path="C:\Projects\recipies\RecipiesSite\DynamicApplication\DynamicApplicationModel\App.Config" />
   <event action="Analyze" type="Success" name="App.Config" path="C:\Projects\recipies\RecipiesSite\DynamicApplication\DynamicApplicationModel\App.Config" />
-  <event action="Analyze" type="Success" name="Assembly References" path="C:\Projects\recipies\RecipiesSite\DynamicApplication\DynamicApplicationModel\OpenAccessAssemblies\enhancer.exe.config" />
-  <event action="Analyze" type="Success" name="Http Handlers" path="C:\Projects\recipies\RecipiesSite\DynamicApplication\DynamicApplicationModel\OpenAccessAssemblies\enhancer.exe.config" />
-  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="C:\Projects\recipies\RecipiesSite\DynamicApplication\DynamicApplicationModel\OpenAccessAssemblies\enhancer.exe.config" />
-  <event action="Analyze" type="Success" name="Config Sections" path="C:\Projects\recipies\RecipiesSite\DynamicApplication\DynamicApplicationModel\OpenAccessAssemblies\enhancer.exe.config" />
-  <event action="Analyze" type="Success" name="Render Extensions" path="C:\Projects\recipies\RecipiesSite\DynamicApplication\DynamicApplicationModel\OpenAccessAssemblies\enhancer.exe.config" />
-  <event action="Analyze" type="Success" name="Session State Providers" path="C:\Projects\recipies\RecipiesSite\DynamicApplication\DynamicApplicationModel\OpenAccessAssemblies\enhancer.exe.config" />
-  <event action="Analyze" type="Success" name="enhancer.exe.config" path="C:\Projects\recipies\RecipiesSite\DynamicApplication\DynamicApplicationModel\OpenAccessAssemblies\enhancer.exe.config" />
-  <event action="Analyze" type="Success" name="Assembly References" path="C:\Projects\recipies\RecipiesSite\DynamicApplication\DynamicApplicationModel\OpenAccessAssemblies\venhance.exe.config" />
-  <event action="Analyze" type="Success" name="Http Handlers" path="C:\Projects\recipies\RecipiesSite\DynamicApplication\DynamicApplicationModel\OpenAccessAssemblies\venhance.exe.config" />
-  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="C:\Projects\recipies\RecipiesSite\DynamicApplication\DynamicApplicationModel\OpenAccessAssemblies\venhance.exe.config" />
-  <event action="Analyze" type="Success" name="Config Sections" path="C:\Projects\recipies\RecipiesSite\DynamicApplication\DynamicApplicationModel\OpenAccessAssemblies\venhance.exe.config" />
-  <event action="Analyze" type="Success" name="Render Extensions" path="C:\Projects\recipies\RecipiesSite\DynamicApplication\DynamicApplicationModel\OpenAccessAssemblies\venhance.exe.config" />
-  <event action="Analyze" type="Success" name="Session State Providers" path="C:\Projects\recipies\RecipiesSite\DynamicApplication\DynamicApplicationModel\OpenAccessAssemblies\venhance.exe.config" />
-  <event action="Analyze" type="Success" name="venhance.exe.config" path="C:\Projects\recipies\RecipiesSite\DynamicApplication\DynamicApplicationModel\OpenAccessAssemblies\venhance.exe.config" />
   <event action="Analyze" type="Success" name="RecipiesModel" path="C:\Projects\recipies\RecipiesSite\DynamicApplication\DynamicApplicationModel\RecipiesModel.csproj" />
   <event action="Analyze" type="Success" name="Assembly References" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\RecipiesWebFormApp.csproj" />
   <event action="Analyze" type="Success" name="Register Directives" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\About.aspx" />
@@ -60,6 +46,9 @@
   <event action="Analyze" type="Success" name="Render Extensions" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Bundle.config" />
   <event action="Analyze" type="Success" name="Session State Providers" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Bundle.config" />
   <event action="Analyze" type="Success" name="Bundle.config" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Bundle.config" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Charts\Vendors.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Charts\Vendors.aspx" />
+  <event action="Analyze" type="Success" name="Vendors.aspx" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Charts\Vendors.aspx" />
   <event action="Analyze" type="Success" name="Register Directives" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Contact.aspx" />
   <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Contact.aspx" />
   <event action="Analyze" type="Success" name="Contact.aspx" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Contact.aspx" />
@@ -87,6 +76,13 @@
   <event action="Analyze" type="Success" name="Register Directives" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\HumanResources\Shifts.aspx" />
   <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\HumanResources\Shifts.aspx" />
   <event action="Analyze" type="Success" name="Shifts.aspx" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\HumanResources\Shifts.aspx" />
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\newrelic\newrelic.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\newrelic\newrelic.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\newrelic\newrelic.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\newrelic\newrelic.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\newrelic\newrelic.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\newrelic\newrelic.config" />
+  <event action="Analyze" type="Success" name="newrelic.config" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\newrelic\newrelic.config" />
   <event action="Analyze" type="Success" name="Assembly References" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\packages.config" />
   <event action="Analyze" type="Success" name="Http Handlers" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\packages.config" />
   <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\packages.config" />
@@ -97,33 +93,36 @@
   <event action="Analyze" type="Success" name="Register Directives" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Production\ProductCategories.aspx" />
   <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Production\ProductCategories.aspx" />
   <event action="Analyze" type="Success" name="ProductCategories.aspx" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Production\ProductCategories.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Production\ProductInventories.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Production\ProductInventories.aspx" />
+  <event action="Analyze" type="Success" name="ProductInventories.aspx" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Production\ProductInventories.aspx" />
   <event action="Analyze" type="Success" name="Register Directives" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Production\Products.aspx" />
   <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Production\Products.aspx" />
   <event action="Analyze" type="Success" name="Products.aspx" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Production\Products.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Production\ProductWastes.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Production\ProductWastes.aspx" />
+  <event action="Analyze" type="Success" name="ProductWastes.aspx" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Production\ProductWastes.aspx" />
   <event action="Analyze" type="Success" name="Register Directives" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Production\RecipeIngredients.aspx" />
   <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Production\RecipeIngredients.aspx" />
   <event action="Analyze" type="Success" name="RecipeIngredients.aspx" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Production\RecipeIngredients.aspx" />
   <event action="Analyze" type="Success" name="Register Directives" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Production\Recipes.aspx" />
   <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Production\Recipes.aspx" />
   <event action="Analyze" type="Success" name="Recipes.aspx" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Production\Recipes.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Production\RecipeWastes.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Production\RecipeWastes.aspx" />
+  <event action="Analyze" type="Success" name="RecipeWastes.aspx" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Production\RecipeWastes.aspx" />
   <event action="Analyze" type="Success" name="Register Directives" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Production\Stores.aspx" />
   <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Production\Stores.aspx" />
   <event action="Analyze" type="Success" name="Stores.aspx" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Production\Stores.aspx" />
   <event action="Analyze" type="Success" name="Register Directives" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Production\UnitMeasures.aspx" />
   <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Production\UnitMeasures.aspx" />
   <event action="Analyze" type="Success" name="UnitMeasures.aspx" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Production\UnitMeasures.aspx" />
-  <event action="Analyze" type="Success" name="Register Directives" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Purchasing\Po2.aspx" />
-  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Purchasing\Po2.aspx" />
-  <event action="Analyze" type="Success" name="Po2.aspx" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Purchasing\Po2.aspx" />
   <event action="Analyze" type="Success" name="Register Directives" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Purchasing\ProductVendors.aspx" />
   <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Purchasing\ProductVendors.aspx" />
   <event action="Analyze" type="Success" name="ProductVendors.aspx" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Purchasing\ProductVendors.aspx" />
   <event action="Analyze" type="Success" name="Register Directives" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Purchasing\PurchaseOrderDetails.aspx" />
   <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Purchasing\PurchaseOrderDetails.aspx" />
   <event action="Analyze" type="Success" name="PurchaseOrderDetails.aspx" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Purchasing\PurchaseOrderDetails.aspx" />
-  <event action="Analyze" type="Success" name="Register Directives" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Purchasing\PurchaseOrderReport.aspx" />
-  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Purchasing\PurchaseOrderReport.aspx" />
-  <event action="Analyze" type="Success" name="PurchaseOrderReport.aspx" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Purchasing\PurchaseOrderReport.aspx" />
   <event action="Analyze" type="Success" name="Register Directives" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Purchasing\PurchaseOrders.aspx" />
   <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Purchasing\PurchaseOrders.aspx" />
   <event action="Analyze" type="Success" name="PurchaseOrders.aspx" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Purchasing\PurchaseOrders.aspx" />
@@ -145,6 +144,9 @@
   <event action="Analyze" type="Success" name="Register Directives" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Sales\Orders.aspx" />
   <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Sales\Orders.aspx" />
   <event action="Analyze" type="Success" name="Orders.aspx" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Sales\Orders.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Sales\PaymentTypes.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Sales\PaymentTypes.aspx" />
+  <event action="Analyze" type="Success" name="PaymentTypes.aspx" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Sales\PaymentTypes.aspx" />
   <event action="Analyze" type="Success" name="Register Directives" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Site.Master" />
   <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Site.Master" />
   <event action="Analyze" type="Success" name="Site.Master" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Site.Master" />
@@ -154,9 +156,13 @@
   <event action="Analyze" type="Success" name="Register Directives" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\SiteLogin.Master" />
   <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\SiteLogin.Master" />
   <event action="Analyze" type="Success" name="SiteLogin.Master" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\SiteLogin.Master" />
-  <event action="Analyze" type="Success" name="Register Directives" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\TestSendMail.aspx" />
-  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\TestSendMail.aspx" />
-  <event action="Analyze" type="Success" name="TestSendMail.aspx" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\TestSendMail.aspx" />
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Views\web.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Views\web.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Views\web.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Views\web.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Views\web.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Views\web.config" />
+  <event action="Analyze" type="Success" name="web.config" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Views\web.config" />
   <event action="Analyze" type="Success" name="Register Directives" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\ViewSwitcher.ascx" />
   <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\ViewSwitcher.ascx" />
   <event action="Analyze" type="Success" name="ViewSwitcher.ascx" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\ViewSwitcher.ascx" />
@@ -214,10 +220,10 @@
   <event action="Analyze" type="Success" name="Session State Providers" path="C:\Projects\recipies\RecipiesSite\YordanCustomControls\packages.config" />
   <event action="Analyze" type="Success" name="packages.config" path="C:\Projects\recipies\RecipiesSite\YordanCustomControls\packages.config" />
   <event action="Analyze" type="Success" name="YordanCustomControls" path="C:\Projects\recipies\RecipiesSite\YordanCustomControls\YordanCustomControls.csproj" />
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\Projects\recipies\RecipiesSite\DevTrends.MvcDonutCaching\MvcDonutCaching.csproj" />
+  <event action="Analyze" type="Success" name="MvcDonutCaching" path="C:\Projects\recipies\RecipiesSite\DevTrends.MvcDonutCaching\MvcDonutCaching.csproj" />
   <event action="Analyze" type="Success" name="AppHarbor" path="C:\Projects\recipies\RecipiesSite\AppHarbor.sln" />
   <event action="Upgrade" type="Success" name="Assembly References" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\RecipiesWebFormApp.csproj" />
-  <event action="Upgrade" type="Success" name="Register Directives" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Purchasing\PurchaseOrderReport.aspx" />
-  <event action="Upgrade" type="Success" name="PurchaseOrderReport.aspx" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Purchasing\PurchaseOrderReport.aspx" />
   <event action="Upgrade" type="Success" name="Assembly References" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Web.config" />
   <event action="Upgrade" type="Success" name="Http Handlers" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Web.config" />
   <event action="Upgrade" type="Success" name="Handlers (IIS7+)" path="C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\Web.config" />

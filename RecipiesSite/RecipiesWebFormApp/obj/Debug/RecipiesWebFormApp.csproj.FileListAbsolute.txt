@@ -29,8 +29,6 @@ C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\System.Web.Razor.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\System.Web.WebPages.Deployment.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\System.Web.WebPages.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\System.Web.WebPages.Razor.dll
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Telerik.Reporting.dll
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Telerik.ReportViewer.WebForms.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Telerik.Web.UI.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Telerik.Web.UI.Skins.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\WebGrease.dll
