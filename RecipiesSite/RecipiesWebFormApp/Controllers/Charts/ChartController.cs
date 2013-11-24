@@ -10,6 +10,8 @@ using DevTrends.MvcDonutCaching;
 using InventoryManagementMVC.Models.Chart;
 using System.Globalization;
 using System.Diagnostics;
+using System.Dynamic;
+using System.Data;
 
 namespace InventoryManagementMVC.Controllers
 {
@@ -80,20 +82,39 @@ namespace InventoryManagementMVC.Controllers
                     //return;
                 }
 
-                List<VendorPurchasesByWeek> helpers = new List<VendorPurchasesByWeek>();
-                //rhcVendorsLastWeek.PlotArea.Series[0].Name = Server.HtmlEncode(vendor.Name);
+                //List<VendorPurchasesByWeek> helpers = new List<VendorPurchasesByWeek>();
+                //List<dynamic> helpers = new List<dynamic>();
+                List<Dictionary<string, object>> helpers = new List<Dictionary<string, object>>();
 
                 foreach (var item in grouping)
                 {
-                    VendorPurchasesByWeek h = new VendorPurchasesByWeek();
-                    h.Week = item.Key;
-                    h.VendorValue =
-                        Math.Round(
-                        item.Where(pod => pod.PurchaseOrderHeader.VendorId == vendor.VendorId).Sum(pod => pod.LineTotal), 3);
+                    //dynamic h = new ExpandoObject();// = new dynamic();// = new VendorPurchasesByWeek();
+
+                    //dynamic h = new VendorPurchasesByWeek();
+                    //h.Week = item.Key;
+                    //h.VendorValue =
+                    //    Math.Round(
+                    //    item.Where(pod => pod.PurchaseOrderHeader.VendorId == vendor.VendorId).Sum(pod => pod.LineTotal), 3);
+                    //h.VendorValue2 =
+                    //   Math.Round(
+                    //   item.Where(pod => pod.PurchaseOrderHeader.VendorId == vendor.VendorId).Average(pod => pod.LineTotal), 3);
+                    //helpers.Add(h);
+                    dynamic h = new Dictionary<string, object>();
+                    h.Add("Week", item.Key);
+                    h.Add("VendorValue", Math.Round(item.Where(pod => pod.PurchaseOrderHeader.VendorId == vendor.VendorId).Sum(pod => pod.LineTotal), 3));
+                    h.Add("VendorValue2", Math.Round(item.Where(pod => pod.PurchaseOrderHeader.VendorId == vendor.VendorId).Average(pod => pod.LineTotal), 3));
                     helpers.Add(h);
                 }
 
-                var res = helpers.OrderBy(h => h.Week);
+                var res = helpers.OrderBy(h => h["Week"]).ToList();
+                ViewData.Add("WeekNumbers", res.Select(r => r["Week"].ToString()));
+                
+                //DataTable table = new DataTable("test");
+                //table.Columns.Add(new DataColumn("VendorValue", typeof(double)));
+                //table.Rows.Add(12);
+
+                //return Json(table);
+                
                 return Json(res);
 
             }
@@ -102,6 +123,9 @@ namespace InventoryManagementMVC.Controllers
                 Debugger.Break();
             }
             throw new ApplicationException();
+
+            
+            
         }
 
 

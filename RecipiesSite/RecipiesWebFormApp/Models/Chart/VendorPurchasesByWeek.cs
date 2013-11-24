@@ -9,5 +9,7 @@ namespace InventoryManagementMVC.Models.Chart
     {
         public int Week { get; set; }
         public double VendorValue { get; set; }
+
+        public double VendorValue2 { get; set; }
     }
 }

@@ -17,7 +17,7 @@
         {
              panelbar.Add().Text("Vendor purchases by week")
                .Expanded(true)
-               .Content(@<text>@(Html.Kendo().Chart<VendorPurchasesByWeek>()
+               .Content(@<text>@(Html.Kendo().Chart<object>()
       .Name("VendorPurchasesByWeek").Theme("blueopal")
                        //.Title("GP per day (Last 30 days)")
           .Legend(legend => legend
@@ -27,9 +27,10 @@
 
           .Series(series =>
           {
-              series.Line(p => p.VendorValue).Name("SUPERDAWN FRESH").Labels(l => l.Format("{0:C3}").Visible(true)).Axis("Value");
+              series.Line("VendorValue").Name("SUPERDAWN FRESH").Labels(l => l.Format("{0:C3}").Visible(true)).Axis("Value");
+              series.Line("VendorValue2").Name("SUPERDAWN FRESH2").Labels(l => l.Format("{0:C3}").Visible(true)).Axis("Value").Visible(false);
           })
-          .CategoryAxis(axis => axis.Categories(p => p.Week)
+  .CategoryAxis(axis => axis.Categories((System.Collections.IEnumerable)ViewData["WeekNumbers"]) 
               .Labels(labels => labels.Rotation(90)).AxisCrossingValue(0, int.MaxValue)
           )
 
@@ -47,7 +48,7 @@
               .Name("chartGPperDay").Theme("blueopal")
                        //.Title("GP per day (Last 30 days)")
           .Legend(legend => legend
-              .Position(ChartLegendPosition.Top)
+      .Position(ChartLegendPosition.Top)
           )
               .DataSource(ds => ds.Read(read => read.Action("GpPerDayLastDays", "Chart")))
 
@@ -55,7 +56,9 @@
           {
               series.Line(p => p.DayGp).Name("Value per day").Labels(l => l.Format("{0:C3}").Visible(true)).Axis("ValuePerDay");
           })
-          .CategoryAxis(axis => axis.Categories(p => p.Days)
+          //.CategoryAxis(axis => axis.Categories(p => p.Days)
+          .CategoryAxis(axis => axis.Categories<string>(ddd => ddd.Days) // ("Days")
+          
               .Labels(labels => labels.Rotation(90)).AxisCrossingValue(0, int.MaxValue)
           )
       .ValueAxis(axis => axis.Numeric("ValuePerDay").Labels(l => l.Format("{0:C3}"))
