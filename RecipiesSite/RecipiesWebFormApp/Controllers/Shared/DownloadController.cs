@@ -7,11 +7,14 @@ using RecipiesWebFormApp.Caching;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
+using System.Xml.Serialization;
 using Telerik.Reporting.Processing;
 
 namespace InventoryManagementMVC.Controllers
@@ -46,8 +49,13 @@ namespace InventoryManagementMVC.Controllers
             //BinaryFormatter formatter = new BinaryFormatter();
             //formatter.Serialize()
 
-            //JavaScriptSerializer s; s.Deserialize()
-
+            //XmlSerializer ser = new XmlSerializer(typeof(Telerik.Reporting.InstanceReportSource));
+            //MemoryStream ms = new MemoryStream();
+            //ser.Serialize(ms, instanceReportSource);
+            //ms.Position = 0;
+            //instanceReportSource.ReportDocument.
+            //byte[] arr = ms.ToArray();
+            
             RenderingResult result = reportProcessor.RenderReport("Image", instanceReportSource, null);
             //RenderingResult result = reportProcessor.RenderReport("pdf", instanceReportSource, null); // PROBLEMS
             //  http://www.telerik.com/community/forums/reporting/telerik-reporting/out-of-memory-in-azure-websites.aspx

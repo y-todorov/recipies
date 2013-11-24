@@ -32,6 +32,7 @@
                 .Destroy("Destroy", "PurchaseOrderHeader")
 
             ).ClientDetailTemplateId("template")
+                .Events(events => events.DetailExpand("detailExpand"))
 
             //Html.Kendo().MobileButton()
             //    .Name("updateTotals")
@@ -64,6 +65,17 @@
 
 
 <script>
+    var expandedRow;
+    function detailExpand(e) {
+        // Only one open at a time
+        if (expandedRow != null && expandedRow[0] != e.masterRow[0]) {
+            var grid = $('#PurchaseOrderHeaderViewModelGrid').data('kendoGrid');
+            grid.collapseRow(expandedRow);
+        }
+        expandedRow = e.masterRow;
+    }
+
+
     function podEdit(e) {
         debugger;
         //execute your custom logic to get the max value

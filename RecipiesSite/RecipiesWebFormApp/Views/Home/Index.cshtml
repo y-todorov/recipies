@@ -15,6 +15,32 @@
         //.HtmlAttributes(new { style = "width:300px" })
         .Items(panelbar =>
         {
+             panelbar.Add().Text("Vendor purchases by week")
+               .Expanded(true)
+               .Content(@<text>@(Html.Kendo().Chart<VendorPurchasesByWeek>()
+      .Name("VendorPurchasesByWeek").Theme("blueopal")
+                       //.Title("GP per day (Last 30 days)")
+          .Legend(legend => legend
+              .Position(ChartLegendPosition.Top)
+          )
+      .DataSource(ds => ds.Read(read => read.Action("VendorPurchasesByWeek", "Chart")))
+
+          .Series(series =>
+          {
+              series.Line(p => p.VendorValue).Name("SUPERDAWN FRESH").Labels(l => l.Format("{0:C3}").Visible(true)).Axis("Value");
+          })
+          .CategoryAxis(axis => axis.Categories(p => p.Week)
+              .Labels(labels => labels.Rotation(90)).AxisCrossingValue(0, int.MaxValue)
+          )
+
+.ValueAxis(axis => axis.Numeric("Value").Labels(l => l.Format("{0:C3}"))
+          )
+          .Tooltip(tooltip => tooltip
+              .Visible(true)
+          )
+            )</text>);
+
+            
             panelbar.Add().Text("GP per day (Last 30 days)")
                .Expanded(true)
                .Content(@<text>@(Html.Kendo().Chart<GpPerDay>()
@@ -27,12 +53,12 @@
 
           .Series(series =>
           {
-              series.Line(p => p.DayGp).Name("Value per day").Labels(l => l.Visible(true)).Axis("ValuePerDay");
+              series.Line(p => p.DayGp).Name("Value per day").Labels(l => l.Format("{0:C3}").Visible(true)).Axis("ValuePerDay");
           })
           .CategoryAxis(axis => axis.Categories(p => p.Days)
               .Labels(labels => labels.Rotation(90)).AxisCrossingValue(0, int.MaxValue)
           )
-              .ValueAxis(axis => axis.Numeric("ValuePerDay")
+      .ValueAxis(axis => axis.Numeric("ValuePerDay").Labels(l => l.Format("{0:C3}"))
           )
           .Tooltip(tooltip => tooltip
               .Visible(true)

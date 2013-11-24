@@ -8,12 +8,103 @@ using RecipiesModelNS;
 using System.Data.Entity;
 using DevTrends.MvcDonutCaching;
 using InventoryManagementMVC.Models.Chart;
+using System.Globalization;
+using System.Diagnostics;
 
 namespace InventoryManagementMVC.Controllers
 {
     public class ChartController : ControllerBase
     {
         int maxXLabelTextLenght = 10;
+
+        // This presumes that weeks start with Monday.
+        // Week 1 is the 1st week of the year with a Thursday in it.
+        public static int GetIso8601WeekOfYear(DateTime time)
+        {
+            // Seriously cheat.  If its Monday, Tuesday or Wednesday, then it'll 
+            // be the same week# as whatever Thursday, Friday or Saturday are,
+            // and we always get those right
+            DayOfWeek day = CultureInfo.InvariantCulture.Calendar.GetDayOfWeek(time);
+            if (day >= DayOfWeek.Monday && day <= DayOfWeek.Wednesday)
+            {
+                time = time.AddDays(3);
+            }
+
+            // Return the week of our adjusted day
+            return CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(time, CalendarWeekRule.FirstFourDayWeek,
+                DayOfWeek.Monday);
+        }
+
+        public ActionResult VendorPurchasesByWeek()
+        {
+            try
+            {
+                Vendor vendor;
+                if (!string.IsNullOrEmpty("4"))
+                {
+                    int vendorId = int.Parse("4");
+                    vendor =
+                        ContextFactory.GetContextPerRequest()
+                            .Vendors.Where(v => v.VendorId == vendorId)
+                            .FirstOrDefault();
+                }
+                else
+                {
+                    vendor = ContextFactory.GetContextPerRequest().Vendors.FirstOrDefault();
+                }
+                List<PurchaseOrderDetail> pods =
+                    ContextFactory.GetContextPerRequest()
+                        .PurchaseOrderDetails.Where(
+                            pod => pod.PurchaseOrderHeader.StatusId == (int)PurchaseOrderStatusEnum.Completed)
+                        .ToList();
+
+                var grouping =
+                    pods.OrderByDescending(pod => pod.PurchaseOrderHeader.ShipDate)
+                        .GroupBy(pod => GetIso8601WeekOfYear(pod.PurchaseOrderHeader.ShipDate.GetValueOrDefault()));
+
+                if (!string.IsNullOrEmpty("4"))
+                {
+                    int vendorId = int.Parse("4");
+                    vendor =
+                        ContextFactory.GetContextPerRequest()
+                            .Vendors.Where(v => v.VendorId == vendorId)
+                            .FirstOrDefault();
+                }
+                else
+                {
+                    vendor = ContextFactory.GetContextPerRequest().Vendors.FirstOrDefault();
+                }
+
+                if (vendor == null)
+                {
+                    //return;
+                }
+
+                List<VendorPurchasesByWeek> helpers = new List<VendorPurchasesByWeek>();
+                //rhcVendorsLastWeek.PlotArea.Series[0].Name = Server.HtmlEncode(vendor.Name);
+
+                foreach (var item in grouping)
+                {
+                    VendorPurchasesByWeek h = new VendorPurchasesByWeek();
+                    h.Week = item.Key;
+                    h.VendorValue =
+                        Math.Round(
+                        item.Where(pod => pod.PurchaseOrderHeader.VendorId == vendor.VendorId).Sum(pod => pod.LineTotal), 3);
+                    helpers.Add(h);
+                }
+
+                var res = helpers.OrderBy(h => h.Week);
+                return Json(res);
+
+            }
+            catch (Exception ex)
+            {
+                Debugger.Break();
+            }
+            throw new ApplicationException();
+        }
+
+
         public ActionResult ProductsCountByCategory()
         {
             var pc = ContextFactory.Current.ProductCategories.Include(c => c.Products).ToList()
@@ -52,7 +143,7 @@ namespace InventoryManagementMVC.Controllers
                             PurchaseOrderStatusEnum.Completed).Sum(poh => poh.TotalDue).GetValueOrDefault();
                 double dayGp = sales - purchases;
 
-                GpPerDay gh = new GpPerDay() { Days = date.ToString("dd/MM"), DayGp = dayGp };
+                GpPerDay gh = new GpPerDay() { Days = date.ToString("dd/MM"), DayGp = Math.Round(dayGp, 3) };
                 list.Add(gh);
             }
 
