@@ -8,8 +8,10 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 using Telerik.Reporting.Processing;
 
 namespace InventoryManagementMVC.Controllers
@@ -40,6 +42,11 @@ namespace InventoryManagementMVC.Controllers
                 new System.Collections.Hashtable();
 
             //deviceInfo["OutputFormat"] = "DOCX";
+
+            //BinaryFormatter formatter = new BinaryFormatter();
+            //formatter.Serialize()
+
+            //JavaScriptSerializer s; s.Deserialize()
 
             RenderingResult result = reportProcessor.RenderReport("Image", instanceReportSource, null);
             //RenderingResult result = reportProcessor.RenderReport("pdf", instanceReportSource, null); // PROBLEMS
