@@ -2,6 +2,7 @@
 using RecipiesModelNS;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
@@ -13,20 +14,20 @@ namespace InventoryManagementMVC.Models.Purchasing
         [Key]
         public int PurchaseOrderHeaderId { get; set; }
 
-        [Relation(EntityType = typeof (PurchaseOrderStatu), DataFieldValue = "PurchaseOrderStatusId",
+        [Relation(EntityType = typeof(PurchaseOrderStatu), DataFieldValue = "PurchaseOrderStatusId",
             DataFieldText = "Name")]
         [Display(Name = "Status")]
         public int? StatusId { get; set; }
 
-        [Relation(EntityType = typeof (Employee), DataFieldValue = "EmployeeId", DataFieldText = "FirstName")]
+        [Relation(EntityType = typeof(Employee), DataFieldValue = "EmployeeId", DataFieldText = "FirstName")]
         [Display(Name = "Employee")]
         public int? EmployeeId { get; set; }
 
-        [Relation(EntityType = typeof (Vendor), DataFieldValue = "VendorId", DataFieldText = "Name")]
+        [Relation(EntityType = typeof(Vendor), DataFieldValue = "VendorId", DataFieldText = "Name")]
         [Display(Name = "Vendor")]
         public int? VendorId { get; set; }
 
-        [Relation(EntityType = typeof (ShipMethod), DataFieldValue = "ShipMethodId", DataFieldText = "Name")]
+        [Relation(EntityType = typeof(ShipMethod), DataFieldValue = "ShipMethodId", DataFieldText = "Name")]
         [Display(Name = "Ship Method")]
         public int? ShipMethodId { get; set; }
 
@@ -36,12 +37,14 @@ namespace InventoryManagementMVC.Models.Purchasing
         [Required]
         public DateTime? ShipDate { get; set; }
 
+        [ReadOnly(true)]
         public decimal? SubTotal { get; set; }
 
         public decimal? VAT { get; set; }
 
         public decimal? Freight { get; set; }
 
+        [ReadOnly(true)]
         public decimal? TotalDue { get; set; }
 
         [StringLength(1000)]
