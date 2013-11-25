@@ -54,7 +54,7 @@ namespace InventoryManagementMVC.Models.Purchasing
 
         public string ModifiedByUser { get; set; }
 
-        public List<PurchaseOrderDetailViewModel> PurchaseOrderDetailViewModels { get; set; }
+        //public List<PurchaseOrderDetailViewModel> PurchaseOrderDetailViewModels { get; set; }
 
 
         public static PurchaseOrderHeaderViewModel ConvertFromPurchaseOrderHeaderEntity(PurchaseOrderHeader pohEntity,
@@ -76,9 +76,9 @@ namespace InventoryManagementMVC.Models.Purchasing
             pohViewModel.VAT = pohEntity.VAT;
             pohViewModel.VendorId = pohEntity.VendorId;
 
-            pohViewModel.PurchaseOrderDetailViewModels = pohEntity.PurchaseOrderDetails.Select(pod =>
-                PurchaseOrderDetailViewModel.ConvertFromPurchaseOrderDetailEntity(pod,
-                    new PurchaseOrderDetailViewModel())).ToList();
+            //pohViewModel.PurchaseOrderDetailViewModels = pohEntity.PurchaseOrderDetails.Select(pod =>
+            //    PurchaseOrderDetailViewModel.ConvertFromPurchaseOrderDetailEntity(pod,
+            //        new PurchaseOrderDetailViewModel())).ToList();
 
             return pohViewModel;
         }
