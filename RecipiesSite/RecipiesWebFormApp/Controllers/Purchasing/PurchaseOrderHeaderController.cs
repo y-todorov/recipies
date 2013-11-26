@@ -18,7 +18,7 @@ using RecipiesWebFormApp.Extensions;
 
 namespace InventoryManagementMVC.Controllers.Purchasing
 {
-    public class PurchaseOrderHeaderController : ControllerBase // Do not use ControlllerBase becaouse Donut caching breaks downlod of the file ignore cache for actions that download files
+    public class PurchaseOrderHeaderController : ControllerBase 
     {
         public ActionResult Index()
         {

@@ -57,9 +57,6 @@ namespace InventoryManagementMVC.Models.Purchasing
 
         public string ModifiedByUser { get; set; }
 
-        //public List<PurchaseOrderDetailViewModel> PurchaseOrderDetailViewModels { get; set; }
-
-
         public static PurchaseOrderHeaderViewModel ConvertFromPurchaseOrderHeaderEntity(PurchaseOrderHeader pohEntity,
             PurchaseOrderHeaderViewModel pohViewModel)
         {
@@ -78,11 +75,7 @@ namespace InventoryManagementMVC.Models.Purchasing
             pohViewModel.TotalDue = pohEntity.TotalDue;
             pohViewModel.VAT = pohEntity.VAT;
             pohViewModel.VendorId = pohEntity.VendorId;
-
-            //pohViewModel.PurchaseOrderDetailViewModels = pohEntity.PurchaseOrderDetails.Select(pod =>
-            //    PurchaseOrderDetailViewModel.ConvertFromPurchaseOrderDetailEntity(pod,
-            //        new PurchaseOrderDetailViewModel())).ToList();
-
+            
             return pohViewModel;
         }
 
@@ -100,8 +93,8 @@ namespace InventoryManagementMVC.Models.Purchasing
             pohEntity.ShipMethodId = pohViewModel.ShipMethodId;
             pohEntity.ShipDate = pohViewModel.ShipDate;
             pohEntity.StatusId = pohViewModel.StatusId;
-            pohEntity.SubTotal = pohViewModel.SubTotal;
-            pohEntity.TotalDue = pohViewModel.TotalDue;
+            //pohEntity.SubTotal = pohViewModel.SubTotal; // All fields that are read obly should not be set through model !!!
+            //pohEntity.TotalDue = pohViewModel.TotalDue;
             pohEntity.VAT = pohViewModel.VAT;
             pohEntity.VendorId = pohViewModel.VendorId;
 
