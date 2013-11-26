@@ -1,5 +1,7 @@
 ﻿@using InventoryManagementMVC.Models.Chart
 @using Kendo.Mvc.UI
+@using InventoryManagementMVC.Extensions;
+
 @{
     ViewBag.Title = "Inventory Management";
 }
@@ -24,12 +26,13 @@
               .Position(ChartLegendPosition.Top)
           )
       .DataSource(ds => ds.Read(read => read.Action("VendorPurchasesByWeek", "Chart")))
+.AddVendorsValuePerWeekOptions()
 
-          .Series(series =>
-          {
-              series.Line("VendorValue").Name("SUPERDAWN FRESH").Labels(l => l.Format("{0:C3}").Visible(true)).Axis("Value");
-              series.Line("VendorValue2").Name("SUPERDAWN FRESH2").Labels(l => l.Format("{0:C3}").Visible(true)).Axis("Value").Visible(false);
-          })
+          //.Series(series =>
+          //{
+          //    series.Line("VendorValue").Name("SUPERDAWN FRESH").Labels(l => l.Format("{0:C3}").Visible(true)).Axis("Value");
+          //    series.Line("VendorValue2").Name("SUPERDAWN FRESH2").Labels(l => l.Format("{0:C3}").Visible(true)).Axis("Value").Visible(false);
+          //})
   .CategoryAxis(axis => axis.Categories((System.Collections.IEnumerable)ViewData["WeekNumbers"]) 
               .Labels(labels => labels.Rotation(90)).AxisCrossingValue(0, int.MaxValue)
           )

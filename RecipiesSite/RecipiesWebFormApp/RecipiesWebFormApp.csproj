@@ -471,6 +471,7 @@
     <Compile Include="ErrorPages\Error404.aspx.designer.cs">
       <DependentUpon>Error404.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Extensions\ChartBuilderExtension.cs" />
     <Compile Include="Extensions\GridBuilderExtension.cs" />
     <Compile Include="Extensions\MyFileResult.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />

@@ -292,7 +292,7 @@ namespace InventoryManagementMVC.Extensions
                         {
                             if (isDeleteColumnVisible)
                             {
-                                command.Destroy().Text("Delete").Text("Delete");
+                                command.Destroy().Text("Delete");
                             }
                             if (isEditColumnVisible)
                             {

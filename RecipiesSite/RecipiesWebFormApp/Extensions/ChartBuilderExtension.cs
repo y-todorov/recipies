@@ -15,7 +15,7 @@ using RecipiesModelNS;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace RecipiesWebFormApp.Extensions
+namespace InventoryManagementMVC.Extensions
 {
     public static class ChartBuilder
     {
@@ -23,11 +23,23 @@ namespace RecipiesWebFormApp.Extensions
         {
             List<Vendor> vendors = ContextFactory.Current.Vendors.ToList();
 
-
             builder.Series(series =>
-                
-               series.Line("VendorValue").Name("SUPERDAWN FRESH").Labels(l => l.Format("{0:C3}").Visible(true)).Axis("Value"));
-                
+                {
+                    bool isVisible = true;
+                    int counter = 0;
+                    foreach (Vendor vendor in vendors)
+                    {
+                        series.Line("EscapeStringYordan_" + vendor.VendorId.ToString()).Name(vendor.Name).Labels(l => l.Format("{0:C3}")).Visible(isVisible).Axis("Value");
+                        counter++;
+                        if (counter >= 3)
+                        {
+                            isVisible = false;
+                        }
+                        // only the first 3 will be visible by default
+                    }
+
+                });
+
 
             return builder;
         }
