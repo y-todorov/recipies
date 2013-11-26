@@ -4,6 +4,7 @@ using RecipiesModelNS;
 using InventoryManagementMVC.DataAnnotations;
 using System.ComponentModel;
 using System.Web.Mvc;
+using System.Linq;
 
 namespace InventoryManagementMVC.Models
 {
@@ -15,16 +16,17 @@ namespace InventoryManagementMVC.Models
         [ReadOnly(true)]
         //[Relation(EntityType = typeof(Recipe), DataFieldValue = "RecipeId", DataFieldText = "Name")]
         [Display(Name = "Recipe")]
-        [HiddenInput(DisplayValue = false)]  
+        [HiddenInput(DisplayValue = false)]
         public int? RecipeId { get; set; }
-        
-       
+
+
         [Relation(EntityType = typeof(Product), DataFieldValue = "ProductId", DataFieldText = "Name")]
         [Display(Name = "Product")]
         public int? ProductId { get; set; }
 
         public double? QuantityPerPortion { get; set; }
 
+        [ReadOnly(true)]
         public decimal? Cost { get; set; }
 
         [ReadOnly(true)]
@@ -36,12 +38,19 @@ namespace InventoryManagementMVC.Models
 
         public static ProductIngredientViewModel ConvertFromProductIngredientEntity(ProductIngredient entity,
             ProductIngredientViewModel model)
-        {            
+        {
             model.ProductIngredientId = entity.ProductIngredientId;
             model.RecipeId = entity.RecipeId;
             model.ProductId = entity.ProductId;
             model.QuantityPerPortion = entity.QuantityPerPortion;
-            model.Cost = entity.Cost;
+            if (entity.ProductId.HasValue) // Problems if we use Entity.product
+            {
+                Product p = ContextFactory.Current.Products.FirstOrDefault(prod => prod.ProductId == entity.ProductId.Value);
+                if (p != null)
+                {
+                    model.Cost = entity.Product.UnitPrice;
+                }
+            }
             model.TotalValue = (decimal?)entity.TotalValue;
 
             model.ModifiedDate = entity.ModifiedDate;
@@ -58,12 +67,21 @@ namespace InventoryManagementMVC.Models
             entity.RecipeId = model.RecipeId;
             entity.ProductId = model.ProductId;
             entity.QuantityPerPortion = model.QuantityPerPortion;
-            entity.Cost = model.Cost;
+            if (model.ProductId.HasValue) // Problems if we use Entity.product
+            {
+                Product p = ContextFactory.Current.Products.FirstOrDefault(prod => prod.ProductId == entity.ProductId.Value);
+                if (p != null)
+                {
+                    entity.Cost = p.UnitPrice;
+                }
+            }
+
+          
             entity.TotalValue = (double)model.TotalValue.GetValueOrDefault();
 
             entity.ModifiedDate = model.ModifiedDate;
             entity.ModifiedByUser = model.ModifiedByUser;
-            
+
             return entity;
         }
     }

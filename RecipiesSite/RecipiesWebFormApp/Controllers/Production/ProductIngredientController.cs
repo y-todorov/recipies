@@ -5,35 +5,37 @@ using InventoryManagementMVC.Models;
 using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
 using RecipiesModelNS;
+using System.Data.Entity;
 
 namespace InventoryManagementMVC.Controllers
 {
-    public class RecipeIngredientController : ControllerBase
+    public class ProductIngredientController : ControllerBase
     {
         public ActionResult Read(int? recipeId, [DataSourceRequest] DataSourceRequest request)
         {
-            List<RecipeIngredientViewModel> productIngredients = ContextFactory.Current.RecipeIngredients
+            List<ProductIngredientViewModel> productIngredients = ContextFactory.Current.ProductIngredients
                 .Where(
-                    pod => recipeId.HasValue ? pod.ParentRecipeId == recipeId.Value : true)
+                    pod => recipeId.HasValue ? pod.RecipeId == recipeId.Value : true)
                 .ToList().Select
-                (c => RecipeIngredientViewModel.ConvertFromProductIngredientEntity(c, new RecipeIngredientViewModel())).ToList();
+                (c => ProductIngredientViewModel.ConvertFromProductIngredientEntity(c, new ProductIngredientViewModel())).ToList();
             return Json(productIngredients.ToDataSourceResult(request));
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Create(int? recipeId, [DataSourceRequest] DataSourceRequest request,
-            [Bind(Prefix = "models")] IEnumerable<RecipeIngredientViewModel> productIngredients)
+            [Bind(Prefix = "models")] IEnumerable<ProductIngredientViewModel> productIngredients)
         {
             if (productIngredients != null && ModelState.IsValid)
             {
-                foreach (RecipeIngredientViewModel pi in productIngredients)
+                foreach (ProductIngredientViewModel pi in productIngredients)
                 {
-                    RecipeIngredient newProductIngredient = RecipeIngredientViewModel.ConvertToProductIngredientEntity(pi,
-                        new RecipeIngredient());
-                    newProductIngredient.ParentRecipeId = recipeId;
-                    ContextFactory.Current.RecipeIngredients.Add(newProductIngredient);
+                    ProductIngredient newProductIngredient = ProductIngredientViewModel.ConvertToProductIngredientEntity(pi,
+                        new ProductIngredient());
+                    newProductIngredient.RecipeId = recipeId;
+                    ContextFactory.Current.ProductIngredients.Add(newProductIngredient);
                     ContextFactory.Current.SaveChanges();
-                    RecipeIngredientViewModel.ConvertFromProductIngredientEntity(newProductIngredient, pi);
+                    newProductIngredient = ContextFactory.Current.ProductIngredients.Include(p => p.Product).FirstOrDefault(ppi => ppi.ProductIngredientId == newProductIngredient.ProductIngredientId);
+                    ProductIngredientViewModel.ConvertFromProductIngredientEntity(newProductIngredient, pi);
                 }
             }
 
@@ -42,21 +44,22 @@ namespace InventoryManagementMVC.Controllers
 
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Update([DataSourceRequest] DataSourceRequest request,
-            [Bind(Prefix = "models")] IEnumerable<RecipeIngredientViewModel> productIngredients)
+            [Bind(Prefix = "models")] IEnumerable<ProductIngredientViewModel> productIngredients)
         {
             if (productIngredients != null && ModelState.IsValid)
             {
-                foreach (RecipeIngredientViewModel productIngredient in productIngredients)
+                foreach (ProductIngredientViewModel productIngredient in productIngredients)
                 {
-                    RecipeIngredient piEntity =
-                        ContextFactory.Current.RecipeIngredients.FirstOrDefault(
-                            r => r.RecipeIngredientId == productIngredient.RecipeIngredientId);
+                    ProductIngredient piEntity =
+                        ContextFactory.Current.ProductIngredients.FirstOrDefault(
+                            r => r.ProductIngredientId == productIngredient.ProductIngredientId);
 
-                    RecipeIngredientViewModel.ConvertToProductIngredientEntity(productIngredient, piEntity);
+                    productIngredient.RecipeId = piEntity.RecipeId;
+                    ProductIngredientViewModel.ConvertToProductIngredientEntity(productIngredient, piEntity);
 
                     ContextFactory.Current.SaveChanges();
 
-                    RecipeIngredientViewModel.ConvertFromProductIngredientEntity(piEntity, productIngredient);
+                    ProductIngredientViewModel.ConvertFromProductIngredientEntity(piEntity, productIngredient);
                 }
             }
 
@@ -65,15 +68,15 @@ namespace InventoryManagementMVC.Controllers
 
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Destroy([DataSourceRequest] DataSourceRequest request,
-            [Bind(Prefix = "models")] IEnumerable<RecipeIngredientViewModel> productIngredients)
+            [Bind(Prefix = "models")] IEnumerable<ProductIngredientViewModel> productIngredients)
         {
             if (productIngredients.Any())
             {
-                foreach (RecipeIngredientViewModel pi in productIngredients)
+                foreach (ProductIngredientViewModel pi in productIngredients)
                 {
-                    RecipeIngredient piEntity =
-                        ContextFactory.Current.RecipeIngredients.FirstOrDefault(r => r.RecipeIngredientId  == pi.RecipeIngredientId);
-                    ContextFactory.Current.RecipeIngredients.Remove(piEntity);
+                    ProductIngredient piEntity =
+                        ContextFactory.Current.ProductIngredients.FirstOrDefault(r => r.ProductIngredientId == pi.ProductIngredientId);
+                    ContextFactory.Current.ProductIngredients.Remove(piEntity);
 
                     ContextFactory.Current.SaveChanges();
                 }

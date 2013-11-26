@@ -432,8 +432,8 @@
     </Compile>
     <Compile Include="Controllers\Charts\ChartController.cs" />
     <Compile Include="Controllers\Dashboard\HomeController.cs" />
-    <Compile Include="Controllers\Production\RecipeIngredientController.cs" />
     <Compile Include="Controllers\Production\ProductIngredientController.cs" />
+    <Compile Include="Controllers\Production\RecipeIngredientController.cs" />
     <Compile Include="Controllers\Production\RecipieController.cs" />
     <Compile Include="Controllers\Sales\SalesOrderDetailController.cs" />
     <Compile Include="Controllers\Sales\SalesOrderHeaderController.cs" />
