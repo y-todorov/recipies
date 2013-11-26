@@ -49,9 +49,9 @@ namespace InventoryManagementMVC.Models
         [Display(Name = "Stocked QTY")]
         public double StockedQuantity { get; set; }
 
-        [ReadOnly(true)]
-        [Display(Name = "PO Total")]
-        public decimal? PoTotal { get; set; }
+        //[ReadOnly(true)]
+        //[Display(Name = "PO Total")]
+        //public decimal? PoTotal { get; set; }
 
         public DateTime? ModifiedDate { get; set; }
 
@@ -97,10 +97,10 @@ namespace InventoryManagementMVC.Models
             model.ReceivedQuantity = entity.ReceivedQuantity;
             model.ReturnedQuantity = entity.ReturnedQuantity;
             model.StockedQuantity = entity.StockedQuantity;
-            if (entity.PurchaseOrderHeader != null)
-            {
-                model.PoTotal = entity.PurchaseOrderHeader.TotalDue;
-            }
+            //if (entity.PurchaseOrderHeader != null)
+            //{
+            //    model.PoTotal = entity.PurchaseOrderHeader.TotalDue;
+            //}
 
             model.UnitMeasureId = entity.UnitMeasureId;
             model.UnitPrice = entity.UnitPrice;

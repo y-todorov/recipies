@@ -127,10 +127,20 @@ namespace InventoryManagementMVC.Extensions
                             }
 
                             // THIS MAKES LOTS OF QUERIES TO THE DB IF WE USE ContextFactory.Current.Set(rellAttribute.EntityType), DUNNO WHY
-                            columns.ForeignKey(propertyInfo.Name,
-                                objects, rellAttribute.DataFieldValue, rellAttribute.DataFieldText);
-                            //.FooterTemplate(f => f.Count.Format("Count: {0}"))
-                            //.GroupFooterTemplate(f => f.Count.Format("Count: {0}"));
+                            if (!isClient)
+                            {
+                                columns.ForeignKey(propertyInfo.Name,
+                                    objects, rellAttribute.DataFieldValue, rellAttribute.DataFieldText)
+                                 .ClientFooterTemplate("Count: #= kendo.format('{0}', count)#")
+                                    .ClientGroupFooterTemplate("Count: #= kendo.format('{0}', count)#");
+                            }
+                            else
+                            {
+                                columns.ForeignKey(propertyInfo.Name,
+                                   objects, rellAttribute.DataFieldValue, rellAttribute.DataFieldText)
+                                .ClientFooterTemplate("Count: #= kendo.format('{0}', count)#".Replace("#", "\\#"))
+                                   .ClientGroupFooterTemplate("Count: #= kendo.format('{0}', count)#".Replace("#", "\\#"));
+                            }
                         }
 
                         if (propertyInfo.GetCustomAttributes<KeyAttribute>().Any()) // The primary key
