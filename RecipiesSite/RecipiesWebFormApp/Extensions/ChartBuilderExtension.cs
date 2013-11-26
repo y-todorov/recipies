@@ -29,7 +29,7 @@ namespace InventoryManagementMVC.Extensions
                     int counter = 0;
                     foreach (Vendor vendor in vendors)
                     {
-                        series.Line("EscapeStringYordan_" + vendor.VendorId.ToString()).Name(vendor.Name).Labels(l => l.Format("{0:C3}")).Visible(isVisible).Axis("Value");
+                        series.Line("EscapeStringYordan_" + vendor.VendorId.ToString()).Name(vendor.Name).Labels(l => l.Format("{0:C3}").Visible(true)).Axis("Value").Visible(isVisible);
                         counter++;
                         if (counter >= 3)
                         {

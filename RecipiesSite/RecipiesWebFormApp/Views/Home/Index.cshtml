@@ -28,11 +28,11 @@
       .DataSource(ds => ds.Read(read => read.Action("VendorPurchasesByWeek", "Chart")))
 .AddVendorsValuePerWeekOptions()
 
-          //.Series(series =>
-          //{
-          //    series.Line("VendorValue").Name("SUPERDAWN FRESH").Labels(l => l.Format("{0:C3}").Visible(true)).Axis("Value");
-          //    series.Line("VendorValue2").Name("SUPERDAWN FRESH2").Labels(l => l.Format("{0:C3}").Visible(true)).Axis("Value").Visible(false);
-          //})
+  //.Series(series =>
+  //{
+  //    series.Line("EscapeStringYordan_4").Name("SUPERDAWN FRESH").Labels(l => l.Format("{0:C3}").Visible(true)).Axis("Value");
+    
+  //})
   .CategoryAxis(axis => axis.Categories((System.Collections.IEnumerable)ViewData["WeekNumbers"]) 
               .Labels(labels => labels.Rotation(90)).AxisCrossingValue(0, int.MaxValue)
           )
@@ -116,19 +116,19 @@
   .DataSource(ds => ds.Read(read => read.Action("LowProducts", "Chart")))
           .Series(series =>
           {
-              series.Column(p => p.ReorderLevel).Name("Reorder level").Labels(l => l.Format("{0:F3}").Visible(true)).Axis("Count");
-              series.Column(p => p.UnitsInStock).Name("Units in stock").Labels(l => l.Format("{0:F3}").Visible(true)).Axis("Count");
-              series.Column(p => p.UnitsOnOrder).Name("Units on order").Labels(l => l.Format("{0:F3}").Visible(true)).Axis("Count");
+              series.Column(p => p.ReorderLevel).Name("Reorder level").Labels(l => l.Format("{0:N3}").Visible(true)).Axis("Count");
+              series.Column(p => p.UnitsInStock).Name("Units in stock").Labels(l => l.Format("{0:N3}").Visible(true)).Axis("Count");
+              series.Column(p => p.UnitsOnOrder).Name("Units on order").Labels(l => l.Format("{0:N3}").Visible(true)).Axis("Count");
           })
   .CategoryAxis(axis => axis.Categories(p => p.ProductName)
               .Labels(labels => labels.Rotation(90)).AxisCrossingValue(0, int.MaxValue)
           )
 .ValueAxis(axis => axis.Numeric("Count")
-      .Labels(labels => labels.Format("{0:F3}"))
+      .Labels(labels => labels.Format("{0:N3}"))
           )
           .Tooltip(tooltip => tooltip
               .Visible(true)
-      .Format("{0:F3}")
+      .Format("{0:N3}")
           )
 
             )
