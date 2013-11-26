@@ -54,7 +54,8 @@
        .ToolBar(t => t.Create())
     .Columns(columns =>
     {
-        columns.Bound(p => p.Name);
+        columns.Bound(p => p.Name)
+            .ClientFooterTemplate("Count: \\#=count\\#");
             //.FooterTemplate(@<text>Count: @item.Count</text>)
     //.GroupFooterTemplate(@<text>Count: @item.Count</text>);
         //.ClientGroupFooterTemplate("Count: #=count#")
