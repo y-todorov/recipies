@@ -204,14 +204,14 @@ namespace InventoryManagementMVC.Extensions
                             if (!isClient)
                             {
                                 columns.Bound(propertyInfo.Name)                                  
-                                     .ClientFooterTemplate("Sum: #= kendo.format('{0:F3}', sum)#")
-                                .ClientGroupFooterTemplate("Sum: #= kendo.format('{0:F3}', sum)#");
+                                     .ClientFooterTemplate("Sum: #= kendo.format('{0:N3}', sum)#")
+                                .ClientGroupFooterTemplate("Sum: #= kendo.format('{0:N3}', sum)#");
                             }
                             else
                             {
                                 columns.Bound(propertyInfo.Name)
-                               .ClientFooterTemplate("Sum: #= kendo.format('{0:F3}', sum)#".Replace("#", "\\#"))
-                                .ClientGroupFooterTemplate("Sum: #= kendo.format('{0:F3}', sum)#".Replace("#", "\\#"));
+                               .ClientFooterTemplate("Sum: #= kendo.format('{0:N3}', sum)#".Replace("#", "\\#"))
+                                .ClientGroupFooterTemplate("Sum: #= kendo.format('{0:N3}', sum)#".Replace("#", "\\#"));
                             }
                         }
                         if (propertyInfo.PropertyType == typeof(decimal) ||
@@ -292,7 +292,7 @@ namespace InventoryManagementMVC.Extensions
                         {
                             if (isDeleteColumnVisible)
                             {
-                                command.Destroy().Text("Delete");
+                                command.Destroy().Text("Delete").Text("Delete");
                             }
                             if (isEditColumnVisible)
                             {

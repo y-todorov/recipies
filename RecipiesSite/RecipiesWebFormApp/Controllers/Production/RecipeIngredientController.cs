@@ -43,44 +43,45 @@ namespace InventoryManagementMVC.Controllers
 
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Update([DataSourceRequest] DataSourceRequest request,
-            [Bind(Prefix = "models")] IEnumerable<RecipeIngredientViewModel> productIngredients)
+            [Bind(Prefix = "models")] IEnumerable<RecipeIngredientViewModel> recipeIngredients)
         {
-            if (productIngredients != null && ModelState.IsValid)
+            if (recipeIngredients != null && ModelState.IsValid)
             {
-                foreach (RecipeIngredientViewModel productIngredient in productIngredients)
+                foreach (RecipeIngredientViewModel recipeIngredient in recipeIngredients)
                 {
-                    RecipeIngredient piEntity =
+                    RecipeIngredient riEntity =
                         ContextFactory.Current.RecipeIngredients.FirstOrDefault(
-                            r => r.RecipeIngredientId == productIngredient.RecipeIngredientId);
+                            r => r.RecipeIngredientId == recipeIngredient.RecipeIngredientId);
 
-                    RecipeIngredientViewModel.ConvertToProductIngredientEntity(productIngredient, piEntity);
+                    recipeIngredient.ParentRecipeId = riEntity.ParentRecipeId;
+                    RecipeIngredientViewModel.ConvertToProductIngredientEntity(recipeIngredient, riEntity);
 
                     ContextFactory.Current.SaveChanges();
 
-                    RecipeIngredientViewModel.ConvertFromProductIngredientEntity(piEntity, productIngredient);
+                    RecipeIngredientViewModel.ConvertFromProductIngredientEntity(riEntity, recipeIngredient);
                 }
             }
 
-            return Json(productIngredients.ToDataSourceResult(request, ModelState));
+            return Json(recipeIngredients.ToDataSourceResult(request, ModelState));
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Destroy([DataSourceRequest] DataSourceRequest request,
-            [Bind(Prefix = "models")] IEnumerable<RecipeIngredientViewModel> productIngredients)
+            [Bind(Prefix = "models")] IEnumerable<RecipeIngredientViewModel> recipeIngredients)
         {
-            if (productIngredients.Any())
+            if (recipeIngredients.Any())
             {
-                foreach (RecipeIngredientViewModel pi in productIngredients)
+                foreach (RecipeIngredientViewModel recipeIngredient in recipeIngredients)
                 {
                     RecipeIngredient piEntity =
-                        ContextFactory.Current.RecipeIngredients.FirstOrDefault(r => r.RecipeIngredientId  == pi.RecipeIngredientId);
+                        ContextFactory.Current.RecipeIngredients.FirstOrDefault(r => r.RecipeIngredientId  == recipeIngredient.RecipeIngredientId);
                     ContextFactory.Current.RecipeIngredients.Remove(piEntity);
 
                     ContextFactory.Current.SaveChanges();
                 }
             }
 
-            return Json(productIngredients.ToDataSourceResult(request, ModelState));
+            return Json(recipeIngredients.ToDataSourceResult(request, ModelState));
         }
     }
 }
