@@ -147,7 +147,7 @@ namespace InventoryManagementMVC.Extensions
                         {
                             if (!isClient)
                             {
-                                columns.Bound(propertyInfo.Name).Format("{0}").Title("Id")                                   
+                                columns.Bound(propertyInfo.Name).Format("{0}").Title("Id")
                                      .ClientFooterTemplate("Count: #= kendo.format('{0}', count)#")
                                 .ClientGroupFooterTemplate("Count: #= kendo.format('{0}', count)#");
                             }
@@ -166,12 +166,19 @@ namespace InventoryManagementMVC.Extensions
                             continue;
                         }
 
+                        string customFormat = string.Empty;
+                        DisplayFormatAttribute dfa = propertyInfo.GetCustomAttributes<DisplayFormatAttribute>().FirstOrDefault();
+                        if (dfa != null && !string.IsNullOrEmpty(dfa.DataFormatString))
+                        {
+                            customFormat = dfa.DataFormatString;
+                        }
+
                         if (propertyInfo.PropertyType == typeof(bool) ||
                             propertyInfo.PropertyType == typeof(bool?))
                         {
                             if (!isClient)
                             {
-                                columns.Bound(propertyInfo.Name)                                                 
+                                columns.Bound(propertyInfo.Name)
                                     .ClientFooterTemplate("Count: #= kendo.format('{0}', count)#")
                                     .ClientGroupFooterTemplate("Count: #= kendo.format('{0}', count)#");
 
@@ -203,13 +210,15 @@ namespace InventoryManagementMVC.Extensions
                         {
                             if (!isClient)
                             {
-                                columns.Bound(propertyInfo.Name)                                  
+                                columns.Bound(propertyInfo.Name)
+                                    .Format(!string.IsNullOrEmpty(customFormat) ? customFormat : "{0:N3}")
                                      .ClientFooterTemplate("Sum: #= kendo.format('{0:N3}', sum)#")
                                 .ClientGroupFooterTemplate("Sum: #= kendo.format('{0:N3}', sum)#");
                             }
                             else
                             {
                                 columns.Bound(propertyInfo.Name)
+                                     .Format(!string.IsNullOrEmpty(customFormat) ? customFormat : "{0:N3}")
                                .ClientFooterTemplate("Sum: #= kendo.format('{0:N3}', sum)#".Replace("#", "\\#"))
                                 .ClientGroupFooterTemplate("Sum: #= kendo.format('{0:N3}', sum)#".Replace("#", "\\#"));
                             }
@@ -219,13 +228,17 @@ namespace InventoryManagementMVC.Extensions
                         {
                             if (!isClient)
                             {
-                                columns.Bound(propertyInfo.Name).Format("{0:C3}").EditorTemplateName("Currency")
+                                columns.Bound(propertyInfo.Name)
+                                    .Format(!string.IsNullOrEmpty(customFormat) ? customFormat : "{0:C3}")
+                                    .EditorTemplateName("Currency")
                                    .ClientFooterTemplate("Sum: #= kendo.format('{0:C3}', sum)#")
                                 .ClientGroupFooterTemplate("Sum: #= kendo.format('{0:C3}', sum)#");
                             }
                             else
                             {
-                                columns.Bound(propertyInfo.Name).EditorTemplateName("Currency")
+                                columns.Bound(propertyInfo.Name)
+                                     .Format(!string.IsNullOrEmpty(customFormat) ? customFormat : "{0:C3}")
+                                     .EditorTemplateName("Currency")
                               .ClientFooterTemplate("Sum: #= kendo.format('{0:C3}', sum)#".Replace("#", "\\#"))
                                 .ClientGroupFooterTemplate("Sum: #= kendo.format('{0:C3}', sum)#".Replace("#", "\\#"));
                             }
@@ -235,13 +248,15 @@ namespace InventoryManagementMVC.Extensions
                         {
                             if (!isClient)
                             {
-                                columns.Bound(propertyInfo.Name).Format("{0:N}")                                  
+                                columns.Bound(propertyInfo.Name)
+                                     .Format(!string.IsNullOrEmpty(customFormat) ? customFormat : "{0:N}")
                                      .ClientFooterTemplate("Sum: #= kendo.format('{0:N}', sum)#")
                                 .ClientGroupFooterTemplate("Sum: #= kendo.format('{0:N}', sum)#");
                             }
                             else
                             {
                                 columns.Bound(propertyInfo.Name)
+                                     .Format(!string.IsNullOrEmpty(customFormat) ? customFormat : "{0:N}")
                                .ClientFooterTemplate("Sum: #= kendo.format('{0:N}', sum)#".Replace("#", "\\#"))
                                 .ClientGroupFooterTemplate("Sum: #= kendo.format('{0:N}', sum)#".Replace("#", "\\#"));
                             }
@@ -254,14 +269,15 @@ namespace InventoryManagementMVC.Extensions
                                 if (propertyInfo.Name.Equals("ModifiedDate", StringComparison.InvariantCultureIgnoreCase))
                                 {
                                     columns.Bound(propertyInfo.Name)
-                                        .Format("{0:dd/MM/yyyy HH:mm:ss}")                                      
+                                        .Format(!string.IsNullOrEmpty(customFormat) ? customFormat : "{0:dd/MM/yyyy HH:mm:ss}")
                                         .ClientFooterTemplate("Count: #= kendo.format('{0}', count)#")
                                     .ClientGroupFooterTemplate("Count: #= kendo.format('{0}', count)#");
                                 }
                                 else
                                 {
                                     columns.Bound(propertyInfo.Name)
-                                        .Format("{0:dd/MM/yyyy}").EditorTemplateName("Date")
+                                        .Format(!string.IsNullOrEmpty(customFormat) ? customFormat : "{0:dd/MM/yyyy}")
+                                        .EditorTemplateName("Date")
                                           .ClientFooterTemplate("Count: #= kendo.format('{0}', count)#")
                                     .ClientGroupFooterTemplate("Count: #= kendo.format('{0}', count)#");
                                 }
@@ -271,14 +287,15 @@ namespace InventoryManagementMVC.Extensions
                                 if (propertyInfo.Name.Equals("ModifiedDate", StringComparison.InvariantCultureIgnoreCase))
                                 {
                                     columns.Bound(propertyInfo.Name)
-                                        .Format("{0:dd/MM/yyyy HH:mm:ss}")
+                                        .Format(!string.IsNullOrEmpty(customFormat) ? customFormat : "{0:dd/MM/yyyy HH:mm:ss}")                                     
                                     .ClientFooterTemplate("Count: #= kendo.format('{0}', count)#".Replace("#", "\\#"))
                                     .ClientGroupFooterTemplate("Count: #= kendo.format('{0}', count)#".Replace("#", "\\#"));
                                 }
                                 else
                                 {
                                     columns.Bound(propertyInfo.Name)
-                                        .Format("{0:dd/MM/yyyy}").EditorTemplateName("Date")
+                                        .Format(!string.IsNullOrEmpty(customFormat) ? customFormat : "{0:dd/MM/yyyy}")                                     
+                                        .EditorTemplateName("Date")
                                     .ClientFooterTemplate("Count: #= kendo.format('{0}', count)#".Replace("#", "\\#"))
                                     .ClientGroupFooterTemplate("Count: #= kendo.format('{0}', count)#".Replace("#", "\\#"));
                                 }

@@ -28,6 +28,7 @@ namespace InventoryManagementMVC.Models
         public decimal? SellValuePerPortion { get; set; }
                 
         [ReadOnly(true)]
+        [DisplayFormat(DataFormatString="{0:P2}")]
         public decimal? GrossProfit { get; set; }
 
         public DateTime? ModifiedDate { get; set; }
