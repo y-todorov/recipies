@@ -23,6 +23,14 @@ namespace InventoryManagementMVC.Extensions
         {
             List<Vendor> vendors = ContextFactory.Current.Vendors.ToList();
 
+            Vendor fakeTotalVendor = new Vendor()
+        {
+            Name = "Total All Vendors",
+            VendorId = 0
+        };
+            vendors.Insert(0, fakeTotalVendor);
+
+
             builder.Series(series =>
                 {
                     bool isVisible = true;

@@ -54,11 +54,20 @@ namespace InventoryManagementMVC.Controllers
 
                 List<Dictionary<string, double>> list = new List<Dictionary<string, double>>();
                 List<Vendor> allVendors = ContextFactory.Current.Vendors.ToList();
+
+                Vendor fakeTotalVendor = new Vendor()
+                {
+                    Name = "Total All Vendors",
+                    VendorId = 0
+                };
+
                 foreach (var item in grouping)
                 {
 
                     Dictionary<string, double> entry = new Dictionary<string, double>();
                     entry.Add("Week", item.Key);
+
+                    entry.Add("EscapeStringYordan_" + fakeTotalVendor.VendorId, Math.Round(item.Sum(pod => pod.LineTotal), 3));
 
                     foreach (Vendor ven in allVendors)
                     {
