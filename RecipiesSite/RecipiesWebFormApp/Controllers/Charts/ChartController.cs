@@ -141,5 +141,24 @@ namespace InventoryManagementMVC.Controllers
 
             return Json(list);
         }
+
+        public ActionResult TotalPosValuePerVendor()
+        {
+            List<PurchaseOrderHeader> allPos = ContextFactory.GetContextPerRequest().PurchaseOrderHeaders.ToList();
+            List<Vendor> allVendors = ContextFactory.GetContextPerRequest().Vendors.ToList();
+            List<TotalPoByVendor> list = allVendors
+                    .Select(
+                        vendor =>
+                            new TotalPoByVendor
+                            {
+                                VendorName = vendor.Name.Substring(0, vendor.Name.Length >= maxXLabelTextLenght ? maxXLabelTextLenght : vendor.Name.Length),
+                                PoTotalValue = allPos.Where(pod => pod.VendorId == vendor.VendorId)
+                                .Sum(pod => pod.TotalDue)
+                            }).ToList();
+
+            list = list.OrderByDescending(l => l.PoTotalValue).ToList();
+            return Json(list);
+        }
+
     }
 }
