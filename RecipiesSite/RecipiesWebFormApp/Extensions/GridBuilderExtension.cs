@@ -65,12 +65,12 @@ namespace InventoryManagementMVC.Extensions
                             .Enabled(true)
                             .Input(true))
                 .Sortable(ssb => ssb.AllowUnsort(true).Enabled(true).SortMode(GridSortMode.SingleColumn))
-                .Filterable()
+                .Filterable(f => f.Extra(false)) // this is if And/Or is visible
                 .Reorderable(r => r.Columns(true))
-                .Resizable(resize => resize.Columns(true))
+                .Resizable(resize => resize.Columns(true));
                 //.Navigatable(n => n.Enabled(true))                
                 //.Selectable(s => s.Enabled(true).Mode(GridSelectionMode.Single).Type(GridSelectionType.Row))
-                .ColumnMenu();
+                //.ColumnMenu(gcmb => gcmb.Sortable(false).Columns(false).Filterable(false));
             return builder;
         }
 
