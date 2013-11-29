@@ -6,9 +6,11 @@
             .Filter(FilterType.Contains)
             .IgnoreCase(true)
             .Placeholder("Select ...")
-            .Suggest(true)
-            
-            .DataSource(ros => {
+            .Suggest(false)
+            .MinLength(0) // this is min search length !!! no something else ;)
+                .Animation(pab => { pab.Open(eb => eb.Duration(AnimationDuration.Fast)).Close(eb => eb.Duration(AnimationDuration.Fast)); })
+            .DataSource(ros =>
+            {
                 ros.ServerFiltering(false);
             })
 
