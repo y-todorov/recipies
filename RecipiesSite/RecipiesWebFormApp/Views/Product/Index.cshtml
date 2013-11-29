@@ -6,7 +6,7 @@
 @model IEnumerable<ProductViewModel>
 
 @(
-        Html.Kendo().Grid(Model)
+ Html.Kendo().Grid(Model)
             .Name("ProductViewModelGrid")
             .AddDefaultOptions()
             .DataSource(dataSource => dataSource
@@ -15,6 +15,31 @@
                 .Read("Read", "Product")
                 .Update("Update", "Product")
                 .Destroy("Destroy", "Product")
-            )
+                ).Events(e => e.DataBound("onDataBound"))
+           
+)
+<style>
+    .UnitsOnOrder {
+        background-color: #d88;
+    }
+</style>
 
-      )
+<script>
+    function onDataBound(e) {
+        var grid = $("#ProductViewModelGrid").data("kendoGrid");
+        var gridData = grid.dataSource.view();
+
+        for (var i = 0; i < gridData.length; i++) {
+            //get the item uid
+            var currentUid = gridData[i].uid;
+            //if the record fits the custom condition
+            if (gridData[i].UnitsOnOrder > 0) {
+
+
+                //find the row based on the uid and the custom class
+                var currenRow = grid.table.find("tr[data-uid='" + currentUid + "']");
+                $(currenRow).addClass("UnitsOnOrder");
+            }
+        }
+    }
+</script>
