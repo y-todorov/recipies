@@ -19,8 +19,11 @@
            
 )
 <style>
-    .UnitsOnOrder {
-        background-color: #d88;
+    .UnitsOnOrderPositive {
+        background-color: #d1ff9d;
+    }
+    .NeedsReorder {
+        background-color: #f38a62;
     }
 </style>
 
@@ -34,11 +37,13 @@
             var currentUid = gridData[i].uid;
             //if the record fits the custom condition
             if (gridData[i].UnitsOnOrder > 0) {
-
-
                 //find the row based on the uid and the custom class
                 var currenRow = grid.table.find("tr[data-uid='" + currentUid + "']");
-                $(currenRow).addClass("UnitsOnOrder");
+                $(currenRow).addClass("UnitsOnOrderPositive");
+            }
+            if (gridData[i].UnitsInStock <= gridData[i].ReorderLevel) {
+                var currenRow = grid.table.find("tr[data-uid='" + currentUid + "']");
+                $(currenRow).addClass("NeedsReorder");
             }
         }
     }
