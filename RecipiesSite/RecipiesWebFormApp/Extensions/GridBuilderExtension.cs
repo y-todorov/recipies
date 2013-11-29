@@ -63,14 +63,16 @@ namespace InventoryManagementMVC.Extensions
                             .Refresh(true)
                             .Info(true)
                             .Enabled(true)
-                            .Input(true))
+                            .Input(false)
+                            .ButtonCount(10)
+                            )
                 .Sortable(ssb => ssb.AllowUnsort(true).Enabled(true).SortMode(GridSortMode.SingleColumn))
                 .Filterable(f => f.Extra(true)) // this is if And/Or is visible
                 .Reorderable(r => r.Columns(true))
                 .Resizable(resize => resize.Columns(true));
-                //.Navigatable(n => n.Enabled(true))                
-                //.Selectable(s => s.Enabled(true).Mode(GridSelectionMode.Single).Type(GridSelectionType.Row))
-                //.ColumnMenu(gcmb => gcmb.Sortable(false).Columns(false).Filterable(false));
+            //.Navigatable(n => n.Enabled(true))                
+            //.Selectable(s => s.Enabled(true).Mode(GridSelectionMode.Single).Type(GridSelectionType.Row))
+            //.ColumnMenu(gcmb => gcmb.Sortable(false).Columns(false).Filterable(false));
             return builder;
         }
 
@@ -287,14 +289,14 @@ namespace InventoryManagementMVC.Extensions
                                 if (propertyInfo.Name.Equals("ModifiedDate", StringComparison.InvariantCultureIgnoreCase))
                                 {
                                     columns.Bound(propertyInfo.Name)
-                                        .Format(!string.IsNullOrEmpty(customFormat) ? customFormat : "{0:dd/MM/yyyy HH:mm:ss}")                                     
+                                        .Format(!string.IsNullOrEmpty(customFormat) ? customFormat : "{0:dd/MM/yyyy HH:mm:ss}")
                                     .ClientFooterTemplate("Count: #= kendo.format('{0}', count)#".Replace("#", "\\#"))
                                     .ClientGroupFooterTemplate("Count: #= kendo.format('{0}', count)#".Replace("#", "\\#"));
                                 }
                                 else
                                 {
                                     columns.Bound(propertyInfo.Name)
-                                        .Format(!string.IsNullOrEmpty(customFormat) ? customFormat : "{0:dd/MM/yyyy}")                                     
+                                        .Format(!string.IsNullOrEmpty(customFormat) ? customFormat : "{0:dd/MM/yyyy}")
                                         .EditorTemplateName("Date")
                                     .ClientFooterTemplate("Count: #= kendo.format('{0}', count)#".Replace("#", "\\#"))
                                     .ClientGroupFooterTemplate("Count: #= kendo.format('{0}', count)#".Replace("#", "\\#"));
@@ -331,6 +333,16 @@ namespace InventoryManagementMVC.Extensions
             Type modelEntityType = typeof(T);
             PropertyInfo[] modelEntityProperties = modelEntityType.GetProperties();
 
+            PropertyInfo idPropertyInfo =
+                        modelEntityProperties.FirstOrDefault(pi => pi.GetCustomAttributes<KeyAttribute>().Any());
+            if (idPropertyInfo == null)
+            {
+                throw new ApplicationException(string.Format(
+                    "The entity {0} does not have a key. You should add a KeyAttribute to a property to denote it as a primary key!",
+                    modelEntityType.FullName));
+            }
+
+            string idName = idPropertyInfo.Name;
             builder
                 .DataSource(dataSource => dataSource
                     .Ajax()
@@ -339,16 +351,7 @@ namespace InventoryManagementMVC.Extensions
                     .Model(
                         model =>
                         {
-                            PropertyInfo idPropertyInfo =
-                                modelEntityProperties.FirstOrDefault(pi => pi.GetCustomAttributes<KeyAttribute>().Any());
-                            if (idPropertyInfo == null)
-                            {
-                                throw new ApplicationException(string.Format(
-                                    "The entity {0} does not have a key. You should add a KeyAttribute to a property to denote it as a primary key!",
-                                    modelEntityType.FullName));
-                            }
 
-                            string idName = idPropertyInfo.Name;
                             model.Id(idName);
                             model.Field(idName, typeof(int)).Editable(false);
                             model.Field("ModifiedDate", typeof(DateTime?)).Editable(false);
@@ -388,7 +391,14 @@ namespace InventoryManagementMVC.Extensions
                                 }
                             }
                         }
-                    ) // this is for editing and deleting
+                    )
+                     .Sort(sd =>
+                     {                        
+                         sd.Add(idName).Descending();
+                     })
+
+
+                    // this is for editing and deleting
                     .Aggregates(a =>
                     {
                         Type[] numericTypes = new Type[]
