@@ -394,7 +394,7 @@ namespace InventoryManagementMVC.Extensions
                     )
                      .Sort(sd =>
                      {                        
-                         sd.Add(idName).Descending();
+                         sd.Add(idName).Ascending();
                      })
 
 
