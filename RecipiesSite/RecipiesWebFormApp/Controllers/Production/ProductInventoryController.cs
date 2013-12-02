@@ -26,12 +26,26 @@ namespace InventoryManagementMVC.Controllers
         public ActionResult Read(int? productInventoryHeaderId, [DataSourceRequest] DataSourceRequest request)
         {
 
-            List<ProductInventoryViewModel> productInventoriesViewModels =
-                ContextFactory.Current.Inventories.OfType<ProductInventory>()
+            //Check if the inventory contains all products
+            //Context
+          
+
+            //var allProducts = ContextFactory.Current.Products.ToList();
+            //foreach (Product p in allProducts)
+            //{
+            //    if ()
+            //}
+
+            ProductInventoryHeader pih2 = ContextFactory.Current.ProductInventoryHeaders.FirstOrDefault(pi => pi.ProductInventoryHeaderId == productInventoryHeaderId);
+            ProductInventoryHeader.InsertMissingProductInventories(pih2);
+
+  var allPis = ContextFactory.Current.Inventories.OfType<ProductInventory>()
                 .Include(pi => pi.Product.ProductCategory)
                 .Include(pi => pi.Product.UnitMeasure)
                 .Where(
-                    pih => productInventoryHeaderId.HasValue ? pih.ProductInventoryHeaderId == productInventoryHeaderId.Value : true).ToList().Select
+                    pih => productInventoryHeaderId.HasValue ? pih.ProductInventoryHeaderId == productInventoryHeaderId.Value : true).ToList();
+            List<ProductInventoryViewModel> productInventoriesViewModels =
+               allPis.Select
                     (pi =>
                         ProductInventoryViewModel.ConvertFromProductInventoryEntity(pi, new ProductInventoryViewModel()))
                     .ToList();

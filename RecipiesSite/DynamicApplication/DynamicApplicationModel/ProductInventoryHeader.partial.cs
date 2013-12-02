@@ -26,5 +26,34 @@ namespace RecipiesModelNS
             ContextFactory.Current.SaveChanges();
             base.Removed(e);
         }
+
+        public static void InsertMissingProductInventories(ProductInventoryHeader pihEntity)
+        {
+            //ContextFactory.Current.ProductInventoryHeaders.Add(pihEntity);
+            //ContextFactory.Current.SaveChanges();
+
+            List<ProductInventory> pis = ContextFactory.Current.Inventories.OfType<ProductInventory>().Where(pi => pi.ProductInventoryHeaderId == pihEntity.ProductInventoryHeaderId).ToList();
+
+            List<Product> allProducts = ContextFactory.Current.Products.ToList();
+            // Move this to the database project in ProductInventoryHeader
+            foreach (Product product in allProducts)
+            {
+                if (!pis.Any(pid => pid.ProductId == product.ProductId))
+                {
+
+                    ProductInventory pi = new ProductInventory();
+                    pi.ProductId = product.ProductId;
+                    pi.ForDate = pihEntity.ForDate;
+                    pi.AverageUnitPrice = product.UnitPrice;
+                    pi.QuantityByDocuments = product.GetQuantityByDocumentsForDate(pihEntity.ForDate.GetValueOrDefault());
+
+                    pi.ProductInventoryHeaderId = pihEntity.ProductInventoryHeaderId;
+
+                    ContextFactory.Current.Inventories.Add(pi);
+                    ContextFactory.Current.SaveChanges();
+                }
+            }
+           
+        }
     }
 }
