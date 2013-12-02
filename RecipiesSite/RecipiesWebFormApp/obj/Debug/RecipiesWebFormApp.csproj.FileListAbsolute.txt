@@ -59,3 +59,10 @@ C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\HtmlAgilityPack.xml
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\obj\Debug\RecipiesWebFormApp.csprojResolveAssemblyReference.cache
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\obj\Debug\RecipiesWebFormApp.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\obj\Debug\RecipiesWebFormApp.pdb
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Elmah.dll
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Glimpse.Ado.dll
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Glimpse.AspNet.dll
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Glimpse.Core.dll
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Glimpse.Elmah.dll
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Glimpse.Mvc4.dll
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Glimpse.EF5.dll
