@@ -13,6 +13,7 @@ using System.Web.Mvc;
 using RecipiesWebFormApp.Caching;
 using System.Reflection;
 using System.Collections.Specialized;
+using RecipiesWebFormApp.Controllers.Shared;
 
 namespace RecipiesWebFormApp
 {
@@ -27,6 +28,7 @@ namespace RecipiesWebFormApp
             }
 
             // Code that runs on application startup
+            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterOpenAuth();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
@@ -112,17 +114,67 @@ namespace RecipiesWebFormApp
 
         private void Application_Error(object sender, EventArgs e)
         {
-            Exception ex = Server.GetLastError();
-            string exMessage = ex.Message;
-            string exStackTrace = ex.StackTrace;
-            Exception innerEx = ex.InnerException;
-            if (innerEx != null)
+            //Exception ex = Server.GetLastError();
+            //string exMessage = ex.Message;
+            //string exStackTrace = ex.StackTrace;
+            //Exception innerEx = ex.InnerException;
+            //if (innerEx != null)
+            //{
+            //    string innerExMessage = innerEx.Message;
+            //    string innerExstackTrace = innerEx.StackTrace;
+            //    Debugger.Break();
+            //}
+            //Debugger.Break();
+
+            var httpContext = ((HttpApplication)sender).Context;
+            var currentController = " ";
+            var currentAction = " ";
+            var currentRouteData = RouteTable.Routes.GetRouteData(new HttpContextWrapper(httpContext));
+
+            if (currentRouteData != null)
             {
-                string innerExMessage = innerEx.Message;
-                string innerExstackTrace = innerEx.StackTrace;
-                Debugger.Break();
+                if (currentRouteData.Values["controller"] != null && !String.IsNullOrEmpty(currentRouteData.Values["controller"].ToString()))
+                {
+                    currentController = currentRouteData.Values["controller"].ToString();
+                }
+
+                if (currentRouteData.Values["action"] != null && !String.IsNullOrEmpty(currentRouteData.Values["action"].ToString()))
+                {
+                    currentAction = currentRouteData.Values["action"].ToString();
+                }
             }
-            Debugger.Break();
+
+            var ex = Server.GetLastError();
+            var controller = new ErrorController();
+            var routeData = new RouteData();
+            var action = "Index";
+
+            if (ex is HttpException)
+            {
+                var httpEx = ex as HttpException;
+
+                switch (httpEx.GetHttpCode())
+                {
+                    case 404:
+                        action = "NotFound";
+                        break;
+
+                    // others if any
+                }
+            }
+
+            httpContext.ClearError();
+            httpContext.Response.Clear();
+            httpContext.Response.StatusCode = ex is HttpException ? ((HttpException)ex).GetHttpCode() : 500;
+            httpContext.Response.TrySkipIisCustomErrors = true;
+
+            routeData.Values["controller"] = "Error";
+            routeData.Values["action"] = action;
+
+            controller.ViewData.Model = new HandleErrorInfo(ex, currentController, currentAction);
+            ((IController)controller).Execute(new RequestContext(new HttpContextWrapper(httpContext), routeData));
+
+
         }
     }
     public class CookieAwareWebClient : WebClient

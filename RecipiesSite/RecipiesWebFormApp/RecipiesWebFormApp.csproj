@@ -433,6 +433,7 @@
       <DependentUpon>RegisterExternalLogin.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\DatabaseTableChangeWatcher.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Caching\CacheDependencyManager.cs" />
     <Compile Include="Caching\ExplicitCacheDependency.cs" />
@@ -459,6 +460,7 @@
     <Compile Include="Controllers\Sales\SalesOrderDetailController.cs" />
     <Compile Include="Controllers\Sales\SalesOrderHeaderController.cs" />
     <Compile Include="Controllers\Shared\DownloadController.cs" />
+    <Compile Include="Controllers\Shared\ErrorController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\Production\CategoryController.cs" />
     <Compile Include="Controllers\Production\ProductController.cs" />
@@ -493,6 +495,7 @@
       <DependentUpon>Error404.aspx</DependentUpon>
     </Compile>
     <Compile Include="Extensions\ChartBuilderExtension.cs" />
+    <Compile Include="Extensions\CustomHandleErrorAttribute.cs" />
     <Compile Include="Extensions\GridBuilderExtension.cs" />
     <Compile Include="Extensions\MyFileResult.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
@@ -795,6 +798,8 @@
     <Content Include="Scripts\WebEssentials\WebEssentialsJsBundle.min.js.map">
       <DependentUpon>WebEssentialsJsBundle.js.bundle</DependentUpon>
     </Content>
+    <Content Include="Views\Error\Error.cshtml" />
+    <Content Include="Views\Error\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
