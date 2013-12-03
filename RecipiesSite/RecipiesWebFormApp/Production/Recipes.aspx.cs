@@ -123,7 +123,7 @@ namespace RecipiesWebFormApp.Production
                         ContextFactory.GetContextPerRequest().Products.FirstOrDefault(p => p.ProductId == intProductId);
                     if (product != null)
                     {
-                        tbCost.Text = product.GetAveragePriceLastDays(14).ToString();
+                        tbCost.Text = product.UnitPrice.GetValueOrDefault().ToString(); //.GetAveragePriceLastDays(14).ToString();
                     }
 
                     //ProductVendor productVendor = ContextFactory.GetContextPerRequest().ProductVendors.FirstOrDefault(pv => pv.ProductId == intProductId && pv.VendorId == VendorId);

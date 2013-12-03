@@ -337,9 +337,8 @@ namespace RecipiesWebFormApp.Purchasing
                             coef = (decimal) product.GetBaseUnitMeasureQuantityForProduct(1, vendorUnitMeasure);
                         }
 
-                        //tbUnitPrice.Text = (coef * product.UnitPrice.GetValueOrDefault()).ToString();
-                        tbUnitPrice.Text = (coef*(decimal) product.GetAveragePriceLastDays(14)).ToString();
-                            // .UnitPrice.GetValueOrDefault()).ToString();
+                        tbUnitPrice.Text = (coef * product.UnitPrice.GetValueOrDefault()).ToString();
+                        //tbUnitPrice.Text = (coef*(decimal) product.GetAveragePriceLastDays(14)).ToString();                           
                     }
                 }
             }
@@ -348,28 +347,8 @@ namespace RecipiesWebFormApp.Purchasing
         protected void OpenAccessLinqDataSourcePurchaseOrders_Updating(object sender,
             EntityDataSourceChangingEventArgs e)
         {
-            // Implemented in partial class
-
-
-            //PurchaseOrderHeader oldPurchaseOrderHeader = e.OriginalObject as PurchaseOrderHeader;
-            //PurchaseOrderHeader newPurchaseOrderHeader = e.NewObject as PurchaseOrderHeader;
-
-
-            //bool isValidStatusTransition = newPurchaseOrderHeader.UpdateProductsFromStatus(oldPurchaseOrderHeader.StatusId, newPurchaseOrderHeader.StatusId);
-
-
-            //if (!isValidStatusTransition)
-            //{
-            //    e.Cancel = true;                    
-            //    (Master as SiteMaster).MasterRadWindowManager.RadAlert(
-            //        "Invalid status transition! Valid status transitions are Pending -> Approved, Approved -> Rejected, Approved -> Completed and vice versa!", 600, 300, "Can not update!", "");
-            //    return;
-            //}
-            //foreach (PurchaseOrderDetail pod in newPurchaseOrderHeader.PurchaseOrderDetails)
-            //{
-            //   pod.Product.UnitPrice = (decimal)pod.Product.GetAveragePriceLastDays(14);
-            //}
-            //ContextFactory.GetContextPerRequest().SaveChanges();
+            
+           
         }
 
         protected void rgPurchaseOrders_ItemCreated(object sender, GridItemEventArgs e)

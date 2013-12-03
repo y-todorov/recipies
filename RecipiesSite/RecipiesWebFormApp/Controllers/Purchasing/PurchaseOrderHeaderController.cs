@@ -73,7 +73,7 @@ namespace InventoryManagementMVC.Controllers.Purchasing
                         {
                             coef = (decimal)pv.Product.GetBaseUnitMeasureQuantityForProduct(1, pv.UnitMeasure);
                         }
-                        pod.UnitPrice = coef * (decimal)pv.Product.GetAveragePriceLastDays(14);
+                        pod.UnitPrice = coef * (decimal)pv.Product.UnitPrice.GetValueOrDefault(); //.GetAveragePriceLastDays(14); Unit price must be alwats equal to GetAveragePriceLastDays(14)
 
                         ContextFactory.Current.PurchaseOrderDetails.Add(pod);
                     }

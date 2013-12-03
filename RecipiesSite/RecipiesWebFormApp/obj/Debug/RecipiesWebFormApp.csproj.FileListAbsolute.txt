@@ -6,7 +6,14 @@ C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\AppfailReporting.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Autofac.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\DevTrends.MvcDonutCaching.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\DynamicApplicationModel.dll
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Elmah.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\EntityFramework.dll
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Glimpse.Ado.dll
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Glimpse.AspNet.dll
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Glimpse.Core.dll
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Glimpse.EF5.dll
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Glimpse.Elmah.dll
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Glimpse.Mvc4.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Helpers.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Kendo.Mvc.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.AspNet.FriendlyUrls.dll
@@ -59,10 +66,3 @@ C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\HtmlAgilityPack.xml
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\obj\Debug\RecipiesWebFormApp.csprojResolveAssemblyReference.cache
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\obj\Debug\RecipiesWebFormApp.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\obj\Debug\RecipiesWebFormApp.pdb
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Elmah.dll
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Glimpse.Ado.dll
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Glimpse.AspNet.dll
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Glimpse.Core.dll
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Glimpse.Elmah.dll
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Glimpse.Mvc4.dll
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Glimpse.EF5.dll
