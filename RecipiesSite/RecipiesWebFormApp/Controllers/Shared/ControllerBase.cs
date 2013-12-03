@@ -12,7 +12,7 @@ using System.Web.Mvc;
 
 namespace InventoryManagementMVC.Controllers
 {
-    [DonutOutputCache(Duration = 24 * 3600, Options= OutputCacheOptions.IgnoreFormData)]
+    [DonutOutputCache(Duration = 24 * 3600, Options = OutputCacheOptions.NoCacheLookupForPosts)]
     public class ControllerBase : Controller
     {  
         public long ActionMilliseconds { get; set; }
