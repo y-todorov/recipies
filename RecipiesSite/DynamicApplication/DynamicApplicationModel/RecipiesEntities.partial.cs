@@ -72,6 +72,9 @@ namespace RecipiesModelNS
             }
             int result = base.SaveChanges();
 
+           
+
+
             // {System.InvalidOperationException: The object is in a detached state. This operation cannot be performed on an ObjectStateEntry when the object is detached.
    //at System.Data.Entity.Core.Objects.ObjectStateEntry.ValidateState()
    //at System.Data.Entity.Core.Objects.EntityEntry.get_Entity()
@@ -92,7 +95,10 @@ namespace RecipiesModelNS
             foreach (YordanBaseEntity ybe in deletedEntities)
             {
                 Task.Factory.StartNew(() => ybe.Removed());
-            }
+            } 
+            
+            // Mega test
+            ContextFactory.RemoveFromCache();
 
             return result;
         }
