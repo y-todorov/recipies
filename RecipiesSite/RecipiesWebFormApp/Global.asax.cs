@@ -163,9 +163,11 @@ namespace RecipiesWebFormApp
                 }
             }
 
-            httpContext.ClearError();
-            httpContext.Response.Clear();
-            httpContext.Response.StatusCode = ex is HttpException ? ((HttpException)ex).GetHttpCode() : 500;
+            //httpContext.ClearError();
+            //httpContext.Response.Clear();
+            //httpContext.Response.StatusCode = ex is HttpException ? ((HttpException)ex).GetHttpCode() : 500;
+            httpContext.Response.StatusCode = 200;
+
             httpContext.Response.TrySkipIisCustomErrors = true;
 
             routeData.Values["controller"] = "Error";

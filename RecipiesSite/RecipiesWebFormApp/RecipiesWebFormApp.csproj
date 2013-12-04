@@ -798,7 +798,7 @@
     <Content Include="Scripts\WebEssentials\WebEssentialsJsBundle.min.js.map">
       <DependentUpon>WebEssentialsJsBundle.js.bundle</DependentUpon>
     </Content>
-    <Content Include="Views\Error\Error.cshtml" />
+    <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Error\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

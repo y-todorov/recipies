@@ -12,7 +12,7 @@ using System.Web.Mvc;
 
 namespace InventoryManagementMVC.Controllers
 {
-    [DonutOutputCache(Duration = 24 * 3600, Options = OutputCacheOptions.NoCacheLookupForPosts)]
+    [DonutOutputCache(Duration = 24 * 3600, Options =  OutputCacheOptions.IgnoreFormData | OutputCacheOptions.NoCacheLookupForPosts)]
     public class ControllerBase : Controller
     {  
         public long ActionMilliseconds { get; set; }
@@ -24,7 +24,7 @@ namespace InventoryManagementMVC.Controllers
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             //stopwatch.Start();
-            base.OnActionExecuting(filterContext);
+            base.OnActionExecuting(filterContext); 
         }
 
         protected override void OnActionExecuted(ActionExecutedContext filterContext)

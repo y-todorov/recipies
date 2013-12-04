@@ -166,13 +166,10 @@ namespace RecipiesModelNS
 
         public ProductInventory GetLastInventoryForDate(DateTime forDate)
         {
-            //Inventory lastInventory = ContextFactory.GetContextPerRequest().Inventories.Where(inv => inv.ProductId == ProductId && inv.ForDate <= forDate.Date)
-            //    .OrderByDescending(inv => inv.ForDate).FirstOrDefault();
-            //return lastInventory;
             ProductInventory lastInventory =
                 ContextFactory.GetContextPerRequest()
                     .Inventories.OfType<ProductInventory>()
-                    .Where(inv => inv.ProductId == ProductId && inv.ForDate <= forDate.Date)
+                    .Where(inv => inv.ProductId == ProductId && inv.ProductInventoryHeader.ForDate <= forDate.Date)
                     .OrderByDescending(inv => inv.ForDate).FirstOrDefault();
             return lastInventory;
         }
@@ -283,8 +280,8 @@ namespace RecipiesModelNS
                 }
                 throw new ApplicationException(
                     string.Format(
-                        "UnitMeasure mismatch in method GetBaseUnitMeasureQuantityForProduct! Product id: {0}, product unit measure: {1}, quantity unit measure: {2}, More info: {3}",
-                        ProductId, UnitMeasure.Name, quantityUnitMeasure.Name, podMessage));
+                        "UnitMeasure mismatch in method GetBaseUnitMeasureQuantityForProduct! Product id: {0}, Product name: {4}, Product unit measure: {1}, Quantity unit measure: {2}, More info: {3}",
+                        ProductId, UnitMeasure.Name, quantityUnitMeasure.Name, podMessage, Name));
             }
         }
 

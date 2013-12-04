@@ -1,12 +1,19 @@
 ﻿using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.Threading.Tasks;
 
 namespace RecipiesModelNS
 {
     public partial class RecipiesEntities : DbContext
     {
+        public RecipiesEntities(bool contextOwnsConnection)
+            : base(new System.Data.EntityClient.EntityConnection("name=RecipiesEntities"), contextOwnsConnection)
+        {
+        }
+
         protected override System.Data.Entity.Validation.DbEntityValidationResult ValidateEntity(
             System.Data.Entity.Infrastructure.DbEntityEntry entityEntry, IDictionary<object, object> items)
         {
@@ -76,15 +83,15 @@ namespace RecipiesModelNS
 
             foreach (YordanBaseEntity ybe in addedEntities)
             {
-                ybe.Added();
+                Task.Factory.StartNew(() => ybe.Added());
             }
             foreach (YordanBaseEntity ybe in modifiedEntities)
             {
-                ybe.Changed();
+                Task.Factory.StartNew(() => ybe.Changed());
             }
             foreach (YordanBaseEntity ybe in deletedEntities)
             {
-                ybe.Removed();
+                Task.Factory.StartNew(() => ybe.Removed());
             }
 
             return result;

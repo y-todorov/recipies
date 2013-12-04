@@ -11,7 +11,7 @@ namespace RecipiesModelNS
             HttpContext httpContext = HttpContext.Current;
             if (httpContext == null)
             {
-                return new RecipiesEntities();
+                return new RecipiesEntities(false);
             }
             else
             {
@@ -19,7 +19,7 @@ namespace RecipiesModelNS
 
                 if (context == null)
                 {
-                    context = new RecipiesEntities();
+                    context = new RecipiesEntities(false);
                     httpContext.Items[contextKey] = context;
                 }
 
