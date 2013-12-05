@@ -55,11 +55,22 @@ namespace InventoryManagementMVC.Controllers
                     // Move this to the database project in ProductInventoryHeader
                     foreach (Product product in allProducts)
                     {
+                        if (product.ProductId == 311)
+                        {
+
+                        }
                         ProductInventory pi = new ProductInventory();
                         pi.ProductId = product.ProductId;
                         pi.ForDate = pihModel.ForDate;
                         pi.AverageUnitPrice = product.UnitPrice;
-                        pi.QuantityByDocuments = product.GetQuantityByDocumentsForDate(pihModel.ForDate.GetValueOrDefault());
+                        try
+                        {
+                            pi.QuantityByDocuments = product.GetQuantityByDocumentsForDate(pihModel.ForDate.GetValueOrDefault());
+                        }
+                        catch (Exception ex)
+                        {
+                            throw;
+                        }
 
                         pi.ProductInventoryHeaderId = pihEntity.ProductInventoryHeaderId;
 

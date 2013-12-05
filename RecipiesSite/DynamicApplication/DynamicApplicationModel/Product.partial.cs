@@ -137,7 +137,7 @@ namespace RecipiesModelNS
                     ProductInventory productInventory =
                         ContextFactory.Current.Inventories.OfType<ProductInventory>()
                             .FirstOrDefault(pi => pi.ProductId == ProductId && pi.ForDate <= DateTime.Now);
-                    if (productInventory != null)
+                    if (productInventory != null && productInventory.StocktakeQuantity.HasValue) // inventory.StocktakeQuantity.HasValue it is not auto generated
                     {
                         totalPrice = productInventory.AverageUnitPrice.GetValueOrDefault();
                         totalQuantity = 1;
@@ -186,7 +186,7 @@ namespace RecipiesModelNS
             double quantityByDocuments = 0;
 
 
-            if (inventory != null)
+            if (inventory != null && inventory.StocktakeQuantity.HasValue) // inventory.StocktakeQuantity.HasValue it is not auto generated
             {
                 purchases = GetPurchaseOrderStockedQuantity(inventory.ForDate.GetValueOrDefault(), forDate.Date);
                 sales = GetSalesOrderQuantity(inventory.ForDate.GetValueOrDefault(), forDate.Date);
