@@ -61,7 +61,7 @@ namespace InventoryManagementMVC.Controllers
                         }
                         ProductInventory pi = new ProductInventory();
                         pi.ProductId = product.ProductId;
-                        pi.ForDate = pihModel.ForDate;
+                        //pi.ForDate = pihModel.ForDate;
                         pi.AverageUnitPrice = product.UnitPrice;
                         try
                         {

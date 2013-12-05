@@ -1326,7 +1326,7 @@
             <PropertyRef Name="InventoryId" />
           </Key>
           <Property Type="Int32" Name="InventoryId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="DateTime" Name="ForDate" Precision="0" />
+          <Property Type="DateTime" Name="ForDate" Precision="0" a:SetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:GetterAccess="Private" />
           <Property Type="Decimal" Name="AverageUnitPrice" Precision="19" Scale="4" />
           <Property Type="Double" Name="QuantityByDocuments" />
           <Property Type="Double" Name="ValueByDocuments" annotation:StoreGeneratedPattern="Computed" />

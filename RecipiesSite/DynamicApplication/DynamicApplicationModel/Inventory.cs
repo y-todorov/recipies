@@ -15,7 +15,7 @@ namespace RecipiesModelNS
     public abstract partial class Inventory
     {
         public int InventoryId { get; set; }
-        public Nullable<System.DateTime> ForDate { get; set; }
+        private Nullable<System.DateTime> ForDate { get; set; }
         public Nullable<decimal> AverageUnitPrice { get; set; }
         public Nullable<double> QuantityByDocuments { get; set; }
         public Nullable<double> ValueByDocuments { get; set; }

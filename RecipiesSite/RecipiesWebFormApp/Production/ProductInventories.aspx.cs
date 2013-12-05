@@ -88,7 +88,7 @@ namespace RecipiesWebFormApp.Production
             {
                 RecipiesModelNS.ProductInventory inventory = new RecipiesModelNS.ProductInventory
                 {
-                    ForDate = DateTime.Now.Date
+                    //ForDate = DateTime.Now.Date
                 };
                 e.Item.OwnerTableView.InsertItem(inventory);
             }

@@ -53,7 +53,7 @@ namespace InventoryManagementMVC.Models
             inventoryViewModel.AverageUnitPrice = newOrExistingInventoryEntity.AverageUnitPrice;
             inventoryViewModel.DeficiencyQuantity = newOrExistingInventoryEntity.DeficiencyQuantity;
             inventoryViewModel.DeficiencyValue = (decimal?) newOrExistingInventoryEntity.DeficiencyValue;
-            inventoryViewModel.ForDate = newOrExistingInventoryEntity.ForDate;
+            //inventoryViewModel.ForDate = newOrExistingInventoryEntity.ForDate;
             inventoryViewModel.InventoryId = newOrExistingInventoryEntity.InventoryId;
             inventoryViewModel.ModifiedByUser = newOrExistingInventoryEntity.ModifiedByUser;
             inventoryViewModel.ModifiedDate = newOrExistingInventoryEntity.ModifiedDate;
@@ -73,7 +73,7 @@ namespace InventoryManagementMVC.Models
             newOrExistingInventoryEntity.AverageUnitPrice = inventoryViewModel.AverageUnitPrice;
             newOrExistingInventoryEntity.DeficiencyQuantity = inventoryViewModel.DeficiencyQuantity;
             newOrExistingInventoryEntity.DeficiencyValue = (double?) inventoryViewModel.DeficiencyValue;
-            newOrExistingInventoryEntity.ForDate = inventoryViewModel.ForDate;
+            //newOrExistingInventoryEntity.ForDate = inventoryViewModel.ForDate;
             newOrExistingInventoryEntity.InventoryId = inventoryViewModel.InventoryId;
             newOrExistingInventoryEntity.ModifiedByUser = inventoryViewModel.ModifiedByUser;
             newOrExistingInventoryEntity.ModifiedDate = inventoryViewModel.ModifiedDate;

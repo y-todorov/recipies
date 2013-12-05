@@ -43,7 +43,7 @@ namespace RecipiesModelNS
 
                     ProductInventory pi = new ProductInventory();
                     pi.ProductId = product.ProductId;
-                    pi.ForDate = pihEntity.ForDate;
+                    //pi.ForDate = pihEntity.ForDate;
                     pi.AverageUnitPrice = product.UnitPrice;
                     pi.QuantityByDocuments = product.GetQuantityByDocumentsForDate(pihEntity.ForDate.GetValueOrDefault());
 

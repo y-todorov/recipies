@@ -136,7 +136,7 @@ namespace RecipiesModelNS
 
                     ProductInventory productInventory =
                         ContextFactory.Current.Inventories.OfType<ProductInventory>()
-                            .FirstOrDefault(pi => pi.ProductId == ProductId && pi.ForDate <= DateTime.Now);
+                            .FirstOrDefault(pi => pi.ProductId == ProductId && pi.ProductInventoryHeader.ForDate <= DateTime.Now);
                     if (productInventory != null && productInventory.StocktakeQuantity.HasValue) // inventory.StocktakeQuantity.HasValue it is not auto generated
                     {
                         totalPrice = productInventory.AverageUnitPrice.GetValueOrDefault();
@@ -172,13 +172,13 @@ namespace RecipiesModelNS
                 ContextFactory.GetContextPerRequest()
                     .Inventories.OfType<ProductInventory>()
                     .Where(inv => inv.ProductId == ProductId && inv.ProductInventoryHeader.ForDate <= forDate.Date)
-                    .OrderByDescending(inv => inv.ForDate).FirstOrDefault();
+                    .OrderByDescending(inv => inv.ProductInventoryHeader.ForDate).FirstOrDefault();
             return lastInventory;
         }
 
         public double GetQuantityByDocumentsForDate(DateTime forDate)
         {
-            Inventory inventory = GetLastInventoryForDate(forDate);
+            ProductInventory inventory = GetLastInventoryForDate(forDate);
 
             double purchases = 0;
             double sales = 0;
@@ -188,8 +188,8 @@ namespace RecipiesModelNS
 
             if (inventory != null && inventory.StocktakeQuantity.HasValue) // inventory.StocktakeQuantity.HasValue it is not auto generated
             {
-                purchases = GetPurchaseOrderStockedQuantity(inventory.ForDate.GetValueOrDefault(), forDate.Date);
-                sales = GetSalesOrderQuantity(inventory.ForDate.GetValueOrDefault(), forDate.Date);
+                purchases = GetPurchaseOrderStockedQuantity(inventory.ProductInventoryHeader.ForDate.GetValueOrDefault(), forDate.Date);
+                sales = GetSalesOrderQuantity(inventory.ProductInventoryHeader.ForDate.GetValueOrDefault(), forDate.Date);
 
                 quantityByDocuments = inventory.StocktakeQuantity.GetValueOrDefault() + purchases - sales;
             }
@@ -329,7 +329,7 @@ namespace RecipiesModelNS
 
                             if (pi != null)
                             {
-                                if (pod.PurchaseOrderHeader.ShipDate.GetValueOrDefault().Date >= pi.ForDate.GetValueOrDefault().Date)
+                                if (pod.PurchaseOrderHeader.ShipDate.GetValueOrDefault().Date >= pi.ProductInventoryHeader.ForDate.GetValueOrDefault().Date)
                                 {
                                     unitsInStock += product.GetBaseUnitMeasureQuantityForProduct(pod.StockedQuantity,
                                         pod.UnitMeasure);

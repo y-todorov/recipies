@@ -37,7 +37,10 @@ namespace InventoryManagementMVC.Controllers
             //}
 
             ProductInventoryHeader pih2 = ContextFactory.Current.ProductInventoryHeaders.FirstOrDefault(pi => pi.ProductInventoryHeaderId == productInventoryHeaderId);
-            ProductInventoryHeader.InsertMissingProductInventories(pih2);
+            if (pih2 != null)
+            {
+                ProductInventoryHeader.InsertMissingProductInventories(pih2);
+            }
 
   var allPis = ContextFactory.Current.Inventories.OfType<ProductInventory>()
                 .Include(pi => pi.Product.ProductCategory)
