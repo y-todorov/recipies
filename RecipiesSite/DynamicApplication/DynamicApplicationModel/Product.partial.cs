@@ -51,6 +51,7 @@ namespace RecipiesModelNS
             List<PurchaseOrderDetail> pods =
                 context.PurchaseOrderDetails.Where(
                     pod => pod.ProductId == ProductId && pod.PurchaseOrderHeader.ShipDate.HasValue &&
+                        pod.OrderQuantity != 0 && // this is important
                            pod.PurchaseOrderHeader.ShipDate >= fromDate && pod.PurchaseOrderHeader.ShipDate <= toDate &&
                            pod.PurchaseOrderHeader.StatusId == (int) PurchaseOrderStatusEnum.Completed)
                     .OrderByDescending(p => p.PurchaseOrderHeader.ShipDate)
@@ -94,6 +95,7 @@ namespace RecipiesModelNS
             {
                 DateTime nowDate = DateTime.Now.Date;
                 PurchaseOrderDetail lastPod = context.PurchaseOrderDetails.Where(pod => pod.ProductId == ProductId &&
+                    pod.OrderQuantity != 0 && // this is important
                                                                                         pod.PurchaseOrderHeader.ShipDate <=
                                                                                         nowDate &&
                                                                                         pod.PurchaseOrderHeader.StatusId ==
@@ -290,10 +292,13 @@ namespace RecipiesModelNS
             List<Product> products = ContextFactory.GetContextPerRequest().Products.ToList();
             foreach (Product product in products)
             {
-                decimal? averagePriceLastDays = (decimal?) product.GetAveragePriceLastDays(14);
-                if (averagePriceLastDays != product.UnitPrice)
+                //if (product.ProductId == 6983)
                 {
-                    product.UnitPrice = averagePriceLastDays;
+                    decimal? averagePriceLastDays = (decimal?)product.GetAveragePriceLastDays(14);
+                    if (averagePriceLastDays != product.UnitPrice)
+                    {
+                        product.UnitPrice = averagePriceLastDays;
+                    }
                 }
             }
             ContextFactory.GetContextPerRequest().SaveChanges();
