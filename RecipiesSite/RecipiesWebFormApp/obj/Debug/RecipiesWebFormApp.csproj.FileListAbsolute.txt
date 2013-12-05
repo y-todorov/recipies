@@ -7,6 +7,7 @@ C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Autofac.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\DevTrends.MvcDonutCaching.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\DynamicApplicationModel.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Elmah.dll
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Elmah.Mvc.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\EntityFramework.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Glimpse.Ado.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Glimpse.AspNet.dll
