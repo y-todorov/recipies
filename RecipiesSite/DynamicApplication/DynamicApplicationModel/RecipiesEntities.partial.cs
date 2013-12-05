@@ -84,17 +84,22 @@ namespace RecipiesModelNS
    //at RecipiesModelNS.RecipiesEntities.SaveChanges() in c:\Projects\recipies\RecipiesSite\DynamicApplication\DynamicApplicationModel\RecipiesEntities.partial.cs:line 35
    //at InventoryManagementMVC.Controllers.CategoryController.Destroy(DataSourceRequest request, IEnumerable`1 categories) in c:\Projects\InventoryManagement\InventoryManagement\InventoryManagementMVC\Controllers\CategoryController.cs:line 98}
 
+
+            // Problem in subtotals in PO - its 0;
             foreach (YordanBaseEntity ybe in addedEntities)
             {
-                Task.Factory.StartNew(() => ybe.Added());
+                //Task.Factory.StartNew(() => ybe.Added());
+                ybe.Added();
             }
             foreach (YordanBaseEntity ybe in modifiedEntities)
             {
-                Task.Factory.StartNew(() => ybe.Changed());
+                //Task.Factory.StartNew(() => ybe.Changed());
+                ybe.Changed();
             }
             foreach (YordanBaseEntity ybe in deletedEntities)
             {
-                Task.Factory.StartNew(() => ybe.Removed());
+                //Task.Factory.StartNew(() => ybe.Removed());
+                ybe.Removed();
             } 
             
             // Mega test
