@@ -17,5 +17,10 @@ namespace RecipiesWebFormApp.Controllers.Shared
         {
             return View();
         }
+
+        public ActionResult InternalServerError()
+        {
+            return View();
+        }
     }
 }

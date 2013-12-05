@@ -65,31 +65,31 @@ namespace RecipiesWebFormApp
                 var res = ct.ReflectedType.GetMethod("Index").Invoke(instance, null);
             }
 
-    //        //CookieAwareWebClient client = new CookieAwareWebClient();
+            //        //CookieAwareWebClient client = new CookieAwareWebClient();
 
-    //        using (var client = new CookieAwareWebClient())
-    //        {
-    //            var values = new NameValueCollection
-    //{
-    //    { "username", "admin" },
-    //    { "password", "admin1!!" },
-    //};
-    //            client.UploadValues("http://bluesystems.azurewebsites.net", values);
+            //        using (var client = new CookieAwareWebClient())
+            //        {
+            //            var values = new NameValueCollection
+            //{
+            //    { "username", "admin" },
+            //    { "password", "admin1!!" },
+            //};
+            //            client.UploadValues("http://bluesystems.azurewebsites.net", values);
 
-    //            // If the previous call succeeded we now have a valid authentication cookie
-    //            // so we could download the protected page
-    //            //string result = client.DownloadString("http://domain.loc/testpage.aspx");
+            //            // If the previous call succeeded we now have a valid authentication cookie
+            //            // so we could download the protected page
+            //            //string result = client.DownloadString("http://domain.loc/testpage.aspx");
 
 
-    //            foreach (Type ct in controllersType)
-    //            {
-    //                string controllerFullName = ct.ReflectedType.Name;
-    //                string controllerName = controllerFullName.Substring(0, controllerFullName.IndexOf("Controller"));
-    //                string res = client.DownloadStringTaskAsync(new Uri("http://bluesystems.azurewebsites.net/" + controllerName)).Result;
-    //                client.UploadValues("http://bluesystems.azurewebsites.net/" + controllerName, values);
-    //                res = client.DownloadStringTaskAsync(new Uri("http://bluesystems.azurewebsites.net/" + controllerName)).Result;
-    //            }
-    //        }
+            //            foreach (Type ct in controllersType)
+            //            {
+            //                string controllerFullName = ct.ReflectedType.Name;
+            //                string controllerName = controllerFullName.Substring(0, controllerFullName.IndexOf("Controller"));
+            //                string res = client.DownloadStringTaskAsync(new Uri("http://bluesystems.azurewebsites.net/" + controllerName)).Result;
+            //                client.UploadValues("http://bluesystems.azurewebsites.net/" + controllerName, values);
+            //                res = client.DownloadStringTaskAsync(new Uri("http://bluesystems.azurewebsites.net/" + controllerName)).Result;
+            //            }
+            //        }
 
 
         }
@@ -152,20 +152,36 @@ namespace RecipiesWebFormApp
             if (ex is HttpException)
             {
                 var httpEx = ex as HttpException;
-
-                switch (httpEx.GetHttpCode())
+                int exceptionHttpStatusCode = httpEx.GetHttpCode();
+                switch (exceptionHttpStatusCode)
                 {
                     case 404:
                         action = "NotFound";
                         break;
-
+                    case 500:
+                        action = "InternalServerError";
+                        break;
                     // others if any
                 }
             }
 
-            //httpContext.ClearError();
-            //httpContext.Response.Clear();
-            //httpContext.Response.StatusCode = ex is HttpException ? ((HttpException)ex).GetHttpCode() : 500;
+
+            //test
+
+            if (IsAjaxRequest())
+            {
+                Response.Write("Your JSON here");
+                //We clear the error
+                httpContext.Response.StatusCode = 500;
+                Server.ClearError();
+                return;
+            }
+
+
+            httpContext.ClearError();
+            httpContext.Response.Clear();
+            httpContext.Response.StatusCode = ex is HttpException ? ((HttpException)ex).GetHttpCode() : 500;
+            //but this is importan. It helps the brousers to display a good error page
             httpContext.Response.StatusCode = 200;
 
             httpContext.Response.TrySkipIisCustomErrors = true;
@@ -178,7 +194,61 @@ namespace RecipiesWebFormApp
 
 
         }
+
+        //This method checks if we have an AJAX request or not
+        private bool IsAjaxRequest()
+        {
+            //The easy way
+            bool isAjaxRequest = (Request["X-Requested-With"] == "XMLHttpRequest")
+            || ((Request.Headers != null)
+            && (Request.Headers["X-Requested-With"] == "XMLHttpRequest"));
+
+            //If we are not sure that we have an AJAX request or that we have to return JSON 
+            //we fall back to Reflection
+            if (!isAjaxRequest)
+            {
+                try
+                {
+                    //The controller and action
+                    string controllerName = Request.RequestContext.
+                                            RouteData.Values["controller"].ToString();
+                    string actionName = Request.RequestContext.
+                                        RouteData.Values["action"].ToString();
+
+                    //We create a controller instance
+                    DefaultControllerFactory controllerFactory = new DefaultControllerFactory();
+                    Controller controller = controllerFactory.CreateController(
+                    Request.RequestContext, controllerName) as Controller;
+
+                    //We get the controller actions
+                    ReflectedControllerDescriptor controllerDescriptor =
+                    new ReflectedControllerDescriptor(controller.GetType());
+                    ActionDescriptor[] controllerActions =
+                    controllerDescriptor.GetCanonicalActions();
+
+                    //We search for our action
+                    foreach (ReflectedActionDescriptor actionDescriptor in controllerActions)
+                    {
+                        if (actionDescriptor.ActionName.ToUpper().Equals(actionName.ToUpper()))
+                        {
+                            //If the action returns JsonResult then we have an AJAX request
+                            if (actionDescriptor.MethodInfo.ReturnType
+                            .Equals(typeof(JsonResult)))
+                                return true;
+                        }
+                    }
+                }
+                catch
+                {
+
+                }
+            }
+
+            return isAjaxRequest;
+        }
+   
     }
+    
     public class CookieAwareWebClient : WebClient
     {
         public CookieAwareWebClient()
