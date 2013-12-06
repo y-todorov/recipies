@@ -93,6 +93,10 @@ namespace InventoryManagementMVC.Extensions
                     {
                         toolbar.Save();
                     }
+
+                    toolbar.Custom()
+               .Text("Export To Excel")
+               .Action("ExportWithOpenXML", "Download", new { typeName = modelEntityType.Name });
                 });
             return builder;
         }

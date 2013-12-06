@@ -67,3 +67,6 @@ C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\HtmlAgilityPack.xml
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\obj\Debug\RecipiesWebFormApp.csprojResolveAssemblyReference.cache
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\obj\Debug\RecipiesWebFormApp.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\obj\Debug\RecipiesWebFormApp.pdb
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Ionic.Zip.dll
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\NPOI.dll
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\NPOI.xml
