@@ -171,7 +171,7 @@ namespace RecipiesModelNS
             ProductInventory lastInventory =
                 ContextFactory.GetContextPerRequest()
                     .Inventories.OfType<ProductInventory>()
-                    .Where(inv => inv.ProductId == ProductId && inv.ProductInventoryHeader.ForDate <= forDate.Date)
+                    .Where(inv => inv.ProductId == ProductId && inv.StocktakeQuantity.HasValue  && inv.ProductInventoryHeader.ForDate <= forDate.Date)
                     .OrderByDescending(inv => inv.ProductInventoryHeader.ForDate).FirstOrDefault();
             return lastInventory;
         }
@@ -315,7 +315,7 @@ namespace RecipiesModelNS
             foreach (Product product in allProducts)
             {
                 ProductInventory pi = product.GetLastInventoryForDate(DateTime.Now);
-                //if (product.ProductId == 23)
+                //if (product.ProductId == 224)
                 {
                     double unitsInStock = 0;
                     if (pi != null)

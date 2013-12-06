@@ -55,7 +55,7 @@ namespace InventoryManagementMVC.Controllers
                     // Move this to the database project in ProductInventoryHeader
                     foreach (Product product in allProducts)
                     {
-                        if (product.ProductId == 311)
+                        if (product.ProductId == 224)
                         {
 
                         }
