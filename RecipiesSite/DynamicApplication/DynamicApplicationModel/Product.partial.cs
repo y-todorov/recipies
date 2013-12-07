@@ -7,15 +7,6 @@ namespace RecipiesModelNS
 {
     public partial class Product : YordanBaseEntity
     {
-        //public override void Added(RecipiesModel context, AddEventArgs e)
-        //{
-        //    base.Added(context, e);
-        //}
-        //[Required]
-        //[DisplayName("Unit price")]
-        //[DataType(DataType.Currency)]
-        //[Range(0, int.MaxValue)]
-        //public Nullable<decimal> UnitPrice { get; set; }
 
         public static void UpdateUnitsInStock(int? productId)
         {
@@ -25,12 +16,12 @@ namespace RecipiesModelNS
                     ContextFactory.GetContextPerRequest().Products.FirstOrDefault(p => p.ProductId == productId);
                 if (product != null)
                 {
-                    double quantityByDocumentsForDate =  product.GetQuantityByDocumentsForDate(DateTime.Now);
+                    double quantityByDocumentsForDate = product.GetQuantityByDocumentsForDate(DateTime.Now);
                     if (product.UnitsInStock != quantityByDocumentsForDate)
                     {
                         product.UnitsInStock = quantityByDocumentsForDate;
                         ContextFactory.GetContextPerRequest().SaveChanges();
-                    }                                        
+                    }
                 }
             }
         }
@@ -53,7 +44,7 @@ namespace RecipiesModelNS
                     pod => pod.ProductId == ProductId && pod.PurchaseOrderHeader.ShipDate.HasValue &&
                         pod.OrderQuantity != 0 && // this is important
                            pod.PurchaseOrderHeader.ShipDate >= fromDate && pod.PurchaseOrderHeader.ShipDate <= toDate &&
-                           pod.PurchaseOrderHeader.StatusId == (int) PurchaseOrderStatusEnum.Completed)
+                           pod.PurchaseOrderHeader.StatusId == (int)PurchaseOrderStatusEnum.Completed)
                     .OrderByDescending(p => p.PurchaseOrderHeader.ShipDate)
                     .ToList();
 
@@ -70,7 +61,7 @@ namespace RecipiesModelNS
                     double tempBaseUnitsQuantity = pod.Product.GetBaseUnitMeasureQuantityForProduct(
                         pod.StockedQuantity, pod.UnitMeasure, pod);
                     baseUnitsQuantity += tempBaseUnitsQuantity;
-                    totalPrice += (decimal) pod.StockedQuantity*pod.UnitPrice.GetValueOrDefault();
+                    totalPrice += (decimal)pod.StockedQuantity * pod.UnitPrice.GetValueOrDefault();
                     totalQuantity += pod.StockedQuantity;
 
                     string productMeasureName = string.Empty;
@@ -110,7 +101,7 @@ namespace RecipiesModelNS
                         lastPod.Product.GetBaseUnitMeasureQuantityForProduct(lastPod.StockedQuantity,
                             lastPod.UnitMeasure, lastPod);
                     baseUnitsQuantity += tempBaseUnitsQuantity;
-                    totalPrice += (decimal) lastPod.StockedQuantity*lastPod.UnitPrice.GetValueOrDefault();
+                    totalPrice += (decimal)lastPod.StockedQuantity * lastPod.UnitPrice.GetValueOrDefault();
 
                     totalQuantity += lastPod.StockedQuantity;
                     string productMeasureName = string.Empty;
@@ -150,7 +141,7 @@ namespace RecipiesModelNS
                 }
             }
 
-            double averagePrice = Math.Round((double) totalPrice/baseUnitsQuantity, 3);
+            double averagePrice = Math.Round((double)totalPrice / baseUnitsQuantity, 3);
 
             if (double.IsNaN(averagePrice) || double.IsInfinity(averagePrice))
             {
@@ -171,7 +162,7 @@ namespace RecipiesModelNS
             ProductInventory lastInventory =
                 ContextFactory.GetContextPerRequest()
                     .Inventories.OfType<ProductInventory>()
-                    .Where(inv => inv.ProductId == ProductId && inv.StocktakeQuantity.HasValue  && inv.ProductInventoryHeader.ForDate <= forDate.Date)
+                    .Where(inv => inv.ProductId == ProductId && inv.StocktakeQuantity.HasValue && inv.ProductInventoryHeader.ForDate <= forDate.Date)
                     .OrderByDescending(inv => inv.ProductInventoryHeader.ForDate).FirstOrDefault();
             return lastInventory;
         }
@@ -258,7 +249,7 @@ namespace RecipiesModelNS
                 UnitMeasure baseUnitMeasure = this.UnitMeasure;
                 if (quantityUnitMeasure.BaseUnitFactor.HasValue)
                 {
-                    double result = quantity.Value*quantityUnitMeasure.BaseUnitFactor.Value;
+                    double result = quantity.GetValueOrDefault() * quantityUnitMeasure.BaseUnitFactor.GetValueOrDefault();
                     return Math.Round(result, 3);
                 }
                 else
@@ -269,7 +260,7 @@ namespace RecipiesModelNS
             }
             else if (quantityUnitMeasure.UnitMeasureId == this.UnitMeasureId)
             {
-                double result = quantity.Value;
+                double result = quantity.GetValueOrDefault();
                 return Math.Round(result, 3);
             }
             else
@@ -310,7 +301,7 @@ namespace RecipiesModelNS
             List<PurchaseOrderDetail> allCompletedPurchaseOrderDetals =
                 ContextFactory.GetContextPerRequest()
                     .PurchaseOrderDetails.Where(
-                        pod => pod.PurchaseOrderHeader.StatusId == (int) PurchaseOrderStatusEnum.Completed).ToList();
+                        pod => pod.PurchaseOrderHeader.StatusId == (int)PurchaseOrderStatusEnum.Completed).ToList();
 
             foreach (Product product in allProducts)
             {
@@ -357,7 +348,9 @@ namespace RecipiesModelNS
             List<PurchaseOrderDetail> allCompletedPurchaseOrderDetals =
                 ContextFactory.GetContextPerRequest()
                     .PurchaseOrderDetails.Where(
-                        pod => pod.PurchaseOrderHeader.StatusId == (int) PurchaseOrderStatusEnum.Approved).ToList();
+                        pod => pod.PurchaseOrderHeader.StatusId == (int)PurchaseOrderStatusEnum.Approved ||
+                               pod.PurchaseOrderHeader.StatusId == (int)PurchaseOrderStatusEnum.Pending
+                        ).ToList();
 
             foreach (Product product in allProducts)
             {
