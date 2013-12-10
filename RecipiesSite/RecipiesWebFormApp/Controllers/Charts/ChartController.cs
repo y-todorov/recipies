@@ -21,7 +21,7 @@ namespace InventoryManagementMVC.Controllers
 
         // This presumes that weeks start with Monday.
         // Week 1 is the 1st week of the year with a Thursday in it.
-        public static int GetIso8601WeekOfYear(DateTime time)
+        public static string GetIso8601WeekOfYear(DateTime time)
         {
             // Seriously cheat.  If its Monday, Tuesday or Wednesday, then it'll 
             // be the same week# as whatever Thursday, Friday or Saturday are,
@@ -33,8 +33,40 @@ namespace InventoryManagementMVC.Controllers
             }
 
             // Return the week of our adjusted day
-            return CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(time, CalendarWeekRule.FirstFourDayWeek,
+            int weekOfYear = CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(time, CalendarWeekRule.FirstFourDayWeek,
                 DayOfWeek.Monday);
+            //return weekOfYear;
+
+            DateTime lastMonday = GetLastMonday(time);
+            DateTime nextSunday = GetNextSunday(time);
+
+            string result = string.Format("{0} ({1:dd/MM}-{2:dd/MM})", weekOfYear, lastMonday, nextSunday);
+            return result;
+            
+        }
+
+        private static DateTime GetLastMonday(DateTime time)
+        {
+            for (int i = 0; i < 7; i++)
+            {
+                if (time.Date.AddDays(-i).DayOfWeek == DayOfWeek.Monday)
+                {
+                    return time.Date.AddDays(-i);
+                }
+            }
+            return DateTime.MinValue;
+        }
+
+        private static DateTime GetNextSunday(DateTime time)
+        {
+            for (int i = 0; i < 7; i++)
+            {
+                if (time.Date.AddDays(i).DayOfWeek == DayOfWeek.Sunday)
+                {
+                    return time.Date.AddDays(i);
+                }
+            }
+            return DateTime.MinValue;
         }
 
         public ActionResult VendorPurchasesByWeek()
@@ -52,7 +84,7 @@ namespace InventoryManagementMVC.Controllers
                         .GroupBy(pod => GetIso8601WeekOfYear(pod.PurchaseOrderHeader.ShipDate.GetValueOrDefault()));
 
 
-                List<Dictionary<string, double>> list = new List<Dictionary<string, double>>();
+                List<Dictionary<string, string>> list = new List<Dictionary<string, string>>();
                 List<Vendor> allVendors = ContextFactory.Current.Vendors.ToList();
 
                 Vendor fakeTotalVendor = new Vendor()
@@ -64,14 +96,15 @@ namespace InventoryManagementMVC.Controllers
                 foreach (var item in grouping)
                 {
 
-                    Dictionary<string, double> entry = new Dictionary<string, double>();
+                    Dictionary<string, string> entry = new Dictionary<string, string>();
                     entry.Add("Week", item.Key);
 
-                    entry.Add("EscapeStringYordan_" + fakeTotalVendor.VendorId, Math.Round(item.Sum(pod => pod.LineTotal), 3));
+                    entry.Add("EscapeStringYordan_" + fakeTotalVendor.VendorId, Math.Round(item.Sum(pod => pod.LineTotal), 3).ToString());
 
                     foreach (Vendor ven in allVendors)
                     {
-                        entry.Add("EscapeStringYordan_" + ven.VendorId.ToString(), Math.Round(item.Where(pod => pod.PurchaseOrderHeader.VendorId == ven.VendorId).Sum(pod => pod.LineTotal), 3));
+                        entry.Add("EscapeStringYordan_" + ven.VendorId.ToString(),
+                            Math.Round(item.Where(pod => pod.PurchaseOrderHeader.VendorId == ven.VendorId).Sum(pod => pod.LineTotal), 3).ToString());
                     }
                     list.Add(entry);
                 }
