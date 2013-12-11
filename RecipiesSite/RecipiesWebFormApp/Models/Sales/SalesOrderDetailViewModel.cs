@@ -24,7 +24,9 @@ namespace InventoryManagementMVC.Models
         [Relation(EntityType = typeof(Recipe), DataFieldValue = "RecipeId", DataFieldText = "Name")]
         [Display(Name = "Recipe")]
         public int? RecipeId { get; set; }
-     
+
+        [ReadOnly(true)]
+        public string RecipeCategory { get; set; }     
 
         [Display(Name = "Order QTY")]
         public double? OrderQuantity { get; set; }
@@ -53,6 +55,10 @@ namespace InventoryManagementMVC.Models
             model.SalesOrderHeaderId = entity.SalesOrderHeaderId;
             model.UnitPrice = entity.UnitPrice;
             model.UnitPriceDiscount = entity.UnitPriceDiscount;
+            if (entity.Recipe != null && entity.Recipe.ProductCategory != null)
+            {
+                model.RecipeCategory = entity.Recipe.ProductCategory.Name;
+            }
 
             return model;
         }
