@@ -105,7 +105,7 @@ namespace InventoryManagementMVC.Extensions
         // When model is empty collection there are problems with aggregates!!!!!!!!!!!
         public static GridBuilder<T> AddColumnOptions<T>(this GridBuilder<T> builder, bool isClient = false,
             bool isDeleteColumnVisible = true,
-            bool isEditColumnVisible = true, bool isSelectColumnVisible = true, bool areHiddenColumnsVisible = true) where T : class
+            bool isEditColumnVisible = true, bool isSelectColumnVisible = true, bool showHiddenColumns = false) where T : class
         {
             Type modelEntityType = typeof(T);
             PropertyInfo[] modelEntityProperties = modelEntityType.GetProperties();
@@ -167,7 +167,7 @@ namespace InventoryManagementMVC.Extensions
                         // do not show foreign key columns
                         if (propertyInfo.GetCustomAttributes<RelationAttribute>().Any() ||
                             propertyInfo.GetCustomAttributes<KeyAttribute>().Any() || // Just show the PK
-                            (propertyInfo.GetCustomAttributes<HiddenInputAttribute>().Any() && !areHiddenColumnsVisible))
+                            (propertyInfo.GetCustomAttributes<HiddenInputAttribute>().Any() && !showHiddenColumns))
                         {
                             continue;
                         }
@@ -428,7 +428,7 @@ namespace InventoryManagementMVC.Extensions
             return builder;
         }
 
-        public static GridBuilder<T> AddDefaultOptions<T>(this GridBuilder<T> builder, bool isClient = false, bool areHiddenColumnsVisible = true)
+        public static GridBuilder<T> AddDefaultOptions<T>(this GridBuilder<T> builder, bool isClient = false, bool showHiddenColumns = false)
             where T : class
         {
             Stopwatch s = new Stopwatch();
@@ -440,7 +440,7 @@ namespace InventoryManagementMVC.Extensions
                 .AddBaseOptions()
                 .Editable(editable => editable.Mode(GridEditMode.InCell))
                 .AddToolbarOptions(true, true)
-                .AddColumnOptions(isClient, true, false, false, areHiddenColumnsVisible)
+                .AddColumnOptions(isClient, true, false, false, showHiddenColumns)
                 .AddDataSourceOptions();
 
             s.Stop();

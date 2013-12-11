@@ -52,5 +52,6 @@ namespace RecipiesModelNS
         public DbSet<ProductInventoryHeader> ProductInventoryHeaders { get; set; }
         public DbSet<ProductIngredient> ProductIngredients { get; set; }
         public DbSet<RecipeIngredient> RecipeIngredients { get; set; }
+        public DbSet<C__RecipiesDataBase> C__RecipiesDataBase { get; set; }
     }
 }

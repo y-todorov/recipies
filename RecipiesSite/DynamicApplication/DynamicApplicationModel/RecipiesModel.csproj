@@ -52,6 +52,9 @@
       <DependentUpon>RecipiesModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Customer.partial.cs" />
+    <Compile Include="C__RecipiesDataBase.cs">
+      <DependentUpon>RecipiesModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Department.cs">
       <DependentUpon>RecipiesModel.tt</DependentUpon>
     </Compile>

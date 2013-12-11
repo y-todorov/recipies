@@ -2,9 +2,11 @@
 using RecipiesModelNS;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace InventoryManagementMVC.Models
 {
@@ -23,27 +25,38 @@ namespace InventoryManagementMVC.Models
         [Display(Name = "Status")]
         public int? StatusId { get; set; }
 
-        [Relation(EntityType = typeof (Employee), DataFieldValue = "EmployeeId", DataFieldText = "FirstName")]
+        [Relation(EntityType = typeof(Employee), DataFieldValue = "EmployeeId", DataFieldText = "FirstName")]
         [Display(Name = "Employee")]
         public int? EmployeeId { get; set; }
 
-        [Relation(EntityType = typeof (PaymentType), DataFieldValue = "PaymentTypeId", DataFieldText = "Name")]
+        [Relation(EntityType = typeof(PaymentType), DataFieldValue = "PaymentTypeId", DataFieldText = "Name")]
         [Display(Name = "Payment Type")]
         public int? PaymentTypeId { get; set; }
-         
+
         public string AccountName { get; set; }
-        [Required]
+        [HiddenInput(DisplayValue = false)]
         public DateTime? OrderDate { get; set; }
-        
-        [Required]
+
+        [HiddenInput(DisplayValue = false)]
         public DateTime? RequiredDate { get; set; }
 
         [Required]
         public DateTime? ShippedDate { get; set; }
 
+        [HiddenInput(DisplayValue = false)]
         public string ShipName { get; set; }
 
-        public string ShipAddress { get; set; } 
+        [HiddenInput(DisplayValue = false)]
+        public string ShipAddress { get; set; }
+
+        public decimal? SubTotal { get; set; }
+
+        public decimal? TaxAmt { get; set; }
+
+        public decimal? Freight { get; set; }
+
+        [ReadOnly(true)]
+        public decimal? TotalDue { get; set; }
 
         public DateTime? ModifiedDate { get; set; }
 
@@ -68,7 +81,11 @@ namespace InventoryManagementMVC.Models
             model.ShipName = entity.ShipName;
             model.ShippedDate = entity.ShippedDate;
             model.StatusId = entity.StatusId;
-                     
+            model.SubTotal = entity.SubTotal;
+            model.TaxAmt = entity.TaxAmt;
+            model.Freight = entity.Freight;
+            model.TotalDue = entity.TotalDue;
+
             return model;
         }
 
@@ -88,7 +105,10 @@ namespace InventoryManagementMVC.Models
             entity.ShipName = model.ShipName;
             entity.ShippedDate = model.ShippedDate;
             entity.StatusId = model.StatusId;
-
+            entity.SubTotal = model.SubTotal;
+            entity.TaxAmt = model.TaxAmt;
+            entity.Freight = model.Freight;
+            // TotalDue is DB calculated
             return entity;
         }
     }

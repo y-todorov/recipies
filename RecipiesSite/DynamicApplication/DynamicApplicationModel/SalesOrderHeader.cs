@@ -32,6 +32,10 @@ namespace RecipiesModelNS
         public string ShipAddress { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
         public string ModifiedByUser { get; set; }
+        public Nullable<decimal> SubTotal { get; set; }
+        public Nullable<decimal> TaxAmt { get; set; }
+        public Nullable<decimal> Freight { get; set; }
+        public Nullable<decimal> TotalDue { get; set; }
     
         public virtual Employee Employee { get; set; }
         public virtual Customer Customer { get; set; }

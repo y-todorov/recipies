@@ -22,6 +22,13 @@
           <Property Name="ModifiedDate" Type="datetime" />
           <Property Name="ModifiedByUser" Type="nvarchar" MaxLength="1000" />
         </EntityType>
+        <EntityType Name="__RecipiesDataBase">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="databaseName" Type="nvarchar" MaxLength="50" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
         <EntityType Name="Department">
           <Key>
             <PropertyRef Name="DepartmentId" />
@@ -394,6 +401,10 @@
           <Property Name="ShippedDate" Type="datetime" />
           <Property Name="ShipName" Type="nvarchar" MaxLength="1000" />
           <Property Name="ShipAddress" Type="nvarchar" MaxLength="1000" />
+          <Property Name="SubTotal" Type="money" />
+          <Property Name="TaxAmt" Type="money" />
+          <Property Name="Freight" Type="money" />
+          <Property Name="TotalDue" Type="money" StoreGeneratedPattern="Computed" />
           <Property Name="ModifiedDate" Type="datetime" />
           <Property Name="ModifiedByUser" Type="nvarchar" MaxLength="1000" />
         </EntityType>
@@ -855,6 +866,7 @@
         </Association>
         <EntityContainer Name="RecipiesModelNSStoreContainer">
           <EntitySet Name="EmailTemplate" EntityType="Self.EmailTemplate" Schema="Admin" store:Type="Tables" />
+          <EntitySet Name="__RecipiesDataBase" EntityType="Self.__RecipiesDataBase" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Department" EntityType="Self.Department" Schema="HumanResources" store:Type="Tables" />
           <EntitySet Name="Employee" EntityType="Self.Employee" Schema="HumanResources" store:Type="Tables" />
           <EntitySet Name="EmployeeDepartment" EntityType="Self.EmployeeDepartment" Schema="HumanResources" store:Type="Tables" />
@@ -1231,6 +1243,7 @@
             <End Role="Recipe" EntitySet="Recipes" />
             <End Role="RecipeIngredient" EntitySet="RecipeIngredients" />
           </AssociationSet>
+          <EntitySet Name="C__RecipiesDataBase" EntityType="RecipiesModelNS.C__RecipiesDataBase" />
         </EntityContainer>
         <EntityType Name="EmailTemplate">
           <Key>
@@ -1663,6 +1676,10 @@
           <NavigationProperty Name="SalesOrderStatu"
                               Relationship="RecipiesModelNS.FK_SalesOrderHeader_SalesOrderStatus"
                               FromRole="SalesOrderHeader" ToRole="SalesOrderStatu" />
+          <Property Name="SubTotal" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="TaxAmt" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Freight" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="TotalDue" Type="Decimal" Precision="19" Scale="4" annotation:StoreGeneratedPattern="Computed" />
         </EntityType>
         <EntityType Name="SalesOrderStatu">
           <Key>
@@ -2205,6 +2222,13 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="C__RecipiesDataBase">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="databaseName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2548,6 +2572,10 @@
           <EntitySetMapping Name="SalesOrderHeaders">
             <EntityTypeMapping TypeName="RecipiesModelNS.SalesOrderHeader">
               <MappingFragment StoreEntitySet="SalesOrderHeader">
+                <ScalarProperty Name="TotalDue" ColumnName="TotalDue" />
+                <ScalarProperty Name="Freight" ColumnName="Freight" />
+                <ScalarProperty Name="TaxAmt" ColumnName="TaxAmt" />
+                <ScalarProperty Name="SubTotal" ColumnName="SubTotal" />
                 <ScalarProperty Name="ModifiedByUser" ColumnName="ModifiedByUser" />
                 <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
                 <ScalarProperty Name="ShipAddress" ColumnName="ShipAddress" />
@@ -2635,6 +2663,14 @@
                 <ScalarProperty Name="IngredientRecipeId" ColumnName="IngredientRecipeId" />
                 <ScalarProperty Name="ParentRecipeId" ColumnName="ParentRecipeId" />
                 <ScalarProperty Name="RecipeIngredientId" ColumnName="RecipeIngredientId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C__RecipiesDataBase">
+            <EntityTypeMapping TypeName="RecipiesModelNS.C__RecipiesDataBase">
+              <MappingFragment StoreEntitySet="__RecipiesDataBase">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="databaseName" ColumnName="databaseName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
