@@ -90,9 +90,10 @@ namespace RecipiesModelNS
             PurchaseOrderStatusEnum status)
         {
             DateTime defaultDate = new DateTime(2000, 1, 1);
+            DateTime endDateForLinq = toDate.Date.AddDays(1);
             List<PurchaseOrderHeader> result =
                 ContextFactory.GetContextPerRequest().PurchaseOrderHeaders.Where(pof => pof.ShipDate >= fromDate.Date &&
-                                                                                        pof.ShipDate <= toDate.Date &&
+                                                                                        pof.ShipDate < endDateForLinq &&
                                                                                         pof.StatusId == (int) status)
                     .ToList();
             return result;

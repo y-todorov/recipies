@@ -10,9 +10,10 @@ namespace RecipiesModelNS
             SalesOrderStatusEnum status)
         {
             DateTime defaultDate = new DateTime(2000, 1, 1);
+            DateTime endDateForLinq = toDate.Date.AddDays(1);
             List<SalesOrderHeader> result =
                 ContextFactory.GetContextPerRequest().SalesOrderHeaders.Where(pof => pof.ShippedDate >= fromDate.Date &&
-                                                                                     pof.ShippedDate <= toDate.Date &&
+                                                                                     pof.ShippedDate < endDateForLinq &&
                                                                                      pof.StatusId == (int)status)
                     .ToList();
             return result;
