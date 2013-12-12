@@ -9,12 +9,28 @@ using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 
 namespace InventoryManagementMVC.Controllers
 {
+    
     [DonutOutputCache(Duration = 24 * 3600, Options =  OutputCacheOptions.IgnoreFormData | OutputCacheOptions.NoCacheLookupForPosts)]
     public class ControllerBase : Controller
-    {  
+    {
+        protected override JsonResult Json(object data, string contentType, System.Text.Encoding contentEncoding, JsonRequestBehavior behavior)
+        {
+            JsonResult jr = base.Json(data, contentType, contentEncoding, behavior);
+            jr.MaxJsonLength = int.MaxValue;
+            return jr;
+        }
+
+        protected override JsonResult Json(object data, string contentType, System.Text.Encoding contentEncoding)
+        {
+            JsonResult jr = base.Json(data, contentType, contentEncoding);
+            jr.MaxJsonLength = int.MaxValue;
+            return jr;
+        }
+
         public long ActionMilliseconds { get; set; }
 
         public long ResultMilliseconds { get; set; }
