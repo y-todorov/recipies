@@ -42,9 +42,9 @@ namespace InventoryManagementMVC.Models
             model.ParentRecipeId = entity.ParentRecipeId;
             model.IngredientRecipeId = entity.IngredientRecipeId;
             model.QuantityPerPortion = entity.QuantityPerPortion;
-            if (entity.ParentRecipe != null)
+            if (entity.IngredientRecipe != null)
             {
-                model.Cost = entity.ParentRecipe.ProductionValuePerPortion;
+                model.Cost = entity.IngredientRecipe.ProductionValuePerPortion;
             }
             model.TotalValue = (decimal?)entity.TotalValue;
 
@@ -65,10 +65,10 @@ namespace InventoryManagementMVC.Models
             entity.IngredientRecipeId = model.IngredientRecipeId;
             entity.QuantityPerPortion = model.QuantityPerPortion;
 
-            Recipe parentRecipe = ContextFactory.Current.Recipes.FirstOrDefault(r => r.RecipeId == model.ParentRecipeId);
-            if (parentRecipe != null)
+            Recipe ingredientRecipe = ContextFactory.Current.Recipes.FirstOrDefault(r => r.RecipeId == model.IngredientRecipeId);
+            if (ingredientRecipe != null)
             {
-                entity.Cost = parentRecipe.ProductionValuePerPortion;
+                entity.Cost = ingredientRecipe.ProductionValuePerPortion;
             }
             entity.TotalValue = (double)model.TotalValue.GetValueOrDefault();
 

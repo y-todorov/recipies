@@ -28,9 +28,10 @@ namespace InventoryManagementMVC.Controllers
             {
                 foreach (RecipeIngredientViewModel pi in productIngredients)
                 {
+                    pi.ParentRecipeId = recipeId; // this must be before next line
                     RecipeIngredient newProductIngredient = RecipeIngredientViewModel.ConvertToProductIngredientEntity(pi,
                         new RecipeIngredient());
-                    newProductIngredient.ParentRecipeId = recipeId;
+                  
                     ContextFactory.Current.RecipeIngredients.Add(newProductIngredient);
                     ContextFactory.Current.SaveChanges();
 
@@ -49,11 +50,12 @@ namespace InventoryManagementMVC.Controllers
             {
                 foreach (RecipeIngredientViewModel recipeIngredient in recipeIngredients)
                 {
+                    
                     RecipeIngredient riEntity =
                         ContextFactory.Current.RecipeIngredients.FirstOrDefault(
                             r => r.RecipeIngredientId == recipeIngredient.RecipeIngredientId);
-
                     recipeIngredient.ParentRecipeId = riEntity.ParentRecipeId;
+              
                     RecipeIngredientViewModel.ConvertToProductIngredientEntity(recipeIngredient, riEntity);
 
                     ContextFactory.Current.SaveChanges();
