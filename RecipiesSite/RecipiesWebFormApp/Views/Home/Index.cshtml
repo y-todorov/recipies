@@ -35,6 +35,8 @@
           )
           .Tooltip(tooltip => tooltip
               .Visible(true)
+                      //.Template( DateTime.Now.ToShortDateString() ) // call here a function that will convert 34 to dates 
+                      //.Template("#= category # (#= series.name #): #= value #%")
           )
             )</text>);
 
