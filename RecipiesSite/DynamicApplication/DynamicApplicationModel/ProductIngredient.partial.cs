@@ -20,7 +20,7 @@ namespace RecipiesModelNS
 
         public override void Removing(System.Data.Entity.Infrastructure.DbEntityEntry e = null)
         {
-            recipeIdToUpdate = RecipeId;
+            recipeIdToUpdate = RecipeId; // THIS CAN BE ONLY THE PRIMARY KEY OF THE DELETED ENTITY THIS IS PROBLEM AND DO NOT WORK
             base.Removing(e);
         }
 
@@ -31,7 +31,7 @@ namespace RecipiesModelNS
         }
 
 
-        private void UpdateRecipesValuePerPortionFromIngredientsChange(int? recipeId)
+        public static void UpdateRecipesValuePerPortionFromIngredientsChange(int? recipeId)
         {
             if (recipeId.HasValue)
             {
@@ -40,9 +40,14 @@ namespace RecipiesModelNS
                 if (recipe != null)
                 {
                     decimal? valuePerPortion = 0;
-                    foreach (ProductIngredient ri in recipe.ProductIngredients)
+                    foreach (ProductIngredient productIngredient in recipe.ProductIngredients)
                     {
-                        valuePerPortion += (decimal?) ri.TotalValue;
+                        valuePerPortion += (decimal?) productIngredient.TotalValue;
+                    }
+                    foreach (RecipeIngredient recipeIngredient in recipe.RecipeIngredients1) // RecipeIngredients1 is correct
+                    // please find out what is RecipeIngredients and do I need it
+                    {
+                        valuePerPortion += (decimal?)recipeIngredient.TotalValue;
                     }
                     recipe.ProductionValuePerPortion = valuePerPortion;
                     ContextFactory.GetContextPerRequest().SaveChanges();
