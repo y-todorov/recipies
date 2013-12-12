@@ -4,6 +4,7 @@ using RecipiesModelNS;
 using InventoryManagementMVC.DataAnnotations;
 using System.ComponentModel;
 using System.Web.Mvc;
+using System.Linq;
 
 namespace InventoryManagementMVC.Models
 {
@@ -24,6 +25,7 @@ namespace InventoryManagementMVC.Models
 
         public double? QuantityPerPortion { get; set; }
 
+        [Display(Name = "Recipe Production Value Per Portion")]
         public decimal? Cost { get; set; }
 
         [ReadOnly(true)]
@@ -35,18 +37,21 @@ namespace InventoryManagementMVC.Models
 
         public static RecipeIngredientViewModel ConvertFromProductIngredientEntity(RecipeIngredient entity,
             RecipeIngredientViewModel model)
-        {            
+        {
             model.RecipeIngredientId = entity.RecipeIngredientId;
             model.ParentRecipeId = entity.ParentRecipeId;
             model.IngredientRecipeId = entity.IngredientRecipeId;
             model.QuantityPerPortion = entity.QuantityPerPortion;
-            model.Cost = entity.Cost;
+            if (entity.ParentRecipe != null)
+            {
+                model.Cost = entity.ParentRecipe.ProductionValuePerPortion;
+            }
             model.TotalValue = (decimal?)entity.TotalValue;
 
             model.ModifiedDate = entity.ModifiedDate;
             model.ModifiedByUser = entity.ModifiedByUser;
 
-            
+
 
             return model;
         }
@@ -59,13 +64,18 @@ namespace InventoryManagementMVC.Models
             entity.ParentRecipeId = model.ParentRecipeId;
             entity.IngredientRecipeId = model.IngredientRecipeId;
             entity.QuantityPerPortion = model.QuantityPerPortion;
-            entity.Cost = model.Cost;
+
+            Recipe parentRecipe = ContextFactory.Current.Recipes.FirstOrDefault(r => r.RecipeId == model.ParentRecipeId);
+            if (parentRecipe != null)
+            {
+                entity.Cost = parentRecipe.ProductionValuePerPortion;
+            }
             entity.TotalValue = (double)model.TotalValue.GetValueOrDefault();
 
             entity.ModifiedDate = model.ModifiedDate;
             entity.ModifiedByUser = model.ModifiedByUser;
 
-            
+
             return entity;
         }
     }
