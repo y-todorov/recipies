@@ -32,9 +32,11 @@ namespace InventoryManagementMVC.Models.Purchasing
         public int? ShipMethodId { get; set; }
 
         [Required]
+        [DataType(DataType.Date)]
         public DateTime? OrderDate { get; set; }
 
         [Required]
+        [DataType(DataType.Date)]
         public DateTime? ShipDate { get; set; }
 
         [ReadOnly(true)]
@@ -89,9 +91,18 @@ namespace InventoryManagementMVC.Models.Purchasing
             pohEntity.ModifiedDate = pohViewModel.ModifiedDate;
             pohEntity.Notes = pohViewModel.Notes;
             pohEntity.OrderDate = pohViewModel.OrderDate;
+            if (pohViewModel.OrderDate.HasValue)
+            {
+                pohEntity.OrderDate = pohViewModel.OrderDate.Value.Date;
+            }
+            
             pohEntity.PurchaseOrderId = pohViewModel.PurchaseOrderHeaderId;
             pohEntity.ShipMethodId = pohViewModel.ShipMethodId;
             pohEntity.ShipDate = pohViewModel.ShipDate;
+            if (pohViewModel.ShipDate.HasValue)
+            {
+                pohEntity.ShipDate = pohViewModel.ShipDate.Value.Date;
+            }
             pohEntity.StatusId = pohViewModel.StatusId;
             //pohEntity.SubTotal = pohViewModel.SubTotal; // All fields that are read obly should not be set through model !!!
             //pohEntity.TotalDue = pohViewModel.TotalDue;
