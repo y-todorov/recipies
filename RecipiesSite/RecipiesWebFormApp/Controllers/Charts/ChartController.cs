@@ -40,7 +40,8 @@ namespace InventoryManagementMVC.Controllers
             DateTime lastMonday = GetLastMonday(time);
             DateTime nextSunday = GetNextSunday(time);
 
-            string result = string.Format("{0} ({1:dd/MM/yyyy}-{2:dd/MM/yyyy})", weekOfYear, lastMonday, nextSunday);
+            //string result = string.Format("{0} ({1:dd/MM/yyyy}-{2:dd/MM/yyyy})", weekOfYear, lastMonday, nextSunday);
+            string result = weekOfYear.ToString();
             return result;
             
         }
