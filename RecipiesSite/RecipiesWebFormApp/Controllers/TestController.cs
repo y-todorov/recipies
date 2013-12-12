@@ -15,6 +15,30 @@ namespace InventoryManagementMVC.Controllers
 {
     public class TestController : ControllerBase
     {
+        public ActionResult ExecuteSomeAction()
+        {
+            List<PurchaseOrderHeader> pos = ContextFactory.Current.PurchaseOrderHeaders.ToList();
+
+            foreach (PurchaseOrderHeader po in pos)
+            {
+                if (po.OrderDate.HasValue && po.OrderDate != po.OrderDate.GetValueOrDefault().Date)
+                {
+                    po.OrderDate = po.OrderDate.GetValueOrDefault().Date;
+
+                }
+                if (po.ShipDate.HasValue && po.ShipDate != po.ShipDate.GetValueOrDefault().Date)
+                {
+                    po.ShipDate = po.ShipDate.GetValueOrDefault().Date;
+                }
+
+            }
+
+
+             ContextFactory.Current.SaveChanges();
+
+            return RedirectToAction("Index");
+          
+        }
        
         public ActionResult Index()
         {
