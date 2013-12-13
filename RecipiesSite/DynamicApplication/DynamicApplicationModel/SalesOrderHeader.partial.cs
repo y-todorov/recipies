@@ -59,21 +59,22 @@ namespace RecipiesModelNS
                     {
                         Product.UpdateUnitsInStock(recipeIngredient.ProductId);
                     }
+                    // add recipe inredients!!!
                 }
             }
         }
 
         public override void Added(System.Data.Entity.Infrastructure.DbEntityEntry e = null)
         { 
-            AddDefaultRecipiesInSalesOrderHeader(SalesOrderHeaderId);
-            //UpdateProductsUnitsInStock(SalesOrderHeaderId);
+            AddDefaultRecipiesInSalesOrderHeader(SalesOrderHeaderId);           
+            UpdateProductsUnitsInStock(SalesOrderHeaderId);
            
             base.Added(e);
         }
      
         public override void Changed(System.Data.Entity.Infrastructure.DbEntityEntry e = null)
         {
-            //UpdateProductsUnitsInStock(SalesOrderHeaderId);
+            UpdateProductsUnitsInStock(SalesOrderHeaderId);
             base.Changed(e);
         }
 
@@ -87,7 +88,7 @@ namespace RecipiesModelNS
 
         public override void Removed(System.Data.Entity.Infrastructure.DbEntityEntry e = null)
         {
-            //UpdateProductsUnitsInStock(salesOrderHeaderId);
+            UpdateProductsUnitsInStock(salesOrderHeaderId);
             base.Removed(e);
         }
     }

@@ -223,22 +223,44 @@ namespace RecipiesModelNS
             return stockedQuantityForPeriod;
         }
 
+
+        // THIS METHOD NEEDS BIG REFACTOR !!!
         public double GetSalesOrderQuantity(DateTime fromDate, DateTime toDate)
         {
-            List<SalesOrderHeader> salesOrderHeaders =
-                ContextFactory.GetContextPerRequest().SalesOrderHeaders.Where(soh => soh.ShippedDate.HasValue &&
-                                                                                     soh.ShippedDate >= fromDate.Date &&
-                                                                                     soh.ShippedDate <= toDate.Date &&
-                                                                                     soh.SalesOrderDetails.Any(
-                                                                                         sod =>
-                                                                                             sod.Recipe
-                                                                                                 .ProductIngredients.Any(
+            List<SalesOrderDetail> salesOrderDetails =
+                ContextFactory.GetContextPerRequest().SalesOrderDetails.Where(sod => sod.SalesOrderHeader.ShippedDate.HasValue &&
+                                                                                     sod.SalesOrderHeader.ShippedDate >= fromDate.Date &&
+                                                                                     sod.SalesOrderHeader.ShippedDate <= toDate.Date &&
+                                                                                     sod.OrderQuantity != 0 &&
+                                                                                     (
+                                                                                     sod.Recipe.ProductIngredients.Any(
                                                                                                      ri =>
                                                                                                          ri.ProductId ==
-                                                                                                         ProductId)))
-                    .ToList();
+                                                                                                         ProductId))
+                                                                                                     //    ||
 
-            return 0;
+                                                                                                     //    sod.Recipe.RecipeIngredients1.Any(ri => ri.IngredientRecipe.ProductIngredients
+                                                                                                     //    .Any(
+                                                                                                     //ri2 =>
+                                                                                                     //    ri2.ProductId ==
+                                                                                                     //    ProductId)
+
+
+                                                                                                     //    )
+                                                                                                     )
+                    .ToList();
+            double quantity = 0;
+            foreach (SalesOrderDetail salesOrderDetail in salesOrderDetails)
+            {
+                List<ProductIngredient> pis = salesOrderDetail.Recipe.ProductIngredients.Where(pi => pi.ProductId == ProductId).ToList();
+
+                foreach (ProductIngredient pi in pis)
+                {
+                    quantity += pi.QuantityPerPortion.GetValueOrDefault() * salesOrderDetail.OrderQuantity.GetValueOrDefault();
+                }
+            }
+
+            return quantity;
         }
 
         public double GetBaseUnitMeasureQuantityForProduct(double? quantity, UnitMeasure quantityUnitMeasure,
@@ -298,47 +320,52 @@ namespace RecipiesModelNS
         public static void UpdateUnitsInStockOfAllProducts()
         {
             List<Product> allProducts = ContextFactory.GetContextPerRequest().Products.ToList();
-            List<PurchaseOrderDetail> allCompletedPurchaseOrderDetals =
-                ContextFactory.GetContextPerRequest()
-                    .PurchaseOrderDetails.Where(
-                        pod => pod.PurchaseOrderHeader.StatusId == (int)PurchaseOrderStatusEnum.Completed).ToList();
-
-            foreach (Product product in allProducts)
+            foreach (Product p in allProducts)
             {
-                ProductInventory pi = product.GetLastInventoryForDate(DateTime.Now);
-                //if (product.ProductId == 224)
-                {
-                    double unitsInStock = 0;
-                    if (pi != null)
-                    {
-                        unitsInStock = pi.StocktakeQuantity.GetValueOrDefault();
-                    }
-                    foreach (PurchaseOrderDetail pod in allCompletedPurchaseOrderDetals)
-                    {
-                        if (pod.ProductId == product.ProductId)
-                        {
-
-                            if (pi != null)
-                            {
-                                if (pod.PurchaseOrderHeader.ShipDate.GetValueOrDefault().Date >= pi.ProductInventoryHeader.ForDate.GetValueOrDefault().Date)
-                                {
-                                    unitsInStock += product.GetBaseUnitMeasureQuantityForProduct(pod.StockedQuantity,
-                                        pod.UnitMeasure);
-                                }
-                            }
-                            else
-                            {
-                                unitsInStock += product.GetBaseUnitMeasureQuantityForProduct(pod.StockedQuantity,
-                                       pod.UnitMeasure);
-                            }
-                        }
-                    }
-                    if (product.UnitsInStock != unitsInStock)
-                    {
-                        product.UnitsInStock = unitsInStock;
-                    }
-                }
+                Product.UpdateUnitsInStock(p.ProductId);
             }
+
+            //List<PurchaseOrderDetail> allCompletedPurchaseOrderDetals =
+            //    ContextFactory.GetContextPerRequest()
+            //        .PurchaseOrderDetails.Where(
+            //            pod => pod.PurchaseOrderHeader.StatusId == (int)PurchaseOrderStatusEnum.Completed).ToList();
+
+            //foreach (Product product in allProducts)
+            //{
+            //    ProductInventory pi = product.GetLastInventoryForDate(DateTime.Now);
+            //    //if (product.ProductId == 224)
+            //    {
+            //        double unitsInStock = 0;
+            //        if (pi != null)
+            //        {
+            //            unitsInStock = pi.StocktakeQuantity.GetValueOrDefault();
+            //        }
+            //        foreach (PurchaseOrderDetail pod in allCompletedPurchaseOrderDetals)
+            //        {
+            //            if (pod.ProductId == product.ProductId)
+            //            {
+
+            //                if (pi != null)
+            //                {
+            //                    if (pod.PurchaseOrderHeader.ShipDate.GetValueOrDefault().Date >= pi.ProductInventoryHeader.ForDate.GetValueOrDefault().Date)
+            //                    {
+            //                        unitsInStock += product.GetBaseUnitMeasureQuantityForProduct(pod.StockedQuantity,
+            //                            pod.UnitMeasure);
+            //                    }
+            //                }
+            //                else
+            //                {
+            //                    unitsInStock += product.GetBaseUnitMeasureQuantityForProduct(pod.StockedQuantity,
+            //                           pod.UnitMeasure);
+            //                }
+            //            }
+            //        }
+            //        if (product.UnitsInStock != unitsInStock)
+            //        {
+            //            product.UnitsInStock = unitsInStock;
+            //        }
+            //    }
+            //}
             ContextFactory.GetContextPerRequest().SaveChanges();
         }
 
