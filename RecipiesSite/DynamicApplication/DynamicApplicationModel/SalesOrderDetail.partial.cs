@@ -34,7 +34,7 @@ namespace RecipiesModelNS
         public static void UpdateProductsUnitsInStock(int? salesOrderDetailId)
         {
             SalesOrderDetail salesOrderDetail = ContextFactory.Current.SalesOrderDetails.FirstOrDefault(sod => sod.SalesOrderDetailId == salesOrderDetailId);
-            if (salesOrderDetail.Recipe != null)
+            if (salesOrderDetail != null && salesOrderDetail.Recipe != null)
             {
                 foreach (ProductIngredient pi in salesOrderDetail.Recipe.ProductIngredients)
                 {
