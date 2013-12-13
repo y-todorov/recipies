@@ -20,13 +20,21 @@ namespace RecipiesModelNS
 
         public override void Removing(System.Data.Entity.Infrastructure.DbEntityEntry e = null)
         {
-            recipeIdToUpdate = ParentRecipeId; // THIS CAN BE ONLY THE PRIMARY KEY OF THE DELETED ENTITY THIS IS PROBLEM AND DO NOT WORK
+            //recipeIdToUpdate = ParentRecipeId; // THIS CAN BE ONLY THE PRIMARY KEY OF THE DELETED ENTITY THIS IS PROBLEM AND DO NOT WORK
+            using (RecipiesEntities context = ContextFactory.CreateNewContext())
+            {
+                RecipeIngredient ri = context.RecipeIngredients.FirstOrDefault(r => r.RecipeIngredientId == RecipeIngredientId);
+                if (ri != null)
+                {
+                    recipeIdToUpdate = ri.ParentRecipeId;
+                }
+            }
             base.Removing(e);
         }
 
         public override void Removed(System.Data.Entity.Infrastructure.DbEntityEntry e = null)
         {
-            ProductIngredient.UpdateRecipesValuePerPortionFromIngredientsChange(ParentRecipeId);
+            ProductIngredient.UpdateRecipesValuePerPortionFromIngredientsChange(recipeIdToUpdate);
             base.Removed(e);
         }
 

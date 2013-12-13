@@ -65,5 +65,10 @@ namespace RecipiesModelNS
                 }
             }
         }
+
+        public static RecipiesEntities CreateNewContext()
+        {
+            return new RecipiesEntities();
+        }
     }
 }

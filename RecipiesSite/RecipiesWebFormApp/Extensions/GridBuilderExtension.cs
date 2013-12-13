@@ -59,7 +59,7 @@ namespace InventoryManagementMVC.Extensions
                             .Enabled(true))
                 .Pageable(
                     pb =>
-                        pb.PageSizes(new[] { 5, 10, 20, 50, 100, 500, 999 })
+                        pb.PageSizes(new[] { 5, 10, 100, 999 })
                             .Refresh(true)
                             .Info(true)
                             .Enabled(true)
@@ -350,7 +350,7 @@ namespace InventoryManagementMVC.Extensions
             builder
                 .DataSource(dataSource => dataSource
                     .Ajax()
-                    .Batch(isBatch)
+                    .Batch(isBatch)                    
                     .PageSize(5)
                     .Model(
                         model =>
