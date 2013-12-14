@@ -20,7 +20,7 @@ namespace RecipiesModelNS
                     }
                     if (productsWithQuantities.ContainsKey(pi.ProductId.Value))
                     {
-                        productsWithQuantities[pi.ProductId.Value] = pi.QuantityPerPortion.GetValueOrDefault();
+                        productsWithQuantities[pi.ProductId.Value] += pi.QuantityPerPortion.GetValueOrDefault();
                     }
                     else
                     {

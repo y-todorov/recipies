@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace RecipiesModelNS
 {
@@ -36,20 +37,28 @@ namespace RecipiesModelNS
             SalesOrderDetail salesOrderDetail = ContextFactory.Current.SalesOrderDetails.FirstOrDefault(sod => sod.SalesOrderDetailId == salesOrderDetailId);
             if (salesOrderDetail != null && salesOrderDetail.Recipe != null)
             {
-                foreach (ProductIngredient pi in salesOrderDetail.Recipe.ProductIngredients)
+                Dictionary<int, double> productsWithQuantities = new Dictionary<int, double>();
+                Recipe.GetProductsWithQuantities(salesOrderDetail.Recipe.RecipeId, productsWithQuantities);
+
+                foreach (int productId in productsWithQuantities.Keys)
                 {
-                    Product.UpdateUnitsInStock(pi.ProductId);
+                    Product.UpdateUnitsInStock(productId);
                 }
-                foreach (RecipeIngredient ri in salesOrderDetail.Recipe.RecipeIngredients1)
-                {
-                    if (ri.IngredientRecipe != null)
-                    {
-                        foreach (ProductIngredient pi in ri.IngredientRecipe.ProductIngredients)
-                        {
-                            Product.UpdateUnitsInStock(pi.ProductId);
-                        }
-                    }
-                }
+
+                //foreach (ProductIngredient pi in salesOrderDetail.Recipe.ProductIngredients)
+                //{
+                //    Product.UpdateUnitsInStock(pi.ProductId);
+                //}
+                //foreach (RecipeIngredient ri in salesOrderDetail.Recipe.RecipeIngredients1)
+                //{
+                //    if (ri.IngredientRecipe != null)
+                //    {
+                //        foreach (ProductIngredient pi in ri.IngredientRecipe.ProductIngredients)
+                //        {
+                //            Product.UpdateUnitsInStock(pi.ProductId);
+                //        }
+                //    }
+                //}
             }
 
         }
