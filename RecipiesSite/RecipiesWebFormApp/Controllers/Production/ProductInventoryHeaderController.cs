@@ -14,13 +14,8 @@ namespace InventoryManagementMVC.Controllers
     public class ProductInventoryHeaderController : Controller
     {
         public ActionResult Index()
-        {
-            List<ProductInventoryHeaderViewModel> productInventoriesViewModels =
-                ContextFactory.Current.ProductInventoryHeaders.ToList().Select
-                    (pi =>
-                        ProductInventoryHeaderViewModel.ConvertFromProductInventoryHeaderEntity(pi, new ProductInventoryHeaderViewModel()))
-                    .ToList();
-            return View(productInventoriesViewModels);
+        {           
+            return View();
         }
 
         public ActionResult Read([DataSourceRequest] DataSourceRequest request)

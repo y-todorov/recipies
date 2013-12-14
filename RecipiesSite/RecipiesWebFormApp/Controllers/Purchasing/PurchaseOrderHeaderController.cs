@@ -21,14 +21,8 @@ namespace InventoryManagementMVC.Controllers.Purchasing
     public class PurchaseOrderHeaderController : ControllerBase 
     {
         public ActionResult Index()
-        {
-            List<PurchaseOrderHeaderViewModel> purchaseOrderHeaderViewModels =
-                ContextFactory.Current.PurchaseOrderHeaders
-                    .ToList().Select
-                    (pod =>
-                        PurchaseOrderHeaderViewModel.ConvertFromPurchaseOrderHeaderEntity(pod,
-                            new PurchaseOrderHeaderViewModel())).ToList();
-            return View(purchaseOrderHeaderViewModels);
+        {           
+            return View();
         }
 
         public ActionResult Read([DataSourceRequest] DataSourceRequest request)

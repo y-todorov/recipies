@@ -11,10 +11,8 @@ namespace InventoryManagementMVC.Controllers
     public class CategoryController : ControllerBase
     {
         public ActionResult Index()
-        {
-            List<CategoryViewModel> categoryViewModels = ContextFactory.Current.ProductCategories.ToList().Select
-                (c => CategoryViewModel.ConvertFromCategoryEntity(c, new CategoryViewModel())).ToList();
-            return View(categoryViewModels);
+        {          
+            return View();
         }
 
         public ActionResult Read([DataSourceRequest] DataSourceRequest request)

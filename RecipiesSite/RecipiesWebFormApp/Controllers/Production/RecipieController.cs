@@ -11,10 +11,8 @@ namespace InventoryManagementMVC.Controllers
     public class RecipeController : ControllerBase
     {
         public ActionResult Index()
-        {
-            List<RecipeViewModel> recipeViewModels = ContextFactory.Current.Recipes.ToList().Select
-                (c => RecipeViewModel.ConvertFromRecipeEntity(c, new RecipeViewModel())).ToList();
-            return View(recipeViewModels);
+        {          
+            return View();
         }
 
         public ActionResult Read([DataSourceRequest] DataSourceRequest request)

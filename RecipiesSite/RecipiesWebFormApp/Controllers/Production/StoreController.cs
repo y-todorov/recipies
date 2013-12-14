@@ -13,10 +13,8 @@ namespace InventoryManagementMVC.Controllers
     public class StoreController : ControllerBase
     {
         public ActionResult Index()
-        {
-            List<StoreViewModel> categoryViewModels = ContextFactory.Current.Stores.ToList().Select
-                (c => StoreViewModel.ConvertFromStoreEntity(c, new StoreViewModel())).ToList();
-            return View(categoryViewModels);
+        {          
+            return View();
         }
 
         public ActionResult Read([DataSourceRequest] DataSourceRequest request)

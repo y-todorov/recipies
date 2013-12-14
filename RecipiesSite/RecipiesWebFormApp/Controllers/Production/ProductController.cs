@@ -18,10 +18,11 @@ namespace InventoryManagementMVC.Controllers
        
         public ActionResult Index()
         {
-            List<Product> allProducts = ContextFactory.Current.Products.ToList();
-            List<ProductViewModel> productViewModels =
-                allProducts.Select(p => ProductViewModel.ConvertFromProductEntity(p, new ProductViewModel())).ToList();
-            return View(productViewModels);
+            //List<Product> allProducts = ContextFactory.Current.Products.ToList();
+            //List<ProductViewModel> productViewModels =
+            //    allProducts.Select(p => ProductViewModel.ConvertFromProductEntity(p, new ProductViewModel())).ToList();
+            //return View(productViewModels);
+            return View();
         }
 
         public ActionResult Read([DataSourceRequest] DataSourceRequest request)

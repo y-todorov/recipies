@@ -14,28 +14,12 @@ namespace InventoryManagementMVC.Controllers
     public class ProductInventoryController : Controller
     {
         public ActionResult Index()
-        {
-            List<ProductInventoryViewModel> productInventoriesViewModels =
-                ContextFactory.Current.Inventories.OfType<ProductInventory>().ToList().Select
-                    (pi =>
-                        ProductInventoryViewModel.ConvertFromProductInventoryEntity(pi, new ProductInventoryViewModel()))
-                    .ToList();
-            return View(productInventoriesViewModels);
+        {           
+            return View();
         }
 
         public ActionResult Read(int? productInventoryHeaderId, [DataSourceRequest] DataSourceRequest request)
         {
-
-            //Check if the inventory contains all products
-            //Context
-          
-
-            //var allProducts = ContextFactory.Current.Products.ToList();
-            //foreach (Product p in allProducts)
-            //{
-            //    if ()
-            //}
-
             ProductInventoryHeader pih2 = ContextFactory.Current.ProductInventoryHeaders.FirstOrDefault(pi => pi.ProductInventoryHeaderId == productInventoryHeaderId);
             if (pih2 != null)
             {
