@@ -89,6 +89,30 @@
               .Visible(true)
           )
             )</text>);
+    
+           panelbar.Add().Text("Recipies by GP")
+               .Expanded(true)
+               .Content(@<text>@(Html.Kendo().Chart<RecipeByGP>()
+      .Name("chartRecipeByGP").Theme("blueopal")
+          .Legend(legend => legend
+      .Position(ChartLegendPosition.Top)
+          )
+      .DataSource(ds => ds.Read(read => read.Action("RecipeByGpDescending", "Chart")))
+
+          .Series(series =>
+          {
+              series.Line(p => p.GP).Name("GP").Labels(l => l.Format("{0:P2}").Visible(true)).Axis("GP");
+          })
+          .CategoryAxis(axis => axis.Categories<string>(ddd => ddd.RecipeName)
+
+              .Labels(labels => labels.Rotation(90)).AxisCrossingValue(0, int.MaxValue)
+          )
+.ValueAxis(axis => axis.Numeric("GP").Labels(l => l.Format("{0:P2}"))
+          )
+          .Tooltip(tooltip => tooltip
+      .Visible(true).Format("{0:P2}")
+          )
+            )</text>);
 
             panelbar.Add().Text("Products count and stock value by category")
                .Expanded(true)

@@ -167,6 +167,13 @@ namespace InventoryManagementMVC.Controllers
             return Json(list);
         }
 
+        public ActionResult RecipeByGpDescending()
+        {
+            List<RecipeByGP> list = ContextFactory.Current.Recipes.OrderByDescending(r => r.GrossProfit).Select(r => new RecipeByGP() { RecipeName = r.Name, GP = r.GrossProfit }).ToList();
+
+            return Json(list);
+        }
+
         public ActionResult LowProducts()
         {
             var list = ContextFactory.GetContextPerRequest().Products
