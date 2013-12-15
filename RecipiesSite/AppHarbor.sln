@@ -23,8 +23,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcDonutCaching", "DevTrends.MvcDonutCaching\MvcDonutCaching.csproj", "{854E90C7-8320-4EB6-A286-24A8EE5EBE9B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipiesUnitTests", "RecipiesUnitTests\RecipiesUnitTests.csproj", "{4A1F5F18-0BF9-4CD5-AE85-7DB0EAC1FC98}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -68,12 +66,6 @@ Global
 		{854E90C7-8320-4EB6-A286-24A8EE5EBE9B}.Release.Public|Any CPU.Build.0 = Release.Public|Any CPU
 		{854E90C7-8320-4EB6-A286-24A8EE5EBE9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{854E90C7-8320-4EB6-A286-24A8EE5EBE9B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4A1F5F18-0BF9-4CD5-AE85-7DB0EAC1FC98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4A1F5F18-0BF9-4CD5-AE85-7DB0EAC1FC98}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4A1F5F18-0BF9-4CD5-AE85-7DB0EAC1FC98}.Release.Public|Any CPU.ActiveCfg = Release|Any CPU
-		{4A1F5F18-0BF9-4CD5-AE85-7DB0EAC1FC98}.Release.Public|Any CPU.Build.0 = Release|Any CPU
-		{4A1F5F18-0BF9-4CD5-AE85-7DB0EAC1FC98}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4A1F5F18-0BF9-4CD5-AE85-7DB0EAC1FC98}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
