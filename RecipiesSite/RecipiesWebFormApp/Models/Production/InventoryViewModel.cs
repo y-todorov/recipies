@@ -14,29 +14,33 @@ namespace InventoryManagementMVC.Models
         [Key]
         public int InventoryId { get; set; }
 
-        [HiddenInput(DisplayValue = false)]
+        //[HiddenInput(DisplayValue = false)]
+        [Display(Name="For Date")]
         [ReadOnly(true)]
-        public DateTime? ForDate { get; set; }
-
+        public DateTime? InventoryHeaderForDate { get; set; }
+        
         public decimal? AverageUnitPrice { get; set; }
 
+        [Display(Name = "Qty By Documents")]
         public double? QuantityByDocuments { get; set; }
 
         [ReadOnly(true)]
         public decimal? ValueByDocuments { get; set; }
 
-        //[ReadOnly(true)]
+        [Display(Name = "Stocktake Qty")]
         public double? StocktakeQuantity { get; set; }
 
         [ReadOnly(true)]
         public decimal? StocktakeValue { get; set; }
 
+        [Display(Name = "Deficiency Qty")]
         [ReadOnly(true)]
         public double? DeficiencyQuantity { get; set; }
 
         [ReadOnly(true)]
         public decimal? DeficiencyValue { get; set; }
 
+        [Display(Name = "Surplus Qty")]
         [ReadOnly(true)]
         public double? SurplusQuantity { get; set; }
 

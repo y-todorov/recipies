@@ -198,15 +198,21 @@ namespace InventoryManagementMVC.Extensions
                         }
                         if (propertyInfo.PropertyType == typeof(string))
                         {
+                            GridBoundColumnBuilder<T> bldr = columns.Bound(propertyInfo.Name);
+                            if (propertyInfo.Name.Equals("ModifiedByUser", StringComparison.InvariantCultureIgnoreCase))
+                            {
+                                bldr = bldr.Title("Mdf. By User");
+                            }
+
                             if (!isClient)
                             {
-                                columns.Bound(propertyInfo.Name)
+                                bldr
                                     .ClientFooterTemplate("Count: #= kendo.format('{0}', count)#")
                                     .ClientGroupFooterTemplate("Count: #= kendo.format('{0}', count)#");
                             }
                             else
                             {
-                                columns.Bound(propertyInfo.Name)
+                                bldr
                                  .ClientFooterTemplate("Count: #= kendo.format('{0}', count)#".Replace("#", "\\#"))
                                     .ClientGroupFooterTemplate("Count: #= kendo.format('{0}', count)#".Replace("#", "\\#"));
                             }
@@ -270,18 +276,24 @@ namespace InventoryManagementMVC.Extensions
                         if (propertyInfo.PropertyType == typeof(DateTime) ||
                             propertyInfo.PropertyType == typeof(DateTime?))
                         {
+                            GridBoundColumnBuilder<T> bldr = columns.Bound(propertyInfo.Name);
+                            if (propertyInfo.Name.Equals("ModifiedDate", StringComparison.InvariantCultureIgnoreCase))
+                            {
+                                bldr = bldr.Title("Mdf. Date");
+                            }
+
                             if (!isClient)
                             {
                                 if (propertyInfo.Name.Equals("ModifiedDate", StringComparison.InvariantCultureIgnoreCase))
                                 {
-                                    columns.Bound(propertyInfo.Name)
+                                    bldr
                                         .Format(!string.IsNullOrEmpty(customFormat) ? customFormat : "{0:dd/MM/yyyy HH:mm:ss}")
                                         .ClientFooterTemplate("Count: #= kendo.format('{0}', count)#")
                                     .ClientGroupFooterTemplate("Count: #= kendo.format('{0}', count)#");
                                 }
                                 else
                                 {
-                                    columns.Bound(propertyInfo.Name)
+                                    bldr
                                         .Format(!string.IsNullOrEmpty(customFormat) ? customFormat : "{0:dd/MM/yyyy}")
                                         .EditorTemplateName("Date")
                                           .ClientFooterTemplate("Count: #= kendo.format('{0}', count)#")
@@ -292,14 +304,14 @@ namespace InventoryManagementMVC.Extensions
                             {
                                 if (propertyInfo.Name.Equals("ModifiedDate", StringComparison.InvariantCultureIgnoreCase))
                                 {
-                                    columns.Bound(propertyInfo.Name)
+                                    bldr
                                         .Format(!string.IsNullOrEmpty(customFormat) ? customFormat : "{0:dd/MM/yyyy HH:mm:ss}")
                                     .ClientFooterTemplate("Count: #= kendo.format('{0}', count)#".Replace("#", "\\#"))
                                     .ClientGroupFooterTemplate("Count: #= kendo.format('{0}', count)#".Replace("#", "\\#"));
                                 }
                                 else
                                 {
-                                    columns.Bound(propertyInfo.Name)
+                                    bldr
                                         .Format(!string.IsNullOrEmpty(customFormat) ? customFormat : "{0:dd/MM/yyyy}")
                                         .EditorTemplateName("Date")
                                     .ClientFooterTemplate("Count: #= kendo.format('{0}', count)#".Replace("#", "\\#"))
@@ -398,7 +410,8 @@ namespace InventoryManagementMVC.Extensions
                     )
                      .Sort(sd =>
                      {                        
-                         sd.Add(idName).Ascending();
+                         // Just show default dorting
+                         //sd.Add(idName).Ascending(); 
                      })
 
 

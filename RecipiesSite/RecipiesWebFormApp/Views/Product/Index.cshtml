@@ -74,26 +74,21 @@
                 );
 
 
-                @*items.Add().Text("Recipies").Content(@<text>
-                              @(Html.Kendo().Grid<RecipeIngredientViewModel>()
-                                            .Name("RecipeIngredientViewModelGrid_#=ProductId#")
-                    .AddDefaultOptions(true, false)
+                items.Add().Text("Inventories").Content(@<text>
+                    @(Html.Kendo().Grid<InventoryViewModel>()
+                                                    .Name("Inventories#=ProductId#")
+                           .AddReadOnlyOptions(true)
                     .DataSource(dataSource => dataSource
                         .Ajax()
-                        .Batch(true)
-                        .PageSize(5)
-                        .Model(m => m.Id(p => p.RecipeIngredientId))
-                                                .Read(read => read.Action("Read", "RecipeIngredient", new { recipeId = "#=RecipeId#" }))
-                                                        .Create("Create", "RecipeIngredient", new { recipeId = "#=RecipeId#" })
-                                        .Update("Update", "RecipeIngredient")
-                                        .Destroy("Destroy", "RecipeIngredient")
+                                                                        .Read(read => read.Action("ReadProductInventories", "Product", new { productId = "#=ProductId#" }))
+
                     )
                     .ToClientTemplate()
-                              )
-                          </text>
-                          );*@
+                    )
+                </text>
+                          );
 
             })
-                                                                                                           .ToClientTemplate()
+                                                                                                                                   .ToClientTemplate()
     )
 </script>

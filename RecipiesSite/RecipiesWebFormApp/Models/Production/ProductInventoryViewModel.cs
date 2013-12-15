@@ -45,6 +45,11 @@ namespace InventoryManagementMVC.Models
                 model.UnitMeasure = entity.Product.UnitMeasure.Name;
             }
 
+            if (entity.ProductInventoryHeader != null)
+            {
+                model.InventoryHeaderForDate = entity.ProductInventoryHeader.ForDate;
+            }
+
             return model;
         }
 
