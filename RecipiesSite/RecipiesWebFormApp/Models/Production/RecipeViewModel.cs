@@ -41,7 +41,7 @@ namespace InventoryManagementMVC.Models
 
             model.RecipeId = entity.RecipeId;
             model.CategoryId = entity.CategoryId;
-            model.Name = entity.Name;
+            model.Name = entity.Name; 
             model.Description = entity.Description;
             model.ProductionValuePerPortion = entity.ProductionValuePerPortion;
             model.SellValuePerPortion = entity.SellValuePerPortion;
