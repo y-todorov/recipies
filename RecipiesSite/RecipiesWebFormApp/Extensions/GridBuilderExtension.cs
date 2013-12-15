@@ -35,13 +35,13 @@ namespace InventoryManagementMVC.Extensions
         }
 
 
-        public static GridBuilder<T> AddReadOnlyOptions<T>(this GridBuilder<T> builder) where T : class
+        public static GridBuilder<T> AddReadOnlyOptions<T>(this GridBuilder<T> builder, bool isClient = false) where T : class
         {
             builder
                 .AddBaseOptions()
                 .Editable(editable => editable.Enabled(false))
                 .AddToolbarOptions(false, false)
-                .AddColumnOptions(false, false, false)
+                .AddColumnOptions(isClient, false, false)
                 .AddDataSourceOptions();
 
             return builder;
@@ -105,7 +105,7 @@ namespace InventoryManagementMVC.Extensions
         // When model is empty collection there are problems with aggregates!!!!!!!!!!!
         public static GridBuilder<T> AddColumnOptions<T>(this GridBuilder<T> builder, bool isClient = false,
             bool isDeleteColumnVisible = true,
-            bool isEditColumnVisible = true, bool isSelectColumnVisible = true, bool showHiddenColumns = false) where T : class
+            bool isEditColumnVisible = true, bool isSelectColumnVisible = false, bool showHiddenColumns = false) where T : class
         {
             Type modelEntityType = typeof(T);
             PropertyInfo[] modelEntityProperties = modelEntityType.GetProperties();

@@ -16,19 +16,21 @@
                 .Update("Update", "Product")
                 .Destroy("Destroy", "Product")
                     ).Events(e => e.DataBound("onDataBound"))
-           
+                    .ClientDetailTemplateId("template")
+
 )
 <style>
     .UnitsOnOrderPositive {
         background-color: #d1ff9d;
     }
+
     .NeedsReorder {
         background-color: #f38a62;
     }
 </style>
 
 <script>
-    function onDataBound(e) {       
+    function onDataBound(e) {
         var grid = $("#ProductViewModelGrid").data("kendoGrid");
         //var gridData = grid.dataSource.view();
         var gridData = grid.dataSource.data(); // this fixes colours when grouping
@@ -48,4 +50,50 @@
             }
         }
     }
+</script>
+
+<script id="template" type="text/kendo-tmpl">
+    @(Html.Kendo().TabStrip()
+                    .Name("tabStrip_#=ProductId#")
+            .SelectedIndex(0)
+            .Animation(animation => animation.Open(open => open.Fade(FadeDirection.In).Duration(AnimationDuration.Fast)))
+            .Items(items =>
+            {
+                items.Add().Text("Recipies").Content(@<text>
+                    @(Html.Kendo().Grid<RecipeViewModel>()
+                                  .Name("Recipies_#=ProductId#")
+          .AddReadOnlyOptions(true)
+          .DataSource(dataSource => dataSource
+              .Ajax()
+
+                                              .Read(read => read.Action("ReadProductRecipies", "Product", new { productId = "#=ProductId#" }))
+          )
+          .ToClientTemplate()
+                    )
+                </text>
+                );
+
+
+                @*items.Add().Text("Recipies").Content(@<text>
+                              @(Html.Kendo().Grid<RecipeIngredientViewModel>()
+                                            .Name("RecipeIngredientViewModelGrid_#=ProductId#")
+                    .AddDefaultOptions(true, false)
+                    .DataSource(dataSource => dataSource
+                        .Ajax()
+                        .Batch(true)
+                        .PageSize(5)
+                        .Model(m => m.Id(p => p.RecipeIngredientId))
+                                                .Read(read => read.Action("Read", "RecipeIngredient", new { recipeId = "#=RecipeId#" }))
+                                                        .Create("Create", "RecipeIngredient", new { recipeId = "#=RecipeId#" })
+                                        .Update("Update", "RecipeIngredient")
+                                        .Destroy("Destroy", "RecipeIngredient")
+                    )
+                    .ToClientTemplate()
+                              )
+                          </text>
+                          );*@
+
+            })
+                                                                                                           .ToClientTemplate()
+    )
 </script>

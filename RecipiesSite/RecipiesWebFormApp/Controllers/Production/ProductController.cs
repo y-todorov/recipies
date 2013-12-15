@@ -14,14 +14,9 @@ using DevTrends.MvcDonutCaching;
 namespace InventoryManagementMVC.Controllers
 {
     public class ProductController : ControllerBase
-    {
-       
+    {       
         public ActionResult Index()
-        {
-            //List<Product> allProducts = ContextFactory.Current.Products.ToList();
-            //List<ProductViewModel> productViewModels =
-            //    allProducts.Select(p => ProductViewModel.ConvertFromProductEntity(p, new ProductViewModel())).ToList();
-            //return View(productViewModels);
+        {           
             return View();
         }
 
@@ -92,6 +87,15 @@ namespace InventoryManagementMVC.Controllers
             }
 
             return Json(products.ToDataSourceResult(request, ModelState));
+        }
+
+        public ActionResult ReadProductRecipies(int? productId, [DataSourceRequest] DataSourceRequest request)
+        {
+            List<Recipe> recipes = ContextFactory.Current.Recipes.Where
+                (r => r.ProductIngredients.Any(pi => pi.ProductId == productId)).ToList();
+            List<RecipeViewModel> recipeModels = recipes.Select(r => RecipeViewModel.ConvertFromRecipeEntity(r, new RecipeViewModel())).ToList();
+
+            return Json(recipeModels.ToDataSourceResult(request));
         }
     }
 }
