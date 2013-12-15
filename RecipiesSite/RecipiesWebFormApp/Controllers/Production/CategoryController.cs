@@ -24,7 +24,7 @@ namespace InventoryManagementMVC.Controllers
 
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Create([DataSourceRequest] DataSourceRequest request,
-            [Bind(Prefix = "models")] IEnumerable<CategoryViewModel> categories)
+            [Bind(Prefix = "models")] IEnumerable<CategoryViewModel> categories) 
         {
             if (categories != null && ModelState.IsValid)
             {
