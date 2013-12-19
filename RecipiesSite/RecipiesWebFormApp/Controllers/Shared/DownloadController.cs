@@ -22,15 +22,71 @@ using Kendo.Mvc.Extensions;
 using InventoryManagementMVC.Models;
 using System.Data.Entity;
 using System.Reflection;
-using System.Net; 
+using System.Net;
+using System.Xml.Linq;
 
 
 namespace InventoryManagementMVC.Controllers
 {
-    
+
 
     public class DownloadController : Controller
     {
+        private string GetTableXml(string completeGridXml)
+        {
+            //string reportHtml = File.ReadAllText("ReportHtml.txt", Encoding.GetEncoding("Windows-1251"));
+
+            int startIndex = completeGridXml.IndexOf("<tbody>");
+            int endIndex = completeGridXml.IndexOf("</tbody>");
+
+            int len = endIndex - startIndex + "</tbody>".Length;
+
+            string xml = completeGridXml.Substring(startIndex, len).Replace("&nbsp;", "");
+            return xml;
+        }
+
+        private List<XElement> GetTrs(string xml)
+        {
+            List<XElement> result = new List<XElement>();
+            XDocument xdoc = XDocument.Parse(xml);
+
+            List<XElement> trs = xdoc.Descendants("tr").ToList();
+
+            foreach (XElement tr in trs)
+            {
+                List<XAttribute> attrs = tr.Attributes().ToList();
+
+                foreach (XAttribute attr in attrs)
+                {
+                    if (attr.Name == "class" && attr.Value.Contains("k-master-row"))
+                    {
+                        result.Add(tr);
+                    }
+                }
+            }
+            return result;
+        }
+
+        private List<XElement> GetTds(XElement row)
+        {
+            List<XElement> result = new List<XElement>();
+            List<XElement> tds = row.Descendants("td").ToList();
+
+            foreach (XElement td in tds)
+            {
+                List<XAttribute> attrs = td.Attributes().ToList();
+                foreach (XAttribute attr in attrs)
+                {
+                    if (attr.Name == "role" && attr.Value == "gridcell")
+                    {
+                        result.Add(td);// string valToInsertInExcel = td.Value;
+                    }
+                }
+            }
+
+            return result;
+        }
+
         private static FileContentResult lastFileContentResult;
 
         public ActionResult DownloadExport()
@@ -41,34 +97,34 @@ namespace InventoryManagementMVC.Controllers
             }
             else
             {
-                return new HttpStatusCodeResult(HttpStatusCode.OK); 
+                return new HttpStatusCodeResult(HttpStatusCode.OK);
             }
         }
 
         public void ExportWithOpenXML(string typeName, string html, [DataSourceRequest] DataSourceRequest request)
         {
 
-            var allPis = ContextFactory.Current.Inventories.OfType<ProductInventory>()
-                .Include(pi => pi.Product.ProductCategory)
-                .Include(pi => pi.Product.UnitMeasure)
-                .ToList();
+            //var allPis = ContextFactory.Current.Inventories.OfType<ProductInventory>()
+            //    .Include(pi => pi.Product.ProductCategory)
+            //    .Include(pi => pi.Product.UnitMeasure)
+            //    .ToList();
 
-            List<ProductInventoryViewModel> productInventoriesViewModels =
-               allPis.Select
-                    (pi =>
-                        ProductInventoryViewModel.ConvertFromProductInventoryEntity(pi, new ProductInventoryViewModel()))
-                    .ToList();
+            //List<ProductInventoryViewModel> productInventoriesViewModels =
+            //   allPis.Select
+            //        (pi =>
+            //            ProductInventoryViewModel.ConvertFromProductInventoryEntity(pi, new ProductInventoryViewModel()))
+            //        .ToList();
             //return Json(productInventoriesViewModels.ToDataSourceResult(request));
 
 
 
             //Get the data representing the current grid state - page, sort and filter
-            DataSourceResult res = ContextFactory.Current.Products.ToDataSourceResult(request);
+            //DataSourceResult res = ContextFactory.Current.Products.ToDataSourceResult(request);
             //IEnumerable products = res.Data;
 
-            IEnumerable productInventories = productInventoriesViewModels;
+            //IEnumerable productInventories = productInventoriesViewModels;
 
-            PropertyInfo[] props = typeof(ProductInventoryViewModel).GetProperties();
+            //PropertyInfo[] props = typeof(ProductInventoryViewModel).GetProperties();
 
 
             //Create new Excel workbook
@@ -84,7 +140,7 @@ namespace InventoryManagementMVC.Controllers
             //sheet.SetColumnWidth(3, 50 * 256);
 
             //Create a header row
-            var headerRow = sheet.CreateRow(0);
+            //var headerRow = sheet.CreateRow(0);
 
             //Set the column names in the header row
             //headerRow.CreateCell(0).SetCellValue("Product ID");
@@ -92,41 +148,27 @@ namespace InventoryManagementMVC.Controllers
             //headerRow.CreateCell(2).SetCellValue("Unit Price");
             //headerRow.CreateCell(3).SetCellValue("Quantity Per Unit");
 
-            for (int i = 0; i < props.Length; i++)
-            {
-                headerRow.CreateCell(i).SetCellValue(props[i].Name);
-            }
+            //for (int i = 0; i < props.Length; i++)
+            //{
+            //    headerRow.CreateCell(i).SetCellValue(props[i].Name);
+            //}
 
 
             //(Optional) freeze the header row so it is not scrolled
             //sheet.CreateFreezePane(0, 1, 0, 1);
 
-            int rowNumber = 1;
+            int rowNumber = 0;
 
-            //Populate the sheet with values from the grid data
-            foreach (ProductInventoryViewModel product in productInventories)
+            string tableXml = GetTableXml(html);
+            List<XElement> trs = GetTrs(tableXml);
+
+            foreach (XElement tr in trs)
             {
-                //Create a new row
                 var row = sheet.CreateRow(rowNumber++);
-
-                for (int i = 0; i < props.Length; i++)
+                List<XElement> tds = GetTds(tr);
+                for (int i = 0; i < tds.Count; i++)
                 {
-                    
-                    object val = props[i].GetValue(product);
-
-                    // SPECIFIC
-                    if (props[i].Name == "ProductId")
-                    {
-                        if (val != null)
-                        {
-                            var prod = ContextFactory.Current.Products.FirstOrDefault(p => p.ProductId == (int)val);
-                            if (prod != null)
-                            {
-                                val = prod.Name;
-                            }
-                        }
-                    }
-
+                    string val = tds[i].Value;
                     if (val != null)
                     {
                         row.CreateCell(i).SetCellValue(val.ToString());
@@ -134,15 +176,53 @@ namespace InventoryManagementMVC.Controllers
                     else
                     {
                         row.CreateCell(i).SetCellValue("");
-
                     }
                 }
-                //Set values for the cells
-                //row.CreateCell(0).SetCellValue(product.ProductId);
-                //row.CreateCell(1).SetCellValue(product.Name);
-                //row.CreateCell(2).SetCellValue(product.UnitPrice.ToString());
-                //row.CreateCell(3).SetCellValue(product.UnitsInStock.GetValueOrDefault().ToString());
             }
+
+
+
+
+            //Populate the sheet with values from the grid data
+            //foreach (ProductInventoryViewModel product in productInventories)
+            //{
+            //    //Create a new row
+            //    var row = sheet.CreateRow(rowNumber++);
+
+            //    for (int i = 0; i < props.Length; i++)
+            //    {
+
+            //        object val = props[i].GetValue(product);
+
+            //        // SPECIFIC
+            //        if (props[i].Name == "ProductId")
+            //        {
+            //            if (val != null)
+            //            {
+            //                var prod = ContextFactory.Current.Products.FirstOrDefault(p => p.ProductId == (int)val);
+            //                if (prod != null)
+            //                {
+            //                    val = prod.Name;
+            //                }
+            //            }
+            //        }
+
+            //        if (val != null)
+            //        {
+            //            row.CreateCell(i).SetCellValue(val.ToString());
+            //        }
+            //        else
+            //        {
+            //            row.CreateCell(i).SetCellValue("");
+
+            //        }
+            //    }
+            //    //Set values for the cells
+            //    //row.CreateCell(0).SetCellValue(product.ProductId);
+            //    //row.CreateCell(1).SetCellValue(product.Name);
+            //    //row.CreateCell(2).SetCellValue(product.UnitPrice.ToString());
+            //    //row.CreateCell(3).SetCellValue(product.UnitsInStock.GetValueOrDefault().ToString());
+            //}
 
             //Write the workbook to a memory stream
             MemoryStream output = new MemoryStream();
@@ -192,14 +272,14 @@ namespace InventoryManagementMVC.Controllers
             //ms.Position = 0;
             //instanceReportSource.ReportDocument.
             //byte[] arr = ms.ToArray();
-            
+
             RenderingResult result = reportProcessor.RenderReport("Image", instanceReportSource, null);
             //RenderingResult result = reportProcessor.RenderReport("pdf", instanceReportSource, null); // PROBLEMS
             //  http://www.telerik.com/community/forums/reporting/telerik-reporting/out-of-memory-in-azure-websites.aspx
 
 
             string fileName = result.DocumentName + "." + result.Extension;
-           
+
             return File(result.DocumentBytes, result.MimeType, fileName);
         }
     }
