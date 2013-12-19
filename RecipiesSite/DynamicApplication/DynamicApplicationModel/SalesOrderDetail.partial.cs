@@ -7,6 +7,7 @@ namespace RecipiesModelNS
     {
         public override void Added(System.Data.Entity.Infrastructure.DbEntityEntry e = null)
         {
+            SalesOrderHeader.UpdateSalesOrderHeaderTotalDueFromSalesOrderDetails(SalesOrderHeaderId);
             SalesOrderDetail.UpdateProductsUnitsInStock(SalesOrderDetailId);
 
             base.Added(e);
@@ -14,21 +15,23 @@ namespace RecipiesModelNS
 
         public override void Changed(System.Data.Entity.Infrastructure.DbEntityEntry e = null)
         {
+            SalesOrderHeader.UpdateSalesOrderHeaderTotalDueFromSalesOrderDetails(SalesOrderHeaderId);
             SalesOrderDetail.UpdateProductsUnitsInStock(SalesOrderDetailId);
             base.Changed(e);
         }
 
-        private static int? salesOrderDetailId = 0;
+        private static int? _salesOrderHeaderId = 0;
 
         public override void Removing(System.Data.Entity.Infrastructure.DbEntityEntry e = null)
         {
-            salesOrderDetailId = SalesOrderDetailId;
+            _salesOrderHeaderId = e.OriginalValues.GetValue<int?>("SalesOrderHeaderId");
             base.Removing(e);
         }
 
         public override void Removed(System.Data.Entity.Infrastructure.DbEntityEntry e = null)
         {
-            SalesOrderDetail.UpdateProductsUnitsInStock(salesOrderDetailId);
+            SalesOrderHeader.UpdateSalesOrderHeaderTotalDueFromSalesOrderDetails(_salesOrderHeaderId);
+            SalesOrderDetail.UpdateProductsUnitsInStock(_salesOrderHeaderId);
             base.Removed(e);
         }
 

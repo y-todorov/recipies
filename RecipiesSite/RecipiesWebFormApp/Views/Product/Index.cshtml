@@ -49,6 +49,55 @@
                 $(currenRow).addClass("NeedsReorder");
             }
         }
+      
+        var exportLink = $("#exportToExcelLink");
+        debugger;     
+        exportLink.click(function (e) {        
+        
+            alert(grid.table.context.innerHTML);
+
+            $.ajax({
+                type: "POST",
+                url: "/Download/ExportWithOpenXML",
+                contentType: "application/json; charset=utf-8",
+                //contentType: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                data: JSON.stringify({               
+                    html: grid.table.context.innerHTML               
+                }),
+
+                success: function (data) {
+                    //e.preventDefault();
+                    //debugger;
+                    //var binary = data;
+                    //var array = [];
+                    //for (var i = 0; i < binary.length; i++) {
+                    //    array.push(binary.charCodeAt(i));
+                    //}
+                    //var blobObject = new Blob([new Uint8Array(array)], { type: 'application/vnd.ms-excel' });
+
+                    //var blobObject = new Blob(data, { type: 'application/vnd.ms-excel' });
+                    
+
+                    //window.navigator.msSaveBlob(data, 'GridExcelExport.xls');
+                    //alert('File save request made using msSaveBlob() - note the single "Save" button below.');
+
+                    //var fileData = ["Before you insult a person, walk a mile in their shoes. That way, when you insult them, you'll be a mile away - and have their shoes."];
+                    //blobObject = new Blob(fileData);
+                    //window.navigator.msSaveOrOpenBlob(blobObject, 'GridExcelExport.xls');
+                    //alert('File save request made using msSaveOrOpenBlob() - note the two "Open" and "Save" buttons below.');
+
+                    //window.location.href = file;
+                    //window.location.href = result;
+                    //alert("ok: " + result);
+                },
+                error: function (result) {
+                    alert('Oh no: ' + result.responseText);
+                },
+                async:   false
+            });
+            //e.preventDefault();
+        });
+
     }
 </script>
 
@@ -89,6 +138,6 @@
                           );
 
             })
-                                                                                                                                   .ToClientTemplate()
+                                                                                                                                                           .ToClientTemplate()
     )
 </script>

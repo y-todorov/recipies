@@ -21,14 +21,31 @@ using Telerik.Reporting.Processing;
 using Kendo.Mvc.Extensions;
 using InventoryManagementMVC.Models;
 using System.Data.Entity;
-using System.Reflection; 
+using System.Reflection;
+using System.Net; 
 
 
 namespace InventoryManagementMVC.Controllers
 {
+    
+
     public class DownloadController : Controller
     {
-        public ActionResult ExportWithOpenXML(string typeName, [DataSourceRequest] DataSourceRequest request)
+        private static FileContentResult lastFileContentResult;
+
+        public ActionResult DownloadExport()
+        {
+            if (lastFileContentResult != null)
+            {
+                return lastFileContentResult;
+            }
+            else
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.OK); 
+            }
+        }
+
+        public void ExportWithOpenXML(string typeName, string html, [DataSourceRequest] DataSourceRequest request)
         {
 
             var allPis = ContextFactory.Current.Inventories.OfType<ProductInventory>()
@@ -133,10 +150,12 @@ namespace InventoryManagementMVC.Controllers
 
             //Return the result to the end user
 
-            return File(output.ToArray(),   //The binary data of the XLS file
+            lastFileContentResult = File(output.ToArray(),   //The binary data of the XLS file
                 "application/vnd.ms-excel", //MIME type of Excel files
                 "GridExcelExport.xls");     //Suggested file name in the "Save as" dialog which will be displayed to the end user
 
+            //return View("DownloadExport");
+            //return new HttpStatusCodeResult(HttpStatusCode.OK); 
             //return File(new byte[1], "xls");
         }
 

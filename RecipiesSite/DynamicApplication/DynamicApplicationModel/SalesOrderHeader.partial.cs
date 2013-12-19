@@ -34,7 +34,7 @@ namespace RecipiesModelNS
                         {
                             SalesOrderHeaderId = salesOrderHeader.SalesOrderHeaderId,
                             RecipeId = recipie.RecipeId,
-                            UnitPrice = 0,
+                            UnitPrice = recipie.SellValuePerPortion,
                             UnitPriceDiscount = 0,
                             OrderQuantity = 0,
                         };
@@ -46,6 +46,11 @@ namespace RecipiesModelNS
             }
         }
            
+
+        /// <summary>
+        /// Implement the same logic as in Details!!!! Yordan 19.12.2013
+        /// </summary>
+        /// <param name="salesOrderHeaderId"></param>
         public static void UpdateProductsUnitsInStock(int? salesOrderHeaderId)
         {
             List<SalesOrderDetail> details =
@@ -70,6 +75,27 @@ namespace RecipiesModelNS
             UpdateProductsUnitsInStock(SalesOrderHeaderId);
            
             base.Added(e);
+        }
+
+
+        public static void UpdateSalesOrderHeaderTotalDueFromSalesOrderDetails(int? salesOrderHeaderId)
+        {
+            if (salesOrderHeaderId.HasValue)
+            {
+                SalesOrderHeader poh =
+                    ContextFactory.GetContextPerRequest()
+                        .SalesOrderHeaders.FirstOrDefault(po => po.SalesOrderHeaderId == salesOrderHeaderId.Value);
+                if (poh != null)
+                {
+                    decimal? subTotal = 0;
+                    foreach (SalesOrderDetail spd in poh.SalesOrderDetails)
+                    {
+                        subTotal += (decimal?)spd.LineTotal;
+                    }
+                    poh.SubTotal = subTotal;
+                    ContextFactory.GetContextPerRequest().SaveChanges();
+                }
+            }
         }
      
         public override void Changed(System.Data.Entity.Infrastructure.DbEntityEntry e = null)
