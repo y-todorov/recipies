@@ -49,32 +49,6 @@
                 $(currenRow).addClass("NeedsReorder");
             }
         }
-     
-        var exportLink = $("#exportToExcelLink");
-        debugger;
-        var gridTest = exportLink.parents('div[class~="k-grid"]').first(); // да точно така е!!!
-        if (gridTest) {
-            var grid2 = gridTest.data("kendoGrid");
-
-            exportLink.click(function (e) {
-                alert("Exports are still  in development. They can be tested currently in Products!");
-                $.ajax({
-                    type: "POST",
-                    url: "/Download/ExportWithOpenXML",
-                    contentType: "application/json; charset=utf-8",
-                    data: JSON.stringify({
-                        html: grid.table.context.innerHTML
-                    }),
-                    success: function (data) {
-                    },
-                    error: function (result) {
-                        alert('Oh no: ' + result.responseText);
-                    },
-                    async: false
-                });
-            });
-        }
-
     }
 </script>
 

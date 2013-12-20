@@ -52,26 +52,31 @@
     </div>
     <footer>
         @*<script src="http://cdn.kendostatic.com/2013.2.918/js/kendo.all.min.js"> </script>
-                 <script src="http://cdn.kendostatic.com/2013.2.918/js/kendo.aspnetmvc.min.js"> </script>
-                 <script src="http://cdn.kendostatic.com/2013.2.918/js/cultures/kendo.culture.en-IE.min.js"> </script>
+    <script src="http://cdn.kendostatic.com/2013.2.918/js/kendo.aspnetmvc.min.js"> </script>
+    <script src="http://cdn.kendostatic.com/2013.2.918/js/cultures/kendo.culture.en-IE.min.js"> </script>*@
             <script type="text/javascript">
-                 //set current to the "en-IE" culture script
-                 kendo.culture("en-IE");
+                function exportGridData(sender) {
+                    debugger;
 
-                 function error_handler(e) {
-                     if (e.errors) {
-                         var message = "Errors:\n";
-                         $.each(e.errors, function (key, value) {
-                             if ('errors' in value) {
-                                 $.each(value.errors, function () {
-                                     message += this + "\n";
-                                 });
-                             }
-                         });
-                         alert(message);
-                     }
-                 }
-             </script>*@
+                    var gridDiv = ($(sender)).parents('div[class~="k-grid"]').first(); // да точно така е!!!
+                    var grid = gridDiv.data("kendoGrid");
+
+                    $.ajax({
+                        type: "POST",
+                        url: "/Download/ExportWithOpenXML",
+                        contentType: "application/json; charset=utf-8",
+                        data: JSON.stringify({
+                            html: grid.table.context.innerHTML
+                        }),
+                        success: function (data) {
+                        },
+                        error: function (result) {
+                            alert('Oh no: ' + result.responseText);
+                        },
+                        async: false
+                    });
+                }
+             </script>
 
     </footer>
 </body>

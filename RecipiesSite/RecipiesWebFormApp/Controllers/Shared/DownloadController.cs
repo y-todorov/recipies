@@ -45,7 +45,7 @@ namespace InventoryManagementMVC.Controllers
             return xml;
         }
 
-        private List<XElement> GetTrs(string xml)
+        private List<XElement> GetTrsWithDataOnly(string xml)
         {
             List<XElement> result = new List<XElement>();
             XDocument xdoc = XDocument.Parse(xml);
@@ -58,7 +58,7 @@ namespace InventoryManagementMVC.Controllers
 
                 foreach (XAttribute attr in attrs)
                 {
-                    if (attr.Name == "class" && attr.Value.Contains("k-master-row"))
+                    if (attr.Name == "role" && attr.Value.Contains("row"))
                     {
                         result.Add(tr);
                     }
@@ -103,30 +103,6 @@ namespace InventoryManagementMVC.Controllers
 
         public void ExportWithOpenXML(string typeName, string html, [DataSourceRequest] DataSourceRequest request)
         {
-
-            //var allPis = ContextFactory.Current.Inventories.OfType<ProductInventory>()
-            //    .Include(pi => pi.Product.ProductCategory)
-            //    .Include(pi => pi.Product.UnitMeasure)
-            //    .ToList();
-
-            //List<ProductInventoryViewModel> productInventoriesViewModels =
-            //   allPis.Select
-            //        (pi =>
-            //            ProductInventoryViewModel.ConvertFromProductInventoryEntity(pi, new ProductInventoryViewModel()))
-            //        .ToList();
-            //return Json(productInventoriesViewModels.ToDataSourceResult(request));
-
-
-
-            //Get the data representing the current grid state - page, sort and filter
-            //DataSourceResult res = ContextFactory.Current.Products.ToDataSourceResult(request);
-            //IEnumerable products = res.Data;
-
-            //IEnumerable productInventories = productInventoriesViewModels;
-
-            //PropertyInfo[] props = typeof(ProductInventoryViewModel).GetProperties();
-
-
             //Create new Excel workbook
             var workbook = new HSSFWorkbook();
 
@@ -160,7 +136,7 @@ namespace InventoryManagementMVC.Controllers
             int rowNumber = 0;
 
             string tableXml = GetTableXml(html);
-            List<XElement> trs = GetTrs(tableXml);
+            List<XElement> trs = GetTrsWithDataOnly(tableXml);
 
             foreach (XElement tr in trs)
             {
@@ -180,43 +156,6 @@ namespace InventoryManagementMVC.Controllers
                 }
             }
 
-
-
-
-            //Populate the sheet with values from the grid data
-            //foreach (ProductInventoryViewModel product in productInventories)
-            //{
-            //    //Create a new row
-            //    var row = sheet.CreateRow(rowNumber++);
-
-            //    for (int i = 0; i < props.Length; i++)
-            //    {
-
-            //        object val = props[i].GetValue(product);
-
-            //        // SPECIFIC
-            //        if (props[i].Name == "ProductId")
-            //        {
-            //            if (val != null)
-            //            {
-            //                var prod = ContextFactory.Current.Products.FirstOrDefault(p => p.ProductId == (int)val);
-            //                if (prod != null)
-            //                {
-            //                    val = prod.Name;
-            //                }
-            //            }
-            //        }
-
-            //        if (val != null)
-            //        {
-            //            row.CreateCell(i).SetCellValue(val.ToString());
-            //        }
-            //        else
-            //        {
-            //            row.CreateCell(i).SetCellValue("");
-
-            //        }
-            //    }
             //    //Set values for the cells
             //    //row.CreateCell(0).SetCellValue(product.ProductId);
             //    //row.CreateCell(1).SetCellValue(product.Name);
@@ -233,10 +172,6 @@ namespace InventoryManagementMVC.Controllers
             lastFileContentResult = File(output.ToArray(),   //The binary data of the XLS file
                 "application/vnd.ms-excel", //MIME type of Excel files
                 "GridExcelExport.xls");     //Suggested file name in the "Save as" dialog which will be displayed to the end user
-
-            //return View("DownloadExport");
-            //return new HttpStatusCodeResult(HttpStatusCode.OK); 
-            //return File(new byte[1], "xls");
         }
 
         public ActionResult DownloadPurchaseOrder(int? purchaseOrderHeaderId)

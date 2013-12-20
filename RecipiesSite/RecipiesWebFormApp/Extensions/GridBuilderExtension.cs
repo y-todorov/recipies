@@ -95,6 +95,10 @@ namespace InventoryManagementMVC.Extensions
                     }
                     var dic = new Dictionary<string, object>();
                     dic.Add("id", "exportToExcelLink");
+                    dic.Add("onclick", "exportGridData(this)");
+                    //string onclickHandler = "exportGridData(this)";
+
+
                     toolbar.Custom()
                .Text("Export To Excel").HtmlAttributes(dic)
                .Action("DownloadExport", "Download", new { typeName = modelEntityType.Name });
