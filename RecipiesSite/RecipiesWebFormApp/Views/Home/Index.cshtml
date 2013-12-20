@@ -52,7 +52,7 @@
 
           .Series(series =>
           {
-              series.Line(p => p.DayGp).Name("Value per day").Labels(l => l.Format("{0:C3}").Visible(true)).Axis("ValuePerDay");
+              series.Line(p => p.DayGp).Name("Value per week").Labels(l => l.Format("{0:C3}").Visible(true)).Axis("ValuePerDay");
           })
                        //.CategoryAxis(axis => axis.Categories(p => p.Days)
           .CategoryAxis(axis => axis.Categories<string>(ddd => ddd.Days) // ("Days")
