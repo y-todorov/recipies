@@ -39,32 +39,8 @@
                       //.Template("#= category # (#= series.name #): #= value #%")
           )
             )</text>);
-
-     panelbar.Add().Text("Total purchase orders value per vendor")
-              .Expanded(true)
-              .Content(@<text>@(Html.Kendo().Chart<TotalPoByVendor>()
-.Name("TotalPurchaseOrdersValuePerVendor").Theme("blueopal")
-          .Legend(legend => legend
-              .Position(ChartLegendPosition.Top)
-          )
-.DataSource(ds => ds.Read(read => read.Action("TotalPosValuePerVendor", "Chart")))
-.Series(series =>
-  {
-      series.Column(p => p.PoTotalValue).Name("Value").Labels(l => l.Format("{0:C3}").Visible(true)).Axis("Value");
-  })
-.CategoryAxis(axis => axis.Categories(p => p.VendorName)
-      .Labels(labels => labels.Rotation(90)).AxisCrossingValue(0, int.MaxValue)
-  )
-
-.ValueAxis(axis => axis.Numeric("Value").Labels(l => l.Format("{0:C3}"))
-          )
-          .Tooltip(tooltip => tooltip
-              .Visible(true)
-          )
-            )</text>);
-
     
-            panelbar.Add().Text("GP per day (Last 30 days)")
+      panelbar.Add().Text("GP per week")
                .Expanded(true)
                .Content(@<text>@(Html.Kendo().Chart<GpPerDay>()
               .Name("chartGPperDay").Theme("blueopal")
@@ -90,6 +66,31 @@
           )
             )</text>);
     
+
+     panelbar.Add().Text("Total purchase orders value per vendor")
+              .Expanded(true)
+              .Content(@<text>@(Html.Kendo().Chart<TotalPoByVendor>()
+.Name("TotalPurchaseOrdersValuePerVendor").Theme("blueopal")
+          .Legend(legend => legend
+              .Position(ChartLegendPosition.Top)
+          )
+.DataSource(ds => ds.Read(read => read.Action("TotalPosValuePerVendor", "Chart")))
+.Series(series =>
+  {
+      series.Column(p => p.PoTotalValue).Name("Value").Labels(l => l.Format("{0:C3}").Visible(true)).Axis("Value");
+  })
+.CategoryAxis(axis => axis.Categories(p => p.VendorName)
+      .Labels(labels => labels.Rotation(90)).AxisCrossingValue(0, int.MaxValue)
+  )
+
+.ValueAxis(axis => axis.Numeric("Value").Labels(l => l.Format("{0:C3}"))
+          )
+          .Tooltip(tooltip => tooltip
+              .Visible(true)
+          )
+            )</text>);
+
+    
            panelbar.Add().Text("Recipies by GP")
                .Expanded(true)
                .Content(@<text>@(Html.Kendo().Chart<RecipeByGP>()
@@ -113,6 +114,8 @@
       .Visible(true).Format("{0:P2}")
           )
             )</text>);
+    
+          
 
             panelbar.Add().Text("Products count and stock value by category")
                .Expanded(true)

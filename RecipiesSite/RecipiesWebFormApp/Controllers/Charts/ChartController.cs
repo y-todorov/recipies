@@ -145,22 +145,23 @@ namespace InventoryManagementMVC.Controllers
 
         public ActionResult GpPerDayLastDays()
         {
-            int lastNdays = 30;
+            int lastNdays = 15;
 
             List<GpPerDay> list = new List<GpPerDay>();
-            for (int i = 29; i >= 0; i--)
+            for (int i = lastNdays; i >= 0; i--)
             {
-                DateTime date = DateTime.Now.Date.AddDays(-i);
+                DateTime fromDate = DateTime.Now.Date.AddDays(-i * 7);
+                DateTime toDate = DateTime.Now.Date.AddDays((-i + 1) * 7);
                 double sales =
-                    SalesOrderHeader.GetSalesOrderHeadersInPeriod(date, date, SalesOrderStatusEnum.Approved)
+                    SalesOrderHeader.GetSalesOrderHeadersInPeriod(fromDate, toDate, SalesOrderStatusEnum.Approved)
                         .Sum(soh => soh.SalesOrderDetails.Sum(sod => sod.LineTotal));
                 double purchases =
                     (double)
-                        PurchaseOrderHeader.GetPurchaseOrderHeadersInPeriod(date, date,
+                        PurchaseOrderHeader.GetPurchaseOrderHeadersInPeriod(fromDate, toDate,
                             PurchaseOrderStatusEnum.Completed).Sum(poh => poh.TotalDue).GetValueOrDefault();
                 double dayGp = sales - purchases;
 
-                GpPerDay gh = new GpPerDay() { Days = date.ToString("dd/MM"), DayGp = Math.Round(dayGp, 3) };
+                GpPerDay gh = new GpPerDay() { Days = GetIso8601WeekOfYear(fromDate), DayGp = Math.Round(dayGp, 3) };
                 list.Add(gh);
             }
 
