@@ -59,15 +59,19 @@ namespace InventoryManagementMVC.Models
 
         [HiddenInput(DisplayValue = false)]
         [ReadOnly(true)]
-        public DateTime? ShipDate { get; set; }
+        public DateTime? PurchaseOrderHeaderShipDate { get; set; }
 
         [HiddenInput(DisplayValue = false)]
         [ReadOnly(true)]
         public string Vendor { get; set; }
 
-        [HiddenInput(DisplayValue = false)]
+        //[HiddenInput(DisplayValue = false)]
         [ReadOnly(true)]
         public string Category { get; set; }
+
+        [Display(Name = "Order Date")]
+        [ReadOnly(true)]
+        public DateTime? PurchaseOrderHeaderOrderDate { get; set; }
 
         [HiddenInput(DisplayValue = false)]
         [ReadOnly(true)]
@@ -106,7 +110,8 @@ namespace InventoryManagementMVC.Models
             model.UnitPrice = entity.UnitPrice;
             if (entity.PurchaseOrderHeader != null)
             {
-                model.ShipDate = entity.PurchaseOrderHeader.ShipDate;
+                model.PurchaseOrderHeaderShipDate = entity.PurchaseOrderHeader.ShipDate;
+                model.PurchaseOrderHeaderOrderDate = entity.PurchaseOrderHeader.OrderDate;
             }
             if (entity.PurchaseOrderHeader != null && entity.PurchaseOrderHeader.Vendor != null)
             {
