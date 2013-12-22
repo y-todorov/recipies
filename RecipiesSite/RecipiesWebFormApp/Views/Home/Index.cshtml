@@ -1,7 +1,7 @@
 ﻿@using InventoryManagementMVC.Models.Chart
 @using Kendo.Mvc.UI
 @using InventoryManagementMVC.Extensions;
-
+@using InventoryManagementMVC.Helpers;
 @{
     ViewBag.Title = "Inventory Management";
 }
@@ -34,17 +34,19 @@
 .ValueAxis(axis => axis.Numeric("Value").Labels(l => l.Format("{0:C3}"))
           )
           .Tooltip(tooltip => tooltip
-              .Visible(true)
-                      //.Template( DateTime.Now.ToShortDateString() ) // call here a function that will convert 34 to dates 
-                      //.Template("#= category # (#= series.name #): #= value #%")
+              .Visible(true)//.Template(ViewHelper.GetDateStringFromWeekNumber(1))
+              //.Template( DateTime.Now.ToShortDateString() ) // call here a function that will convert 34 to dates
+.Template("Time interval:<label id=\"helpLabel\"></label> <script> document.getElementById(\"helpLabel\").innerHTML = getWeekString(#= category #)</script>Vendor: #= series.name # Value: #= value #")
+                      //.Template(@<text>@(Html.Kendo().DropDownList().Name("test"))</text>)
+
           )
             )</text>);
-    
-      panelbar.Add().Text("GP per week")
-               .Expanded(true)
-               .Content(@<text>@(Html.Kendo().Chart<GpPerDay>()
+
+            panelbar.Add().Text("GP per week")
+                     .Expanded(true)
+                     .Content(@<text>@(Html.Kendo().Chart<GpPerDay>()
               .Name("chartGPperDay").Theme("blueopal")
-                       //.Title("GP per day (Last 30 days)")
+                             //.Title("GP per day (Last 30 days)")
           .Legend(legend => legend
       .Position(ChartLegendPosition.Top)
           )
@@ -54,7 +56,7 @@
           {
               series.Line(p => p.DayGp).Name("Value per week").Labels(l => l.Format("{0:C3}").Visible(true)).Axis("ValuePerDay");
           })
-                       //.CategoryAxis(axis => axis.Categories(p => p.Days)
+                             //.CategoryAxis(axis => axis.Categories(p => p.Days)
           .CategoryAxis(axis => axis.Categories<string>(ddd => ddd.Days) // ("Days")
 
               .Labels(labels => labels.Rotation(90)).AxisCrossingValue(0, int.MaxValue)
@@ -64,12 +66,12 @@
           .Tooltip(tooltip => tooltip
               .Visible(true)
           )
-            )</text>);
-    
+                    )</text>);
 
-     panelbar.Add().Text("Total purchase orders value per vendor")
-              .Expanded(true)
-              .Content(@<text>@(Html.Kendo().Chart<TotalPoByVendor>()
+
+            panelbar.Add().Text("Total purchase orders value per vendor")
+                     .Expanded(true)
+                     .Content(@<text>@(Html.Kendo().Chart<TotalPoByVendor>()
 .Name("TotalPurchaseOrdersValuePerVendor").Theme("blueopal")
           .Legend(legend => legend
               .Position(ChartLegendPosition.Top)
@@ -88,12 +90,12 @@
           .Tooltip(tooltip => tooltip
               .Visible(true)
           )
-            )</text>);
+                    )</text>);
 
-    
-           panelbar.Add().Text("Recipies by GP")
-               .Expanded(true)
-               .Content(@<text>@(Html.Kendo().Chart<RecipeByGP>()
+
+            panelbar.Add().Text("Recipies by GP")
+                .Expanded(true)
+                .Content(@<text>@(Html.Kendo().Chart<RecipeByGP>()
       .Name("chartRecipeByGP").Theme("blueopal")
           .Legend(legend => legend
       .Position(ChartLegendPosition.Top)
@@ -109,13 +111,13 @@
               .Labels(labels => labels.Rotation(90)).AxisCrossingValue(0, int.MaxValue)
           )
 .ValueAxis(axis => axis.Numeric("GP").Labels(labels => labels.Format("{0:P2}")))
-          
+
           .Tooltip(tooltip => tooltip
       .Visible(true).Format("{0:P2}")
           )
-            )</text>);
-    
-          
+                )</text>);
+
+
 
             panelbar.Add().Text("Products count and stock value by category")
                .Expanded(true)

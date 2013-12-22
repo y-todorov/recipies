@@ -12,6 +12,7 @@ using System.Globalization;
 using System.Diagnostics;
 using System.Dynamic;
 using System.Data;
+using InventoryManagementMVC.Helpers;
 
 namespace InventoryManagementMVC.Controllers
 {
@@ -19,56 +20,13 @@ namespace InventoryManagementMVC.Controllers
     {
         int maxXLabelTextLenght = 10;
 
-        // This presumes that weeks start with Monday.
-        // Week 1 is the 1st week of the year with a Thursday in it.
-        public static string GetIso8601WeekOfYear(DateTime time)
+        public string GetWeekString(string weekAsInt)
         {
-            // Seriously cheat.  If its Monday, Tuesday or Wednesday, then it'll 
-            // be the same week# as whatever Thursday, Friday or Saturday are,
-            // and we always get those right
-            DayOfWeek day = CultureInfo.InvariantCulture.Calendar.GetDayOfWeek(time);
-            if (day >= DayOfWeek.Monday && day <= DayOfWeek.Wednesday)
-            {
-                time = time.AddDays(3);
-            }
-
-            // Return the week of our adjusted day
-            int weekOfYear = CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(time, CalendarWeekRule.FirstFourDayWeek,
-                DayOfWeek.Monday);
-            //return weekOfYear;
-
-            DateTime lastMonday = GetLastMonday(time);
-            DateTime nextSunday = GetNextSunday(time);
-
-            //string result = string.Format("{0} ({1:dd/MM/yyyy}-{2:dd/MM/yyyy})", weekOfYear, lastMonday, nextSunday);
-            string result = weekOfYear.ToString();
-            return result;
+            int week = int.Parse(weekAsInt);
+            string res = ControllerHelper.GetWeekStringFromWeekNumber(week);
+            return res;
+        }
             
-        }
-
-        private static DateTime GetLastMonday(DateTime time)
-        {
-            for (int i = 0; i < 7; i++)
-            {
-                if (time.Date.AddDays(-i).DayOfWeek == DayOfWeek.Monday)
-                {
-                    return time.Date.AddDays(-i);
-                }
-            }
-            return DateTime.MinValue;
-        }
-
-        private static DateTime GetNextSunday(DateTime time)
-        {
-            for (int i = 0; i < 7; i++)
-            {
-                if (time.Date.AddDays(i).DayOfWeek == DayOfWeek.Sunday)
-                {
-                    return time.Date.AddDays(i);
-                }
-            }
-            return DateTime.MinValue;
-        }
 
         public ActionResult VendorPurchasesByWeek()
         {
@@ -82,7 +40,7 @@ namespace InventoryManagementMVC.Controllers
 
                 var grouping =
                     pods.OrderByDescending(pod => pod.PurchaseOrderHeader.ShipDate)
-                        .GroupBy(pod => GetIso8601WeekOfYear(pod.PurchaseOrderHeader.ShipDate.GetValueOrDefault()));
+                        .GroupBy(pod => ControllerHelper.GetIso8601WeekOfYear(pod.PurchaseOrderHeader.ShipDate.GetValueOrDefault()));
 
 
                 List<Dictionary<string, string>> list = new List<Dictionary<string, string>>();
@@ -161,7 +119,7 @@ namespace InventoryManagementMVC.Controllers
                             PurchaseOrderStatusEnum.Completed).Sum(poh => poh.TotalDue).GetValueOrDefault();
                 double dayGp = sales - purchases;
 
-                GpPerDay gh = new GpPerDay() { Days = GetIso8601WeekOfYear(fromDate), DayGp = Math.Round(dayGp, 3) };
+                GpPerDay gh = new GpPerDay() { Days = ControllerHelper.GetIso8601WeekOfYear(fromDate), DayGp = Math.Round(dayGp, 3) };
                 list.Add(gh);
             }
 

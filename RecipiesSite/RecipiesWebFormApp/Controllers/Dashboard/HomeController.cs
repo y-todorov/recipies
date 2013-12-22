@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using RecipiesModelNS;
 using System;
 using System.Diagnostics;
+using InventoryManagementMVC.Helpers;
 
 
 namespace InventoryManagementMVC.Controllers
@@ -26,7 +27,7 @@ namespace InventoryManagementMVC.Controllers
 
                 var grouping =
                     pods.OrderByDescending(pod => pod.PurchaseOrderHeader.ShipDate)
-                        .GroupBy(pod => ChartController.GetIso8601WeekOfYear(pod.PurchaseOrderHeader.ShipDate.GetValueOrDefault()));
+                        .GroupBy(pod => ControllerHelper.GetIso8601WeekOfYear(pod.PurchaseOrderHeader.ShipDate.GetValueOrDefault()));
 
                 List<Dictionary<string, object>> helpers = new List<Dictionary<string, object>>();
 

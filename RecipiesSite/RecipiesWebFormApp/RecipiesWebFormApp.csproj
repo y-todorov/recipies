@@ -481,7 +481,6 @@
     <Compile Include="Controllers\Production\UnitMeasureController.cs" />
     <Compile Include="Controllers\Purchasing\PurchaseOrderDetailController.cs" />
     <Compile Include="Controllers\Purchasing\PurchaseOrderHeaderController.cs" />
-    <Compile Include="Controllers\Shared\ControllerHelper.cs" />
     <Compile Include="Controllers\Shared\ControllerBase.cs" />
     <Compile Include="DataAnnotations\RelationAttribute.cs" />
     <Compile Include="Default.aspx.cs">
@@ -515,6 +514,8 @@
       <DependentUpon>Global.asax</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Helpers\ControllerHelper.cs" />
+    <Compile Include="Helpers\ViewHelper.cs" />
     <Compile Include="History\ProductHistories.aspx.cs">
       <DependentUpon>ProductHistories.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
