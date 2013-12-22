@@ -15,7 +15,6 @@ function error_handler(e) {
 }
 
 //function exportGridData (sender) {
-//    debugger;
 
 //    var gridDiv = sender.parents('div[class~="k-grid"]').first(); // да точно така е!!!
 //    var grid = gridDiv.data("kendoGrid");

@@ -19,10 +19,8 @@
 
 @*<script>
     $(function () {
-        //debugger;
         var rebindHub = $.connection.rebindHub;
         //rebindHub.client.rebindHub = function (model) {
-        //    debugger;
         //    var grid = $("#grid").data("kendoGrid");
         //    grid.refresh();
         //};
@@ -33,7 +31,6 @@
 
     function saveChanges(caller, c1, c2) {
 
-        debugger;
         var rebindHub = $.connection.rebindHub;
         rebindHub.server.RebindGrids();
         //var grid = $("#grid").data("kendoGrid");

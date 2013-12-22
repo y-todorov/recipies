@@ -430,7 +430,6 @@ namespace YordanCustomControls
             //        <script src=""../Scripts/jquery.signalR-1.1.3.min.js""></script>
             //        <script src=""/signalr/hubs""></script>
             //        <script>
-            ////debugger;
             //            var hub = $.connection.rebindHub;
             //           if (typeof hub !== 'undefined')
             //{
@@ -441,7 +440,6 @@ namespace YordanCustomControls
             //                var grid = window.$find(""" + ClientID + @""");
             //
             //            if (grid != null) {
-            ////debugger;
             //
             //if (typeof isInRequest === 'undefined') {
             //isInRequest = false;
