@@ -35,7 +35,7 @@
           )
           .Tooltip(tooltip => tooltip
               .Visible(true)
-.Template("Time interval:<label id=\"helpLabel\"></label> <script> document.getElementById(\"helpLabel\").innerHTML = getWeekString(#= category #)</script>Vendor: #= series.name # Value: #= value #")
+.Template("Time interval:<label id=\"lblVendorPO\"></label> <script> document.getElementById(\"lblVendorPO\").innerHTML = getWeekString(#= category #)</script>Vendor: #= series.name # Value: #= value #")
 
           )
             )</text>);
@@ -61,7 +61,7 @@
           )
           .Tooltip(tooltip => tooltip
               .Visible(true)
-            .Template("Time interval:<label id=\"helpLabel\"></label> <script> document.getElementById(\"helpLabel\").innerHTML = getWeekString(#= category #)</script> Value: #= value #")
+    .Template("Time interval:<label id=\"lblGpPerWeek\"></label> <script> document.getElementById(\"lblGpPerWeek\").innerHTML = getWeekString(#= category #)</script> Value: #= value #")
 
           )
                     )</text>);
