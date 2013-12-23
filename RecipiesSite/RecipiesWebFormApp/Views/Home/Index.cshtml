@@ -34,10 +34,8 @@
 .ValueAxis(axis => axis.Numeric("Value").Labels(l => l.Format("{0:C3}"))
           )
           .Tooltip(tooltip => tooltip
-              .Visible(true)//.Template(ViewHelper.GetDateStringFromWeekNumber(1))
-              //.Template( DateTime.Now.ToShortDateString() ) // call here a function that will convert 34 to dates
+              .Visible(true)
 .Template("Time interval:<label id=\"helpLabel\"></label> <script> document.getElementById(\"helpLabel\").innerHTML = getWeekString(#= category #)</script>Vendor: #= series.name # Value: #= value #")
-                      //.Template(@<text>@(Html.Kendo().DropDownList().Name("test"))</text>)
 
           )
             )</text>);
@@ -46,7 +44,6 @@
                      .Expanded(true)
                      .Content(@<text>@(Html.Kendo().Chart<GpPerDay>()
               .Name("chartGPperDay").Theme("blueopal")
-                             //.Title("GP per day (Last 30 days)")
           .Legend(legend => legend
       .Position(ChartLegendPosition.Top)
           )
@@ -56,7 +53,6 @@
           {
               series.Line(p => p.DayGp).Name("Value per week").Labels(l => l.Format("{0:C3}").Visible(true)).Axis("ValuePerDay");
           })
-                             //.CategoryAxis(axis => axis.Categories(p => p.Days)
           .CategoryAxis(axis => axis.Categories<string>(ddd => ddd.Days) // ("Days")
 
               .Labels(labels => labels.Rotation(90)).AxisCrossingValue(0, int.MaxValue)
@@ -65,6 +61,8 @@
           )
           .Tooltip(tooltip => tooltip
               .Visible(true)
+            .Template("Time interval:<label id=\"helpLabel\"></label> <script> document.getElementById(\"helpLabel\").innerHTML = getWeekString(#= category #)</script> Value: #= value #")
+
           )
                     )</text>);
 
