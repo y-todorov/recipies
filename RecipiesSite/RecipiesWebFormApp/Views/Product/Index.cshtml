@@ -81,6 +81,32 @@
                           )
                 </text>
                   );
+                  
+                  items.Add().Text("Purchase Orders").Content(@<text>
+                    @(Html.Kendo().Grid<PurchaseOrderDetailViewModel>()
+                                  .Name("PurchaseOrders#=ProductId#")
+                          .AddReadOnlyOptions(true)
+                          .DataSource(dataSource => dataSource
+                              .Ajax()
+                              .Read(read => read.Action("ReadProductPurchaseOrders", "Product", new {productId = "#=ProductId#"}))
+                          )
+                          .ToClientTemplate()
+                          )
+                </text>
+                  );
+                  
+                    items.Add().Text("Wastes").Content(@<text>
+                    @*@(Html.Kendo().Grid<ProductWaste>()
+                                          .Name("Recipies#=ProductId#")
+                          .AddReadOnlyOptions(true)
+                          .DataSource(dataSource => dataSource
+                              .Ajax()
+                              .Read(read => read.Action("ReadProductRecipies", "Product", new {productId = "#=ProductId#"}))
+                          )
+                          .ToClientTemplate()
+                          )*@
+                </text>
+                  );
           })
           .ToClientTemplate()
           )

@@ -91,10 +91,25 @@ namespace InventoryManagementMVC.Controllers
 
         public ActionResult ReadProductRecipies(int? productId, [DataSourceRequest] DataSourceRequest request)
         {
-            List<Recipe> recipes = ContextFactory.Current.Recipes.Where
-                (r => r.ProductIngredients.Any(pi => pi.ProductId == productId)).ToList();
+            List<Recipe> allRecipes = ContextFactory.Current.Recipes//.ToList();
+                .Where(r => r.ProductIngredients.Any(pi => pi.ProductId == productId)).ToList();
+
+            //List<Recipe> newRecipies = new List<Recipe>();
+
+            // This is too slow!!!
+
+            //foreach (Recipe recipe in allRecipes)
+            //{
+            //    Dictionary<int, double> dic = new Dictionary<int, double>();
+            //    Recipe.GetProductsWithQuantities(recipe.RecipeId, dic);
+            //    if (dic.ContainsKey(productId.GetValueOrDefault()))
+            //    {
+            //        newRecipies.Add(recipe);
+            //    }
+            //}
+
             List<RecipeViewModel> recipeModels =
-                recipes.Select(r => RecipeViewModel.ConvertFromRecipeEntity(r, new RecipeViewModel())).ToList();
+                allRecipes.Select(r => RecipeViewModel.ConvertFromRecipeEntity(r, new RecipeViewModel())).ToList();
 
             return Json(recipeModels.ToDataSourceResult(request));
                 // This is important not to be just  Json(recipeModels) !!!!
@@ -113,5 +128,21 @@ namespace InventoryManagementMVC.Controllers
 
             return Json(productInventoriesModels.ToDataSourceResult(request));
         }
+
+        public ActionResult ReadProductPurchaseOrders(int? productId, [DataSourceRequest] DataSourceRequest request)
+        {
+            List<PurchaseOrderDetail> productPurchaseOrders =
+                ContextFactory.Current.PurchaseOrderDetails.Where
+                    (pi => pi.ProductId == productId)
+                    .OrderByDescending(de => de.PurchaseOrderHeader.OrderDate)
+                    .ToList();
+            List<PurchaseOrderDetailViewModel> productPurchaseOrdersModels = productPurchaseOrders.Select
+                (r => PurchaseOrderDetailViewModel.ConvertFromPurchaseOrderDetailEntity(r, new PurchaseOrderDetailViewModel()))
+                .ToList();
+
+            return Json(productPurchaseOrdersModels.ToDataSourceResult(request));
+        }
+
+        
     }
 }
