@@ -40,7 +40,7 @@
           )
             )</text>);
 
-            panelbar.Add().Text("GP per week")
+            panelbar.Add().Text("GP per week - Products that fall in 'Bar', 'Utilities' or 'Papers and consumables' categories are excluded from calculation in purchase orders.")
                      .Expanded(true)
                      .Content(@<text>@(Html.Kendo().Chart<GpPerDay>()
               .Name("chartGPperDay").Theme("blueopal")

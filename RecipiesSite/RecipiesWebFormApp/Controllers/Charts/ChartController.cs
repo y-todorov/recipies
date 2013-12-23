@@ -115,8 +115,8 @@ namespace InventoryManagementMVC.Controllers
                         .Sum(soh => soh.SalesOrderDetails.Sum(sod => sod.LineTotal));
                 double purchases =
                     (double)
-                        PurchaseOrderHeader.GetPurchaseOrderHeadersInPeriod(fromDate, toDate,
-                            PurchaseOrderStatusEnum.Completed).Sum(poh => poh.TotalDue).GetValueOrDefault();
+                        PurchaseOrderHeader.GetPurchaseOrderDetailsInPeriod(fromDate, toDate,
+                            PurchaseOrderStatusEnum.Completed, ProductCategory.GetCategoriesToExcludeFromGP()).Sum(poh => poh.LineTotal);
                 double dayGp = sales - purchases;
 
                 GpPerDay gh = new GpPerDay() { Days = ControllerHelper.GetIso8601WeekOfYear(fromDate), DayGp = Math.Round(dayGp, 3) };

@@ -86,17 +86,20 @@ namespace RecipiesModelNS
         //    return false;
         //}
 
-        public static List<PurchaseOrderHeader> GetPurchaseOrderHeadersInPeriod(DateTime fromDate, DateTime toDate,
-            PurchaseOrderStatusEnum status)
+        public static List<PurchaseOrderDetail> GetPurchaseOrderDetailsInPeriod(DateTime fromDate, DateTime toDate,
+            PurchaseOrderStatusEnum status, List<ProductCategory> categoriesToExclude = null)
         {
             DateTime defaultDate = new DateTime(2000, 1, 1);
             DateTime endDateForLinq = toDate.Date.AddDays(1);
-            List<PurchaseOrderHeader> result =
+            List<PurchaseOrderHeader> purchaseOrderHeaders =
                 ContextFactory.GetContextPerRequest().PurchaseOrderHeaders.Where(pof => pof.ShipDate >= fromDate.Date &&
                                                                                         pof.ShipDate < endDateForLinq &&
                                                                                         pof.StatusId == (int) status)
                     .ToList();
-            return result;
+
+            List<PurchaseOrderDetail> pods = purchaseOrderHeaders.SelectMany(poh => poh.PurchaseOrderDetails.Where(pod => categoriesToExclude != null && !categoriesToExclude.Any(pc => (pod.Product != null && pc.CategoryId == pod.Product.CategoryId)))).ToList();
+            return pods;
+            //return purchaseOrderHeaders;
         }
 
         public static void UpdateProductsUnitsInStock(int? purchaseOrderHeaderId)

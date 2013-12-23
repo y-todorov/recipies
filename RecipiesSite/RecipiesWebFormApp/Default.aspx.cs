@@ -76,8 +76,8 @@ namespace RecipiesWebFormApp
                             .Sum(soh => soh.SalesOrderDetails.Sum(sod => sod.LineTotal));
                     double purchases =
                         (double)
-                            PurchaseOrderHeader.GetPurchaseOrderHeadersInPeriod(date, date,
-                                PurchaseOrderStatusEnum.Completed).Sum(poh => poh.TotalDue).GetValueOrDefault();
+                            PurchaseOrderHeader.GetPurchaseOrderDetailsInPeriod(date, date,
+                                PurchaseOrderStatusEnum.Completed, ProductCategory.GetCategoriesToExcludeFromGP()).Sum(poh => poh.LineTotal);
                     double dayGp = sales - purchases;
 
                     GpHelper gh = new GpHelper() { Days = date.ToString("dd/MM"), DayGp = dayGp };
