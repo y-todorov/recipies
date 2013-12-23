@@ -32,20 +32,15 @@ namespace RecipiesWebFormApp
 
         public static void StartWathching(int seconds)
         {
-            Timer timer = new Timer(1000 * seconds);
+            Timer timer = new Timer(1000*seconds);
             timer.Elapsed += timer_Elapsed;
             timer.Start();
-
-
         }
 
         private static void timer_Elapsed(object sender, ElapsedEventArgs e)
         {
             //using (SqlConnection sqlConn = new SqlConnection(ContextFactory.Current.Database.Connection.ConnectionString))
             {
-
-
-
                 //using (DbCommand command = new SqlCommand())
                 {
                     // ONLY FOR PRODDUCTS TABLE
@@ -68,7 +63,7 @@ WHERE database_id = DB_ID( 'recipies')";
                     }
                     try
                     {
-                        DateTime date = (DateTime)command.ExecuteScalar();
+                        DateTime date = (DateTime) command.ExecuteScalar();
                         if (!lastProductChangeDate.HasValue)
                         {
                             lastProductChangeDate = date;
@@ -87,7 +82,6 @@ WHERE database_id = DB_ID( 'recipies')";
                     }
                     catch (Exception ex)
                     {
-
                     }
                 }
             }

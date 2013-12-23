@@ -20,7 +20,7 @@ namespace InventoryManagementMVC.Models
         public int? RecipeId { get; set; }
 
 
-        [Relation(EntityType = typeof(Product), DataFieldValue = "ProductId", DataFieldText = "Name")]
+        [Relation(EntityType = typeof (Product), DataFieldValue = "ProductId", DataFieldText = "Name")]
         [Display(Name = "Product")]
         public int? ProductId { get; set; }
 
@@ -45,13 +45,14 @@ namespace InventoryManagementMVC.Models
             model.QuantityPerPortion = entity.QuantityPerPortion;
             if (entity.ProductId.HasValue) // Problems if we use Entity.product
             {
-                Product p = ContextFactory.Current.Products.FirstOrDefault(prod => prod.ProductId == entity.ProductId.Value);
+                Product p =
+                    ContextFactory.Current.Products.FirstOrDefault(prod => prod.ProductId == entity.ProductId.Value);
                 if (p != null)
                 {
                     model.Cost = entity.Product.UnitPrice;
                 }
             }
-            model.TotalValue = (decimal?)entity.TotalValue;
+            model.TotalValue = (decimal?) entity.TotalValue;
 
             model.ModifiedDate = entity.ModifiedDate;
             model.ModifiedByUser = entity.ModifiedByUser;
@@ -62,22 +63,22 @@ namespace InventoryManagementMVC.Models
         public static ProductIngredient ConvertToProductIngredientEntity(ProductIngredientViewModel model,
             ProductIngredient entity)
         {
-
             entity.ProductIngredientId = model.ProductIngredientId;
             entity.RecipeId = model.RecipeId;
             entity.ProductId = model.ProductId;
             entity.QuantityPerPortion = model.QuantityPerPortion;
             if (model.ProductId.HasValue) // Problems if we use Entity.product
             {
-                Product p = ContextFactory.Current.Products.FirstOrDefault(prod => prod.ProductId == entity.ProductId.Value);
+                Product p =
+                    ContextFactory.Current.Products.FirstOrDefault(prod => prod.ProductId == entity.ProductId.Value);
                 if (p != null)
                 {
                     entity.Cost = p.UnitPrice;
                 }
             }
 
-          
-            entity.TotalValue = (double)model.TotalValue.GetValueOrDefault();
+
+            entity.TotalValue = (double) model.TotalValue.GetValueOrDefault();
 
             entity.ModifiedDate = model.ModifiedDate;
             entity.ModifiedByUser = model.ModifiedByUser;

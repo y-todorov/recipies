@@ -33,7 +33,7 @@
                                 <LabelsAppearance DataFormatString="{0:P0}"></LabelsAppearance>
                                 <TooltipsAppearance DataFormatString="{0:P0}" />
                             </telerik:LineSeries>
-                          <%--  <telerik:LineSeries DataFieldY="SellValuePerPortion" Name="Sell Value Per Portion">
+                            <%--  <telerik:LineSeries DataFieldY="SellValuePerPortion" Name="Sell Value Per Portion">
                                   <LabelsAppearance DataFormatString="{0:F2}"></LabelsAppearance>
                             </telerik:LineSeries>--%>
                         </Series>

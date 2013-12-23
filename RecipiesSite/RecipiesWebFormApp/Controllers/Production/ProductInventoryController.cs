@@ -14,25 +14,30 @@ namespace InventoryManagementMVC.Controllers
     public class ProductInventoryController : Controller
     {
         public ActionResult Index()
-        {           
+        {
             return View();
         }
 
         public ActionResult Read(int? productInventoryHeaderId, [DataSourceRequest] DataSourceRequest request)
         {
-            ProductInventoryHeader pih2 = ContextFactory.Current.ProductInventoryHeaders.FirstOrDefault(pi => pi.ProductInventoryHeaderId == productInventoryHeaderId);
+            ProductInventoryHeader pih2 =
+                ContextFactory.Current.ProductInventoryHeaders.FirstOrDefault(
+                    pi => pi.ProductInventoryHeaderId == productInventoryHeaderId);
             if (pih2 != null)
             {
                 ProductInventoryHeader.InsertMissingProductInventories(pih2);
             }
 
-  var allPis = ContextFactory.Current.Inventories.OfType<ProductInventory>()
+            var allPis = ContextFactory.Current.Inventories.OfType<ProductInventory>()
                 .Include(pi => pi.Product.ProductCategory)
                 .Include(pi => pi.Product.UnitMeasure)
                 .Where(
-                    pih => productInventoryHeaderId.HasValue ? pih.ProductInventoryHeaderId == productInventoryHeaderId.Value : true).ToList();
+                    pih =>
+                        productInventoryHeaderId.HasValue
+                            ? pih.ProductInventoryHeaderId == productInventoryHeaderId.Value
+                            : true).ToList();
             List<ProductInventoryViewModel> productInventoriesViewModels =
-               allPis.Select
+                allPis.Select
                     (pi =>
                         ProductInventoryViewModel.ConvertFromProductInventoryEntity(pi, new ProductInventoryViewModel()))
                     .ToList();
@@ -56,7 +61,8 @@ namespace InventoryManagementMVC.Controllers
                     // Prefetch Product and others ...
                     newPodEntity = ContextFactory.Current.Inventories.OfType<ProductInventory>()
                         .Include(pod => pod.Product.UnitMeasure)
-                    .Include(pod => pod.Product.ProductCategory).FirstOrDefault(pod => pod.InventoryId == newPodEntity.InventoryId);
+                        .Include(pod => pod.Product.ProductCategory)
+                        .FirstOrDefault(pod => pod.InventoryId == newPodEntity.InventoryId);
                     ProductInventoryViewModel.ConvertFromProductInventoryEntity(newPodEntity, pi);
                 }
             }
@@ -82,7 +88,8 @@ namespace InventoryManagementMVC.Controllers
                     // Prefetch Product and others ...
                     piEntity = ContextFactory.Current.Inventories.OfType<ProductInventory>()
                         .Include(pod => pod.Product.UnitMeasure)
-                   .Include(pod => pod.Product.ProductCategory).FirstOrDefault(pod => pod.InventoryId == piEntity.InventoryId);
+                        .Include(pod => pod.Product.ProductCategory)
+                        .FirstOrDefault(pod => pod.InventoryId == piEntity.InventoryId);
                     ProductInventoryViewModel.ConvertFromProductInventoryEntity(piEntity, pi);
                 }
             }

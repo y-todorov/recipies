@@ -10,8 +10,6 @@ namespace RecipiesWebFormApp
         {
             //filters.Add(new HandleErrorAttribute());
             //filters.Add(new CustomHandleErrorAttribute());
-            
-
         }
     }
 }

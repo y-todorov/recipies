@@ -18,10 +18,10 @@ using RecipiesWebFormApp.Extensions;
 
 namespace InventoryManagementMVC.Controllers.Purchasing
 {
-    public class PurchaseOrderHeaderController : ControllerBase 
+    public class PurchaseOrderHeaderController : ControllerBase
     {
         public ActionResult Index()
-        {           
+        {
             return View();
         }
 
@@ -50,7 +50,9 @@ namespace InventoryManagementMVC.Controllers.Purchasing
                     ContextFactory.Current.PurchaseOrderHeaders.Add(newPohEntity);
                     ContextFactory.Current.SaveChanges();
 
-                    List<ProductVendor> productsForVendor = ContextFactory.Current.ProductVendors.Where(pv => pv.VendorId == newPohEntity.VendorId && pv.ProductId != null).ToList();
+                    List<ProductVendor> productsForVendor =
+                        ContextFactory.Current.ProductVendors.Where(
+                            pv => pv.VendorId == newPohEntity.VendorId && pv.ProductId != null).ToList();
 
                     foreach (ProductVendor pv in productsForVendor)
                     {
@@ -65,16 +67,18 @@ namespace InventoryManagementMVC.Controllers.Purchasing
                         decimal coef = 1;
                         if (pv.UnitMeasure != null)
                         {
-                            coef = (decimal)pv.Product.GetBaseUnitMeasureQuantityForProduct(1, pv.UnitMeasure);
+                            coef = (decimal) pv.Product.GetBaseUnitMeasureQuantityForProduct(1, pv.UnitMeasure);
                         }
-                        pod.UnitPrice = coef * (decimal)pv.Product.UnitPrice.GetValueOrDefault(); //.GetAveragePriceLastDays(14); Unit price must be alwats equal to GetAveragePriceLastDays(14)
+                        pod.UnitPrice = coef*(decimal) pv.Product.UnitPrice.GetValueOrDefault();
+                            //.GetAveragePriceLastDays(14); Unit price must be alwats equal to GetAveragePriceLastDays(14)
 
                         ContextFactory.Current.PurchaseOrderDetails.Add(pod);
                     }
 
                     ContextFactory.Current.SaveChanges();
                     newPohEntity.ModifiedDate = DateTime.Now;
-                    PurchaseOrderHeader.UpdatePurchaseOrderHeaderSubTotalFromPurchaseOrderDetails(newPohEntity.PurchaseOrderId);
+                    PurchaseOrderHeader.UpdatePurchaseOrderHeaderSubTotalFromPurchaseOrderDetails(
+                        newPohEntity.PurchaseOrderId);
                     ContextFactory.Current.SaveChanges();
 
 
@@ -136,13 +140,10 @@ namespace InventoryManagementMVC.Controllers.Purchasing
             ContextFactory.Current.SaveChanges();
 
             return RedirectToAction("Index");
-
         }
 
         public ActionResult Download(int? purchaseOrderHeaderId)
         {
-
-
             PurchaseOrderHeader purchaseOrder =
                 ContextFactory.GetContextPerRequest()
                     .PurchaseOrderHeaders.FirstOrDefault(p => p.PurchaseOrderId == purchaseOrderHeaderId);
@@ -153,7 +154,8 @@ namespace InventoryManagementMVC.Controllers.Purchasing
             RecipiesReports.PurchaseOrderDetailsReport salesOrderDetailsReport =
                 new RecipiesReports.PurchaseOrderDetailsReport();
 
-            List<PurchaseOrderDetail> nonEmptyOrders = purchaseOrder.PurchaseOrderDetails.Where(pod => pod.OrderQuantity.GetValueOrDefault() != 0).ToList();
+            List<PurchaseOrderDetail> nonEmptyOrders =
+                purchaseOrder.PurchaseOrderDetails.Where(pod => pod.OrderQuantity.GetValueOrDefault() != 0).ToList();
 
             salesOrderDetailsReport.DataSource = nonEmptyOrders;
 
@@ -179,7 +181,6 @@ namespace InventoryManagementMVC.Controllers.Purchasing
                 Inline = false,
             };
             //Response.AppendHeader("Content-Disposition", cd.ToString());
-
 
 
             //return File(result.DocumentBytes, result.MimeType, fileName);
@@ -208,24 +209,30 @@ namespace InventoryManagementMVC.Controllers.Purchasing
             //    "Sending Emails is temporary disabled. Will be enabled when the product is tested enough! ");
             //return;
 
-            PurchaseOrderHeader purchaseOrder = ContextFactory.GetContextPerRequest().PurchaseOrderHeaders.FirstOrDefault(p => p.PurchaseOrderId == purchaseOrderHeaderId);
+            PurchaseOrderHeader purchaseOrder =
+                ContextFactory.GetContextPerRequest()
+                    .PurchaseOrderHeaders.FirstOrDefault(p => p.PurchaseOrderId == purchaseOrderHeaderId);
 
             ReportProcessor reportProcessor = new ReportProcessor();
 
             var instanceReportSource = new Telerik.Reporting.InstanceReportSource();
-            RecipiesReports.PurchaseOrderDetailsReport salesOrderDetailsReport = new RecipiesReports.PurchaseOrderDetailsReport();
+            RecipiesReports.PurchaseOrderDetailsReport salesOrderDetailsReport =
+                new RecipiesReports.PurchaseOrderDetailsReport();
 
-            List<PurchaseOrderDetail> nonEmptyOrders = purchaseOrder.PurchaseOrderDetails.Where(pod => pod.OrderQuantity.GetValueOrDefault() != 0).ToList();
+            List<PurchaseOrderDetail> nonEmptyOrders =
+                purchaseOrder.PurchaseOrderDetails.Where(pod => pod.OrderQuantity.GetValueOrDefault() != 0).ToList();
 
             salesOrderDetailsReport.DataSource = nonEmptyOrders;
             instanceReportSource.ReportDocument = salesOrderDetailsReport;
 
             RenderingResult result = reportProcessor.RenderReport("Image", instanceReportSource, null);
 
-            EmailTemplate defaultTemplate = ContextFactory.GetContextPerRequest().EmailTemplates.FirstOrDefault(et => et.IsDefault);
+            EmailTemplate defaultTemplate =
+                ContextFactory.GetContextPerRequest().EmailTemplates.FirstOrDefault(et => et.IsDefault);
             if (defaultTemplate != null)
             {
-                RestResponse restResponse = EmailHelper.SendComplexMessage(defaultTemplate.From, purchaseOrder.Vendor.Email, defaultTemplate.Cc,
+                RestResponse restResponse = EmailHelper.SendComplexMessage(defaultTemplate.From,
+                    purchaseOrder.Vendor.Email, defaultTemplate.Cc,
                     defaultTemplate.Bcc, defaultTemplate.Subject, defaultTemplate.TextBody, defaultTemplate.HtmlBody,
                     result.DocumentBytes, defaultTemplate.AttachmentName + "." + result.Extension);
             }
@@ -260,12 +267,15 @@ namespace InventoryManagementMVC.Controllers.Purchasing
                 {
                     podViewModel.PurchaseOrderHeaderId = purchaseOrderHeaderId;
                     PurchaseOrderDetail newPodEntity =
-                        PurchaseOrderDetailViewModel.ConvertToPurchaseOrderDetailEntity(podViewModel, new PurchaseOrderDetail());
+                        PurchaseOrderDetailViewModel.ConvertToPurchaseOrderDetailEntity(podViewModel,
+                            new PurchaseOrderDetail());
                     ContextFactory.Current.PurchaseOrderDetails.Add(newPodEntity);
                     ContextFactory.Current.SaveChanges();
                     // Prefetch Product and others ...
-                    newPodEntity = ContextFactory.Current.PurchaseOrderDetails.Include(pod => pod.PurchaseOrderHeader.Vendor)
-                    .Include(pod => pod.Product.ProductCategory).FirstOrDefault(pod => pod.PurchaseOrderDetailId == newPodEntity.PurchaseOrderDetailId);
+                    newPodEntity = ContextFactory.Current.PurchaseOrderDetails.Include(
+                        pod => pod.PurchaseOrderHeader.Vendor)
+                        .Include(pod => pod.Product.ProductCategory)
+                        .FirstOrDefault(pod => pod.PurchaseOrderDetailId == newPodEntity.PurchaseOrderDetailId);
                     PurchaseOrderDetailViewModel.ConvertFromPurchaseOrderDetailEntity(newPodEntity, podViewModel);
                 }
             }
@@ -289,8 +299,10 @@ namespace InventoryManagementMVC.Controllers.Purchasing
 
                     ContextFactory.Current.SaveChanges();
                     // Prefetch Product and others ...
-                    pohEntity = ContextFactory.Current.PurchaseOrderDetails.Include(pod => pod.PurchaseOrderHeader.Vendor)
-                   .Include(pod => pod.Product.ProductCategory).FirstOrDefault(pod => pod.PurchaseOrderDetailId == pohEntity.PurchaseOrderDetailId);
+                    pohEntity = ContextFactory.Current.PurchaseOrderDetails.Include(
+                        pod => pod.PurchaseOrderHeader.Vendor)
+                        .Include(pod => pod.Product.ProductCategory)
+                        .FirstOrDefault(pod => pod.PurchaseOrderDetailId == pohEntity.PurchaseOrderDetailId);
                     PurchaseOrderDetailViewModel.ConvertFromPurchaseOrderDetailEntity(pohEntity, podViewModel);
                 }
             }
@@ -316,9 +328,6 @@ namespace InventoryManagementMVC.Controllers.Purchasing
 
             return Json(purchaseOrderDetails.ToDataSourceResult(request, ModelState));
             //return View("Index");
-
         }
-
     }
-
 }

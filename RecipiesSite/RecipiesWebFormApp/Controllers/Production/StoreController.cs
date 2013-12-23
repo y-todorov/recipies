@@ -13,7 +13,7 @@ namespace InventoryManagementMVC.Controllers
     public class StoreController : ControllerBase
     {
         public ActionResult Index()
-        {          
+        {
             return View();
         }
 

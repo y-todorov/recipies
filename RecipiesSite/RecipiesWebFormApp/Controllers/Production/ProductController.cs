@@ -14,9 +14,9 @@ using DevTrends.MvcDonutCaching;
 namespace InventoryManagementMVC.Controllers
 {
     public class ProductController : ControllerBase
-    {       
+    {
         public ActionResult Index()
-        {           
+        {
             return View();
         }
 
@@ -93,17 +93,23 @@ namespace InventoryManagementMVC.Controllers
         {
             List<Recipe> recipes = ContextFactory.Current.Recipes.Where
                 (r => r.ProductIngredients.Any(pi => pi.ProductId == productId)).ToList();
-            List<RecipeViewModel> recipeModels = recipes.Select(r => RecipeViewModel.ConvertFromRecipeEntity(r, new RecipeViewModel())).ToList();
+            List<RecipeViewModel> recipeModels =
+                recipes.Select(r => RecipeViewModel.ConvertFromRecipeEntity(r, new RecipeViewModel())).ToList();
 
-            return Json(recipeModels.ToDataSourceResult(request)); // This is important not to be just  Json(recipeModels) !!!!
+            return Json(recipeModels.ToDataSourceResult(request));
+                // This is important not to be just  Json(recipeModels) !!!!
         }
 
         public ActionResult ReadProductInventories(int? productId, [DataSourceRequest] DataSourceRequest request)
         {
-            List<ProductInventory> productInventories = ContextFactory.Current.Inventories.OfType<ProductInventory>().Where
-               (pi => pi.ProductId == productId).OrderByDescending(de => de.ProductInventoryHeader.ForDate).ToList();
+            List<ProductInventory> productInventories =
+                ContextFactory.Current.Inventories.OfType<ProductInventory>().Where
+                    (pi => pi.ProductId == productId)
+                    .OrderByDescending(de => de.ProductInventoryHeader.ForDate)
+                    .ToList();
             List<ProductInventoryViewModel> productInventoriesModels = productInventories.Select
-                (r => ProductInventoryViewModel.ConvertFromProductInventoryEntity(r, new ProductInventoryViewModel())).ToList();
+                (r => ProductInventoryViewModel.ConvertFromProductInventoryEntity(r, new ProductInventoryViewModel()))
+                .ToList();
 
             return Json(productInventoriesModels.ToDataSourceResult(request));
         }

@@ -6,7 +6,7 @@
 @model IEnumerable<ProductViewModel>
 
 @(
- Html.Kendo().Grid(Model)
+        Html.Kendo().Grid(Model)
             .Name("ProductViewModelGrid")
             .AddDefaultOptions()
             .DataSource(dataSource => dataSource
@@ -15,18 +15,14 @@
                 .Read("Read", "Product")
                 .Update("Update", "Product")
                 .Destroy("Destroy", "Product")
-                    ).Events(e => e.DataBound("onDataBound"))
-                    .ClientDetailTemplateId("template")
+            ).Events(e => e.DataBound("onDataBound"))
+            .ClientDetailTemplateId("template")
 
-)
+      )
 <style>
-    .UnitsOnOrderPositive {
-        background-color: #d1ff9d;
-    }
+    .UnitsOnOrderPositive { background-color: #d1ff9d; }
 
-    .NeedsReorder {
-        background-color: #f38a62;
-    }
+    .NeedsReorder { background-color: #f38a62; }
 </style>
 
 <script>
@@ -54,41 +50,38 @@
 
 <script id="template" type="text/kendo-tmpl">
     @(Html.Kendo().TabStrip()
-                    .Name("tabStrip_#=ProductId#")
-            .SelectedIndex(0)
-            .Animation(animation => animation.Open(open => open.Fade(FadeDirection.In).Duration(AnimationDuration.Fast)))
-            .Items(items =>
-            {
-                items.Add().Text("Recipies").Content(@<text>
+          .Name("tabStrip_#=ProductId#")
+          .SelectedIndex(0)
+          .Animation(animation => animation.Open(open => open.Fade(FadeDirection.In).Duration(AnimationDuration.Fast)))
+          .Items(items =>
+          {
+              items.Add().Text("Recipies").Content(@<text>
                     @(Html.Kendo().Grid<RecipeViewModel>()
-                                  .Name("Recipies_#=ProductId#")
-          .AddReadOnlyOptions(true)
-          .DataSource(dataSource => dataSource
-              .Ajax()
-
-                                              .Read(read => read.Action("ReadProductRecipies", "Product", new { productId = "#=ProductId#" }))
-          )
-          .ToClientTemplate()
-                    )
+                          .Name("Recipies_#=ProductId#")
+                          .AddReadOnlyOptions(true)
+                          .DataSource(dataSource => dataSource
+                              .Ajax()
+                              .Read(read => read.Action("ReadProductRecipies", "Product", new {productId = "#=ProductId#"}))
+                          )
+                          .ToClientTemplate()
+                          )
                 </text>
-                );
+                  );
 
 
-                items.Add().Text("Inventories").Content(@<text>
+              items.Add().Text("Inventories").Content(@<text>
                     @(Html.Kendo().Grid<InventoryViewModel>()
-                                                    .Name("Inventories#=ProductId#")
-                           .AddReadOnlyOptions(true)
-                    .DataSource(dataSource => dataSource
-                        .Ajax()
-                                                                        .Read(read => read.Action("ReadProductInventories", "Product", new { productId = "#=ProductId#" }))
-
-                    )
-                    .ToClientTemplate()
-                    )
+                          .Name("Inventories#=ProductId#")
+                          .AddReadOnlyOptions(true)
+                          .DataSource(dataSource => dataSource
+                              .Ajax()
+                              .Read(read => read.Action("ReadProductInventories", "Product", new {productId = "#=ProductId#"}))
+                          )
+                          .ToClientTemplate()
+                          )
                 </text>
-                          );
-
-            })
-                                                                                                                                                                                   .ToClientTemplate()
-    )
+                  );
+          })
+          .ToClientTemplate()
+          )
 </script>

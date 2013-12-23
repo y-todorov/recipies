@@ -12,7 +12,5 @@ namespace InventoryManagementMVC.Models.Chart
         public double? ReorderLevel { get; set; }
 
         public string ProductName { get; set; }
-
-
     }
 }

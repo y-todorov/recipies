@@ -17,7 +17,8 @@ namespace InventoryManagementMVC.Controllers
                 .Where(
                     pod => recipeId.HasValue ? pod.RecipeId == recipeId.Value : true)
                 .ToList().Select
-                (c => ProductIngredientViewModel.ConvertFromProductIngredientEntity(c, new ProductIngredientViewModel())).ToList();
+                (c => ProductIngredientViewModel.ConvertFromProductIngredientEntity(c, new ProductIngredientViewModel()))
+                .ToList();
             return Json(productIngredients.ToDataSourceResult(request));
         }
 
@@ -29,12 +30,15 @@ namespace InventoryManagementMVC.Controllers
             {
                 foreach (ProductIngredientViewModel pi in productIngredients)
                 {
-                    ProductIngredient newProductIngredient = ProductIngredientViewModel.ConvertToProductIngredientEntity(pi,
-                        new ProductIngredient());
+                    ProductIngredient newProductIngredient =
+                        ProductIngredientViewModel.ConvertToProductIngredientEntity(pi,
+                            new ProductIngredient());
                     newProductIngredient.RecipeId = recipeId;
                     ContextFactory.Current.ProductIngredients.Add(newProductIngredient);
                     ContextFactory.Current.SaveChanges();
-                    newProductIngredient = ContextFactory.Current.ProductIngredients.Include(p => p.Product).FirstOrDefault(ppi => ppi.ProductIngredientId == newProductIngredient.ProductIngredientId);
+                    newProductIngredient =
+                        ContextFactory.Current.ProductIngredients.Include(p => p.Product)
+                            .FirstOrDefault(ppi => ppi.ProductIngredientId == newProductIngredient.ProductIngredientId);
                     ProductIngredientViewModel.ConvertFromProductIngredientEntity(newProductIngredient, pi);
                 }
             }
@@ -75,7 +79,8 @@ namespace InventoryManagementMVC.Controllers
                 foreach (ProductIngredientViewModel pi in productIngredients)
                 {
                     ProductIngredient piEntity =
-                        ContextFactory.Current.ProductIngredients.FirstOrDefault(r => r.ProductIngredientId == pi.ProductIngredientId);
+                        ContextFactory.Current.ProductIngredients.FirstOrDefault(
+                            r => r.ProductIngredientId == pi.ProductIngredientId);
                     ContextFactory.Current.ProductIngredients.Remove(piEntity);
 
                     ContextFactory.Current.SaveChanges();

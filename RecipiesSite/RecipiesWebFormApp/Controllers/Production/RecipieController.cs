@@ -11,7 +11,7 @@ namespace InventoryManagementMVC.Controllers
     public class RecipeController : ControllerBase
     {
         public ActionResult Index()
-        {          
+        {
             return View();
         }
 

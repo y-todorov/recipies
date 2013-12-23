@@ -12,29 +12,30 @@
                 .Create("Create", "Category")
                 .Read("Read", "Category")
                 .Update("Update", "Category")
-                .Destroy("Destroy", "Category"))      
+                .Destroy("Destroy", "Category"))
+            .ClientDetailTemplateId("template")
       )
 
-
-
-@*<script>
-    $(function () {
-        var rebindHub = $.connection.rebindHub;
-        //rebindHub.client.rebindHub = function (model) {
-        //    var grid = $("#grid").data("kendoGrid");
-        //    grid.refresh();
-        //};
-        $.connection.hub.start();
-    });
-
-
-
-    function saveChanges(caller, c1, c2) {
-
-        var rebindHub = $.connection.rebindHub;
-        rebindHub.server.RebindGrids();
-        //var grid = $("#grid").data("kendoGrid");
-        //grid.refresh();
-    }
-
-</script>*@
+<script id="template" type="text/kendo-tmpl">
+    @(Html.Kendo().TabStrip()
+          .Name("tabStrip_#=CategoryId#")
+          .SelectedIndex(0)
+          .Animation(animation => animation.Open(open => open.Fade(FadeDirection.In).Duration(AnimationDuration.Fast)))
+          .Items(items =>
+          {
+              items.Add().Text("Products").Content(@<text>
+                    @(Html.Kendo().Grid<ProductViewModel>()
+                          .Name("Products_#=CategoryId#")
+                          .AddReadOnlyOptions(true)
+                          .DataSource(dataSource => dataSource
+                              .Ajax()
+                              .Read(read => read.Action("ReadProducts", "Category", new {categoryId = "#=CategoryId#"}))
+                          )
+                          .ToClientTemplate()
+                          )
+                </text>
+                  );
+          })
+          .ToClientTemplate()
+          )
+</script>

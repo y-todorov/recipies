@@ -14,20 +14,20 @@ namespace InventoryManagementMVC.Models.Purchasing
         [Key]
         public int PurchaseOrderHeaderId { get; set; }
 
-        [Relation(EntityType = typeof(PurchaseOrderStatu), DataFieldValue = "PurchaseOrderStatusId",
+        [Relation(EntityType = typeof (PurchaseOrderStatu), DataFieldValue = "PurchaseOrderStatusId",
             DataFieldText = "Name")]
         [Display(Name = "Status")]
         public int? StatusId { get; set; }
 
-        [Relation(EntityType = typeof(Employee), DataFieldValue = "EmployeeId", DataFieldText = "FirstName")]
+        [Relation(EntityType = typeof (Employee), DataFieldValue = "EmployeeId", DataFieldText = "FirstName")]
         [Display(Name = "Employee")]
         public int? EmployeeId { get; set; }
 
-        [Relation(EntityType = typeof(Vendor), DataFieldValue = "VendorId", DataFieldText = "Name")]
+        [Relation(EntityType = typeof (Vendor), DataFieldValue = "VendorId", DataFieldText = "Name")]
         [Display(Name = "Vendor")]
         public int? VendorId { get; set; }
 
-        [Relation(EntityType = typeof(ShipMethod), DataFieldValue = "ShipMethodId", DataFieldText = "Name")]
+        [Relation(EntityType = typeof (ShipMethod), DataFieldValue = "ShipMethodId", DataFieldText = "Name")]
         [Display(Name = "Ship Method")]
         public int? ShipMethodId { get; set; }
 
@@ -77,7 +77,7 @@ namespace InventoryManagementMVC.Models.Purchasing
             pohViewModel.TotalDue = pohEntity.TotalDue;
             pohViewModel.VAT = pohEntity.VAT;
             pohViewModel.VendorId = pohEntity.VendorId;
-            
+
             return pohViewModel;
         }
 
@@ -95,7 +95,7 @@ namespace InventoryManagementMVC.Models.Purchasing
             {
                 pohEntity.OrderDate = pohViewModel.OrderDate.Value.Date;
             }
-            
+
             pohEntity.PurchaseOrderId = pohViewModel.PurchaseOrderHeaderId;
             pohEntity.ShipMethodId = pohViewModel.ShipMethodId;
             pohEntity.ShipDate = pohViewModel.ShipDate;

@@ -19,7 +19,7 @@ namespace InventoryManagementMVC.Models
         [HiddenInput(DisplayValue = false)]
         public int? ParentRecipeId { get; set; }
 
-        [Relation(EntityType = typeof(Recipe), DataFieldValue = "RecipeId", DataFieldText = "Name")]
+        [Relation(EntityType = typeof (Recipe), DataFieldValue = "RecipeId", DataFieldText = "Name")]
         [Display(Name = "Recipe")]
         public int? IngredientRecipeId { get; set; }
 
@@ -46,11 +46,10 @@ namespace InventoryManagementMVC.Models
             {
                 model.Cost = entity.IngredientRecipe.ProductionValuePerPortion;
             }
-            model.TotalValue = (decimal?)entity.TotalValue;
+            model.TotalValue = (decimal?) entity.TotalValue;
 
             model.ModifiedDate = entity.ModifiedDate;
             model.ModifiedByUser = entity.ModifiedByUser;
-
 
 
             return model;
@@ -59,18 +58,18 @@ namespace InventoryManagementMVC.Models
         public static RecipeIngredient ConvertToProductIngredientEntity(RecipeIngredientViewModel model,
             RecipeIngredient entity)
         {
-
             entity.RecipeIngredientId = model.RecipeIngredientId;
             entity.ParentRecipeId = model.ParentRecipeId;
             entity.IngredientRecipeId = model.IngredientRecipeId;
             entity.QuantityPerPortion = model.QuantityPerPortion;
 
-            Recipe ingredientRecipe = ContextFactory.Current.Recipes.FirstOrDefault(r => r.RecipeId == model.IngredientRecipeId);
+            Recipe ingredientRecipe =
+                ContextFactory.Current.Recipes.FirstOrDefault(r => r.RecipeId == model.IngredientRecipeId);
             if (ingredientRecipe != null)
             {
                 entity.Cost = ingredientRecipe.ProductionValuePerPortion;
             }
-            entity.TotalValue = (double)model.TotalValue.GetValueOrDefault();
+            entity.TotalValue = (double) model.TotalValue.GetValueOrDefault();
 
             entity.ModifiedDate = model.ModifiedDate;
             entity.ModifiedByUser = model.ModifiedByUser;

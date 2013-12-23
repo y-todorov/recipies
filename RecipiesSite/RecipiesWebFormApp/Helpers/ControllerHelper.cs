@@ -7,10 +7,8 @@ using System.Globalization;
 
 namespace InventoryManagementMVC.Helpers
 {
-
     public static class ControllerHelper
     {
-
         // This presumes that weeks start with Monday.
         // Week 1 is the 1st week of the year with a Thursday in it.
         public static string GetIso8601WeekOfYear(DateTime time)
@@ -35,19 +33,17 @@ namespace InventoryManagementMVC.Helpers
             //string result = string.Format("{0} ({1:dd/MM/yyyy}-{2:dd/MM/yyyy})", weekOfYear, lastMonday, nextSunday);
             string result = weekOfYear.ToString();
             return result;
-
         }
 
         public static string GetWeekStringFromWeekNumber(int weekNumber)
         {
-            DateTime time = (new DateTime(2013, 1, 1)).AddDays(7 * weekNumber); // assume we are in 2013
+            DateTime time = (new DateTime(2013, 1, 1)).AddDays(7*weekNumber); // assume we are in 2013
 
             DateTime lastMonday = GetLastMonday(time);
             DateTime nextSunday = GetNextSunday(time);
 
             string result = string.Format("{0:dd/MM/yyyy}-{1:dd/MM/yyyy}", lastMonday, nextSunday);
-            return result;                 
-
+            return result;
         }
 
         private static DateTime GetLastMonday(DateTime time)
@@ -116,5 +112,4 @@ namespace InventoryManagementMVC.Helpers
             viewData["defaultProduct"] = products.FirstOrDefault();
         }
     }
-    
 }

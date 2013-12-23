@@ -5,8 +5,8 @@
 @model IEnumerable<UnitMeasureViewModel>
 
 @(
- Html.Kendo().Grid(Model)
-     .Name("UnitMeasureViewModelGrid")
+        Html.Kendo().Grid(Model)
+            .Name("UnitMeasureViewModelGrid")
             .AddDefaultOptions()
             .DataSource(dataSource => dataSource
                 .Ajax()

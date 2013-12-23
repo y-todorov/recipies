@@ -4,34 +4,33 @@
 @model IEnumerable<ProductInventoryHeaderViewModel>
 
 @(
- Html.Kendo().Grid(Model)
-     .Name("ProductInventoryHeaderViewModelGrid")
+        Html.Kendo().Grid(Model)
+            .Name("ProductInventoryHeaderViewModelGrid")
             .AddDefaultOptions()
             .DataSource(dataSource => dataSource
                 .Ajax()
-                    .Create("Create", "ProductInventoryHeader")
-                        .Read("Read", "ProductInventoryHeader")
-                        .Update("Update", "ProductInventoryHeader")
-                            .Destroy("Destroy", "ProductInventoryHeader")).ClientDetailTemplateId("template")
-)
+                .Create("Create", "ProductInventoryHeader")
+                .Read("Read", "ProductInventoryHeader")
+                .Update("Update", "ProductInventoryHeader")
+                .Destroy("Destroy", "ProductInventoryHeader")).ClientDetailTemplateId("template")
+      )
 
 
 <script id="template" type="text/kendo-tmpl">
     @(Html.Kendo().Grid<ProductInventoryViewModel>()
-                          .Name("ProductInventoryViewModelGrid_#=ProductInventoryHeaderId#")
+          .Name("ProductInventoryViewModelGrid_#=ProductInventoryHeaderId#")
           .AddDefaultOptions(true, false)
           .DataSource(dataSource => dataSource
               .Ajax()
               .Batch(true)
-                      .PageSize(5)
-                      .Model(m => m.Id(p => p.InventoryId))
-
-                                              .Read("Read", "ProductInventory", new { productInventoryHeaderId = "#=ProductInventoryHeaderId#" })
-                                                              .Create("Create", "ProductInventory", new { productInventoryHeaderId = "#=ProductInventoryHeaderId#" })
-                      .Update("Update", "ProductInventory")
-                      .Destroy("Destroy", "ProductInventory")
+              .PageSize(5)
+              .Model(m => m.Id(p => p.InventoryId))
+              .Read("Read", "ProductInventory", new {productInventoryHeaderId = "#=ProductInventoryHeaderId#"})
+              .Create("Create", "ProductInventory", new {productInventoryHeaderId = "#=ProductInventoryHeaderId#"})
+              .Update("Update", "ProductInventory")
+              .Destroy("Destroy", "ProductInventory")
           )
           .ToClientTemplate()
 
-    )
+          )
 </script>

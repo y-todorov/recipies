@@ -11,7 +11,7 @@ namespace InventoryManagementMVC.Controllers
     public class CategoryController : ControllerBase
     {
         public ActionResult Index()
-        {          
+        {
             return View();
         }
 
@@ -22,9 +22,18 @@ namespace InventoryManagementMVC.Controllers
             return Json(categoryViewModels.ToDataSourceResult(request));
         }
 
+        public ActionResult ReadProducts(int categoryId, [DataSourceRequest] DataSourceRequest request)
+        {
+            List<Product> allProducts = ContextFactory.Current.Products.Where(p => p.CategoryId == categoryId).ToList();
+            List<ProductViewModel> productViewModels =
+                allProducts.Select(p => ProductViewModel.ConvertFromProductEntity(p, new ProductViewModel())).ToList();
+            return Json(productViewModels.ToDataSourceResult(request));
+        }
+
+
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Create([DataSourceRequest] DataSourceRequest request,
-            [Bind(Prefix = "models")] IEnumerable<CategoryViewModel> categories) 
+            [Bind(Prefix = "models")] IEnumerable<CategoryViewModel> categories)
         {
             if (categories != null && ModelState.IsValid)
             {

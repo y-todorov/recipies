@@ -1,57 +1,57 @@
 ﻿<!DOCTYPE html>
 <html>
-<head>
-    <title>@ViewBag.Title</title>
-    @* <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />*@
-    @*<style>
+    <head>
+        <title>@ViewBag.Title</title>
+        @* <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />*@
+        @*<style>
             * {
                 margin: 0;
                 padding: 0;
                 border: 0;
             }
         </style>*@
-    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
-    @*<link href="http://cdn.kendostatic.com/2013.2.918/styles/kendo.common.min.css" rel="stylesheet" type="text/css" />
+        @*<link href="http://cdn.kendostatic.com/2013.2.918/styles/kendo.common.min.css" rel="stylesheet" type="text/css" />
         <link href="http://cdn.kendostatic.com/2013.2.918/styles/kendo.dataviz.min.css" rel="stylesheet" type="text/css" />
         <link href="http://cdn.kendostatic.com/2013.2.918/styles/kendo.blueopal.min.css" rel="stylesheet" type="text/css" />
         <link href="http://cdn.kendostatic.com/2013.2.918/styles/kendo.dataviz.blueopal.min.css" rel="stylesheet" type="text/css" />*@
 
-    @Styles.Render("~/Content/bundles/css")
-    @Scripts.Render("~/bundles/js")
-    @*<script src="~/Scripts/WebEssentials/WebEssentialsJsBundle.min.js"></script>*@
+        @Styles.Render("~/Content/bundles/css")
+        @Scripts.Render("~/bundles/js")
+        @*<script src="~/Scripts/WebEssentials/WebEssentialsJsBundle.min.js"></script>*@
    
-    @*<script src="~/Scripts/Bundles/jquery.js"></script>*@
-    @*<script src="~/Scripts/kendo.custom-2013.2.918.min.js"></script>
+        @*<script src="~/Scripts/Bundles/jquery.js"></script>*@
+        @*<script src="~/Scripts/kendo.custom-2013.2.918.min.js"></script>
         <script src="~/Scripts/Bundles/Site.js"></script>*@
 
 
-    @*<script src="http://cdn.kendostatic.com/2013.2.918/js/jquery.min.js"> </script>*@
+        @*<script src="http://cdn.kendostatic.com/2013.2.918/js/jquery.min.js"> </script>*@
 
-    @*<script src="http://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-2.0.0.js"> </script>*@
-    @*<script src="~/signalr/hubs"></script>*@
-</head>
-<body>
-    <header>
-        @* @Html.Partial("_LoginPartial")*@
+        @*<script src="http://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-2.0.0.js"> </script>*@
+        @*<script src="~/signalr/hubs"></script>*@
+    </head>
+    <body>
+        <header>
+            @* @Html.Partial("_LoginPartial")*@
 
 
 
-        @(
- Html.Kendo().Menu()
+            @(
+        Html.Kendo().Menu()
             .Name("Menu")
             .BindTo("sitemap")
             .SecurityTrimming(false) // causes EXTREMELY slow debugging.
 
-        )
+                  )
 
-    </header>
-    <div id="body">
-        @RenderSection("featured", required: false)
-        @RenderBody()
-    </div>
-    <footer>
-        @*<script src="http://cdn.kendostatic.com/2013.2.918/js/kendo.all.min.js"> </script>
+        </header>
+        <div id="body">
+            @RenderSection("featured", required: false)
+            @RenderBody()
+        </div>
+        <footer>
+            @*<script src="http://cdn.kendostatic.com/2013.2.918/js/kendo.all.min.js"> </script>
     <script src="http://cdn.kendostatic.com/2013.2.918/js/kendo.aspnetmvc.min.js"> </script>
     <script src="http://cdn.kendostatic.com/2013.2.918/js/cultures/kendo.culture.en-IE.min.js"> </script>*@
             <script type="text/javascript">
@@ -67,9 +67,9 @@
                         data: JSON.stringify({
                             html: grid.table.context.innerHTML
                         }),
-                        success: function (data) {
+                        success: function(data) {
                         },
-                        error: function (result) {
+                        error: function(result) {
                             alert('Oh no: ' + result.responseText);
                         },
                         async: false
@@ -86,22 +86,22 @@
                         data: JSON.stringify({
                             weekAsInt: weekInt
                         }),
-                        success: function (data) {
+                        success: function(data) {
                             res = data;
                         },
-                        error: function (result) {
+                        error: function(result) {
                             alert('Oh no: ' + result.responseText);
                         },
                         async: false
                     });
 
                     return res;
-                   //return "this is from javascript " +weekInt ;
+                    //return "this is from javascript " +weekInt ;
 
                 }
-               
-             </script>
+
+            </script>
         
-    </footer>
-</body>
+        </footer>
+    </body>
 </html>

@@ -6,66 +6,66 @@
 @model IEnumerable<PurchaseOrderHeaderViewModel>
 
 @(
- Html.Kendo().Grid(Model)
-     .Name("PurchaseOrderHeaderViewModelGrid")
+        Html.Kendo().Grid(Model)
+            .Name("PurchaseOrderHeaderViewModelGrid")
             .AddDefaultOptions()
             .Columns(columns =>
             {
                 columns.Bound(p => p.PurchaseOrderHeaderId).Title("Download").ClientTemplate(
-      "<a href='" +
-                  Url.Action("DownloadPurchaseOrder", "Download", new { purchaseOrderHeaderId = "#=PurchaseOrderHeaderId#" }) +
-              "'" +
-      ">Download</a>");
+                    "<a href='" +
+                    Url.Action("DownloadPurchaseOrder", "Download", new {purchaseOrderHeaderId = "#=PurchaseOrderHeaderId#"}) +
+                    "'" +
+                    ">Download</a>");
                 columns.Bound(p => p.PurchaseOrderHeaderId).Title("SendEmail").ClientTemplate(
-  "<a href='" +
-              Url.Action("SendEmail", "PurchaseOrderHeader", new { purchaseOrderHeaderId = "#=PurchaseOrderHeaderId#" }) +
-          "'" +
-  ">Send Email</a>"
-);
+                    "<a href='" +
+                    Url.Action("SendEmail", "PurchaseOrderHeader", new {purchaseOrderHeaderId = "#=PurchaseOrderHeaderId#"}) +
+                    "'" +
+                    ">Send Email</a>"
+                    );
             })
-        //.Columns(columns => columns.Command(c => c.Custom("Download").Text("Download").Action("Download", "PurchaseOrderHeader", new {purchaseOrderHeaderId = "#=PurchaseOrderHeaderId#"}).SendDataKeys.SendState(true)))
+            //.Columns(columns => columns.Command(c => c.Custom("Download").Text("Download").Action("Download", "PurchaseOrderHeader", new {purchaseOrderHeaderId = "#=PurchaseOrderHeaderId#"}).SendDataKeys.SendState(true)))
             .DataSource(dataSource => dataSource
                 .Ajax()
                 .Read("Read", "PurchaseOrderHeader")
                 .Create("Create", "PurchaseOrderHeader")
                 .Update("Update", "PurchaseOrderHeader")
                 .Destroy("Destroy", "PurchaseOrderHeader")
-
             ).ClientDetailTemplateId("template")
-                .Events(events => events.DetailExpand("detailExpand"))
+            .Events(events => events.DetailExpand("detailExpand"))
 
-            //Html.Kendo().MobileButton()
-            //    .Name("updateTotals")
-            //    .
+      //Html.Kendo().MobileButton()
+      //    .Name("updateTotals")
+      //    .
    
-)
+      )
 @(
- Html.ActionLink("CorrectTotals", "CorrectTotals")
-)
+        Html.ActionLink("CorrectTotals", "CorrectTotals")
+      )
 
 <script id="template" type="text/kendo-tmpl">
     @(Html.Kendo().Grid<PurchaseOrderDetailViewModel>()
-                                          .Name("PurchaseOrderDetailViewModelGrid_#=PurchaseOrderHeaderId#")
-                   .AddDefaultOptions(true, false)
-            //.Events(e => e.Edit("podEdit"))
-            // .ToolBar(t => t.Create())
+          .Name("PurchaseOrderDetailViewModelGrid_#=PurchaseOrderHeaderId#")
+          .AddDefaultOptions(true, false)
+          //.Events(e => e.Edit("podEdit"))
+          // .ToolBar(t => t.Create())
           .DataSource(dataSource => dataSource
               .Ajax()
               .Batch(true)
               .PageSize(5)
               .Model(m => m.Id(p => p.PurchaseOrderDetailId))
-                                                      .Read(read => read.Action("ReadDetail", "PurchaseOrderHeader", new { purchaseOrderHeaderId = "#=PurchaseOrderHeaderId#" }))
-                                                      .Create("CreateDetail", "PurchaseOrderHeader", new { purchaseOrderHeaderId = "#=PurchaseOrderHeaderId#" })
-                                      .Update("UpdateDetail", "PurchaseOrderHeader")
-                              .Destroy("DestroyDetail", "PurchaseOrderHeader")
+              .Read(read => read.Action("ReadDetail", "PurchaseOrderHeader", new {purchaseOrderHeaderId = "#=PurchaseOrderHeaderId#"}))
+              .Create("CreateDetail", "PurchaseOrderHeader", new {purchaseOrderHeaderId = "#=PurchaseOrderHeaderId#"})
+              .Update("UpdateDetail", "PurchaseOrderHeader")
+              .Destroy("DestroyDetail", "PurchaseOrderHeader")
           )
           .ToClientTemplate()
-    )
+          )
 </script>
 
 
 <script>
     var expandedRow;
+
     function detailExpand(e) {
         // Only one open at a time
         if (expandedRow != null && expandedRow[0] != e.masterRow[0]) {
@@ -85,8 +85,7 @@
 
             //set the required field value
             e.model.set("UnitPrice", 222222222);
-        }
-        else {
+        } else {
             //set the required field value
             e.model.set("UnitPrice", 1111111);
         }

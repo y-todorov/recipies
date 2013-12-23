@@ -21,7 +21,7 @@ namespace InventoryManagementMVC.Extensions
     {
         public static IHtmlString ToMvcClientTemplate(this MvcHtmlString mvcString)
         {
-            if (HttpEncoder.Current.GetType() == typeof(AntiXssEncoder))
+            if (HttpEncoder.Current.GetType() == typeof (AntiXssEncoder))
             {
                 var initial = mvcString.ToHtmlString();
                 var corrected = initial.Replace("\\u0026", "&")
@@ -35,7 +35,8 @@ namespace InventoryManagementMVC.Extensions
         }
 
 
-        public static GridBuilder<T> AddReadOnlyOptions<T>(this GridBuilder<T> builder, bool isClient = false) where T : class
+        public static GridBuilder<T> AddReadOnlyOptions<T>(this GridBuilder<T> builder, bool isClient = false)
+            where T : class
         {
             builder
                 .AddBaseOptions()
@@ -50,7 +51,7 @@ namespace InventoryManagementMVC.Extensions
         // It is EXTREMELY important NOT to set the name here. This is because of details grids. There name MUST be  .Name("ProductInventoryViewModelGrid_#=ProductInventoryHeaderId#")
         public static GridBuilder<T> AddBaseOptions<T>(this GridBuilder<T> builder) where T : class
         {
-            Type modelEntityType = typeof(T);
+            Type modelEntityType = typeof (T);
 
             builder
                 .Groupable(
@@ -59,13 +60,13 @@ namespace InventoryManagementMVC.Extensions
                             .Enabled(true))
                 .Pageable(
                     pb =>
-                        pb.PageSizes(new[] { 5, 10, 100, 999 })
+                        pb.PageSizes(new[] {5, 10, 100, 999})
                             .Refresh(true)
                             .Info(true)
                             .Enabled(true)
                             .Input(false)
                             .ButtonCount(10)
-                            )
+                )
                 .Sortable(ssb => ssb.AllowUnsort(true).Enabled(true).SortMode(GridSortMode.SingleColumn))
                 .Filterable(f => f.Extra(true)) // this is if And/Or is visible
                 .Reorderable(r => r.Columns(true))
@@ -79,7 +80,7 @@ namespace InventoryManagementMVC.Extensions
         public static GridBuilder<T> AddToolbarOptions<T>(this GridBuilder<T> builder, bool isCreateVisible = true,
             bool isSaveVisible = true) where T : class
         {
-            Type modelEntityType = typeof(T);
+            Type modelEntityType = typeof (T);
             PropertyInfo[] modelEntityProperties = modelEntityType.GetProperties();
 
             builder
@@ -100,8 +101,8 @@ namespace InventoryManagementMVC.Extensions
 
 
                     toolbar.Custom()
-               .Text("Export To Excel").HtmlAttributes(dic)
-               .Action("DownloadExport", "Download", new { typeName = modelEntityType.Name });
+                        .Text("Export To Excel").HtmlAttributes(dic)
+                        .Action("DownloadExport", "Download", new {typeName = modelEntityType.Name});
                 });
             return builder;
         }
@@ -110,9 +111,10 @@ namespace InventoryManagementMVC.Extensions
         // When model is empty collection there are problems with aggregates!!!!!!!!!!!
         public static GridBuilder<T> AddColumnOptions<T>(this GridBuilder<T> builder, bool isClient = false,
             bool isDeleteColumnVisible = true,
-            bool isEditColumnVisible = true, bool isSelectColumnVisible = false, bool showHiddenColumns = false) where T : class
+            bool isEditColumnVisible = true, bool isSelectColumnVisible = false, bool showHiddenColumns = false)
+            where T : class
         {
-            Type modelEntityType = typeof(T);
+            Type modelEntityType = typeof (T);
             PropertyInfo[] modelEntityProperties = modelEntityType.GetProperties();
 
             builder
@@ -142,15 +144,16 @@ namespace InventoryManagementMVC.Extensions
                             {
                                 columns.ForeignKey(propertyInfo.Name,
                                     objects, rellAttribute.DataFieldValue, rellAttribute.DataFieldText)
-                                 .ClientFooterTemplate("Count: #= kendo.format('{0}', count)#")
+                                    .ClientFooterTemplate("Count: #= kendo.format('{0}', count)#")
                                     .ClientGroupFooterTemplate("Count: #= kendo.format('{0}', count)#");
                             }
                             else
                             {
                                 columns.ForeignKey(propertyInfo.Name,
-                                   objects, rellAttribute.DataFieldValue, rellAttribute.DataFieldText)
-                                .ClientFooterTemplate("Count: #= kendo.format('{0}', count)#".Replace("#", "\\#"))
-                                   .ClientGroupFooterTemplate("Count: #= kendo.format('{0}', count)#".Replace("#", "\\#"));
+                                    objects, rellAttribute.DataFieldValue, rellAttribute.DataFieldText)
+                                    .ClientFooterTemplate("Count: #= kendo.format('{0}', count)#".Replace("#", "\\#"))
+                                    .ClientGroupFooterTemplate("Count: #= kendo.format('{0}', count)#".Replace("#",
+                                        "\\#"));
                             }
                         }
 
@@ -159,14 +162,15 @@ namespace InventoryManagementMVC.Extensions
                             if (!isClient)
                             {
                                 columns.Bound(propertyInfo.Name).Format("{0}").Title("Id")
-                                     .ClientFooterTemplate("Count: #= kendo.format('{0}', count)#")
-                                .ClientGroupFooterTemplate("Count: #= kendo.format('{0}', count)#");
+                                    .ClientFooterTemplate("Count: #= kendo.format('{0}', count)#")
+                                    .ClientGroupFooterTemplate("Count: #= kendo.format('{0}', count)#");
                             }
                             else
                             {
                                 columns.Bound(propertyInfo.Name).Title("Id")
-                                .ClientFooterTemplate("Count: #= kendo.format('{0}', count)#".Replace("#", "\\#"))
-                                .ClientGroupFooterTemplate("Count: #= kendo.format('{0}', count)#".Replace("#", "\\#"));
+                                    .ClientFooterTemplate("Count: #= kendo.format('{0}', count)#".Replace("#", "\\#"))
+                                    .ClientGroupFooterTemplate("Count: #= kendo.format('{0}', count)#".Replace("#",
+                                        "\\#"));
                             }
                         }
                         // do not show foreign key columns
@@ -178,30 +182,31 @@ namespace InventoryManagementMVC.Extensions
                         }
 
                         string customFormat = string.Empty;
-                        DisplayFormatAttribute dfa = propertyInfo.GetCustomAttributes<DisplayFormatAttribute>().FirstOrDefault();
+                        DisplayFormatAttribute dfa =
+                            propertyInfo.GetCustomAttributes<DisplayFormatAttribute>().FirstOrDefault();
                         if (dfa != null && !string.IsNullOrEmpty(dfa.DataFormatString))
                         {
                             customFormat = dfa.DataFormatString;
                         }
 
-                        if (propertyInfo.PropertyType == typeof(bool) ||
-                            propertyInfo.PropertyType == typeof(bool?))
+                        if (propertyInfo.PropertyType == typeof (bool) ||
+                            propertyInfo.PropertyType == typeof (bool?))
                         {
                             if (!isClient)
                             {
                                 columns.Bound(propertyInfo.Name)
                                     .ClientFooterTemplate("Count: #= kendo.format('{0}', count)#")
                                     .ClientGroupFooterTemplate("Count: #= kendo.format('{0}', count)#");
-
                             }
                             else
                             {
                                 columns.Bound(propertyInfo.Name)
                                     .ClientFooterTemplate("Count: #= kendo.format('{0}', count)#".Replace("#", "\\#"))
-                                    .ClientGroupFooterTemplate("Count: #= kendo.format('{0}', count)#".Replace("#", "\\#"));
+                                    .ClientGroupFooterTemplate("Count: #= kendo.format('{0}', count)#".Replace("#",
+                                        "\\#"));
                             }
                         }
-                        if (propertyInfo.PropertyType == typeof(string))
+                        if (propertyInfo.PropertyType == typeof (string))
                         {
                             GridBoundColumnBuilder<T> bldr = columns.Bound(propertyInfo.Name);
                             if (propertyInfo.Name.Equals("ModifiedByUser", StringComparison.InvariantCultureIgnoreCase))
@@ -218,68 +223,69 @@ namespace InventoryManagementMVC.Extensions
                             else
                             {
                                 bldr
-                                 .ClientFooterTemplate("Count: #= kendo.format('{0}', count)#".Replace("#", "\\#"))
-                                    .ClientGroupFooterTemplate("Count: #= kendo.format('{0}', count)#".Replace("#", "\\#"));
+                                    .ClientFooterTemplate("Count: #= kendo.format('{0}', count)#".Replace("#", "\\#"))
+                                    .ClientGroupFooterTemplate("Count: #= kendo.format('{0}', count)#".Replace("#",
+                                        "\\#"));
                             }
                         }
-                        if (propertyInfo.PropertyType == typeof(double) ||
-                            propertyInfo.PropertyType == typeof(double?))
+                        if (propertyInfo.PropertyType == typeof (double) ||
+                            propertyInfo.PropertyType == typeof (double?))
                         {
                             if (!isClient)
                             {
                                 columns.Bound(propertyInfo.Name)
                                     .Format(!string.IsNullOrEmpty(customFormat) ? customFormat : "{0:N3}")
-                                     .ClientFooterTemplate("Sum: #= kendo.format('{0:N3}', sum)#")
-                                .ClientGroupFooterTemplate("Sum: #= kendo.format('{0:N3}', sum)#");
+                                    .ClientFooterTemplate("Sum: #= kendo.format('{0:N3}', sum)#")
+                                    .ClientGroupFooterTemplate("Sum: #= kendo.format('{0:N3}', sum)#");
                             }
                             else
                             {
                                 columns.Bound(propertyInfo.Name)
-                                     .Format(!string.IsNullOrEmpty(customFormat) ? customFormat : "{0:N3}")
-                               .ClientFooterTemplate("Sum: #= kendo.format('{0:N3}', sum)#".Replace("#", "\\#"))
-                                .ClientGroupFooterTemplate("Sum: #= kendo.format('{0:N3}', sum)#".Replace("#", "\\#"));
+                                    .Format(!string.IsNullOrEmpty(customFormat) ? customFormat : "{0:N3}")
+                                    .ClientFooterTemplate("Sum: #= kendo.format('{0:N3}', sum)#".Replace("#", "\\#"))
+                                    .ClientGroupFooterTemplate("Sum: #= kendo.format('{0:N3}', sum)#".Replace("#", "\\#"));
                             }
                         }
-                        if (propertyInfo.PropertyType == typeof(decimal) ||
-                            propertyInfo.PropertyType == typeof(decimal?))
+                        if (propertyInfo.PropertyType == typeof (decimal) ||
+                            propertyInfo.PropertyType == typeof (decimal?))
                         {
                             if (!isClient)
                             {
                                 columns.Bound(propertyInfo.Name)
                                     .Format(!string.IsNullOrEmpty(customFormat) ? customFormat : "{0:C3}")
                                     .EditorTemplateName("Currency")
-                                   .ClientFooterTemplate("Sum: #= kendo.format('{0:C3}', sum)#")
-                                .ClientGroupFooterTemplate("Sum: #= kendo.format('{0:C3}', sum)#");
+                                    .ClientFooterTemplate("Sum: #= kendo.format('{0:C3}', sum)#")
+                                    .ClientGroupFooterTemplate("Sum: #= kendo.format('{0:C3}', sum)#");
                             }
                             else
                             {
                                 columns.Bound(propertyInfo.Name)
-                                     .Format(!string.IsNullOrEmpty(customFormat) ? customFormat : "{0:C3}")
-                                     .EditorTemplateName("Currency")
-                              .ClientFooterTemplate("Sum: #= kendo.format('{0:C3}', sum)#".Replace("#", "\\#"))
-                                .ClientGroupFooterTemplate("Sum: #= kendo.format('{0:C3}', sum)#".Replace("#", "\\#"));
+                                    .Format(!string.IsNullOrEmpty(customFormat) ? customFormat : "{0:C3}")
+                                    .EditorTemplateName("Currency")
+                                    .ClientFooterTemplate("Sum: #= kendo.format('{0:C3}', sum)#".Replace("#", "\\#"))
+                                    .ClientGroupFooterTemplate("Sum: #= kendo.format('{0:C3}', sum)#".Replace("#", "\\#"));
                             }
                         }
-                        if (propertyInfo.PropertyType == typeof(int) ||
-                            propertyInfo.PropertyType == typeof(int?))
+                        if (propertyInfo.PropertyType == typeof (int) ||
+                            propertyInfo.PropertyType == typeof (int?))
                         {
                             if (!isClient)
                             {
                                 columns.Bound(propertyInfo.Name)
-                                     .Format(!string.IsNullOrEmpty(customFormat) ? customFormat : "{0:N}")
-                                     .ClientFooterTemplate("Sum: #= kendo.format('{0:N}', sum)#")
-                                .ClientGroupFooterTemplate("Sum: #= kendo.format('{0:N}', sum)#");
+                                    .Format(!string.IsNullOrEmpty(customFormat) ? customFormat : "{0:N}")
+                                    .ClientFooterTemplate("Sum: #= kendo.format('{0:N}', sum)#")
+                                    .ClientGroupFooterTemplate("Sum: #= kendo.format('{0:N}', sum)#");
                             }
                             else
                             {
                                 columns.Bound(propertyInfo.Name)
-                                     .Format(!string.IsNullOrEmpty(customFormat) ? customFormat : "{0:N}")
-                               .ClientFooterTemplate("Sum: #= kendo.format('{0:N}', sum)#".Replace("#", "\\#"))
-                                .ClientGroupFooterTemplate("Sum: #= kendo.format('{0:N}', sum)#".Replace("#", "\\#"));
+                                    .Format(!string.IsNullOrEmpty(customFormat) ? customFormat : "{0:N}")
+                                    .ClientFooterTemplate("Sum: #= kendo.format('{0:N}', sum)#".Replace("#", "\\#"))
+                                    .ClientGroupFooterTemplate("Sum: #= kendo.format('{0:N}', sum)#".Replace("#", "\\#"));
                             }
                         }
-                        if (propertyInfo.PropertyType == typeof(DateTime) ||
-                            propertyInfo.PropertyType == typeof(DateTime?))
+                        if (propertyInfo.PropertyType == typeof (DateTime) ||
+                            propertyInfo.PropertyType == typeof (DateTime?))
                         {
                             GridBoundColumnBuilder<T> bldr = columns.Bound(propertyInfo.Name);
                             if (propertyInfo.Name.Equals("ModifiedDate", StringComparison.InvariantCultureIgnoreCase))
@@ -292,17 +298,19 @@ namespace InventoryManagementMVC.Extensions
                                 if (propertyInfo.Name.Equals("ModifiedDate", StringComparison.InvariantCultureIgnoreCase))
                                 {
                                     bldr
-                                        .Format(!string.IsNullOrEmpty(customFormat) ? customFormat : "{0:dd/MM/yyyy HH:mm:ss}")
+                                        .Format(!string.IsNullOrEmpty(customFormat)
+                                            ? customFormat
+                                            : "{0:dd/MM/yyyy HH:mm:ss}")
                                         .ClientFooterTemplate("Count: #= kendo.format('{0}', count)#")
-                                    .ClientGroupFooterTemplate("Count: #= kendo.format('{0}', count)#");
+                                        .ClientGroupFooterTemplate("Count: #= kendo.format('{0}', count)#");
                                 }
                                 else
                                 {
                                     bldr
                                         .Format(!string.IsNullOrEmpty(customFormat) ? customFormat : "{0:dd/MM/yyyy}")
                                         .EditorTemplateName("Date")
-                                          .ClientFooterTemplate("Count: #= kendo.format('{0}', count)#")
-                                    .ClientGroupFooterTemplate("Count: #= kendo.format('{0}', count)#");
+                                        .ClientFooterTemplate("Count: #= kendo.format('{0}', count)#")
+                                        .ClientGroupFooterTemplate("Count: #= kendo.format('{0}', count)#");
                                 }
                             }
                             else
@@ -310,17 +318,21 @@ namespace InventoryManagementMVC.Extensions
                                 if (propertyInfo.Name.Equals("ModifiedDate", StringComparison.InvariantCultureIgnoreCase))
                                 {
                                     bldr
-                                        .Format(!string.IsNullOrEmpty(customFormat) ? customFormat : "{0:dd/MM/yyyy HH:mm:ss}")
-                                    .ClientFooterTemplate("Count: #= kendo.format('{0}', count)#".Replace("#", "\\#"))
-                                    .ClientGroupFooterTemplate("Count: #= kendo.format('{0}', count)#".Replace("#", "\\#"));
+                                        .Format(!string.IsNullOrEmpty(customFormat)
+                                            ? customFormat
+                                            : "{0:dd/MM/yyyy HH:mm:ss}")
+                                        .ClientFooterTemplate("Count: #= kendo.format('{0}', count)#".Replace("#", "\\#"))
+                                        .ClientGroupFooterTemplate("Count: #= kendo.format('{0}', count)#".Replace("#",
+                                            "\\#"));
                                 }
                                 else
                                 {
                                     bldr
                                         .Format(!string.IsNullOrEmpty(customFormat) ? customFormat : "{0:dd/MM/yyyy}")
                                         .EditorTemplateName("Date")
-                                    .ClientFooterTemplate("Count: #= kendo.format('{0}', count)#".Replace("#", "\\#"))
-                                    .ClientGroupFooterTemplate("Count: #= kendo.format('{0}', count)#".Replace("#", "\\#"));
+                                        .ClientFooterTemplate("Count: #= kendo.format('{0}', count)#".Replace("#", "\\#"))
+                                        .ClientGroupFooterTemplate("Count: #= kendo.format('{0}', count)#".Replace("#",
+                                            "\\#"));
                                 }
                             }
                         }
@@ -351,11 +363,11 @@ namespace InventoryManagementMVC.Extensions
         public static GridBuilder<T> AddDataSourceOptions<T>(this GridBuilder<T> builder, bool isBatch = true)
             where T : class
         {
-            Type modelEntityType = typeof(T);
+            Type modelEntityType = typeof (T);
             PropertyInfo[] modelEntityProperties = modelEntityType.GetProperties();
 
             PropertyInfo idPropertyInfo =
-                        modelEntityProperties.FirstOrDefault(pi => pi.GetCustomAttributes<KeyAttribute>().Any());
+                modelEntityProperties.FirstOrDefault(pi => pi.GetCustomAttributes<KeyAttribute>().Any());
             if (idPropertyInfo == null)
             {
                 throw new ApplicationException(string.Format(
@@ -367,16 +379,15 @@ namespace InventoryManagementMVC.Extensions
             builder
                 .DataSource(dataSource => dataSource
                     .Ajax()
-                    .Batch(isBatch)                    
+                    .Batch(isBatch)
                     .PageSize(5)
                     .Model(
                         model =>
                         {
-
                             model.Id(idName);
-                            model.Field(idName, typeof(int)).Editable(false);
-                            model.Field("ModifiedDate", typeof(DateTime?)).Editable(false);
-                            model.Field("ModifiedByUser", typeof(string)).Editable(false);
+                            model.Field(idName, typeof (int)).Editable(false);
+                            model.Field("ModifiedDate", typeof (DateTime?)).Editable(false);
+                            model.Field("ModifiedByUser", typeof (string)).Editable(false);
                             foreach (PropertyInfo propertyInfo in modelEntityProperties)
                             {
                                 if (propertyInfo.Name != idName && propertyInfo.Name != "ModifiedDate" &&
@@ -413,11 +424,11 @@ namespace InventoryManagementMVC.Extensions
                             }
                         }
                     )
-                     .Sort(sd =>
-                     {                        
-                         // Just show default dorting
-                         //sd.Add(idName).Ascending(); 
-                     })
+                    .Sort(sd =>
+                    {
+                        // Just show default dorting
+                        //sd.Add(idName).Ascending(); 
+                    })
 
 
                     // this is for editing and deleting
@@ -446,7 +457,8 @@ namespace InventoryManagementMVC.Extensions
             return builder;
         }
 
-        public static GridBuilder<T> AddDefaultOptions<T>(this GridBuilder<T> builder, bool isClient = false, bool showHiddenColumns = false)
+        public static GridBuilder<T> AddDefaultOptions<T>(this GridBuilder<T> builder, bool isClient = false,
+            bool showHiddenColumns = false)
             where T : class
         {
             Stopwatch s = new Stopwatch();
@@ -483,7 +495,7 @@ namespace InventoryManagementMVC.Extensions
 
         private static object GetDefaultValueForType(Type t)
         {
-            if (t == typeof(DateTime) || t == typeof(DateTime?))
+            if (t == typeof (DateTime) || t == typeof (DateTime?))
             {
                 return DateTime.Now;
             }

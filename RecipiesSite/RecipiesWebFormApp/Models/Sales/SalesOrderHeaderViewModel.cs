@@ -15,25 +15,26 @@ namespace InventoryManagementMVC.Models
         [Key]
         public int SalesOrderHeaderId { get; set; }
 
-        [Relation(EntityType = typeof(Customer), DataFieldValue = "CustomerID",
+        [Relation(EntityType = typeof (Customer), DataFieldValue = "CustomerID",
             DataFieldText = "ContactName")]
         [Display(Name = "Customer")]
         public int? CustomerId { get; set; }
 
-        [Relation(EntityType = typeof(SalesOrderStatu), DataFieldValue = "SalesOrderStatusId",
-           DataFieldText = "Name")]
+        [Relation(EntityType = typeof (SalesOrderStatu), DataFieldValue = "SalesOrderStatusId",
+            DataFieldText = "Name")]
         [Display(Name = "Status")]
         public int? StatusId { get; set; }
 
-        [Relation(EntityType = typeof(Employee), DataFieldValue = "EmployeeId", DataFieldText = "FirstName")]
+        [Relation(EntityType = typeof (Employee), DataFieldValue = "EmployeeId", DataFieldText = "FirstName")]
         [Display(Name = "Employee")]
         public int? EmployeeId { get; set; }
 
-        [Relation(EntityType = typeof(PaymentType), DataFieldValue = "PaymentTypeId", DataFieldText = "Name")]
+        [Relation(EntityType = typeof (PaymentType), DataFieldValue = "PaymentTypeId", DataFieldText = "Name")]
         [Display(Name = "Payment Type")]
         public int? PaymentTypeId { get; set; }
 
         public string AccountName { get; set; }
+
         [HiddenInput(DisplayValue = false)]
         public DateTime? OrderDate { get; set; }
 

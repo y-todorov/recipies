@@ -2,14 +2,12 @@
 
 namespace RecipiesWebFormApp
 {
-
     // For more information on Bundling, visit http://go.microsoft.com/fwlink/?LinkId=254726
     public class BundleConfig
     {
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
-            
             bundles.UseCdn = true;
             BundleTable.EnableOptimizations = true;
 
@@ -32,8 +30,7 @@ namespace RecipiesWebFormApp
 
             // this way no other request is made for the map file
             bundles.Add(new ScriptBundle("~/bundles/js").Include(
-                       "~/Scripts/WebEssentials/WebEssentialsJsBundle.min.js"));
-            
+                "~/Scripts/WebEssentials/WebEssentialsJsBundle.min.js"));
 
 
             bundles.Add(new StyleBundle("~/Content/bundles/css")
@@ -41,12 +38,12 @@ namespace RecipiesWebFormApp
                 .Include("~/Content/Bundles/BlueOpal/*.png")
                 .Include("~/Content/Bundles/BlueOpal/*.gif"))
                 ;
-            
+
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             //bundles.Add(new ScriptBundle("~/bundles/modernizr", "http://ajax.aspnetcdn.com/ajax/modernizr/modernizr-2.0.6-development-only.js"));//.Include(
-                        //"~/Scripts/modernizr-*"));
+            //"~/Scripts/modernizr-*"));
 
             //bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
             //          "~/Scripts/bootstrap.js",
@@ -57,5 +54,4 @@ namespace RecipiesWebFormApp
             //          "~/Content/site.css"));
         }
     }
-
 }

@@ -15,10 +15,10 @@ namespace InventoryManagementMVC.Models
         public int InventoryId { get; set; }
 
         //[HiddenInput(DisplayValue = false)]
-        [Display(Name="For Date")]
+        [Display(Name = "For Date")]
         [ReadOnly(true)]
         public DateTime? InventoryHeaderForDate { get; set; }
-        
+
         public decimal? AverageUnitPrice { get; set; }
 
         [Display(Name = "Qty By Documents")]

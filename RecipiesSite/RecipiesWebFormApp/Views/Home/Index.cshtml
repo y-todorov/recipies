@@ -11,180 +11,160 @@
 }
 
 @(Html.Kendo().PanelBar()
-        .Name("panelbar")
-        .ExpandAll(true)
-        .ExpandMode(PanelBarExpandMode.Multiple)
-        //.HtmlAttributes(new { style = "width:300px" })
-        .Items(panelbar =>
-        {
-            panelbar.Add().Text("Vendor purchases by week")
+      .Name("panelbar")
+      .ExpandAll(true)
+      .ExpandMode(PanelBarExpandMode.Multiple)
+      //.HtmlAttributes(new { style = "width:300px" })
+      .Items(panelbar =>
+      {
+          panelbar.Add().Text("Vendor purchases by week")
               .Expanded(true)
               .Content(@<text>@(Html.Kendo().Chart<object>()
-      .Name("VendorPurchasesByWeek").Theme("blueopal")
-                      //.Title("GP per day (Last 30 days)")
-          .Legend(legend => legend
-              .Position(ChartLegendPosition.Top)
-          )
-      .DataSource(ds => ds.Read(read => read.Action("VendorPurchasesByWeek", "Chart")))
-.AddVendorsValuePerWeekOptions()
-  .CategoryAxis(axis => axis.Categories((System.Collections.IEnumerable)ViewData["WeekNumbers"])
-              .Labels(labels => labels.Rotation(90)).AxisCrossingValue(0, int.MaxValue)
-          )
+                                    .Name("VendorPurchasesByWeek").Theme("blueopal")
+                                    //.Title("GP per day (Last 30 days)")
+                                    .Legend(legend => legend
+                                        .Position(ChartLegendPosition.Top)
+                                    )
+                                    .DataSource(ds => ds.Read(read => read.Action("VendorPurchasesByWeek", "Chart")))
+                                    .AddVendorsValuePerWeekOptions()
+                                    .CategoryAxis(axis => axis.Categories((System.Collections.IEnumerable) ViewData["WeekNumbers"])
+                                        .Labels(labels => labels.Rotation(90)).AxisCrossingValue(0, int.MaxValue)
+                                    )
+                                    .ValueAxis(axis => axis.Numeric("Value").Labels(l => l.Format("{0:C3}"))
+                                    )
+                                    .Tooltip(tooltip => tooltip
+                                        .Visible(true)
+                                        .Template("Time interval:<label id=\"lblVendorPO\"></label> <script> document.getElementById(\"lblVendorPO\").innerHTML = getWeekString(#= category #)</script>Vendor: #= series.name # Value: #= value #")
+                                    )
+                                    )</text>);
 
-.ValueAxis(axis => axis.Numeric("Value").Labels(l => l.Format("{0:C3}"))
-          )
-          .Tooltip(tooltip => tooltip
-              .Visible(true)
-.Template("Time interval:<label id=\"lblVendorPO\"></label> <script> document.getElementById(\"lblVendorPO\").innerHTML = getWeekString(#= category #)</script>Vendor: #= series.name # Value: #= value #")
-
-          )
-            )</text>);
-
-            panelbar.Add().Text("GP per week - Products that fall in 'Bar', 'Utilities' or 'Papers and consumables' categories are excluded from calculation in purchase orders.")
-                     .Expanded(true)
-                     .Content(@<text>@(Html.Kendo().Chart<GpPerDay>()
-              .Name("chartGPperDay").Theme("blueopal")
-          .Legend(legend => legend
-      .Position(ChartLegendPosition.Top)
-          )
-              .DataSource(ds => ds.Read(read => read.Action("GpPerDayLastDays", "Chart")))
-
-          .Series(series =>
-          {
-              series.Line(p => p.DayGp).Name("Value per week").Labels(l => l.Format("{0:C3}").Visible(true)).Axis("ValuePerDay");
-          })
-          .CategoryAxis(axis => axis.Categories<string>(ddd => ddd.Days) // ("Days")
-
-              .Labels(labels => labels.Rotation(90)).AxisCrossingValue(0, int.MaxValue)
-          )
-      .ValueAxis(axis => axis.Numeric("ValuePerDay").Labels(l => l.Format("{0:C3}"))
-          )
-          .Tooltip(tooltip => tooltip
-              .Visible(true)
-    .Template("Time interval:<label id=\"lblGpPerWeek\"></label> <script> document.getElementById(\"lblGpPerWeek\").innerHTML = getWeekString(#= category #)</script> Value: #= value #")
-
-          )
-                    )</text>);
+          panelbar.Add().Text("GP per week - Products that fall in 'Bar', 'Utilities' or 'Papers and consumables' categories are excluded from calculation in purchase orders.")
+              .Expanded(true)
+              .Content(@<text>@(Html.Kendo().Chart<GpPerDay>()
+                                    .Name("chartGPperDay").Theme("blueopal")
+                                    .Legend(legend => legend
+                                        .Position(ChartLegendPosition.Top)
+                                    )
+                                    .DataSource(ds => ds.Read(read => read.Action("GpPerDayLastDays", "Chart")))
+                                    .Series(series => { series.Line(p => p.DayGp).Name("Value per week").Labels(l => l.Format("{0:C3}").Visible(true)).Axis("ValuePerDay"); })
+                                    .CategoryAxis(axis => axis.Categories<string>(ddd => ddd.Days) // ("Days")
+                                        .Labels(labels => labels.Rotation(90)).AxisCrossingValue(0, int.MaxValue)
+                                    )
+                                    .ValueAxis(axis => axis.Numeric("ValuePerDay").Labels(l => l.Format("{0:C3}"))
+                                    )
+                                    .Tooltip(tooltip => tooltip
+                                        .Visible(true)
+                                        .Template("Time interval:<label id=\"lblGpPerWeek\"></label> <script> document.getElementById(\"lblGpPerWeek\").innerHTML = getWeekString(#= category #)</script> Value: #= value #")
+                                    )
+                                    )</text>);
 
 
-            panelbar.Add().Text("Total purchase orders value per vendor")
-                     .Expanded(true)
-                     .Content(@<text>@(Html.Kendo().Chart<TotalPoByVendor>()
-.Name("TotalPurchaseOrdersValuePerVendor").Theme("blueopal")
-          .Legend(legend => legend
-              .Position(ChartLegendPosition.Top)
-          )
-.DataSource(ds => ds.Read(read => read.Action("TotalPosValuePerVendor", "Chart")))
-.Series(series =>
-  {
-      series.Column(p => p.PoTotalValue).Name("Value").Labels(l => l.Format("{0:C3}").Visible(true)).Axis("Value");
-  })
-.CategoryAxis(axis => axis.Categories(p => p.VendorName)
-      .Labels(labels => labels.Rotation(90)).AxisCrossingValue(0, int.MaxValue)
-  )
-
-.ValueAxis(axis => axis.Numeric("Value").Labels(l => l.Format("{0:C3}"))
-          )
-          .Tooltip(tooltip => tooltip
-              .Visible(true)
-          )
-                    )</text>);
+          panelbar.Add().Text("Total purchase orders value per vendor")
+              .Expanded(true)
+              .Content(@<text>@(Html.Kendo().Chart<TotalPoByVendor>()
+                                    .Name("TotalPurchaseOrdersValuePerVendor").Theme("blueopal")
+                                    .Legend(legend => legend
+                                        .Position(ChartLegendPosition.Top)
+                                    )
+                                    .DataSource(ds => ds.Read(read => read.Action("TotalPosValuePerVendor", "Chart")))
+                                    .Series(series => { series.Column(p => p.PoTotalValue).Name("Value").Labels(l => l.Format("{0:C3}").Visible(true)).Axis("Value"); })
+                                    .CategoryAxis(axis => axis.Categories(p => p.VendorName)
+                                        .Labels(labels => labels.Rotation(90)).AxisCrossingValue(0, int.MaxValue)
+                                    )
+                                    .ValueAxis(axis => axis.Numeric("Value").Labels(l => l.Format("{0:C3}"))
+                                    )
+                                    .Tooltip(tooltip => tooltip
+                                        .Visible(true)
+                                    )
+                                    )</text>);
 
 
-            panelbar.Add().Text("Recipies by GP")
-                .Expanded(true)
-                .Content(@<text>@(Html.Kendo().Chart<RecipeByGP>()
-      .Name("chartRecipeByGP").Theme("blueopal")
-          .Legend(legend => legend
-      .Position(ChartLegendPosition.Top)
-          )
-      .DataSource(ds => ds.Read(read => read.Action("RecipeByGpDescending", "Chart")))
-
-          .Series(series =>
-          {
-              series.Line(p => p.GP).Name("GP").Labels(l => l.Rotation(90).Format("{0:P2}").Visible(true)).Axis("GP");
-          })
-          .CategoryAxis(axis => axis.Categories<string>(ddd => ddd.RecipeName)
-
-              .Labels(labels => labels.Rotation(90)).AxisCrossingValue(0, int.MaxValue)
-          )
-.ValueAxis(axis => axis.Numeric("GP").Labels(labels => labels.Format("{0:P2}")))
-
-          .Tooltip(tooltip => tooltip
-      .Visible(true).Format("{0:P2}")
-          )
-                )</text>);
+          panelbar.Add().Text("Recipies by GP")
+              .Expanded(true)
+              .Content(@<text>@(Html.Kendo().Chart<RecipeByGP>()
+                                    .Name("chartRecipeByGP").Theme("blueopal")
+                                    .Legend(legend => legend
+                                        .Position(ChartLegendPosition.Top)
+                                    )
+                                    .DataSource(ds => ds.Read(read => read.Action("RecipeByGpDescending", "Chart")))
+                                    .Series(series => { series.Line(p => p.GP).Name("GP").Labels(l => l.Rotation(90).Format("{0:P2}").Visible(true)).Axis("GP"); })
+                                    .CategoryAxis(axis => axis.Categories<string>(ddd => ddd.RecipeName)
+                                        .Labels(labels => labels.Rotation(90)).AxisCrossingValue(0, int.MaxValue)
+                                    )
+                                    .ValueAxis(axis => axis.Numeric("GP").Labels(labels => labels.Format("{0:P2}")))
+                                    .Tooltip(tooltip => tooltip
+                                        .Visible(true).Format("{0:P2}")
+                                    )
+                                    )</text>);
 
 
-
-            panelbar.Add().Text("Products count and stock value by category")
-               .Expanded(true)
-               .Content(@<text>@(Html.Kendo().Chart<ProductsPerCategory>()
-  .Name("ProductsCountAndStockValue").Theme("blueopal")
-                       //.Title("Products count and stock value by category")
-          .Legend(legend => legend
-              .Position(ChartLegendPosition.Top)
-          )
-          .DataSource(ds => ds.Read(read => read.Action("ProductsCountByCategory", "Chart")))
-          .Series(series =>
-          {
-              series.Column(p => p.ProductCount).Name("Product count").Labels(l => l.Format("{0:N}").Visible(true)).Axis("ProductCountAxis");
-              series.Column(p => p.ProductValue).Name("Product value").Labels(l => l.Format("{0:C3}").Visible(true)).Axis("ProductValueAxis");
-          })
-          .CategoryAxis(axis => axis.Categories(p => p.CategoryName)
-              .Labels(labels => labels.Rotation(90)).AxisCrossingValue(0, int.MaxValue)
-          )
-          .ValueAxis(axis => axis.Numeric("ProductCountAxis")
-              .Labels(labels => labels.Format("{0:N}"))
-          )
-          .ValueAxis(axis => axis.Numeric("ProductValueAxis")
-              .Labels(labels => labels.Format("{0:C3}"))
-          )
-          .Tooltip(tooltip => tooltip
-              .Visible(true)
-              .Format("{0:N0}")
-          )
-
-
-            )
+          panelbar.Add().Text("Products count and stock value by category")
+              .Expanded(true)
+              .Content(@<text>@(Html.Kendo().Chart<ProductsPerCategory>()
+                                    .Name("ProductsCountAndStockValue").Theme("blueopal")
+                                    //.Title("Products count and stock value by category")
+                                    .Legend(legend => legend
+                                        .Position(ChartLegendPosition.Top)
+                                    )
+                                    .DataSource(ds => ds.Read(read => read.Action("ProductsCountByCategory", "Chart")))
+                                    .Series(series =>
+                                    {
+                                        series.Column(p => p.ProductCount).Name("Product count").Labels(l => l.Format("{0:N}").Visible(true)).Axis("ProductCountAxis");
+                                        series.Column(p => p.ProductValue).Name("Product value").Labels(l => l.Format("{0:C3}").Visible(true)).Axis("ProductValueAxis");
+                                    })
+                                    .CategoryAxis(axis => axis.Categories(p => p.CategoryName)
+                                        .Labels(labels => labels.Rotation(90)).AxisCrossingValue(0, int.MaxValue)
+                                    )
+                                    .ValueAxis(axis => axis.Numeric("ProductCountAxis")
+                                        .Labels(labels => labels.Format("{0:N}"))
+                                    )
+                                    .ValueAxis(axis => axis.Numeric("ProductValueAxis")
+                                        .Labels(labels => labels.Format("{0:C3}"))
+                                    )
+                                    .Tooltip(tooltip => tooltip
+                                        .Visible(true)
+                                        .Format("{0:N0}")
+                                    )
 
 
-            </text>);
-
-            panelbar.Add().Text("Low products")
-               .Expanded(true)
-               .Content(@<text>@(Html.Kendo().Chart<LowProduct>()
-  .Name("LowProducts").Theme("blueopal")
-                       //.Title("Products count and stock value by category")
-          .Legend(legend => legend
-              .Position(ChartLegendPosition.Top)
-          )
-  .DataSource(ds => ds.Read(read => read.Action("LowProducts", "Chart")))
-          .Series(series =>
-          {
-              series.Column(p => p.ReorderLevel).Name("Reorder level").Labels(l => l.Format("{0:N3}").Visible(true)).Axis("Count");
-              series.Column(p => p.UnitsInStock).Name("Units in stock").Labels(l => l.Format("{0:N3}").Visible(true)).Axis("Count");
-              series.Column(p => p.UnitsOnOrder).Name("Units on order").Labels(l => l.Format("{0:N3}").Visible(true)).Axis("Count");
-          })
-  .CategoryAxis(axis => axis.Categories(p => p.ProductName)
-              .Labels(labels => labels.Rotation(90)).AxisCrossingValue(0, int.MaxValue)
-          )
-.ValueAxis(axis => axis.Numeric("Count")
-      .Labels(labels => labels.Format("{0:N3}"))
-          )
-          .Tooltip(tooltip => tooltip
-              .Visible(true)
-      .Format("{0:N3}")
-          )
-
-            )
+                                    )
 
 
-            </text>);
+                        </text>);
 
-        }
-        )
-)
+          panelbar.Add().Text("Low products")
+              .Expanded(true)
+              .Content(@<text>@(Html.Kendo().Chart<LowProduct>()
+                                    .Name("LowProducts").Theme("blueopal")
+                                    //.Title("Products count and stock value by category")
+                                    .Legend(legend => legend
+                                        .Position(ChartLegendPosition.Top)
+                                    )
+                                    .DataSource(ds => ds.Read(read => read.Action("LowProducts", "Chart")))
+                                    .Series(series =>
+                                    {
+                                        series.Column(p => p.ReorderLevel).Name("Reorder level").Labels(l => l.Format("{0:N3}").Visible(true)).Axis("Count");
+                                        series.Column(p => p.UnitsInStock).Name("Units in stock").Labels(l => l.Format("{0:N3}").Visible(true)).Axis("Count");
+                                        series.Column(p => p.UnitsOnOrder).Name("Units on order").Labels(l => l.Format("{0:N3}").Visible(true)).Axis("Count");
+                                    })
+                                    .CategoryAxis(axis => axis.Categories(p => p.ProductName)
+                                        .Labels(labels => labels.Rotation(90)).AxisCrossingValue(0, int.MaxValue)
+                                    )
+                                    .ValueAxis(axis => axis.Numeric("Count")
+                                        .Labels(labels => labels.Format("{0:N3}"))
+                                    )
+                                    .Tooltip(tooltip => tooltip
+                                        .Visible(true)
+                                        .Format("{0:N3}")
+                                    )
+
+                                    )
+
+
+                        </text>);
+      }
+      )
+      )
 
 @*<telerik:RadHtmlChart runat="server" ID="rhcProductsForReorder">
         <plotarea>

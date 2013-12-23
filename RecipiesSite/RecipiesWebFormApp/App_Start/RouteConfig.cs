@@ -16,13 +16,13 @@ namespace RecipiesWebFormApp
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             routes.IgnoreRoute("{resource}.aspx/{*pathInfo}");
             routes.MapRoute(
-            "Default",
+                "Default",
                 // Route name
-            "{controller}/{action}/{id}",
+                "{controller}/{action}/{id}",
                 // URL with parameters
-            new { controller = "Home", action = "Index", id = "" }
+                new {controller = "Home", action = "Index", id = ""}
                 // Parameter defaults
-            );
+                );
         }
     }
 }

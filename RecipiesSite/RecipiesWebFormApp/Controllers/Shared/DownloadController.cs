@@ -28,8 +28,6 @@ using System.Xml.Linq;
 
 namespace InventoryManagementMVC.Controllers
 {
-
-
     public class DownloadController : Controller
     {
         private string GetTableXml(string completeGridXml)
@@ -79,7 +77,7 @@ namespace InventoryManagementMVC.Controllers
                 {
                     if (attr.Name == "role" && attr.Value == "gridcell")
                     {
-                        result.Add(td);// string valToInsertInExcel = td.Value;
+                        result.Add(td); // string valToInsertInExcel = td.Value;
                     }
                 }
             }
@@ -169,9 +167,10 @@ namespace InventoryManagementMVC.Controllers
 
             //Return the result to the end user
 
-            lastFileContentResult = File(output.ToArray(),   //The binary data of the XLS file
+            lastFileContentResult = File(output.ToArray(), //The binary data of the XLS file
                 "application/vnd.ms-excel", //MIME type of Excel files
-                "GridExcelExport.xls");     //Suggested file name in the "Save as" dialog which will be displayed to the end user
+                "GridExcelExport.xls");
+                //Suggested file name in the "Save as" dialog which will be displayed to the end user
         }
 
         public ActionResult DownloadPurchaseOrder(int? purchaseOrderHeaderId)
@@ -186,7 +185,8 @@ namespace InventoryManagementMVC.Controllers
             RecipiesReports.PurchaseOrderDetailsReport salesOrderDetailsReport =
                 new RecipiesReports.PurchaseOrderDetailsReport();
 
-            List<PurchaseOrderDetail> nonEmptyOrders = purchaseOrder.PurchaseOrderDetails.Where(pod => pod.OrderQuantity.GetValueOrDefault() != 0).ToList();
+            List<PurchaseOrderDetail> nonEmptyOrders =
+                purchaseOrder.PurchaseOrderDetails.Where(pod => pod.OrderQuantity.GetValueOrDefault() != 0).ToList();
 
             salesOrderDetailsReport.DataSource = nonEmptyOrders;
 

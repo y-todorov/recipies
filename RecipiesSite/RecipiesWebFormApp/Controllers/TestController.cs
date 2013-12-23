@@ -24,22 +24,19 @@ namespace InventoryManagementMVC.Controllers
                 if (po.OrderDate.HasValue && po.OrderDate != po.OrderDate.GetValueOrDefault().Date)
                 {
                     po.OrderDate = po.OrderDate.GetValueOrDefault().Date;
-
                 }
                 if (po.ShipDate.HasValue && po.ShipDate != po.ShipDate.GetValueOrDefault().Date)
                 {
                     po.ShipDate = po.ShipDate.GetValueOrDefault().Date;
                 }
-
             }
 
 
-             ContextFactory.Current.SaveChanges();
+            ContextFactory.Current.SaveChanges();
 
             return RedirectToAction("Index");
-          
         }
-       
+
         public ActionResult Index()
         {
             List<Product> allProducts = ContextFactory.Current.Products.ToList();

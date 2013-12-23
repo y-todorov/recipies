@@ -8,7 +8,7 @@ using RecipiesModelNS;
 
 namespace InventoryManagementMVC.Controllers
 {
-    public class RecipeIngredientController :ControllerBase
+    public class RecipeIngredientController : ControllerBase
     {
         public ActionResult Read(int? recipeId, [DataSourceRequest] DataSourceRequest request)
         {
@@ -16,7 +16,8 @@ namespace InventoryManagementMVC.Controllers
                 .Where(
                     pod => recipeId.HasValue ? pod.ParentRecipeId == recipeId.Value : true)
                 .ToList().Select
-                (c => RecipeIngredientViewModel.ConvertFromProductIngredientEntity(c, new RecipeIngredientViewModel())).ToList();
+                (c => RecipeIngredientViewModel.ConvertFromProductIngredientEntity(c, new RecipeIngredientViewModel()))
+                .ToList();
             return Json(productIngredients.ToDataSourceResult(request));
         }
 
@@ -29,9 +30,10 @@ namespace InventoryManagementMVC.Controllers
                 foreach (RecipeIngredientViewModel pi in productIngredients)
                 {
                     pi.ParentRecipeId = recipeId; // this must be before next line
-                    RecipeIngredient newProductIngredient = RecipeIngredientViewModel.ConvertToProductIngredientEntity(pi,
-                        new RecipeIngredient());
-                  
+                    RecipeIngredient newProductIngredient =
+                        RecipeIngredientViewModel.ConvertToProductIngredientEntity(pi,
+                            new RecipeIngredient());
+
                     ContextFactory.Current.RecipeIngredients.Add(newProductIngredient);
                     ContextFactory.Current.SaveChanges();
 
@@ -50,12 +52,11 @@ namespace InventoryManagementMVC.Controllers
             {
                 foreach (RecipeIngredientViewModel recipeIngredient in recipeIngredients)
                 {
-                    
                     RecipeIngredient riEntity =
                         ContextFactory.Current.RecipeIngredients.FirstOrDefault(
                             r => r.RecipeIngredientId == recipeIngredient.RecipeIngredientId);
                     recipeIngredient.ParentRecipeId = riEntity.ParentRecipeId;
-              
+
                     RecipeIngredientViewModel.ConvertToProductIngredientEntity(recipeIngredient, riEntity);
 
                     ContextFactory.Current.SaveChanges();
@@ -76,7 +77,8 @@ namespace InventoryManagementMVC.Controllers
                 foreach (RecipeIngredientViewModel recipeIngredient in recipeIngredients)
                 {
                     RecipeIngredient piEntity =
-                        ContextFactory.Current.RecipeIngredients.FirstOrDefault(r => r.RecipeIngredientId  == recipeIngredient.RecipeIngredientId);
+                        ContextFactory.Current.RecipeIngredients.FirstOrDefault(
+                            r => r.RecipeIngredientId == recipeIngredient.RecipeIngredientId);
                     ContextFactory.Current.RecipeIngredients.Remove(piEntity);
 
                     ContextFactory.Current.SaveChanges();

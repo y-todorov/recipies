@@ -6,7 +6,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <yordan:YordanCustomRadGrid ID="rgProductVendors" runat="server" ItemType="RecipiesModelNS.ProductVendor" DataSourceID="OpenAccessLinqDataSourceProductVendors">
         <MasterTableView AutoGenerateColumns="False" DataKeyNames="ProductVendorId" DataSourceID="OpenAccessLinqDataSourceProductVendors">
-<%--            <GroupByExpressions>
+            <%--            <GroupByExpressions>
                 <telerik:GridGroupByExpression>
                     <SelectFields>
                         <telerik:GridGroupByField FieldName="ProductId" HeaderText="Yordan Price" />

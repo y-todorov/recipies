@@ -14,7 +14,7 @@ namespace InventoryManagementMVC.Models
     {
         [Key]
         public int PurchaseOrderDetailId { get; set; }
-        
+
         [ReadOnly(true)]
         //[Relation(EntityType = typeof(PurchaseOrderHeader), DataFieldValue = "PurchaseOrderId",
         //    DataFieldText = "PurchaseOrderId")]
@@ -23,11 +23,11 @@ namespace InventoryManagementMVC.Models
         [HiddenInput(DisplayValue = false)]
         public int? PurchaseOrderHeaderId { get; set; }
 
-        [Relation(EntityType = typeof(Product), DataFieldValue = "ProductId", DataFieldText = "Name")]
+        [Relation(EntityType = typeof (Product), DataFieldValue = "ProductId", DataFieldText = "Name")]
         [Display(Name = "Product")]
         public int? ProductId { get; set; }
 
-        [Relation(EntityType = typeof(UnitMeasure), DataFieldValue = "UnitMeasureId", DataFieldText = "Name")]
+        [Relation(EntityType = typeof (UnitMeasure), DataFieldValue = "UnitMeasureId", DataFieldText = "Name")]
         [Display(Name = "Unit Measure")]
         public int? UnitMeasureId { get; set; }
 
@@ -91,7 +91,7 @@ namespace InventoryManagementMVC.Models
                     "PurchaseOrderDetailViewModel is null in method ConvertFromPurchaseOrderDetailEntity!");
             }
 
-            model.LineTotal = (decimal)entity.LineTotal;
+            model.LineTotal = (decimal) entity.LineTotal;
             model.ModifiedByUser = entity.ModifiedByUser;
             model.ModifiedDate = entity.ModifiedDate;
             model.OrderQuantity = entity.OrderQuantity;
@@ -149,7 +149,7 @@ namespace InventoryManagementMVC.Models
             entity.ModifiedDate = model.ModifiedDate;
             entity.OrderQuantity = model.OrderQuantity;
             entity.ProductId = model.ProductId;
-        
+
             entity.PurchaseOrderDetailId = model.PurchaseOrderDetailId;
             if (model.PurchaseOrderHeaderId.HasValue)
             {

@@ -24,29 +24,32 @@ namespace InventoryManagementMVC.Extensions
             List<Vendor> vendors = ContextFactory.Current.Vendors.ToList();
 
             Vendor fakeTotalVendor = new Vendor()
-        {
-            Name = "Total All Vendors",
-            VendorId = 0
-        };
+            {
+                Name = "Total All Vendors",
+                VendorId = 0
+            };
             vendors.Insert(0, fakeTotalVendor);
 
 
             builder.Series(series =>
+            {
+                bool isVisible = true;
+                int counter = 0;
+                foreach (Vendor vendor in vendors)
                 {
-                    bool isVisible = true;
-                    int counter = 0;
-                    foreach (Vendor vendor in vendors)
+                    series.Line("EscapeStringYordan_" + vendor.VendorId.ToString())
+                        .Name(vendor.Name)
+                        .Labels(l => l.Format("{0:C3}").Visible(true))
+                        .Axis("Value")
+                        .Visible(isVisible);
+                    counter++;
+                    if (counter >= 3)
                     {
-                        series.Line("EscapeStringYordan_" + vendor.VendorId.ToString()).Name(vendor.Name).Labels(l => l.Format("{0:C3}").Visible(true)).Axis("Value").Visible(isVisible);
-                        counter++;
-                        if (counter >= 3)
-                        {
-                            isVisible = false;
-                        }
-                        // only the first 3 will be visible by default
+                        isVisible = false;
                     }
-
-                });
+                    // only the first 3 will be visible by default
+                }
+            });
 
 
             return builder;

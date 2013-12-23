@@ -6,7 +6,7 @@ using System.Web.Caching;
 
 namespace RecipiesWebFormApp.Caching
 {
-    public  class CacheDependencyManager
+    public class CacheDependencyManager
     {
         static CacheDependencyManager()
         {
@@ -14,7 +14,7 @@ namespace RecipiesWebFormApp.Caching
         }
 
         public static CacheDependencyManager Instance;
-    
+
 
         private Dictionary<string, ExplicitCacheDependency> _dependencies
             = new Dictionary<string, ExplicitCacheDependency>();

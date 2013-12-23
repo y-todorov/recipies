@@ -14,19 +14,19 @@ namespace InventoryManagementMVC.Models
     {
         [Key]
         public int SalesOrderDetailId { get; set; }
-        
-        [ReadOnly(true)]    
+
+        [ReadOnly(true)]
         [Display(Name = "Sales Order")]
         [Editable(false)]
         [HiddenInput(DisplayValue = false)]
         public int? SalesOrderHeaderId { get; set; }
 
-        [Relation(EntityType = typeof(Recipe), DataFieldValue = "RecipeId", DataFieldText = "Name")]
+        [Relation(EntityType = typeof (Recipe), DataFieldValue = "RecipeId", DataFieldText = "Name")]
         [Display(Name = "Recipe")]
         public int? RecipeId { get; set; }
 
         [ReadOnly(true)]
-        public string RecipeCategory { get; set; }     
+        public string RecipeCategory { get; set; }
 
         [Display(Name = "Order QTY")]
         public double? OrderQuantity { get; set; }
@@ -38,7 +38,7 @@ namespace InventoryManagementMVC.Models
 
         [ReadOnly(true)]
         public decimal LineTotal { get; set; }
-     
+
         public DateTime? ModifiedDate { get; set; }
 
         public string ModifiedByUser { get; set; }
@@ -46,7 +46,7 @@ namespace InventoryManagementMVC.Models
         public static SalesOrderDetailViewModel ConvertFromSalesOrderDetailEntity(
             SalesOrderDetail entity, SalesOrderDetailViewModel model)
         {
-            model.LineTotal = (decimal)entity.LineTotal;
+            model.LineTotal = (decimal) entity.LineTotal;
             model.ModifiedByUser = entity.ModifiedByUser;
             model.ModifiedDate = entity.ModifiedDate;
             model.OrderQuantity = entity.OrderQuantity;
@@ -66,7 +66,7 @@ namespace InventoryManagementMVC.Models
         public static SalesOrderDetail ConvertToSalesOrderDetailEntity(SalesOrderDetailViewModel model,
             SalesOrderDetail entity)
         {
-            entity.LineTotal = (double)model.LineTotal;
+            entity.LineTotal = (double) model.LineTotal;
             entity.ModifiedByUser = model.ModifiedByUser;
             entity.ModifiedDate = model.ModifiedDate;
             entity.OrderQuantity = model.OrderQuantity;

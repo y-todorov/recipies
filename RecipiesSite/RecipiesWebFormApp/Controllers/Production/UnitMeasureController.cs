@@ -11,7 +11,7 @@ namespace InventoryManagementMVC.Controllers
     public class UnitMeasureController : ControllerBase
     {
         public ActionResult Index()
-        {         
+        {
             return View();
         }
 

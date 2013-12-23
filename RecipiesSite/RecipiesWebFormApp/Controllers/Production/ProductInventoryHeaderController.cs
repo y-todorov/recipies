@@ -14,7 +14,7 @@ namespace InventoryManagementMVC.Controllers
     public class ProductInventoryHeaderController : Controller
     {
         public ActionResult Index()
-        {           
+        {
             return View();
         }
 
@@ -23,7 +23,8 @@ namespace InventoryManagementMVC.Controllers
             List<ProductInventoryHeaderViewModel> productInventoriesViewModels =
                 ContextFactory.Current.ProductInventoryHeaders.ToList().Select
                     (pi =>
-                        ProductInventoryHeaderViewModel.ConvertFromProductInventoryHeaderEntity(pi, new ProductInventoryHeaderViewModel()))
+                        ProductInventoryHeaderViewModel.ConvertFromProductInventoryHeaderEntity(pi,
+                            new ProductInventoryHeaderViewModel()))
                     .ToList();
             return Json(productInventoriesViewModels.ToDataSourceResult(request));
         }
@@ -41,8 +42,6 @@ namespace InventoryManagementMVC.Controllers
                             new ProductInventoryHeader());
 
 
-
-
                     ContextFactory.Current.ProductInventoryHeaders.Add(pihEntity);
                     ContextFactory.Current.SaveChanges();
 
@@ -52,7 +51,6 @@ namespace InventoryManagementMVC.Controllers
                     {
                         if (product.ProductId == 224)
                         {
-
                         }
                         ProductInventory pi = new ProductInventory();
                         pi.ProductId = product.ProductId;
@@ -60,7 +58,8 @@ namespace InventoryManagementMVC.Controllers
                         pi.AverageUnitPrice = product.UnitPrice;
                         try
                         {
-                            pi.QuantityByDocuments = product.GetQuantityByDocumentsForDate(pihModel.ForDate.GetValueOrDefault());
+                            pi.QuantityByDocuments =
+                                product.GetQuantityByDocumentsForDate(pihModel.ForDate.GetValueOrDefault());
                         }
                         catch (Exception ex)
                         {
@@ -96,7 +95,8 @@ namespace InventoryManagementMVC.Controllers
                 foreach (ProductInventoryHeaderViewModel pihModel in pihs)
                 {
                     ProductInventoryHeader inv =
-                        ContextFactory.Current.ProductInventoryHeaders.FirstOrDefault(p => p.ProductInventoryHeaderId == pihModel.ProductInventoryHeaderId);
+                        ContextFactory.Current.ProductInventoryHeaders.FirstOrDefault(
+                            p => p.ProductInventoryHeaderId == pihModel.ProductInventoryHeaderId);
                     ContextFactory.Current.ProductInventoryHeaders.Remove(inv);
 
                     //List<ProductInventory> pis = ContextFactory.Current.Inventories.OfType<ProductInventory>().Where(pi => pi.ProductInventoryHeaderId == pihModel.ProductInventoryHeaderId).ToList();

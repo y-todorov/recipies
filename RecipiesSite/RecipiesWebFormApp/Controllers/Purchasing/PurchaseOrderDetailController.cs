@@ -17,7 +17,7 @@ namespace InventoryManagementMVC.Controllers
     {
         public ActionResult Index()
         {
-            return View();           
+            return View();
         }
 
         public ActionResult Read(int? purchaseOrderHeaderId, [DataSourceRequest] DataSourceRequest request)
@@ -44,13 +44,16 @@ namespace InventoryManagementMVC.Controllers
                 {
                     podViewModel.PurchaseOrderHeaderId = purchaseOrderHeaderId;
                     PurchaseOrderDetail newPodEntity =
-                        PurchaseOrderDetailViewModel.ConvertToPurchaseOrderDetailEntity(podViewModel, new PurchaseOrderDetail());
+                        PurchaseOrderDetailViewModel.ConvertToPurchaseOrderDetailEntity(podViewModel,
+                            new PurchaseOrderDetail());
                     ContextFactory.Current.PurchaseOrderDetails.Add(newPodEntity);
                     ContextFactory.Current.SaveChanges();
                     // Prefetch Product and others ...
-                    newPodEntity = ContextFactory.Current.PurchaseOrderDetails.Include(pod => pod.PurchaseOrderHeader.Vendor)
-                    .Include(pod => pod.Product.ProductCategory).FirstOrDefault(pod => pod.PurchaseOrderDetailId == newPodEntity.PurchaseOrderDetailId);
-                     PurchaseOrderDetailViewModel.ConvertFromPurchaseOrderDetailEntity(newPodEntity, podViewModel);
+                    newPodEntity = ContextFactory.Current.PurchaseOrderDetails.Include(
+                        pod => pod.PurchaseOrderHeader.Vendor)
+                        .Include(pod => pod.Product.ProductCategory)
+                        .FirstOrDefault(pod => pod.PurchaseOrderDetailId == newPodEntity.PurchaseOrderDetailId);
+                    PurchaseOrderDetailViewModel.ConvertFromPurchaseOrderDetailEntity(newPodEntity, podViewModel);
                 }
             }
 
@@ -73,8 +76,10 @@ namespace InventoryManagementMVC.Controllers
 
                     ContextFactory.Current.SaveChanges();
                     // Prefetch Product and others ...
-                    pohEntity = ContextFactory.Current.PurchaseOrderDetails.Include(pod => pod.PurchaseOrderHeader.Vendor)
-                   .Include(pod => pod.Product.ProductCategory).FirstOrDefault(pod => pod.PurchaseOrderDetailId == pohEntity.PurchaseOrderDetailId);
+                    pohEntity = ContextFactory.Current.PurchaseOrderDetails.Include(
+                        pod => pod.PurchaseOrderHeader.Vendor)
+                        .Include(pod => pod.Product.ProductCategory)
+                        .FirstOrDefault(pod => pod.PurchaseOrderDetailId == pohEntity.PurchaseOrderDetailId);
                     PurchaseOrderDetailViewModel.ConvertFromPurchaseOrderDetailEntity(pohEntity, podViewModel);
                 }
             }

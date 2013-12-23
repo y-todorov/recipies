@@ -13,11 +13,12 @@ using System.Web.Script.Serialization;
 
 namespace InventoryManagementMVC.Controllers
 {
-    
-    [DonutOutputCache(Duration = 24 * 3600, Options =  OutputCacheOptions.IgnoreFormData | OutputCacheOptions.NoCacheLookupForPosts)]
+    [DonutOutputCache(Duration = 24*3600,
+        Options = OutputCacheOptions.IgnoreFormData | OutputCacheOptions.NoCacheLookupForPosts)]
     public class ControllerBase : Controller
     {
-        protected override JsonResult Json(object data, string contentType, System.Text.Encoding contentEncoding, JsonRequestBehavior behavior)
+        protected override JsonResult Json(object data, string contentType, System.Text.Encoding contentEncoding,
+            JsonRequestBehavior behavior)
         {
             JsonResult jr = base.Json(data, contentType, contentEncoding, behavior);
             jr.MaxJsonLength = int.MaxValue;
@@ -40,21 +41,21 @@ namespace InventoryManagementMVC.Controllers
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             //stopwatch.Start();
-            base.OnActionExecuting(filterContext); 
+            base.OnActionExecuting(filterContext);
         }
 
         protected override void OnActionExecuted(ActionExecutedContext filterContext)
         {
             //base.OnActionExecuted(filterContext);
             //stopwatch.Stop();
-           // ActionMilliseconds = stopwatch.ElapsedMilliseconds;
+            // ActionMilliseconds = stopwatch.ElapsedMilliseconds;
             //ViewData.Add("ActionMilliseconds", ActionMilliseconds);
             stopwatch.Reset();
         }
 
         protected override void OnResultExecuting(ResultExecutingContext filterContext)
         {
-           // stopwatch.Start();
+            // stopwatch.Start();
             base.OnResultExecuting(filterContext);
         }
 

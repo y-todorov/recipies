@@ -7,7 +7,6 @@ using Telerik.Reporting.Processing;
 
 namespace RecipiesWebFormApp.Extensions
 {
-   
     public class MyFileResult : ActionResult
     {
         private readonly RenderingResult result;

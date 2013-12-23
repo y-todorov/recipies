@@ -59,12 +59,12 @@
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
                 </telerik:GridBoundColumn>
-                  <telerik:GridBoundColumn DataField="PurchaseOrderHeader.ShipDate" ReadOnly="true" DataType="System.DateTime" FilterControlAltText="Filter PurchaseOrderHeader.OrderDate column" HeaderText="ShipDate" SortExpression="PurchaseOrderHeader.ShipDate" UniqueName="PurchaseOrderHeader.ShipDate">
+                <telerik:GridBoundColumn DataField="PurchaseOrderHeader.ShipDate" ReadOnly="true" DataType="System.DateTime" FilterControlAltText="Filter PurchaseOrderHeader.OrderDate column" HeaderText="ShipDate" SortExpression="PurchaseOrderHeader.ShipDate" UniqueName="PurchaseOrderHeader.ShipDate">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>
                 </telerik:GridBoundColumn>
-                 <telerik:GridBoundColumn DataField="PurchaseOrderHeader.PurchaseOrderStatu.Name" ReadOnly="true" DataType="System.DateTime" FilterControlAltText="Filter PurchaseOrderHeader.PurchaseOrderStatu.Name column" HeaderText="Status" SortExpression="PurchaseOrderHeader.PurchaseOrderStatu.Name" UniqueName="PurchaseOrderHeader.PurchaseOrderStatu.Name">
+                <telerik:GridBoundColumn DataField="PurchaseOrderHeader.PurchaseOrderStatu.Name" ReadOnly="true" DataType="System.DateTime" FilterControlAltText="Filter PurchaseOrderHeader.PurchaseOrderStatu.Name column" HeaderText="Status" SortExpression="PurchaseOrderHeader.PurchaseOrderStatu.Name" UniqueName="PurchaseOrderHeader.PurchaseOrderStatu.Name">
                     <ColumnValidationSettings>
                         <ModelErrorMessage Text="" />
                     </ColumnValidationSettings>

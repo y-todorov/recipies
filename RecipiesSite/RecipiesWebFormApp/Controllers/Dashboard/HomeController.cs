@@ -22,20 +22,22 @@ namespace InventoryManagementMVC.Controllers
                 List<PurchaseOrderDetail> pods =
                     ContextFactory.GetContextPerRequest()
                         .PurchaseOrderDetails.Where(
-                            pod => pod.PurchaseOrderHeader.StatusId == (int)PurchaseOrderStatusEnum.Completed)
+                            pod => pod.PurchaseOrderHeader.StatusId == (int) PurchaseOrderStatusEnum.Completed)
                         .ToList();
 
                 var grouping =
                     pods.OrderByDescending(pod => pod.PurchaseOrderHeader.ShipDate)
-                        .GroupBy(pod => ControllerHelper.GetIso8601WeekOfYear(pod.PurchaseOrderHeader.ShipDate.GetValueOrDefault()));
+                        .GroupBy(
+                            pod =>
+                                ControllerHelper.GetIso8601WeekOfYear(
+                                    pod.PurchaseOrderHeader.ShipDate.GetValueOrDefault()));
 
                 List<Dictionary<string, object>> helpers = new List<Dictionary<string, object>>();
 
                 foreach (var item in grouping)
                 {
-
                     dynamic h = new Dictionary<string, object>();
-                    h.Add("Week", item.Key);                  
+                    h.Add("Week", item.Key);
                     helpers.Add(h);
                 }
 
@@ -57,6 +59,5 @@ namespace InventoryManagementMVC.Controllers
             Response.Redirect("/Default.aspx", false);
             return new ContentResult();
         }
-
     }
 }

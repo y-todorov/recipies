@@ -33,8 +33,8 @@ namespace RecipiesWebFormApp
                             {
                                 CategoryName = cat.Name.Substring(0, maxXLabelTextLenght),
                                 ProductCount = cat.Products.Count,
-
-                                ProductValue = cat.Products.Count != 0 ? Math.Round(cat.Products.Sum(p => p.StockValue), 3) : 0
+                                ProductValue =
+                                    cat.Products.Count != 0 ? Math.Round(cat.Products.Sum(p => p.StockValue), 3) : 0
                             })
                     .OrderByDescending(res => res.ProductCount)
                     .ToList();
@@ -54,16 +54,17 @@ namespace RecipiesWebFormApp
 
                 rhcMostExpensiveProducts.DataSource = ContextFactory.GetContextPerRequest()
                     .Products.OrderByDescending(product => product.UnitPrice)
-                    .Select(p => new { p.UnitPrice, Name = p.Name.Substring(0, maxXLabelTextLenght) })
+                    .Select(p => new {p.UnitPrice, Name = p.Name.Substring(0, maxXLabelTextLenght)})
                     .Take(10).ToList();
 
-                rhcGpRecipies.DataSource = ContextFactory.GetContextPerRequest().Recipes.OrderByDescending(r => r.GrossProfit)//.Take(20)
-                    .Select(recipie => new
-                    {
-                        recipie.Name,
-                        GrossProfit = recipie.GrossProfit,
-                        SellValuePerPortion = recipie.SellValuePerPortion
-                    })
+                rhcGpRecipies.DataSource =
+                    ContextFactory.GetContextPerRequest().Recipes.OrderByDescending(r => r.GrossProfit) //.Take(20)
+                        .Select(recipie => new
+                        {
+                            recipie.Name,
+                            GrossProfit = recipie.GrossProfit,
+                            SellValuePerPortion = recipie.SellValuePerPortion
+                        })
                         .ToList();
 
 
@@ -77,10 +78,11 @@ namespace RecipiesWebFormApp
                     double purchases =
                         (double)
                             PurchaseOrderHeader.GetPurchaseOrderDetailsInPeriod(date, date,
-                                PurchaseOrderStatusEnum.Completed, ProductCategory.GetCategoriesToExcludeFromGP()).Sum(poh => poh.LineTotal);
+                                PurchaseOrderStatusEnum.Completed, ProductCategory.GetCategoriesToExcludeFromGP())
+                                .Sum(poh => poh.LineTotal);
                     double dayGp = sales - purchases;
 
-                    GpHelper gh = new GpHelper() { Days = date.ToString("dd/MM"), DayGp = dayGp };
+                    GpHelper gh = new GpHelper() {Days = date.ToString("dd/MM"), DayGp = dayGp};
                     //if (gh.DayGp != 0)
                     {
                         list.Add(gh);

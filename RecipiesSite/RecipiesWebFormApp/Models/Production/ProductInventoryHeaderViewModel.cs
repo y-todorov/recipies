@@ -16,12 +16,12 @@ namespace InventoryManagementMVC.Models
         public DateTime? ForDate { get; set; }
 
         public DateTime? ModifiedDate { get; set; }
-        
+
         public string ModifiedByUser { get; set; }
 
         public static ProductInventoryHeaderViewModel ConvertFromProductInventoryHeaderEntity(
-           ProductInventoryHeader entity,
-           ProductInventoryHeaderViewModel model)
+            ProductInventoryHeader entity,
+            ProductInventoryHeaderViewModel model)
         {
             model.ProductInventoryHeaderId = entity.ProductInventoryHeaderId;
             model.ForDate = entity.ForDate;
@@ -41,9 +41,8 @@ namespace InventoryManagementMVC.Models
 
             entity.ModifiedDate = model.ModifiedDate;
             entity.ModifiedByUser = model.ModifiedByUser;
-            
+
             return entity;
         }
-
     }
 }

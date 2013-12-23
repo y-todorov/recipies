@@ -50,11 +50,13 @@ namespace RecipiesWebFormApp
             DatabaseTableChangeWatcher.DatabaseChange += DatabaseTableChangeWatcher_DatabaseChange;
         }
 
-        void DatabaseTableChangeWatcher_DatabaseChange(object arg1, EventArgs arg2)
+        private void DatabaseTableChangeWatcher_DatabaseChange(object arg1, EventArgs arg2)
         {
             MyCacheManager.Instance.RemoveItems();
             var controllersType = Assembly.GetExecutingAssembly().GetTypes().Where(t => t.ReflectedType != null &&
-                t.ReflectedType.BaseType.Name == typeof(ControllerBase).Name).ToList();
+                                                                                        t.ReflectedType.BaseType.Name ==
+                                                                                        typeof (ControllerBase).Name)
+                .ToList();
 
             foreach (Type ct in controllersType)
             {
@@ -90,8 +92,6 @@ namespace RecipiesWebFormApp
             //                res = client.DownloadStringTaskAsync(new Uri("http://bluesystems.azurewebsites.net/" + controllerName)).Result;
             //            }
             //        }
-
-
         }
 
         private void timer_Elapsed(object sender, ElapsedEventArgs e)
@@ -126,19 +126,21 @@ namespace RecipiesWebFormApp
             //}
             //Debugger.Break();
 
-            var httpContext = ((HttpApplication)sender).Context;
+            var httpContext = ((HttpApplication) sender).Context;
             var currentController = " ";
             var currentAction = " ";
             var currentRouteData = RouteTable.Routes.GetRouteData(new HttpContextWrapper(httpContext));
 
             if (currentRouteData != null)
             {
-                if (currentRouteData.Values["controller"] != null && !String.IsNullOrEmpty(currentRouteData.Values["controller"].ToString()))
+                if (currentRouteData.Values["controller"] != null &&
+                    !String.IsNullOrEmpty(currentRouteData.Values["controller"].ToString()))
                 {
                     currentController = currentRouteData.Values["controller"].ToString();
                 }
 
-                if (currentRouteData.Values["action"] != null && !String.IsNullOrEmpty(currentRouteData.Values["action"].ToString()))
+                if (currentRouteData.Values["action"] != null &&
+                    !String.IsNullOrEmpty(currentRouteData.Values["action"].ToString()))
                 {
                     currentAction = currentRouteData.Values["action"].ToString();
                 }
@@ -161,7 +163,7 @@ namespace RecipiesWebFormApp
                     case 500:
                         action = "InternalServerError";
                         break;
-                    // others if any
+                        // others if any
                 }
             }
 
@@ -180,7 +182,7 @@ namespace RecipiesWebFormApp
 
             httpContext.ClearError();
             httpContext.Response.Clear();
-            httpContext.Response.StatusCode = ex is HttpException ? ((HttpException)ex).GetHttpCode() : 500;
+            httpContext.Response.StatusCode = ex is HttpException ? ((HttpException) ex).GetHttpCode() : 500;
             //but this is importan. It helps the brousers to display a good error page
             httpContext.Response.StatusCode = 200;
 
@@ -190,9 +192,7 @@ namespace RecipiesWebFormApp
             routeData.Values["action"] = action;
 
             controller.ViewData.Model = new HandleErrorInfo(ex, currentController, currentAction);
-            ((IController)controller).Execute(new RequestContext(new HttpContextWrapper(httpContext), routeData));
-
-
+            ((IController) controller).Execute(new RequestContext(new HttpContextWrapper(httpContext), routeData));
         }
 
         //This method checks if we have an AJAX request or not
@@ -200,8 +200,8 @@ namespace RecipiesWebFormApp
         {
             //The easy way
             bool isAjaxRequest = (Request["X-Requested-With"] == "XMLHttpRequest")
-            || ((Request.Headers != null)
-            && (Request.Headers["X-Requested-With"] == "XMLHttpRequest"));
+                                 || ((Request.Headers != null)
+                                     && (Request.Headers["X-Requested-With"] == "XMLHttpRequest"));
 
             //If we are not sure that we have an AJAX request or that we have to return JSON 
             //we fall back to Reflection
@@ -211,20 +211,20 @@ namespace RecipiesWebFormApp
                 {
                     //The controller and action
                     string controllerName = Request.RequestContext.
-                                            RouteData.Values["controller"].ToString();
+                        RouteData.Values["controller"].ToString();
                     string actionName = Request.RequestContext.
-                                        RouteData.Values["action"].ToString();
+                        RouteData.Values["action"].ToString();
 
                     //We create a controller instance
                     DefaultControllerFactory controllerFactory = new DefaultControllerFactory();
                     Controller controller = controllerFactory.CreateController(
-                    Request.RequestContext, controllerName) as Controller;
+                        Request.RequestContext, controllerName) as Controller;
 
                     //We get the controller actions
                     ReflectedControllerDescriptor controllerDescriptor =
-                    new ReflectedControllerDescriptor(controller.GetType());
+                        new ReflectedControllerDescriptor(controller.GetType());
                     ActionDescriptor[] controllerActions =
-                    controllerDescriptor.GetCanonicalActions();
+                        controllerDescriptor.GetCanonicalActions();
 
                     //We search for our action
                     foreach (ReflectedActionDescriptor actionDescriptor in controllerActions)
@@ -233,33 +233,32 @@ namespace RecipiesWebFormApp
                         {
                             //If the action returns JsonResult then we have an AJAX request
                             if (actionDescriptor.MethodInfo.ReturnType
-                            .Equals(typeof(JsonResult)))
+                                .Equals(typeof (JsonResult)))
                                 return true;
                         }
                     }
                 }
                 catch
                 {
-
                 }
             }
 
             return isAjaxRequest;
         }
-   
     }
-    
+
     public class CookieAwareWebClient : WebClient
     {
         public CookieAwareWebClient()
         {
             CookieContainer = new CookieContainer();
         }
+
         public CookieContainer CookieContainer { get; private set; }
 
         protected override WebRequest GetWebRequest(Uri address)
         {
-            var request = (HttpWebRequest)base.GetWebRequest(address);
+            var request = (HttpWebRequest) base.GetWebRequest(address);
             request.CookieContainer = CookieContainer;
             return request;
         }
