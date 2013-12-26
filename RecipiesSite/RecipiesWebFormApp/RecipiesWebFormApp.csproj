@@ -468,6 +468,7 @@
     <Compile Include="Controllers\Production\ProductIngredientController.cs" />
     <Compile Include="Controllers\Production\RecipeIngredientController.cs" />
     <Compile Include="Controllers\Production\RecipieController.cs" />
+    <Compile Include="Controllers\Production\ProductWasteController.cs" />
     <Compile Include="Controllers\Sales\SalesOrderDetailController.cs" />
     <Compile Include="Controllers\Sales\SalesOrderHeaderController.cs" />
     <Compile Include="Controllers\Shared\DownloadController.cs" />
@@ -559,6 +560,9 @@
     <Compile Include="Models\Chart\RecipeByGP.cs" />
     <Compile Include="Models\Chart\TotalPoByVendor.cs" />
     <Compile Include="Models\Chart\VendorPurchasesByWeek.cs" />
+    <Compile Include="Models\Production\RecipeWasteViewModel.cs" />
+    <Compile Include="Models\Production\ProductWasteViewModel.cs" />
+    <Compile Include="Models\Production\WasteViewModel.cs" />
     <Compile Include="Models\Production\RecipeIngredientViewModel.cs" />
     <Compile Include="Models\Production\ProductIngredientViewModel.cs" />
     <Compile Include="Models\Production\RecipeViewModel.cs" />
@@ -814,6 +818,7 @@
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Error\Index.cshtml" />
     <Content Include="Views\Error\InternalServerError.cshtml" />
+    <Content Include="Views\ProductWaste\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
