@@ -35,13 +35,43 @@ namespace InventoryManagementMVC.Controllers
             //string reportHtml = File.ReadAllText("ReportHtml.txt", Encoding.GetEncoding("Windows-1251"));
 
             int startIndex = completeGridXml.IndexOf("<tbody>");
-            int endIndex = completeGridXml.IndexOf("</tbody>");
+            int endIndex = completeGridXml.LastIndexOf("</tbody>");
 
             int len = endIndex - startIndex + "</tbody>".Length;
 
-            string xml = completeGridXml.Substring(startIndex, len).Replace("&nbsp;", "");
+            string xml = completeGridXml.Substring(startIndex, len);
+            xml = xml.Replace("&nbsp;", "");
+            //xml = xml.Replace("<colgroup>", "");
+            //xml = xml.Replace("</colgroup>", "");
+            //xml = xml.Replace("<col>", "");
+            //xml = xml.Replace("<col>", "");
+
+            // replace script blocks
+            while (xml.Contains("<colgroup>"))
+            {
+                xml = CutSubstringData(xml, "<colgroup>", "</colgroup>");
+            }
+
+            while (xml.Contains("<script>"))
+            {
+                xml = CutSubstringData(xml, "<script>", "</script>");
+            }
+
             return xml;
         }
+
+        private string CutSubstringData(string text, string startTag, string endTag)
+        {
+            int startIndex = text.IndexOf(startTag);
+            int endIndex = text.IndexOf(endTag);
+            int len = endIndex - startIndex + endTag.Length;
+
+            string textToRemove = text.Substring(startIndex, len);
+            string result = text.Replace(textToRemove, "");
+                
+            return result;
+        }
+
 
         private List<XElement> GetTrsWithDataOnly(string xml)
         {
@@ -170,7 +200,7 @@ namespace InventoryManagementMVC.Controllers
             lastFileContentResult = File(output.ToArray(), //The binary data of the XLS file
                 "application/vnd.ms-excel", //MIME type of Excel files
                 "GridExcelExport.xls");
-                //Suggested file name in the "Save as" dialog which will be displayed to the end user
+            //Suggested file name in the "Save as" dialog which will be displayed to the end user
         }
 
         public ActionResult DownloadPurchaseOrder(int? purchaseOrderHeaderId)
