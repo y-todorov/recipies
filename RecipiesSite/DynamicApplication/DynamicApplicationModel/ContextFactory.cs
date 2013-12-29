@@ -16,11 +16,14 @@ namespace RecipiesModelNS
             else
             {
                 RecipiesEntities context = httpContext.Items[contextKey] as RecipiesEntities;
+                //RecipiesEntities context = httpContext.Application[contextKey] as RecipiesEntities; // This doesn't work 
+                
 
                 if (context == null)
                 {
                     context = new RecipiesEntities(false);
                     httpContext.Items[contextKey] = context;
+                    //httpContext.Application[contextKey] = context; // This doesn't work 
                 }
 
                 return context;

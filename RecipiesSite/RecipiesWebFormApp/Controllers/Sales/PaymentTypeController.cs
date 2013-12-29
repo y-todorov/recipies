@@ -26,30 +26,26 @@ namespace InventoryManagementMVC.Controllers.Purchasing
 
         public ActionResult Read([DataSourceRequest] DataSourceRequest request)
         {
-            List<PaymentTypeViewModel> purchaseOrderHeaderViewModels =
-                ContextFactory.Current.PaymentTypes
-                    .ToList().Select
-                    (pod =>
-                        PaymentTypeViewModel.ConvertFromPaymentTypeEntity(pod,
-                            new PaymentTypeViewModel())).ToList();
-            return Json(purchaseOrderHeaderViewModels.ToDataSourceResult(request));
+            var result = base.ReadBase(request, typeof(PaymentTypeViewModel), typeof(PaymentType));
+            return result;
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Create([DataSourceRequest] DataSourceRequest request,
             [Bind(Prefix = "models")] IEnumerable<PaymentTypeViewModel> paymentTypes)
         {
+            
             if (paymentTypes != null && ModelState.IsValid)
             {
                 foreach (PaymentTypeViewModel paymentTypeViewModel in paymentTypes)
                 {
-                    PaymentType newEntity =
-                        PaymentTypeViewModel.ConvertToPaymentTypeEntity(paymentTypeViewModel,
-                            new PaymentType());
+                    PaymentType newEntity = paymentTypeViewModel.ConvertToEntity(new PaymentType());
+                      
                     ContextFactory.Current.PaymentTypes.Add(newEntity);
                     ContextFactory.Current.SaveChanges();
 
-                    PaymentTypeViewModel.ConvertFromPaymentTypeEntity(newEntity, paymentTypeViewModel);
+                    paymentTypeViewModel.ConvertFromEntity(newEntity);
+                    //PaymentTypeViewModel.ConvertFromPaymentTypeEntity(newEntity, paymentTypeViewModel);
                 }
             }
 
@@ -68,11 +64,13 @@ namespace InventoryManagementMVC.Controllers.Purchasing
                         ContextFactory.Current.PaymentTypes.FirstOrDefault(
                             c => c.PaymentTypeId == paymentType.PaymentTypeId);
 
-                    PaymentTypeViewModel.ConvertToPaymentTypeEntity(paymentType, entity);
+                    paymentType.ConvertToEntity(entity);
+                    //PaymentTypeViewModel.ConvertToPaymentTypeEntity(paymentType, entity);
 
                     ContextFactory.Current.SaveChanges();
 
-                    PaymentTypeViewModel.ConvertFromPaymentTypeEntity(entity, paymentType);
+                    paymentType.ConvertFromEntity(entity);
+                    //PaymentTypeViewModel.ConvertFromPaymentTypeEntity(entity, paymentType);
                 }
             }
 

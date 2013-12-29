@@ -1,6 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
+using InventoryManagementMVC.Models;
+using Kendo.Mvc.Extensions;
+using Kendo.Mvc.UI;
 using RecipiesModelNS;
 using System;
 using System.Globalization;
@@ -37,7 +41,7 @@ namespace InventoryManagementMVC.Helpers
 
         public static string GetWeekStringFromWeekNumber(int weekNumber)
         {
-            DateTime time = (new DateTime(2013, 1, 1)).AddDays(7*weekNumber); // assume we are in 2013
+            DateTime time = (new DateTime(2013, 1, 1)).AddDays(7 * weekNumber); // assume we are in 2013
 
             DateTime lastMonday = GetLastMonday(time);
             DateTime nextSunday = GetNextSunday(time);
@@ -111,5 +115,7 @@ namespace InventoryManagementMVC.Helpers
             viewData["products"] = products;
             viewData["defaultProduct"] = products.FirstOrDefault();
         }
+
+
     }
 }

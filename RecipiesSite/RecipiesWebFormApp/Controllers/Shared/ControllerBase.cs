@@ -1,7 +1,11 @@
-﻿using Autofac;
+﻿using System.Data.Entity;
+using Autofac;
 using DevTrends.MvcDonutCaching;
 using DevTrends.MvcDonutCaching.Annotations;
+using InventoryManagementMVC.Models;
+using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
+using RecipiesModelNS;
 using RecipiesWebFormApp.Caching;
 using System;
 using System.Collections.Generic;
@@ -10,6 +14,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
+using System.Collections;
 
 namespace InventoryManagementMVC.Controllers
 {
@@ -32,40 +37,23 @@ namespace InventoryManagementMVC.Controllers
             return jr;
         }
 
-        public long ActionMilliseconds { get; set; }
-
-        public long ResultMilliseconds { get; set; }
-
-        private Stopwatch stopwatch = new Stopwatch();
-
-        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        public ActionResult ReadBase([DataSourceRequest] DataSourceRequest request, Type modelType, Type entityType)
         {
-            //stopwatch.Start();
-            base.OnActionExecuting(filterContext);
+            DbSet dbset = ContextFactory.Current.Set(entityType);
+            dbset.Load();
+            var en = dbset.Local.GetEnumerator();
+
+            List<object> result = new List<object>();
+            while (en.MoveNext())
+            {
+                dynamic newModel = Activator.CreateInstance(modelType);
+                dynamic newEntity = Activator.CreateInstance(entityType);
+                newEntity = en.Current;
+                var modelToAdd = newModel.ConvertFromEntity(newEntity);
+                result.Add(modelToAdd);
+            }
+            return Json(result.ToDataSourceResult(request));
         }
 
-        protected override void OnActionExecuted(ActionExecutedContext filterContext)
-        {
-            //base.OnActionExecuted(filterContext);
-            //stopwatch.Stop();
-            // ActionMilliseconds = stopwatch.ElapsedMilliseconds;
-            //ViewData.Add("ActionMilliseconds", ActionMilliseconds);
-            stopwatch.Reset();
-        }
-
-        protected override void OnResultExecuting(ResultExecutingContext filterContext)
-        {
-            // stopwatch.Start();
-            base.OnResultExecuting(filterContext);
-        }
-
-        protected override void OnResultExecuted(ResultExecutedContext filterContext)
-        {
-            //base.OnResultExecuted(filterContext);
-            //stopwatch.Stop();
-            //ResultMilliseconds = stopwatch.ElapsedMilliseconds;
-            //ViewData.Add("ResultMilliseconds", ResultMilliseconds);
-            stopwatch.Reset();
-        }
     }
 }

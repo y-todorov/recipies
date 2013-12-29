@@ -22,27 +22,22 @@ namespace InventoryManagementMVC.Models
 
         public string ModifiedByUser { get; set; }
 
-        public List<PurchaseOrderDetailViewModel> PurchaseOrderDetailViewModels { get; set; }
-
-
-        public static PaymentTypeViewModel ConvertFromPaymentTypeEntity(PaymentType entity,
-            PaymentTypeViewModel model)
+        public PaymentTypeViewModel ConvertFromEntity(PaymentType entity)
         {
-            model.PaymentTypeId = entity.PaymentTypeId;
-            model.Name = entity.Name;
-            model.ModifiedByUser = entity.ModifiedByUser;
-            model.ModifiedDate = entity.ModifiedDate;
+            this.PaymentTypeId = entity.PaymentTypeId;
+            this.Name = entity.Name;
+            this.ModifiedByUser = entity.ModifiedByUser;
+            this.ModifiedDate = entity.ModifiedDate;
 
-            return model;
+            return this;
         }
-
-        public static PaymentType ConvertToPaymentTypeEntity(PaymentTypeViewModel model,
-            PaymentType entity)
+     
+        public PaymentType ConvertToEntity(PaymentType entity)
         {
-            entity.PaymentTypeId = model.PaymentTypeId;
-            entity.Name = model.Name;
-            entity.ModifiedByUser = model.ModifiedByUser;
-            entity.ModifiedDate = model.ModifiedDate;
+            entity.PaymentTypeId = this.PaymentTypeId;
+            entity.Name = this.Name;
+            entity.ModifiedByUser = this.ModifiedByUser;
+            entity.ModifiedDate = this.ModifiedDate;
 
             return entity;
         }

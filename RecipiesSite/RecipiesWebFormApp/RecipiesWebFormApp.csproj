@@ -579,6 +579,7 @@
     <Compile Include="Models\Sales\SalesOrderDetailViewModel.cs" />
     <Compile Include="Models\Sales\PaymentTypeViewModel.cs" />
     <Compile Include="Models\Sales\SalesOrderHeaderViewModel.cs" />
+    <Compile Include="Models\Shared\ViewModelBase.cs" />
     <Compile Include="Production\ProductInventories.aspx.cs">
       <DependentUpon>ProductInventories.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
