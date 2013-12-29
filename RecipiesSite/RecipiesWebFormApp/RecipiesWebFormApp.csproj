@@ -470,6 +470,7 @@
     <Compile Include="Controllers\Production\RecipieController.cs" />
     <Compile Include="Controllers\Production\ProductWasteController.cs" />
     <Compile Include="Controllers\Sales\SalesOrderDetailController.cs" />
+    <Compile Include="Controllers\Sales\PaymentTypeController.cs" />
     <Compile Include="Controllers\Sales\SalesOrderHeaderController.cs" />
     <Compile Include="Controllers\Shared\DownloadController.cs" />
     <Compile Include="Controllers\Shared\ErrorController.cs" />
@@ -576,6 +577,7 @@
     <Compile Include="Models\Purchasing\PurchaseOrderDetailViewModel.cs" />
     <Compile Include="Models\Purchasing\PurchaseOrderHeaderViewModel.cs" />
     <Compile Include="Models\Sales\SalesOrderDetailViewModel.cs" />
+    <Compile Include="Models\Sales\PaymentTypeViewModel.cs" />
     <Compile Include="Models\Sales\SalesOrderHeaderViewModel.cs" />
     <Compile Include="Production\ProductInventories.aspx.cs">
       <DependentUpon>ProductInventories.aspx</DependentUpon>
@@ -819,6 +821,7 @@
     <Content Include="Views\Error\Index.cshtml" />
     <Content Include="Views\Error\InternalServerError.cshtml" />
     <Content Include="Views\ProductWaste\Index.cshtml" />
+    <Content Include="Views\PaymentType\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

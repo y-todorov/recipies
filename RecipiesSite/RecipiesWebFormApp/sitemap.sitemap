@@ -25,6 +25,7 @@
     </siteMapNode>
     <siteMapNode title="Sales">
       <siteMapNode controller="SalesOrderHeader" action="index" title="Sales orders" />
+      <siteMapNode controller="PaymentType" action="index" title="Payment types" />
     </siteMapNode>
     <siteMapNode title="Purchasing">
       <siteMapNode controller="PurchaseOrderHeader" action="index" title="Purchase orders" />

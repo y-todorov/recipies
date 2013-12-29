@@ -72,7 +72,7 @@ namespace InventoryManagementMVC.Controllers
             return result;
         }
 
-
+        // make these two one monethod !
         private List<XElement> GetTrsWithDataOnly(string xml)
         {
             List<XElement> result = new List<XElement>();
