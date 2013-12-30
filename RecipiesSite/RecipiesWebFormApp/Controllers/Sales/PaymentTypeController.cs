@@ -81,15 +81,58 @@ namespace InventoryManagementMVC.Controllers.Purchasing
         public ActionResult Destroy([DataSourceRequest] DataSourceRequest request,
             [Bind(Prefix = "models")] IEnumerable<PaymentTypeViewModel> paymentTypes)
         {
-            foreach (PaymentTypeViewModel paymentType in paymentTypes)
-            {
-                PaymentType entity =
-                    ContextFactory.Current.PaymentTypes.FirstOrDefault(
-                        c => c.PaymentTypeId == paymentType.PaymentTypeId);
-                ContextFactory.Current.PaymentTypes.Remove(entity);
+            var result = base.DestroyBase(request, paymentTypes, typeof(PaymentTypeViewModel), typeof(PaymentType));
+            return result;
 
-                ContextFactory.Current.SaveChanges();
-            }
+            //Type modelType = typeof(PaymentTypeViewModel);
+            // Type entityType = typeof(PaymentType);
+
+            //DbSet dbset = ContextFactory.Current.Set(entityType);
+            //dbset.Load();
+            //var en = dbset.Local.GetEnumerator();
+
+            ////dbset.Remove()
+
+            //List<object> result = new List<object>();
+            //while (en.MoveNext())
+            //{
+            //    dynamic newModel = Activator.CreateInstance(modelType);
+            //    dynamic newEntity = Activator.CreateInstance(entityType);
+            //    newEntity = en.Current;
+            //    var modelToAdd = newModel.ConvertFromEntity(newEntity);
+            //    if (paymentTypes.Any(m => m == modelToAdd))
+            //    {
+            //        result.Add(en.Current);
+            //    }
+            //}
+
+            //foreach (var o in result)
+            //{
+            //    dbset.Remove(o);
+            //    ContextFactory.Current.SaveChanges();
+            //}
+
+
+
+            //foreach (PaymentTypeViewModel paymentType in paymentTypes)
+            //{
+            //    foreach (object pt in result)
+            //    {
+            //        if (paymentType.ConvertToEntity((PaymentType)pt) == pt)
+            //        {
+
+            //            dbset.Remove(pt);
+            //        }
+            //    }
+                
+
+            //    //PaymentType entity =
+            //    //    ContextFactory.Current.PaymentTypes.FirstOrDefault(
+            //    //        c => c.PaymentTypeId == paymentType.PaymentTypeId);
+            //    //ContextFactory.Current.PaymentTypes.Remove(entity);
+
+            //    ContextFactory.Current.SaveChanges();
+            //}
 
             return Json(paymentTypes.ToDataSourceResult(request, ModelState));
         }

@@ -55,5 +55,35 @@ namespace InventoryManagementMVC.Controllers
             return Json(result.ToDataSourceResult(request));
         }
 
+        public ActionResult DestroyBase([DataSourceRequest] DataSourceRequest request,
+            [Bind(Prefix = "models")] IEnumerable<PaymentTypeViewModel> paymentTypes, Type modelType, Type entityType)
+        {
+            DbSet dbset = ContextFactory.Current.Set(entityType);
+            dbset.Load();
+            var en = dbset.Local.GetEnumerator();
+            
+            List<object> result = new List<object>();
+            while (en.MoveNext())
+            {
+                dynamic newModel = Activator.CreateInstance(modelType);
+                dynamic newEntity = Activator.CreateInstance(entityType);
+                newEntity = en.Current;
+                var modelToAdd = newModel.ConvertFromEntity(newEntity);
+                if (paymentTypes.Any(m => m == modelToAdd))
+                {
+                    result.Add(en.Current);
+                }
+            }
+
+            foreach (var o in result)
+            {
+                dbset.Remove(o);
+                // Do not call  ContextFactory.Current.SaveChanges(); here !!! It will delete only the first element!
+            } 
+            ContextFactory.Current.SaveChanges();
+
+            return Json(paymentTypes.ToDataSourceResult(request, ModelState));
+        }
+    
     }
 }
