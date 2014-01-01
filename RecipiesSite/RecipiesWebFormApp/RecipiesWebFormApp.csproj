@@ -474,7 +474,6 @@
     <Compile Include="Controllers\Sales\SalesOrderHeaderController.cs" />
     <Compile Include="Controllers\Shared\DownloadController.cs" />
     <Compile Include="Controllers\Shared\ErrorController.cs" />
-    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\Production\CategoryController.cs" />
     <Compile Include="Controllers\Production\ProductController.cs" />
     <Compile Include="Controllers\Production\ProductInventoryHeaderController.cs" />

@@ -16,45 +16,24 @@ namespace InventoryManagementMVC.Models
 
         public string ModifiedByUser { get; set; }
 
-        public static CategoryViewModel ConvertFromCategoryEntity(ProductCategory newOrExistingCategoryEntity,
-            CategoryViewModel categoryViewModel)
+        public CategoryViewModel ConvertFromEntity(ProductCategory entity)
         {
-            if (newOrExistingCategoryEntity == null)
-            {
-                throw new ApplicationException(
-                    "newOrExistingCategoryEntity is null in method ConvertFromCategoryEntity!");
-            }
-            if (categoryViewModel == null)
-            {
-                throw new ApplicationException("categoryViewModel is null in method ConvertFromCategoryEntity!");
-            }
+            CategoryId = entity.CategoryId;
+            Name = entity.Name;
+            ModifiedDate = entity.ModifiedDate;
+            ModifiedByUser = entity.ModifiedByUser;
 
-            categoryViewModel.CategoryId = newOrExistingCategoryEntity.CategoryId;
-            categoryViewModel.Name = newOrExistingCategoryEntity.Name;
-            categoryViewModel.ModifiedDate = newOrExistingCategoryEntity.ModifiedDate;
-            categoryViewModel.ModifiedByUser = newOrExistingCategoryEntity.ModifiedByUser;
-
-            return categoryViewModel;
+            return this;
         }
 
-        public static ProductCategory ConvertToCategoryEntity(CategoryViewModel categoryViewModel,
-            ProductCategory newOrExistingCategoryEntity)
+        public ProductCategory ConvertToEntity(ProductCategory entity)
         {
-            if (newOrExistingCategoryEntity == null)
-            {
-                throw new ApplicationException("newOrExistingCategoryEntity is null in method ConvertToCategoryEntity!");
-            }
-            if (categoryViewModel == null)
-            {
-                throw new ApplicationException("categoryViewModel is null in method ConvertToCategoryEntity!");
-            }
+            entity.CategoryId = CategoryId;
+            entity.Name = Name;
+            entity.ModifiedDate = ModifiedDate;
+            entity.ModifiedByUser = ModifiedByUser;
 
-            newOrExistingCategoryEntity.CategoryId = categoryViewModel.CategoryId;
-            newOrExistingCategoryEntity.Name = categoryViewModel.Name;
-            newOrExistingCategoryEntity.ModifiedDate = categoryViewModel.ModifiedDate;
-            newOrExistingCategoryEntity.ModifiedByUser = categoryViewModel.ModifiedByUser;
-
-            return newOrExistingCategoryEntity;
+            return entity;
         }
     }
 }

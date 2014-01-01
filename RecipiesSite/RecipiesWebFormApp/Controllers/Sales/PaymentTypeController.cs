@@ -27,7 +27,7 @@ namespace InventoryManagementMVC.Controllers.Purchasing
 
         public ActionResult Read([DataSourceRequest] DataSourceRequest request)
         {
-            var result = ReadBase(request, typeof(PaymentTypeViewModel), typeof(PaymentType));
+            var result = ReadBase(request, typeof(PaymentTypeViewModel), typeof(PaymentType), ContextFactory.Current.PaymentTypes.ToList());
             return result;
         }
 

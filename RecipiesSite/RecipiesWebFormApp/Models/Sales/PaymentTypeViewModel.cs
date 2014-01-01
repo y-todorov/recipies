@@ -24,20 +24,20 @@ namespace InventoryManagementMVC.Models
 
         public PaymentTypeViewModel ConvertFromEntity(PaymentType entity)
         {
-            this.PaymentTypeId = entity.PaymentTypeId;
-            this.Name = entity.Name;
-            this.ModifiedByUser = entity.ModifiedByUser;
-            this.ModifiedDate = entity.ModifiedDate;
+            PaymentTypeId = entity.PaymentTypeId;
+            Name = entity.Name;
+            ModifiedByUser = entity.ModifiedByUser;
+            ModifiedDate = entity.ModifiedDate;
 
             return this;
         }
      
         public PaymentType ConvertToEntity(PaymentType entity)
         {
-            entity.PaymentTypeId = this.PaymentTypeId;
-            entity.Name = this.Name;
-            entity.ModifiedByUser = this.ModifiedByUser;
-            entity.ModifiedDate = this.ModifiedDate;
+            entity.PaymentTypeId = PaymentTypeId;
+            entity.Name = Name;
+            entity.ModifiedByUser = ModifiedByUser;
+            entity.ModifiedDate = ModifiedDate;
 
             return entity;
         }

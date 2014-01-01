@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using InventoryManagementMVC.Models;
 using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
 using RecipiesModelNS;
+using Kendo.Mvc;
 
 namespace InventoryManagementMVC.Controllers
 {
@@ -17,17 +19,14 @@ namespace InventoryManagementMVC.Controllers
 
         public ActionResult Read([DataSourceRequest] DataSourceRequest request)
         {
-            List<CategoryViewModel> categoryViewModels = ContextFactory.Current.ProductCategories.ToList().Select
-                (c => CategoryViewModel.ConvertFromCategoryEntity(c, new CategoryViewModel())).ToList();
-            return Json(categoryViewModels.ToDataSourceResult(request));
+            var result = ReadBase(request, typeof(CategoryViewModel), typeof(ProductCategory), ContextFactory.Current.ProductCategories.ToList());
+            return result;
         }
 
         public ActionResult ReadProducts(int categoryId, [DataSourceRequest] DataSourceRequest request)
         {
-            List<Product> allProducts = ContextFactory.Current.Products.Where(p => p.CategoryId == categoryId).ToList();
-            List<ProductViewModel> productViewModels =
-                allProducts.Select(p => ProductViewModel.ConvertFromProductEntity(p, new ProductViewModel())).ToList();
-            return Json(productViewModels.ToDataSourceResult(request));
+            var result = ReadBase(request, typeof(ProductViewModel), typeof(Product), ContextFactory.Current.Products.Where(p => p.CategoryId == categoryId).ToList());
+            return result;
         }
 
 
@@ -35,61 +34,24 @@ namespace InventoryManagementMVC.Controllers
         public ActionResult Create([DataSourceRequest] DataSourceRequest request,
             [Bind(Prefix = "models")] IEnumerable<CategoryViewModel> categories)
         {
-            if (categories != null && ModelState.IsValid)
-            {
-                foreach (CategoryViewModel categoryViewModel in categories)
-                {
-                    ProductCategory newCategory = CategoryViewModel.ConvertToCategoryEntity(categoryViewModel,
-                        new ProductCategory());
-                    ContextFactory.Current.ProductCategories.Add(newCategory);
-                    ContextFactory.Current.SaveChanges();
-                    CategoryViewModel.ConvertFromCategoryEntity(newCategory, categoryViewModel);
-                }
-            }
-
-            return Json(categories.ToDataSourceResult(request, ModelState));
+            var result = CreateBase(request, categories, typeof(CategoryViewModel), typeof(ProductCategory));
+            return result;
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Update([DataSourceRequest] DataSourceRequest request,
             [Bind(Prefix = "models")] IEnumerable<CategoryViewModel> categories)
         {
-            if (categories != null && ModelState.IsValid)
-            {
-                foreach (CategoryViewModel categoryViewModel in categories)
-                {
-                    ProductCategory categoryEntity =
-                        ContextFactory.Current.ProductCategories.FirstOrDefault(
-                            c => c.CategoryId == categoryViewModel.CategoryId);
-
-                    CategoryViewModel.ConvertToCategoryEntity(categoryViewModel, categoryEntity);
-
-                    ContextFactory.Current.SaveChanges();
-
-                    CategoryViewModel.ConvertFromCategoryEntity(categoryEntity, categoryViewModel);
-                }
-            }
-
-            return Json(categories.ToDataSourceResult(request, ModelState));
+            var result = UpdateBase(request, categories, typeof(CategoryViewModel), typeof(ProductCategory));
+            return result;
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Destroy([DataSourceRequest] DataSourceRequest request,
             [Bind(Prefix = "models")] IEnumerable<CategoryViewModel> categories)
         {
-            if (categories.Any())
-            {
-                foreach (CategoryViewModel category in categories)
-                {
-                    ProductCategory productCategory =
-                        ContextFactory.Current.ProductCategories.FirstOrDefault(c => c.CategoryId == category.CategoryId);
-                    ContextFactory.Current.ProductCategories.Remove(productCategory);
-
-                    ContextFactory.Current.SaveChanges();
-                }
-            }
-
-            return Json(categories.ToDataSourceResult(request, ModelState));
+            var result = DestroyBase(request, categories, typeof(CategoryViewModel), typeof(ProductCategory));
+            return result;
         }
     }
 }

@@ -22,91 +22,38 @@ namespace InventoryManagementMVC.Controllers
 
         public ActionResult Read([DataSourceRequest] DataSourceRequest request)
         {
-            List<Product> allProducts = ContextFactory.Current.Products.ToList();
-            List<ProductViewModel> productViewModels =
-                allProducts.Select(p => ProductViewModel.ConvertFromProductEntity(p, new ProductViewModel())).ToList();
-            return Json(productViewModels.ToDataSourceResult(request));
+            var result = ReadBase(request, typeof(ProductViewModel), typeof(Product), ContextFactory.Current.Products.ToList());
+            return result;
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Create([DataSourceRequest] DataSourceRequest request,
             [Bind(Prefix = "models")] IEnumerable<ProductViewModel> products)
         {
-            //List<ProductViewModel> results = new List<ProductViewModel>();
-
-            if (products != null && ModelState.IsValid)
-            {
-                foreach (ProductViewModel productViewModel in products)
-                {
-                    Product newProduct = ProductViewModel.ConvertToProductEntity(productViewModel, new Product());
-                    ContextFactory.Current.Products.Add(newProduct);
-                    ContextFactory.Current.SaveChanges();
-
-                    ProductViewModel.ConvertFromProductEntity(newProduct, productViewModel);
-                    //results.Add(productViewModel);
-                }
-            }
-
-            return Json(products.ToDataSourceResult(request, ModelState));
+            var result = CreateBase(request, products, typeof(ProductViewModel), typeof(Product));
+            return result;
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Update([DataSourceRequest] DataSourceRequest request,
             [Bind(Prefix = "models")] IEnumerable<ProductViewModel> products)
         {
-            if (products != null && ModelState.IsValid)
-            {
-                foreach (ProductViewModel productViewModel in products)
-                {
-                    Product product =
-                        ContextFactory.Current.Products.FirstOrDefault(p => p.ProductId == productViewModel.ProductId);
-                    ProductViewModel.ConvertToProductEntity(productViewModel, product);
-                    ContextFactory.Current.SaveChanges();
-
-                    ProductViewModel.ConvertFromProductEntity(product, productViewModel);
-                }
-            }
-
-            return Json(products.ToDataSourceResult(request, ModelState));
+            var result = UpdateBase(request, products, typeof(ProductViewModel), typeof(Product));
+            return result;
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Destroy([DataSourceRequest] DataSourceRequest request,
             [Bind(Prefix = "models")] IEnumerable<ProductViewModel> products)
         {
-            if (products.Any())
-            {
-                foreach (ProductViewModel productViewModel in products)
-                {
-                    Product product =
-                        ContextFactory.Current.Products.FirstOrDefault(p => p.ProductId == productViewModel.ProductId);
-                    ContextFactory.Current.Products.Remove(product);
-
-                    ContextFactory.Current.SaveChanges();
-                }
-            }
-
-            return Json(products.ToDataSourceResult(request, ModelState));
+            var result = DestroyBase(request, products, typeof(ProductViewModel), typeof(Product));
+            return result;
         }
 
         public ActionResult ReadProductRecipies(int? productId, [DataSourceRequest] DataSourceRequest request)
         {
             List<Recipe> allRecipes = ContextFactory.Current.Recipes//.ToList();
                 .Where(r => r.ProductIngredients.Any(pi => pi.ProductId == productId)).ToList();
-
-            //List<Recipe> newRecipies = new List<Recipe>();
-
-            // This is too slow!!!
-
-            //foreach (Recipe recipe in allRecipes)
-            //{
-            //    Dictionary<int, double> dic = new Dictionary<int, double>();
-            //    Recipe.GetProductsWithQuantities(recipe.RecipeId, dic);
-            //    if (dic.ContainsKey(productId.GetValueOrDefault()))
-            //    {
-            //        newRecipies.Add(recipe);
-            //    }
-            //}
 
             List<RecipeViewModel> recipeModels =
                 allRecipes.Select(r => RecipeViewModel.ConvertFromRecipeEntity(r, new RecipeViewModel())).ToList();

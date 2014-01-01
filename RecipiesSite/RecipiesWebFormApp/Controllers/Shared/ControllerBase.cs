@@ -40,22 +40,38 @@ namespace InventoryManagementMVC.Controllers
             return jr;
         }
 
-        public ActionResult ReadBase([DataSourceRequest] DataSourceRequest request, Type modelType, Type entityType)
+        public ActionResult ReadBase([DataSourceRequest] DataSourceRequest request, Type modelType, Type entityType, IEnumerable<object> entities)
         {
             DbSet dbset = ContextFactory.Current.Set(entityType);
             dbset.Load();
             var en = dbset.Local.GetEnumerator();
 
             List<object> result = new List<object>();
-            while (en.MoveNext())
+
+            foreach (object entity in entities)
             {
                 dynamic newModel = Activator.CreateInstance(modelType);
                 dynamic newEntity = Activator.CreateInstance(entityType);
-                newEntity = en.Current;
+                newEntity = entity;
                 var modelToAdd = newModel.ConvertFromEntity(newEntity);
                 result.Add(modelToAdd);
             }
+
             return Json(result.ToDataSourceResult(request));
+            //DbSet dbset = ContextFactory.Current.Set(entityType);
+            //dbset.Load();
+            //var en = dbset.Local.GetEnumerator();
+
+            //List<object> result = new List<object>();
+            //while (en.MoveNext())
+            //{
+            //    dynamic newModel = Activator.CreateInstance(modelType);
+            //    dynamic newEntity = Activator.CreateInstance(entityType);
+            //    newEntity = en.Current;
+            //    var modelToAdd = newModel.ConvertFromEntity(newEntity);
+            //    result.Add(modelToAdd);
+            //}
+            //return Json(result.ToDataSourceResult(request));
         }
 
         public ActionResult CreateBase([DataSourceRequest] DataSourceRequest request, [Bind(Prefix = "models")] IEnumerable<object> models, Type modelType, Type entityType)
