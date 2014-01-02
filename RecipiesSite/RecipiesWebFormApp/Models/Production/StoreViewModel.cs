@@ -19,25 +19,24 @@ namespace RecipiesModelNS
 
         public string ModifiedByUser { get; set; }
 
-        public static StoreViewModel ConvertFromStoreEntity(Store newOrExistingStoreEntity,
-            StoreViewModel storeViewModel)
+        public StoreViewModel ConvertFromEntity(Store entity)
         {
-            storeViewModel.StoreId = newOrExistingStoreEntity.StoreId;
-            storeViewModel.Name = newOrExistingStoreEntity.Name;
-            storeViewModel.ModifiedDate = newOrExistingStoreEntity.ModifiedDate;
-            storeViewModel.ModifiedByUser = newOrExistingStoreEntity.ModifiedByUser;
+            StoreId = entity.StoreId;
+            Name = entity.Name;
+            ModifiedDate = entity.ModifiedDate;
+            ModifiedByUser = entity.ModifiedByUser;
 
-            return storeViewModel;
+            return this;
         }
 
-        public static Store ConvertToStoreEntity(StoreViewModel storeViewModel, Store newOrExistingStoreEntity)
+        public Store ConvertToEntity(Store entity)
         {
-            newOrExistingStoreEntity.StoreId = storeViewModel.StoreId;
-            newOrExistingStoreEntity.Name = storeViewModel.Name;
-            newOrExistingStoreEntity.ModifiedDate = storeViewModel.ModifiedDate;
-            newOrExistingStoreEntity.ModifiedByUser = storeViewModel.ModifiedByUser;
+            entity.StoreId = StoreId;
+            entity.Name = Name;
+            entity.ModifiedDate = ModifiedDate;
+            entity.ModifiedByUser = ModifiedByUser;
 
-            return newOrExistingStoreEntity;
+            return entity;
         }
     }
 }

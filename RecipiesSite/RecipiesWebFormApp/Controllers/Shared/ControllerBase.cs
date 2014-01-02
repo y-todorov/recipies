@@ -203,29 +203,31 @@ namespace InventoryManagementMVC.Controllers
         }
 
         private List<object> GetEntitiesFromModels(IEnumerable<object> models, Type modelType, Type entityType)
-        {
+        { 
             List<object> entities = new List<object>();
-
-            var props = modelType.GetProperties();
-            PropertyInfo keyProperty = null;
-            foreach (var propertyInfo in props)
+            if (models.Any())
             {
-                KeyAttribute keyAttribute =
-                       propertyInfo.GetCustomAttributes<KeyAttribute>().FirstOrDefault();
-                if (keyAttribute != null)
+                var props = modelType.GetProperties();
+                PropertyInfo keyProperty = null;
+                foreach (var propertyInfo in props)
                 {
-                    keyProperty = propertyInfo;
-                    break;
+                    KeyAttribute keyAttribute =
+                        propertyInfo.GetCustomAttributes<KeyAttribute>().FirstOrDefault();
+                    if (keyAttribute != null)
+                    {
+                        keyProperty = propertyInfo;
+                        break;
+                    }
                 }
-            }
 
-            DbSet dbset = ContextFactory.Current.Set(entityType);
-            foreach (object model in models)
-            {
-                object key = keyProperty.GetValue(model);
+                DbSet dbset = ContextFactory.Current.Set(entityType);
+                foreach (object model in models)
+                {
+                    object key = keyProperty.GetValue(model);
 
-                object entity = dbset.Find(new[] { key });
-                entities.Add(entity);
+                    object entity = dbset.Find(new[] {key});
+                    entities.Add(entity);
+                }
             }
 
             return entities;
