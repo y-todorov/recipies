@@ -51,44 +51,42 @@ namespace InventoryManagementMVC.Models
 
         public string ModifiedByUser { get; set; }
 
-        public static InventoryViewModel ConvertFromInventoryEntity(Inventory newOrExistingInventoryEntity,
-            InventoryViewModel inventoryViewModel)
+        public InventoryViewModel ConvertFromEntity(Inventory entity)
         {
-            inventoryViewModel.AverageUnitPrice = newOrExistingInventoryEntity.AverageUnitPrice;
-            inventoryViewModel.DeficiencyQuantity = newOrExistingInventoryEntity.DeficiencyQuantity;
-            inventoryViewModel.DeficiencyValue = (decimal?) newOrExistingInventoryEntity.DeficiencyValue;
-            //inventoryViewModel.ForDate = newOrExistingInventoryEntity.ForDate;
-            inventoryViewModel.InventoryId = newOrExistingInventoryEntity.InventoryId;
-            inventoryViewModel.ModifiedByUser = newOrExistingInventoryEntity.ModifiedByUser;
-            inventoryViewModel.ModifiedDate = newOrExistingInventoryEntity.ModifiedDate;
-            inventoryViewModel.QuantityByDocuments = newOrExistingInventoryEntity.QuantityByDocuments;
-            inventoryViewModel.StocktakeQuantity = newOrExistingInventoryEntity.StocktakeQuantity;
-            inventoryViewModel.StocktakeValue = (decimal?) newOrExistingInventoryEntity.StocktakeValue;
-            inventoryViewModel.SurplusQuantity = newOrExistingInventoryEntity.SurplusQuantity;
-            inventoryViewModel.SurplusValue = (decimal?) newOrExistingInventoryEntity.SurplusValue;
-            inventoryViewModel.ValueByDocuments = (decimal?) newOrExistingInventoryEntity.ValueByDocuments;
+            AverageUnitPrice = entity.AverageUnitPrice;
+            DeficiencyQuantity = entity.DeficiencyQuantity;
+            DeficiencyValue = (decimal?) entity.DeficiencyValue;
+            //ForDate = newOrExistingInventoryEntity.ForDate;
+            InventoryId = entity.InventoryId;
+            ModifiedByUser = entity.ModifiedByUser;
+            ModifiedDate = entity.ModifiedDate;
+            QuantityByDocuments = entity.QuantityByDocuments;
+            StocktakeQuantity = entity.StocktakeQuantity;
+            StocktakeValue = (decimal?) entity.StocktakeValue;
+            SurplusQuantity = entity.SurplusQuantity;
+            SurplusValue = (decimal?) entity.SurplusValue;
+            ValueByDocuments = (decimal?) entity.ValueByDocuments;
 
-            return inventoryViewModel;
+            return this;
         }
 
-        public static Inventory ConvertToInventoryEntity(InventoryViewModel inventoryViewModel,
-            Inventory newOrExistingInventoryEntity)
+        public Inventory ConvertToEntity(Inventory entity)
         {
-            newOrExistingInventoryEntity.AverageUnitPrice = inventoryViewModel.AverageUnitPrice;
-            newOrExistingInventoryEntity.DeficiencyQuantity = inventoryViewModel.DeficiencyQuantity;
-            newOrExistingInventoryEntity.DeficiencyValue = (double?) inventoryViewModel.DeficiencyValue;
-            //newOrExistingInventoryEntity.ForDate = inventoryViewModel.ForDate;
-            newOrExistingInventoryEntity.InventoryId = inventoryViewModel.InventoryId;
-            newOrExistingInventoryEntity.ModifiedByUser = inventoryViewModel.ModifiedByUser;
-            newOrExistingInventoryEntity.ModifiedDate = inventoryViewModel.ModifiedDate;
-            newOrExistingInventoryEntity.QuantityByDocuments = inventoryViewModel.QuantityByDocuments;
-            newOrExistingInventoryEntity.StocktakeQuantity = inventoryViewModel.StocktakeQuantity;
-            newOrExistingInventoryEntity.StocktakeValue = (double?) inventoryViewModel.StocktakeValue;
-            newOrExistingInventoryEntity.SurplusQuantity = inventoryViewModel.SurplusQuantity;
-            newOrExistingInventoryEntity.SurplusValue = (double?) inventoryViewModel.SurplusValue;
-            newOrExistingInventoryEntity.ValueByDocuments = (double?) inventoryViewModel.ValueByDocuments;
+            entity.AverageUnitPrice = AverageUnitPrice;
+            entity.DeficiencyQuantity = DeficiencyQuantity;
+            entity.DeficiencyValue = (double?) DeficiencyValue;
+            //newOrExistingInventoryEntity.ForDate = ForDate;
+            entity.InventoryId = InventoryId;
+            entity.ModifiedByUser = ModifiedByUser;
+            entity.ModifiedDate = ModifiedDate;
+            entity.QuantityByDocuments = QuantityByDocuments;
+            entity.StocktakeQuantity = StocktakeQuantity;
+            entity.StocktakeValue = (double?) StocktakeValue;
+            entity.SurplusQuantity = SurplusQuantity;
+            entity.SurplusValue = (double?) SurplusValue;
+            entity.ValueByDocuments = (double?) ValueByDocuments;
 
-            return newOrExistingInventoryEntity;
+            return entity;
         }
     }
 }

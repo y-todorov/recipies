@@ -29,36 +29,35 @@ namespace InventoryManagementMVC.Models
         [Editable(false)]
         public string Category { get; set; }
 
-        public static ProductInventoryViewModel ConvertFromProductInventoryEntity(
-            ProductInventory entity,
-            ProductInventoryViewModel model)
+        public ProductInventoryViewModel ConvertFromEntity(ProductInventory entity)
         {
-            InventoryViewModel.ConvertFromInventoryEntity(entity, model);
-            model.ProductId = entity.ProductId;
-            model.ProductInventoryHeaderId = entity.ProductInventoryHeaderId;
+            base.ConvertFromEntity(entity);
+            //InventoryViewModel.ConvertFromInventoryEntity(entity, model);
+            ProductId = entity.ProductId;
+            ProductInventoryHeaderId = entity.ProductInventoryHeaderId;
             if (entity.Product != null && entity.Product.ProductCategory != null)
             {
-                model.Category = entity.Product.ProductCategory.Name;
+                Category = entity.Product.ProductCategory.Name;
             }
             if (entity.Product != null && entity.Product.UnitMeasure != null)
             {
-                model.UnitMeasure = entity.Product.UnitMeasure.Name;
+                UnitMeasure = entity.Product.UnitMeasure.Name;
             }
 
             if (entity.ProductInventoryHeader != null)
             {
-                model.InventoryHeaderForDate = entity.ProductInventoryHeader.ForDate;
+                InventoryHeaderForDate = entity.ProductInventoryHeader.ForDate;
             }
 
-            return model;
+            return this;
         }
 
-        public static ProductInventory ConvertToProductInventoryEntity(
-            ProductInventoryViewModel model, ProductInventory entity)
+        public ProductInventory ConvertToEntity(ProductInventory entity)
         {
-            InventoryViewModel.ConvertToInventoryEntity(model, entity);
-            entity.ProductId = model.ProductId;
-            entity.ProductInventoryHeaderId = model.ProductInventoryHeaderId;
+            base.ConvertToEntity(entity);
+            //InventoryViewModel.ConvertToInventoryEntity(model, entity);
+            entity.ProductId = ProductId;
+            entity.ProductInventoryHeaderId = ProductInventoryHeaderId;
 
             return entity;
         }

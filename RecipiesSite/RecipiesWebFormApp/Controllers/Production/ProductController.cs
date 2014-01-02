@@ -63,11 +63,14 @@ namespace InventoryManagementMVC.Controllers
                     (pi => pi.ProductId == productId)
                     .OrderByDescending(de => de.ProductInventoryHeader.ForDate)
                     .ToList();
-            List<ProductInventoryViewModel> productInventoriesModels = productInventories.Select
-                (r => ProductInventoryViewModel.ConvertFromProductInventoryEntity(r, new ProductInventoryViewModel()))
-                .ToList();
+            //List<ProductInventoryViewModel> productInventoriesModels = productInventories.Select
+            //    (r => ProductInventoryViewModel.ConvertFromProductInventoryEntity(r, new ProductInventoryViewModel()))
+            //    .ToList();
 
-            return Json(productInventoriesModels.ToDataSourceResult(request));
+            //return Json(productInventoriesModels.ToDataSourceResult(request));
+
+            var result = ReadBase(request, typeof(ProductInventoryViewModel), typeof(ProductInventory), productInventories);
+            return result;
         }
 
         public ActionResult ReadProductPurchaseOrders(int? productId, [DataSourceRequest] DataSourceRequest request)
