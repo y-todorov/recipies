@@ -52,14 +52,8 @@ namespace InventoryManagementMVC.Controllers
 
         public ActionResult ReadProductRecipies(int? productId, [DataSourceRequest] DataSourceRequest request)
         {
-            List<Recipe> allRecipes = ContextFactory.Current.Recipes//.ToList();
-                .Where(r => r.ProductIngredients.Any(pi => pi.ProductId == productId)).ToList();
-
-            List<RecipeViewModel> recipeModels =
-                allRecipes.Select(r => RecipeViewModel.ConvertFromRecipeEntity(r, new RecipeViewModel())).ToList();
-
-            return Json(recipeModels.ToDataSourceResult(request));
-                // This is important not to be just  Json(recipeModels) !!!!
+            var result = ReadBase(request, typeof(RecipeViewModel), typeof(Recipe), ContextFactory.Current.Recipes.Where(r => r.ProductIngredients.Any(pi => pi.ProductId == productId)).ToList());
+            return result;
         }
 
         public ActionResult ReadProductInventories(int? productId, [DataSourceRequest] DataSourceRequest request)

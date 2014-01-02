@@ -35,34 +35,32 @@ namespace InventoryManagementMVC.Models
 
         public string ModifiedByUser { get; set; }
 
-        public static RecipeViewModel ConvertFromRecipeEntity(Recipe entity,
-            RecipeViewModel model)
+        public RecipeViewModel ConvertFromEntity(Recipe entity)
         {
-            model.RecipeId = entity.RecipeId;
-            model.CategoryId = entity.CategoryId;
-            model.Name = entity.Name;
-            model.Description = entity.Description;
-            model.ProductionValuePerPortion = entity.ProductionValuePerPortion;
-            model.SellValuePerPortion = entity.SellValuePerPortion;
-            model.GrossProfit = entity.GrossProfit;
-            model.ModifiedDate = entity.ModifiedDate;
-            model.ModifiedByUser = entity.ModifiedByUser;
+            RecipeId = entity.RecipeId;
+            CategoryId = entity.CategoryId;
+            Name = entity.Name;
+            Description = entity.Description;
+            ProductionValuePerPortion = entity.ProductionValuePerPortion;
+            SellValuePerPortion = entity.SellValuePerPortion;
+            GrossProfit = entity.GrossProfit;
+            ModifiedDate = entity.ModifiedDate;
+            ModifiedByUser = entity.ModifiedByUser;
 
-            return model;
+            return this;
         }
 
-        public static Recipe ConvertToRecipeEntity(RecipeViewModel model,
-            Recipe entity)
+        public Recipe ConvertToEntity(Recipe entity)
         {
-            entity.RecipeId = model.RecipeId;
-            entity.CategoryId = model.CategoryId;
-            entity.Name = model.Name;
-            entity.Description = model.Description;
-            entity.ProductionValuePerPortion = model.ProductionValuePerPortion;
-            entity.SellValuePerPortion = model.SellValuePerPortion;
-            entity.GrossProfit = model.GrossProfit;
-            entity.ModifiedDate = model.ModifiedDate;
-            entity.ModifiedByUser = model.ModifiedByUser;
+            entity.RecipeId = RecipeId;
+            entity.CategoryId = CategoryId;
+            entity.Name = Name;
+            entity.Description = Description;
+            entity.ProductionValuePerPortion = ProductionValuePerPortion;
+            entity.SellValuePerPortion = SellValuePerPortion;
+            entity.GrossProfit = GrossProfit;
+            entity.ModifiedDate = ModifiedDate;
+            entity.ModifiedByUser = ModifiedByUser;
 
             return entity;
         }
