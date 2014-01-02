@@ -26,52 +26,30 @@ namespace InventoryManagementMVC.Models
 
         public string ModifiedByUser { get; set; }
 
-        public static UnitMeasureViewModel ConvertFromUnitMeasureEntity(UnitMeasure newOrExistingUnitMeasureEntity,
-            UnitMeasureViewModel unitMeasureViewModel)
+        public UnitMeasureViewModel ConvertFromEntity(UnitMeasure entity)
         {
-            if (newOrExistingUnitMeasureEntity == null)
-            {
-                throw new ApplicationException(
-                    "newOrExistingUnitMeasureEntity is null in method ConvertFromUnitMeasureEntity!");
-            }
-            if (unitMeasureViewModel == null)
-            {
-                throw new ApplicationException("unitMeasureViewModel is null in method ConvertFromUnitMeasureEntity!");
-            }
+            BaseUnitFactor = entity.BaseUnitFactor;
+            BaseUnitId = entity.BaseUnitId;
+            IsBaseUnit = entity.IsBaseUnit.GetValueOrDefault();
+            UnitMeasureId = entity.UnitMeasureId;
+            Name = entity.Name;
+            ModifiedDate = entity.ModifiedDate;
+            ModifiedByUser = entity.ModifiedByUser;
 
-            unitMeasureViewModel.BaseUnitFactor = newOrExistingUnitMeasureEntity.BaseUnitFactor;
-            unitMeasureViewModel.BaseUnitId = newOrExistingUnitMeasureEntity.BaseUnitId;
-            unitMeasureViewModel.IsBaseUnit = newOrExistingUnitMeasureEntity.IsBaseUnit.GetValueOrDefault();
-            unitMeasureViewModel.UnitMeasureId = newOrExistingUnitMeasureEntity.UnitMeasureId;
-            unitMeasureViewModel.Name = newOrExistingUnitMeasureEntity.Name;
-            unitMeasureViewModel.ModifiedDate = newOrExistingUnitMeasureEntity.ModifiedDate;
-            unitMeasureViewModel.ModifiedByUser = newOrExistingUnitMeasureEntity.ModifiedByUser;
-
-            return unitMeasureViewModel;
+            return this;
         }
 
-        public static UnitMeasure ConvertToUnitMeasureEntity(UnitMeasureViewModel unitMeasureViewModel,
-            UnitMeasure newOrExistingUnitMeasureEntity)
+        public UnitMeasure ConvertToEntity(UnitMeasure entity)
         {
-            if (newOrExistingUnitMeasureEntity == null)
-            {
-                throw new ApplicationException(
-                    "newOrExistingUnitMeasureEntity is null in method ConvertToUnitMeasureEntity!");
-            }
-            if (unitMeasureViewModel == null)
-            {
-                throw new ApplicationException("unitMeasureViewModel is null in method ConvertToUnitMeasureEntity!");
-            }
+            entity.BaseUnitFactor = BaseUnitFactor;
+            entity.BaseUnitId = BaseUnitId;
+            entity.IsBaseUnit = IsBaseUnit;
+            entity.UnitMeasureId = UnitMeasureId;
+            entity.Name = Name;
+            entity.ModifiedDate = ModifiedDate;
+            entity.ModifiedByUser = ModifiedByUser;
 
-            newOrExistingUnitMeasureEntity.BaseUnitFactor = unitMeasureViewModel.BaseUnitFactor;
-            newOrExistingUnitMeasureEntity.BaseUnitId = unitMeasureViewModel.BaseUnitId;
-            newOrExistingUnitMeasureEntity.IsBaseUnit = unitMeasureViewModel.IsBaseUnit;
-            newOrExistingUnitMeasureEntity.UnitMeasureId = unitMeasureViewModel.UnitMeasureId;
-            newOrExistingUnitMeasureEntity.Name = unitMeasureViewModel.Name;
-            newOrExistingUnitMeasureEntity.ModifiedDate = unitMeasureViewModel.ModifiedDate;
-            newOrExistingUnitMeasureEntity.ModifiedByUser = unitMeasureViewModel.ModifiedByUser;
-
-            return newOrExistingUnitMeasureEntity;
+            return entity;
         }
     }
 }
