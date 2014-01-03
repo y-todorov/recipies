@@ -58,20 +58,6 @@ namespace InventoryManagementMVC.Controllers
             }
 
             return Json(result.ToDataSourceResult(request));
-            //DbSet dbset = ContextFactory.Current.Set(entityType);
-            //dbset.Load();
-            //var en = dbset.Local.GetEnumerator();
-
-            //List<object> result = new List<object>();
-            //while (en.MoveNext())
-            //{
-            //    dynamic newModel = Activator.CreateInstance(modelType);
-            //    dynamic newEntity = Activator.CreateInstance(entityType);
-            //    newEntity = en.Current;
-            //    var modelToAdd = newModel.ConvertFromEntity(newEntity);
-            //    result.Add(modelToAdd);
-            //}
-            //return Json(result.ToDataSourceResult(request));
         }
 
         public ActionResult CreateBase([DataSourceRequest] DataSourceRequest request, [Bind(Prefix = "models")] IEnumerable<object> models, Type modelType, Type entityType)
@@ -120,16 +106,16 @@ namespace InventoryManagementMVC.Controllers
 
                 foreach (object entity in entitiesToUpdate)
                 {
-                    dynamic newModel = Activator.CreateInstance(modelType);
-                    dynamic newEntity = Activator.CreateInstance(entityType);
-                    newEntity = entity;
-                    var modelToAdd = newModel.ConvertFromEntity(newEntity);
-                    //dynamic model = models.FirstOrDefault(m => m == modelToAdd); // this fails because IEnumerable<object> models was List<PaymentTypeViewModel>
-                    dynamic model = models.FirstOrDefault(m => AreObjectsWithTheSameId(newEntity, m)); // this fails because IEnumerable<object> models was List<PaymentTypeViewModel>
-                    if (model != null)
+                    if (entity != null)
                     {
-                        model.ConvertToEntity(newEntity);
-                        entitiesHash.Add(newEntity, model);
+                        dynamic newEntity = Activator.CreateInstance(entityType);
+                        newEntity = entity;
+                        dynamic model = models.FirstOrDefault(m => AreObjectsWithTheSameId(newEntity, m));
+                        if (model != null)
+                        {
+                            model.ConvertToEntity(newEntity);
+                            entitiesHash.Add(newEntity, model);
+                        }
                     }
                 }
 
@@ -138,66 +124,31 @@ namespace InventoryManagementMVC.Controllers
                 foreach (dynamic entity in entitiesToUpdate)
                 {
                     dynamic model = entitiesHash[entity];
-                    model.ConvertFromEntity(entity); // Фиь тхис To Do нулл референце гере
+                    model.ConvertFromEntity(entity); 
                 }
             }
 
             return Json(models.ToDataSourceResult(request, ModelState));
 
         }
-
-        private bool AreObjectsWithTheSameId(object entity, object model)
-        {
-            Type modelType = model.GetType();
-            var modelProps = modelType.GetProperties();
-            PropertyInfo modelKeyProperty = null;
-            foreach (var propertyInfo in modelProps)
-            {
-                KeyAttribute keyAttribute =
-                    propertyInfo.GetCustomAttributes<KeyAttribute>().FirstOrDefault();
-                if (keyAttribute != null)
-                {
-                    modelKeyProperty = propertyInfo;
-                    break;
-                }
-            }
-
-            Type entityType = entity.GetType();
-            var entityProps = entityType.GetProperties();
-            PropertyInfo entityKeyProperty = null;
-            foreach (var propertyInfo in entityProps)
-            {
-                if (propertyInfo.Name ==  modelKeyProperty.Name)
-                {
-                    entityKeyProperty = propertyInfo;
-                    break;
-                }
-            }
-
-            object modelKey = modelKeyProperty.GetValue(model);
-            object entityKey = entityKeyProperty.GetValue(entity);
-
-            if (modelKey.ToString() == entityKey.ToString())
-            {
-                return true;
-            }
-            return false;
-
-        }
-
-
+        
         public ActionResult DestroyBase([DataSourceRequest] DataSourceRequest request,
             [Bind(Prefix = "models")] IEnumerable<object> models, Type modelType, Type entityType)
         {
-            List<object> entitiesToDelete = GetEntitiesFromModels(models, modelType, entityType);
-            DbSet dbset = ContextFactory.Current.Set(entityType);
-
-            foreach (var entityToDelete in entitiesToDelete)
+            if (models.Any())
             {
-                dbset.Remove(entityToDelete);
-                // Do not call  ContextFactory.Current.SaveChanges(); here !!! It will delete only the first element!
+                List<object> entitiesToDelete = GetEntitiesFromModels(models, modelType, entityType);
+                DbSet dbset = ContextFactory.Current.Set(entityType);
+
+                foreach (var entityToDelete in entitiesToDelete)
+                {
+                    if (entityToDelete != null)
+                    {
+                        dbset.Remove(entityToDelete);
+                    }
+                }
+                ContextFactory.Current.SaveChanges();
             }
-            ContextFactory.Current.SaveChanges();
 
             return Json(models.ToDataSourceResult(request, ModelState));
         }
@@ -233,6 +184,44 @@ namespace InventoryManagementMVC.Controllers
             return entities;
         }
 
+        private bool AreObjectsWithTheSameId(object entity, object model)
+        {
+            Type modelType = model.GetType();
+            var modelProps = modelType.GetProperties();
+            PropertyInfo modelKeyProperty = null;
+            foreach (var propertyInfo in modelProps)
+            {
+                KeyAttribute keyAttribute =
+                    propertyInfo.GetCustomAttributes<KeyAttribute>().FirstOrDefault();
+                if (keyAttribute != null)
+                {
+                    modelKeyProperty = propertyInfo;
+                    break;
+                }
+            }
+
+            Type entityType = entity.GetType();
+            var entityProps = entityType.GetProperties();
+            PropertyInfo entityKeyProperty = null;
+            foreach (var propertyInfo in entityProps)
+            {
+                if (propertyInfo.Name == modelKeyProperty.Name)
+                {
+                    entityKeyProperty = propertyInfo;
+                    break;
+                }
+            }
+
+            object modelKey = modelKeyProperty.GetValue(model);
+            object entityKey = entityKeyProperty.GetValue(entity);
+
+            if (modelKey.ToString() == entityKey.ToString())
+            {
+                return true;
+            }
+            return false;
+
+        }
 
     }
 }

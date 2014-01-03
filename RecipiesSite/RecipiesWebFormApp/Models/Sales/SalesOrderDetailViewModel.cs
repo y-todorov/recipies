@@ -21,7 +21,7 @@ namespace InventoryManagementMVC.Models
         [HiddenInput(DisplayValue = false)]
         public int? SalesOrderHeaderId { get; set; }
 
-        [Relation(EntityType = typeof (Recipe), DataFieldValue = "RecipeId", DataFieldText = "Name")]
+        [Relation(EntityType = typeof(Recipe), DataFieldValue = "RecipeId", DataFieldText = "Name")]
         [Display(Name = "Recipe")]
         public int? RecipeId { get; set; }
 
@@ -45,7 +45,7 @@ namespace InventoryManagementMVC.Models
 
         public SalesOrderDetailViewModel ConvertFromEntity(SalesOrderDetail entity)
         {
-            LineTotal = (decimal) entity.LineTotal;
+            LineTotal = (decimal)entity.LineTotal;
             ModifiedByUser = entity.ModifiedByUser;
             ModifiedDate = entity.ModifiedDate;
             OrderQuantity = entity.OrderQuantity;
@@ -58,19 +58,27 @@ namespace InventoryManagementMVC.Models
             {
                 RecipeCategory = entity.Recipe.ProductCategory.Name;
             }
+            else if (RecipeId.HasValue)
+            {
+                Recipe recipe = ContextFactory.Current.Recipes.FirstOrDefault(r => r.RecipeId == RecipeId);
+                if (recipe != null && recipe.ProductCategory != null)
+                {
+                    RecipeCategory = recipe.ProductCategory.Name;
+                }
+            }
 
             return this;
         }
 
         public SalesOrderDetail ConvertToEntity(SalesOrderDetail entity)
         {
-            entity.LineTotal = (double) LineTotal;
+            entity.LineTotal = (double)LineTotal;
             entity.ModifiedByUser = ModifiedByUser;
             entity.ModifiedDate = ModifiedDate;
             entity.OrderQuantity = OrderQuantity;
             entity.RecipeId = RecipeId;
             entity.SalesOrderDetailId = SalesOrderDetailId;
-            if (SalesOrderHeaderId != null)
+            if (SalesOrderHeaderId != null) // ?
             {
                 entity.SalesOrderHeaderId = SalesOrderHeaderId;
             }
