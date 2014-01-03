@@ -20,29 +20,6 @@ namespace InventoryManagementMVC.Controllers
 
         public ActionResult Read(int? productInventoryHeaderId, [DataSourceRequest] DataSourceRequest request)
         {
-            //ProductInventoryHeader pih2 =
-            //    ContextFactory.Current.ProductInventoryHeaders.FirstOrDefault(
-            //        pi => pi.ProductInventoryHeaderId == productInventoryHeaderId);
-            //if (pih2 != null)
-            //{
-            //    ProductInventoryHeader.InsertMissingProductInventories(pih2);
-            //}
-
-            //var allPis = ContextFactory.Current.Inventories.OfType<ProductInventory>()
-            //    .Include(pi => pi.Product.ProductCategory)
-            //    .Include(pi => pi.Product.UnitMeasure)
-            //    .Where(
-            //        pih =>
-            //            productInventoryHeaderId.HasValue
-            //                ? pih.ProductInventoryHeaderId == productInventoryHeaderId.Value
-            //                : true).ToList();
-            //List<ProductInventoryViewModel> productInventoriesViewModels =
-            //    allPis.Select
-            //        (pi =>
-            //            ProductInventoryViewModel.ConvertFromProductInventoryEntity(pi, new ProductInventoryViewModel()))
-            //        .ToList();
-            //return Json(productInventoriesViewModels.ToDataSourceResult(request));
-
             ProductInventoryHeader pih2 =
                 ContextFactory.Current.ProductInventoryHeaders.FirstOrDefault(
                     pi => pi.ProductInventoryHeaderId == productInventoryHeaderId);
@@ -54,19 +31,9 @@ namespace InventoryManagementMVC.Controllers
             var allPis = ContextFactory.Current.Inventories.OfType<ProductInventory>()
                 .Include(pi => pi.Product.ProductCategory)
                 .Include(pi => pi.Product.UnitMeasure)
-                .Where(
-                    pih =>
-                        productInventoryHeaderId.HasValue
-                            ? pih.ProductInventoryHeaderId == productInventoryHeaderId.Value
-                            : true).ToList();
-            //List<ProductInventoryViewModel> productInventoriesViewModels =
-            //    allPis.Select
-            //        (pi =>
-            //            ProductInventoryViewModel.ConvertFromProductInventoryEntity(pi, new ProductInventoryViewModel()))
-            //        .ToList();
-            //return Json(productInventoriesViewModels.ToDataSourceResult(request));
+                .Where(pih =>pih.ProductInventoryHeaderId == productInventoryHeaderId.Value).ToList();
 
-            var result = ReadBase(request, typeof(ProductInventoryViewModel), typeof(ProductInventory), allPis);
+            var result = ReadBase(request, typeof (ProductInventoryViewModel), typeof (ProductInventory), allPis);
             return result;
         }
 
@@ -75,26 +42,7 @@ namespace InventoryManagementMVC.Controllers
         public ActionResult Create(int? productInventoryHeaderId, [DataSourceRequest] DataSourceRequest request,
             [Bind(Prefix = "models")] IEnumerable<ProductInventoryViewModel> pis)
         {
-            //if (pis != null && ModelState.IsValid)
-            //{
-            //    foreach (ProductInventoryViewModel pi in pis)
-            //    {
-            //        pi.ProductInventoryHeaderId = productInventoryHeaderId;
-            //        ProductInventory newPodEntity =
-            //            ProductInventoryViewModel.ConvertToProductInventoryEntity(pi, new ProductInventory());
-            //        ContextFactory.Current.Inventories.Add(newPodEntity);
-            //        ContextFactory.Current.SaveChanges();
-            //        // Prefetch Product and others ...
-            //        newPodEntity = ContextFactory.Current.Inventories.OfType<ProductInventory>()
-            //            .Include(pod => pod.Product.UnitMeasure)
-            //            .Include(pod => pod.Product.ProductCategory)
-            //            .FirstOrDefault(pod => pod.InventoryId == newPodEntity.InventoryId);
-            //        ProductInventoryViewModel.ConvertFromProductInventoryEntity(newPodEntity, pi);
-            //    }
-            //}
-
-            //return Json(pis.ToDataSourceResult(request, ModelState));
-            var result = CreateBase(request, pis, typeof(ProductInventoryViewModel), typeof(ProductInventory));
+            var result = CreateBase(request, pis, typeof (ProductInventoryViewModel), typeof (ProductInventory));
             return result;
         }
 
@@ -102,28 +50,7 @@ namespace InventoryManagementMVC.Controllers
         public ActionResult Update([DataSourceRequest] DataSourceRequest request,
             [Bind(Prefix = "models")] IEnumerable<ProductInventoryViewModel> pis)
         {
-            //if (pis != null && ModelState.IsValid)
-            //{
-            //    foreach (ProductInventoryViewModel pi in pis)
-            //    {
-            //        ProductInventory piEntity =
-            //            ContextFactory.Current.Inventories.OfType<ProductInventory>().FirstOrDefault(
-            //                c => c.InventoryId == pi.InventoryId);
-
-            //        ProductInventoryViewModel.ConvertToProductInventoryEntity(pi, piEntity);
-
-            //        ContextFactory.Current.SaveChanges();
-            //        // Prefetch Product and others ...
-            //        piEntity = ContextFactory.Current.Inventories.OfType<ProductInventory>()
-            //            .Include(pod => pod.Product.UnitMeasure)
-            //            .Include(pod => pod.Product.ProductCategory)
-            //            .FirstOrDefault(pod => pod.InventoryId == piEntity.InventoryId);
-            //        ProductInventoryViewModel.ConvertFromProductInventoryEntity(piEntity, pi);
-            //    }
-            //}
-
-            //return Json(pis.ToDataSourceResult(request, ModelState));
-            var result = UpdateBase(request, pis, typeof(ProductInventoryViewModel), typeof(ProductInventory));
+            var result = UpdateBase(request, pis, typeof (ProductInventoryViewModel), typeof (ProductInventory));
             return result;
         }
 
@@ -131,20 +58,8 @@ namespace InventoryManagementMVC.Controllers
         public ActionResult Destroy([DataSourceRequest] DataSourceRequest request,
             [Bind(Prefix = "models")] IEnumerable<ProductInventoryViewModel> pis)
         {
-            //foreach (ProductInventoryViewModel pi in pis)
-            //{
-            //    ProductInventory piEntity =
-            //        ContextFactory.Current.Inventories.OfType<ProductInventory>().FirstOrDefault(
-            //            c => c.InventoryId == pi.InventoryId);
-            //    ContextFactory.Current.Inventories.Remove(piEntity);
-
-            //    ContextFactory.Current.SaveChanges();
-            //}
-
-            //return Json(pis.ToDataSourceResult(request, ModelState));
-            var result = DestroyBase(request, pis, typeof(ProductInventoryViewModel), typeof(ProductInventory));
+            var result = DestroyBase(request, pis, typeof (ProductInventoryViewModel), typeof (ProductInventory));
             return result;
-
         }
     }
 }

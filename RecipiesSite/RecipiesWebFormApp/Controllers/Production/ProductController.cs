@@ -22,7 +22,8 @@ namespace InventoryManagementMVC.Controllers
 
         public ActionResult Read([DataSourceRequest] DataSourceRequest request)
         {
-            var result = ReadBase(request, typeof(ProductViewModel), typeof(Product), ContextFactory.Current.Products.ToList());
+            var result = ReadBase(request, typeof (ProductViewModel), typeof (Product),
+                ContextFactory.Current.Products.ToList());
             return result;
         }
 
@@ -30,7 +31,7 @@ namespace InventoryManagementMVC.Controllers
         public ActionResult Create([DataSourceRequest] DataSourceRequest request,
             [Bind(Prefix = "models")] IEnumerable<ProductViewModel> products)
         {
-            var result = CreateBase(request, products, typeof(ProductViewModel), typeof(Product));
+            var result = CreateBase(request, products, typeof (ProductViewModel), typeof (Product));
             return result;
         }
 
@@ -38,7 +39,7 @@ namespace InventoryManagementMVC.Controllers
         public ActionResult Update([DataSourceRequest] DataSourceRequest request,
             [Bind(Prefix = "models")] IEnumerable<ProductViewModel> products)
         {
-            var result = UpdateBase(request, products, typeof(ProductViewModel), typeof(Product));
+            var result = UpdateBase(request, products, typeof (ProductViewModel), typeof (Product));
             return result;
         }
 
@@ -46,30 +47,28 @@ namespace InventoryManagementMVC.Controllers
         public ActionResult Destroy([DataSourceRequest] DataSourceRequest request,
             [Bind(Prefix = "models")] IEnumerable<ProductViewModel> products)
         {
-            var result = DestroyBase(request, products, typeof(ProductViewModel), typeof(Product));
+            var result = DestroyBase(request, products, typeof (ProductViewModel), typeof (Product));
             return result;
         }
 
         public ActionResult ReadProductRecipies(int? productId, [DataSourceRequest] DataSourceRequest request)
         {
-            var result = ReadBase(request, typeof(RecipeViewModel), typeof(Recipe), ContextFactory.Current.Recipes.Where(r => r.ProductIngredients.Any(pi => pi.ProductId == productId)).ToList());
+            var result = ReadBase(request, typeof (RecipeViewModel), typeof (Recipe),
+                ContextFactory.Current.Recipes.Where(r => r.ProductIngredients.Any(pi => pi.ProductId == productId))
+                    .ToList());
             return result;
         }
 
         public ActionResult ReadProductInventories(int? productId, [DataSourceRequest] DataSourceRequest request)
         {
             List<ProductInventory> productInventories =
-                ContextFactory.Current.Inventories.OfType<ProductInventory>().Where
-                    (pi => pi.ProductId == productId)
+                ContextFactory.Current.Inventories.OfType<ProductInventory>()
+                    .Where(pi => pi.ProductId == productId)
                     .OrderByDescending(de => de.ProductInventoryHeader.ForDate)
                     .ToList();
-            //List<ProductInventoryViewModel> productInventoriesModels = productInventories.Select
-            //    (r => ProductInventoryViewModel.ConvertFromProductInventoryEntity(r, new ProductInventoryViewModel()))
-            //    .ToList();
 
-            //return Json(productInventoriesModels.ToDataSourceResult(request));
-
-            var result = ReadBase(request, typeof(ProductInventoryViewModel), typeof(ProductInventory), productInventories);
+            var result = ReadBase(request, typeof (ProductInventoryViewModel), typeof (ProductInventory),
+                productInventories);
             return result;
         }
 
@@ -81,12 +80,12 @@ namespace InventoryManagementMVC.Controllers
                     .OrderByDescending(de => de.PurchaseOrderHeader.OrderDate)
                     .ToList();
             List<PurchaseOrderDetailViewModel> productPurchaseOrdersModels = productPurchaseOrders.Select
-                (r => PurchaseOrderDetailViewModel.ConvertFromPurchaseOrderDetailEntity(r, new PurchaseOrderDetailViewModel()))
+                (r =>
+                    PurchaseOrderDetailViewModel.ConvertFromPurchaseOrderDetailEntity(r,
+                        new PurchaseOrderDetailViewModel()))
                 .ToList();
 
             return Json(productPurchaseOrdersModels.ToDataSourceResult(request));
         }
-
-        
     }
 }

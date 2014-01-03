@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
 using System.Reflection;
+using System.Web.UI;
 using Autofac;
 using DevTrends.MvcDonutCaching;
 using DevTrends.MvcDonutCaching.Annotations;
@@ -58,6 +59,11 @@ namespace InventoryManagementMVC.Controllers
             }
 
             return Json(result.ToDataSourceResult(request));
+
+
+            //Employee ee = ContextFactory.Current.Employees.FirstOrDefault(e => e.EmployeeId == 851247);
+            //ee.Country = "bg";
+            //ContextFactory.Current.SaveChanges();            
         }
 
         public ActionResult CreateBase([DataSourceRequest] DataSourceRequest request, [Bind(Prefix = "models")] IEnumerable<object> models, Type modelType, Type entityType)
