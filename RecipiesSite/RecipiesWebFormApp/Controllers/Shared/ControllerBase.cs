@@ -58,12 +58,8 @@ namespace InventoryManagementMVC.Controllers
                 result.Add(modelToAdd);
             }
 
-            return Json(result.ToDataSourceResult(request));
-
-
-            //Employee ee = ContextFactory.Current.Employees.FirstOrDefault(e => e.EmployeeId == 851247);
-            //ee.Country = "bg";
-            //ContextFactory.Current.SaveChanges();            
+            DataSourceResult dataSourceResult = result.ToDataSourceResult(request);
+            return Json(dataSourceResult);
         }
 
         public ActionResult CreateBase([DataSourceRequest] DataSourceRequest request, [Bind(Prefix = "models")] IEnumerable<object> models, Type modelType, Type entityType)
@@ -95,8 +91,9 @@ namespace InventoryManagementMVC.Controllers
                     model.ConvertFromEntity(dummyEntity);
                 }
             }
+            DataSourceResult dataSourceResult = models.ToList().ToDataSourceResult(request, ModelState);
 
-            return Json(models.ToDataSourceResult(request, ModelState));
+            return Json(dataSourceResult);
         }
 
         public ActionResult UpdateBase([DataSourceRequest] DataSourceRequest request,
@@ -133,8 +130,8 @@ namespace InventoryManagementMVC.Controllers
                     model.ConvertFromEntity(entity); 
                 }
             }
-
-            return Json(models.ToDataSourceResult(request, ModelState));
+            DataSourceResult dataSourceResult = models.ToDataSourceResult(request, ModelState);
+            return Json(dataSourceResult);
 
         }
         
@@ -156,7 +153,8 @@ namespace InventoryManagementMVC.Controllers
                 ContextFactory.Current.SaveChanges();
             }
 
-            return Json(models.ToDataSourceResult(request, ModelState));
+            DataSourceResult dataSourceResult = models.ToDataSourceResult(request, ModelState);
+            return Json(dataSourceResult);
         }
 
         private List<object> GetEntitiesFromModels(IEnumerable<object> models, Type modelType, Type entityType)
