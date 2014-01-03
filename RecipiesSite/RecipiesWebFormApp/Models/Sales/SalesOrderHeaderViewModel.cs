@@ -66,50 +66,48 @@ namespace InventoryManagementMVC.Models
         public List<PurchaseOrderDetailViewModel> PurchaseOrderDetailViewModels { get; set; }
 
 
-        public static SalesOrderHeaderViewModel ConvertFromSalesOrderHeaderEntity(SalesOrderHeader entity,
-            SalesOrderHeaderViewModel model)
+        public SalesOrderHeaderViewModel ConvertFromEntity(SalesOrderHeader entity)
         {
-            model.AccountName = entity.AccountName;
-            model.CustomerId = entity.CustomerId;
-            model.EmployeeId = entity.EmployeeId;
-            model.ModifiedByUser = entity.ModifiedByUser;
-            model.ModifiedDate = entity.ModifiedDate;
-            model.OrderDate = entity.OrderDate;
-            model.PaymentTypeId = entity.PaymentTypeId;
-            model.RequiredDate = entity.RequiredDate;
-            model.SalesOrderHeaderId = entity.SalesOrderHeaderId;
-            model.ShipAddress = entity.ShipAddress;
-            model.ShipName = entity.ShipName;
-            model.ShippedDate = entity.ShippedDate;
-            model.StatusId = entity.StatusId;
-            model.SubTotal = entity.SubTotal;
-            model.TaxAmt = entity.TaxAmt;
-            model.Freight = entity.Freight;
-            model.TotalDue = entity.TotalDue;
+            AccountName = entity.AccountName;
+            CustomerId = entity.CustomerId;
+            EmployeeId = entity.EmployeeId;
+            ModifiedByUser = entity.ModifiedByUser;
+            ModifiedDate = entity.ModifiedDate;
+            OrderDate = entity.OrderDate;
+            PaymentTypeId = entity.PaymentTypeId;
+            RequiredDate = entity.RequiredDate;
+            SalesOrderHeaderId = entity.SalesOrderHeaderId;
+            ShipAddress = entity.ShipAddress;
+            ShipName = entity.ShipName;
+            ShippedDate = entity.ShippedDate;
+            StatusId = entity.StatusId;
+            SubTotal = entity.SubTotal;
+            TaxAmt = entity.TaxAmt;
+            Freight = entity.Freight;
+            TotalDue = entity.TotalDue;
 
-            return model;
+            return this;
         }
 
-        public static SalesOrderHeader ConvertToSalesOrderHeaderEntity(SalesOrderHeaderViewModel model,
-            SalesOrderHeader entity)
+        public SalesOrderHeader ConvertToEntity(SalesOrderHeader entity)
         {
-            entity.AccountName = model.AccountName;
-            entity.CustomerId = model.CustomerId;
-            entity.EmployeeId = model.EmployeeId;
-            entity.ModifiedByUser = model.ModifiedByUser;
-            entity.ModifiedDate = model.ModifiedDate;
-            entity.OrderDate = model.OrderDate;
-            entity.PaymentTypeId = model.PaymentTypeId;
-            entity.RequiredDate = model.RequiredDate;
-            entity.SalesOrderHeaderId = model.SalesOrderHeaderId;
-            entity.ShipAddress = model.ShipAddress;
-            entity.ShipName = model.ShipName;
-            entity.ShippedDate = model.ShippedDate;
-            entity.StatusId = model.StatusId;
-            entity.SubTotal = model.SubTotal;
-            entity.TaxAmt = model.TaxAmt;
-            entity.Freight = model.Freight;
-            // TotalDue is DB calculated
+            entity.AccountName = AccountName;
+            entity.CustomerId = CustomerId;
+            entity.EmployeeId = EmployeeId;
+            entity.ModifiedByUser = ModifiedByUser;
+            entity.ModifiedDate = ModifiedDate;
+            entity.OrderDate = OrderDate;
+            entity.PaymentTypeId = PaymentTypeId;
+            entity.RequiredDate = RequiredDate;
+            entity.SalesOrderHeaderId = SalesOrderHeaderId;
+            entity.ShipAddress = ShipAddress;
+            entity.ShipName = ShipName;
+            entity.ShippedDate = ShippedDate;
+            entity.StatusId = StatusId;
+            entity.SubTotal = SubTotal;
+            entity.TaxAmt = TaxAmt;
+            entity.Freight = Freight;
+
             return entity;
         }
     }

@@ -43,41 +43,39 @@ namespace InventoryManagementMVC.Models
 
         public string ModifiedByUser { get; set; }
 
-        public static SalesOrderDetailViewModel ConvertFromSalesOrderDetailEntity(
-            SalesOrderDetail entity, SalesOrderDetailViewModel model)
+        public SalesOrderDetailViewModel ConvertFromEntity(SalesOrderDetail entity)
         {
-            model.LineTotal = (decimal) entity.LineTotal;
-            model.ModifiedByUser = entity.ModifiedByUser;
-            model.ModifiedDate = entity.ModifiedDate;
-            model.OrderQuantity = entity.OrderQuantity;
-            model.RecipeId = entity.RecipeId;
-            model.SalesOrderDetailId = entity.SalesOrderDetailId;
-            model.SalesOrderHeaderId = entity.SalesOrderHeaderId;
-            model.UnitPrice = entity.UnitPrice;
-            model.UnitPriceDiscount = entity.UnitPriceDiscount;
+            LineTotal = (decimal) entity.LineTotal;
+            ModifiedByUser = entity.ModifiedByUser;
+            ModifiedDate = entity.ModifiedDate;
+            OrderQuantity = entity.OrderQuantity;
+            RecipeId = entity.RecipeId;
+            SalesOrderDetailId = entity.SalesOrderDetailId;
+            SalesOrderHeaderId = entity.SalesOrderHeaderId;
+            UnitPrice = entity.UnitPrice;
+            UnitPriceDiscount = entity.UnitPriceDiscount;
             if (entity.Recipe != null && entity.Recipe.ProductCategory != null)
             {
-                model.RecipeCategory = entity.Recipe.ProductCategory.Name;
+                RecipeCategory = entity.Recipe.ProductCategory.Name;
             }
 
-            return model;
+            return this;
         }
 
-        public static SalesOrderDetail ConvertToSalesOrderDetailEntity(SalesOrderDetailViewModel model,
-            SalesOrderDetail entity)
+        public SalesOrderDetail ConvertToEntity(SalesOrderDetail entity)
         {
-            entity.LineTotal = (double) model.LineTotal;
-            entity.ModifiedByUser = model.ModifiedByUser;
-            entity.ModifiedDate = model.ModifiedDate;
-            entity.OrderQuantity = model.OrderQuantity;
-            entity.RecipeId = model.RecipeId;
-            entity.SalesOrderDetailId = model.SalesOrderDetailId;
-            if (model.SalesOrderHeaderId != null)
+            entity.LineTotal = (double) LineTotal;
+            entity.ModifiedByUser = ModifiedByUser;
+            entity.ModifiedDate = ModifiedDate;
+            entity.OrderQuantity = OrderQuantity;
+            entity.RecipeId = RecipeId;
+            entity.SalesOrderDetailId = SalesOrderDetailId;
+            if (SalesOrderHeaderId != null)
             {
-                entity.SalesOrderHeaderId = model.SalesOrderHeaderId;
+                entity.SalesOrderHeaderId = SalesOrderHeaderId;
             }
-            entity.UnitPrice = model.UnitPrice;
-            entity.UnitPriceDiscount = model.UnitPriceDiscount;
+            entity.UnitPrice = UnitPrice;
+            entity.UnitPriceDiscount = UnitPriceDiscount;
 
             return entity;
         }
