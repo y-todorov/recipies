@@ -55,7 +55,10 @@ namespace RecipiesModelNS
             PropertyInfo piModifiedByUser = type.GetProperties().FirstOrDefault(p => p.Name.Equals("ModifiedByUser"));
             if (piModifiedByUser != null)
             {
-                piModifiedByUser.SetValue(this, userName);
+                if (!string.IsNullOrEmpty(userName))
+                {
+                    piModifiedByUser.SetValue(this, userName);
+                }
             }
         }
 

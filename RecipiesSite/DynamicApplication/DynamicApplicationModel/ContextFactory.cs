@@ -6,12 +6,23 @@ namespace RecipiesModelNS
     {
         private static readonly string contextKey = typeof (RecipiesEntities).FullName;
 
+        private static RecipiesEntities unitTestsContext = null;
+
         public static RecipiesEntities GetContextPerRequest()
         {
             HttpContext httpContext = HttpContext.Current;
             if (httpContext == null)
             {
-                return new RecipiesEntities(false);
+                // we should go here in unit tests ONLY !!!
+                if (unitTestsContext == null)
+                {
+                    unitTestsContext = new RecipiesEntities(false);
+                    return unitTestsContext;
+                }
+                else
+                {
+                    return unitTestsContext;
+                }
             }
             else
             {

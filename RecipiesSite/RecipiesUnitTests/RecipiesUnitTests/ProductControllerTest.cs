@@ -18,10 +18,16 @@ namespace RecipiesUnitTests
 //[ClassCleanUp()]   Use ClassCleanup to run code after all tests in a class have run.
 //[TestInitialize()]   Use TestInitialize to run code before you run each test.
 //[TestCleanUp()]   Use TestCleanup to run code after each test has run.
+
+        ProductController productController;
+        DataSourceRequest request;
+
+
         [TestInitialize]
         public void TestInitialize()
         {
-
+            productController = new ProductController();
+            request = new DataSourceRequest();
         }
 
         [TestCleanup]
@@ -33,22 +39,19 @@ namespace RecipiesUnitTests
         [TestMethod]
         public void CreateTest()
         {
-            ProductController pc = new ProductController();
-            DataSourceRequest request = new DataSourceRequest();
-
             ProductViewModel pvm = new ProductViewModel();
-            pvm.CategoryId = null;
-            pvm.Code = "TestCode";
+
+            UnitTestHelper.InitializeModelWithRandomValues(pvm);
+            
             List<ProductViewModel> products = new List<ProductViewModel>() {pvm};
 
-            JsonResult jr = pc.Create(request, products) as JsonResult;
+            JsonResult jr = productController.Create(request, products) as JsonResult;
 
             ProductViewModel result = (jr.Data as DataSourceResult).Data.Cast<ProductViewModel>().FirstOrDefault();
 
-            Assert.IsNotNull(result);
-            Assert.AreEqual(pvm.Code, result.Code);
+            bool areEqual = UnitTestHelper.CheckIfTwoModelsAreEqual(pvm, result);
 
-
+            Assert.IsTrue(areEqual);
         }
         
         
