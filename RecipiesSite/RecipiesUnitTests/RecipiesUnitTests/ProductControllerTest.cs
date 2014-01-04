@@ -7,6 +7,7 @@ using InventoryManagementMVC.Models;
 using System.Collections.Generic;
 using System.Collections;
 using System.Linq;
+using RecipiesModelNS;
 
 namespace RecipiesUnitTests
 {
@@ -39,29 +40,32 @@ namespace RecipiesUnitTests
         [TestMethod]
         public void CreateTest()
         {
-            ProductViewModel pvm = new ProductViewModel();
-
-            UnitTestHelper.InitializeModelWithRandomValues(pvm);
-            
-            List<ProductViewModel> products = new List<ProductViewModel>() {pvm};
-
+            // Arrange
+            ProductViewModel newProduct = new ProductViewModel();
+            UnitTestHelper.InitializeModelWithRandomValues(newProduct);
+            List<ProductViewModel> products = new List<ProductViewModel>() {newProduct};
             JsonResult jr = productController.Create(request, products) as JsonResult;
-
-            ProductViewModel result = (jr.Data as DataSourceResult).Data.Cast<ProductViewModel>().FirstOrDefault();
-
-            bool areEqual = UnitTestHelper.CheckIfTwoModelsAreEqual(pvm, result);
-
-            Assert.IsTrue(areEqual);
+            // Act
+            ProductViewModel savedProduct = (jr.Data as DataSourceResult).Data.Cast<ProductViewModel>().FirstOrDefault();
+            bool areEqual = UnitTestHelper.CheckIfTwoModelsAreEqual(newProduct, savedProduct);
+            // Assert
+            Assert.IsTrue(areEqual, "Saved product field values are not equalt to values that are to be saved!");
         }
-        
-        
 
         [TestMethod]
         public void ReadTest()
         {
-            ProductController pc = new ProductController();
-            DataSourceRequest request = new DataSourceRequest();
-            JsonResult jr = pc.Read(request) as JsonResult;
+            // Arrange
+            JsonResult jr = productController.Read(request) as JsonResult;
+            // Act
+            List<ProductViewModel> resultProducts = (jr.Data as DataSourceResult).Data.Cast<ProductViewModel>().ToList();
+            // Assert
+            Assert.AreEqual(resultProducts.Count, ContextFactory.Current.Products.Count());
+        }
+
+        public void UpdateTest()
+        {
+            //productController.Update()
         }
     }
 }
