@@ -24,8 +24,10 @@ namespace InventoryManagementMVC.Models
         public int? StoreId { get; set; }
 
         [Required(ErrorMessage = "Please enter a name for the product!")]
+        [Display(Description="Name of the product.")]
         public string Name { get; set; }
 
+        [Display(Description = "Unique product identification code.")]
         public string Code { get; set; }
 
         [Range(0, int.MaxValue)]

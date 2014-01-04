@@ -469,6 +469,8 @@
     <Compile Include="Controllers\Production\RecipeIngredientController.cs" />
     <Compile Include="Controllers\Production\RecipieController.cs" />
     <Compile Include="Controllers\Production\ProductWasteController.cs" />
+    <Compile Include="Controllers\Purchasing\ShipMethodController.cs" />
+    <Compile Include="Controllers\Purchasing\ProductVendorController.cs" />
     <Compile Include="Controllers\Purchasing\VendorController.cs" />
     <Compile Include="Controllers\Sales\SalesOrderDetailController.cs" />
     <Compile Include="Controllers\Sales\PaymentTypeController.cs" />
@@ -574,6 +576,8 @@
     <Compile Include="Models\Production\ProductViewModel.cs" />
     <Compile Include="Models\Production\StoreViewModel.cs" />
     <Compile Include="Models\Production\UnitMeasureViewModel.cs" />
+    <Compile Include="Models\Purchasing\ShipMethodViewModel.cs" />
+    <Compile Include="Models\Purchasing\ProductVendorViewModel.cs" />
     <Compile Include="Models\Purchasing\VendorViewModel.cs" />
     <Compile Include="Models\Purchasing\PurchaseOrderDetailViewModel.cs" />
     <Compile Include="Models\Purchasing\PurchaseOrderHeaderViewModel.cs" />
@@ -825,6 +829,8 @@
     <Content Include="Views\ProductWaste\Index.cshtml" />
     <Content Include="Views\PaymentType\Index.cshtml" />
     <Content Include="Views\Vendor\Index.cshtml" />
+    <Content Include="Views\ProductVendor\Index.cshtml" />
+    <Content Include="Views\ShipMethod\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
