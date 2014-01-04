@@ -30,6 +30,7 @@
     <siteMapNode title="Purchasing">
       <siteMapNode controller="PurchaseOrderHeader" action="index" title="Purchase orders" />
       <siteMapNode controller="PurchaseOrderDetail" action="index" title="Purchase order details" />
+      <siteMapNode controller="Vendor" action="index" title="Vendors" />
     </siteMapNode>
     <siteMapNode title="To the OLD site" controller="Home" action="NavigateToOldSite">
     </siteMapNode>
