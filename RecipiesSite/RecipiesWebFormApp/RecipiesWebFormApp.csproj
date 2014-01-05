@@ -472,6 +472,7 @@
     <Compile Include="Controllers\Purchasing\ShipMethodController.cs" />
     <Compile Include="Controllers\Purchasing\ProductVendorController.cs" />
     <Compile Include="Controllers\Purchasing\VendorController.cs" />
+    <Compile Include="Controllers\Sales\CustomerController.cs" />
     <Compile Include="Controllers\Sales\SalesOrderDetailController.cs" />
     <Compile Include="Controllers\Sales\PaymentTypeController.cs" />
     <Compile Include="Controllers\Sales\SalesOrderHeaderController.cs" />
@@ -581,6 +582,7 @@
     <Compile Include="Models\Purchasing\VendorViewModel.cs" />
     <Compile Include="Models\Purchasing\PurchaseOrderDetailViewModel.cs" />
     <Compile Include="Models\Purchasing\PurchaseOrderHeaderViewModel.cs" />
+    <Compile Include="Models\Sales\CustomerViewModel.cs" />
     <Compile Include="Models\Sales\SalesOrderDetailViewModel.cs" />
     <Compile Include="Models\Sales\PaymentTypeViewModel.cs" />
     <Compile Include="Models\Sales\SalesOrderHeaderViewModel.cs" />
@@ -831,6 +833,7 @@
     <Content Include="Views\Vendor\Index.cshtml" />
     <Content Include="Views\ProductVendor\Index.cshtml" />
     <Content Include="Views\ShipMethod\Index.cshtml" />
+    <Content Include="Views\Customer\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

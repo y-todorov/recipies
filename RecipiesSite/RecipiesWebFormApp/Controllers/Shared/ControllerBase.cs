@@ -209,7 +209,7 @@ namespace InventoryManagementMVC.Controllers
             PropertyInfo entityKeyProperty = null;
             foreach (var propertyInfo in entityProps)
             {
-                if (propertyInfo.Name == modelKeyProperty.Name)
+                if (propertyInfo.Name.Equals(modelKeyProperty.Name, StringComparison.InvariantCultureIgnoreCase)) // this fixes CustomerId == CustomerID
                 {
                     entityKeyProperty = propertyInfo;
                     break;
