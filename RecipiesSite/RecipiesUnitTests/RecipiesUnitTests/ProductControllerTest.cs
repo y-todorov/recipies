@@ -54,18 +54,13 @@ namespace RecipiesUnitTests
             ProductViewModel savedProduct = (jr.Data as DataSourceResult).Data.Cast<ProductViewModel>().FirstOrDefault();
             bool areEqual = UnitTestHelper.CheckIfTwoModelsAreEqual(newProduct, savedProduct);
             // Assert
-            Assert.IsTrue(areEqual, "Saved product field values are not equalt to values that are to be saved!");
+            Assert.IsTrue(areEqual, "Saved product field values are not equal to values that are to be saved!");
         }
 
         [TestMethod]
         public void ReadTest()
         {
-            // Arrange
-            JsonResult jr = productController.Read(request) as JsonResult;
-            // Act
-            List<ProductViewModel> resultProducts = (jr.Data as DataSourceResult).Data.Cast<ProductViewModel>().ToList();
-            // Assert
-            Assert.AreEqual(resultProducts.Count, ContextFactory.Current.Products.Count());
+            CrudTestsHelper.Read(productController, request, ContextFactory.Current.Products);
         }
 
         [TestMethod]
@@ -96,23 +91,7 @@ namespace RecipiesUnitTests
         [TestMethod]
         public void DeleteTest()
         {
-            // Arrange
-            JsonResult jrr = productController.Read(request) as JsonResult;
-
-            List<ProductViewModel> allProducts = (jrr.Data as DataSourceResult).Data.Cast<ProductViewModel>().ToList();
-
-            // Act
-            ProductViewModel existingProduct = (jrr.Data as DataSourceResult).Data.Cast<ProductViewModel>().FirstOrDefault();
-
-            List<ProductViewModel> productsForDelete = new List<ProductViewModel>() { existingProduct };
-
-            JsonResult jru = productController.Destroy(request, productsForDelete) as JsonResult;
-            ProductViewModel deletedProduct = (jru.Data as DataSourceResult).Data.Cast<ProductViewModel>().FirstOrDefault();
-
-            JsonResult jrAfterDelete = productController.Read(request) as JsonResult;
-            List<ProductViewModel> allProductsAfterDelete = (jrAfterDelete.Data as DataSourceResult).Data.Cast<ProductViewModel>().ToList();
-
-            Assert.AreEqual(allProducts.Count - 1, allProductsAfterDelete.Count);
+            CrudTestsHelper.Delete(productController, request);
         }
 
 
