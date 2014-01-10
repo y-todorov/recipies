@@ -1,28 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using System.Threading.Tasks;
 using InventoryManagementMVC.DataAnnotations;
 
 namespace RecipiesUnitTests
 {
     public static class UnitTestHelper
     {
-        private static Random random = new Random((int)DateTime.Now.Ticks);
-
+        private static readonly Random random = new Random((int) DateTime.Now.Ticks);
 
 
         public static string GetRandomString(int size = 10)
         {
-            StringBuilder builder = new StringBuilder();
+            var builder = new StringBuilder();
 
             for (int i = 0; i < size; i++)
             {
-                char ch = Convert.ToChar(Convert.ToInt32(Math.Floor(26 * random.NextDouble() + 65)));
+                char ch = Convert.ToChar(Convert.ToInt32(Math.Floor(26*random.NextDouble() + 65)));
                 builder.Append(ch);
             }
 
@@ -38,14 +35,14 @@ namespace RecipiesUnitTests
 
         public static double GetRandomDouble(double minimum = int.MinValue, double maximum = int.MaxValue)
         {
-            double randomDouble = random.NextDouble() * (maximum - minimum) + minimum;
+            double randomDouble = random.NextDouble()*(maximum - minimum) + minimum;
             return randomDouble;
         }
 
         public static decimal GetRandomDecimal()
         {
             double randomDouble = GetRandomDouble();
-            decimal randomdecimal = (decimal)randomDouble;
+            var randomdecimal = (decimal) randomDouble;
             return randomdecimal;
         }
 
@@ -66,14 +63,14 @@ namespace RecipiesUnitTests
             Type modelType = model.GetType();
             PropertyInfo[] props = modelType.GetProperties();
 
-            foreach (var propertyInfo in props)
+            foreach (PropertyInfo propertyInfo in props)
             {
                 ReadOnlyAttribute readOnlyAttribute =
-                            propertyInfo.GetCustomAttributes<ReadOnlyAttribute>().FirstOrDefault();
+                    propertyInfo.GetCustomAttributes<ReadOnlyAttribute>().FirstOrDefault();
                 KeyAttribute keyAttribute =
-                            propertyInfo.GetCustomAttributes<KeyAttribute>().FirstOrDefault();
+                    propertyInfo.GetCustomAttributes<KeyAttribute>().FirstOrDefault();
                 RelationAttribute relationAttribute =
-                           propertyInfo.GetCustomAttributes<RelationAttribute>().FirstOrDefault();
+                    propertyInfo.GetCustomAttributes<RelationAttribute>().FirstOrDefault();
                 if (keyAttribute != null)
                 {
                     continue;
@@ -87,23 +84,24 @@ namespace RecipiesUnitTests
                     continue;
                 }
 
-                if (propertyInfo.PropertyType == typeof(string))
+                if (propertyInfo.PropertyType == typeof (string))
                 {
                     propertyInfo.SetValue(model, GetRandomString());
                 }
-                else if (propertyInfo.PropertyType == typeof(int) || propertyInfo.PropertyType == typeof(int?))
+                else if (propertyInfo.PropertyType == typeof (int) || propertyInfo.PropertyType == typeof (int?))
                 {
                     propertyInfo.SetValue(model, GetRandomInt());
                 }
-                else if (propertyInfo.PropertyType == typeof(double) || propertyInfo.PropertyType == typeof(double?))
+                else if (propertyInfo.PropertyType == typeof (double) || propertyInfo.PropertyType == typeof (double?))
                 {
                     propertyInfo.SetValue(model, GetRandomDouble());
                 }
-                else if (propertyInfo.PropertyType == typeof(decimal) || propertyInfo.PropertyType == typeof(decimal?))
+                else if (propertyInfo.PropertyType == typeof (decimal) || propertyInfo.PropertyType == typeof (decimal?))
                 {
                     propertyInfo.SetValue(model, GetRandomDecimal());
                 }
-                else if (propertyInfo.PropertyType == typeof(DateTime) || propertyInfo.PropertyType == typeof(DateTime?))
+                else if (propertyInfo.PropertyType == typeof (DateTime) ||
+                         propertyInfo.PropertyType == typeof (DateTime?))
                 {
                     propertyInfo.SetValue(model, GetRandomDateTime());
                 }
@@ -127,10 +125,10 @@ namespace RecipiesUnitTests
 
             bool arePropsEqual = true;
 
-            foreach (var propertyInfo in props)
+            foreach (PropertyInfo propertyInfo in props)
             {
                 KeyAttribute keyAttribute =
-                            propertyInfo.GetCustomAttributes<KeyAttribute>().FirstOrDefault();
+                    propertyInfo.GetCustomAttributes<KeyAttribute>().FirstOrDefault();
 
                 if (keyAttribute != null)
                 {
@@ -141,7 +139,8 @@ namespace RecipiesUnitTests
                 val2 = propertyInfo.GetValue(modelTwo);
                 if (val1 != null && val2 != null)
                 {
-                    arePropsEqual = val1.ToString() == val2.ToString(); // this is for double and decimal types, they are problematic
+                    arePropsEqual = val1.ToString() == val2.ToString();
+                        // this is for double and decimal types, they are problematic
                 }
                 else
                 {
@@ -153,7 +152,6 @@ namespace RecipiesUnitTests
                 }
             }
             return true;
-
         }
     }
 }

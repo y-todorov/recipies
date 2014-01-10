@@ -1,9 +1,7 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RecipiesModelNS;
-using System.Collections.Generic;
-
 
 namespace RecipiesUnitTests
 {
@@ -15,7 +13,7 @@ namespace RecipiesUnitTests
         public void FindAllProductsWithQuantitiesInRecipe()
         {
             Recipe aRecipie = ContextFactory.Current.Recipes.FirstOrDefault();
-            Dictionary<int, double> products = new Dictionary<int, double>();
+            var products = new Dictionary<int, double>();
             Recipe.GetProductsWithQuantities(aRecipie.RecipeId, products);
             Assert.AreNotEqual(0, products.Count);
         }
