@@ -49,7 +49,7 @@ namespace RecipiesUnitTests.CategoryController
         [TestMethod]
         public void UpdateCategoryTest()
         {
-            CrudTestsHelper.Update(categoryController, request, (new CategoryViewModel()).ConvertFromEntity(ContextFactory.Current.ProductCategories.FirstOrDefault()));
+            CrudTestsHelper.Update(categoryController, request, (new CategoryViewModel()).ConvertFromEntity(ContextFactory.Current.ProductCategories.ToList().LastOrDefault()));
         }
 
         [TestMethod]

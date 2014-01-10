@@ -63,6 +63,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="UnitMeasureController\UnitMeasureControllerTest.cs" />
     <Compile Include="CrudTestsHelper.cs" />
     <Compile Include="CategoryController\CategoryControllerTest.cs" />
     <Compile Include="RecipeUnitTests.cs" />

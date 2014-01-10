@@ -51,7 +51,7 @@ namespace RecipiesUnitTests.ProductController
         [TestMethod]
         public void UpdateProductTest()
         {
-            CrudTestsHelper.Update(productController, request, (new ProductViewModel()).ConvertFromEntity(ContextFactory.Current.Products.FirstOrDefault()));
+            CrudTestsHelper.Update(productController, request, (new ProductViewModel()).ConvertFromEntity(ContextFactory.Current.Products.ToList().LastOrDefault()));
         }
 
         [TestMethod]
