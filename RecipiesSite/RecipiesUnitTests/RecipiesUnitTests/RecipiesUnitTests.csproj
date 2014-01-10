@@ -63,6 +63,8 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="RecipeController\RecipeControllerTest.cs" />
+    <Compile Include="StoreController\StoreControllerTest.cs" />
     <Compile Include="UnitMeasureController\UnitMeasureControllerTest.cs" />
     <Compile Include="CrudTestsHelper.cs" />
     <Compile Include="CategoryController\CategoryControllerTest.cs" />
@@ -91,6 +93,9 @@
       <Project>{86bdca89-36f0-4884-99a5-de0576d01188}</Project>
       <Name>RecipiesWebFormApp</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ProductInventoryController\" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

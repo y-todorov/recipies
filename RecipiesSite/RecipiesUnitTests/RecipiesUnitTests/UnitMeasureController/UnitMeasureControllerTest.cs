@@ -1,10 +1,10 @@
-﻿using InventoryManagementMVC.Models;
+﻿using System.Linq;
+using InventoryManagementMVC.Models;
 using Kendo.Mvc.UI;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RecipiesModelNS;
-using System.Linq;
 
-namespace RecipiesUnitTests.CategoryController
+namespace RecipiesUnitTests.UnitMeasureController
 {
     [TestClass]
     public class UnitMeasureControllerTest
