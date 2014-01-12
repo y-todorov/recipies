@@ -63,6 +63,9 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="ProductInventoryHeaderController\ProductInventoryHeaderControllerTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="RecipeController\RecipeControllerTest.cs" />
     <Compile Include="StoreController\StoreControllerTest.cs" />
     <Compile Include="UnitMeasureController\UnitMeasureControllerTest.cs" />
@@ -94,9 +97,7 @@
       <Name>RecipiesWebFormApp</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ProductInventoryController\" />
-  </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

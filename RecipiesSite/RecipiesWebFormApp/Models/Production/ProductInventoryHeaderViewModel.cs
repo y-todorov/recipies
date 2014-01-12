@@ -19,28 +19,25 @@ namespace InventoryManagementMVC.Models
 
         public string ModifiedByUser { get; set; }
 
-        public static ProductInventoryHeaderViewModel ConvertFromProductInventoryHeaderEntity(
-            ProductInventoryHeader entity,
-            ProductInventoryHeaderViewModel model)
+        public ProductInventoryHeaderViewModel ConvertFromEntity(ProductInventoryHeader entity)
         {
-            model.ProductInventoryHeaderId = entity.ProductInventoryHeaderId;
-            model.ForDate = entity.ForDate;
+            ProductInventoryHeaderId = entity.ProductInventoryHeaderId;
+            ForDate = entity.ForDate;
 
-            model.ModifiedDate = entity.ModifiedDate;
-            model.ModifiedByUser = entity.ModifiedByUser;
+            ModifiedDate = entity.ModifiedDate;
+            ModifiedByUser = entity.ModifiedByUser;
 
 
-            return model;
+            return this;
         }
 
-        public static ProductInventoryHeader ConvertToProductInventoryHeaderEntity(
-            ProductInventoryHeaderViewModel model, ProductInventoryHeader entity)
+        public ProductInventoryHeader ConvertToEntity(ProductInventoryHeader entity)
         {
-            entity.ProductInventoryHeaderId = model.ProductInventoryHeaderId;
-            entity.ForDate = model.ForDate;
+            entity.ProductInventoryHeaderId = ProductInventoryHeaderId;
+            entity.ForDate = ForDate;
 
-            entity.ModifiedDate = model.ModifiedDate;
-            entity.ModifiedByUser = model.ModifiedByUser;
+            entity.ModifiedDate = ModifiedDate;
+            entity.ModifiedByUser = ModifiedByUser;
 
             return entity;
         }

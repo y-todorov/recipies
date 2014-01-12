@@ -84,10 +84,14 @@ namespace RecipiesUnitTests
             dynamic listOfModelsInstance = Activator.CreateInstance(constructedListType);
 
             IEnumerator en = modelForDelete.GetEnumerator();
-            en.MoveNext();
+            //en.MoveNext();
 
             dynamic correctInstance = Activator.CreateInstance(modelType);
-            correctInstance = en.Current;
+            while (en.MoveNext())
+            {
+                correctInstance = en.Current; // get the last one
+            }
+            //correctInstance = en.Current;
 
             listOfModelsInstance.Add(correctInstance);
 

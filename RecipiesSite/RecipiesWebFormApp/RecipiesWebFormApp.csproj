@@ -480,7 +480,7 @@
     <Compile Include="Controllers\Shared\ErrorController.cs" />
     <Compile Include="Controllers\Production\CategoryController.cs" />
     <Compile Include="Controllers\Production\ProductController.cs" />
-    <Compile Include="Controllers\Production\ProductInventoryHeaderControllerOLD.cs" />
+    <Compile Include="Controllers\Production\ProductInventoryHeaderController.cs" />
     <Compile Include="Controllers\Production\ProductInventoryController.cs" />
     <Compile Include="Controllers\Production\StoreController.cs" />
     <Compile Include="Controllers\Production\UnitMeasureController.cs" />
