@@ -11,19 +11,19 @@ namespace RecipiesModelNS
         public override void Added(DbEntityEntry e = null)
         {
             
-            PurchaseOrderHeader.UpdatePurchaseOrderHeaderSubTotalFromPurchaseOrderDetails(PurchaseOrderId);
+            //PurchaseOrderHeader.UpdatePurchaseOrderHeaderSubTotalFromPurchaseOrderDetails(PurchaseOrderId);
             // no need to update if all is 0-> no chane in products quantities
-            if (OrderQuantity.GetValueOrDefault() != 0 || ReceivedQuantity.GetValueOrDefault() != 0 || ReturnedQuantity.GetValueOrDefault() != 0)
+            //if (OrderQuantity.GetValueOrDefault() != 0 || ReceivedQuantity.GetValueOrDefault() != 0 || ReturnedQuantity.GetValueOrDefault() != 0)
             {
-                PurchaseOrderHeader.UpdateProductsUnitsInStock(PurchaseOrderId);
+            //    PurchaseOrderHeader.UpdateProductsUnitsInStock(PurchaseOrderId);
             }
             base.Added(e);
         }
 
         public override void Changed(DbEntityEntry e = null)
         {
-            PurchaseOrderHeader.UpdatePurchaseOrderHeaderSubTotalFromPurchaseOrderDetails(PurchaseOrderId);
-            PurchaseOrderHeader.UpdateProductsUnitsInStock(PurchaseOrderId);
+            //PurchaseOrderHeader.UpdatePurchaseOrderHeaderSubTotalFromPurchaseOrderDetails(PurchaseOrderId);
+            //PurchaseOrderHeader.UpdateProductsUnitsInStock(PurchaseOrderId);
             base.Changed(e);
         }
 
@@ -36,8 +36,8 @@ namespace RecipiesModelNS
 
         public override void Removed(DbEntityEntry e = null)
         {
-            PurchaseOrderHeader.UpdatePurchaseOrderHeaderSubTotalFromPurchaseOrderDetails(_purchaseOrderHeaderId);
-            PurchaseOrderHeader.UpdateProductsUnitsInStock(_purchaseOrderHeaderId);
+            //PurchaseOrderHeader.UpdatePurchaseOrderHeaderSubTotalFromPurchaseOrderDetails(_purchaseOrderHeaderId);
+            //PurchaseOrderHeader.UpdateProductsUnitsInStock(_purchaseOrderHeaderId);
             base.Removed(e);
         }
         
