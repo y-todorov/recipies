@@ -3,7 +3,9 @@ using System.Data;
 using System.Data.Common;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.Diagnostics;
 using System.Threading.Tasks;
+using System.Timers;
 
 namespace RecipiesModelNS
 {
@@ -12,6 +14,7 @@ namespace RecipiesModelNS
         public RecipiesEntities(bool contextOwnsConnection)
             : base(new System.Data.EntityClient.EntityConnection("name=RecipiesEntities"), contextOwnsConnection)
         {
+            this.Configuration.AutoDetectChangesEnabled = false;
         }
 
         protected override System.Data.Entity.Validation.DbEntityValidationResult ValidateEntity(
@@ -25,17 +28,24 @@ namespace RecipiesModelNS
             return base.ShouldValidateEntity(entityEntry);
         }
 
+        private int saveChangesHits = 0;
+
         public override int SaveChanges()
         {
+            saveChangesHits++;
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
             ChangeTracker.DetectChanges();
             IEnumerable<DbEntityEntry> entries = ChangeTracker.Entries();
-
+            sw.Stop();
+            long mils = sw.ElapsedMilliseconds;
+            
             List<YordanBaseEntity> addedEntities = new List<YordanBaseEntity>();
             List<YordanBaseEntity> modifiedEntities = new List<YordanBaseEntity>();
             List<YordanBaseEntity> deletedEntities = new List<YordanBaseEntity>();
 
 
-           
+
 
             foreach (DbEntityEntry entry in entries)
             {
@@ -66,7 +76,7 @@ namespace RecipiesModelNS
                     {
                         ybe.Changing(entry);
                         modifiedEntities.Add(ybe);
-                           
+
                     }
                 }
             }
