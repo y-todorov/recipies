@@ -35,15 +35,15 @@ namespace InventoryManagementMVC.Controllers
                 List<PurchaseOrderDetail> pods =
                     ContextFactory.GetContextPerRequest()
                         .PurchaseOrderDetails.Where(
-                            pod => pod.PurchaseOrderHeader.StatusId == (int) PurchaseOrderStatusEnum.Completed)
+                            pod => pod.PurchaseOrderHeader.StatusId == (int)PurchaseOrderStatusEnum.Completed)
                         .ToList();
 
                 var grouping =
-                    pods.OrderByDescending(pod => pod.PurchaseOrderHeader.ShipDate)
+                    pods.OrderBy(pod => pod.PurchaseOrderHeader.ShipDate)
                         .GroupBy(
-                            pod =>
+                            pod => pod.PurchaseOrderHeader.ShipDate.GetValueOrDefault().Year * 100 + int.Parse(
                                 ControllerHelper.GetIso8601WeekOfYear(
-                                    pod.PurchaseOrderHeader.ShipDate.GetValueOrDefault()));
+                                    pod.PurchaseOrderHeader.ShipDate.GetValueOrDefault())));
 
 
                 List<Dictionary<string, string>> list = new List<Dictionary<string, string>>();
@@ -58,7 +58,8 @@ namespace InventoryManagementMVC.Controllers
                 foreach (var item in grouping)
                 {
                     Dictionary<string, string> entry = new Dictionary<string, string>();
-                    entry.Add("Week", item.Key);
+                    int week = item.Key % 100;
+                    entry.Add("Week", week.ToString());
 
                     entry.Add("EscapeStringYordan_" + fakeTotalVendor.VendorId,
                         Math.Round(item.Sum(pod => pod.LineTotal), 3).ToString());
@@ -73,8 +74,9 @@ namespace InventoryManagementMVC.Controllers
                     list.Add(entry);
                 }
 
-                var res = list.OrderBy(h => h["Week"]).ToList();
-                return Json(res);
+                //var res = list.OrderBy(h => h["Week"]).ToList();
+                //var res = list.ToList();
+                return Json(list);
             }
             catch (Exception ex)
             {
@@ -114,8 +116,8 @@ namespace InventoryManagementMVC.Controllers
             List<GpPerDay> list = new List<GpPerDay>();
             for (int i = lastNdays; i >= 0; i--)
             {
-                DateTime fromDate = DateTime.Now.Date.AddDays(-i*7);
-                DateTime toDate = DateTime.Now.Date.AddDays((-i + 1)*7);
+                DateTime fromDate = DateTime.Now.Date.AddDays(-i * 7);
+                DateTime toDate = DateTime.Now.Date.AddDays((-i + 1) * 7);
                 double sales =
                     SalesOrderHeader.GetSalesOrderHeadersInPeriod(fromDate, toDate, SalesOrderStatusEnum.Approved)
                         .Sum(soh => soh.SalesOrderDetails.Sum(sod => sod.LineTotal));
@@ -141,7 +143,7 @@ namespace InventoryManagementMVC.Controllers
         {
             List<RecipeByGP> list =
                 ContextFactory.Current.Recipes.OrderByDescending(r => r.GrossProfit)
-                    .Select(r => new RecipeByGP() {RecipeName = r.Name, GP = r.GrossProfit})
+                    .Select(r => new RecipeByGP() { RecipeName = r.Name, GP = r.GrossProfit })
                     .ToList();
 
             return Json(list);

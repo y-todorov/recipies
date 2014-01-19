@@ -26,22 +26,24 @@ namespace InventoryManagementMVC.Controllers
                         .ToList();
 
                 var grouping =
-                    pods.OrderByDescending(pod => pod.PurchaseOrderHeader.ShipDate)
+                    pods.OrderBy(pod => pod.PurchaseOrderHeader.ShipDate)
                         .GroupBy(
-                            pod =>
+                            pod => pod.PurchaseOrderHeader.ShipDate.GetValueOrDefault().Year * 100 + int.Parse(
                                 ControllerHelper.GetIso8601WeekOfYear(
-                                    pod.PurchaseOrderHeader.ShipDate.GetValueOrDefault()));
+                                    pod.PurchaseOrderHeader.ShipDate.GetValueOrDefault())));
 
                 List<Dictionary<string, object>> helpers = new List<Dictionary<string, object>>();
 
                 foreach (var item in grouping)
                 {
                     dynamic h = new Dictionary<string, object>();
-                    h.Add("Week", item.Key);
+                    int week = item.Key % 100;
+                    h.Add("Week", week.ToString());
+                    //h.Add("Week", item.Key);
                     helpers.Add(h);
                 }
 
-                var res = helpers.OrderBy(h => h["Week"]).ToList();
+                var res = helpers;//.OrderBy(h => h["Week"]).ToList();
                 ViewData.Add("WeekNumbers", res.Select(r => r["Week"].ToString()));
             }
             catch (Exception ex)
