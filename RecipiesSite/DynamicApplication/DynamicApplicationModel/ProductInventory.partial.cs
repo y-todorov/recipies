@@ -10,7 +10,6 @@ namespace RecipiesModelNS
     {
         public override void Added(System.Data.Entity.Infrastructure.DbEntityEntry e = null)
         {
-
             Product.UpdateUnitsInStock(ProductId);
             base.Added(e);
         }

@@ -23,7 +23,8 @@ namespace RecipiesModelNS
             //recipeIdToUpdate = ParentRecipeId; // THIS CAN BE ONLY THE PRIMARY KEY OF THE DELETED ENTITY THIS IS PROBLEM AND DO NOT WORK
             using (RecipiesEntities context = ContextFactory.CreateNewContext())
             {
-                RecipeIngredient ri = context.RecipeIngredients.FirstOrDefault(r => r.RecipeIngredientId == RecipeIngredientId);
+                RecipeIngredient ri =
+                    context.RecipeIngredients.FirstOrDefault(r => r.RecipeIngredientId == RecipeIngredientId);
                 if (ri != null)
                 {
                     recipeIdToUpdate = ri.ParentRecipeId;
@@ -37,7 +38,5 @@ namespace RecipiesModelNS
             ProductIngredient.UpdateRecipesValuePerPortionFromIngredientsChange(recipeIdToUpdate);
             base.Removed(e);
         }
-
-
     }
 }

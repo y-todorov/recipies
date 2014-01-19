@@ -5,7 +5,9 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="RecipiesModelNS.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="RecipiesModelNS.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008"
+              Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator"
+              xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="EmailTemplate">
           <Key>
             <PropertyRef Name="EmailTemplateId" />
@@ -869,15 +871,18 @@
           <EntitySet Name="__RecipiesDataBase" EntityType="Self.__RecipiesDataBase" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Department" EntityType="Self.Department" Schema="HumanResources" store:Type="Tables" />
           <EntitySet Name="Employee" EntityType="Self.Employee" Schema="HumanResources" store:Type="Tables" />
-          <EntitySet Name="EmployeeDepartment" EntityType="Self.EmployeeDepartment" Schema="HumanResources" store:Type="Tables" />
+          <EntitySet Name="EmployeeDepartment" EntityType="Self.EmployeeDepartment" Schema="HumanResources"
+                     store:Type="Tables" />
           <EntitySet Name="Shift" EntityType="Self.Shift" Schema="HumanResources" store:Type="Tables" />
           <EntitySet Name="Inventory" EntityType="Self.Inventory" Schema="Production" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="Production" store:Type="Tables" />
           <EntitySet Name="ProductCategory" EntityType="Self.ProductCategory" Schema="Production" store:Type="Tables" />
           <EntitySet Name="ProductHistory" EntityType="Self.ProductHistory" Schema="Production" store:Type="Tables" />
-          <EntitySet Name="ProductIngredient" EntityType="Self.ProductIngredient" Schema="Production" store:Type="Tables" />
+          <EntitySet Name="ProductIngredient" EntityType="Self.ProductIngredient" Schema="Production"
+                     store:Type="Tables" />
           <EntitySet Name="ProductInventory" EntityType="Self.ProductInventory" Schema="Production" store:Type="Tables" />
-          <EntitySet Name="ProductInventoryHeader" EntityType="Self.ProductInventoryHeader" Schema="Production" store:Type="Tables" />
+          <EntitySet Name="ProductInventoryHeader" EntityType="Self.ProductInventoryHeader" Schema="Production"
+                     store:Type="Tables" />
           <EntitySet Name="ProductWaste" EntityType="Self.ProductWaste" Schema="Production" store:Type="Tables" />
           <EntitySet Name="Recipe" EntityType="Self.Recipe" Schema="Production" store:Type="Tables" />
           <EntitySet Name="RecipeIngredient" EntityType="Self.RecipeIngredient" Schema="Production" store:Type="Tables" />
@@ -887,9 +892,12 @@
           <EntitySet Name="UnitMeasure" EntityType="Self.UnitMeasure" Schema="Production" store:Type="Tables" />
           <EntitySet Name="Waste" EntityType="Self.Waste" Schema="Production" store:Type="Tables" />
           <EntitySet Name="ProductVendor" EntityType="Self.ProductVendor" Schema="Purchasing" store:Type="Tables" />
-          <EntitySet Name="PurchaseOrderDetail" EntityType="Self.PurchaseOrderDetail" Schema="Purchasing" store:Type="Tables" />
-          <EntitySet Name="PurchaseOrderHeader" EntityType="Self.PurchaseOrderHeader" Schema="Purchasing" store:Type="Tables" />
-          <EntitySet Name="PurchaseOrderStatus" EntityType="Self.PurchaseOrderStatus" Schema="Purchasing" store:Type="Tables" />
+          <EntitySet Name="PurchaseOrderDetail" EntityType="Self.PurchaseOrderDetail" Schema="Purchasing"
+                     store:Type="Tables" />
+          <EntitySet Name="PurchaseOrderHeader" EntityType="Self.PurchaseOrderHeader" Schema="Purchasing"
+                     store:Type="Tables" />
+          <EntitySet Name="PurchaseOrderStatus" EntityType="Self.PurchaseOrderStatus" Schema="Purchasing"
+                     store:Type="Tables" />
           <EntitySet Name="ShipMethod" EntityType="Self.ShipMethod" Schema="Purchasing" store:Type="Tables" />
           <EntitySet Name="Vendor" EntityType="Self.Vendor" Schema="Purchasing" store:Type="Tables" />
           <EntitySet Name="Customer" EntityType="Self.Customer" Schema="Sales" store:Type="Tables" />
@@ -945,7 +953,8 @@
             <End Role="Product" EntitySet="Product" />
             <End Role="ProductInventory" EntitySet="ProductInventory" />
           </AssociationSet>
-          <AssociationSet Name="FK_ProductInventory_ProductInventoryHeader" Association="Self.FK_ProductInventory_ProductInventoryHeader">
+          <AssociationSet Name="FK_ProductInventory_ProductInventoryHeader"
+                          Association="Self.FK_ProductInventory_ProductInventoryHeader">
             <End Role="ProductInventoryHeader" EntitySet="ProductInventoryHeader" />
             <End Role="ProductInventory" EntitySet="ProductInventory" />
           </AssociationSet>
@@ -977,11 +986,13 @@
             <End Role="Product" EntitySet="Product" />
             <End Role="PurchaseOrderDetail" EntitySet="PurchaseOrderDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK_PurchaseOrderDetail_PurchaseOrderHeader" Association="Self.FK_PurchaseOrderDetail_PurchaseOrderHeader">
+          <AssociationSet Name="FK_PurchaseOrderDetail_PurchaseOrderHeader"
+                          Association="Self.FK_PurchaseOrderDetail_PurchaseOrderHeader">
             <End Role="PurchaseOrderHeader" EntitySet="PurchaseOrderHeader" />
             <End Role="PurchaseOrderDetail" EntitySet="PurchaseOrderDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK_PurchaseOrderDetail_UnitMeasure" Association="Self.FK_PurchaseOrderDetail_UnitMeasure">
+          <AssociationSet Name="FK_PurchaseOrderDetail_UnitMeasure"
+                          Association="Self.FK_PurchaseOrderDetail_UnitMeasure">
             <End Role="UnitMeasure" EntitySet="UnitMeasure" />
             <End Role="PurchaseOrderDetail" EntitySet="PurchaseOrderDetail" />
           </AssociationSet>
@@ -989,7 +1000,8 @@
             <End Role="Employee" EntitySet="Employee" />
             <End Role="PurchaseOrderHeader" EntitySet="PurchaseOrderHeader" />
           </AssociationSet>
-          <AssociationSet Name="FK_PurchaseOrderHeader_PurchaseOrderStatus" Association="Self.FK_PurchaseOrderHeader_PurchaseOrderStatus">
+          <AssociationSet Name="FK_PurchaseOrderHeader_PurchaseOrderStatus"
+                          Association="Self.FK_PurchaseOrderHeader_PurchaseOrderStatus">
             <End Role="PurchaseOrderStatus" EntitySet="PurchaseOrderStatus" />
             <End Role="PurchaseOrderHeader" EntitySet="PurchaseOrderHeader" />
           </AssociationSet>
@@ -1005,7 +1017,8 @@
             <End Role="ProductCategory" EntitySet="ProductCategory" />
             <End Role="Recipe" EntitySet="Recipe" />
           </AssociationSet>
-          <AssociationSet Name="FK_RecipeIngredient_IngredientRecipe" Association="Self.FK_RecipeIngredient_IngredientRecipe">
+          <AssociationSet Name="FK_RecipeIngredient_IngredientRecipe"
+                          Association="Self.FK_RecipeIngredient_IngredientRecipe">
             <End Role="Recipe" EntitySet="Recipe" />
             <End Role="RecipeIngredient" EntitySet="RecipeIngredient" />
           </AssociationSet>
@@ -1041,12 +1054,14 @@
             <End Role="PaymentType" EntitySet="PaymentType" />
             <End Role="SalesOrderHeader" EntitySet="SalesOrderHeader" />
           </AssociationSet>
-          <AssociationSet Name="FK_SalesOrderHeader_SalesOrderStatus" Association="Self.FK_SalesOrderHeader_SalesOrderStatus">
+          <AssociationSet Name="FK_SalesOrderHeader_SalesOrderStatus"
+                          Association="Self.FK_SalesOrderHeader_SalesOrderStatus">
             <End Role="SalesOrderStatus" EntitySet="SalesOrderStatus" />
             <End Role="SalesOrderHeader" EntitySet="SalesOrderHeader" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="RecipiesModelNS" Alias="Self" p1:UseStrongSpatialTypes="false"
@@ -1221,12 +1236,14 @@
             <End Role="Waste" EntitySet="Wastes" />
           </AssociationSet>
           <EntitySet Name="ProductInventoryHeaders" EntityType="RecipiesModelNS.ProductInventoryHeader" />
-          <AssociationSet Name="FK_ProductInventory_ProductInventoryHeader" Association="RecipiesModelNS.FK_ProductInventory_ProductInventoryHeader">
+          <AssociationSet Name="FK_ProductInventory_ProductInventoryHeader"
+                          Association="RecipiesModelNS.FK_ProductInventory_ProductInventoryHeader">
             <End Role="ProductInventoryHeader" EntitySet="ProductInventoryHeaders" />
             <End Role="ProductInventory" EntitySet="Inventories" />
           </AssociationSet>
           <EntitySet Name="ProductIngredients" EntityType="RecipiesModelNS.ProductIngredient" />
-          <AssociationSet Name="FK_RecipeIngredient_Product1" Association="RecipiesModelNS.FK_RecipeIngredient_Product1">
+          <AssociationSet Name="FK_RecipeIngredient_Product1"
+                          Association="RecipiesModelNS.FK_RecipeIngredient_Product1">
             <End Role="Product" EntitySet="Products" />
             <End Role="ProductIngredient" EntitySet="ProductIngredients" />
           </AssociationSet>
@@ -1235,11 +1252,13 @@
             <End Role="ProductIngredient" EntitySet="ProductIngredients" />
           </AssociationSet>
           <EntitySet Name="RecipeIngredients" EntityType="RecipiesModelNS.RecipeIngredient" />
-          <AssociationSet Name="FK_RecipeIngredient_IngredientRecipe" Association="RecipiesModelNS.FK_RecipeIngredient_IngredientRecipe">
+          <AssociationSet Name="FK_RecipeIngredient_IngredientRecipe"
+                          Association="RecipiesModelNS.FK_RecipeIngredient_IngredientRecipe">
             <End Role="Recipe" EntitySet="Recipes" />
             <End Role="RecipeIngredient" EntitySet="RecipeIngredients" />
           </AssociationSet>
-          <AssociationSet Name="FK_RecipeIngredient_ParentRecipe" Association="RecipiesModelNS.FK_RecipeIngredient_ParentRecipe">
+          <AssociationSet Name="FK_RecipeIngredient_ParentRecipe"
+                          Association="RecipiesModelNS.FK_RecipeIngredient_ParentRecipe">
             <End Role="Recipe" EntitySet="Recipes" />
             <End Role="RecipeIngredient" EntitySet="RecipeIngredients" />
           </AssociationSet>
@@ -1339,7 +1358,8 @@
             <PropertyRef Name="InventoryId" />
           </Key>
           <Property Type="Int32" Name="InventoryId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="DateTime" Name="ForDate" Precision="0" a:SetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:GetterAccess="Private" />
+          <Property Type="DateTime" Name="ForDate" Precision="0" a:SetterAccess="Private"
+                    xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:GetterAccess="Private" />
           <Property Type="Decimal" Name="AverageUnitPrice" Precision="19" Scale="4" />
           <Property Type="Double" Name="QuantityByDocuments" />
           <Property Type="Double" Name="ValueByDocuments" annotation:StoreGeneratedPattern="Computed" />
@@ -1383,7 +1403,8 @@
                               FromRole="Product" ToRole="ProductInventory" />
           <NavigationProperty Name="ProductWastes" Relationship="RecipiesModelNS.FK_ProductWaste_Product"
                               FromRole="Product" ToRole="ProductWaste" />
-          <NavigationProperty Name="ProductIngredients" Relationship="RecipiesModelNS.FK_RecipeIngredient_Product1" FromRole="Product" ToRole="ProductIngredient" />
+          <NavigationProperty Name="ProductIngredients" Relationship="RecipiesModelNS.FK_RecipeIngredient_Product1"
+                              FromRole="Product" ToRole="ProductIngredient" />
         </EntityType>
         <EntityType Name="ProductCategory">
           <Key>
@@ -1438,9 +1459,13 @@
                               FromRole="Recipe" ToRole="RecipeInventory" />
           <NavigationProperty Name="RecipeWastes" Relationship="RecipiesModelNS.FK_RecipeWaste_Recipe"
                               FromRole="Recipe" ToRole="RecipeWaste" />
-          <NavigationProperty Name="ProductIngredients" Relationship="RecipiesModelNS.FK_RecipeIngredient_Recipe1" FromRole="Recipe" ToRole="ProductIngredient" />
-          <NavigationProperty Name="RecipeIngredients" Relationship="RecipiesModelNS.FK_RecipeIngredient_IngredientRecipe" FromRole="Recipe" ToRole="RecipeIngredient" />
-          <NavigationProperty Name="RecipeIngredients1" Relationship="RecipiesModelNS.FK_RecipeIngredient_ParentRecipe" FromRole="Recipe" ToRole="RecipeIngredient" />
+          <NavigationProperty Name="ProductIngredients" Relationship="RecipiesModelNS.FK_RecipeIngredient_Recipe1"
+                              FromRole="Recipe" ToRole="ProductIngredient" />
+          <NavigationProperty Name="RecipeIngredients"
+                              Relationship="RecipiesModelNS.FK_RecipeIngredient_IngredientRecipe" FromRole="Recipe"
+                              ToRole="RecipeIngredient" />
+          <NavigationProperty Name="RecipeIngredients1" Relationship="RecipiesModelNS.FK_RecipeIngredient_ParentRecipe"
+                              FromRole="Recipe" ToRole="RecipeIngredient" />
         </EntityType>
         <EntityType Name="Store">
           <Key>
@@ -1949,9 +1974,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_OrderDetail_Order">
-          <End Type="RecipiesModelNS.SalesOrderHeader" Role="SalesOrderHeader" Multiplicity="0..1" >
+          <End Type="RecipiesModelNS.SalesOrderHeader" Role="SalesOrderHeader" Multiplicity="0..1">
           </End>
-          <End Type="RecipiesModelNS.SalesOrderDetail" Role="SalesOrderDetail" Multiplicity="*" >
+          <End Type="RecipiesModelNS.SalesOrderDetail" Role="SalesOrderDetail" Multiplicity="*">
           </End>
           <ReferentialConstraint>
             <Principal Role="SalesOrderHeader">
@@ -1979,7 +2004,9 @@
           <NavigationProperty Name="Product" Relationship="RecipiesModelNS.FK_ProductInventory_Product"
                               FromRole="ProductInventory" ToRole="Product" />
           <Property Name="ProductInventoryHeaderId" Type="Int32" />
-          <NavigationProperty Name="ProductInventoryHeader" Relationship="RecipiesModelNS.FK_ProductInventory_ProductInventoryHeader" FromRole="ProductInventory" ToRole="ProductInventoryHeader" />
+          <NavigationProperty Name="ProductInventoryHeader"
+                              Relationship="RecipiesModelNS.FK_ProductInventory_ProductInventoryHeader"
+                              FromRole="ProductInventory" ToRole="ProductInventoryHeader" />
         </EntityType>
         <EntityType Name="RecipeInventory" BaseType="RecipiesModelNS.Inventory">
           <Property Type="Int32" Name="RecipeId" />
@@ -2126,11 +2153,14 @@
           <Key>
             <PropertyRef Name="ProductInventoryHeaderId" />
           </Key>
-          <Property Name="ProductInventoryHeaderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductInventoryHeaderId" Type="Int32" Nullable="false"
+                    annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ForDate" Type="DateTime" Precision="0" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
           <Property Name="ModifiedByUser" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="ProductInventories" Relationship="RecipiesModelNS.FK_ProductInventory_ProductInventoryHeader" FromRole="ProductInventoryHeader" ToRole="ProductInventory" />
+          <NavigationProperty Name="ProductInventories"
+                              Relationship="RecipiesModelNS.FK_ProductInventory_ProductInventoryHeader"
+                              FromRole="ProductInventoryHeader" ToRole="ProductInventory" />
         </EntityType>
         <Association Name="FK_ProductInventory_ProductInventoryHeader">
           <End Type="RecipiesModelNS.ProductInventoryHeader" Role="ProductInventoryHeader" Multiplicity="0..1" />
@@ -2148,7 +2178,8 @@
           <Key>
             <PropertyRef Name="ProductIngredientId" />
           </Key>
-          <Property Name="ProductIngredientId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductIngredientId" Type="Int32" Nullable="false"
+                    annotation:StoreGeneratedPattern="Identity" />
           <Property Name="RecipeId" Type="Int32" />
           <Property Name="ProductId" Type="Int32" />
           <Property Name="QuantityPerPortion" Type="Double" />
@@ -2156,8 +2187,10 @@
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
           <Property Name="ModifiedByUser" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
           <Property Name="TotalValue" Type="Double" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
-          <NavigationProperty Name="Product" Relationship="RecipiesModelNS.FK_RecipeIngredient_Product1" FromRole="ProductIngredient" ToRole="Product" />
-          <NavigationProperty Name="Recipe" Relationship="RecipiesModelNS.FK_RecipeIngredient_Recipe1" FromRole="ProductIngredient" ToRole="Recipe" />
+          <NavigationProperty Name="Product" Relationship="RecipiesModelNS.FK_RecipeIngredient_Product1"
+                              FromRole="ProductIngredient" ToRole="Product" />
+          <NavigationProperty Name="Recipe" Relationship="RecipiesModelNS.FK_RecipeIngredient_Recipe1"
+                              FromRole="ProductIngredient" ToRole="Recipe" />
         </EntityType>
         <Association Name="FK_RecipeIngredient_Product1">
           <End Type="RecipiesModelNS.Product" Role="Product" Multiplicity="0..1" />
@@ -2195,8 +2228,11 @@
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
           <Property Name="ModifiedByUser" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
           <Property Name="TotalValue" Type="Double" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
-          <NavigationProperty Name="IngredientRecipe" Relationship="RecipiesModelNS.FK_RecipeIngredient_IngredientRecipe" FromRole="RecipeIngredient" ToRole="Recipe" />
-          <NavigationProperty Name="ParentRecipe" Relationship="RecipiesModelNS.FK_RecipeIngredient_ParentRecipe" FromRole="RecipeIngredient" ToRole="Recipe" />
+          <NavigationProperty Name="IngredientRecipe"
+                              Relationship="RecipiesModelNS.FK_RecipeIngredient_IngredientRecipe"
+                              FromRole="RecipeIngredient" ToRole="Recipe" />
+          <NavigationProperty Name="ParentRecipe" Relationship="RecipiesModelNS.FK_RecipeIngredient_ParentRecipe"
+                              FromRole="RecipeIngredient" ToRole="Recipe" />
         </EntityType>
         <Association Name="FK_RecipeIngredient_IngredientRecipe">
           <End Type="RecipiesModelNS.Recipe" Role="Recipe" Multiplicity="0..1" />

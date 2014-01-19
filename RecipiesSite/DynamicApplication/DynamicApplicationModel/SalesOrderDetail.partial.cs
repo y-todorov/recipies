@@ -37,7 +37,9 @@ namespace RecipiesModelNS
 
         public static void UpdateProductsUnitsInStock(int? salesOrderDetailId)
         {
-            SalesOrderDetail salesOrderDetail = ContextFactory.Current.SalesOrderDetails.FirstOrDefault(sod => sod.SalesOrderDetailId == salesOrderDetailId);
+            SalesOrderDetail salesOrderDetail =
+                ContextFactory.Current.SalesOrderDetails.FirstOrDefault(
+                    sod => sod.SalesOrderDetailId == salesOrderDetailId);
             if (salesOrderDetail != null && salesOrderDetail.Recipe != null)
             {
                 Dictionary<int, double> productsWithQuantities = new Dictionary<int, double>();
@@ -63,7 +65,6 @@ namespace RecipiesModelNS
                 //    }
                 //}
             }
-
         }
     }
 }

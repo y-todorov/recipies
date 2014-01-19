@@ -8,6 +8,7 @@ namespace RecipiesModelNS
     public partial class ProductInventoryHeader : YordanBaseEntity
     {
         private static int? productInventoryHeaderId = 0;
+
         public override void Removing(System.Data.Entity.Infrastructure.DbEntityEntry e = null)
         {
             productInventoryHeaderId = ProductInventoryHeaderId;
@@ -32,7 +33,10 @@ namespace RecipiesModelNS
             //ContextFactory.Current.ProductInventoryHeaders.Add(pihEntity);
             //ContextFactory.Current.SaveChanges();
 
-            List<ProductInventory> pis = ContextFactory.Current.Inventories.OfType<ProductInventory>().Where(pi => pi.ProductInventoryHeaderId == pihEntity.ProductInventoryHeaderId).ToList();
+            List<ProductInventory> pis =
+                ContextFactory.Current.Inventories.OfType<ProductInventory>()
+                    .Where(pi => pi.ProductInventoryHeaderId == pihEntity.ProductInventoryHeaderId)
+                    .ToList();
 
             List<Product> allProducts = ContextFactory.Current.Products.ToList();
             // Move this to the database project in ProductInventoryHeader
@@ -40,7 +44,6 @@ namespace RecipiesModelNS
             {
                 if (!pis.Any(pid => pid.ProductId == product.ProductId))
                 {
-
                     ProductInventory pi = new ProductInventory();
                     pi.ProductId = product.ProductId;
                     //pi.ForDate = pihEntity.ForDate;
@@ -53,7 +56,6 @@ namespace RecipiesModelNS
                     ContextFactory.Current.SaveChanges();
                 }
             }
-           
         }
     }
 }

@@ -32,7 +32,7 @@ namespace RecipiesWebFormApp
 
         public static void StartWathching(int seconds)
         {
-            Timer timer = new Timer(1000*seconds);
+            Timer timer = new Timer(1000 * seconds);
             timer.Elapsed += timer_Elapsed;
             timer.Start();
         }
@@ -44,26 +44,26 @@ namespace RecipiesWebFormApp
                 //using (DbCommand command = new SqlCommand())
                 {
                     // ONLY FOR PRODDUCTS TABLE
-//                    command.CommandText = @"SELECT last_user_update
-//FROM sys.dm_db_index_usage_stats
-//WHERE database_id = DB_ID( 'recipies')
-//AND OBJECT_ID=OBJECT_ID('Production.Product')"; 
+                    //                    command.CommandText = @"SELECT last_user_update
+                    //FROM sys.dm_db_index_usage_stats
+                    //WHERE database_id = DB_ID( 'recipies')
+                    //AND OBJECT_ID=OBJECT_ID('Production.Product')"; 
 
 
                     // Entire database 
                     command.CommandText = @"SELECT  max(last_user_update) last_user_update
 FROM sys.dm_db_index_usage_stats
 WHERE database_id = DB_ID( 'recipies')";
-
-                    if (command.Connection.State != System.Data.ConnectionState.Open)
-                    {
-                        sqlConn = new SqlConnection(ContextFactory.Current.Database.Connection.ConnectionString);
-                        command.Connection = sqlConn;
-                        command.Connection.Open();
-                    }
                     try
                     {
-                        DateTime date = (DateTime) command.ExecuteScalar();
+                        if (command.Connection.State != System.Data.ConnectionState.Open)
+                        {
+                            sqlConn = new SqlConnection(ContextFactory.Current.Database.Connection.ConnectionString);
+                            command.Connection = sqlConn;
+                            command.Connection.Open();
+                        }
+
+                        DateTime date = (DateTime)command.ExecuteScalar();
                         if (!lastProductChangeDate.HasValue)
                         {
                             lastProductChangeDate = date;

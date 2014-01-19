@@ -14,7 +14,7 @@ namespace RecipiesModelNS
             List<SalesOrderHeader> result =
                 ContextFactory.GetContextPerRequest().SalesOrderHeaders.Where(pof => pof.ShippedDate >= fromDate.Date &&
                                                                                      pof.ShippedDate < endDateForLinq &&
-                                                                                     pof.StatusId == (int)status)
+                                                                                     pof.StatusId == (int) status)
                     .ToList();
             return result;
         }
@@ -45,7 +45,7 @@ namespace RecipiesModelNS
                 }
             }
         }
-           
+
 
         /// <summary>
         /// Implement the same logic as in Details!!!! Yordan 19.12.2013
@@ -70,10 +70,10 @@ namespace RecipiesModelNS
         }
 
         public override void Added(System.Data.Entity.Infrastructure.DbEntityEntry e = null)
-        { 
-            AddDefaultRecipiesInSalesOrderHeader(SalesOrderHeaderId);           
+        {
+            AddDefaultRecipiesInSalesOrderHeader(SalesOrderHeaderId);
             UpdateProductsUnitsInStock(SalesOrderHeaderId);
-           
+
             base.Added(e);
         }
 
@@ -90,14 +90,14 @@ namespace RecipiesModelNS
                     decimal? subTotal = 0;
                     foreach (SalesOrderDetail spd in poh.SalesOrderDetails)
                     {
-                        subTotal += (decimal?)spd.LineTotal;
+                        subTotal += (decimal?) spd.LineTotal;
                     }
                     poh.SubTotal = subTotal;
                     ContextFactory.GetContextPerRequest().SaveChanges();
                 }
             }
         }
-     
+
         public override void Changed(System.Data.Entity.Infrastructure.DbEntityEntry e = null)
         {
             UpdateProductsUnitsInStock(SalesOrderHeaderId);

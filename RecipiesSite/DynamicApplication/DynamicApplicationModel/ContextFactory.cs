@@ -28,7 +28,7 @@ namespace RecipiesModelNS
             {
                 RecipiesEntities context = httpContext.Items[contextKey] as RecipiesEntities;
                 //RecipiesEntities context = httpContext.Application[contextKey] as RecipiesEntities; // This doesn't work 
-                
+
 
                 if (context == null)
                 {
@@ -52,16 +52,16 @@ namespace RecipiesModelNS
 
         public static void RemoveFromCache()
         {
-             HttpContext httpContext = HttpContext.Current;
-             if (httpContext != null)
-             {
-                 RecipiesEntities context = httpContext.Items[contextKey] as RecipiesEntities;
+            HttpContext httpContext = HttpContext.Current;
+            if (httpContext != null)
+            {
+                RecipiesEntities context = httpContext.Items[contextKey] as RecipiesEntities;
 
-                 if (context != null)
-                 {
-                     httpContext.Items[contextKey] = null;
-                 }
-             }
+                if (context != null)
+                {
+                    httpContext.Items[contextKey] = null;
+                }
+            }
         }
 
         public static void Dispose()

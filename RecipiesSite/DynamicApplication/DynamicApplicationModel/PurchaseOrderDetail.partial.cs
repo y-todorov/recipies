@@ -10,12 +10,11 @@ namespace RecipiesModelNS
 
         public override void Added(DbEntityEntry e = null)
         {
-            
             //PurchaseOrderHeader.UpdatePurchaseOrderHeaderSubTotalFromPurchaseOrderDetails(PurchaseOrderId);
             // no need to update if all is 0-> no chane in products quantities
             //if (OrderQuantity.GetValueOrDefault() != 0 || ReceivedQuantity.GetValueOrDefault() != 0 || ReturnedQuantity.GetValueOrDefault() != 0)
             {
-            //    PurchaseOrderHeader.UpdateProductsUnitsInStock(PurchaseOrderId);
+                //    PurchaseOrderHeader.UpdateProductsUnitsInStock(PurchaseOrderId);
             }
             base.Added(e);
         }
@@ -29,7 +28,6 @@ namespace RecipiesModelNS
 
         public override void Removing(DbEntityEntry e = null)
         {
-
             _purchaseOrderHeaderId = e.OriginalValues.GetValue<int?>("PurchaseOrderId");
             base.Removing(e);
         }
@@ -40,7 +38,5 @@ namespace RecipiesModelNS
             //PurchaseOrderHeader.UpdateProductsUnitsInStock(_purchaseOrderHeaderId);
             base.Removed(e);
         }
-        
-        
     }
 }

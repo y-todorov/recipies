@@ -14,6 +14,7 @@ using RecipiesWebFormApp.Caching;
 using System.Reflection;
 using System.Collections.Specialized;
 using RecipiesWebFormApp.Controllers.Shared;
+using RecipiesWebFormApp.Quartz.ActionsForScheduling;
 
 namespace RecipiesWebFormApp
 {
@@ -40,73 +41,9 @@ namespace RecipiesWebFormApp
             };
             RouteTable.Routes.MapHubs(hubConfig);
 
-            // Yordan, test that site is not asleep after 20 mins. of inactivity
-            // By the way this works very well :)
-            Timer timerRequestPage = new Timer(TimeSpan.FromMinutes(10).TotalMilliseconds); // 10 minutes
-            timerRequestPage.Elapsed += timer_Elapsed;
-            timerRequestPage.Start();
-
-            DatabaseTableChangeWatcher.StartWathching(1);
-            DatabaseTableChangeWatcher.DatabaseChange += DatabaseTableChangeWatcher_DatabaseChange;
+            ActionsForScheduling.StartAll();
         }
-
-        private void DatabaseTableChangeWatcher_DatabaseChange(object arg1, EventArgs arg2)
-        {
-            MyCacheManager.Instance.RemoveItems();
-            var controllersType = Assembly.GetExecutingAssembly().GetTypes().Where(t => t.ReflectedType != null &&
-                                                                                        t.ReflectedType.BaseType.Name ==
-                                                                                        typeof (ControllerBase).Name)
-                .ToList();
-
-            foreach (Type ct in controllersType)
-            {
-                string controllerFullName = ct.ReflectedType.Name;
-                string controllerName = controllerFullName.Substring(0, controllerFullName.IndexOf("Controller"));
-
-                var instance = Activator.CreateInstance(ct.ReflectedType);
-                var res = ct.ReflectedType.GetMethod("Index").Invoke(instance, null);
-            }
-
-            //        //CookieAwareWebClient client = new CookieAwareWebClient();
-
-            //        using (var client = new CookieAwareWebClient())
-            //        {
-            //            var values = new NameValueCollection
-            //{
-            //    { "username", "admin" },
-            //    { "password", "admin1!!" },
-            //};
-            //            client.UploadValues("http://bluesystems.azurewebsites.net", values);
-
-            //            // If the previous call succeeded we now have a valid authentication cookie
-            //            // so we could download the protected page
-            //            //string result = client.DownloadString("http://domain.loc/testpage.aspx");
-
-
-            //            foreach (Type ct in controllersType)
-            //            {
-            //                string controllerFullName = ct.ReflectedType.Name;
-            //                string controllerName = controllerFullName.Substring(0, controllerFullName.IndexOf("Controller"));
-            //                string res = client.DownloadStringTaskAsync(new Uri("http://bluesystems.azurewebsites.net/" + controllerName)).Result;
-            //                client.UploadValues("http://bluesystems.azurewebsites.net/" + controllerName, values);
-            //                res = client.DownloadStringTaskAsync(new Uri("http://bluesystems.azurewebsites.net/" + controllerName)).Result;
-            //            }
-            //        }
-        }
-
-        private void timer_Elapsed(object sender, ElapsedEventArgs e)
-        {
-            WebClient client = new WebClient();
-            try
-            {
-                string res = client.DownloadStringTaskAsync(new Uri("http://bluesystems.azurewebsites.net/")).Result;
-            }
-            catch (Exception ex)
-            {
-                // no need to rethrow here
-            }
-        }
-
+        
         private void Application_End(object sender, EventArgs e)
         {
             //  Code that runs on application shutdown
@@ -114,18 +51,6 @@ namespace RecipiesWebFormApp
 
         private void Application_Error(object sender, EventArgs e)
         {
-            //Exception ex = Server.GetLastError();
-            //string exMessage = ex.Message;
-            //string exStackTrace = ex.StackTrace;
-            //Exception innerEx = ex.InnerException;
-            //if (innerEx != null)
-            //{
-            //    string innerExMessage = innerEx.Message;
-            //    string innerExstackTrace = innerEx.StackTrace;
-            //    Debugger.Break();
-            //}
-            //Debugger.Break();
-
             var httpContext = ((HttpApplication) sender).Context;
             var currentController = " ";
             var currentAction = " ";
@@ -167,7 +92,6 @@ namespace RecipiesWebFormApp
                 }
             }
 
-
             //test
 
             if (IsAjaxRequest())
@@ -178,7 +102,6 @@ namespace RecipiesWebFormApp
                 Server.ClearError();
                 return;
             }
-
 
             httpContext.ClearError();
             httpContext.Response.Clear();
@@ -244,23 +167,6 @@ namespace RecipiesWebFormApp
             }
 
             return isAjaxRequest;
-        }
-    }
-
-    public class CookieAwareWebClient : WebClient
-    {
-        public CookieAwareWebClient()
-        {
-            CookieContainer = new CookieContainer();
-        }
-
-        public CookieContainer CookieContainer { get; private set; }
-
-        protected override WebRequest GetWebRequest(Uri address)
-        {
-            var request = (HttpWebRequest) base.GetWebRequest(address);
-            request.CookieContainer = CookieContainer;
-            return request;
         }
     }
 }

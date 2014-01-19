@@ -16,7 +16,9 @@ namespace RecipiesModelNS
                 {
                     if (!pi.ProductId.HasValue)
                     {
-                        throw new ApplicationException(string.Format("Product ingredient with id {0} does not have a Product! Please select one!", pi.ProductIngredientId));
+                        throw new ApplicationException(
+                            string.Format("Product ingredient with id {0} does not have a Product! Please select one!",
+                                pi.ProductIngredientId));
                     }
                     if (productsWithQuantities.ContainsKey(pi.ProductId.Value))
                     {
@@ -32,7 +34,9 @@ namespace RecipiesModelNS
                 {
                     if (!ri.IngredientRecipeId.HasValue)
                     {
-                        throw new ApplicationException(string.Format("Recipe ingredient with id {0} does not have a Product! Please select one!", ri.RecipeIngredientId));
+                        throw new ApplicationException(
+                            string.Format("Recipe ingredient with id {0} does not have a Product! Please select one!",
+                                ri.RecipeIngredientId));
                     }
 
                     GetProductsWithQuantities(ri.IngredientRecipeId, productsWithQuantities);

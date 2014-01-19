@@ -2,6 +2,7 @@
 using Kendo.Mvc.UI;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RecipiesModelNS;
+using System.Diagnostics;
 using System.Linq;
 
 namespace RecipiesUnitTests.CategoryController
@@ -37,25 +38,41 @@ namespace RecipiesUnitTests.CategoryController
         [TestMethod]
         public void CreateCategoryTest()
         {
+            Stopwatch s = new Stopwatch();
+            s.Start();
             CrudTestsHelper.Create(categoryController, request, new CategoryViewModel());
+            s.Stop();
+            long mils = s.ElapsedMilliseconds;
         }
 
         [TestMethod]
         public void ReadCategoryTest()
         {
+            Stopwatch s = new Stopwatch();
+            s.Start();
             CrudTestsHelper.Read(categoryController, request, ContextFactory.Current.ProductCategories);
+            s.Stop();
+            long mils = s.ElapsedMilliseconds;
         }
 
         [TestMethod]
         public void UpdateCategoryTest()
         {
+            Stopwatch s = new Stopwatch();
+            s.Start();
             CrudTestsHelper.Update(categoryController, request, (new CategoryViewModel()).ConvertFromEntity(ContextFactory.Current.ProductCategories.ToList().LastOrDefault()));
+            s.Stop();
+            long mils = s.ElapsedMilliseconds;
         }
 
         [TestMethod]
         public void DeleteCategoryTest()
         {
+            Stopwatch s = new Stopwatch();
+            s.Start();
             CrudTestsHelper.Delete(categoryController, request);
+            s.Stop();
+            long mils = s.ElapsedMilliseconds;
         }
     }
 }

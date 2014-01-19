@@ -17,7 +17,14 @@ namespace RecipiesModelNS
                                                                                         pof.StatusId == (int) status)
                     .ToList();
 
-            List<PurchaseOrderDetail> pods = purchaseOrderHeaders.SelectMany(poh => poh.PurchaseOrderDetails.Where(pod => categoriesToExclude != null && !categoriesToExclude.Any(pc => (pod.Product != null && pc.CategoryId == pod.Product.CategoryId)))).ToList();
+            List<PurchaseOrderDetail> pods =
+                purchaseOrderHeaders.SelectMany(
+                    poh =>
+                        poh.PurchaseOrderDetails.Where(
+                            pod =>
+                                categoriesToExclude != null &&
+                                !categoriesToExclude.Any(
+                                    pc => (pod.Product != null && pc.CategoryId == pod.Product.CategoryId)))).ToList();
             return pods;
             //return purchaseOrderHeaders;
         }
@@ -52,7 +59,7 @@ namespace RecipiesModelNS
                     decimal? subTotal = 0;
                     foreach (PurchaseOrderDetail pod in poh.PurchaseOrderDetails)
                     {
-                        subTotal += (decimal?)pod.LineTotal;
+                        subTotal += (decimal?) pod.LineTotal;
                     }
                     poh.SubTotal = subTotal;
                     ContextFactory.GetContextPerRequest().SaveChanges();
