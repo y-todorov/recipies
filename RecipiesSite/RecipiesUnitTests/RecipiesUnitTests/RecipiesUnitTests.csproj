@@ -63,6 +63,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="ChartController\ChartControllerTest.cs" />
     <Compile Include="ProductInventoryHeaderController\ProductInventoryHeaderControllerTest.cs">
       <SubType>Code</SubType>
     </Compile>

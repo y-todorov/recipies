@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data.Entity;
 
 namespace RecipiesModelNS
 {
@@ -12,7 +13,10 @@ namespace RecipiesModelNS
             DateTime defaultDate = new DateTime(2000, 1, 1);
             DateTime endDateForLinq = toDate.Date.AddDays(1);
             List<PurchaseOrderHeader> purchaseOrderHeaders =
-                ContextFactory.GetContextPerRequest().PurchaseOrderHeaders.Where(pof => pof.ShipDate >= fromDate.Date &&
+                ContextFactory.GetContextPerRequest().PurchaseOrderHeaders
+                .Include(p => p.PurchaseOrderDetails.Select(pp => pp.Product))
+                //.Include(p => p.PurchaseOrderDetails)
+                .Where(pof => pof.ShipDate >= fromDate.Date &&
                                                                                         pof.ShipDate < endDateForLinq &&
                                                                                         pof.StatusId == (int) status)
                     .ToList();

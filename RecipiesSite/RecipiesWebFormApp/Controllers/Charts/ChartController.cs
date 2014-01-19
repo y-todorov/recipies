@@ -34,16 +34,16 @@ namespace InventoryManagementMVC.Controllers
             {
                 List<PurchaseOrderDetail> pods =
                     ContextFactory.GetContextPerRequest()
-                        .PurchaseOrderDetails.Where(
+                        .PurchaseOrderDetails.Include(p => p.PurchaseOrderHeader).Where(
                             pod => pod.PurchaseOrderHeader.StatusId == (int)PurchaseOrderStatusEnum.Completed)
-                        .ToList();
+                            .ToList();
 
                 var grouping =
                     pods.OrderBy(pod => pod.PurchaseOrderHeader.ShipDate)
                         .GroupBy(
                             pod => pod.PurchaseOrderHeader.ShipDate.GetValueOrDefault().Year * 100 + int.Parse(
                                 ControllerHelper.GetIso8601WeekOfYear(
-                                    pod.PurchaseOrderHeader.ShipDate.GetValueOrDefault())));
+                                    pod.PurchaseOrderHeader.ShipDate.GetValueOrDefault()))).ToList();
 
 
                 List<Dictionary<string, string>> list = new List<Dictionary<string, string>>();
