@@ -25,16 +25,16 @@
                                     .Legend(legend => legend
                                         .Position(ChartLegendPosition.Top)
                                     )
-                                    .DataSource(ds => ds.Read(read => read.Action("VendorPurchasesByWeek", "Chart")))
+                                    //.DataSource(ds => ds.Read(read => read.Action("VendorPurchasesByWeek", "Chart")))
                                     .AddVendorsValuePerWeekOptions()
-                                    .CategoryAxis(axis => axis.Categories((System.Collections.IEnumerable) ViewData["WeekNumbers"])
-.Labels(labels => labels.Rotation(90).Template("#= value #")).AxisCrossingValue(0, int.MaxValue)
-                                    )
+//                                    .CategoryAxis(axis => axis.Categories((System.Collections.IEnumerable) ViewData["WeekNumbers"])
+//.Labels(labels => labels.Rotation(90).Template("#= value #")).AxisCrossingValue(0, int.MaxValue)
+//                                    )
                                     .ValueAxis(axis => axis.Numeric("Value").Labels(l => l.Format("{0:C3}"))
                                     )
                                     .Tooltip(tooltip => tooltip
                                         .Visible(true)
-                                        .Template("Time interval:<label id=\"lblVendorPO\"></label> <script> document.getElementById(\"lblVendorPO\").innerHTML = getWeekString(#= category #)</script>Vendor: #= series.name # Value: #= value #")
+                                        .Template("Time interval:<label id=\"lblVendorPO\"></label> <script> document.getElementById(\"lblVendorPO\").innerHTML = getWeekString('#= category #')</script>Vendor: #= series.name # Value: #= value #")
                                     )
                                     )</text>);
 
@@ -54,7 +54,7 @@
                                     )
                                     .Tooltip(tooltip => tooltip
                                         .Visible(true)
-                                        .Template("Time interval:<label id=\"lblGpPerWeek\"></label> <script> document.getElementById(\"lblGpPerWeek\").innerHTML = getWeekString(#= category #)</script> Value: #= value #")
+                                        .Template("Time interval:<label id=\"lblGpPerWeek\"></label> <script> document.getElementById(\"lblGpPerWeek\").innerHTML = getWeekString('#= category #')</script> Value: #= value #")
                                     )
                                     )</text>);
 

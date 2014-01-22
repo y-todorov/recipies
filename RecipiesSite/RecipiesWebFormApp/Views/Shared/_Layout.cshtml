@@ -77,13 +77,14 @@
                 }
 
                 function getWeekString(weekInt) {
+                    debugger;
                     var res;
                     $.ajax({
                         type: "POST",
                         url: "/Chart/GetWeekString",
                         contentType: "application/json; charset=utf-8",
                         data: JSON.stringify({
-                            weekAsInt: weekInt
+                            dateEncoded: weekInt
                         }),
                         success: function(data) {
                             res = data;

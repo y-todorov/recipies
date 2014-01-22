@@ -21,11 +21,102 @@ namespace InventoryManagementMVC.Controllers
     {
         private int maxXLabelTextLenght = 10;
 
-        public string GetWeekString(string weekAsInt)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dateEncoded"int the form of 2013-14></param>
+        /// <returns></returns>
+        public string GetWeekString(string dateEncoded)
         {
-            int week = int.Parse(weekAsInt);
-            string res = ControllerHelper.GetWeekStringFromWeekNumber(week);
-            return res;
+            string[] dates = dateEncoded.Split('-');
+
+            int year = int.Parse(dates[0]);
+            int numberOfMonths = int.Parse(dates[1]);
+
+            DateTime startDate = new DateTime(year, 1, 1);
+
+            DateTime correctDate = DateTime.Now;
+
+            for (int i = 0; i < CultureInfo.InvariantCulture.Calendar.GetDaysInYear(year); i++)
+            {
+                DateTime dayToCheck = startDate.AddDays(i);
+                if (numberOfMonths.ToString() == ControllerHelper.GetIso8601WeekOfYear(dayToCheck))
+                {
+                    correctDate = dayToCheck;
+                }
+            }
+
+            DateTime lastMonday = ControllerHelper.GetLastMonday(correctDate);
+            DateTime nextSunday = ControllerHelper.GetNextSunday(correctDate);
+
+            string result = string.Format("{0:dd/MM/yyyy}-{1:dd/MM/yyyy}", lastMonday, nextSunday);
+            return result;
+
+            //string res = ControllerHelper.GetWeekStringFromWeekNumber(week);
+            //return res;
+        }
+
+        public void VendorPurchasesByWeekNew( List<string> weeksResult,List<Dictionary<int, double>> listResult)
+        {
+            try
+            {
+                List<PurchaseOrderDetail> pods =
+                    ContextFactory.GetContextPerRequest()
+                        .PurchaseOrderDetails.Include(p => p.PurchaseOrderHeader).ToList().Where(
+                            pod => pod.PurchaseOrderHeader.StatusId == (int) PurchaseOrderStatusEnum.Completed).ToList();
+            
+                var grouping =
+                    pods.OrderBy(pod => pod.PurchaseOrderHeader.ShipDate)
+                        .GroupBy(
+                            pod => pod.PurchaseOrderHeader.ShipDate.GetValueOrDefault().Year * 100 + int.Parse(
+                                ControllerHelper.GetIso8601WeekOfYear(
+                                    pod.PurchaseOrderHeader.ShipDate.GetValueOrDefault()))).ToList();
+
+
+                //List<Dictionary<string, string>> list = new List<Dictionary<string, string>>();
+                List<Vendor> allVendors = ContextFactory.Current.Vendors.ToList();
+
+                Vendor fakeTotalVendor = new Vendor()
+                {
+                    Name = "Total All Vendors",
+                    VendorId = 0
+                };
+
+                List<string> weeks = new List<string>();
+
+                List<Dictionary<int, double>> list = new List<Dictionary<int, double>>();
+
+                foreach (var item in grouping)
+                {
+                    weeks.Add(string.Format("{0}-{1}", item.Key/100, item.Key % 100));
+
+
+                    Dictionary<int, double> entry = new Dictionary<int, double>();
+                  
+                   
+
+                    entry.Add(fakeTotalVendor.VendorId,
+                        Math.Round(item.Sum(pod => pod.LineTotal), 3));
+
+                    foreach (Vendor ven in allVendors)
+                    {
+                        entry.Add(ven.VendorId,
+                            Math.Round(
+                                item.Where(pod => pod.PurchaseOrderHeader.VendorId == ven.VendorId)
+                                    .Sum(pod => pod.LineTotal), 3));
+                    }
+                    list.Add(entry);
+                }
+                weeksResult.AddRange(weeks);
+                listResult.AddRange(list);
+                return;
+            }
+               
+            catch (Exception ex)
+            {
+                Debugger.Break();
+            }
+            throw new ApplicationException();
         }
 
 
@@ -67,25 +158,6 @@ namespace InventoryManagementMVC.Controllers
                 mils = sw.ElapsedMilliseconds;
 
                 sw.Restart();
-
-                //Parallel.ForEach(grouping, item =>
-                //{
-                //    Dictionary<string, string> entry = new Dictionary<string, string>();
-                //    int week = item.Key % 100;
-                //    entry.Add("Week", week.ToString());
-
-                //    entry.Add("EscapeStringYordan_" + fakeTotalVendor.VendorId,
-                //        Math.Round(item.Sum(pod => pod.LineTotal), 3).ToString());
-
-                //    foreach (Vendor ven in allVendors)
-                //    {
-                //        entry.Add("EscapeStringYordan_" + ven.VendorId.ToString(),
-                //            Math.Round(
-                //                item.Where(pod => pod.PurchaseOrderHeader.VendorId == ven.VendorId)
-                //                    .Sum(pod => pod.LineTotal), 3).ToString());
-                //    }
-                //    list.Add(entry);
-                //});
 
                 foreach (var item in grouping)
                 {
@@ -147,9 +219,8 @@ namespace InventoryManagementMVC.Controllers
             int lastNdays = 15;
 
             List<GpPerDay> list = new List<GpPerDay>();
-
-
-            Parallel.For(lastNdays, 0, (i) =>
+            
+            for (int i = lastNdays; i >= 0; i--)
             {
                 DateTime fromDate = DateTime.Now.Date.AddDays(-i * 7);
                 DateTime toDate = DateTime.Now.Date.AddDays((-i + 1) * 7);
@@ -165,33 +236,11 @@ namespace InventoryManagementMVC.Controllers
 
                 GpPerDay gh = new GpPerDay()
                 {
-                    Days = ControllerHelper.GetIso8601WeekOfYear(fromDate),
+                    Days = string.Format("{0}-{1}", fromDate.Year, ControllerHelper.GetIso8601WeekOfYear(fromDate)),
                     DayGp = Math.Round(dayGp, 3)
                 };
                 list.Add(gh);
-            });
-
-            //for (int i = lastNdays; i >= 0; i--)
-            //{
-            //    DateTime fromDate = DateTime.Now.Date.AddDays(-i * 7);
-            //    DateTime toDate = DateTime.Now.Date.AddDays((-i + 1) * 7);
-            //    double sales =
-            //        SalesOrderHeader.GetSalesOrderHeadersInPeriod(fromDate, toDate, SalesOrderStatusEnum.Approved)
-            //            .Sum(soh => soh.SalesOrderDetails.Sum(sod => sod.LineTotal));
-            //    double purchases =
-            //        (double)
-            //            PurchaseOrderHeader.GetPurchaseOrderDetailsInPeriod(fromDate, toDate,
-            //                PurchaseOrderStatusEnum.Completed, ProductCategory.GetCategoriesToExcludeFromGP())
-            //                .Sum(poh => poh.LineTotal);
-            //    double dayGp = sales - purchases;
-
-            //    GpPerDay gh = new GpPerDay()
-            //    {
-            //        Days = ControllerHelper.GetIso8601WeekOfYear(fromDate),
-            //        DayGp = Math.Round(dayGp, 3)
-            //    };
-            //    list.Add(gh);
-            //}
+            }
 
             return Json(list);
         }

@@ -28,7 +28,7 @@ namespace InventoryManagementMVC.Helpers
 
             // Return the week of our adjusted day
             int weekOfYear = CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(time, CalendarWeekRule.FirstDay,
-                DayOfWeek.Monday);
+                DayOfWeek.Monday); 
             //return weekOfYear;
 
             DateTime lastMonday = GetLastMonday(time);
@@ -50,7 +50,7 @@ namespace InventoryManagementMVC.Helpers
             return result;
         }
 
-        private static DateTime GetLastMonday(DateTime time)
+        public static DateTime GetLastMonday(DateTime time)
         {
             for (int i = 0; i < 7; i++)
             {
@@ -62,7 +62,7 @@ namespace InventoryManagementMVC.Helpers
             return DateTime.MinValue;
         }
 
-        private static DateTime GetNextSunday(DateTime time)
+        public static DateTime GetNextSunday(DateTime time)
         {
             for (int i = 0; i < 7; i++)
             {
