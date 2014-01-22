@@ -11,5 +11,7 @@ namespace InventoryManagementMVC.Models.Chart
         public double VendorValue { get; set; }
 
         public double VendorValue2 { get; set; }
+
+        public DateTime WeekDate { get; set; }
     }
 }

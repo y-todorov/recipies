@@ -31,6 +31,9 @@ namespace InventoryManagementMVC.Extensions
             vendors.Insert(0, fakeTotalVendor);
 
 
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+
             builder.Series(series =>
             {
                 bool isVisible = true;
@@ -42,6 +45,8 @@ namespace InventoryManagementMVC.Extensions
                         .Labels(l => l.Format("{0:C3}").Visible(true))
                         .Axis("Value")
                         .Visible(isVisible);
+
+                        //.Tooltip(tp => tp.Template("Time interval:<label id=\"lblVendorPO\"></label> <script> document.getElementById(\"lblVendorPO\").innerHTML = getWeekString(#= category #)</script>Vendor: #= series.name # Value: #= value #"));
                     counter++;
                     if (counter >= 3)
                     {
@@ -51,6 +56,8 @@ namespace InventoryManagementMVC.Extensions
                 }
             });
 
+            sw.Stop();
+            long mils = sw.ElapsedMilliseconds;
 
             return builder;
         }

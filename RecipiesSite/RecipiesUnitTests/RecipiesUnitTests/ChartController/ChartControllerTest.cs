@@ -2,6 +2,8 @@
 using Kendo.Mvc.UI;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Web.Mvc;
+using RecipiesModelNS;
+using System.Linq;
 
 namespace RecipiesUnitTests.ChartController
 {
@@ -26,6 +28,9 @@ namespace RecipiesUnitTests.ChartController
         {
             chartController = new InventoryManagementMVC.Controllers.ChartController();
             request = new DataSourceRequest();
+            var dymmy = ContextFactory.GetContextPerRequest().PurchaseOrderDetails.FirstOrDefault();
+            
+
         }
 
         [TestCleanup]

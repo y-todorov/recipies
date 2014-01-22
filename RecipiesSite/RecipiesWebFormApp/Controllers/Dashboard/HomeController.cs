@@ -32,19 +32,23 @@ namespace InventoryManagementMVC.Controllers
                                 ControllerHelper.GetIso8601WeekOfYear(
                                     pod.PurchaseOrderHeader.ShipDate.GetValueOrDefault())));
 
-                List<Dictionary<string, object>> helpers = new List<Dictionary<string, object>>();
+
+
+                List<Dictionary<string, int>> helpers = new List<Dictionary<string, int>>();
 
                 foreach (var item in grouping)
                 {
-                    dynamic h = new Dictionary<string, object>();
+                    Dictionary<string, int> h = new Dictionary<string, int>();
                     int week = item.Key % 100;
-                    h.Add("Week", week.ToString());
-                    //h.Add("Week", item.Key);
+                   // h.Add("Week", week.ToString());
+
+                    h.Add("Week", week);
+
                     helpers.Add(h);
                 }
 
                 var res = helpers;//.OrderBy(h => h["Week"]).ToList();
-                ViewData.Add("WeekNumbers", res.Select(r => r["Week"].ToString()));
+                ViewData.Add("WeekNumbers", res.Select(r => r["Week"]));
             }
             catch (Exception ex)
             {

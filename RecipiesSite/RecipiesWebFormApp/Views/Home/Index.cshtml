@@ -28,7 +28,7 @@
                                     .DataSource(ds => ds.Read(read => read.Action("VendorPurchasesByWeek", "Chart")))
                                     .AddVendorsValuePerWeekOptions()
                                     .CategoryAxis(axis => axis.Categories((System.Collections.IEnumerable) ViewData["WeekNumbers"])
-                                        .Labels(labels => labels.Rotation(90)).AxisCrossingValue(0, int.MaxValue)
+.Labels(labels => labels.Rotation(90).Template("#= value #")).AxisCrossingValue(0, int.MaxValue)
                                     )
                                     .ValueAxis(axis => axis.Numeric("Value").Labels(l => l.Format("{0:C3}"))
                                     )

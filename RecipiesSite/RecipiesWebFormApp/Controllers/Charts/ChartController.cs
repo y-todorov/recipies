@@ -13,6 +13,7 @@ using System.Diagnostics;
 using System.Dynamic;
 using System.Data;
 using InventoryManagementMVC.Helpers;
+using System.Threading.Tasks;
 
 namespace InventoryManagementMVC.Controllers
 {
@@ -32,11 +33,18 @@ namespace InventoryManagementMVC.Controllers
         {
             try
             {
+                Stopwatch sw = Stopwatch.StartNew();
+                
+
                 List<PurchaseOrderDetail> pods =
                     ContextFactory.GetContextPerRequest()
-                        .PurchaseOrderDetails.Include(p => p.PurchaseOrderHeader).Where(
-                            pod => pod.PurchaseOrderHeader.StatusId == (int)PurchaseOrderStatusEnum.Completed)
-                            .ToList();
+                        .PurchaseOrderDetails.Include(p => p.PurchaseOrderHeader).ToList().Where(
+                            pod => pod.PurchaseOrderHeader.StatusId == (int)PurchaseOrderStatusEnum.Completed).ToList()
+                            ;
+                sw.Stop();
+                long mils = sw.ElapsedMilliseconds;
+                sw.Restart();
+
 
                 var grouping =
                     pods.OrderBy(pod => pod.PurchaseOrderHeader.ShipDate)
@@ -54,6 +62,30 @@ namespace InventoryManagementMVC.Controllers
                     Name = "Total All Vendors",
                     VendorId = 0
                 };
+
+                sw.Stop();
+                mils = sw.ElapsedMilliseconds;
+
+                sw.Restart();
+
+                //Parallel.ForEach(grouping, item =>
+                //{
+                //    Dictionary<string, string> entry = new Dictionary<string, string>();
+                //    int week = item.Key % 100;
+                //    entry.Add("Week", week.ToString());
+
+                //    entry.Add("EscapeStringYordan_" + fakeTotalVendor.VendorId,
+                //        Math.Round(item.Sum(pod => pod.LineTotal), 3).ToString());
+
+                //    foreach (Vendor ven in allVendors)
+                //    {
+                //        entry.Add("EscapeStringYordan_" + ven.VendorId.ToString(),
+                //            Math.Round(
+                //                item.Where(pod => pod.PurchaseOrderHeader.VendorId == ven.VendorId)
+                //                    .Sum(pod => pod.LineTotal), 3).ToString());
+                //    }
+                //    list.Add(entry);
+                //});
 
                 foreach (var item in grouping)
                 {
@@ -73,7 +105,8 @@ namespace InventoryManagementMVC.Controllers
                     }
                     list.Add(entry);
                 }
-
+                sw.Stop();
+                mils = sw.ElapsedMilliseconds;
                 //var res = list.OrderBy(h => h["Week"]).ToList();
                 //var res = list.ToList();
                 return Json(list);
@@ -114,7 +147,9 @@ namespace InventoryManagementMVC.Controllers
             int lastNdays = 15;
 
             List<GpPerDay> list = new List<GpPerDay>();
-            for (int i = lastNdays; i >= 0; i--)
+
+
+            Parallel.For(lastNdays, 0, (i) =>
             {
                 DateTime fromDate = DateTime.Now.Date.AddDays(-i * 7);
                 DateTime toDate = DateTime.Now.Date.AddDays((-i + 1) * 7);
@@ -134,7 +169,29 @@ namespace InventoryManagementMVC.Controllers
                     DayGp = Math.Round(dayGp, 3)
                 };
                 list.Add(gh);
-            }
+            });
+
+            //for (int i = lastNdays; i >= 0; i--)
+            //{
+            //    DateTime fromDate = DateTime.Now.Date.AddDays(-i * 7);
+            //    DateTime toDate = DateTime.Now.Date.AddDays((-i + 1) * 7);
+            //    double sales =
+            //        SalesOrderHeader.GetSalesOrderHeadersInPeriod(fromDate, toDate, SalesOrderStatusEnum.Approved)
+            //            .Sum(soh => soh.SalesOrderDetails.Sum(sod => sod.LineTotal));
+            //    double purchases =
+            //        (double)
+            //            PurchaseOrderHeader.GetPurchaseOrderDetailsInPeriod(fromDate, toDate,
+            //                PurchaseOrderStatusEnum.Completed, ProductCategory.GetCategoriesToExcludeFromGP())
+            //                .Sum(poh => poh.LineTotal);
+            //    double dayGp = sales - purchases;
+
+            //    GpPerDay gh = new GpPerDay()
+            //    {
+            //        Days = ControllerHelper.GetIso8601WeekOfYear(fromDate),
+            //        DayGp = Math.Round(dayGp, 3)
+            //    };
+            //    list.Add(gh);
+            //}
 
             return Json(list);
         }
