@@ -76,3 +76,9 @@ C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\HtmlAgilityPack.xml
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\obj\Debug\RecipiesWebFormApp.csprojResolveAssemblyReference.cache
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\obj\Debug\RecipiesWebFormApp.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\obj\Debug\RecipiesWebFormApp.pdb
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\log4net.dll
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\LogentriesCore.dll
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\LogentriesLog4net.dll
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.WindowsAzure.Configuration.dll
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\log4net.xml
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.WindowsAzure.Configuration.xml
