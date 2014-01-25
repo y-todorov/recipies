@@ -43,8 +43,8 @@ namespace InventoryManagementMVC.Controllers
         {
             base.OnActionExecuted(filterContext);
             actionStopwatch.Stop();
-            actionLogger = LogManager.GetLogger(filterContext.Controller.GetType());
-            actionLogger.InfoFormat("Time taken for action '{0}' : {1} milliseconds.", filterContext.ActionDescriptor.ActionName, actionStopwatch.ElapsedMilliseconds);
+            //actionLogger = LogManager.GetLogger(filterContext.Controller.GetType());
+            //actionLogger.InfoFormat("Time taken for action '{0}' : {1} milliseconds.", filterContext.ActionDescriptor.ActionName, actionStopwatch.ElapsedMilliseconds);
         }
 
         protected override void OnResultExecuting(ResultExecutingContext filterContext)
@@ -58,8 +58,8 @@ namespace InventoryManagementMVC.Controllers
         {
             base.OnResultExecuted(filterContext);
             resultStopwatch.Stop();
-            resultLogger = LogManager.GetLogger(filterContext.Controller.GetType());
-            resultLogger.InfoFormat("Time taken for result of type '{0}' : {1} milliseconds.", filterContext.GetType().Name, resultStopwatch.ElapsedMilliseconds);
+            //resultLogger = LogManager.GetLogger(filterContext.Controller.GetType());
+            //resultLogger.InfoFormat("Time taken for result of type '{0}' : {1} milliseconds.", filterContext.GetType().Name, resultStopwatch.ElapsedMilliseconds);
         }
         protected override JsonResult Json(object data, string contentType, System.Text.Encoding contentEncoding,
             JsonRequestBehavior behavior)

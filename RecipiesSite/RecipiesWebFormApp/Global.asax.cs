@@ -5,7 +5,9 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using System.Timers;
 using System.Net;
+using System.Web.Script.Serialization;
 using Kendo.Mvc;
+using log4net;
 using RecipiesModelNS;
 using System.Diagnostics;
 using Microsoft.AspNet.SignalR;
@@ -15,6 +17,7 @@ using System.Reflection;
 using System.Collections.Specialized;
 using RecipiesWebFormApp.Controllers.Shared;
 using RecipiesWebFormApp.Quartz.ActionsForScheduling;
+using RecipiesWebFormApp.Shared;
 
 namespace RecipiesWebFormApp
 {
@@ -168,5 +171,24 @@ namespace RecipiesWebFormApp
 
             return isAjaxRequest;
         }
+
+        private const string StopWatchApplicationRequest = "StopWatchApplicationRequest";
+
+        protected void Application_BeginRequest(object sender,   EventArgs e)
+        {
+            StopwatchHelper.StartNewMeasurement(StopWatchApplicationRequest);
+        }
+
+        protected void Application_EndRequest(object sender, EventArgs e)
+        {
+            HttpApplication httpApplication = sender as HttpApplication;
+            if (httpApplication != null)
+            {
+                long timeTaken = StopwatchHelper.StopLastMeasurement(StopWatchApplicationRequest);
+                LogentriesHelper.ApplicationLog.InfoFormat("Time taken for '{0}' : {1}", httpApplication.Request.Path, timeTaken);
+            }
+        }
+
+
     }
 }

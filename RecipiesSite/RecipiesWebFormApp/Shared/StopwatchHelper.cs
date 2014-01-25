@@ -8,16 +8,19 @@ namespace RecipiesWebFormApp.Shared
 {
     public static class StopwatchHelper
     {
-        private static Stopwatch stopwatch;
+        private static Dictionary<string, Stopwatch> stopwatches = new Dictionary<string, Stopwatch>();
 
-        public static void StartNewMeasurement()
+        public static void StartNewMeasurement(string stopwatchName)
         {
-            stopwatch = Stopwatch.StartNew();
+            Stopwatch stopwatch = Stopwatch.StartNew();
+            stopwatches.Add(stopwatchName, stopwatch);
         }
 
-        public static long StopLastMeasurement()
+        public static long StopLastMeasurement(string stopwatchName)
         {
+            Stopwatch stopwatch = stopwatches[stopwatchName];
             stopwatch.Stop();
+            stopwatches.Remove(stopwatchName);
             long milliseconds = stopwatch.ElapsedMilliseconds;
             return milliseconds;
         }
