@@ -46,7 +46,7 @@ namespace RecipiesWebFormApp
 
             ActionsForScheduling.StartAll();
         }
-        
+
         private void Application_End(object sender, EventArgs e)
         {
             //  Code that runs on application shutdown
@@ -174,21 +174,26 @@ namespace RecipiesWebFormApp
 
         private const string StopWatchApplicationRequest = "StopWatchApplicationRequest";
 
-        protected void Application_BeginRequest(object sender,   EventArgs e)
+        protected void Application_BeginRequest(object sender, EventArgs e)
         {
+#if DEBUG
+            return;
+#endif
             StopwatchHelper.StartNewMeasurement(StopWatchApplicationRequest);
         }
 
         protected void Application_EndRequest(object sender, EventArgs e)
         {
+#if DEBUG
+            return;
+#endif
             HttpApplication httpApplication = sender as HttpApplication;
             if (httpApplication != null)
             {
                 long timeTaken = StopwatchHelper.StopLastMeasurement(StopWatchApplicationRequest);
-                LogentriesHelper.ApplicationLog.InfoFormat("Time taken for '{0}' : {1}", httpApplication.Request.Path, timeTaken);
+                LogentriesHelper.ApplicationLog.InfoFormat("Time taken for '{0}' : {1}", httpApplication.Request.Path,
+                    timeTaken);
             }
         }
-
-
     }
 }

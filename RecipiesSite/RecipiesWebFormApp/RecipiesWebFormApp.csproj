@@ -707,6 +707,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Quartz\ActionsForScheduling\ActionsForScheduling.cs" />
+    <Compile Include="Quartz\Jobs\JobBase.cs" />
     <Compile Include="Quartz\Jobs\RefreshWebsiteJob.cs" />
     <Compile Include="Quartz\Jobs\CalculateProductsUnitPriceJob.cs" />
     <Compile Include="Quartz\Jobs\CheckDatabaseForChangesJob.cs" />

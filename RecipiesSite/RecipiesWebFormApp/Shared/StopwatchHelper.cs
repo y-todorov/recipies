@@ -13,14 +13,14 @@ namespace RecipiesWebFormApp.Shared
         public static void StartNewMeasurement(string stopwatchName)
         {
             Stopwatch stopwatch = Stopwatch.StartNew();
-            stopwatches.Add(stopwatchName, stopwatch);
+            stopwatches[stopwatchName] = stopwatch;
         }
 
         public static long StopLastMeasurement(string stopwatchName)
         {
             Stopwatch stopwatch = stopwatches[stopwatchName];
             stopwatch.Stop();
-            stopwatches.Remove(stopwatchName);
+            //stopwatches.Remove(stopwatchName);
             long milliseconds = stopwatch.ElapsedMilliseconds;
             return milliseconds;
         }

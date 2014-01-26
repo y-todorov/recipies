@@ -11,7 +11,7 @@ using RecipiesWebFormApp.Caching;
 
 namespace RecipiesWebFormApp.Quartz.Jobs
 {
-    public class CheckDatabaseForChangesJob : IJob
+    public class CheckDatabaseForChangesJob : JobBase
     {
 
         static CheckDatabaseForChangesJob()
@@ -25,7 +25,7 @@ namespace RecipiesWebFormApp.Quartz.Jobs
         private static SqlCommand command;
 
         private static DateTime? lastProductChangeDate;
-        public void Execute(IJobExecutionContext context)
+        public override void Execute(IJobExecutionContext context)
         {
             // Entire database 
             command.CommandText = @"SELECT  max(last_user_update) last_user_update
@@ -87,6 +87,7 @@ WHERE database_id = DB_ID( 'recipies')";
             catch (Exception ex)
             {
             }
+            base.Execute(context);
         }
 
     }

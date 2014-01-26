@@ -7,11 +7,12 @@ using System.Web;
 
 namespace RecipiesWebFormApp.Quartz.Jobs
 {
-    public class CalculateProductsUnitPriceJob : IJob
+    public class CalculateProductsUnitPriceJob : JobBase
     {
-        public void Execute(IJobExecutionContext context)
+        public override void Execute(IJobExecutionContext context)
         {
             Product.UpdateUnitPriceOfAllProducts();
+            base.Execute(context);
         }
     }
 }

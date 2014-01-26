@@ -8,9 +8,9 @@ using System.Web;
 
 namespace RecipiesWebFormApp.Quartz.Jobs
 {
-    public class RefreshWebsiteJob : IJob
+    public class RefreshWebsiteJob : JobBase
     {
-        public void Execute(IJobExecutionContext context)
+        public override void Execute(IJobExecutionContext context)
         {
             WebClient client = new WebClient();
             try
@@ -21,6 +21,7 @@ namespace RecipiesWebFormApp.Quartz.Jobs
             {
                 // no need to rethrow here
             }
+            base.Execute(context);
         }
     }
 }
