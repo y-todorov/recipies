@@ -56,7 +56,7 @@ namespace InventoryManagementMVC.Controllers
             //return res;
         }
 
-        public void VendorPurchasesByWeekNew( List<string> weeksResult,List<Dictionary<int, double>> listResult)
+        public void VendorPurchasesByWeek( List<string> weeksResult,List<Dictionary<int, double>> listResult)
         {
             try
             {
@@ -73,7 +73,6 @@ namespace InventoryManagementMVC.Controllers
                                     pod.PurchaseOrderHeader.ShipDate.GetValueOrDefault()))).ToList();
 
 
-                //List<Dictionary<string, string>> list = new List<Dictionary<string, string>>();
                 List<Vendor> allVendors = ContextFactory.Current.Vendors.ToList();
 
                 Vendor fakeTotalVendor = new Vendor()
@@ -119,76 +118,6 @@ namespace InventoryManagementMVC.Controllers
             throw new ApplicationException();
         }
 
-
-        public ActionResult VendorPurchasesByWeek()
-        {
-            try
-            {
-                Stopwatch sw = Stopwatch.StartNew();
-                
-
-                List<PurchaseOrderDetail> pods =
-                    ContextFactory.GetContextPerRequest()
-                        .PurchaseOrderDetails.Include(p => p.PurchaseOrderHeader).ToList().Where(
-                            pod => pod.PurchaseOrderHeader.StatusId == (int)PurchaseOrderStatusEnum.Completed).ToList()
-                            ;
-                sw.Stop();
-                long mils = sw.ElapsedMilliseconds;
-                sw.Restart();
-
-
-                var grouping =
-                    pods.OrderBy(pod => pod.PurchaseOrderHeader.ShipDate)
-                        .GroupBy(
-                            pod => pod.PurchaseOrderHeader.ShipDate.GetValueOrDefault().Year * 100 + int.Parse(
-                                ControllerHelper.GetIso8601WeekOfYear(
-                                    pod.PurchaseOrderHeader.ShipDate.GetValueOrDefault()))).ToList();
-
-
-                List<Dictionary<string, string>> list = new List<Dictionary<string, string>>();
-                List<Vendor> allVendors = ContextFactory.Current.Vendors.ToList();
-
-                Vendor fakeTotalVendor = new Vendor()
-                {
-                    Name = "Total All Vendors",
-                    VendorId = 0
-                };
-
-                sw.Stop();
-                mils = sw.ElapsedMilliseconds;
-
-                sw.Restart();
-
-                foreach (var item in grouping)
-                {
-                    Dictionary<string, string> entry = new Dictionary<string, string>();
-                    int week = item.Key % 100;
-                    entry.Add("Week", week.ToString());
-
-                    entry.Add("EscapeStringYordan_" + fakeTotalVendor.VendorId,
-                        Math.Round(item.Sum(pod => pod.LineTotal), 3).ToString());
-
-                    foreach (Vendor ven in allVendors)
-                    {
-                        entry.Add("EscapeStringYordan_" + ven.VendorId.ToString(),
-                            Math.Round(
-                                item.Where(pod => pod.PurchaseOrderHeader.VendorId == ven.VendorId)
-                                    .Sum(pod => pod.LineTotal), 3).ToString());
-                    }
-                    list.Add(entry);
-                }
-                sw.Stop();
-                mils = sw.ElapsedMilliseconds;
-                //var res = list.OrderBy(h => h["Week"]).ToList();
-                //var res = list.ToList();
-                return Json(list);
-            }
-            catch (Exception ex)
-            {
-                Debugger.Break();
-            }
-            throw new ApplicationException();
-        }
 
 
         public ActionResult ProductsCountByCategory()

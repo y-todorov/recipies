@@ -43,8 +43,11 @@ namespace RecipiesUnitTests.ChartController
         {
             Stopwatch s = new Stopwatch();
             s.Start();
-            ActionResult ar = chartController.VendorPurchasesByWeek();
-            Assert.IsNotNull(ar);
+            var weekResult = new System.Collections.Generic.List<string>();
+            var listResult = new System.Collections.Generic.List<System.Collections.Generic.Dictionary<int, double>>();
+            chartController.VendorPurchasesByWeek(weekResult, listResult);
+            Assert.IsNotNull(weekResult);
+            Assert.IsNotNull(listResult);
             s.Stop();
             long mils = s.ElapsedMilliseconds;
         }

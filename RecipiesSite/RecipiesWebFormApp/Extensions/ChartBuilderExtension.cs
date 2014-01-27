@@ -26,7 +26,7 @@ namespace InventoryManagementMVC.Extensions
             List<string> weeks = new List<string>();
 
             List<Dictionary<int, double>> list = new List<Dictionary<int, double>>();
-            cc.VendorPurchasesByWeekNew(weeks, list);
+            cc.VendorPurchasesByWeek(weeks, list);
             
 
             List<Vendor> vendors = ContextFactory.Current.Vendors.ToList();
