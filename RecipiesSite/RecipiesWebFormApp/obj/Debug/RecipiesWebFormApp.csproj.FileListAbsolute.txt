@@ -19,6 +19,9 @@ C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Glimpse.Mvc4.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Helpers.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Ionic.Zip.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Kendo.Mvc.dll
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\log4net.dll
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\LogentriesCore.dll
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\LogentriesLog4net.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.AspNet.FriendlyUrls.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.AspNet.Membership.OpenAuth.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.AspNet.SignalR.Core.dll
@@ -28,6 +31,7 @@ C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.Owin.Host.Sys
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.SqlServer.ConnectionInfo.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.SqlServer.Management.Sdk.Sfc.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.SqlServer.Smo.dll
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.WindowsAzure.Configuration.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\NPOI.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Owin.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Quartz.dll
@@ -55,11 +59,13 @@ C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Antlr3.Runtime.pdb
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Autofac.xml
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Common.Logging.pdb
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Common.Logging.xml
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\log4net.xml
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.AspNet.FriendlyUrls.xml
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.AspNet.SignalR.Core.xml
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.AspNet.SignalR.Owin.xml
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.WindowsAzure.Configuration.xml
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\NPOI.xml
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Quartz.pdb
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Quartz.xml
@@ -76,9 +82,3 @@ C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\HtmlAgilityPack.xml
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\obj\Debug\RecipiesWebFormApp.csprojResolveAssemblyReference.cache
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\obj\Debug\RecipiesWebFormApp.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\obj\Debug\RecipiesWebFormApp.pdb
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\log4net.dll
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\LogentriesCore.dll
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\LogentriesLog4net.dll
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.WindowsAzure.Configuration.dll
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\log4net.xml
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.WindowsAzure.Configuration.xml

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using InventoryManagementMVC.Models;
@@ -58,6 +59,31 @@ namespace RecipiesUnitTests.ProductController
         public void DeleteProductTest()
         {
             CrudTestsHelper.Delete(productController, request);
+        }
+
+          [TestMethod]
+        public void UnitsOnOrderTest()
+        {
+            ProductViewModel newProductViewModel = new ProductViewModel();
+            newProductViewModel.UnitMeasureId = ContextFactory.Current.UnitMeasures.FirstOrDefault().UnitMeasureId;
+            CrudTestsHelper.Create(productController, request, newProductViewModel);
+
+            PurchaseOrderHeader poh = new PurchaseOrderHeader();
+            poh.OrderDate = DateTime.Now;
+            poh.ShipDate = DateTime.Now;
+            poh.StatusId = (int)PurchaseOrderStatusEnum.Approved;
+
+            ContextFactory.Current.PurchaseOrderHeaders.Add(poh);
+            ContextFactory.Current.SaveChanges();
+
+
+            PurchaseOrderDetail pod = new PurchaseOrderDetail();
+            pod.ProductId = newProductViewModel.ProductId;
+            pod.UnitMeasureId = newProductViewModel.UnitMeasureId;
+            pod.PurchaseOrderId = poh.PurchaseOrderId;
+            ContextFactory.Current.PurchaseOrderDetails.Add(pod);
+            ContextFactory.Current.SaveChanges();
+
         }
     }
 }

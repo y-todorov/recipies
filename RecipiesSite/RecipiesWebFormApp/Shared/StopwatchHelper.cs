@@ -13,7 +13,7 @@ namespace RecipiesWebFormApp.Shared
         public static void StartNewMeasurement(string stopwatchName)
         {
             Stopwatch stopwatch = Stopwatch.StartNew();
-            stopwatches[stopwatchName] = stopwatch;
+            stopwatches[stopwatchName] = stopwatch; 
         }
 
         public static long StopLastMeasurement(string stopwatchName)
