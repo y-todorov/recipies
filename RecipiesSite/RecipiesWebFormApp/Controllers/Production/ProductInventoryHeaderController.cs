@@ -39,6 +39,7 @@ namespace InventoryManagementMVC.Controllers
                     ContextFactory.Current.SaveChanges();
 
                     List<Product> allProducts = ContextFactory.Current.Products.ToList();
+                    allProducts = allProducts.OrderBy(p => p.CategoryId).ThenBy(p => p.Name).ToList();
                     // Move this to the database project in ProductInventoryHeader
                     foreach (Product product in allProducts)
                     {
