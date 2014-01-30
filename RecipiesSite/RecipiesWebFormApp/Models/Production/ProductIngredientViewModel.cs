@@ -26,9 +26,10 @@ namespace InventoryManagementMVC.Models
 
         public double? QuantityPerPortion { get; set; }
 
+        // tova nqma kakvo da go pazim v baza izob6to. 6te go vzimame ot produkta!
         [ReadOnly(true)]
         public decimal? Cost { get; set; }
-
+        
         [ReadOnly(true)]
         public decimal? TotalValue { get; set; }
 

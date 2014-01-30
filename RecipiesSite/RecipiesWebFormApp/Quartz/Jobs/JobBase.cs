@@ -11,7 +11,11 @@ namespace RecipiesWebFormApp.Quartz.Jobs
     {
         public virtual void Execute(IJobExecutionContext context)
         {
-            LogentriesHelper.QuartzJobLog.InfoFormat("Started job with key '{0}' and description '{1}'", context.JobDetail.Key, context.JobDetail.Description);
+            if (context != null && context.JobDetail != null)
+            {
+                LogentriesHelper.QuartzJobLog.InfoFormat("Started job with key '{0}' and description '{1}'",
+                    context.JobDetail.Key, context.JobDetail.Description);
+            }
         }
     }
 }

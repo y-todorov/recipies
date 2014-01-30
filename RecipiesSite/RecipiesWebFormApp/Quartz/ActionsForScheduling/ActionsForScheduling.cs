@@ -35,6 +35,7 @@ namespace RecipiesWebFormApp.Quartz.ActionsForScheduling
         public static void StartAll()
         {
             UpdateUnitPriceOfProductsAction();
+            CalculateRecipesProductionValuePerPortionAction(); // this must be after UpdateUnitPriceOfProductsAction
             CheckDatabaseForChangesAction();
             RefreshWebsiteAction();
         }
@@ -47,7 +48,7 @@ namespace RecipiesWebFormApp.Quartz.ActionsForScheduling
 
             ITrigger trigger = TriggerBuilder.Create()
                 .WithIdentity("myTrigger", "group1")
-                .StartNow()
+                //.StartNow()
                   .WithSchedule(CronScheduleBuilder.DailyAtHourAndMinute(1, 1))
                 .Build();
 
@@ -83,6 +84,22 @@ namespace RecipiesWebFormApp.Quartz.ActionsForScheduling
                 .WithSimpleSchedule(x => x
                     .WithIntervalInMinutes(10)
                     .RepeatForever())
+                .Build();
+
+            sched.ScheduleJob(job, trigger);
+        }
+
+
+        public static void CalculateRecipesProductionValuePerPortionAction()
+        {
+            IJobDetail job = JobBuilder.Create<CalculateRecipesProductionValuePerPortionJob>()
+                .WithIdentity("CalculateRecipesProductionValuePerPortionJob", "group4")
+                .Build();
+
+            ITrigger trigger = TriggerBuilder.Create()
+                .WithIdentity("myTrigger4", "group4")
+                //.StartNow()
+                  .WithSchedule(CronScheduleBuilder.DailyAtHourAndMinute(1, 1))
                 .Build();
 
             sched.ScheduleJob(job, trigger);

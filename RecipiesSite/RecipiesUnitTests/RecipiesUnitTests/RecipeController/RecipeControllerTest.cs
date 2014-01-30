@@ -3,6 +3,7 @@ using InventoryManagementMVC.Models;
 using Kendo.Mvc.UI;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RecipiesModelNS;
+using RecipiesWebFormApp.Quartz.Jobs;
 
 namespace RecipiesUnitTests.RecipeController
 {
@@ -42,5 +43,13 @@ namespace RecipiesUnitTests.RecipeController
         {
             CrudTestsHelper.Delete(recipeController, request);
         }
+
+        [TestMethod]
+        public void UpdateProductionValueOfAllRecipes()
+        {
+            CalculateRecipesProductionValuePerPortionJob job = new CalculateRecipesProductionValuePerPortionJob();
+            job.Execute(null);
+        }
+
     }
 }
