@@ -7,6 +7,7 @@ using RecipiesModelNS;
 using System.ComponentModel;
 using InventoryManagementMVC.DataAnnotations;
 using System.Web.Mvc;
+using RecipiesWebFormApp.Helpers;
 
 namespace InventoryManagementMVC.Models
 {
@@ -43,6 +44,10 @@ namespace InventoryManagementMVC.Models
 
         [ReadOnly(true)]
         public decimal LineTotal { get; set; }
+
+        [ReadOnly(true)]
+        [DisplayFormat(DataFormatString = "{0:P2}")]
+        public double? GrossProfit { get; set; }
 
         public DateTime? ModifiedDate { get; set; }
 
@@ -84,6 +89,8 @@ namespace InventoryManagementMVC.Models
                     ProductionTotalValue = recipe.ProductionValuePerPortion * (decimal)entity.OrderQuantity.GetValueOrDefault();
                 }
             }
+
+            GrossProfit = ModelHelper.GetGp((double)ProductionTotalValue.GetValueOrDefault(), (double)UnitPrice.GetValueOrDefault());
 
 
             return this;

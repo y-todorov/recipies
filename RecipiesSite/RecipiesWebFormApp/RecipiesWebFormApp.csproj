@@ -540,6 +540,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\ControllerHelper.cs" />
+    <Compile Include="Helpers\ModelHelper.cs" />
     <Compile Include="Helpers\ViewHelper.cs" />
     <Compile Include="History\ProductHistories.aspx.cs">
       <DependentUpon>ProductHistories.aspx</DependentUpon>
