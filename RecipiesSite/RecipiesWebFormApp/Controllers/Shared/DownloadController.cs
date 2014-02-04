@@ -243,7 +243,10 @@ namespace InventoryManagementMVC.Controllers
             //  http://www.telerik.com/community/forums/reporting/telerik-reporting/out-of-memory-in-azure-websites.aspx
 
 
-            string fileName = result.DocumentName + "." + result.Extension;
+            //string fileName = result.DocumentName + "." + result.Extension;
+            // Until solving PDF problem extension will be .jpg
+            string fileName = result.DocumentName + "." + "jpg";
+
 
             return File(result.DocumentBytes, result.MimeType, fileName);
         }

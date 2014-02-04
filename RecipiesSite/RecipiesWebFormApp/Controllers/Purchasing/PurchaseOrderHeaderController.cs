@@ -141,68 +141,7 @@ namespace InventoryManagementMVC.Controllers.Purchasing
 
             return RedirectToAction("Index");
         }
-
-        public ActionResult Download(int? purchaseOrderHeaderId)
-        {
-            PurchaseOrderHeader purchaseOrder =
-                ContextFactory.GetContextPerRequest()
-                    .PurchaseOrderHeaders.FirstOrDefault(p => p.PurchaseOrderId == purchaseOrderHeaderId);
-
-            ReportProcessor reportProcessor = new ReportProcessor();
-
-            var instanceReportSource = new Telerik.Reporting.InstanceReportSource();
-            RecipiesReports.PurchaseOrderDetailsReport salesOrderDetailsReport =
-                new RecipiesReports.PurchaseOrderDetailsReport();
-
-            List<PurchaseOrderDetail> nonEmptyOrders =
-                purchaseOrder.PurchaseOrderDetails.Where(pod => pod.OrderQuantity.GetValueOrDefault() != 0).ToList();
-
-            salesOrderDetailsReport.DataSource = nonEmptyOrders;
-
-            instanceReportSource.ReportDocument = salesOrderDetailsReport;
-
-            //specify the output format of the produced image.
-            System.Collections.Hashtable deviceInfo =
-                new System.Collections.Hashtable();
-
-            //deviceInfo["OutputFormat"] = "DOCX";
-
-            RenderingResult result = reportProcessor.RenderReport("Image", instanceReportSource, null);
-
-            string fileName = result.DocumentName + "." + result.Extension;
-
-            var cd = new System.Net.Mime.ContentDisposition
-            {
-                // for example foo.bak
-                FileName = fileName,
-
-                // always prompt the user for downloading, set to true if you want 
-                // the browser to try to show the file inline
-                Inline = false,
-            };
-            //Response.AppendHeader("Content-Disposition", cd.ToString());
-
-
-            //return File(result.DocumentBytes, result.MimeType, fileName);
-
-            //FileStream MyFileStream;
-            //long FileSize;
-
-            //MyFileStream = new FileStream("sometext.txt", FileMode.Open);
-            //FileSize = MyFileStream.Length;
-
-            //byte[] Buffer = new byte[(int)FileSize];
-            //MyFileStream.Read(Buffer, 0, (int)FileSize);
-            //MyFileStream.Close();
-
-            //Response.Write("<b>File Contents: </b>");
-            //Response.BinaryWrite(result.DocumentBytes);
-
-            //MyFileResult m = new MyFileResult(result);
-            //return m;
-            return File(result.DocumentBytes, result.MimeType, fileName);
-        }
-
+        
         public ActionResult SendEmail(int? purchaseOrderHeaderId)
         {
             //(Master as SiteMaster).MasterRadNotification.Show(
