@@ -28,6 +28,11 @@ namespace InventoryManagementMVC.Models
         [ReadOnly(true)]
         public string RecipeCategory { get; set; }
 
+        [ReadOnly(true)]
+        [Display(Name = "Production value")]
+        public decimal? RecipeProductionValuePerPortion { get; set; }
+
+
         [Display(Name = "Order QTY")]
         public double? OrderQuantity { get; set; }
 
@@ -66,6 +71,20 @@ namespace InventoryManagementMVC.Models
                     RecipeCategory = recipe.ProductCategory.Name;
                 }
             }
+
+            if (entity.Recipe != null)
+            {
+                RecipeProductionValuePerPortion = entity.Recipe.ProductionValuePerPortion;
+            }
+            else if (RecipeId.HasValue)
+            {
+                Recipe recipe = ContextFactory.Current.Recipes.FirstOrDefault(r => r.RecipeId == RecipeId);
+                if (recipe != null)
+                {
+                    RecipeProductionValuePerPortion = recipe.ProductionValuePerPortion;
+                }
+            }
+
 
             return this;
         }
