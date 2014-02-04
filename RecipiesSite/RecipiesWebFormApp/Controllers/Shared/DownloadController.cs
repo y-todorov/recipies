@@ -175,7 +175,20 @@ namespace InventoryManagementMVC.Controllers
                     string val = tds[i].Value;
                     if (val != null)
                     {
-                        row.CreateCell(i).SetCellValue(val.ToString());
+                        double dummyDouble;
+                        DateTime dummyDateTime;
+                        if (double.TryParse(val, System.Globalization.NumberStyles.Any, null, out dummyDouble))
+                        {
+                            row.CreateCell(i).SetCellValue(dummyDouble);
+                        }
+                        //else if (DateTime.TryParse(val, out dummyDateTime))
+                        //{
+                        //    row.CreateCell(i).SetCellValue(dummyDateTime); // fo not work well, should be tested more
+                        //}
+                        else
+                        {
+                            row.CreateCell(i).SetCellValue(val);
+                        }
                     }
                     else
                     {
