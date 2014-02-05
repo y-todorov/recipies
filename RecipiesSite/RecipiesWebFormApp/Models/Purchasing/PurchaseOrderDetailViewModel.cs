@@ -57,7 +57,8 @@ namespace InventoryManagementMVC.Models
 
         public string ModifiedByUser { get; set; }
 
-        [HiddenInput(DisplayValue = false)]
+        //[HiddenInput(DisplayValue = false)]
+        [Display(Name = "Ship Date")]
         [ReadOnly(true)]
         public DateTime? PurchaseOrderHeaderShipDate { get; set; }
 
@@ -71,7 +72,12 @@ namespace InventoryManagementMVC.Models
 
         [Display(Name = "Order Date")]
         [ReadOnly(true)]
+        [HiddenInput(DisplayValue = false)]
         public DateTime? PurchaseOrderHeaderOrderDate { get; set; }
+
+       
+
+
 
         [HiddenInput(DisplayValue = false)]
         [ReadOnly(true)]
