@@ -173,7 +173,7 @@ namespace InventoryManagementMVC.Controllers.Purchasing
                 RestResponse restResponse = EmailHelper.SendComplexMessage(defaultTemplate.From,
                     purchaseOrder.Vendor.Email, defaultTemplate.Cc,
                     defaultTemplate.Bcc, defaultTemplate.Subject, defaultTemplate.TextBody, defaultTemplate.HtmlBody,
-                    result.DocumentBytes, defaultTemplate.AttachmentName + "." + result.Extension);
+                    result.DocumentBytes, defaultTemplate.AttachmentName + "." + "jpg"); // was result.Extension. It will be replaced by pdf
             }
             else
             {
