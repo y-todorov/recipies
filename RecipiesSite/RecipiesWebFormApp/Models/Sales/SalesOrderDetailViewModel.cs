@@ -90,7 +90,7 @@ namespace InventoryManagementMVC.Models
                 }
             }
 
-            GrossProfit = ModelHelper.GetGp((double)ProductionTotalValue.GetValueOrDefault(), (double)UnitPrice.GetValueOrDefault());
+            GrossProfit = ModelHelper.GetGp((double)ProductionTotalValue.GetValueOrDefault(), (double)LineTotal);
 
 
             return this;
