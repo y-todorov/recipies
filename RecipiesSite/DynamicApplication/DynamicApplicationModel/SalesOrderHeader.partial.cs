@@ -14,7 +14,7 @@ namespace RecipiesModelNS
             List<SalesOrderHeader> result =
                 ContextFactory.GetContextPerRequest().SalesOrderHeaders.Where(pof => pof.ShippedDate >= fromDate.Date &&
                                                                                      pof.ShippedDate < endDateForLinq &&
-                                                                                     pof.StatusId == (int) status)
+                                                                                     pof.StatusId == (int)status)
                     .ToList();
             return result;
         }
@@ -46,6 +46,30 @@ namespace RecipiesModelNS
             }
         }
 
+        public static void AddDefaultRecipiesInSalesOrderHeaderNew(SalesOrderHeader salesOrderHeader)
+        {
+            if (salesOrderHeader != null)
+            {
+                List<Recipe> recipies = ContextFactory.GetContextPerRequest().Recipes.ToList();
+                foreach (Recipe recipie in recipies)
+                {
+                    SalesOrderDetail detail = new SalesOrderDetail()
+                    {
+                        SalesOrderHeaderId = salesOrderHeader.SalesOrderHeaderId,
+                        RecipeId = recipie.RecipeId,
+                        UnitPrice = recipie.SellValuePerPortion,
+                        UnitPriceDiscount = 0,
+                        OrderQuantity = 0,
+                    };
+                    salesOrderHeader.SalesOrderDetails.Add(detail);
+                    ContextFactory.Current.SalesOrderDetails.Add(detail);
+                }
+
+                //ContextFactory.GetContextPerRequest().SaveChanges();
+            }
+
+        }
+
 
         /// <summary>
         /// Implement the same logic as in Details!!!! Yordan 19.12.2013
@@ -69,9 +93,16 @@ namespace RecipiesModelNS
             }
         }
 
+        public override void Adding(System.Data.Entity.Infrastructure.DbEntityEntry e = null)
+        {
+            var soh = e.Entity as SalesOrderHeader;
+            AddDefaultRecipiesInSalesOrderHeaderNew(soh);
+            base.Adding(e);
+        }
+
         public override void Added(System.Data.Entity.Infrastructure.DbEntityEntry e = null)
         {
-            AddDefaultRecipiesInSalesOrderHeader(SalesOrderHeaderId);
+            //AddDefaultRecipiesInSalesOrderHeader(SalesOrderHeaderId);
             UpdateProductsUnitsInStock(SalesOrderHeaderId);
 
             base.Added(e);
@@ -90,7 +121,7 @@ namespace RecipiesModelNS
                     decimal? subTotal = 0;
                     foreach (SalesOrderDetail spd in poh.SalesOrderDetails)
                     {
-                        subTotal += (decimal?) spd.LineTotal;
+                        subTotal += (decimal?)spd.LineTotal;
                     }
                     poh.SubTotal = subTotal;
                     ContextFactory.GetContextPerRequest().SaveChanges();

@@ -1,5 +1,6 @@
 ﻿using InventoryManagementMVC.DataAnnotations;
 using RecipiesModelNS;
+using RecipiesWebFormApp.Helpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,21 +16,21 @@ namespace InventoryManagementMVC.Models
         [Key]
         public int SalesOrderHeaderId { get; set; }
 
-        [Relation(EntityType = typeof (Customer), DataFieldValue = "CustomerID",
+        [Relation(EntityType = typeof(Customer), DataFieldValue = "CustomerID",
             DataFieldText = "ContactName")]
         [Display(Name = "Customer")]
         public int? CustomerId { get; set; }
 
-        [Relation(EntityType = typeof (SalesOrderStatu), DataFieldValue = "SalesOrderStatusId",
+        [Relation(EntityType = typeof(SalesOrderStatu), DataFieldValue = "SalesOrderStatusId",
             DataFieldText = "Name")]
         [Display(Name = "Status")]
         public int? StatusId { get; set; }
 
-        [Relation(EntityType = typeof (Employee), DataFieldValue = "EmployeeId", DataFieldText = "FirstName")]
+        [Relation(EntityType = typeof(Employee), DataFieldValue = "EmployeeId", DataFieldText = "FirstName")]
         [Display(Name = "Employee")]
         public int? EmployeeId { get; set; }
 
-        [Relation(EntityType = typeof (PaymentType), DataFieldValue = "PaymentTypeId", DataFieldText = "Name")]
+        [Relation(EntityType = typeof(PaymentType), DataFieldValue = "PaymentTypeId", DataFieldText = "Name")]
         [Display(Name = "Payment Type")]
         public int? PaymentTypeId { get; set; }
 
@@ -50,6 +51,11 @@ namespace InventoryManagementMVC.Models
         [HiddenInput(DisplayValue = false)]
         public string ShipAddress { get; set; }
 
+        [ReadOnly(true)]
+        [Display(Name = "Production total value")]
+        public decimal? ProductionTotalValue { get; set; }
+
+         [ReadOnly(true)]
         public decimal? SubTotal { get; set; }
 
         public decimal? TaxAmt { get; set; }
@@ -58,6 +64,10 @@ namespace InventoryManagementMVC.Models
 
         [ReadOnly(true)]
         public decimal? TotalDue { get; set; }
+
+        [ReadOnly(true)]
+        [DisplayFormat(DataFormatString = "{0:P2}")]
+        public double? GrossProfit { get; set; }
 
         public DateTime? ModifiedDate { get; set; }
 
@@ -81,10 +91,22 @@ namespace InventoryManagementMVC.Models
             ShipName = entity.ShipName;
             ShippedDate = entity.ShippedDate;
             StatusId = entity.StatusId;
-            SubTotal = entity.SubTotal;
+            //SubTotal = entity.SubTotal;
+            SubTotal = (decimal)entity.SalesOrderDetails.Sum(d => d.LineTotal);
+
             TaxAmt = entity.TaxAmt;
             Freight = entity.Freight;
-            TotalDue = entity.TotalDue;
+            // (isnull(([SubTotal]+[TaxAmt])+[Freight],(0)))
+            TotalDue = SubTotal.GetValueOrDefault() + TaxAmt.GetValueOrDefault() + Freight.GetValueOrDefault();
+
+            ProductionTotalValue = entity.SalesOrderDetails.Sum(d =>
+            {
+                SalesOrderDetailViewModel sodvm = new SalesOrderDetailViewModel();
+                sodvm.ConvertFromEntity(d);
+                return sodvm.ProductionTotalValue;
+            });
+
+            GrossProfit = ModelHelper.GetGp((double)ProductionTotalValue.GetValueOrDefault(), (double)SubTotal.GetValueOrDefault());
 
             return this;
         }
@@ -107,6 +129,7 @@ namespace InventoryManagementMVC.Models
             entity.SubTotal = SubTotal;
             entity.TaxAmt = TaxAmt;
             entity.Freight = Freight;
+
 
             return entity;
         }

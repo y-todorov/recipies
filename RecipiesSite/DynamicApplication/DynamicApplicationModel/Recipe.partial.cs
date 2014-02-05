@@ -7,8 +7,20 @@ namespace RecipiesModelNS
 {
     public partial class Recipe : YordanBaseEntity
     {
-        public static void GetProductsWithQuantities(int? recipeId, Dictionary<int, double> productsWithQuantities)
+        public static void GetProductsWithQuantities(int? recipeId, Dictionary<int, double> productsWithQuantities, List<int> stackOverflowPreventionRecipeIds = null)
         {
+            if (stackOverflowPreventionRecipeIds == null)
+            {
+                stackOverflowPreventionRecipeIds = new List<int>();
+            }
+            if (stackOverflowPreventionRecipeIds.Contains(recipeId.GetValueOrDefault()))
+            {
+                throw new ApplicationException(
+                    "Recipe cannot contain a sub recipe that is the same recipe! Please fix that!");
+            }
+            stackOverflowPreventionRecipeIds.Add(recipeId.GetValueOrDefault());
+
+
             Recipe recipe = ContextFactory.Current.Recipes.FirstOrDefault(r => r.RecipeId == recipeId);
             if (recipe != null)
             {
@@ -39,7 +51,7 @@ namespace RecipiesModelNS
                                 ri.RecipeIngredientId));
                     }
 
-                    GetProductsWithQuantities(ri.IngredientRecipeId, productsWithQuantities);
+                    GetProductsWithQuantities(ri.IngredientRecipeId, productsWithQuantities, stackOverflowPreventionRecipeIds);
                 }
             }
         }

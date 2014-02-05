@@ -74,11 +74,7 @@ namespace InventoryManagementMVC.Models
         [ReadOnly(true)]
         [HiddenInput(DisplayValue = false)]
         public DateTime? PurchaseOrderHeaderOrderDate { get; set; }
-
-       
-
-
-
+        
         [HiddenInput(DisplayValue = false)]
         [ReadOnly(true)]
         public string Status { get; set; }
