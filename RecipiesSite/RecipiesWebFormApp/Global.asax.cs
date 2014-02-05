@@ -121,6 +121,12 @@ namespace RecipiesWebFormApp
 
             controller.ViewData.Model = new HandleErrorInfo(ex, currentController, currentAction);
             ((IController) controller).Execute(new RequestContext(new HttpContextWrapper(httpContext), routeData));
+
+#if DEBUG
+            return;
+#endif
+            LogentriesHelper.ApplicationLog.Error("Application_Error", ex);
+
         }
 
         //This method checks if we have an AJAX request or not
@@ -195,7 +201,16 @@ namespace RecipiesWebFormApp
             string httpApplicationAsString = CreateStringFromHttpApplicationNew(httpApplication);
             string logString = string.Format("Time taken '{0}'. Params: {1}", timeTaken, httpApplicationAsString);
 
-            LogentriesHelper.ApplicationLog.Info(logString);
+            if (httpApplication.User != null && httpApplication.User.Identity != null &&
+                !string.IsNullOrEmpty(httpApplication.User.Identity.Name))
+            {
+                LogentriesHelper.ApplicationLog.Info(logString);
+            }
+            else
+            {
+                LogentriesHelper.ApplicationLog.Debug(logString);
+            }
+        
 
             //Task.Factory.StartNew(() =>
             //{
