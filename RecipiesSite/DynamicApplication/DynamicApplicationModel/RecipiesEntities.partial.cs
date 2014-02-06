@@ -93,7 +93,7 @@ namespace RecipiesModelNS
             }
 
             // Mega test
-            ContextFactory.RemoveFromCache();
+            //ContextFactory.RemoveFromCache();
 
             return result;
         }

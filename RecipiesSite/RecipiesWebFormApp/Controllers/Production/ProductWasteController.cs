@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.Entity; // .Include !!!!!!! THIS IS SO IMPROTANT
 
 namespace InventoryManagementMVC.Controllers
 {
@@ -17,71 +18,47 @@ namespace InventoryManagementMVC.Controllers
             return View();
         }
 
-        public ActionResult Read([DataSourceRequest] DataSourceRequest request)
+        public ActionResult Read(int? productWasteHeaderId, [DataSourceRequest] DataSourceRequest request)
         {
-            List<ProductWasteViewModel> viewModels = ContextFactory.Current.Wastes.OfType<ProductWaste>().ToList().Select
-                (c => ProductWasteViewModel.ConvertFromProductWasteEntity(c, new ProductWasteViewModel())).ToList();
-            return Json(viewModels.ToDataSourceResult(request));
+            ProductWasteHeader pih2 =
+               ContextFactory.Current.ProductWasteHeaders.FirstOrDefault(
+                   pi => pi.ProductWasteHeaderId == productWasteHeaderId);
+            if (pih2 != null)
+            {
+                ProductWasteHeader.InsertMissingProductWastes(pih2);
+            }
+
+            var allPis = ContextFactory.Current.Wastes.OfType<ProductWaste>()
+                .Include(pi => pi.Product.ProductCategory)
+                .Include(pi => pi.Product.UnitMeasure)
+                .Where(pih => pih.ProductWasteHeaderId == productWasteHeaderId.Value).ToList();
+
+            var result = ReadBase(request, typeof(ProductWasteViewModel), typeof(ProductWaste), allPis);
+            return result;
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Create([DataSourceRequest] DataSourceRequest request,
             [Bind(Prefix = "models")] IEnumerable<ProductWasteViewModel> wastes)
         {
-            if (wastes != null && ModelState.IsValid)
-            {
-                foreach (ProductWasteViewModel waste in wastes)
-                {
-                    ProductWaste newWasteEntity = ProductWasteViewModel.ConvertToProductWasteEntity(waste,
-                        new ProductWaste());
-                    ContextFactory.Current.Wastes.Add(newWasteEntity);
-                    ContextFactory.Current.SaveChanges();
-                    newWasteEntity = ContextFactory.Current.Wastes.OfType<ProductWaste>().First(w => w.WasteId == newWasteEntity.WasteId);
-                    ProductWasteViewModel.ConvertFromProductWasteEntity(newWasteEntity, waste);
-                }
-            }
-
-            return Json(wastes.ToDataSourceResult(request, ModelState));
+            var result = CreateBase(request, wastes, typeof(ProductWasteViewModel), typeof(ProductWaste));
+            return result;
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Update([DataSourceRequest] DataSourceRequest request,
-            [Bind(Prefix = "models")] IEnumerable<ProductWasteViewModel> wastes)
+            [Bind(Prefix = "models")] IEnumerable<ProductWasteViewModel> products)
         {
-            if (wastes != null && ModelState.IsValid)
-            {
-                foreach (ProductWasteViewModel waste in wastes)
-                {
-                    ProductWaste wasteEntity =
-                        ContextFactory.Current.Wastes.OfType<ProductWaste>().FirstOrDefault(c => c.WasteId == waste.WasteId);
-
-                    ProductWasteViewModel.ConvertToProductWasteEntity(waste, wasteEntity);
-
-                    ContextFactory.Current.SaveChanges();
-
-                    ProductWasteViewModel.ConvertFromProductWasteEntity(wasteEntity, waste);
-                }
-            }
-
-            return Json(wastes.ToDataSourceResult(request, ModelState));
+            var result = UpdateBase(request, products, typeof(ProductWasteViewModel), typeof(ProductWaste));
+            return result;
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Destroy([DataSourceRequest] DataSourceRequest request,
-            [Bind(Prefix = "models")] IEnumerable<ProductWasteViewModel> wastes)
+            [Bind(Prefix = "models")] IEnumerable<ProductWasteViewModel> products)
         {
-            if (wastes.Any())
-            {
-                foreach (ProductWasteViewModel waste in wastes)
-                {
-                    ProductWaste wasteEntity = ContextFactory.Current.Wastes.OfType<ProductWaste>().FirstOrDefault(c => c.WasteId == waste.WasteId);
-                    ContextFactory.Current.Wastes.Remove(wasteEntity);
-
-                    ContextFactory.Current.SaveChanges();
-                }
-            }
-
-            return Json(wastes.ToDataSourceResult(request, ModelState));
+            var result = DestroyBase(request, products, typeof(ProductWasteViewModel), typeof(ProductWaste));
+            return result;
         }
     }
 }

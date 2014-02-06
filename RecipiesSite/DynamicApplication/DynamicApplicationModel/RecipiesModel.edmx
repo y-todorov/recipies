@@ -5,9 +5,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="RecipiesModelNS.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008"
-              Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator"
-              xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="RecipiesModelNS.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="EmailTemplate">
           <Key>
             <PropertyRef Name="EmailTemplateId" />
@@ -184,6 +182,16 @@
           </Key>
           <Property Name="WasteId" Type="int" Nullable="false" />
           <Property Name="ProductId" Type="int" />
+          <Property Name="ProductWasteHeaderId" Type="int" />
+        </EntityType>
+        <EntityType Name="ProductWasteHeader">
+          <Key>
+            <PropertyRef Name="ProductWasteHeaderId" />
+          </Key>
+          <Property Name="ProductWasteHeaderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ForDate" Type="date" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="ModifiedByUser" Type="nvarchar" MaxLength="1000" />
         </EntityType>
         <EntityType Name="Recipe">
           <Key>
@@ -197,7 +205,7 @@
           <Property Name="ModifiedDate" Type="datetime" />
           <Property Name="ModifiedByUser" Type="nvarchar" MaxLength="1000" />
           <Property Name="SellValuePerPortion" Type="money" />
-          <Property Name="GrossProfit" Type="numeric" Precision="38" Scale="16" StoreGeneratedPattern="Computed" />
+          <Property Name="GrossProfit" Type="numeric" Precision="38" Scale="14" StoreGeneratedPattern="Computed" />
         </EntityType>
         <EntityType Name="RecipeIngredient">
           <Key>
@@ -624,6 +632,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ProductWaste_ProductWasteHeader">
+          <End Role="ProductWasteHeader" Type="Self.ProductWasteHeader" Multiplicity="0..1" />
+          <End Role="ProductWaste" Type="Self.ProductWaste" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductWasteHeader">
+              <PropertyRef Name="ProductWasteHeaderId" />
+            </Principal>
+            <Dependent Role="ProductWaste">
+              <PropertyRef Name="ProductWasteHeaderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ProductWaste_UnitMeasure">
           <End Role="UnitMeasure" Type="Self.UnitMeasure" Multiplicity="0..1" />
           <End Role="Waste" Type="Self.Waste" Multiplicity="*" />
@@ -871,19 +891,17 @@
           <EntitySet Name="__RecipiesDataBase" EntityType="Self.__RecipiesDataBase" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Department" EntityType="Self.Department" Schema="HumanResources" store:Type="Tables" />
           <EntitySet Name="Employee" EntityType="Self.Employee" Schema="HumanResources" store:Type="Tables" />
-          <EntitySet Name="EmployeeDepartment" EntityType="Self.EmployeeDepartment" Schema="HumanResources"
-                     store:Type="Tables" />
+          <EntitySet Name="EmployeeDepartment" EntityType="Self.EmployeeDepartment" Schema="HumanResources" store:Type="Tables" />
           <EntitySet Name="Shift" EntityType="Self.Shift" Schema="HumanResources" store:Type="Tables" />
           <EntitySet Name="Inventory" EntityType="Self.Inventory" Schema="Production" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="Production" store:Type="Tables" />
           <EntitySet Name="ProductCategory" EntityType="Self.ProductCategory" Schema="Production" store:Type="Tables" />
           <EntitySet Name="ProductHistory" EntityType="Self.ProductHistory" Schema="Production" store:Type="Tables" />
-          <EntitySet Name="ProductIngredient" EntityType="Self.ProductIngredient" Schema="Production"
-                     store:Type="Tables" />
+          <EntitySet Name="ProductIngredient" EntityType="Self.ProductIngredient" Schema="Production" store:Type="Tables" />
           <EntitySet Name="ProductInventory" EntityType="Self.ProductInventory" Schema="Production" store:Type="Tables" />
-          <EntitySet Name="ProductInventoryHeader" EntityType="Self.ProductInventoryHeader" Schema="Production"
-                     store:Type="Tables" />
+          <EntitySet Name="ProductInventoryHeader" EntityType="Self.ProductInventoryHeader" Schema="Production" store:Type="Tables" />
           <EntitySet Name="ProductWaste" EntityType="Self.ProductWaste" Schema="Production" store:Type="Tables" />
+          <EntitySet Name="ProductWasteHeader" EntityType="Self.ProductWasteHeader" Schema="Production" store:Type="Tables" />
           <EntitySet Name="Recipe" EntityType="Self.Recipe" Schema="Production" store:Type="Tables" />
           <EntitySet Name="RecipeIngredient" EntityType="Self.RecipeIngredient" Schema="Production" store:Type="Tables" />
           <EntitySet Name="RecipeInventory" EntityType="Self.RecipeInventory" Schema="Production" store:Type="Tables" />
@@ -892,12 +910,9 @@
           <EntitySet Name="UnitMeasure" EntityType="Self.UnitMeasure" Schema="Production" store:Type="Tables" />
           <EntitySet Name="Waste" EntityType="Self.Waste" Schema="Production" store:Type="Tables" />
           <EntitySet Name="ProductVendor" EntityType="Self.ProductVendor" Schema="Purchasing" store:Type="Tables" />
-          <EntitySet Name="PurchaseOrderDetail" EntityType="Self.PurchaseOrderDetail" Schema="Purchasing"
-                     store:Type="Tables" />
-          <EntitySet Name="PurchaseOrderHeader" EntityType="Self.PurchaseOrderHeader" Schema="Purchasing"
-                     store:Type="Tables" />
-          <EntitySet Name="PurchaseOrderStatus" EntityType="Self.PurchaseOrderStatus" Schema="Purchasing"
-                     store:Type="Tables" />
+          <EntitySet Name="PurchaseOrderDetail" EntityType="Self.PurchaseOrderDetail" Schema="Purchasing" store:Type="Tables" />
+          <EntitySet Name="PurchaseOrderHeader" EntityType="Self.PurchaseOrderHeader" Schema="Purchasing" store:Type="Tables" />
+          <EntitySet Name="PurchaseOrderStatus" EntityType="Self.PurchaseOrderStatus" Schema="Purchasing" store:Type="Tables" />
           <EntitySet Name="ShipMethod" EntityType="Self.ShipMethod" Schema="Purchasing" store:Type="Tables" />
           <EntitySet Name="Vendor" EntityType="Self.Vendor" Schema="Purchasing" store:Type="Tables" />
           <EntitySet Name="Customer" EntityType="Self.Customer" Schema="Sales" store:Type="Tables" />
@@ -953,8 +968,7 @@
             <End Role="Product" EntitySet="Product" />
             <End Role="ProductInventory" EntitySet="ProductInventory" />
           </AssociationSet>
-          <AssociationSet Name="FK_ProductInventory_ProductInventoryHeader"
-                          Association="Self.FK_ProductInventory_ProductInventoryHeader">
+          <AssociationSet Name="FK_ProductInventory_ProductInventoryHeader" Association="Self.FK_ProductInventory_ProductInventoryHeader">
             <End Role="ProductInventoryHeader" EntitySet="ProductInventoryHeader" />
             <End Role="ProductInventory" EntitySet="ProductInventory" />
           </AssociationSet>
@@ -974,6 +988,10 @@
             <End Role="Product" EntitySet="Product" />
             <End Role="ProductWaste" EntitySet="ProductWaste" />
           </AssociationSet>
+          <AssociationSet Name="FK_ProductWaste_ProductWasteHeader" Association="Self.FK_ProductWaste_ProductWasteHeader">
+            <End Role="ProductWasteHeader" EntitySet="ProductWasteHeader" />
+            <End Role="ProductWaste" EntitySet="ProductWaste" />
+          </AssociationSet>
           <AssociationSet Name="FK_ProductWaste_UnitMeasure" Association="Self.FK_ProductWaste_UnitMeasure">
             <End Role="UnitMeasure" EntitySet="UnitMeasure" />
             <End Role="Waste" EntitySet="Waste" />
@@ -986,13 +1004,11 @@
             <End Role="Product" EntitySet="Product" />
             <End Role="PurchaseOrderDetail" EntitySet="PurchaseOrderDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK_PurchaseOrderDetail_PurchaseOrderHeader"
-                          Association="Self.FK_PurchaseOrderDetail_PurchaseOrderHeader">
+          <AssociationSet Name="FK_PurchaseOrderDetail_PurchaseOrderHeader" Association="Self.FK_PurchaseOrderDetail_PurchaseOrderHeader">
             <End Role="PurchaseOrderHeader" EntitySet="PurchaseOrderHeader" />
             <End Role="PurchaseOrderDetail" EntitySet="PurchaseOrderDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK_PurchaseOrderDetail_UnitMeasure"
-                          Association="Self.FK_PurchaseOrderDetail_UnitMeasure">
+          <AssociationSet Name="FK_PurchaseOrderDetail_UnitMeasure" Association="Self.FK_PurchaseOrderDetail_UnitMeasure">
             <End Role="UnitMeasure" EntitySet="UnitMeasure" />
             <End Role="PurchaseOrderDetail" EntitySet="PurchaseOrderDetail" />
           </AssociationSet>
@@ -1000,8 +1016,7 @@
             <End Role="Employee" EntitySet="Employee" />
             <End Role="PurchaseOrderHeader" EntitySet="PurchaseOrderHeader" />
           </AssociationSet>
-          <AssociationSet Name="FK_PurchaseOrderHeader_PurchaseOrderStatus"
-                          Association="Self.FK_PurchaseOrderHeader_PurchaseOrderStatus">
+          <AssociationSet Name="FK_PurchaseOrderHeader_PurchaseOrderStatus" Association="Self.FK_PurchaseOrderHeader_PurchaseOrderStatus">
             <End Role="PurchaseOrderStatus" EntitySet="PurchaseOrderStatus" />
             <End Role="PurchaseOrderHeader" EntitySet="PurchaseOrderHeader" />
           </AssociationSet>
@@ -1017,8 +1032,7 @@
             <End Role="ProductCategory" EntitySet="ProductCategory" />
             <End Role="Recipe" EntitySet="Recipe" />
           </AssociationSet>
-          <AssociationSet Name="FK_RecipeIngredient_IngredientRecipe"
-                          Association="Self.FK_RecipeIngredient_IngredientRecipe">
+          <AssociationSet Name="FK_RecipeIngredient_IngredientRecipe" Association="Self.FK_RecipeIngredient_IngredientRecipe">
             <End Role="Recipe" EntitySet="Recipe" />
             <End Role="RecipeIngredient" EntitySet="RecipeIngredient" />
           </AssociationSet>
@@ -1054,14 +1068,12 @@
             <End Role="PaymentType" EntitySet="PaymentType" />
             <End Role="SalesOrderHeader" EntitySet="SalesOrderHeader" />
           </AssociationSet>
-          <AssociationSet Name="FK_SalesOrderHeader_SalesOrderStatus"
-                          Association="Self.FK_SalesOrderHeader_SalesOrderStatus">
+          <AssociationSet Name="FK_SalesOrderHeader_SalesOrderStatus" Association="Self.FK_SalesOrderHeader_SalesOrderStatus">
             <End Role="SalesOrderStatus" EntitySet="SalesOrderStatus" />
             <End Role="SalesOrderHeader" EntitySet="SalesOrderHeader" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="RecipiesModelNS" Alias="Self" p1:UseStrongSpatialTypes="false"
@@ -1263,6 +1275,11 @@
             <End Role="RecipeIngredient" EntitySet="RecipeIngredients" />
           </AssociationSet>
           <EntitySet Name="C__RecipiesDataBase" EntityType="RecipiesModelNS.C__RecipiesDataBase" />
+          <EntitySet Name="ProductWasteHeaders" EntityType="RecipiesModelNS.ProductWasteHeader" />
+          <AssociationSet Name="FK_ProductWaste_ProductWasteHeader" Association="RecipiesModelNS.FK_ProductWaste_ProductWasteHeader">
+            <End Role="ProductWasteHeader" EntitySet="ProductWasteHeaders" />
+            <End Role="ProductWaste" EntitySet="Wastes" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="EmailTemplate">
           <Key>
@@ -1449,7 +1466,7 @@
           <Property Type="DateTime" Name="ModifiedDate" Precision="3" />
           <Property Type="String" Name="ModifiedByUser" MaxLength="1000" FixedLength="false" Unicode="true" />
           <Property Type="Decimal" Name="SellValuePerPortion" Precision="19" Scale="4" />
-          <Property Type="Decimal" Name="GrossProfit" Precision="38" Scale="16"
+          <Property Type="Decimal" Name="GrossProfit" Precision="38" Scale="14"
                     annotation:StoreGeneratedPattern="Computed" />
           <NavigationProperty Name="ProductCategory" Relationship="RecipiesModelNS.FK_Recipe_ProductCategory"
                               FromRole="Recipe" ToRole="ProductCategory" />
@@ -2065,6 +2082,8 @@
           <Property Type="Int32" Name="ProductId" />
           <NavigationProperty Name="Product" Relationship="RecipiesModelNS.FK_ProductWaste_Product"
                               FromRole="ProductWaste" ToRole="Product" />
+          <Property Name="ProductWasteHeaderId" Type="Int32" />
+          <NavigationProperty Name="ProductWasteHeader" Relationship="RecipiesModelNS.FK_ProductWaste_ProductWasteHeader" FromRole="ProductWaste" ToRole="ProductWasteHeader" />
         </EntityType>
         <EntityType Name="RecipeWaste" BaseType="RecipiesModelNS.Waste">
           <Property Type="Int32" Name="RecipeId" />
@@ -2265,6 +2284,28 @@
           <Property Name="databaseName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
+        <EntityType Name="ProductWasteHeader">
+          <Key>
+            <PropertyRef Name="ProductWasteHeaderId" />
+          </Key>
+          <Property Name="ProductWasteHeaderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ForDate" Type="DateTime" Precision="0" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedByUser" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ProductWastes" Relationship="RecipiesModelNS.FK_ProductWaste_ProductWasteHeader" FromRole="ProductWasteHeader" ToRole="ProductWaste" />
+        </EntityType>
+        <Association Name="FK_ProductWaste_ProductWasteHeader">
+          <End Type="RecipiesModelNS.ProductWasteHeader" Role="ProductWasteHeader" Multiplicity="0..1" />
+          <End Type="RecipiesModelNS.ProductWaste" Role="ProductWaste" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductWasteHeader">
+              <PropertyRef Name="ProductWasteHeaderId" />
+            </Principal>
+            <Dependent Role="ProductWaste">
+              <PropertyRef Name="ProductWasteHeaderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2659,6 +2700,7 @@
             </EntityTypeMapping>
             <EntityTypeMapping TypeName="IsTypeOf(RecipiesModelNS.ProductWaste)">
               <MappingFragment StoreEntitySet="ProductWaste">
+                <ScalarProperty Name="ProductWasteHeaderId" ColumnName="ProductWasteHeaderId" />
                 <ScalarProperty Name="WasteId" ColumnName="WasteId" />
                 <ScalarProperty Name="ProductId" ColumnName="ProductId" />
               </MappingFragment>
@@ -2707,6 +2749,16 @@
               <MappingFragment StoreEntitySet="__RecipiesDataBase">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="databaseName" ColumnName="databaseName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductWasteHeaders">
+            <EntityTypeMapping TypeName="RecipiesModelNS.ProductWasteHeader">
+              <MappingFragment StoreEntitySet="ProductWasteHeader">
+                <ScalarProperty Name="ModifiedByUser" ColumnName="ModifiedByUser" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ForDate" ColumnName="ForDate" />
+                <ScalarProperty Name="ProductWasteHeaderId" ColumnName="ProductWasteHeaderId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

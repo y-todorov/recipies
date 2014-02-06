@@ -27,30 +27,28 @@ namespace InventoryManagementMVC.Models
 
         public string ModifiedByUser { get; set; }
 
-        public static WasteViewModel ConvertFromWasteEntity(Waste entity,
-            WasteViewModel model)
+        public WasteViewModel ConvertFromEntity(Waste entity)
         {
-            model.Quantity = entity.Quantity;
-            model.UnitMeasureId = entity.UnitMeasureId;
-            model.UnitPrice = entity.UnitPrice;
-            model.WasteId = entity.WasteId;
-            model.WasteValue = (decimal)entity.WasteValue;
-            model.ModifiedDate = entity.ModifiedDate;
-            model.ModifiedByUser = entity.ModifiedByUser;
+            Quantity = entity.Quantity;
+            UnitMeasureId = entity.UnitMeasureId;
+            UnitPrice = entity.UnitPrice;
+            WasteId = entity.WasteId;
+            WasteValue = (decimal)entity.WasteValue;
+            ModifiedDate = entity.ModifiedDate;
+            ModifiedByUser = entity.ModifiedByUser;
 
-            return model;
+            return this;
         }
 
-        public static Waste ConvertToWasteEntity(WasteViewModel model,
-            Waste entity)
+        public Waste ConvertToEntity(Waste entity)
         {
-            entity.Quantity = model.Quantity;
-            entity.UnitMeasureId = model.UnitMeasureId;
-            entity.UnitPrice = model.UnitPrice;
-            entity.WasteId = model.WasteId;
-            entity.WasteValue = (double)model.WasteValue;
-            entity.ModifiedDate = model.ModifiedDate;
-            entity.ModifiedByUser = model.ModifiedByUser;
+            entity.Quantity = Quantity;
+            entity.UnitMeasureId = UnitMeasureId;
+            entity.UnitPrice = UnitPrice;
+            entity.WasteId = WasteId;
+            entity.WasteValue = (double)WasteValue;
+            entity.ModifiedDate = ModifiedDate;
+            entity.ModifiedByUser = ModifiedByUser;
 
             return entity;
         }

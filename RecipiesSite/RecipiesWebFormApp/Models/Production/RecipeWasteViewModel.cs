@@ -14,7 +14,8 @@ namespace InventoryManagementMVC.Models
         public static RecipeWasteViewModel ConvertFromRecipeWasteEntity(RecipeWaste entity,
             RecipeWasteViewModel model)
         {
-            ConvertFromWasteEntity(entity, model);
+            // TODO
+            //ConvertFromWasteEntity(entity, model);
             model.RecipeId = entity.RecipeId;
 
             return model;
@@ -23,7 +24,9 @@ namespace InventoryManagementMVC.Models
         public static RecipeWaste ConvertToRecipeWasteEntity(RecipeWasteViewModel model,
             RecipeWaste entity)
         {
-            ConvertToWasteEntity(model, entity);
+            // TODO
+
+            //ConvertToWasteEntity(model, entity);
             entity.RecipeId = model.RecipeId;
 
             return entity;

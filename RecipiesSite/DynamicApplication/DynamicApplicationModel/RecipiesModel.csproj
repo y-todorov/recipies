@@ -85,6 +85,10 @@
     <Compile Include="ProductIngredient.cs">
       <DependentUpon>RecipiesModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ProductWasteHeader.partial.cs" />
+    <Compile Include="ProductWasteHeader.cs">
+      <DependentUpon>RecipiesModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="RecipeIngredient.partial.cs" />
     <Compile Include="ProductInventoryHeader.partial.cs" />
     <Compile Include="Product.partial.cs" />

@@ -11,27 +11,29 @@ namespace InventoryManagementMVC.Models
         [Display(Name = "Product")]
         public int? ProductId { get; set; }
 
-        public static ProductWasteViewModel ConvertFromProductWasteEntity(ProductWaste entity,
-            ProductWasteViewModel model)
+        public int? ProductWasteHeaderId { get; set; }
+
+        public ProductWasteViewModel ConvertFromEntity(ProductWaste entity)
         {
-            ConvertFromWasteEntity(entity, model);
-            model.ProductId = entity.ProductId;
+            base.ConvertFromEntity(entity);
+            ProductId = entity.ProductId;
+            ProductWasteHeaderId = entity.ProductWasteHeaderId;
             if (entity.Product != null && entity.Product.UnitMeasure != null)
             {
-                model.UnitMeasureId = entity.Product.UnitMeasure.UnitMeasureId;
+                UnitMeasureId = entity.Product.UnitMeasure.UnitMeasureId;
             }
             if (entity.Product != null)
             {
-                model.UnitPrice = entity.Product.UnitPrice;
+                UnitPrice = entity.Product.UnitPrice;
             }
-            return model;
+            return this;
         }
 
-        public static ProductWaste ConvertToProductWasteEntity(ProductWasteViewModel model,
-            ProductWaste entity)
+        public ProductWaste ConvertToEntity(ProductWaste entity)
         {
-            ConvertToWasteEntity(model, entity);
-            entity.ProductId = model.ProductId;
+            base.ConvertToEntity(entity);
+            entity.ProductId = ProductId;
+            entity.ProductWasteHeaderId = ProductWasteHeaderId;
 
             return entity;
         }

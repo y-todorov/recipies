@@ -12,12 +12,18 @@ namespace RecipiesModelNS
     using System;
     using System.Collections.Generic;
     
-    public partial class ProductWaste : Waste
+    public partial class ProductWasteHeader
     {
-        public Nullable<int> ProductId { get; set; }
-        public Nullable<int> ProductWasteHeaderId { get; set; }
+        public ProductWasteHeader()
+        {
+            this.ProductWastes = new HashSet<ProductWaste>();
+        }
     
-        public virtual Product Product { get; set; }
-        public virtual ProductWasteHeader ProductWasteHeader { get; set; }
+        public int ProductWasteHeaderId { get; set; }
+        public Nullable<System.DateTime> ForDate { get; set; }
+        public Nullable<System.DateTime> ModifiedDate { get; set; }
+        public string ModifiedByUser { get; set; }
+    
+        public virtual ICollection<ProductWaste> ProductWastes { get; set; }
     }
 }

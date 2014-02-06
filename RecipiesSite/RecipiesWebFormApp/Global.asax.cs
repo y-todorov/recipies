@@ -186,7 +186,7 @@ namespace RecipiesWebFormApp
         {
             
 #if DEBUG
-            //return;
+            return;
 #endif   
             HttpApplication httpApplication = sender as HttpApplication;
             int httpApplicationHash = httpApplication.GetHashCode();
@@ -196,7 +196,7 @@ namespace RecipiesWebFormApp
         protected void Application_EndRequest(object sender, EventArgs e)
         {
 #if DEBUG
-            //return;
+            return;
 #endif
             HttpApplication httpApplication = sender as HttpApplication;
             int httpApplicationHash = httpApplication.GetHashCode();
@@ -213,18 +213,6 @@ namespace RecipiesWebFormApp
             {
                 LogentriesHelper.ApplicationLog.Debug(logString);
             }
-        
-
-            //Task.Factory.StartNew(() =>
-            //{
-            //    if (httpApplication != null)
-            //    {
-            //        long timeTaken = StopwatchHelper.StopLastMeasurement(StopWatchApplicationRequest);
-            //        string httpApplicationAsString = CreateStringFromHttpApplication(httpApplication);
-            //        LogentriesHelper.ApplicationLog.InfoFormat("Time taken for '{0}' : {1}", httpApplicationAsString,
-            //            timeTaken);
-            //    }
-            //});
         }
 
         public string CreateStringFromHttpApplicationNew(HttpApplication httpApplication)

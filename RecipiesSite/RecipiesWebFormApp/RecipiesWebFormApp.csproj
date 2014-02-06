@@ -487,6 +487,7 @@
     <Compile Include="Controllers\Charts\ChartController.cs" />
     <Compile Include="Controllers\Dashboard\HomeController.cs" />
     <Compile Include="Controllers\Production\ProductIngredientController.cs" />
+    <Compile Include="Controllers\Production\ProductWasteHeaderController.cs" />
     <Compile Include="Controllers\Production\RecipeIngredientController.cs" />
     <Compile Include="Controllers\Production\RecipieController.cs" />
     <Compile Include="Controllers\Production\ProductWasteController.cs" />
@@ -585,6 +586,7 @@
     <Compile Include="Models\Chart\RecipeByGP.cs" />
     <Compile Include="Models\Chart\TotalPoByVendor.cs" />
     <Compile Include="Models\Chart\VendorPurchasesByWeek.cs" />
+    <Compile Include="Models\Production\ProductWasteHeaderViewModel.cs" />
     <Compile Include="Models\Production\RecipeWasteViewModel.cs" />
     <Compile Include="Models\Production\ProductWasteViewModel.cs" />
     <Compile Include="Models\Production\WasteViewModel.cs" />
@@ -863,6 +865,7 @@
     <Content Include="Views\ProductVendor\Index.cshtml" />
     <Content Include="Views\ShipMethod\Index.cshtml" />
     <Content Include="Views\Customer\Index.cshtml" />
+    <Content Include="Views\ProductWasteHeader\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

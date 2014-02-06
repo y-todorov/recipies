@@ -63,15 +63,11 @@ namespace InventoryManagementMVC.Controllers
                         pi.ProductInventoryHeaderId = pihEntity.ProductInventoryHeaderId;
 
                         ContextFactory.Current.Inventories.Add(pi);
-                       ContextFactory.Current.SaveChanges();
-                  
-                    }
-                    
+                        ContextFactory.Current.SaveChanges();
 
-                    //ContextFactory.Current.SaveChanges();
+                    }
 
                     pihModel.ConvertFromEntity(pihEntity);
-                    //ProductInventoryHeaderViewModel.ConvertFromProductInventoryHeaderEntity(pihEntity, pihModel);
                 }
             }
 
@@ -90,14 +86,7 @@ namespace InventoryManagementMVC.Controllers
                         ContextFactory.Current.ProductInventoryHeaders.FirstOrDefault(
                             p => p.ProductInventoryHeaderId == pihModel.ProductInventoryHeaderId);
                     ContextFactory.Current.ProductInventoryHeaders.Remove(inv);
-
-                    //List<ProductInventory> pis = ContextFactory.Current.Inventories.OfType<ProductInventory>().Where(pi => pi.ProductInventoryHeaderId == pihModel.ProductInventoryHeaderId).ToList();
-
-                    //foreach (ProductInventory pInventory in pis)
-                    //{
-                    //    ContextFactory.Current.Inventories.Remove(pInventory);
-                    //}
-
+                    
                     ContextFactory.Current.SaveChanges();
                 }
             }
