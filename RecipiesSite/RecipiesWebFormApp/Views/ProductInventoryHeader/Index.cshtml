@@ -19,7 +19,7 @@
 <script id="template" type="text/kendo-tmpl">
     @(Html.Kendo().Grid<ProductInventoryViewModel>()
           .Name("ProductInventoryViewModelGrid_#=ProductInventoryHeaderId#")
-          .AddDefaultOptions(true, false)
+                    .AddDefaultOptions(true, false, isCreateVisible: false)
           .DataSource(dataSource => dataSource
               .Ajax()
               .Batch(true)

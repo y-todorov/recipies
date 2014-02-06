@@ -37,13 +37,13 @@ namespace InventoryManagementMVC.Controllers
             return result;
         }
 
-        [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Create([DataSourceRequest] DataSourceRequest request,
-            [Bind(Prefix = "models")] IEnumerable<ProductWasteViewModel> wastes)
-        {
-            var result = CreateBase(request, wastes, typeof(ProductWasteViewModel), typeof(ProductWaste));
-            return result;
-        }
+        //[AcceptVerbs(HttpVerbs.Post)]
+        //public ActionResult Create([DataSourceRequest] DataSourceRequest request,
+        //    [Bind(Prefix = "models")] IEnumerable<ProductWasteViewModel> wastes)
+        //{
+        //    var result = CreateBase(request, wastes, typeof(ProductWasteViewModel), typeof(ProductWaste));
+        //    return result;
+        //}
 
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Update([DataSourceRequest] DataSourceRequest request,

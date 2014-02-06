@@ -86,7 +86,7 @@ namespace InventoryManagementMVC.Extensions
             builder
                 .ToolBar(toolbar =>
                 {
-                    if (isSaveVisible)
+                    if (isCreateVisible)
                     {
                         toolbar.Create();
                     }
@@ -458,7 +458,7 @@ namespace InventoryManagementMVC.Extensions
         }
 
         public static GridBuilder<T> AddDefaultOptions<T>(this GridBuilder<T> builder, bool isClient = false,
-            bool showHiddenColumns = false)
+            bool showHiddenColumns = false, bool isCreateVisible = true)
             where T : class
         {
             Stopwatch s = new Stopwatch();
@@ -469,7 +469,7 @@ namespace InventoryManagementMVC.Extensions
                 //.Events(ev => ev.SaveChanges("saveChanges"))
                 .AddBaseOptions()
                 .Editable(editable => editable.Mode(GridEditMode.InCell))
-                .AddToolbarOptions(true, true)
+                .AddToolbarOptions(isCreateVisible)
                 .AddColumnOptions(isClient, true, false, false, showHiddenColumns)
                 .AddDataSourceOptions();
 

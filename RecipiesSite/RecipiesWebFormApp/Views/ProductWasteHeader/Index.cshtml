@@ -21,7 +21,7 @@
 <script id="template" type="text/kendo-tmpl">
     @(Html.Kendo().Grid<ProductWasteViewModel>()
                   .Name("ProductWasteViewModelGrid_#=ProductWasteHeaderId#")
-          .AddDefaultOptions(true, false)
+                  .AddDefaultOptions(true, false, isCreateVisible:false)
           .DataSource(dataSource => dataSource
               .Ajax()
               .Batch(true)
