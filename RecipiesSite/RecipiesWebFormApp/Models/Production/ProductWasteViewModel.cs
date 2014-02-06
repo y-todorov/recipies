@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 using InventoryManagementMVC.DataAnnotations;
 using RecipiesModelNS;
 
@@ -11,6 +12,7 @@ namespace InventoryManagementMVC.Models
         [Display(Name = "Product")]
         public int? ProductId { get; set; }
 
+        [HiddenInput(DisplayValue = false)]
         public int? ProductWasteHeaderId { get; set; }
 
         public ProductWasteViewModel ConvertFromEntity(ProductWaste entity)
