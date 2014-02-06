@@ -184,20 +184,23 @@ namespace RecipiesWebFormApp
 
         protected void Application_BeginRequest(object sender, EventArgs e)
         {
+            
 #if DEBUG
-            return;
-#endif
-            StopwatchHelper.StartNewMeasurement(StopWatchApplicationRequest);
+            //return;
+#endif   
+            HttpApplication httpApplication = sender as HttpApplication;
+            int httpApplicationHash = httpApplication.GetHashCode();
+            StopwatchHelper.StartNewMeasurement(StopWatchApplicationRequest + httpApplicationHash);
         }
 
         protected void Application_EndRequest(object sender, EventArgs e)
         {
 #if DEBUG
-            return;
+            //return;
 #endif
             HttpApplication httpApplication = sender as HttpApplication;
-
-            long timeTaken = StopwatchHelper.StopLastMeasurement(StopWatchApplicationRequest);
+            int httpApplicationHash = httpApplication.GetHashCode();
+            long timeTaken = StopwatchHelper.StopLastMeasurement(StopWatchApplicationRequest + httpApplicationHash);
             string httpApplicationAsString = CreateStringFromHttpApplicationNew(httpApplication);
             string logString = string.Format("Time taken '{0}'. Params: {1}", timeTaken, httpApplicationAsString);
 
