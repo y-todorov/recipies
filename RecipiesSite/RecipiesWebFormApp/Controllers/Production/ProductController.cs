@@ -87,5 +87,21 @@ namespace InventoryManagementMVC.Controllers
 
             return Json(productPurchaseOrdersModels.ToDataSourceResult(request));
         }
+
+        public ActionResult ReadProductWastes(int? productId, [DataSourceRequest] DataSourceRequest request)
+        {
+            List<ProductWaste> productWastes =
+                ContextFactory.Current.Wastes.OfType<ProductWaste>().Where
+                    (pi => pi.ProductId == productId).ToList().Where(w => w.Quantity.GetValueOrDefault() != 0)
+                    .OrderByDescending(de => de.ProductWasteHeader.ForDate)
+                    .ToList();
+            var result = ReadBase(request, typeof(ProductWasteViewModel), typeof(ProductWaste),
+              productWastes);
+
+            return result;
+        }
+
+
+        
     }
 }

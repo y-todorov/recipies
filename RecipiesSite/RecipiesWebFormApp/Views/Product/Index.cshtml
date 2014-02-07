@@ -96,15 +96,15 @@
                   );
                   
                     items.Add().Text("Wastes").Content(@<text>
-                    @*@(Html.Kendo().Grid<ProductWaste>()
+                    @(Html.Kendo().Grid<ProductWasteViewModel>()
                                           .Name("Recipies#=ProductId#")
                           .AddReadOnlyOptions(true)
                           .DataSource(dataSource => dataSource
                               .Ajax()
-                              .Read(read => read.Action("ReadProductRecipies", "Product", new {productId = "#=ProductId#"}))
+                              .Read(read => read.Action("ReadProductWastes", "Product", new {productId = "#=ProductId#"}))
                           )
                           .ToClientTemplate()
-                          )*@
+                          )
                 </text>
                   );
           })
