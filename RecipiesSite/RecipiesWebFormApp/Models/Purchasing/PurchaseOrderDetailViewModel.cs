@@ -165,5 +165,69 @@ namespace InventoryManagementMVC.Models
 
             return entity;
         }
+
+        public PurchaseOrderDetailViewModel ConvertFromEntity(PurchaseOrderDetail entity)
+        {
+            LineTotal = (decimal)entity.LineTotal;
+            ModifiedByUser = entity.ModifiedByUser;
+            ModifiedDate = entity.ModifiedDate;
+            OrderQuantity = entity.OrderQuantity;
+            ProductId = entity.ProductId;
+            PurchaseOrderDetailId = entity.PurchaseOrderDetailId;
+            PurchaseOrderHeaderId = entity.PurchaseOrderId;
+            ReceivedQuantity = entity.ReceivedQuantity;
+            ReturnedQuantity = entity.ReturnedQuantity;
+            StockedQuantity = entity.StockedQuantity;
+            //if (entity.PurchaseOrderHeader != null)
+            //{
+            //    model.PoTotal = entity.PurchaseOrderHeader.TotalDue;
+            //}
+
+            UnitMeasureId = entity.UnitMeasureId;
+            UnitPrice = entity.UnitPrice;
+            if (entity.PurchaseOrderHeader != null)
+            {
+                PurchaseOrderHeaderShipDate = entity.PurchaseOrderHeader.ShipDate;
+                PurchaseOrderHeaderOrderDate = entity.PurchaseOrderHeader.OrderDate;
+            }
+            if (entity.PurchaseOrderHeader != null && entity.PurchaseOrderHeader.Vendor != null)
+            {
+                Vendor = entity.PurchaseOrderHeader.Vendor.Name;
+            }
+            if (entity.Product != null && entity.Product.ProductCategory != null)
+            {
+                Category = entity.Product.ProductCategory.Name;
+            }
+            if (entity.PurchaseOrderHeader != null &&
+                entity.PurchaseOrderHeader.PurchaseOrderStatu != null)
+            {
+                Status = entity.PurchaseOrderHeader.PurchaseOrderStatu.Name;
+            }
+
+            return this;
+        }
+
+        public PurchaseOrderDetail ConvertToEntity(PurchaseOrderDetail entity)
+        {
+            //entity.LineTotal = (double)model.LineTotal;
+            entity.ModifiedByUser = ModifiedByUser;
+            entity.ModifiedDate = ModifiedDate;
+            entity.OrderQuantity = OrderQuantity;
+            entity.ProductId = ProductId;
+
+            entity.PurchaseOrderDetailId = PurchaseOrderDetailId;
+            if (PurchaseOrderHeaderId.HasValue)
+            {
+                entity.PurchaseOrderId = PurchaseOrderHeaderId;
+            }
+            entity.ReceivedQuantity = ReceivedQuantity;
+            entity.ReturnedQuantity = ReturnedQuantity;
+            entity.StockedQuantity = StockedQuantity;
+            entity.UnitMeasureId = UnitMeasureId;
+            entity.UnitPrice = UnitPrice;
+
+            return entity;
+        }
+
     }
 }

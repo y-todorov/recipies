@@ -183,6 +183,20 @@ namespace RecipiesModelNS
             double purchases = 0;
             double sales = 0;
 
+            double wastes = 0;
+            //DateTime wastesLastDate = forDate.AddDays(1).Date; // What will happen if inventory and waste are on the same date?
+
+            DateTime wastesLastDate = forDate.Date; 
+            List<ProductWaste> productWastesSinceLastInventory =
+                ContextFactory.Current.Wastes.OfType<ProductWaste>()
+                    .Where(pw => pw.ProductWasteHeader.ForDate >= wastesLastDate && pw.ProductId == ProductId)
+                    .ToList();
+
+            if (productWastesSinceLastInventory.Count() != 0)
+            {
+                wastes = productWastesSinceLastInventory.Sum(pw => pw.Quantity.GetValueOrDefault());
+            }
+
             double quantityByDocuments = 0;
 
 
@@ -193,19 +207,58 @@ namespace RecipiesModelNS
                     inventory.ProductInventoryHeader.ForDate.GetValueOrDefault(), forDate.Date);
                 sales = GetSalesOrderQuantity(inventory.ProductInventoryHeader.ForDate.GetValueOrDefault(), forDate.Date);
 
-                quantityByDocuments = inventory.StocktakeQuantity.GetValueOrDefault() + purchases - sales;
+                quantityByDocuments = inventory.StocktakeQuantity.GetValueOrDefault() + purchases - sales - wastes;
             }
             else
             {
                 purchases = GetPurchaseOrderStockedQuantity(DateTime.Now.AddYears(-100), forDate.Date);
                 sales = GetSalesOrderQuantity(DateTime.Now.AddYears(-100), forDate.Date);
 
-                quantityByDocuments = purchases - sales;
+                quantityByDocuments = purchases - sales - wastes;
             }
             return quantityByDocuments;
         }
 
+
+
         public double GetPurchaseOrderStockedQuantity(DateTime fromDate, DateTime toDate)
+        {
+            //List<PurchaseOrderHeader> purchaseOrderHeaders =
+            //    ContextFactory.GetContextPerRequest().PurchaseOrderHeaders.Where(pu => pu.ShipDate.HasValue &&
+            //                                                                           pu.ShipDate >= fromDate.Date &&
+            //                                                                           pu.ShipDate <= toDate.Date &&
+            //                                                                           pu.StatusId ==
+            //                                                                           (int)
+            //                                                                               PurchaseOrderStatusEnum
+            //                                                                                   .Completed &&
+            //                                                                           pu.PurchaseOrderDetails.Any(
+            //                                                                               pod =>
+            //                                                                                   pod.ProductId ==
+            //                                                                                   ProductId)).ToList();
+            //double stockedQuantityForPeriod = 0;
+            //foreach (PurchaseOrderHeader poh in purchaseOrderHeaders)
+            //{
+            //    foreach (PurchaseOrderDetail pod in poh.PurchaseOrderDetails)
+            //    {
+            //        if (pod.ProductId == ProductId)
+            //        {
+            //            stockedQuantityForPeriod += this.GetBaseUnitMeasureQuantityForProduct(pod.StockedQuantity,
+            //                pod.UnitMeasure);
+            //        }
+            //    }
+            //}
+            List<PurchaseOrderDetail> details = GetPurchaseOrderDetails(fromDate, toDate);
+            double stockedQuantityForPeriod = 0;
+            foreach (PurchaseOrderDetail purchaseOrderDetail in details)
+            {
+                stockedQuantityForPeriod += this.GetBaseUnitMeasureQuantityForProduct(purchaseOrderDetail.StockedQuantity,
+                            purchaseOrderDetail.UnitMeasure);
+            }
+
+            return stockedQuantityForPeriod;
+        }
+
+        public List<PurchaseOrderDetail> GetPurchaseOrderDetails(DateTime fromDate, DateTime toDate)
         {
             List<PurchaseOrderHeader> purchaseOrderHeaders =
                 ContextFactory.GetContextPerRequest().PurchaseOrderHeaders.Where(pu => pu.ShipDate.HasValue &&
@@ -219,19 +272,10 @@ namespace RecipiesModelNS
                                                                                            pod =>
                                                                                                pod.ProductId ==
                                                                                                ProductId)).ToList();
-            double stockedQuantityForPeriod = 0;
-            foreach (PurchaseOrderHeader poh in purchaseOrderHeaders)
-            {
-                foreach (PurchaseOrderDetail pod in poh.PurchaseOrderDetails)
-                {
-                    if (pod.ProductId == ProductId)
-                    {
-                        stockedQuantityForPeriod += this.GetBaseUnitMeasureQuantityForProduct(pod.StockedQuantity,
-                            pod.UnitMeasure);
-                    }
-                }
-            }
-            return stockedQuantityForPeriod;
+            List<PurchaseOrderDetail> details =
+                purchaseOrderHeaders.SelectMany(
+                    ph => ph.PurchaseOrderDetails.Where(pd => pd.ProductId == ProductId).ToList()).ToList();
+            return details;
         }
 
 

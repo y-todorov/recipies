@@ -10,6 +10,7 @@ using System.Web;
 using System.Web.Caching;
 using RecipiesWebFormApp.Caching;
 using DevTrends.MvcDonutCaching;
+using System;
 
 namespace InventoryManagementMVC.Controllers
 {
@@ -95,13 +96,34 @@ namespace InventoryManagementMVC.Controllers
                     (pi => pi.ProductId == productId).ToList().Where(w => w.Quantity.GetValueOrDefault() != 0)
                     .OrderByDescending(de => de.ProductWasteHeader.ForDate)
                     .ToList();
-            var result = ReadBase(request, typeof(ProductWasteViewModel), typeof(ProductWaste),
-              productWastes);
+            var result = ReadBase(request, typeof (ProductWasteViewModel), typeof (ProductWaste),
+                productWastes);
 
             return result;
         }
 
+        public ActionResult ReadProductUnitsInStockPurchaseOrders(int? productId,
+            [DataSourceRequest] DataSourceRequest request)
+        {
+            Product product = ContextFactory.Current.Products.FirstOrDefault(p => p.ProductId == productId);
+            if (product != null)
+            {
+                var inv = product.GetLastInventoryForDate(DateTime.Now.Date);
+                
+                if (inv != null)
+                {
+                    var res = product.GetPurchaseOrderDetails(inv.ProductInventoryHeader.ForDate.GetValueOrDefault(), DateTime.Now);
+                    var result = ReadBase(request, typeof(PurchaseOrderDetailViewModel), typeof(PurchaseOrderDetail),
+               res);
+                    return result;
+                }
+                else
+                {
 
-        
+                }
+            }
+            return null;
+
+        }
     }
 }

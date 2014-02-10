@@ -18,11 +18,15 @@
             ).Events(e => e.DataBound("onDataBound"))
             .ClientDetailTemplateId("template")
 
-      )
+)
 <style>
-    .UnitsOnOrderPositive { background-color: #d1ff9d; }
+    .UnitsOnOrderPositive {
+        background-color: #d1ff9d;
+    }
 
-    .NeedsReorder { background-color: #f38a62; }
+    .NeedsReorder {
+        background-color: #f38a62;
+    }
 </style>
 
 <script>
@@ -56,7 +60,7 @@
           .Items(items =>
           {
               items.Add().Text("Recipies").Content(@<text>
-                    @(Html.Kendo().Grid<RecipeViewModel>()
+            @(Html.Kendo().Grid<RecipeViewModel>()
                           .Name("Recipies_#=ProductId#")
                           .AddReadOnlyOptions(true)
                           .DataSource(dataSource => dataSource
@@ -64,13 +68,13 @@
                               .Read(read => read.Action("ReadProductRecipies", "Product", new {productId = "#=ProductId#"}))
                           )
                           .ToClientTemplate()
-                          )
-                </text>
+            )
+            </text>
                   );
 
 
               items.Add().Text("Inventories").Content(@<text>
-                    @(Html.Kendo().Grid<InventoryViewModel>()
+                @(Html.Kendo().Grid<InventoryViewModel>()
                           .Name("Inventories#=ProductId#")
                           .AddReadOnlyOptions(true)
                           .DataSource(dataSource => dataSource
@@ -78,12 +82,12 @@
                               .Read(read => read.Action("ReadProductInventories", "Product", new {productId = "#=ProductId#"}))
                           )
                           .ToClientTemplate()
-                          )
-                </text>
+                )
+            </text>
                   );
-                  
+
                   items.Add().Text("Purchase Orders").Content(@<text>
-                    @(Html.Kendo().Grid<PurchaseOrderDetailViewModel>()
+                @(Html.Kendo().Grid<PurchaseOrderDetailViewModel>()
                                   .Name("PurchaseOrders#=ProductId#")
                           .AddReadOnlyOptions(true)
                           .DataSource(dataSource => dataSource
@@ -91,10 +95,10 @@
                               .Read(read => read.Action("ReadProductPurchaseOrders", "Product", new {productId = "#=ProductId#"}))
                           )
                           .ToClientTemplate()
-                          )
+                )
                 </text>
                   );
-                  
+
                     items.Add().Text("Wastes").Content(@<text>
                     @(Html.Kendo().Grid<ProductWasteViewModel>()
                                           .Name("Recipies#=ProductId#")
@@ -104,10 +108,23 @@
                               .Read(read => read.Action("ReadProductWastes", "Product", new {productId = "#=ProductId#"}))
                           )
                           .ToClientTemplate()
+                    )
+                    </text>
+                  );
+
+     items.Add().Text("Units In Stock").Content(@<text>
+                        @(Html.Kendo().Grid<PurchaseOrderDetailViewModel>()
+                                          .Name("ProductUnitsInStockPurchaseOrders#=ProductId#")
+                          .AddReadOnlyOptions(true)
+                          .DataSource(dataSource => dataSource
+                              .Ajax()
+                              .Read(read => read.Action("ReadProductUnitsInStockPurchaseOrders", "Product", new {productId = "#=ProductId#"}))
                           )
-                </text>
+                          .ToClientTemplate()
+                        )
+    </text>
                   );
           })
           .ToClientTemplate()
-          )
+    )
 </script>
