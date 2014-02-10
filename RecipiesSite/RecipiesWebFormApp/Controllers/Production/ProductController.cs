@@ -105,23 +105,23 @@ namespace InventoryManagementMVC.Controllers
         public ActionResult ReadProductUnitsInStockPurchaseOrders(int? productId,
             [DataSourceRequest] DataSourceRequest request)
         {
-            Product product = ContextFactory.Current.Products.FirstOrDefault(p => p.ProductId == productId);
-            if (product != null)
-            {
-                var inv = product.GetLastInventoryForDate(DateTime.Now.Date);
+            //Product product = ContextFactory.Current.Products.FirstOrDefault(p => p.ProductId == productId);
+            //if (product != null)
+            //{
+            //    var inv = product.GetLastInventoryForDate(DateTime.Now.Date);
                 
-                if (inv != null)
-                {
-                    var res = product.GetPurchaseOrderDetails(inv.ProductInventoryHeader.ForDate.GetValueOrDefault(), DateTime.Now);
-                    var result = ReadBase(request, typeof(PurchaseOrderDetailViewModel), typeof(PurchaseOrderDetail),
-               res);
-                    return result;
-                }
-                else
-                {
+            //    if (inv != null)
+            //    {
+            //        var res = product.GetPurchaseOrderDetails(inv.ProductInventoryHeader.ForDate.GetValueOrDefault(), DateTime.Now);
+            //        var result = ReadBase(request, typeof(PurchaseOrderDetailViewModel), typeof(PurchaseOrderDetail),
+            //   res);
+            //        return result;
+            //    }
+            //    else
+            //    {
 
-                }
-            }
+            //    }
+            //}
             return null;
 
         }
