@@ -99,6 +99,7 @@ namespace InventoryManagementMVC.Controllers
             var result = ReadBase(request, typeof (ProductWasteViewModel), typeof (ProductWaste),
                 productWastes);
 
+
             return result;
         }
 
