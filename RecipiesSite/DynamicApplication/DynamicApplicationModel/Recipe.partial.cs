@@ -56,6 +56,32 @@ namespace RecipiesModelNS
             }
         }
 
+        public static decimal GetRecipeValuePerPortion(int? recipeId)
+        {
+            if (recipeId.HasValue)
+            {
+                Recipe recipe =
+                    ContextFactory.GetContextPerRequest().Recipes.FirstOrDefault(re => re.RecipeId == recipeId.Value);
+                if (recipe != null)
+                {
+                    decimal? valuePerPortion = 0;
+                    foreach (ProductIngredient productIngredient in recipe.ProductIngredients)
+                    {
+                        valuePerPortion += (decimal?)productIngredient.TotalValue;
+                    }
+                    foreach (RecipeIngredient recipeIngredient in recipe.RecipeIngredients1)
+                    // RecipeIngredients1 is correct
+                    // please find out what is RecipeIngredients and do I need it
+                    {
+                        valuePerPortion += (decimal?)recipeIngredient.TotalValue;
+                    }
+                    return valuePerPortion.GetValueOrDefault();
+                    //ContextFactory.GetContextPerRequest().SaveChanges();
+                }
+            }
+            return 0;
+        }
+
 
     }
 }

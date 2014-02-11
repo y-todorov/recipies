@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using RecipiesModelNS;
 using InventoryManagementMVC.DataAnnotations;
 using System.ComponentModel;
+using RecipiesWebFormApp.Helpers;
 
 namespace InventoryManagementMVC.Models
 {
@@ -29,7 +30,7 @@ namespace InventoryManagementMVC.Models
 
         [ReadOnly(true)]
         [DisplayFormat(DataFormatString = "{0:P2}")]
-        public decimal? GrossProfit { get; set; }
+        public double? GrossProfit { get; set; }
 
         public DateTime? ModifiedDate { get; set; }
 
@@ -41,9 +42,13 @@ namespace InventoryManagementMVC.Models
             CategoryId = entity.CategoryId;
             Name = entity.Name;
             Description = entity.Description;
-            ProductionValuePerPortion = entity.ProductionValuePerPortion;
+            ProductionValuePerPortion = Recipe.GetRecipeValuePerPortion(RecipeId);
+
+            
+
             SellValuePerPortion = entity.SellValuePerPortion;
-            GrossProfit = entity.GrossProfit;
+            GrossProfit = ModelHelper.GetGp((double)ProductionValuePerPortion.GetValueOrDefault(), (double)SellValuePerPortion);
+            //GrossProfit = entity.GrossProfit;
             ModifiedDate = entity.ModifiedDate;
             ModifiedByUser = entity.ModifiedByUser;
 
@@ -56,9 +61,9 @@ namespace InventoryManagementMVC.Models
             entity.CategoryId = CategoryId;
             entity.Name = Name;
             entity.Description = Description;
-            entity.ProductionValuePerPortion = ProductionValuePerPortion;
+            //entity.ProductionValuePerPortion = ProductionValuePerPortion;
             entity.SellValuePerPortion = SellValuePerPortion;
-            entity.GrossProfit = GrossProfit;
+            //entity.GrossProfit = GrossProfit;
             entity.ModifiedDate = ModifiedDate;
             entity.ModifiedByUser = ModifiedByUser;
 

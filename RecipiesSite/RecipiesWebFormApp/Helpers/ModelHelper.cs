@@ -16,8 +16,10 @@ namespace RecipiesWebFormApp.Helpers
                 return 0;
             }
 
-            double result = (sellValue/1.09 - productionCost)/sellValue;
+            double result = ((sellValue/1.09 - productionCost)/sellValue) * 1.09;
             return result;
         }
+
+        // ((isnull(isnull([SellValuePerPortion],(0))/(1.09)-isnull([ProductionValuePerPortion],(0)),(0.00))/isnull([SellValuePerPortion],(1)))*(1.09))
     }
 }
