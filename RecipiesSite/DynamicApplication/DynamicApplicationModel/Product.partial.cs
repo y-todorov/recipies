@@ -185,27 +185,16 @@ namespace RecipiesModelNS
 
             double wastes = 0;
             //DateTime wastesLastDate = forDate.AddDays(1).Date; // What will happen if inventory and waste are on the same date?
-
-            DateTime wastesLastDate = forDate.Date; 
-            List<ProductWaste> productWastesSinceLastInventory =
-                ContextFactory.Current.Wastes.OfType<ProductWaste>()
-                    .Where(pw => pw.ProductWasteHeader.ForDate >= wastesLastDate && pw.ProductId == ProductId)
-                    .ToList();
-
-            if (productWastesSinceLastInventory.Count() != 0)
-            {
-                wastes = productWastesSinceLastInventory.Sum(pw => pw.Quantity.GetValueOrDefault());
-            }
-
+            
             double quantityByDocuments = 0;
 
-
             if (inventory != null && inventory.StocktakeQuantity.HasValue)
-                // inventory.StocktakeQuantity.HasValue it is not auto generated
             {
                 purchases = GetPurchaseOrderStockedQuantity(
                     inventory.ProductInventoryHeader.ForDate.GetValueOrDefault(), forDate.Date);
                 sales = GetSalesOrderQuantity(inventory.ProductInventoryHeader.ForDate.GetValueOrDefault(), forDate.Date);
+
+                wastes = GetProductWastesValue(inventory.ProductInventoryHeader.ForDate.GetValueOrDefault(), forDate.Date);
 
                 quantityByDocuments = inventory.StocktakeQuantity.GetValueOrDefault() + purchases - sales - wastes;
             }
@@ -213,41 +202,37 @@ namespace RecipiesModelNS
             {
                 purchases = GetPurchaseOrderStockedQuantity(DateTime.Now.AddYears(-100), forDate.Date);
                 sales = GetSalesOrderQuantity(DateTime.Now.AddYears(-100), forDate.Date);
+                wastes = GetProductWastesValue(DateTime.Now.AddYears(-100), forDate.Date);
 
                 quantityByDocuments = purchases - sales - wastes;
             }
             return quantityByDocuments;
         }
 
+        public List<ProductWaste> GetProductWastes(DateTime fromDate, DateTime toDate)
+        {
+            List<ProductWaste> productWastes =
+            ContextFactory.Current.Wastes.OfType<ProductWaste>()
+                .Where(pw => pw.ProductWasteHeader.ForDate >= fromDate.Date && pw.ProductWasteHeader.ForDate <= toDate.Date && pw.ProductId == ProductId)
+                .ToList();
+
+            return productWastes;
+        }
+
+        public double GetProductWastesValue(DateTime fromDate, DateTime toDate)
+        {
+            double val;
+            var wastes = GetProductWastes(fromDate, toDate);
+
+            val  = wastes.Sum(pw => pw.Quantity.GetValueOrDefault());
+            return val;
+        }
 
 
         public double GetPurchaseOrderStockedQuantity(DateTime fromDate, DateTime toDate)
         {
-            //List<PurchaseOrderHeader> purchaseOrderHeaders =
-            //    ContextFactory.GetContextPerRequest().PurchaseOrderHeaders.Where(pu => pu.ShipDate.HasValue &&
-            //                                                                           pu.ShipDate >= fromDate.Date &&
-            //                                                                           pu.ShipDate <= toDate.Date &&
-            //                                                                           pu.StatusId ==
-            //                                                                           (int)
-            //                                                                               PurchaseOrderStatusEnum
-            //                                                                                   .Completed &&
-            //                                                                           pu.PurchaseOrderDetails.Any(
-            //                                                                               pod =>
-            //                                                                                   pod.ProductId ==
-            //                                                                                   ProductId)).ToList();
-            //double stockedQuantityForPeriod = 0;
-            //foreach (PurchaseOrderHeader poh in purchaseOrderHeaders)
-            //{
-            //    foreach (PurchaseOrderDetail pod in poh.PurchaseOrderDetails)
-            //    {
-            //        if (pod.ProductId == ProductId)
-            //        {
-            //            stockedQuantityForPeriod += this.GetBaseUnitMeasureQuantityForProduct(pod.StockedQuantity,
-            //                pod.UnitMeasure);
-            //        }
-            //    }
-            //}
-            List<PurchaseOrderDetail> details = GetPurchaseOrderDetails(fromDate, toDate);
+           
+            List<PurchaseOrderDetail> details = GetPurchaseOrderDetailsInPeriod(fromDate, toDate);
             double stockedQuantityForPeriod = 0;
             foreach (PurchaseOrderDetail purchaseOrderDetail in details)
             {
@@ -258,7 +243,7 @@ namespace RecipiesModelNS
             return stockedQuantityForPeriod;
         }
 
-        public List<PurchaseOrderDetail> GetPurchaseOrderDetails(DateTime fromDate, DateTime toDate)
+        public List<PurchaseOrderDetail> GetPurchaseOrderDetailsInPeriod(DateTime fromDate, DateTime toDate)
         {
             List<PurchaseOrderHeader> purchaseOrderHeaders =
                 ContextFactory.GetContextPerRequest().PurchaseOrderHeaders.Where(pu => pu.ShipDate.HasValue &&
@@ -277,34 +262,10 @@ namespace RecipiesModelNS
                     ph => ph.PurchaseOrderDetails.Where(pd => pd.ProductId == ProductId).ToList()).ToList();
             return details;
         }
-
-
-        // THIS METHOD NEEDS BIG REFACTOR !!!
+        
         public double GetSalesOrderQuantity(DateTime fromDate, DateTime toDate)
         {
-            List<SalesOrderDetail> salesOrderDetails =
-                ContextFactory.GetContextPerRequest()
-                    .SalesOrderDetails.Where(sod => sod.SalesOrderHeader.ShippedDate.HasValue &&
-                                                    sod.SalesOrderHeader.ShippedDate >= fromDate.Date &&
-                                                    sod.SalesOrderHeader.ShippedDate <= toDate.Date &&
-                                                    sod.OrderQuantity != 0 &&
-                                                    (
-                                                        sod.Recipe.ProductIngredients.Any(
-                                                            ri =>
-                                                                ri.ProductId ==
-                                                                ProductId))
-                    //    ||
-
-                    //    sod.Recipe.RecipeIngredients1.Any(ri => ri.IngredientRecipe.ProductIngredients
-                    //    .Any(
-                    //ri2 =>
-                    //    ri2.ProductId ==
-                    //    ProductId)
-
-
-                    //    )
-                    )
-                    .ToList();
+            List<SalesOrderDetail> salesOrderDetails = GetSalesOrderDetailsForPeriod(fromDate, toDate);
             double quantity = 0;
             foreach (SalesOrderDetail salesOrderDetail in salesOrderDetails)
             {
@@ -319,6 +280,24 @@ namespace RecipiesModelNS
             }
 
             return quantity;
+        }
+
+        public List<SalesOrderDetail> GetSalesOrderDetailsForPeriod(DateTime fromDate, DateTime toDate)
+        {
+            List<SalesOrderDetail> salesOrderDetails =
+               ContextFactory.GetContextPerRequest()
+                   .SalesOrderDetails.Where(sod => sod.SalesOrderHeader.ShippedDate.HasValue &&
+                                                   sod.SalesOrderHeader.ShippedDate >= fromDate.Date &&
+                                                   sod.SalesOrderHeader.ShippedDate <= toDate.Date &&
+                                                   sod.OrderQuantity != 0 &&
+                                                   (
+                                                       sod.Recipe.ProductIngredients.Any(
+                                                           ri =>
+                                                               ri.ProductId ==
+                                                               ProductId))
+                   )
+                   .ToList();
+            return salesOrderDetails;
         }
 
         public double GetBaseUnitMeasureQuantityForProduct(double? quantity, UnitMeasure quantityUnitMeasure,
@@ -382,48 +361,6 @@ namespace RecipiesModelNS
             {
                 Product.UpdateUnitsInStock(p.ProductId);
             }
-
-            //List<PurchaseOrderDetail> allCompletedPurchaseOrderDetals =
-            //    ContextFactory.GetContextPerRequest()
-            //        .PurchaseOrderDetails.Where(
-            //            pod => pod.PurchaseOrderHeader.StatusId == (int)PurchaseOrderStatusEnum.Completed).ToList();
-
-            //foreach (Product product in allProducts)
-            //{
-            //    ProductInventory pi = product.GetLastInventoryForDate(DateTime.Now);
-            //    //if (product.ProductId == 224)
-            //    {
-            //        double unitsInStock = 0;
-            //        if (pi != null)
-            //        {
-            //            unitsInStock = pi.StocktakeQuantity.GetValueOrDefault();
-            //        }
-            //        foreach (PurchaseOrderDetail pod in allCompletedPurchaseOrderDetals)
-            //        {
-            //            if (pod.ProductId == product.ProductId)
-            //            {
-
-            //                if (pi != null)
-            //                {
-            //                    if (pod.PurchaseOrderHeader.ShipDate.GetValueOrDefault().Date >= pi.ProductInventoryHeader.ForDate.GetValueOrDefault().Date)
-            //                    {
-            //                        unitsInStock += product.GetBaseUnitMeasureQuantityForProduct(pod.StockedQuantity,
-            //                            pod.UnitMeasure);
-            //                    }
-            //                }
-            //                else
-            //                {
-            //                    unitsInStock += product.GetBaseUnitMeasureQuantityForProduct(pod.StockedQuantity,
-            //                           pod.UnitMeasure);
-            //                }
-            //            }
-            //        }
-            //        if (product.UnitsInStock != unitsInStock)
-            //        {
-            //            product.UnitsInStock = unitsInStock;
-            //        }
-            //    }
-            //}
             ContextFactory.GetContextPerRequest().SaveChanges();
         }
 

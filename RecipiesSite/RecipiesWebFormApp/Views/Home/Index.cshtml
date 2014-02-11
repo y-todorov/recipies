@@ -14,22 +14,18 @@
       .Name("panelbar")
       .ExpandAll(true)
       .ExpandMode(PanelBarExpandMode.Multiple)
-      //.HtmlAttributes(new { style = "width:300px" })
       .Items(panelbar =>
       {
           panelbar.Add().Text("Vendor purchases by week")
               .Expanded(true)
               .Content(@<text>@(Html.Kendo().Chart<object>()
                                     .Name("VendorPurchasesByWeek").Theme("blueopal")
-                                    //.Title("GP per day (Last 30 days)")
                                     .Legend(legend => legend
                                         .Position(ChartLegendPosition.Top)
                                     )
-                                    //.DataSource(ds => ds.Read(read => read.Action("VendorPurchasesByWeek", "Chart")))
+     
                                     .AddVendorsValuePerWeekOptions()
-//                                    .CategoryAxis(axis => axis.Categories((System.Collections.IEnumerable) ViewData["WeekNumbers"])
-//.Labels(labels => labels.Rotation(90).Template("#= value #")).AxisCrossingValue(0, int.MaxValue)
-//                                    )
+
                                     .ValueAxis(axis => axis.Numeric("Value").Labels(l => l.Format("{0:C3}"))
                                     )
                                     .Tooltip(tooltip => tooltip

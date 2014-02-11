@@ -106,25 +106,94 @@ namespace InventoryManagementMVC.Controllers
         public ActionResult ReadProductUnitsInStockPurchaseOrders(int? productId,
             [DataSourceRequest] DataSourceRequest request)
         {
-            //Product product = ContextFactory.Current.Products.FirstOrDefault(p => p.ProductId == productId);
-            //if (product != null)
-            //{
-            //    var inv = product.GetLastInventoryForDate(DateTime.Now.Date);
-                
-            //    if (inv != null)
-            //    {
-            //        var res = product.GetPurchaseOrderDetails(inv.ProductInventoryHeader.ForDate.GetValueOrDefault(), DateTime.Now);
-            //        var result = ReadBase(request, typeof(PurchaseOrderDetailViewModel), typeof(PurchaseOrderDetail),
-            //   res);
-            //        return result;
-            //    }
-            //    else
-            //    {
+            Product product = ContextFactory.Current.Products.FirstOrDefault(p => p.ProductId == productId);
+            if (product != null)
+            {
+                var inv = product.GetLastInventoryForDate(DateTime.Now.Date);
 
-            //    }
-            //}
+                if (inv != null)
+                {
+                    var res = product.GetPurchaseOrderDetailsInPeriod(inv.ProductInventoryHeader.ForDate.GetValueOrDefault(), DateTime.Now);
+                    var result = ReadBase(request, typeof(PurchaseOrderDetailViewModel), typeof(PurchaseOrderDetail),
+               res);
+                    return result;
+                }
+                else
+                {
+
+                }
+            }
             return null;
 
         }
+
+        public ActionResult ReadProductUnitsInStockSalesOrderDetails(int? productId,
+            [DataSourceRequest] DataSourceRequest request)
+        {
+            Product product = ContextFactory.Current.Products.FirstOrDefault(p => p.ProductId == productId);
+            if (product != null)
+            {
+                var inv = product.GetLastInventoryForDate(DateTime.Now.Date);
+
+                if (inv != null)
+                {
+                    var res = product.GetSalesOrderDetailsForPeriod(inv.ProductInventoryHeader.ForDate.GetValueOrDefault(), DateTime.Now);
+                    var result = ReadBase(request, typeof(SalesOrderDetailViewModel), typeof(SalesOrderDetail),
+               res);
+                    return result;
+                }
+                else
+                {
+
+                }
+            }
+            return null;
+
+        }
+
+          public ActionResult ReadProductUnitsInStockProductWastes(int? productId,
+            [DataSourceRequest] DataSourceRequest request)
+        {
+            Product product = ContextFactory.Current.Products.FirstOrDefault(p => p.ProductId == productId);
+            if (product != null)
+            {
+                var inv = product.GetLastInventoryForDate(DateTime.Now.Date);
+
+                if (inv != null)
+                {
+                    var res = product.GetProductWastes(inv.ProductInventoryHeader.ForDate.GetValueOrDefault(), DateTime.Now);
+                    var result = ReadBase(request, typeof(ProductWasteViewModel), typeof(ProductWaste),
+               res);
+                    return result;
+                }
+                else
+                {
+
+                }
+            }
+            return null;
+        }
+
+          public ActionResult ReadProductInventory(int? productId,
+            [DataSourceRequest] DataSourceRequest request)
+          {
+              Product product = ContextFactory.Current.Products.FirstOrDefault(p => p.ProductId == productId);
+              if (product != null)
+              {
+                  ProductInventory inv = product.GetLastInventoryForDate(DateTime.Now.Date);
+
+                  List<ProductInventory> invs = new List<ProductInventory>() {inv};
+
+                  var result = ReadBase(request, typeof(ProductInventoryViewModel), typeof(ProductInventory), invs);
+                  return result;
+                  
+              }
+              return null;
+          }
+       
+
+
+        
+        
     }
 }
