@@ -4,6 +4,7 @@ using Kendo.Mvc.UI;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RecipiesModelNS;
 using RecipiesWebFormApp.Quartz.Jobs;
+using RecipiesWebFormApp.Shared;
 
 namespace RecipiesUnitTests.RecipeController
 {
@@ -49,6 +50,21 @@ namespace RecipiesUnitTests.RecipeController
         {
             CalculateRecipesProductionValuePerPortionJob job = new CalculateRecipesProductionValuePerPortionJob();
             job.Execute(null);
+        }
+
+        [TestMethod]
+        public void Test()
+        {
+            StopwatchHelper.StartNewMeasurement("1");
+            ContextFactory.Current.PurchaseOrderDetails.ToList(); 
+            double d =  StopwatchHelper.StopLastMeasurement("1");
+
+            StopwatchHelper.StartNewMeasurement("2");
+            ContextFactory.Current.PurchaseOrderDetails.ToList();
+            double d2 = StopwatchHelper.StopLastMeasurement("2");
+
+
+
         }
 
     }
