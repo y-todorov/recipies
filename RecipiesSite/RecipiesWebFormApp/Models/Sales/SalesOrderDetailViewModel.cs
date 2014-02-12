@@ -79,7 +79,15 @@ namespace InventoryManagementMVC.Models
 
             if (entity.Recipe != null)
             {
-                ProductionTotalValue = entity.Recipe.ProductionValuePerPortion * (decimal)entity.OrderQuantity.GetValueOrDefault();
+                if (entity.OrderQuantity.GetValueOrDefault() != 0)
+                {
+
+                }
+
+               
+
+                //ProductionTotalValue = entity.Recipe.ProductionValuePerPortion * (decimal)entity.OrderQuantity.GetValueOrDefault();
+                ProductionTotalValue = Recipe.GetRecipeValuePerPortion(entity.RecipeId);
             }
             else if (RecipeId.HasValue)
             {

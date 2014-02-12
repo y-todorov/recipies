@@ -190,9 +190,12 @@ namespace InventoryManagementMVC.Controllers
               }
               return null;
           }
-       
 
 
+          public string Test(int? productId)
+        {
+            return DateTime.Now.ToString();
+        }
         
         
     }

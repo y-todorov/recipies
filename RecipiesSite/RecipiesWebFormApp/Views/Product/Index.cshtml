@@ -1,4 +1,5 @@
-﻿@using InventoryManagementMVC.Extensions
+﻿@using InventoryManagementMVC.Controllers
+@using InventoryManagementMVC.Extensions
 @using InventoryManagementMVC.Models;
 @using RecipiesModelNS;
 
@@ -114,7 +115,8 @@
 
               items.Add().Text("Units In Stock Formation").Content(@<text>
 
-
+    
+    @*@(Html.Kendo().Window().LoadContentFrom()*@
 
 
                     @(Html.Kendo().Grid<ProductInventoryViewModel>()
@@ -127,7 +129,7 @@
           .ToClientTemplate()
                     )
 
-
+    @*@(Html.Action("Test", "Product",  new { productId = "#=ProductId#" }))*@
 
 
                     @(Html.Kendo().Grid<PurchaseOrderDetailViewModel>()
@@ -163,7 +165,7 @@
 
 
             </text>
-                  );
+);
 
 
           })
