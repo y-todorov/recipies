@@ -23,33 +23,23 @@ using log4net;
 
 namespace InventoryManagementMVC.Controllers
 {
-    [DonutOutputCache(Duration = 24 * 3600,
-        Options = OutputCacheOptions.IgnoreFormData | OutputCacheOptions.NoCacheLookupForPosts)]
+    //[DonutOutputCache(Duration = 24 * 3600,
+    //    Options = OutputCacheOptions.IgnoreFormData | OutputCacheOptions.NoCacheLookupForPosts)]
+     [DonutOutputCache(Duration = 24 * 3600)]
     public class ControllerBase : Controller
     {
-        private Stopwatch actionStopwatch;
-        private static ILog actionLogger;
-
-        private Stopwatch resultStopwatch;
-        private static ILog resultLogger;
-
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            actionStopwatch = Stopwatch.StartNew();
             base.OnActionExecuting(filterContext);
         }
 
         protected override void OnActionExecuted(ActionExecutedContext filterContext)
         {
             base.OnActionExecuted(filterContext);
-            actionStopwatch.Stop();
-            //actionLogger = LogManager.GetLogger(filterContext.Controller.GetType());
-            //actionLogger.InfoFormat("Time taken for action '{0}' : {1} milliseconds.", filterContext.ActionDescriptor.ActionName, actionStopwatch.ElapsedMilliseconds);
         }
 
         protected override void OnResultExecuting(ResultExecutingContext filterContext)
         {
-            resultStopwatch = Stopwatch.StartNew();
             base.OnResultExecuting(filterContext);
         }
 
@@ -57,9 +47,6 @@ namespace InventoryManagementMVC.Controllers
         protected override void OnResultExecuted(ResultExecutedContext filterContext)
         {
             base.OnResultExecuted(filterContext);
-            resultStopwatch.Stop();
-            //resultLogger = LogManager.GetLogger(filterContext.Controller.GetType());
-            //resultLogger.InfoFormat("Time taken for result of type '{0}' : {1} milliseconds.", filterContext.GetType().Name, resultStopwatch.ElapsedMilliseconds);
         }
         protected override JsonResult Json(object data, string contentType, System.Text.Encoding contentEncoding,
             JsonRequestBehavior behavior)
