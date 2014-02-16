@@ -34,10 +34,13 @@ namespace InventoryManagementMVC.Controllers
         {
             //string reportHtml = File.ReadAllText("ReportHtml.txt", Encoding.GetEncoding("Windows-1251"));
 
-            int startIndex = completeGridXml.IndexOf("<tbody>");
-            int endIndex = completeGridXml.LastIndexOf("</tbody>");
+            //int startIndex = completeGridXml.IndexOf("<tbody>");
+            //int endIndex = completeGridXml.LastIndexOf("</tbody>");
 
-            int len = endIndex - startIndex + "</tbody>".Length;
+            int startIndex = completeGridXml.IndexOf("<table");
+            int endIndex = completeGridXml.LastIndexOf("</table>");
+
+            int len = endIndex - startIndex + "</table>".Length;
 
             string xml = completeGridXml.Substring(startIndex, len);
             xml = xml.Replace("&nbsp;", "");
@@ -86,7 +89,33 @@ namespace InventoryManagementMVC.Controllers
 
                 foreach (XAttribute attr in attrs)
                 {
-                    if (attr.Name == "role" && attr.Value.Contains("row"))
+                    if (attr.Name == "role" && attr.Value.Contains("row") ||
+                        attr.Name == "class" && attr.Value.Contains("k-grouping-row") ||
+                        attr.Name == "class" && attr.Value.Contains("k-group-footer") ||
+                        attr.Name == "class" && attr.Value.Contains("k-grouping-row") 
+                        )
+                    {
+                        result.Add(tr);
+                    }
+                }
+            }
+            return result;
+        }
+
+        private List<XElement> GetTrsFromGridFooterOnly(string xml)
+        {
+            List<XElement> result = new List<XElement>();
+            XDocument xdoc = XDocument.Parse(xml);
+
+            List<XElement> trs = xdoc.Descendants("tr").ToList();
+
+            foreach (XElement tr in trs)
+            {
+                List<XAttribute> attrs = tr.Attributes().ToList();
+
+                foreach (XAttribute attr in attrs)
+                {
+                    if (attr.Name == "class" && attr.Value.Contains("k-footer-template"))
                     {
                         result.Add(tr);
                     }
@@ -102,10 +131,10 @@ namespace InventoryManagementMVC.Controllers
 
             foreach (XElement td in tds)
             {
-                List<XAttribute> attrs = td.Attributes().ToList();
-                foreach (XAttribute attr in attrs)
+                //List<XAttribute> attrs = td.Attributes().ToList();
+                //foreach (XAttribute attr in attrs)
                 {
-                    if (attr.Name == "role" && attr.Value == "gridcell")
+                    //if (attr.Name == "role" && attr.Value == "gridcell")
                     {
                         result.Add(td); // string valToInsertInExcel = td.Value;
                     }
@@ -165,7 +194,7 @@ namespace InventoryManagementMVC.Controllers
 
             string tableXml = GetTableXml(html);
             List<XElement> trs = GetTrsWithDataOnly(tableXml);
-
+            trs.AddRange(GetTrsFromGridFooterOnly(tableXml));
             foreach (XElement tr in trs)
             {
                 var row = sheet.CreateRow(rowNumber++);
