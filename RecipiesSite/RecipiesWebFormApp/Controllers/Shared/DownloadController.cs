@@ -87,15 +87,22 @@ namespace InventoryManagementMVC.Controllers
             {
                 List<XAttribute> attrs = tr.Attributes().ToList();
 
+                if (attrs.Count == 0)
+                {
+                    result.Add(tr);
+                }
+
                 foreach (XAttribute attr in attrs)
                 {
-                    if (attr.Name == "role" && attr.Value.Contains("row") ||
-                        attr.Name == "class" && attr.Value.Contains("k-grouping-row") ||
-                        attr.Name == "class" && attr.Value.Contains("k-group-footer") ||
-                        attr.Name == "class" && attr.Value.Contains("k-grouping-row") 
-                        )
+                    //if (attr.Name == "role" && attr.Value.Contains("row") ||
+                    //    attr.Name == "class" && attr.Value.Contains("k-grouping-row") ||
+                    //    attr.Name == "class" && attr.Value.Contains("k-group-footer") ||
+                    //    attr.Name == "class" && attr.Value.Contains("k-grouping-row") 
+                    //    )
+                    if (!(attr.Name == "class" && attr.Value.Contains("k-footer-template")))
                     {
                         result.Add(tr);
+                        break;
                     }
                 }
             }
@@ -118,6 +125,7 @@ namespace InventoryManagementMVC.Controllers
                     if (attr.Name == "class" && attr.Value.Contains("k-footer-template"))
                     {
                         result.Add(tr);
+                        break;
                     }
                 }
             }
@@ -127,7 +135,20 @@ namespace InventoryManagementMVC.Controllers
         private List<XElement> GetTds(XElement row)
         {
             List<XElement> result = new List<XElement>();
+            List<XElement> ths = row.Descendants("th").ToList();
             List<XElement> tds = row.Descendants("td").ToList();
+
+            foreach (XElement th in ths)
+            {
+                //List<XAttribute> attrs = td.Attributes().ToList();
+                //foreach (XAttribute attr in attrs)
+                {
+                    //if (attr.Name == "role" && attr.Value == "gridcell")
+                    {
+                        result.Add(th); // string valToInsertInExcel = td.Value;
+                    }
+                }
+            }
 
             foreach (XElement td in tds)
             {
@@ -143,6 +164,46 @@ namespace InventoryManagementMVC.Controllers
 
             return result;
         }
+
+        private List<XElement> GetThs(XElement row)
+        {
+            List<XElement> result = new List<XElement>();
+            List<XElement> ths = row.Descendants("th").ToList();
+        
+            foreach (XElement th in ths)
+            {
+                //List<XAttribute> attrs = td.Attributes().ToList();
+                //foreach (XAttribute attr in attrs)
+                {
+                    //if (attr.Name == "role" && attr.Value == "gridcell")
+                    {
+                        result.Add(th); // string valToInsertInExcel = td.Value;
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        private string GetThValue(XElement row)
+        {
+            List<XElement> anchors = row.Descendants("a").ToList();
+            foreach (XElement a in anchors)
+            {
+                List<XAttribute> attrs = a.Attributes().ToList();
+                foreach (XAttribute attr in attrs)
+                {
+                    if (attr.Name == "class" && attr.Value == "k-link")
+                    {
+                        return a.Value;
+                    }
+                }
+            }
+
+            return string.Empty;
+        }
+
+
 
         private static FileContentResult lastFileContentResult;
 
@@ -198,6 +259,15 @@ namespace InventoryManagementMVC.Controllers
             foreach (XElement tr in trs)
             {
                 var row = sheet.CreateRow(rowNumber++);
+
+                List<XElement> ths = GetThs(tr);
+
+                for (int i = 0; i < ths.Count; i++)
+                {
+                    string val = GetThValue(ths[i]);
+                    row.CreateCell(i).SetCellValue(val);
+                }
+
                 List<XElement> tds = GetTds(tr);
                 for (int i = 0; i < tds.Count; i++)
                 {
