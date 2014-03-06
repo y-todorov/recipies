@@ -236,7 +236,7 @@ namespace RecipiesModelNS
             double stockedQuantityForPeriod = 0;
             foreach (PurchaseOrderDetail purchaseOrderDetail in details)
             {
-                if (purchaseOrderDetail.UnitMeasure != null)
+                if (purchaseOrderDetail.UnitMeasure != null && Math.Round(Math.Abs(purchaseOrderDetail.StockedQuantity), 4) > 0)
                 {
                     stockedQuantityForPeriod +=
                         this.GetBaseUnitMeasureQuantityForProduct(purchaseOrderDetail.StockedQuantity,
