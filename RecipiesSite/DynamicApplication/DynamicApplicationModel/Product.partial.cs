@@ -236,8 +236,13 @@ namespace RecipiesModelNS
             double stockedQuantityForPeriod = 0;
             foreach (PurchaseOrderDetail purchaseOrderDetail in details)
             {
-                stockedQuantityForPeriod += this.GetBaseUnitMeasureQuantityForProduct(purchaseOrderDetail.StockedQuantity,
+                if (purchaseOrderDetail.UnitMeasure != null)
+                {
+                    stockedQuantityForPeriod +=
+                        this.GetBaseUnitMeasureQuantityForProduct(purchaseOrderDetail.StockedQuantity,
                             purchaseOrderDetail.UnitMeasure);
+                }
+
             }
 
             return stockedQuantityForPeriod;
