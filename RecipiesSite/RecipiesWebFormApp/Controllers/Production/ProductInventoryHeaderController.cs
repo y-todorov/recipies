@@ -20,7 +20,8 @@ namespace InventoryManagementMVC.Controllers
 
         public ActionResult Read([DataSourceRequest] DataSourceRequest request)
         {
-            var result = ReadBase(request, typeof(ProductInventoryHeaderViewModel), typeof(ProductInventoryHeader), ContextFactory.Current.ProductInventoryHeaders.ToList());
+            var result = ReadBase(request, typeof (ProductInventoryHeaderViewModel), typeof (ProductInventoryHeader),
+                ContextFactory.Current.ProductInventoryHeaders.ToList());
             return result;
         }
 
@@ -64,7 +65,6 @@ namespace InventoryManagementMVC.Controllers
 
                         ContextFactory.Current.Inventories.Add(pi);
                         ContextFactory.Current.SaveChanges();
-
                     }
 
                     pihModel.ConvertFromEntity(pihEntity);
@@ -86,7 +86,7 @@ namespace InventoryManagementMVC.Controllers
                         ContextFactory.Current.ProductInventoryHeaders.FirstOrDefault(
                             p => p.ProductInventoryHeaderId == pihModel.ProductInventoryHeaderId);
                     ContextFactory.Current.ProductInventoryHeaders.Remove(inv);
-                    
+
                     ContextFactory.Current.SaveChanges();
                 }
             }
@@ -94,71 +94,92 @@ namespace InventoryManagementMVC.Controllers
             return Json(pihs.ToDataSourceResult(request, ModelState));
         }
 
-        public ActionResult ReadProductInventoryPurchaseOrders(int? productInventoryHeaderId, [DataSourceRequest] DataSourceRequest request)
+        public ActionResult ReadProductInventoryPurchaseOrders(int? productInventoryHeaderId,
+            [DataSourceRequest] DataSourceRequest request)
         {
-            try
+            ProductInventoryHeader pih =
+                ContextFactory.Current.ProductInventoryHeaders.FirstOrDefault(
+                    p => p.ProductInventoryHeaderId == productInventoryHeaderId);
+
+            List<PurchaseOrderDetail> purchaseOrders = new List<PurchaseOrderDetail>();
+
+            if (pih != null)
             {
+                DateTime toDate = pih.ForDate.GetValueOrDefault().Date;
 
-                ProductInventoryHeader pih =
-                    ContextFactory.Current.ProductInventoryHeaders.FirstOrDefault(
-                        p => p.ProductInventoryHeaderId == productInventoryHeaderId);
+                // Get last inventory before the current inventory
 
-                List<PurchaseOrderDetail> purchaseOrders = new List<PurchaseOrderDetail>();
+                ProductInventoryHeader pihLast =
+                    ContextFactory.Current.ProductInventoryHeaders.Where(
+                        p => p.ForDate < toDate).OrderByDescending(p => p.ForDate).FirstOrDefault();
 
-                if (pih != null)
+                DateTime fromDate = DateTime.Now.AddYears(-100);
+
+                if (pihLast != null)
                 {
-                    DateTime toDate = pih.ForDate.GetValueOrDefault().Date;
-
-                    // Get last inventory before the current inventory
-
-                    ProductInventoryHeader pihLast =
-                        ContextFactory.Current.ProductInventoryHeaders.Where(
-                            p => p.ForDate < toDate).OrderByDescending(p => p.ForDate).FirstOrDefault();
-
-                    DateTime fromDate = DateTime.Now.AddYears(-100);
-
-                    if (pihLast != null)
-                    {
-                        fromDate = pihLast.ForDate.GetValueOrDefault().Date;
-                    }
-
-                    List<Product> allProducts = ContextFactory.Current.Products.ToList();
-
-                    foreach (Product product in allProducts)
-                    {
-                        // Get only purchase orders with lineTotal != 0;
-                        purchaseOrders.AddRange(product.GetPurchaseOrderDetailsInPeriod(fromDate, toDate).Where(p => Math.Round(p.LineTotal, 4) != 0));
-                    }
-
+                    fromDate = pihLast.ForDate.GetValueOrDefault().Date;
                 }
 
+                List<Product> allProducts = ContextFactory.Current.Products.ToList();
 
-                var result = ReadBase(request, typeof(PurchaseOrderDetailViewModel), typeof(PurchaseOrderDetail),
-                 purchaseOrders);
-
-                return result;
+                foreach (Product product in allProducts)
+                {
+                    // Get only purchase orders with lineTotal != 0;
+                    purchaseOrders.AddRange(
+                        product.GetPurchaseOrderDetailsInPeriod(fromDate, toDate)
+                            .Where(p => Math.Round(p.LineTotal, 4) != 0));
+                }
             }
-            catch (Exception ex)
-            {
-                string mes = ex.Message;
-            }
-            return null;
-        }
 
-        public ActionResult ReadProductInventoryWastes(int? productInventoryHeaderId, [DataSourceRequest] DataSourceRequest request)
-        {
-            List<ProductWaste> productWastes =
-                ContextFactory.Current.Wastes.OfType<ProductWaste>().Where
-                    (pi => pi.ProductId == productInventoryHeaderId).ToList().Where(w => w.Quantity.GetValueOrDefault() != 0)
-                    .OrderByDescending(de => de.ProductWasteHeader.ForDate)
-                    .ToList();
-            var result = ReadBase(request, typeof(ProductWasteViewModel), typeof(ProductWaste),
-                productWastes);
 
+            var result = ReadBase(request, typeof (PurchaseOrderDetailViewModel), typeof (PurchaseOrderDetail),
+                purchaseOrders);
 
             return result;
+        }
 
-            return null;
+        public ActionResult ReadProductInventoryWastes(int? productInventoryHeaderId,
+            [DataSourceRequest] DataSourceRequest request)
+        {
+            ProductInventoryHeader pih =
+               ContextFactory.Current.ProductInventoryHeaders.FirstOrDefault(
+                   p => p.ProductInventoryHeaderId == productInventoryHeaderId);
+
+            List<ProductWaste> wastes = new List<ProductWaste>();
+
+            if (pih != null)
+            {
+                DateTime toDate = pih.ForDate.GetValueOrDefault().Date;
+
+                // Get last inventory before the current inventory
+
+                ProductInventoryHeader pihLast =
+                    ContextFactory.Current.ProductInventoryHeaders.Where(
+                        p => p.ForDate < toDate).OrderByDescending(p => p.ForDate).FirstOrDefault();
+
+                DateTime fromDate = DateTime.Now.AddYears(-100);
+
+                if (pihLast != null)
+                {
+                    fromDate = pihLast.ForDate.GetValueOrDefault().Date;
+                }
+
+                List<Product> allProducts = ContextFactory.Current.Products.ToList();
+
+                foreach (Product product in allProducts)
+                {
+                    // Get only purchase orders with lineTotal != 0;
+                    wastes.AddRange(
+                        product.GetProductWastes(fromDate, toDate)
+                            .Where(p => Math.Round(p.Quantity.GetValueOrDefault(), 4) != 0));
+                }
+            }
+
+
+            var result = ReadBase(request, typeof(ProductWasteViewModel), typeof(ProductWaste),
+                wastes);
+
+            return result;
         }
     }
 }

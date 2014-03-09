@@ -57,7 +57,7 @@ items.Add().Text("Purchase Orders Since Last Inventory").Content(@<text>
             </text>
                   );
 
-              @*items.Add().Text("Wastes Since Last Inventory").Content(@<text>
+              items.Add().Text("Wastes Since Last Inventory").Content(@<text>
                     @(Html.Kendo().Grid<ProductWasteViewModel>()
                           .Name("Recipies#=ProductInventoryHeaderId#")
                           .AddReadOnlyOptions(true)
@@ -68,7 +68,7 @@ items.Add().Text("Purchase Orders Since Last Inventory").Content(@<text>
                           .ToClientTemplate()
                           )
             </text>
-                  );*@
+                  );
           })
           .ToClientTemplate()
           )
