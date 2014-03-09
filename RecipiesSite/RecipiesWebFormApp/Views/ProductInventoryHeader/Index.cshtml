@@ -17,9 +17,17 @@
 
 
 <script id="template" type="text/kendo-tmpl">
+    
+    @(Html.Kendo().TabStrip()
+          .Name("tabStrip_#=ProductInventoryHeaderId#")
+          .SelectedIndex(0)
+          .Animation(animation => animation.Open(open => open.Fade(FadeDirection.In).Duration(AnimationDuration.Fast)))
+          .Items(items =>
+          {
+              items.Add().Text("Products").Content(@<text>
     @(Html.Kendo().Grid<ProductInventoryViewModel>()
           .Name("ProductInventoryViewModelGrid_#=ProductInventoryHeaderId#")
-                    .AddDefaultOptions(true, false, isCreateVisible: false)
+          .AddDefaultOptions(true, false, isCreateVisible: false)
           .DataSource(dataSource => dataSource
               .Ajax()
               .Batch(true)
@@ -33,4 +41,38 @@
           .ToClientTemplate()
 
           )
+            </text>
+                  );
+
+items.Add().Text("Purchase Orders Since Last Inventory").Content(@<text>
+                    @(Html.Kendo().Grid<PurchaseOrderDetailViewModel>()
+                          .Name("PurchaseOrders#=ProductInventoryHeaderId#")
+                          .AddReadOnlyOptions(true)
+                          .DataSource(dataSource => dataSource
+                              .Ajax()
+                              .Read(read => read.Action("ReadProductInventoryPurchaseOrders", "ProductInventoryHeader", new {productInventoryHeaderId = "#=ProductInventoryHeaderId#"}))
+                          )
+                          .ToClientTemplate()
+                          )
+            </text>
+                  );
+
+              @*items.Add().Text("Wastes Since Last Inventory").Content(@<text>
+                    @(Html.Kendo().Grid<ProductWasteViewModel>()
+                          .Name("Recipies#=ProductInventoryHeaderId#")
+                          .AddReadOnlyOptions(true)
+                          .DataSource(dataSource => dataSource
+                              .Ajax()
+                              .Read(read => read.Action("ReadProductInventoryWastes", "ProductInventoryHeader", new {productInventoryHeaderId = "#=ProductInventoryHeaderId#"}))
+                          )
+                          .ToClientTemplate()
+                          )
+            </text>
+                  );*@
+          })
+          .ToClientTemplate()
+          )
+   
+
+
 </script>

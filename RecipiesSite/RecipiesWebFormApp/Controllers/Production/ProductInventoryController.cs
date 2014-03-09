@@ -61,5 +61,7 @@ namespace InventoryManagementMVC.Controllers
             var result = DestroyBase(request, pis, typeof (ProductInventoryViewModel), typeof (ProductInventory));
             return result;
         }
+
+      
     }
 }

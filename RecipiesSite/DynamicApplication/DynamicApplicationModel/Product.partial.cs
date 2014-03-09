@@ -176,6 +176,11 @@ namespace RecipiesModelNS
             return lastInventory;
         }
 
+        /// <summary>
+        /// When the inventory is for a period for example my last 2. first one is on 22.01.2014 and the next one is on 29.01.2014. For this one from 29.01.2014 I want you to include all PO from 23.01.2014 incl till 29.01.2014 incl. And the same for the sales and waste.
+        /// </summary>
+        /// <param name="forDate"></param>
+        /// <returns></returns>
         public double GetQuantityByDocumentsForDate(DateTime forDate)
         {
             ProductInventory inventory = GetLastInventoryForDate(forDate);
@@ -188,13 +193,16 @@ namespace RecipiesModelNS
             
             double quantityByDocuments = 0;
 
-            if (inventory != null && inventory.StocktakeQuantity.HasValue)
+            if (inventory != null)
             {
-                purchases = GetPurchaseOrderStockedQuantity(
-                    inventory.ProductInventoryHeader.ForDate.GetValueOrDefault(), forDate.Date);
-                sales = GetSalesOrderQuantity(inventory.ProductInventoryHeader.ForDate.GetValueOrDefault(), forDate.Date);
+                DateTime day1AfterLastInventory =
+                    inventory.ProductInventoryHeader.ForDate.GetValueOrDefault().AddDays(1).Date;
 
-                wastes = GetProductWastesValue(inventory.ProductInventoryHeader.ForDate.GetValueOrDefault(), forDate.Date);
+                purchases = GetPurchaseOrderStockedQuantity(
+                    day1AfterLastInventory, forDate.Date);
+                sales = GetSalesOrderQuantity(day1AfterLastInventory, forDate.Date);
+
+                wastes = GetProductWastesValue(day1AfterLastInventory, forDate.Date);
 
                 quantityByDocuments = inventory.StocktakeQuantity.GetValueOrDefault() + purchases - sales - wastes;
             }
