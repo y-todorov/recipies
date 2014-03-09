@@ -138,6 +138,50 @@ namespace InventoryManagementMVC.Controllers
             return result;
         }
 
+        public ActionResult ReadProductInventorySalesOrders(int? productInventoryHeaderId,
+            [DataSourceRequest] DataSourceRequest request)
+        {
+            ProductInventoryHeader pih =
+                ContextFactory.Current.ProductInventoryHeaders.FirstOrDefault(
+                    p => p.ProductInventoryHeaderId == productInventoryHeaderId);
+
+            List<SalesOrderDetail> salesOrders = new List<SalesOrderDetail>();
+
+            if (pih != null)
+            {
+                DateTime toDate = pih.ForDate.GetValueOrDefault().Date;
+
+                // Get last inventory before the current inventory
+
+                ProductInventoryHeader pihLast =
+                    ContextFactory.Current.ProductInventoryHeaders.Where(
+                        p => p.ForDate < toDate).OrderByDescending(p => p.ForDate).FirstOrDefault();
+
+                DateTime fromDate = DateTime.Now.AddYears(-100);
+
+                if (pihLast != null)
+                {
+                    fromDate = pihLast.ForDate.GetValueOrDefault().Date;
+                }
+
+                List<Product> allProducts = ContextFactory.Current.Products.ToList();
+
+                foreach (Product product in allProducts)
+                {
+                    // Get only purchase orders with lineTotal != 0;
+                    salesOrders.AddRange(
+                        product.GetSalesOrderDetailsForPeriod(fromDate, toDate));
+
+                }
+            }
+
+
+            var result = ReadBase(request, typeof(SalesOrderDetailViewModel), typeof(SalesOrderDetail),
+                salesOrders);
+
+            return result;
+        }
+
         public ActionResult ReadProductInventoryWastes(int? productInventoryHeaderId,
             [DataSourceRequest] DataSourceRequest request)
         {
@@ -168,7 +212,7 @@ namespace InventoryManagementMVC.Controllers
 
                 foreach (Product product in allProducts)
                 {
-                    // Get only purchase orders with lineTotal != 0;
+                    // Get only wastes orders with Quantity != 0;
                     wastes.AddRange(
                         product.GetProductWastes(fromDate, toDate)
                             .Where(p => Math.Round(p.Quantity.GetValueOrDefault(), 4) != 0));

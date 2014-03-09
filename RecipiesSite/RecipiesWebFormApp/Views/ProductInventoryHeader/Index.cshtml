@@ -46,7 +46,7 @@
 
 items.Add().Text("Purchase Orders Since Last Inventory").Content(@<text>
                     @(Html.Kendo().Grid<PurchaseOrderDetailViewModel>()
-                          .Name("PurchaseOrders#=ProductInventoryHeaderId#")
+                                  .Name("PurchaseOrderDetailViewModel#=ProductInventoryHeaderId#")
                           .AddReadOnlyOptions(true)
                           .DataSource(dataSource => dataSource
                               .Ajax()
@@ -56,10 +56,23 @@ items.Add().Text("Purchase Orders Since Last Inventory").Content(@<text>
                           )
             </text>
                   );
+                  
+                   items.Add().Text("Sales Orders Since Last Inventory").Content(@<text>
+                    @(Html.Kendo().Grid<SalesOrderDetailViewModel>()
+                                  .Name("SalesOrderDetailViewModel#=ProductInventoryHeaderId#")
+                          .AddReadOnlyOptions(true)
+                          .DataSource(dataSource => dataSource
+                              .Ajax()
+                                      .Read(read => read.Action("ReadProductInventorySalesOrders", "ProductInventoryHeader", new { productInventoryHeaderId = "#=ProductInventoryHeaderId#" }))
+                          )
+                          .ToClientTemplate()
+                          )
+            </text>
+                  );
 
               items.Add().Text("Wastes Since Last Inventory").Content(@<text>
                     @(Html.Kendo().Grid<ProductWasteViewModel>()
-                          .Name("Recipies#=ProductInventoryHeaderId#")
+                                  .Name("ProductWasteViewModel#=ProductInventoryHeaderId#")
                           .AddReadOnlyOptions(true)
                           .DataSource(dataSource => dataSource
                               .Ajax()
@@ -69,6 +82,8 @@ items.Add().Text("Purchase Orders Since Last Inventory").Content(@<text>
                           )
             </text>
                   );
+                  
+                  
           })
           .ToClientTemplate()
           )
