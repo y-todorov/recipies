@@ -102,6 +102,8 @@ namespace DevTrends.MvcDonutCaching
         /// <param name="routeValues">A dictionary that contains the parameters for a route.</param>
         public void RemoveItems([AspMvcController] string controllerName, [AspMvcAction] string actionName, RouteValueDictionary routeValues)
         {
+            
+
             var enumerableCache = _outputCacheProvider as IEnumerable<KeyValuePair<string, object>>;
 
             if (enumerableCache == null)

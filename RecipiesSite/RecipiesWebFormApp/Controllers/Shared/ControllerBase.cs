@@ -23,8 +23,12 @@ using log4net;
 
 namespace InventoryManagementMVC.Controllers
 {
-    [DonutOutputCache(Duration = 24 * 3600,
-        Options = OutputCacheOptions.IgnoreFormData | OutputCacheOptions.NoCacheLookupForPosts)]
+    //[DonutOutputCache(Duration = 24 * 3600,
+    //    Options = OutputCacheOptions.IgnoreFormData | OutputCacheOptions.NoCacheLookupForPosts)]
+
+    // when inserting new product it does not appear in product vendors becaouse of this cache
+
+
      //[DonutOutputCache(Duration = 24 * 3600)] // NEVER EVER CACHE POST REQUESTS !!! That is deletes, updates and inserts
     public class ControllerBase : Controller
     {

@@ -62,7 +62,7 @@ WHERE database_id = DB_ID( 'recipies')";
                     {
                         lastProductChangeDate = date;
                         MyCacheManager.Instance.RemoveItems();
-
+                        
                         // Yordan : caching of objects cannot be achieved this way !!!
                         //var controllersType = Assembly.GetExecutingAssembly().GetTypes().Where(t => t.ReflectedType != null &&
                         //                                                                            t.ReflectedType.BaseType.Name ==
