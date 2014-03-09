@@ -22,16 +22,29 @@ namespace InventoryManagementMVC.Controllers
 
         public ActionResult Read(int? purchaseOrderHeaderId, [DataSourceRequest] DataSourceRequest request)
         {
-            List<PurchaseOrderDetailViewModel> purchaseOrderDetailViewModels =
+            List<PurchaseOrderDetail> purchaseOrderDetailViewModels =
                 ContextFactory.Current.PurchaseOrderDetails.Where(
-                    pod => purchaseOrderHeaderId.HasValue ? pod.PurchaseOrderId == purchaseOrderHeaderId.Value : true)
+                     pod => purchaseOrderHeaderId.HasValue ? pod.PurchaseOrderId == purchaseOrderHeaderId.Value : true &&
+                         ((pod.ReceivedQuantity.HasValue && pod.ReceivedQuantity != 0) || (pod.OrderQuantity.HasValue &&  pod.OrderQuantity != 0) || pod.LineTotal != 0 || pod.StockedQuantity != 0))
                     .Include(pod => pod.PurchaseOrderHeader.Vendor)
                     .Include(pod => pod.Product.ProductCategory)
-                    .ToList().Select
-                    (pod =>
-                        PurchaseOrderDetailViewModel.ConvertFromPurchaseOrderDetailEntity(pod,
-                            new PurchaseOrderDetailViewModel())).ToList();
-            return Json(purchaseOrderDetailViewModels.ToDataSourceResult(request));
+                    .ToList();
+            // remove empty PurchaseOrderDetails
+            purchaseOrderDetailViewModels =
+                purchaseOrderDetailViewModels.Where(
+                    pod =>
+                        Math.Round(pod.ReceivedQuantity.GetValueOrDefault(), 4) != 0 ||
+                        Math.Round(pod.OrderQuantity.GetValueOrDefault(), 4) != 0 ||
+                         Math.Round(pod.StockedQuantity, 4) != 0 ||
+                         Math.Round(pod.ReturnedQuantity.GetValueOrDefault(), 4) != 0
+                        ).ToList();
+
+
+
+            var result = ReadBase(request, typeof(PurchaseOrderDetailViewModel), typeof(PurchaseOrderDetail),
+                purchaseOrderDetailViewModels);
+
+            return result;
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
