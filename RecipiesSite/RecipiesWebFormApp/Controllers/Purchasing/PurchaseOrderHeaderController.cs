@@ -1,5 +1,7 @@
 ﻿using InventoryManagementMVC.Models.Purchasing;
 using Kendo.Mvc.UI;
+using PdfSharp.Drawing;
+using PdfSharp.Pdf;
 using RecipiesModelNS;
 using System;
 using System.Collections.Generic;
@@ -166,14 +168,30 @@ namespace InventoryManagementMVC.Controllers.Purchasing
 
             RenderingResult result = reportProcessor.RenderReport("Image", instanceReportSource, null);
 
+            PdfDocument doc = new PdfDocument();
+            doc.Pages.Add(new PdfPage());
+            XGraphics xgr = XGraphics.FromPdfPage(doc.Pages[0]);
+
+            string tempFileName = Path.GetTempFileName();
+            System.IO.File.WriteAllBytes(tempFileName, result.DocumentBytes);
+
+
+            XImage img = XImage.FromFile(tempFileName);
+
+            xgr.DrawImage(img, 0, 0);
+            tempFileName = Path.GetTempFileName();
+            doc.Save(tempFileName);
+            doc.Close();
+
             EmailTemplate defaultTemplate =
                 ContextFactory.GetContextPerRequest().EmailTemplates.FirstOrDefault(et => et.IsDefault);
             if (defaultTemplate != null)
             {
+                byte[] documentBytes = System.IO.File.ReadAllBytes(tempFileName);
                 RestResponse restResponse = EmailHelper.SendComplexMessage(defaultTemplate.From,
                     purchaseOrder.Vendor.Email, defaultTemplate.Cc,
                     defaultTemplate.Bcc, defaultTemplate.Subject, defaultTemplate.TextBody, defaultTemplate.HtmlBody,
-                    result.DocumentBytes, defaultTemplate.AttachmentName + "." + "jpg"); // was result.Extension. It will be replaced by pdf
+                    documentBytes, defaultTemplate.AttachmentName + "." + "pdf"); // was result.Extension. It will be replaced by pdf
             }
             else
             {

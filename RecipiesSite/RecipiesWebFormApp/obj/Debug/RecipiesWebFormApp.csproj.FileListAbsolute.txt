@@ -83,3 +83,9 @@ C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\obj\Debug\RecipiesWebFormAp
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\obj\Debug\RecipiesWebFormApp.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\obj\Debug\RecipiesWebFormApp.pdb
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Newtonsoft.Json.dll
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\PdfSharp.Charting.dll
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\PdfSharp.dll
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\PdfSharp.xml
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\PdfSharp.Charting.xml
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\de\PdfSharp.resources.dll
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\de\PdfSharp.Charting.resources.dll

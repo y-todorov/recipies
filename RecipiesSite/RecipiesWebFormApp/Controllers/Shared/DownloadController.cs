@@ -3,6 +3,8 @@ using DevTrends.MvcDonutCaching;
 using DevTrends.MvcDonutCaching.Annotations;
 using Kendo.Mvc.UI;
 using NPOI.HSSF.UserModel;
+using PdfSharp.Drawing;
+using PdfSharp.Pdf;
 using RecipiesModelNS;
 using RecipiesWebFormApp.Caching;
 using System;
@@ -338,29 +340,36 @@ namespace InventoryManagementMVC.Controllers
             System.Collections.Hashtable deviceInfo =
                 new System.Collections.Hashtable();
 
-            //deviceInfo["OutputFormat"] = "DOCX";
-
-            //BinaryFormatter formatter = new BinaryFormatter();
-            //formatter.Serialize()
-
-            //XmlSerializer ser = new XmlSerializer(typeof(Telerik.Reporting.InstanceReportSource));
-            //MemoryStream ms = new MemoryStream();
-            //ser.Serialize(ms, instanceReportSource);
-            //ms.Position = 0;
-            //instanceReportSource.ReportDocument.
-            //byte[] arr = ms.ToArray();
+          
 
             RenderingResult result = reportProcessor.RenderReport("Image", instanceReportSource, null);
+
+
+            PdfDocument doc = new PdfDocument();
+            doc.Pages.Add(new PdfPage());
+            XGraphics xgr = XGraphics.FromPdfPage(doc.Pages[0]);
+
+            string tempFileName = Path.GetTempFileName();
+            System.IO.File.WriteAllBytes(tempFileName, result.DocumentBytes);
+
+
+            XImage img = XImage.FromFile(tempFileName);
+
+            xgr.DrawImage(img, 0, 0);
+            tempFileName = Path.GetTempFileName();
+            doc.Save(tempFileName);
+            doc.Close();
             //RenderingResult result = reportProcessor.RenderReport("pdf", instanceReportSource, null); // PROBLEMS
             //  http://www.telerik.com/community/forums/reporting/telerik-reporting/out-of-memory-in-azure-websites.aspx
 
 
             //string fileName = result.DocumentName + "." + result.Extension;
             // Until solving PDF problem extension will be .jpg
-            string fileName = result.DocumentName + "." + "jpg";
+            string fileName = result.DocumentName + "." + "pdf";
 
+            byte[] documentBytes = System.IO.File.ReadAllBytes(tempFileName);
 
-            return File(result.DocumentBytes, result.MimeType, fileName);
+            return File(documentBytes, result.MimeType, fileName);
         }
     }
 }
