@@ -1,4 +1,9 @@
-﻿using Autofac;
+﻿using System.Drawing;
+using System.Drawing.Imaging;
+using Autofac;
+using Blitline.Net.Builders;
+using CloudinaryDotNet;
+using CloudinaryDotNet.Actions;
 using DevTrends.MvcDonutCaching;
 using DevTrends.MvcDonutCaching.Annotations;
 using Kendo.Mvc.UI;
@@ -19,6 +24,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using System.Xml.Serialization;
+using RecipiesWebFormApp.Helpers;
 using Telerik.Reporting.Processing;
 using Kendo.Mvc.Extensions;
 using InventoryManagementMVC.Models;
@@ -339,37 +345,41 @@ namespace InventoryManagementMVC.Controllers
             //specify the output format of the produced image.
             System.Collections.Hashtable deviceInfo =
                 new System.Collections.Hashtable();
-
-          
-
+            
             RenderingResult result = reportProcessor.RenderReport("Image", instanceReportSource, null);
-
-
-            PdfDocument doc = new PdfDocument();
-            doc.Pages.Add(new PdfPage());
-            XGraphics xgr = XGraphics.FromPdfPage(doc.Pages[0]);
-
+            
             string tempFileName = Path.GetTempFileName();
             System.IO.File.WriteAllBytes(tempFileName, result.DocumentBytes);
 
+//            var uploadParams = new ImageUploadParams()
+//{
+//    File = new FileDescription(tempFileName),
+//    PublicId= "test.tiff"
+//};
 
-            XImage img = XImage.FromFile(tempFileName);
+//            Cloudinary cloudinary = CloudinaryHelper.GetInstance();
+//            cloudinary.uploader .Upload(uploadParams);
 
-            xgr.DrawImage(img, 0, 0);
-            tempFileName = Path.GetTempFileName();
-            doc.Save(tempFileName);
-            doc.Close();
-            //RenderingResult result = reportProcessor.RenderReport("pdf", instanceReportSource, null); // PROBLEMS
+//            var r = cloudinary.Api.UrlImgUp.BuildImageTag("test.pdf");
+
+            
+
+
+
+            string jpegFilePath = ImageHelper.ConvertTiffToJpeg(tempFileName).FirstOrDefault();
+
+
             //  http://www.telerik.com/community/forums/reporting/telerik-reporting/out-of-memory-in-azure-websites.aspx
 
 
             //string fileName = result.DocumentName + "." + result.Extension;
             // Until solving PDF problem extension will be .jpg
-            string fileName = result.DocumentName + "." + "pdf";
+            string fileName = result.DocumentName + "." + "jpeg";
 
-            byte[] documentBytes = System.IO.File.ReadAllBytes(tempFileName);
+            byte[] documentBytes = System.IO.File.ReadAllBytes(jpegFilePath);
 
             return File(documentBytes, result.MimeType, fileName);
         }
+
     }
 }

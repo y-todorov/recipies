@@ -89,3 +89,5 @@ C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\PdfSharp.xml
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\PdfSharp.Charting.xml
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\de\PdfSharp.resources.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\de\PdfSharp.Charting.resources.dll
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Blitline.Net.dll
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\CloudinaryDotNet.dll

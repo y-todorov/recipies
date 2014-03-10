@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Blitline.Net</id>
+    <version>0.4.0</version>
+    <title>Blitline.Net</title>
+    <authors>Gareth Williams</authors>
+    <owners>Gareth Williams</owners>
+    <projectUrl>https://github.com/gwilliams/Blitline.Net</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A .Net wrapper for the Blitline Image Processing API</description>
+    <releaseNotes>Ability to now use the azure storage functionality</releaseNotes>
+    <copyright />
+    <language />
+    <tags>Blitline</tags>
+    <dependencies>
+      <dependency id="Microsoft.Net.Http" version="2.0.20505.0" />
+      <dependency id="Newtonsoft.Json" version="4.5.8" />
+    </dependencies>
+  </metadata>
+</package>

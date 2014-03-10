@@ -10,6 +10,7 @@ using System.Web;
 using System.Web.Mvc;
 using Kendo.Mvc.Extensions;
 using System.IO;
+using RecipiesWebFormApp.Helpers;
 using Telerik.Reporting.Processing;
 using Helpers;
 using RestSharp;
@@ -168,30 +169,32 @@ namespace InventoryManagementMVC.Controllers.Purchasing
 
             RenderingResult result = reportProcessor.RenderReport("Image", instanceReportSource, null);
 
-            PdfDocument doc = new PdfDocument();
-            doc.Pages.Add(new PdfPage());
-            XGraphics xgr = XGraphics.FromPdfPage(doc.Pages[0]);
+            //PdfDocument doc = new PdfDocument();
+            //doc.Pages.Add(new PdfPage());
+            //XGraphics xgr = XGraphics.FromPdfPage(doc.Pages[0]);
 
             string tempFileName = Path.GetTempFileName();
             System.IO.File.WriteAllBytes(tempFileName, result.DocumentBytes);
 
 
-            XImage img = XImage.FromFile(tempFileName);
+            string jpegFilePath = ImageHelper.ConvertTiffToJpeg(tempFileName).FirstOrDefault();
 
-            xgr.DrawImage(img, 0, 0);
-            tempFileName = Path.GetTempFileName();
-            doc.Save(tempFileName);
-            doc.Close();
+            //XImage img = XImage.FromFile(tempFileName);
+
+            //xgr.DrawImage(img, 0, 0);
+            //tempFileName = Path.GetTempFileName();
+            //doc.Save(tempFileName);
+            //doc.Close();
 
             EmailTemplate defaultTemplate =
                 ContextFactory.GetContextPerRequest().EmailTemplates.FirstOrDefault(et => et.IsDefault);
             if (defaultTemplate != null)
             {
-                byte[] documentBytes = System.IO.File.ReadAllBytes(tempFileName);
+                byte[] documentBytes = System.IO.File.ReadAllBytes(jpegFilePath);
                 RestResponse restResponse = EmailHelper.SendComplexMessage(defaultTemplate.From,
                     purchaseOrder.Vendor.Email, defaultTemplate.Cc,
                     defaultTemplate.Bcc, defaultTemplate.Subject, defaultTemplate.TextBody, defaultTemplate.HtmlBody,
-                    documentBytes, defaultTemplate.AttachmentName + "." + "pdf"); // was result.Extension. It will be replaced by pdf
+                    documentBytes, defaultTemplate.AttachmentName + "." + "jpeg"); // was result.Extension. It will be replaced by pdf
             }
             else
             {
