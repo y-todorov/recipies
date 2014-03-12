@@ -73,7 +73,11 @@ namespace InventoryManagementMVC.Models.Purchasing
             pohViewModel.ShipMethodId = pohEntity.ShipMethodId;
             pohViewModel.ShipDate = pohEntity.ShipDate;
             pohViewModel.StatusId = pohEntity.StatusId;
-            pohViewModel.SubTotal = pohEntity.SubTotal;
+            //pohViewModel.SubTotal = pohEntity.SubTotal;
+
+            pohViewModel.SubTotal = (decimal)pohEntity.PurchaseOrderDetails.Sum(d => d.LineTotal);
+
+
             pohViewModel.TotalDue = pohEntity.TotalDue;
             pohViewModel.VAT = pohEntity.VAT;
             pohViewModel.VendorId = pohEntity.VendorId;

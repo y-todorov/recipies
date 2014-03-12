@@ -4,6 +4,8 @@ C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\RecipiesWebFormApp.pdb
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Antlr3.Runtime.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\AppfailReporting.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Autofac.dll
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Blitline.Net.dll
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\CloudinaryDotNet.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Common.Logging.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\DevTrends.MvcDonutCaching.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\DynamicApplicationModel.dll
@@ -34,6 +36,8 @@ C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.SqlServer.Smo
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.WindowsAzure.Configuration.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\NPOI.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Owin.dll
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\PdfSharp.Charting.dll
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\PdfSharp.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Quartz.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\RecipiesReports.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\RestSharp.dll
@@ -50,6 +54,7 @@ C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Telerik.Web.UI.Skins.dl
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\WebGrease.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\YordanCustomControls.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\HtmlAgilityPack.dll
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Newtonsoft.Json.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\DevTrends.MvcDonutCaching.pdb
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\DynamicApplicationModel.pdb
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Helpers.pdb
@@ -67,6 +72,8 @@ C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.AspNet.Signal
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.Owin.Host.SystemWeb.xml
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.WindowsAzure.Configuration.xml
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\NPOI.xml
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\PdfSharp.xml
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\PdfSharp.Charting.xml
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Quartz.pdb
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Quartz.xml
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\RestSharp.xml
@@ -79,15 +86,8 @@ C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\System.Web.WebPages.Raz
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.AspNet.Membership.OpenAuth.xml
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\HtmlAgilityPack.pdb
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\HtmlAgilityPack.xml
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\de\PdfSharp.resources.dll
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\de\PdfSharp.Charting.resources.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\obj\Debug\RecipiesWebFormApp.csprojResolveAssemblyReference.cache
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\obj\Debug\RecipiesWebFormApp.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\obj\Debug\RecipiesWebFormApp.pdb
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Newtonsoft.Json.dll
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\PdfSharp.Charting.dll
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\PdfSharp.dll
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\PdfSharp.xml
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\PdfSharp.Charting.xml
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\de\PdfSharp.resources.dll
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\de\PdfSharp.Charting.resources.dll
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Blitline.Net.dll
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\CloudinaryDotNet.dll
