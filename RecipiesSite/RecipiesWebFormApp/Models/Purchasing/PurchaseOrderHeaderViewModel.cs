@@ -77,10 +77,13 @@ namespace InventoryManagementMVC.Models.Purchasing
 
             pohViewModel.SubTotal = (decimal)pohEntity.PurchaseOrderDetails.Sum(d => d.LineTotal);
 
-
-            pohViewModel.TotalDue = pohEntity.TotalDue;
+          
             pohViewModel.VAT = pohEntity.VAT;
-            pohViewModel.VendorId = pohEntity.VendorId;
+            pohViewModel.VendorId = pohEntity.VendorId; 
+            
+            //((isnull([SubTotal],(0))+isnull([VAT],(0)))+isnull([Freight],(0)))
+            pohViewModel.TotalDue = pohViewModel.SubTotal + pohViewModel.VAT + pohViewModel.Freight;
+            //pohViewModel.TotalDue = pohEntity.TotalDue;
 
             return pohViewModel;
         }

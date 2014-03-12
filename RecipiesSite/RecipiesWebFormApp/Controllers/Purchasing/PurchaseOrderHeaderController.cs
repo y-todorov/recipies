@@ -131,20 +131,7 @@ namespace InventoryManagementMVC.Controllers.Purchasing
 
             return Json(purchaseOrderHeaders.ToDataSourceResult(request, ModelState));
         }
-
-        public ActionResult CorrectTotals()
-        {
-            List<PurchaseOrderHeader> headers = ContextFactory.Current.PurchaseOrderHeaders.ToList();
-
-            foreach (PurchaseOrderHeader header in headers)
-            {
-                PurchaseOrderHeader.UpdatePurchaseOrderHeaderSubTotalFromPurchaseOrderDetails(header.PurchaseOrderId);
-            }
-            ContextFactory.Current.SaveChanges();
-
-            return RedirectToAction("Index");
-        }
-        
+     
         public ActionResult SendEmail(int? purchaseOrderHeaderId)
         {
             //(Master as SiteMaster).MasterRadNotification.Show(
