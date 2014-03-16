@@ -114,7 +114,9 @@ namespace InventoryManagementMVC.Helpers
 
             viewData["products"] = products;
             viewData["defaultProduct"] = products.FirstOrDefault();
-        }
+        } 
+
+        
 
 
     }

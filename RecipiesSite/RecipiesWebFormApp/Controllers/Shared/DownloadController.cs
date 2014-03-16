@@ -1,38 +1,19 @@
-﻿using System.Drawing;
-using System.Drawing.Imaging;
-using Autofac;
-using Blitline.Net.Builders;
-using CloudinaryDotNet;
-using CloudinaryDotNet.Actions;
-using DevTrends.MvcDonutCaching;
-using DevTrends.MvcDonutCaching.Annotations;
+﻿using System.Net.Http;
+using System.Net.Http.Headers;
 using Kendo.Mvc.UI;
+using Newtonsoft.Json;
 using NPOI.HSSF.UserModel;
-using PdfSharp.Drawing;
-using PdfSharp.Pdf;
 using RecipiesModelNS;
-using RecipiesWebFormApp.Caching;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.Script.Serialization;
-using System.Xml.Serialization;
 using RecipiesWebFormApp.Helpers;
-using Telerik.Reporting.Processing;
-using Kendo.Mvc.Extensions;
-using InventoryManagementMVC.Models;
-using System.Data.Entity;
-using System.Reflection;
 using System.Net;
 using System.Xml.Linq;
-
+using Telerik.Reporting.Processing;
+using System.Data.Entity;
 
 namespace InventoryManagementMVC.Controllers
 {
@@ -79,7 +60,7 @@ namespace InventoryManagementMVC.Controllers
 
             string textToRemove = text.Substring(startIndex, len);
             string result = text.Replace(textToRemove, "");
-                
+
             return result;
         }
 
@@ -177,7 +158,7 @@ namespace InventoryManagementMVC.Controllers
         {
             List<XElement> result = new List<XElement>();
             List<XElement> ths = row.Descendants("th").ToList();
-        
+
             foreach (XElement th in ths)
             {
                 //List<XAttribute> attrs = td.Attributes().ToList();
@@ -210,7 +191,6 @@ namespace InventoryManagementMVC.Controllers
 
             return string.Empty;
         }
-
 
 
         private static FileContentResult lastFileContentResult;
@@ -288,10 +268,10 @@ namespace InventoryManagementMVC.Controllers
                         {
                             row.CreateCell(i).SetCellValue(dummyDouble);
                         }
-                        //else if (DateTime.TryParse(val, out dummyDateTime))
-                        //{
-                        //    row.CreateCell(i).SetCellValue(dummyDateTime); // fo not work well, should be tested more
-                        //}
+                            //else if (DateTime.TryParse(val, out dummyDateTime))
+                            //{
+                            //    row.CreateCell(i).SetCellValue(dummyDateTime); // fo not work well, should be tested more
+                            //}
                         else
                         {
                             row.CreateCell(i).SetCellValue(val);
@@ -323,6 +303,120 @@ namespace InventoryManagementMVC.Controllers
             //Suggested file name in the "Save as" dialog which will be displayed to the end user
         }
 
+        public byte[] DownloadPurchaseOrderDetailsReportAsPdf(int? purchaseOrderHeaderId)
+        {
+            JsonSerializerSettings jss = new JsonSerializerSettings();
+
+            jss.MaxDepth = 3;
+            jss.PreserveReferencesHandling = PreserveReferencesHandling.All;
+            jss.ReferenceLoopHandling = ReferenceLoopHandling.Serialize;
+
+            ContextFactory.Current.Configuration.ProxyCreationEnabled = false;
+
+            List<PurchaseOrderDetail> allPod = ContextFactory.Current.PurchaseOrderDetails
+                .Include(pod => pod.PurchaseOrderHeader.Employee)
+                .Include(pod => pod.PurchaseOrderHeader.Vendor)
+                .Include(pod => pod.UnitMeasure)
+                .Include(pi => pi.Product.ProductCategory)
+                .Include(pi => pi.Product.UnitMeasure)
+                .Where(pod => pod.PurchaseOrderId == purchaseOrderHeaderId)
+                .ToList();
+
+
+            List<PurchaseOrderDetail> nonEmptyOrders =
+                allPod.Where(pod => pod.OrderQuantity.GetValueOrDefault() != 0).ToList();
+
+            string serializedEntities = JsonConvert.SerializeObject(nonEmptyOrders, jss);
+
+            var serializedReport = SerializeReport(new RecipiesReports.PurchaseOrderDetailsReport());
+
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(" http://recipiesservices.apphb.com/");
+
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                string url = "api/report";
+
+                string formattedData = string.Format("{0}EscapeSequence{1}", serializedReport, serializedEntities);
+
+                HttpResponseMessage response = client.PostAsJsonAsync(url, formattedData).Result;
+
+                string rerr = response.Content.ReadAsStringAsync().Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    string pdfString = response.Content.ReadAsAsync<string>().Result;
+
+                    byte[] resultBytes = Convert.FromBase64String(pdfString);
+
+                    return resultBytes;
+                }
+            }
+            return new byte[1];
+        }
+
+
+        public string DownloadReportSerialization(string reportSerializationBytes, string reportDataSource)
+        {
+            ReportProcessor reportProcessor = new ReportProcessor();
+
+            var instanceReportSource = new Telerik.Reporting.InstanceReportSource();
+            Telerik.Reporting.Report salesOrderDetailsReport =
+                DeserializeReport(reportSerializationBytes);
+
+            List<PurchaseOrderDetail> serDataSource =
+                JsonConvert.DeserializeObject<List<PurchaseOrderDetail>>(reportDataSource);
+
+            salesOrderDetailsReport.DataSource = serDataSource;
+
+            instanceReportSource.ReportDocument = salesOrderDetailsReport;
+
+            RenderingResult result = reportProcessor.RenderReport("PDF", instanceReportSource, null);
+
+            return Convert.ToBase64String(result.DocumentBytes);
+            ;
+        }
+
+
+        public string SerializeReport(Telerik.Reporting.Report reportToSerialize)
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                Telerik.Reporting.XmlSerialization.ReportXmlSerializer xmlSerializer =
+                    new Telerik.Reporting.XmlSerialization.ReportXmlSerializer();
+
+                xmlSerializer.Serialize(ms, reportToSerialize);
+
+                byte[] result = ms.ToArray();
+
+                string resultString = Convert.ToBase64String(result);
+
+                return resultString;
+            }
+        }
+
+        public Telerik.Reporting.Report DeserializeReport(string reportString)
+        {
+            byte[] reportBytes = Convert.FromBase64String(reportString);
+
+            System.Xml.XmlReaderSettings settings = new System.Xml.XmlReaderSettings();
+            settings.IgnoreWhitespace = true;
+
+            using (MemoryStream ms = new MemoryStream(reportBytes))
+            {
+                Telerik.Reporting.XmlSerialization.ReportXmlSerializer xmlSerializer =
+                    new Telerik.Reporting.XmlSerialization.ReportXmlSerializer();
+
+                Telerik.Reporting.Report report = (Telerik.Reporting.Report)
+                    xmlSerializer.Deserialize(ms);
+
+                return report;
+            }
+        }
+
+
         public ActionResult DownloadPurchaseOrder(int? purchaseOrderHeaderId)
         {
             PurchaseOrderHeader purchaseOrder =
@@ -345,25 +439,22 @@ namespace InventoryManagementMVC.Controllers
             //specify the output format of the produced image.
             System.Collections.Hashtable deviceInfo =
                 new System.Collections.Hashtable();
-            
-            RenderingResult result = reportProcessor.RenderReport("Image", instanceReportSource, null);
-            
+
+            RenderingResult result = reportProcessor.RenderReport("IMAGE", instanceReportSource, null);
+
             string tempFileName = Path.GetTempFileName();
             System.IO.File.WriteAllBytes(tempFileName, result.DocumentBytes);
 
-//            var uploadParams = new ImageUploadParams()
-//{
-//    File = new FileDescription(tempFileName),
-//    PublicId= "test.tiff"
-//};
+            //            var uploadParams = new ImageUploadParams()
+            //{
+            //    File = new FileDescription(tempFileName),
+            //    PublicId= "test.tiff"
+            //};
 
-//            Cloudinary cloudinary = CloudinaryHelper.GetInstance();
-//            cloudinary.uploader .Upload(uploadParams);
+            //            Cloudinary cloudinary = CloudinaryHelper.GetInstance();
+            //            cloudinary.uploader .Upload(uploadParams);
 
-//            var r = cloudinary.Api.UrlImgUp.BuildImageTag("test.pdf");
-
-            
-
+            //            var r = cloudinary.Api.UrlImgUp.BuildImageTag("test.pdf");
 
 
             string jpegFilePath = ImageHelper.ConvertTiffToJpeg(tempFileName).FirstOrDefault();
@@ -381,5 +472,69 @@ namespace InventoryManagementMVC.Controllers
             return File(documentBytes, result.MimeType, fileName);
         }
 
+
+        private System.Collections.Generic.List<System.IO.Stream> streams =
+            new System.Collections.Generic.List<System.IO.Stream>();
+
+        public bool RenderReport(string reportName)
+        {
+            Telerik.Reporting.Processing.ReportProcessor reportProcessor =
+                new Telerik.Reporting.Processing.ReportProcessor();
+
+            string documentName = "";
+
+            // specify the output format of the produced image.
+            System.Collections.Hashtable deviceInfo =
+                new System.Collections.Hashtable();
+
+            deviceInfo["OutputFormat"] = "JPEG";
+
+            //Telerik.Reporting.TypeReportSource typeReportSource =
+            //             new Telerik.Reporting.TypeReportSource();
+
+            // reportName is the Assembly Qualified Name of the report
+            //typeReportSource.TypeName = reportName;
+
+            var instanceReportSource = new Telerik.Reporting.InstanceReportSource();
+            RecipiesReports.PurchaseOrderDetailsReport salesOrderDetailsReport =
+                new RecipiesReports.PurchaseOrderDetailsReport();
+
+
+            List<PurchaseOrderDetail> nonEmptyOrders =
+                ContextFactory.Current.PurchaseOrderDetails.Where(
+                    ppd => ppd.PurchaseOrderHeader.OrderDate > new DateTime(2014, 2, 1)).ToList();
+
+
+            salesOrderDetailsReport.DataSource = nonEmptyOrders;
+
+            instanceReportSource.ReportDocument = salesOrderDetailsReport;
+
+
+            bool result = reportProcessor.RenderReport("PDF", instanceReportSource, deviceInfo, this.CreateStream,
+                out documentName);
+            this.CloseStreams();
+
+            return result;
+        }
+
+        private void CloseStreams()
+        {
+            foreach (System.IO.Stream stream in this.streams)
+            {
+                stream.Close();
+            }
+            this.streams.Clear();
+        }
+
+        private System.IO.Stream CreateStream(string name, string extension, System.Text.Encoding encoding,
+            string mimeType)
+        {
+            string path = System.IO.Path.GetTempPath();
+            string filePath = System.IO.Path.Combine(path, "name" + "." + extension);
+
+            System.IO.FileStream fs = new System.IO.FileStream(filePath, System.IO.FileMode.Create);
+            this.streams.Add(fs);
+            return fs;
+        }
     }
 }
