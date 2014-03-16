@@ -134,37 +134,35 @@ namespace InventoryManagementMVC.Controllers.Purchasing
      
         public ActionResult SendEmail(int? purchaseOrderHeaderId)
         {
-            //(Master as SiteMaster).MasterRadNotification.Show(
-            //    "Sending Emails is temporary disabled. Will be enabled when the product is tested enough! ");
-            //return;
+
 
             PurchaseOrderHeader purchaseOrder =
                 ContextFactory.GetContextPerRequest()
                     .PurchaseOrderHeaders.FirstOrDefault(p => p.PurchaseOrderId == purchaseOrderHeaderId);
 
-            ReportProcessor reportProcessor = new ReportProcessor();
+            //ReportProcessor reportProcessor = new ReportProcessor();
 
-            var instanceReportSource = new Telerik.Reporting.InstanceReportSource();
-            RecipiesReports.PurchaseOrderDetailsReport salesOrderDetailsReport =
-                new RecipiesReports.PurchaseOrderDetailsReport();
+            //var instanceReportSource = new Telerik.Reporting.InstanceReportSource();
+            //RecipiesReports.PurchaseOrderDetailsReport salesOrderDetailsReport =
+            //    new RecipiesReports.PurchaseOrderDetailsReport();
 
-            List<PurchaseOrderDetail> nonEmptyOrders =
-                purchaseOrder.PurchaseOrderDetails.Where(pod => pod.OrderQuantity.GetValueOrDefault() != 0).ToList();
+            //List<PurchaseOrderDetail> nonEmptyOrders =
+            //    purchaseOrder.PurchaseOrderDetails.Where(pod => pod.OrderQuantity.GetValueOrDefault() != 0).ToList();
 
-            salesOrderDetailsReport.DataSource = nonEmptyOrders;
-            instanceReportSource.ReportDocument = salesOrderDetailsReport;
+            //salesOrderDetailsReport.DataSource = nonEmptyOrders;
+            //instanceReportSource.ReportDocument = salesOrderDetailsReport;
 
-            RenderingResult result = reportProcessor.RenderReport("Image", instanceReportSource, null);
+            //RenderingResult result = reportProcessor.RenderReport("Image", instanceReportSource, null);
 
-            //PdfDocument doc = new PdfDocument();
-            //doc.Pages.Add(new PdfPage());
-            //XGraphics xgr = XGraphics.FromPdfPage(doc.Pages[0]);
+            ////PdfDocument doc = new PdfDocument();
+            ////doc.Pages.Add(new PdfPage());
+            ////XGraphics xgr = XGraphics.FromPdfPage(doc.Pages[0]);
 
-            string tempFileName = Path.GetTempFileName();
-            System.IO.File.WriteAllBytes(tempFileName, result.DocumentBytes);
+            //string tempFileName = Path.GetTempFileName();
+            //System.IO.File.WriteAllBytes(tempFileName, result.DocumentBytes);
 
 
-            string jpegFilePath = ImageHelper.ConvertTiffToJpeg(tempFileName).FirstOrDefault();
+            //string jpegFilePath = ImageHelper.ConvertTiffToJpeg(tempFileName).FirstOrDefault();
 
             //XImage img = XImage.FromFile(tempFileName);
 
@@ -177,11 +175,11 @@ namespace InventoryManagementMVC.Controllers.Purchasing
                 ContextFactory.GetContextPerRequest().EmailTemplates.FirstOrDefault(et => et.IsDefault);
             if (defaultTemplate != null)
             {
-                byte[] documentBytes = System.IO.File.ReadAllBytes(jpegFilePath);
+                byte[] documentBytes = (new DownloadController()).DownloadPurchaseOrderDetailsReportAsPdf(purchaseOrderHeaderId); ;
                 RestResponse restResponse = EmailHelper.SendComplexMessage(defaultTemplate.From,
                     purchaseOrder.Vendor.Email, defaultTemplate.Cc,
                     defaultTemplate.Bcc, defaultTemplate.Subject, defaultTemplate.TextBody, defaultTemplate.HtmlBody,
-                    documentBytes, defaultTemplate.AttachmentName + "." + "jpeg"); // was result.Extension. It will be replaced by pdf
+                    documentBytes, defaultTemplate.AttachmentName + "." + "pdf"); // was result.Extension. It will be replaced by pdf
             }
             else
             {

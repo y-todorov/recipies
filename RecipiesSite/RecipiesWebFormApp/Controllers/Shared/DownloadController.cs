@@ -419,57 +419,50 @@ namespace InventoryManagementMVC.Controllers
 
         public ActionResult DownloadPurchaseOrder(int? purchaseOrderHeaderId)
         {
-            PurchaseOrderHeader purchaseOrder =
-                ContextFactory.GetContextPerRequest()
-                    .PurchaseOrderHeaders.FirstOrDefault(p => p.PurchaseOrderId == purchaseOrderHeaderId);
+            //PurchaseOrderHeader purchaseOrder =
+            //    ContextFactory.GetContextPerRequest()
+            //        .PurchaseOrderHeaders.FirstOrDefault(p => p.PurchaseOrderId == purchaseOrderHeaderId);
 
-            ReportProcessor reportProcessor = new ReportProcessor();
+            //ReportProcessor reportProcessor = new ReportProcessor();
 
-            var instanceReportSource = new Telerik.Reporting.InstanceReportSource();
-            RecipiesReports.PurchaseOrderDetailsReport salesOrderDetailsReport =
-                new RecipiesReports.PurchaseOrderDetailsReport();
+            //var instanceReportSource = new Telerik.Reporting.InstanceReportSource();
+            //RecipiesReports.PurchaseOrderDetailsReport salesOrderDetailsReport =
+            //    new RecipiesReports.PurchaseOrderDetailsReport();
 
-            List<PurchaseOrderDetail> nonEmptyOrders =
-                purchaseOrder.PurchaseOrderDetails.Where(pod => pod.OrderQuantity.GetValueOrDefault() != 0).ToList();
+            //List<PurchaseOrderDetail> nonEmptyOrders =
+            //    purchaseOrder.PurchaseOrderDetails.Where(pod => pod.OrderQuantity.GetValueOrDefault() != 0).ToList();
 
-            salesOrderDetailsReport.DataSource = nonEmptyOrders;
+            //salesOrderDetailsReport.DataSource = nonEmptyOrders;
 
-            instanceReportSource.ReportDocument = salesOrderDetailsReport;
+            //instanceReportSource.ReportDocument = salesOrderDetailsReport;
 
-            //specify the output format of the produced image.
-            System.Collections.Hashtable deviceInfo =
-                new System.Collections.Hashtable();
+            ////specify the output format of the produced image.
+            //System.Collections.Hashtable deviceInfo =
+            //    new System.Collections.Hashtable();
 
-            RenderingResult result = reportProcessor.RenderReport("IMAGE", instanceReportSource, null);
+            //RenderingResult result = reportProcessor.RenderReport("IMAGE", instanceReportSource, null);
 
-            string tempFileName = Path.GetTempFileName();
-            System.IO.File.WriteAllBytes(tempFileName, result.DocumentBytes);
-
-            //            var uploadParams = new ImageUploadParams()
-            //{
-            //    File = new FileDescription(tempFileName),
-            //    PublicId= "test.tiff"
-            //};
-
-            //            Cloudinary cloudinary = CloudinaryHelper.GetInstance();
-            //            cloudinary.uploader .Upload(uploadParams);
-
-            //            var r = cloudinary.Api.UrlImgUp.BuildImageTag("test.pdf");
+            //string tempFileName = Path.GetTempFileName();
+            //System.IO.File.WriteAllBytes(tempFileName, result.DocumentBytes);
 
 
-            string jpegFilePath = ImageHelper.ConvertTiffToJpeg(tempFileName).FirstOrDefault();
+
+            //string jpegFilePath = ImageHelper.ConvertTiffToJpeg(tempFileName).FirstOrDefault();
 
 
             //  http://www.telerik.com/community/forums/reporting/telerik-reporting/out-of-memory-in-azure-websites.aspx
 
 
+            DownloadPurchaseOrderDetailsReportAsPdf(purchaseOrderHeaderId);
+
             //string fileName = result.DocumentName + "." + result.Extension;
             // Until solving PDF problem extension will be .jpg
-            string fileName = result.DocumentName + "." + "jpeg";
+            string fileName = "PurchaseOrder.pdf";
 
-            byte[] documentBytes = System.IO.File.ReadAllBytes(jpegFilePath);
+            byte[] documentBytes = DownloadPurchaseOrderDetailsReportAsPdf(purchaseOrderHeaderId);
 
-            return File(documentBytes, result.MimeType, fileName);
+
+            return File(documentBytes, "application/pdf", fileName);
         }
 
 
