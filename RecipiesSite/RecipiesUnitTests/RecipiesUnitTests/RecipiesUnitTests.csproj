@@ -105,10 +105,6 @@
       <Project>{c50145e6-a244-4f1f-b41f-90d1925b4a00}</Project>
       <Name>RecipiesModel</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Helpers\Helpers.csproj">
-      <Project>{a241735c-b9a0-4f9a-903c-e248c1c97990}</Project>
-      <Name>Helpers</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\RecipiesReports\RecipiesReports.csproj">
       <Project>{b726482b-aee9-4c3f-9af6-9b60df2b5f3e}</Project>
       <Name>RecipiesReports</Name>
