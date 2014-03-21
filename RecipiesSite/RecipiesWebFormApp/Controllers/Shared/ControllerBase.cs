@@ -2,7 +2,6 @@
 using System.Data.Entity;
 using System.Reflection;
 using System.Web.UI;
-using Autofac;
 using DevTrends.MvcDonutCaching;
 using DevTrends.MvcDonutCaching.Annotations;
 using InventoryManagementMVC.DataAnnotations;

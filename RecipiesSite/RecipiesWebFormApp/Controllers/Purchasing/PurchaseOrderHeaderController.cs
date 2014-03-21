@@ -1,7 +1,5 @@
 ﻿using InventoryManagementMVC.Models.Purchasing;
 using Kendo.Mvc.UI;
-using PdfSharp.Drawing;
-using PdfSharp.Pdf;
 using RecipiesModelNS;
 using System;
 using System.Collections.Generic;
