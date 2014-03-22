@@ -26,8 +26,11 @@ C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\NPOI.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Quartz.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\RecipiesReports.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\System.Net.Http.Formatting.dll
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\System.Web.Mvc.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\System.Web.Optimization.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\System.Web.Providers.dll
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\System.Web.WebPages.dll
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\System.Web.WebPages.Razor.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Telerik.Web.UI.Skins.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\WebGrease.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\YordanCustomControls.dll
@@ -35,6 +38,7 @@ C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\HtmlAgilityPack.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Owin.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.AspNet.SignalR.Owin.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\System.Web.Razor.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\System.Web.WebPages.Deployment.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Antlr3.Runtime.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\DevTrends.MvcDonutCaching.pdb
@@ -46,7 +50,3 @@ C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\System.Net.Http.Formatt
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\obj\Debug\RecipiesWebFormApp.csprojResolveAssemblyReference.cache
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\obj\Debug\RecipiesWebFormApp.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\obj\Debug\RecipiesWebFormApp.pdb
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\System.Web.Mvc.dll
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\System.Web.WebPages.dll
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\System.Web.WebPages.Razor.dll
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\System.Web.Razor.dll
