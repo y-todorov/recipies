@@ -16,7 +16,7 @@ namespace YordanCustomControls
 
             if (string.IsNullOrEmpty(ConnectionString))
             {
-                ConnectionString = "name=recipiesEntities";
+                ConnectionString = "recipiesEntities";
             }
             if (string.IsNullOrEmpty(DefaultContainerName))
             {

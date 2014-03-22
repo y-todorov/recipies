@@ -34,14 +34,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="EntityFramework">
       <HintPath>..\..\Libs\EntityFramework.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\..\Libs\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
@@ -201,6 +203,7 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>RecipiesModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="packages.config" />
     <None Include="RecipiesModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>RecipiesModel.edmx</DependentUpon>
@@ -214,13 +217,6 @@
       <DependentUpon>RecipiesModel.edmx</DependentUpon>
       <LastGenOutput>RecipiesModel.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="OpenAccessAssemblies\EntityFramework.dll" />
-    <Content Include="OpenAccessAssemblies\EntityFramework.SqlServer.dll" />
-    <Content Include="OpenAccessAssemblies\Telerik.Reporting.dll" />
-    <Content Include="OpenAccessAssemblies\Telerik.ReportViewer.WebForms.dll" />
-    <Content Include="OpenAccessAssemblies\Typesafe.Mailgun.dll" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
