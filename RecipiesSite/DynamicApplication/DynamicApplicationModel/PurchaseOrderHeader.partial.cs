@@ -13,7 +13,7 @@ namespace RecipiesModelNS
             DateTime defaultDate = new DateTime(2000, 1, 1);
             DateTime endDateForLinq = toDate.Date.AddDays(1);
             List<PurchaseOrderHeader> purchaseOrderHeaders =
-                ContextFactory.GetContextPerRequest().PurchaseOrderHeaders
+                ContextFactory.Current.PurchaseOrderHeaders
                 .Include(p => p.PurchaseOrderDetails.Select(pp => pp.Product))
                 //.Include(p => p.PurchaseOrderDetails)
                 .Where(pof => pof.ShipDate >= fromDate.Date &&
@@ -38,7 +38,7 @@ namespace RecipiesModelNS
             if (purchaseOrderHeaderId.HasValue)
             {
                 PurchaseOrderHeader poh =
-                    ContextFactory.GetContextPerRequest()
+                    ContextFactory.Current
                         .PurchaseOrderHeaders.FirstOrDefault(p => p.PurchaseOrderId == purchaseOrderHeaderId);
 
                 if (poh != null)
@@ -56,7 +56,7 @@ namespace RecipiesModelNS
             if (purchaseOrderHeaderId.HasValue)
             {
                 PurchaseOrderHeader poh =
-                    ContextFactory.GetContextPerRequest()
+                    ContextFactory.Current
                         .PurchaseOrderHeaders.FirstOrDefault(po => po.PurchaseOrderId == purchaseOrderHeaderId.Value);
                 if (poh != null)
                 {
@@ -66,7 +66,7 @@ namespace RecipiesModelNS
                         subTotal += (decimal?) pod.LineTotal;
                     }
                     poh.SubTotal = subTotal;
-                    ContextFactory.GetContextPerRequest().SaveChanges();
+                    ContextFactory.Current.SaveChanges();
                 }
             }
         }

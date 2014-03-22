@@ -12,14 +12,14 @@ namespace RecipiesModelNS
             if (productId.HasValue)
             {
                 Product product =
-                    ContextFactory.GetContextPerRequest().Products.FirstOrDefault(p => p.ProductId == productId);
+                    ContextFactory.Current.Products.FirstOrDefault(p => p.ProductId == productId);
                 if (product != null)
                 {
                     double quantityByDocumentsForDate = product.GetQuantityByDocumentsForDate(DateTime.Now);
                     if (product.UnitsInStock != quantityByDocumentsForDate)
                     {
                         product.UnitsInStock = quantityByDocumentsForDate;
-                        ContextFactory.GetContextPerRequest().SaveChanges();
+                        ContextFactory.Current.SaveChanges();
                     }
                 }
             }
@@ -34,7 +34,7 @@ namespace RecipiesModelNS
 
         public double GetAveragePriceLastDays(int lastDays, out string text)
         {
-            RecipiesEntities context = ContextFactory.GetContextPerRequest();
+            RecipiesEntities context = ContextFactory.Current;
 
             DateTime fromDate = DateTime.Now.AddDays(-lastDays).Date;
             DateTime toDate = DateTime.Now.Date;
@@ -166,7 +166,7 @@ namespace RecipiesModelNS
         public ProductInventory GetLastInventoryForDate(DateTime forDate)
         {
             ProductInventory lastInventory =
-                ContextFactory.GetContextPerRequest()
+                ContextFactory.Current
                     .Inventories.OfType<ProductInventory>()
                     .Where(
                         inv =>
@@ -259,7 +259,7 @@ namespace RecipiesModelNS
         public List<PurchaseOrderDetail> GetPurchaseOrderDetailsInPeriod(DateTime fromDate, DateTime toDate)
         {
             List<PurchaseOrderHeader> purchaseOrderHeaders =
-                ContextFactory.GetContextPerRequest().PurchaseOrderHeaders.Where(pu => pu.ShipDate.HasValue &&
+                ContextFactory.Current.PurchaseOrderHeaders.Where(pu => pu.ShipDate.HasValue &&
                                                                                        pu.ShipDate >= fromDate.Date &&
                                                                                        pu.ShipDate <= toDate.Date &&
                                                                                        pu.StatusId ==
@@ -298,7 +298,7 @@ namespace RecipiesModelNS
         public List<SalesOrderDetail> GetSalesOrderDetailsForPeriod(DateTime fromDate, DateTime toDate)
         {
             List<SalesOrderDetail> salesOrderDetails =
-               ContextFactory.GetContextPerRequest()
+               ContextFactory.Current
                    .SalesOrderDetails.Where(sod => sod.SalesOrderHeader.ShippedDate.HasValue &&
                                                    sod.SalesOrderHeader.ShippedDate >= fromDate.Date &&
                                                    sod.SalesOrderHeader.ShippedDate <= toDate.Date &&
@@ -360,7 +360,7 @@ namespace RecipiesModelNS
 
         public static void UpdateUnitPriceOfAllProducts()
         {
-            List<Product> products = ContextFactory.GetContextPerRequest().Products.ToList();
+            List<Product> products = ContextFactory.Current.Products.ToList();
             foreach (Product product in products)
             {
                 //if (product.ProductId == 6983)
@@ -372,24 +372,24 @@ namespace RecipiesModelNS
                     }
                 }
             }
-            ContextFactory.GetContextPerRequest().SaveChanges();
+            ContextFactory.Current.SaveChanges();
         }
 
         public static void UpdateUnitsInStockOfAllProducts()
         {
-            List<Product> allProducts = ContextFactory.GetContextPerRequest().Products.ToList();
+            List<Product> allProducts = ContextFactory.Current.Products.ToList();
             foreach (Product p in allProducts)
             {
                 Product.UpdateUnitsInStock(p.ProductId);
             }
-            ContextFactory.GetContextPerRequest().SaveChanges();
+            ContextFactory.Current.SaveChanges();
         }
 
         public static void UpdateUnitsOnOrderOfAllProducts()
         {
-            List<Product> allProducts = ContextFactory.GetContextPerRequest().Products.ToList();
+            List<Product> allProducts = ContextFactory.Current.Products.ToList();
             List<PurchaseOrderDetail> allCompletedPurchaseOrderDetals =
-                ContextFactory.GetContextPerRequest()
+                ContextFactory.Current
                     .PurchaseOrderDetails.Where(
                         pod => pod.PurchaseOrderHeader.StatusId == (int) PurchaseOrderStatusEnum.Approved ||
                                pod.PurchaseOrderHeader.StatusId == (int) PurchaseOrderStatusEnum.Pending
@@ -410,7 +410,7 @@ namespace RecipiesModelNS
                     product.UnitsOnOrder = unitsOnOrderk;
                 }
             }
-            ContextFactory.GetContextPerRequest().SaveChanges();
+            ContextFactory.Current.SaveChanges();
         }
     }
 }

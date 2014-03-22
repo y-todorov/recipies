@@ -57,16 +57,16 @@ namespace RecipiesWebFormApp.Charts
                 {
                     int vendorId = int.Parse(rcbVendor.SelectedValue);
                     vendor =
-                        ContextFactory.GetContextPerRequest()
+                        ContextFactory.Current
                             .Vendors.Where(v => v.VendorId == vendorId)
                             .FirstOrDefault();
                 }
                 else
                 {
-                    vendor = ContextFactory.GetContextPerRequest().Vendors.FirstOrDefault();
+                    vendor = ContextFactory.Current.Vendors.FirstOrDefault();
                 }
                 List<PurchaseOrderDetail> pods =
-                    ContextFactory.GetContextPerRequest()
+                    ContextFactory.Current
                         .PurchaseOrderDetails.Where(
                             pod => pod.PurchaseOrderHeader.StatusId == (int) PurchaseOrderStatusEnum.Completed)
                         .ToList();
@@ -79,13 +79,13 @@ namespace RecipiesWebFormApp.Charts
                 {
                     int vendorId = int.Parse(rcbVendor.SelectedValue);
                     vendor =
-                        ContextFactory.GetContextPerRequest()
+                        ContextFactory.Current
                             .Vendors.Where(v => v.VendorId == vendorId)
                             .FirstOrDefault();
                 }
                 else
                 {
-                    vendor = ContextFactory.GetContextPerRequest().Vendors.FirstOrDefault();
+                    vendor = ContextFactory.Current.Vendors.FirstOrDefault();
                 }
 
                 if (vendor == null)

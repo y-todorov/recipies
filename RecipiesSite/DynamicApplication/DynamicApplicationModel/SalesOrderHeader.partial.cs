@@ -12,7 +12,7 @@ namespace RecipiesModelNS
             DateTime defaultDate = new DateTime(2000, 1, 1);
             DateTime endDateForLinq = toDate.Date.AddDays(1);
             List<SalesOrderHeader> result =
-                ContextFactory.GetContextPerRequest().SalesOrderHeaders.Where(pof => pof.ShippedDate >= fromDate.Date &&
+                ContextFactory.Current.SalesOrderHeaders.Where(pof => pof.ShippedDate >= fromDate.Date &&
                                                                                      pof.ShippedDate < endDateForLinq &&
                                                                                      pof.StatusId == (int)status)
                     .ToList();
@@ -23,11 +23,11 @@ namespace RecipiesModelNS
         {
             if (salesOrderHeaderId.HasValue)
             {
-                SalesOrderHeader salesOrderHeader = ContextFactory.GetContextPerRequest()
+                SalesOrderHeader salesOrderHeader = ContextFactory.Current
                     .SalesOrderHeaders.FirstOrDefault(soh => soh.SalesOrderHeaderId == salesOrderHeaderId);
                 if (salesOrderHeader != null)
                 {
-                    List<Recipe> recipies = ContextFactory.GetContextPerRequest().Recipes.ToList();
+                    List<Recipe> recipies = ContextFactory.Current.Recipes.ToList();
                     foreach (Recipe recipie in recipies)
                     {
                         SalesOrderDetail detail = new SalesOrderDetail()
@@ -38,10 +38,10 @@ namespace RecipiesModelNS
                             UnitPriceDiscount = 0,
                             OrderQuantity = 0,
                         };
-                        ContextFactory.GetContextPerRequest().SalesOrderDetails.Add(detail);
+                        ContextFactory.Current.SalesOrderDetails.Add(detail);
                     }
 
-                    ContextFactory.GetContextPerRequest().SaveChanges();
+                    ContextFactory.Current.SaveChanges();
                 }
             }
         }
@@ -50,7 +50,7 @@ namespace RecipiesModelNS
         {
             if (salesOrderHeader != null)
             {
-                List<Recipe> recipies = ContextFactory.GetContextPerRequest().Recipes.ToList();
+                List<Recipe> recipies = ContextFactory.Current.Recipes.ToList();
                 foreach (Recipe recipie in recipies)
                 {
                     SalesOrderDetail detail = new SalesOrderDetail()
@@ -65,7 +65,7 @@ namespace RecipiesModelNS
                     ContextFactory.Current.SalesOrderDetails.Add(detail);
                 }
 
-                //ContextFactory.GetContextPerRequest().SaveChanges();
+                //ContextFactory.Current.SaveChanges();
             }
 
         }
@@ -78,7 +78,7 @@ namespace RecipiesModelNS
         public static void UpdateProductsUnitsInStock(int? salesOrderHeaderId)
         {
             List<SalesOrderDetail> details =
-                ContextFactory.GetContextPerRequest()
+                ContextFactory.Current
                     .SalesOrderDetails.Where(sod => sod.SalesOrderHeaderId == salesOrderHeaderId).ToList();
             foreach (SalesOrderDetail salesOrderDetail in details)
             {
@@ -114,7 +114,7 @@ namespace RecipiesModelNS
             if (salesOrderHeaderId.HasValue)
             {
                 SalesOrderHeader poh =
-                    ContextFactory.GetContextPerRequest()
+                    ContextFactory.Current
                         .SalesOrderHeaders.FirstOrDefault(po => po.SalesOrderHeaderId == salesOrderHeaderId.Value);
                 if (poh != null)
                 {
@@ -124,7 +124,7 @@ namespace RecipiesModelNS
                         subTotal += (decimal?)spd.LineTotal;
                     }
                     poh.SubTotal = subTotal;
-                    ContextFactory.GetContextPerRequest().SaveChanges();
+                    ContextFactory.Current.SaveChanges();
                 }
             }
         }

@@ -63,7 +63,7 @@ namespace RecipiesWebFormApp.Production
                 if (int.TryParse(productId, out intProductId))
                 {
                     Product product =
-                        ContextFactory.GetContextPerRequest().Products.FirstOrDefault(p => p.ProductId == intProductId);
+                        ContextFactory.Current.Products.FirstOrDefault(p => p.ProductId == intProductId);
                     if (product != null)
                     {
                         RadNumericTextBox quantityByDocumentsRadNumericTextBox =
