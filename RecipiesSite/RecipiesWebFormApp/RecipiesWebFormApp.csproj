@@ -225,18 +225,54 @@
     <Content Include="Contact.aspx" />
     <Content Include="Content\Bundles\BlueOpal\editor.png" />
     <Content Include="Content\Bundles\BlueOpal\imagebrowser.png" />
+    <Content Include="Content\Bundles\BlueOpal\indeterminate.gif" />
     <Content Include="Content\Bundles\BlueOpal\loading-image.gif" />
     <Content Include="Content\Bundles\BlueOpal\loading.gif" />
     <Content Include="Content\Bundles\BlueOpal\loading_2x.gif" />
+    <Content Include="Content\Bundles\BlueOpal\markers.png" />
+    <Content Include="Content\Bundles\BlueOpal\markers_2x.png" />
     <Content Include="Content\Bundles\BlueOpal\slider-h.gif" />
     <Content Include="Content\Bundles\BlueOpal\slider-v.gif" />
     <Content Include="Content\Bundles\BlueOpal\sprite.png" />
     <Content Include="Content\Bundles\BlueOpal\sprite_2x.png" />
-    <Content Include="Content\Bundles\kendocommon.css" />
-    <Content Include="Content\Bundles\kendodataviz.css" />
-    <Content Include="Content\Bundles\kendodataviztheme.css" />
-    <Content Include="Content\Bundles\kendotheme.css" />
+    <Content Include="Content\Bundles\images\back.png" />
+    <Content Include="Content\Bundles\images\wp8_icons.png" />
+    <Content Include="Content\Bundles\images\wp8_inverseicons.png" />
+    <Content Include="Content\Bundles\kendo.blueopal.min.css" />
+    <Content Include="Content\Bundles\kendo.common.core.min.css" />
+    <Content Include="Content\Bundles\kendo.common.min.css" />
+    <Content Include="Content\Bundles\kendo.dataviz.blueopal.min.css" />
     <Content Include="Content\Bundles\Site.css" />
+    <Content Include="Content\Bundles\textures\brushed-metal.png" />
+    <Content Include="Content\Bundles\textures\dots1.png" />
+    <Content Include="Content\Bundles\textures\dots10.png" />
+    <Content Include="Content\Bundles\textures\dots11.png" />
+    <Content Include="Content\Bundles\textures\dots12.png" />
+    <Content Include="Content\Bundles\textures\dots13.png" />
+    <Content Include="Content\Bundles\textures\dots2.png" />
+    <Content Include="Content\Bundles\textures\dots3.png" />
+    <Content Include="Content\Bundles\textures\dots4.png" />
+    <Content Include="Content\Bundles\textures\dots5.png" />
+    <Content Include="Content\Bundles\textures\dots6.png" />
+    <Content Include="Content\Bundles\textures\dots7.png" />
+    <Content Include="Content\Bundles\textures\dots8.png" />
+    <Content Include="Content\Bundles\textures\dots9.png" />
+    <Content Include="Content\Bundles\textures\glass-lighter.png" />
+    <Content Include="Content\Bundles\textures\glass.png" />
+    <Content Include="Content\Bundles\textures\highlight.png" />
+    <Content Include="Content\Bundles\textures\hsv-gradient.png" />
+    <Content Include="Content\Bundles\textures\hue.png" />
+    <Content Include="Content\Bundles\textures\leather1.png" />
+    <Content Include="Content\Bundles\textures\leather2.png" />
+    <Content Include="Content\Bundles\textures\noise.png" />
+    <Content Include="Content\Bundles\textures\stripe1.png" />
+    <Content Include="Content\Bundles\textures\stripe2.png" />
+    <Content Include="Content\Bundles\textures\stripe3.png" />
+    <Content Include="Content\Bundles\textures\stripe4.png" />
+    <Content Include="Content\Bundles\textures\stripe5.png" />
+    <Content Include="Content\Bundles\textures\stripe6.png" />
+    <Content Include="Content\Bundles\textures\transparency.png" />
+    <Content Include="Content\Bundles\textures\transtexture.png" />
     <Content Include="DevTrends.MvcDonutCaching.README.txt" />
     <Content Include="ErrorPages\Error.aspx" />
     <Content Include="ErrorPages\Error404.aspx" />
@@ -290,6 +326,8 @@
     <Content Include="App_Data\RadSpell\en-US.tdf" />
     <Content Include="App_Data\RadSpell\fr-FR.tdf" />
     <Content Include="jquery.min.map" />
+    <Content Include="Content\Bundles\images\kendoui.ttf" />
+    <Content Include="Content\Bundles\images\kendoui.woff" />
     <None Include="job_scheduling_data_2_0.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -300,79 +338,15 @@
     </Content>
     <None Include="Properties\PublishProfiles\bluesystems - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\bluesystems - Web Deploy.pubxml" />
-    <None Include="Scripts\jquery-2.0.3.intellisense.js" />
     <Content Include="Production\Stores.aspx" />
     <Content Include="Sales\PaymentTypes.aspx" />
-    <Content Include="Scripts\Bundles\jquery.js" />
-    <Content Include="Scripts\Bundles\kendoall.js" />
-    <Content Include="Scripts\Bundles\kendoaspnetmvc.js" />
-    <Content Include="Scripts\Bundles\kendoculture.js" />
-    <Content Include="Scripts\Bundles\modernizr.js" />
-    <Content Include="Scripts\Bundles\Site.js" />
     <Content Include="Scripts\GoogleAnalytics.js" />
-    <Content Include="Scripts\jquery-2.0.3.js" />
-    <Content Include="Scripts\jquery-2.0.3.min.js" />
-    <Content Include="Scripts\jquery-ui-1.8.24.js" />
-    <Content Include="Scripts\jquery-ui-1.8.24.min.js" />
-    <Content Include="Scripts\jquery.signalR-1.1.3.js" />
-    <Content Include="Scripts\jquery.signalR-1.1.3.min.js" />
-    <Content Include="Scripts\kendo.custom-2013.2.918.min.js" />
+    <Content Include="Scripts\jquery-2.1.0.min.js" />
+    <Content Include="Scripts\kendo.all.js" />
+    <Content Include="Scripts\kendo.aspnetmvc.min.js" />
+    <Content Include="Scripts\kendo.culture.en-IE.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\MyJavaScript.js" />
-    <Content Include="Scripts\WebEssentials\jquery.js" />
-    <Content Include="Scripts\WebEssentials\jquery.min.js">
-      <DependentUpon>jquery.js</DependentUpon>
-    </Content>
-    <Content Include="Scripts\WebEssentials\kendo.AllAndMvc.2013.3.1119.min.js" />
-    <Content Include="Scripts\WebEssentials\kendoall.js" />
-    <Content Include="Scripts\WebEssentials\kendoall.min.js">
-      <DependentUpon>kendoall.js</DependentUpon>
-    </Content>
-    <Content Include="Scripts\WebEssentials\kendoaspnetmvc.js" />
-    <Content Include="Scripts\WebEssentials\kendoaspnetmvc.min.js">
-      <DependentUpon>kendoaspnetmvc.js</DependentUpon>
-    </Content>
-    <Content Include="Scripts\WebEssentials\kendoculture.js" />
-    <Content Include="Scripts\WebEssentials\kendoculture.min.js">
-      <DependentUpon>kendoculture.js</DependentUpon>
-    </Content>
-    <Content Include="Scripts\WebEssentials\modernizr.js" />
-    <Content Include="Scripts\WebEssentials\modernizr.min.js">
-      <DependentUpon>modernizr.js</DependentUpon>
-    </Content>
-    <Content Include="Scripts\WebEssentials\Site.js" />
-    <Content Include="Scripts\WebEssentials\Site.min.js">
-      <DependentUpon>Site.js</DependentUpon>
-    </Content>
-    <Content Include="Scripts\WebEssentials\test.js" />
-    <Content Include="Scripts\WebEssentials\WebEssentialsJsBundle.js">
-      <DependentUpon>WebEssentialsJsBundle.js.bundle</DependentUpon>
-    </Content>
-    <Content Include="Scripts\WebEssentials\WebEssentialsJsBundle.min.js">
-      <DependentUpon>WebEssentialsJsBundle.js.bundle</DependentUpon>
-    </Content>
-    <Content Include="Scripts\WebForms\DetailsView.js" />
-    <Content Include="Scripts\WebForms\Focus.js" />
-    <Content Include="Scripts\WebForms\GridView.js" />
-    <Content Include="Scripts\WebForms\Menu.js" />
-    <Content Include="Scripts\WebForms\MenuStandards.js" />
-    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjax.js" />
-    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxApplicationServices.js" />
-    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxComponentModel.js" />
-    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxCore.js" />
-    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxGlobalization.js" />
-    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxHistory.js" />
-    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxNetwork.js" />
-    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxSerialization.js" />
-    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxTimer.js" />
-    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxWebForms.js" />
-    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxWebServices.js" />
-    <Content Include="Scripts\WebForms\SmartNav.js" />
-    <Content Include="Scripts\WebForms\TreeView.js" />
-    <Content Include="Scripts\WebForms\WebForms.js" />
-    <Content Include="Scripts\WebForms\WebParts.js" />
-    <Content Include="Scripts\WebForms\WebUIValidation.js" />
-    <Content Include="Scripts\_references.js" />
     <Content Include="Styles\MyStyleSheet.css" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config">
@@ -758,10 +732,6 @@
   <ItemGroup>
     <Content Include="SiteLogin.Master" />
     <Content Include="Site.Mobile.Master" />
-    <Content Include="Scripts\jquery-2.0.3.min.map" />
-    <Content Include="Scripts\jquery.signalR-1.1.3.min.js.map">
-      <DependentUpon>jquery.signalR-1.1.3.js</DependentUpon>
-    </Content>
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
     <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
@@ -804,28 +774,7 @@
     <Content Include="Views\Test\Index.cshtml" />
     <Content Include="Views\Recipe\Index.cshtml" />
     <Content Include="Views\SalesOrderHeader\Index.cshtml" />
-    <Content Include="Scripts\WebEssentials\jquery.min.js.map">
-      <DependentUpon>jquery.js</DependentUpon>
-    </Content>
-    <Content Include="Scripts\WebEssentials\kendoall.min.js.map">
-      <DependentUpon>kendoall.js</DependentUpon>
-    </Content>
-    <Content Include="Scripts\WebEssentials\kendoaspnetmvc.min.js.map">
-      <DependentUpon>kendoaspnetmvc.js</DependentUpon>
-    </Content>
-    <Content Include="Scripts\WebEssentials\kendoculture.min.js.map">
-      <DependentUpon>kendoculture.js</DependentUpon>
-    </Content>
-    <Content Include="Scripts\WebEssentials\modernizr.min.js.map">
-      <DependentUpon>modernizr.js</DependentUpon>
-    </Content>
-    <Content Include="Scripts\WebEssentials\Site.min.js.map">
-      <DependentUpon>Site.js</DependentUpon>
-    </Content>
-    <None Include="Scripts\WebEssentials\WebEssentialsJsBundle.js.bundle" />
-    <Content Include="Scripts\WebEssentials\WebEssentialsJsBundle.min.js.map">
-      <DependentUpon>WebEssentialsJsBundle.js.bundle</DependentUpon>
-    </Content>
+    <Content Include="Scripts\jquery-2.1.0.min.map" />
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Error\Index.cshtml" />
     <Content Include="Views\Error\InternalServerError.cshtml" />
