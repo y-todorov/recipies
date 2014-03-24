@@ -8,6 +8,8 @@ C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\DevTrends.MvcDonutCachi
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\DynamicApplicationModel.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Elmah.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Elmah.Mvc.dll
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\EntityFramework.dll
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\EntityFramework.SqlServer.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Helpers.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Ionic.Zip.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Kendo.Mvc.dll
@@ -44,5 +46,3 @@ C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\System.Net.Http.Formatt
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\obj\Debug\RecipiesWebFormApp.csprojResolveAssemblyReference.cache
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\obj\Debug\RecipiesWebFormApp.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\obj\Debug\RecipiesWebFormApp.pdb
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\EntityFramework.dll
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\EntityFramework.SqlServer.dll
