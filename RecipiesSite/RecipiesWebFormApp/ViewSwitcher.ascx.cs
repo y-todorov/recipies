@@ -1,7 +1,6 @@
 using System;
 using System.Web;
 using System.Web.Routing;
-using Microsoft.AspNet.FriendlyUrls.Resolvers;
 
 namespace RecipiesWebFormApp
 {

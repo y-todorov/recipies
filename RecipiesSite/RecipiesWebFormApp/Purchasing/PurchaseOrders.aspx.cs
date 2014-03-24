@@ -59,7 +59,7 @@ namespace RecipiesWebFormApp.Purchasing
                     int purchaseOrderId =
                         (int) editableItem.GetDataKeyValue(rgPurchaseOrders.MasterTableView.DataKeyNames[0]);
                     PurchaseOrderHeader purchaseOrder =
-                        ContextFactory.GetContextPerRequest()
+                        ContextFactory.Current
                             .PurchaseOrderHeaders.FirstOrDefault(p => p.PurchaseOrderId == purchaseOrderId);
                     VendorId = purchaseOrder.VendorId;
                     PurchaseOrderId = purchaseOrderId;
@@ -77,7 +77,7 @@ namespace RecipiesWebFormApp.Purchasing
                     int purchaseOrderId =
                         (int) dataItem.GetDataKeyValue(rgPurchaseOrders.MasterTableView.DataKeyNames[0]);
                     PurchaseOrderHeader purchaseOrder =
-                        ContextFactory.GetContextPerRequest()
+                        ContextFactory.Current
                             .PurchaseOrderHeaders.FirstOrDefault(p => p.PurchaseOrderId == purchaseOrderId);
 
                     ReportProcessor reportProcessor = new ReportProcessor();
@@ -125,7 +125,7 @@ namespace RecipiesWebFormApp.Purchasing
                     int purchaseOrderId =
                         (int) dataItem.GetDataKeyValue(rgPurchaseOrders.MasterTableView.DataKeyNames[0]);
                     PurchaseOrderHeader purchaseOrder =
-                        ContextFactory.GetContextPerRequest()
+                        ContextFactory.Current
                             .PurchaseOrderHeaders.FirstOrDefault(p => p.PurchaseOrderId == purchaseOrderId);
 
                     ReportProcessor reportProcessor = new ReportProcessor();
@@ -139,7 +139,7 @@ namespace RecipiesWebFormApp.Purchasing
                     RenderingResult result = reportProcessor.RenderReport("Image", instanceReportSource, null);
 
                     EmailTemplate defaultTemplate =
-                        ContextFactory.GetContextPerRequest().EmailTemplates.FirstOrDefault(et => et.IsDefault);
+                        ContextFactory.Current.EmailTemplates.FirstOrDefault(et => et.IsDefault);
                     if (defaultTemplate != null)
                     {
                         RestResponse restResponse = EmailHelper.SendComplexMessage(defaultTemplate.From,
@@ -184,7 +184,7 @@ namespace RecipiesWebFormApp.Purchasing
                 if (VendorId.HasValue)
                 {
                     Vendor vendor =
-                        ContextFactory.GetContextPerRequest().Vendors.FirstOrDefault(v => v.VendorId == VendorId);
+                        ContextFactory.Current.Vendors.FirstOrDefault(v => v.VendorId == VendorId);
                     if (vendor != null)
                     {
                         PurchaseOrderDetail newPod = new PurchaseOrderDetail() {UnitPrice = null};
@@ -196,7 +196,7 @@ namespace RecipiesWebFormApp.Purchasing
             {
                 //this works fine
                 PurchaseOrderHeader purchaseOrder =
-                    ContextFactory.GetContextPerRequest()
+                    ContextFactory.Current
                         .PurchaseOrderHeaders.FirstOrDefault(p => p.PurchaseOrderId == PurchaseOrderId);
                 if (purchaseOrder != null && purchaseOrder.StatusId == (int) PurchaseOrderStatusEnum.Completed)
                 {
@@ -258,7 +258,7 @@ namespace RecipiesWebFormApp.Purchasing
                 //attach SelectedIndexChanged event for the dropdown control  
                 dropDownProductListColumn.AutoPostBack = true;
 
-                List<Product> filteredProducts = ContextFactory.GetContextPerRequest().ProductVendors.
+                List<Product> filteredProducts = ContextFactory.Current.ProductVendors.
                     Where(pv => pv.VendorId == VendorId && pv.Product != null).Select(pv => pv.Product).ToList();
 
                 dropDownProductListColumn.DataTextField = "Name";
@@ -317,16 +317,16 @@ namespace RecipiesWebFormApp.Purchasing
                 if (int.TryParse(productId, out intProductId))
                 {
                     Product product =
-                        ContextFactory.GetContextPerRequest().Products.FirstOrDefault(p => p.ProductId == intProductId);
+                        ContextFactory.Current.Products.FirstOrDefault(p => p.ProductId == intProductId);
                     if (product != null)
                     {
                         PurchaseOrderHeader purchaseOrder =
-                            ContextFactory.GetContextPerRequest()
+                            ContextFactory.Current
                                 .PurchaseOrderHeaders.FirstOrDefault(p => p.PurchaseOrderId == PurchaseOrderId);
 
                         if (purchaseOrder.Vendor != null)
                         {
-                            ProductVendor productVendor = ContextFactory.GetContextPerRequest().ProductVendors
+                            ProductVendor productVendor = ContextFactory.Current.ProductVendors
                                 .Where(pv => pv.ProductId == product.ProductId && pv.VendorId == VendorId)
                                 .ToList()
                                 .FirstOrDefault();
@@ -342,7 +342,7 @@ namespace RecipiesWebFormApp.Purchasing
                         int.TryParse(dropDownUnitListColumn.SelectedValue, out unitId);
 
                         UnitMeasure vendorUnitMeasure =
-                            ContextFactory.GetContextPerRequest()
+                            ContextFactory.Current
                                 .UnitMeasures.Where(um => um.UnitMeasureId == unitId)
                                 .FirstOrDefault();
                         decimal coef = 1;

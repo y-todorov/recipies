@@ -9,6 +9,8 @@
         <title>Inventory management</title>
         <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
         <%-- tuk ne stava da se registrira signalr--%>      
+        <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.0.min.js"></script>
+         <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.0.min.map"></script>
     </head>
     <body>
         <form runat="server">

@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Data;
+//using System.Data;
 using System.Data.Common;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
@@ -12,7 +12,7 @@ namespace RecipiesModelNS
     public partial class RecipiesEntities : DbContext
     {
         public RecipiesEntities(bool contextOwnsConnection)
-            : base(new System.Data.EntityClient.EntityConnection("name=RecipiesEntities"), contextOwnsConnection)
+            : base("RecipiesEntities")
         {
             this.Configuration.AutoDetectChangesEnabled = false;
         }

@@ -45,7 +45,7 @@ namespace RecipiesModelNS
             if (recipeId.HasValue)
             {
                 Recipe recipe =
-                    ContextFactory.GetContextPerRequest().Recipes.FirstOrDefault(re => re.RecipeId == recipeId.Value);
+                    ContextFactory.Current.Recipes.FirstOrDefault(re => re.RecipeId == recipeId.Value);
                 if (recipe != null)
                 {
                     decimal? valuePerPortion = 0;
@@ -60,7 +60,7 @@ namespace RecipiesModelNS
                         valuePerPortion += (decimal?) recipeIngredient.TotalValue;
                     }
                     recipe.ProductionValuePerPortion = valuePerPortion;
-                    ContextFactory.GetContextPerRequest().SaveChanges();
+                    ContextFactory.Current.SaveChanges();
                 }
             }
         }

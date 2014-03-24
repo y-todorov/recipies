@@ -5,7 +5,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="73912e72fab34b3aac9b8dc59a70f0eb" Name="Diagram1" ZoomLevel="88">
-        <EntityTypeShape EntityType="RecipiesModelNS.EmailTemplate" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="RecipiesModelNS.EmailTemplate" Width="1.5" PointX="0.875" PointY="0.75" />
         <EntityTypeShape EntityType="RecipiesModelNS.Department" Width="1.5" PointX="3.75" PointY="4.125" />
         <EntityTypeShape EntityType="RecipiesModelNS.Employee" Width="1.5" PointX="3.75" PointY="17.625" />
         <EntityTypeShape EntityType="RecipiesModelNS.EmployeeDepartment" Width="1.5" PointX="6" PointY="16.125" />

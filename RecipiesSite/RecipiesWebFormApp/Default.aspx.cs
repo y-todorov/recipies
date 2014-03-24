@@ -14,7 +14,7 @@ namespace RecipiesWebFormApp
             {
                 int maxXLabelTextLenght = 10;
 
-                rhcLast10ModifiedProducts.DataSource = ContextFactory.GetContextPerRequest().Products
+                rhcLast10ModifiedProducts.DataSource = ContextFactory.Current.Products
                     .OrderByDescending(pr => pr.ModifiedDate)
                     .Select(
                         p =>
@@ -26,7 +26,7 @@ namespace RecipiesWebFormApp
                                 Name = p.Name.Substring(0, maxXLabelTextLenght)
                             }).Take(10).ToList();
 
-                rhcProductsCountByCategory.DataSource = ContextFactory.GetContextPerRequest().ProductCategories.Take(20)
+                rhcProductsCountByCategory.DataSource = ContextFactory.Current.ProductCategories.Take(20)
                     .Select(
                         cat =>
                             new
@@ -39,7 +39,7 @@ namespace RecipiesWebFormApp
                     .OrderByDescending(res => res.ProductCount)
                     .ToList();
 
-                rhcProductsForReorder.DataSource = ContextFactory.GetContextPerRequest().Products
+                rhcProductsForReorder.DataSource = ContextFactory.Current.Products
                     .Where(product => product.UnitsInStock <= product.ReorderLevel)
                     .OrderByDescending(product => product.ReorderLevel)
                     .Select(
@@ -52,13 +52,13 @@ namespace RecipiesWebFormApp
                                 Name = p.Name.Substring(0, maxXLabelTextLenght)
                             }).Take(10).ToList();
 
-                rhcMostExpensiveProducts.DataSource = ContextFactory.GetContextPerRequest()
+                rhcMostExpensiveProducts.DataSource = ContextFactory.Current
                     .Products.OrderByDescending(product => product.UnitPrice)
                     .Select(p => new {p.UnitPrice, Name = p.Name.Substring(0, maxXLabelTextLenght)})
                     .Take(10).ToList();
 
                 rhcGpRecipies.DataSource =
-                    ContextFactory.GetContextPerRequest().Recipes.OrderByDescending(r => r.GrossProfit) //.Take(20)
+                    ContextFactory.Current.Recipes.OrderByDescending(r => r.GrossProfit) //.Take(20)
                         .Select(recipie => new
                         {
                             recipie.Name,
@@ -96,7 +96,7 @@ namespace RecipiesWebFormApp
                 rhcGP.DataSource = list;
 
                 //DateTime defaultDate = new DateTime(2000, 1, 1);
-                //rhcGP.DataSource = ContextFactory.GetContextPerRequest().PurchaseOrderHeaders.GroupBy(p => p.OrderDate.GetValueOrDefault(defaultDate)).Select(p => new { Date = p.Key, DayGp = p.Sum(poh => poh.TotalDue) });
+                //rhcGP.DataSource = ContextFactory.Current.PurchaseOrderHeaders.GroupBy(p => p.OrderDate.GetValueOrDefault(defaultDate)).Select(p => new { Date = p.Key, DayGp = p.Sum(poh => poh.TotalDue) });
             }
         }
     }

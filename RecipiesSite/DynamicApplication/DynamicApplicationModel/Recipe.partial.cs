@@ -76,7 +76,7 @@ namespace RecipiesModelNS
                         valuePerPortion += (decimal?)recipeIngredient.TotalValue;
                     }
                     return valuePerPortion.GetValueOrDefault();
-                    //ContextFactory.GetContextPerRequest().SaveChanges();
+                    //ContextFactory.Current.SaveChanges();
                 }
             }
             return 0;

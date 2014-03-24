@@ -61,7 +61,7 @@ namespace InventoryManagementMVC.Controllers
             try
             {
                 List<PurchaseOrderDetail> pods =
-                    ContextFactory.GetContextPerRequest()
+                    ContextFactory.Current
                         .PurchaseOrderDetails.Include(p => p.PurchaseOrderHeader).ToList().Where(
                             pod => pod.PurchaseOrderHeader.StatusId == (int) PurchaseOrderStatusEnum.Completed).ToList();
             
@@ -186,7 +186,7 @@ namespace InventoryManagementMVC.Controllers
 
         public ActionResult LowProducts()
         {
-            var list = ContextFactory.GetContextPerRequest().Products
+            var list = ContextFactory.Current.Products
                 .Where(product => product.UnitsInStock <= product.ReorderLevel)
                 .OrderByDescending(product => product.ReorderLevel)
                 .Select(
@@ -204,8 +204,8 @@ namespace InventoryManagementMVC.Controllers
 
         public ActionResult TotalPosValuePerVendor()
         {
-            List<PurchaseOrderHeader> allPos = ContextFactory.GetContextPerRequest().PurchaseOrderHeaders.ToList();
-            List<Vendor> allVendors = ContextFactory.GetContextPerRequest().Vendors.ToList();
+            List<PurchaseOrderHeader> allPos = ContextFactory.Current.PurchaseOrderHeaders.ToList();
+            List<Vendor> allVendors = ContextFactory.Current.Vendors.ToList();
             List<TotalPoByVendor> list = allVendors
                 .Select(
                     vendor =>

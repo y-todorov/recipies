@@ -420,7 +420,7 @@ namespace InventoryManagementMVC.Controllers
         public ActionResult DownloadPurchaseOrder(int? purchaseOrderHeaderId)
         {
             //PurchaseOrderHeader purchaseOrder =
-            //    ContextFactory.GetContextPerRequest()
+            //    ContextFactory.Current
             //        .PurchaseOrderHeaders.FirstOrDefault(p => p.PurchaseOrderId == purchaseOrderHeaderId);
 
             //ReportProcessor reportProcessor = new ReportProcessor();

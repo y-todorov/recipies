@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -13,13 +13,16 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>RecipiesWebFormApp</RootNamespace>
     <AssemblyName>RecipiesWebFormApp</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -40,121 +43,63 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Antlr3.Runtime">
-      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
-    </Reference>
     <Reference Include="AppfailReporting">
-      <HintPath>..\packages\Appfail.WebForms.1.1.0\lib\35\AppfailReporting.dll</HintPath>
-    </Reference>
-    <Reference Include="Autofac">
-      <HintPath>..\packages\Autofac.3.1.5\lib\net40\Autofac.dll</HintPath>
-    </Reference>
-    <Reference Include="Blitline.Net">
-      <HintPath>..\packages\Blitline.Net.0.4.0\lib\net40\Blitline.Net.dll</HintPath>
+      <HintPath>..\Libs\AppfailReporting.dll</HintPath>
     </Reference>
     <Reference Include="CloudinaryDotNet">
-      <HintPath>..\packages\CloudinaryDotNet.1.0.13\lib\net40\CloudinaryDotNet.dll</HintPath>
+      <HintPath>..\Libs\CloudinaryDotNet.dll</HintPath>
     </Reference>
     <Reference Include="Common.Logging">
-      <HintPath>..\packages\Common.Logging.2.1.2\lib\net40\Common.Logging.dll</HintPath>
+      <HintPath>..\Libs\Common.Logging.dll</HintPath>
     </Reference>
     <Reference Include="Elmah">
-      <HintPath>..\packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
+      <HintPath>..\Libs\Elmah.dll</HintPath>
     </Reference>
     <Reference Include="Elmah.Mvc">
-      <HintPath>..\packages\Elmah.MVC.2.1.1\lib\net40\Elmah.Mvc.dll</HintPath>
+      <HintPath>..\Libs\Elmah.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\DynamicApplication\DynamicApplicationModel\OpenAccessAssemblies\EntityFramework.dll</HintPath>
+      <HintPath>..\Libs\EntityFramework.dll</HintPath>
     </Reference>
-    <Reference Include="Glimpse.Ado">
-      <HintPath>..\packages\Glimpse.Ado.1.7.0\lib\net45\Glimpse.Ado.dll</HintPath>
-    </Reference>
-    <Reference Include="Glimpse.AspNet">
-      <HintPath>..\packages\Glimpse.AspNet.1.6.0\lib\net45\Glimpse.AspNet.dll</HintPath>
-    </Reference>
-    <Reference Include="Glimpse.Core">
-      <HintPath>..\packages\Glimpse.1.8.0\lib\net45\Glimpse.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Glimpse.EF5">
-      <HintPath>..\packages\Glimpse.EF5.1.6.0\lib\net45\Glimpse.EF5.dll</HintPath>
-    </Reference>
-    <Reference Include="Glimpse.Elmah">
-      <HintPath>..\packages\Glimpse.Elmah.1.1.1\lib\net40\Glimpse.Elmah.dll</HintPath>
-    </Reference>
-    <Reference Include="Glimpse.Mvc4">
-      <HintPath>..\packages\Glimpse.Mvc4.1.5.1\lib\net40\Glimpse.Mvc4.dll</HintPath>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Ionic.Zip">
-      <HintPath>..\packages\NPOI.1.2.5\lib\net40\Ionic.Zip.dll</HintPath>
+      <HintPath>..\Libs\Ionic.Zip.dll</HintPath>
     </Reference>
     <Reference Include="Kendo.Mvc, Version=2013.2.918.340, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\DynamicApplication\DynamicApplicationModel\OpenAccessAssemblies\Kendo.Mvc.dll</HintPath>
+      <HintPath>..\Libs\Kendo.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="log4net">
-      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+      <HintPath>..\Libs\log4net.dll</HintPath>
     </Reference>
     <Reference Include="LogentriesCore">
-      <HintPath>..\packages\logentries.core.2.4.1\lib\net40\LogentriesCore.dll</HintPath>
+      <HintPath>..\Libs\LogentriesCore.dll</HintPath>
     </Reference>
     <Reference Include="LogentriesLog4net">
-      <HintPath>..\packages\logentries.log4net.2.4.0\lib\net40\LogentriesLog4net.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.AspNet.FriendlyUrls, Version=1.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.FriendlyUrls.Core.1.0.1\lib\net45\Microsoft.AspNet.FriendlyUrls.dll</HintPath>
+      <HintPath>..\Libs\LogentriesLog4net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.SignalR.Core, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.1.1.3\lib\net40\Microsoft.AspNet.SignalR.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.AspNet.SignalR.Owin">
-      <HintPath>..\packages\Microsoft.AspNet.SignalR.Owin.1.1.3\lib\net45\Microsoft.AspNet.SignalR.Owin.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.AspNet.SignalR.SystemWeb, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.1.1.3\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
+      <HintPath>..\Libs\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.Owin.Host.SystemWeb">
-      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.1.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.SqlServer.ConnectionInfo, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Unofficial.Microsoft.SQLServer.SMO.11.0.3000.0\lib\Microsoft.SqlServer.ConnectionInfo.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.SqlServer.Management.Sdk.Sfc, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Unofficial.Microsoft.SQLServer.SMO.11.0.3000.0\lib\Microsoft.SqlServer.Management.Sdk.Sfc.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.SqlServer.Smo, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Unofficial.Microsoft.SQLServer.SMO.11.0.3000.0\lib\Microsoft.SqlServer.Smo.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.WindowsAzure.Configuration, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.WindowsAzure.ConfigurationManager.2.0.3\lib\net40\Microsoft.WindowsAzure.Configuration.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NPOI">
-      <HintPath>..\packages\NPOI.1.2.5\lib\net40\NPOI.dll</HintPath>
-    </Reference>
-    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
-    </Reference>
-    <Reference Include="PdfSharp">
-      <HintPath>..\packages\PDFsharp.1.32.3057.0\lib\net20\PdfSharp.dll</HintPath>
-    </Reference>
-    <Reference Include="PdfSharp.Charting">
-      <HintPath>..\packages\PDFsharp.1.32.3057.0\lib\net20\PdfSharp.Charting.dll</HintPath>
+      <HintPath>..\Libs\NPOI.dll</HintPath>
     </Reference>
     <Reference Include="Quartz">
-      <HintPath>..\packages\Quartz.2.2.1\lib\net40\Quartz.dll</HintPath>
+      <HintPath>..\Libs\Quartz.dll</HintPath>
     </Reference>
     <Reference Include="RestSharp, Version=104.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -162,8 +107,8 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http" />
@@ -171,45 +116,33 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.1.1\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
-    <Reference Include="System.Net.Http.WebRequest" />
-    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.Helpers.dll</HintPath>
+      <HintPath>..\Libs\System.Web.Mvc.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.Mvc, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.0.0\lib\net45\System.Web.Mvc.dll</HintPath>
+      <HintPath>..\Libs\System.Web.WebPages.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.Razor.3.0.0\lib\net45\System.Web.Razor.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.WebPages.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <HintPath>..\Libs\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.Web.Optimization, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
-      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.0.0\lib\net40\System.Web.Optimization.dll</HintPath>
+      <HintPath>..\Libs\System.Web.Optimization.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Providers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
-      <HintPath>..\packages\Microsoft.AspNet.Providers.Core.1.2\lib\net40\System.Web.Providers.dll</HintPath>
+      <HintPath>..\Libs\System.Web.Providers.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Membership.OpenAuth, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
-      <HintPath>..\packages\Microsoft.AspNet.Membership.OpenAuth.1.0.1\lib\net45\Microsoft.AspNet.Membership.OpenAuth.dll</HintPath>
+      <HintPath>..\Libs\Microsoft.AspNet.Membership.OpenAuth.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="Telerik.Reporting, Version=7.2.13.1016, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
@@ -225,10 +158,10 @@
       <HintPath>..\DynamicApplication\DynamicApplicationModel\OpenAccessAssemblies\Telerik.Web.UI.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Web.UI.Skins">
-      <HintPath>..\DynamicApplication\DynamicApplicationModel\OpenAccessAssemblies\Telerik.Web.UI.Skins.dll</HintPath>
+      <HintPath>..\Libs\Telerik.Web.UI.Skins.dll</HintPath>
     </Reference>
     <Reference Include="WebGrease">
-      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+      <HintPath>..\Libs\WebGrease.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -280,18 +213,54 @@
     <Content Include="Contact.aspx" />
     <Content Include="Content\Bundles\BlueOpal\editor.png" />
     <Content Include="Content\Bundles\BlueOpal\imagebrowser.png" />
+    <Content Include="Content\Bundles\BlueOpal\indeterminate.gif" />
     <Content Include="Content\Bundles\BlueOpal\loading-image.gif" />
     <Content Include="Content\Bundles\BlueOpal\loading.gif" />
     <Content Include="Content\Bundles\BlueOpal\loading_2x.gif" />
+    <Content Include="Content\Bundles\BlueOpal\markers.png" />
+    <Content Include="Content\Bundles\BlueOpal\markers_2x.png" />
     <Content Include="Content\Bundles\BlueOpal\slider-h.gif" />
     <Content Include="Content\Bundles\BlueOpal\slider-v.gif" />
     <Content Include="Content\Bundles\BlueOpal\sprite.png" />
     <Content Include="Content\Bundles\BlueOpal\sprite_2x.png" />
-    <Content Include="Content\Bundles\kendocommon.css" />
-    <Content Include="Content\Bundles\kendodataviz.css" />
-    <Content Include="Content\Bundles\kendodataviztheme.css" />
-    <Content Include="Content\Bundles\kendotheme.css" />
+    <Content Include="Content\Bundles\images\back.png" />
+    <Content Include="Content\Bundles\images\wp8_icons.png" />
+    <Content Include="Content\Bundles\images\wp8_inverseicons.png" />
+    <Content Include="Content\Bundles\kendo.blueopal.min.css" />
+    <Content Include="Content\Bundles\kendo.common.core.min.css" />
+    <Content Include="Content\Bundles\kendo.common.min.css" />
+    <Content Include="Content\Bundles\kendo.dataviz.blueopal.min.css" />
     <Content Include="Content\Bundles\Site.css" />
+    <Content Include="Content\Bundles\textures\brushed-metal.png" />
+    <Content Include="Content\Bundles\textures\dots1.png" />
+    <Content Include="Content\Bundles\textures\dots10.png" />
+    <Content Include="Content\Bundles\textures\dots11.png" />
+    <Content Include="Content\Bundles\textures\dots12.png" />
+    <Content Include="Content\Bundles\textures\dots13.png" />
+    <Content Include="Content\Bundles\textures\dots2.png" />
+    <Content Include="Content\Bundles\textures\dots3.png" />
+    <Content Include="Content\Bundles\textures\dots4.png" />
+    <Content Include="Content\Bundles\textures\dots5.png" />
+    <Content Include="Content\Bundles\textures\dots6.png" />
+    <Content Include="Content\Bundles\textures\dots7.png" />
+    <Content Include="Content\Bundles\textures\dots8.png" />
+    <Content Include="Content\Bundles\textures\dots9.png" />
+    <Content Include="Content\Bundles\textures\glass-lighter.png" />
+    <Content Include="Content\Bundles\textures\glass.png" />
+    <Content Include="Content\Bundles\textures\highlight.png" />
+    <Content Include="Content\Bundles\textures\hsv-gradient.png" />
+    <Content Include="Content\Bundles\textures\hue.png" />
+    <Content Include="Content\Bundles\textures\leather1.png" />
+    <Content Include="Content\Bundles\textures\leather2.png" />
+    <Content Include="Content\Bundles\textures\noise.png" />
+    <Content Include="Content\Bundles\textures\stripe1.png" />
+    <Content Include="Content\Bundles\textures\stripe2.png" />
+    <Content Include="Content\Bundles\textures\stripe3.png" />
+    <Content Include="Content\Bundles\textures\stripe4.png" />
+    <Content Include="Content\Bundles\textures\stripe5.png" />
+    <Content Include="Content\Bundles\textures\stripe6.png" />
+    <Content Include="Content\Bundles\textures\transparency.png" />
+    <Content Include="Content\Bundles\textures\transtexture.png" />
     <Content Include="DevTrends.MvcDonutCaching.README.txt" />
     <Content Include="ErrorPages\Error.aspx" />
     <Content Include="ErrorPages\Error404.aspx" />
@@ -345,6 +314,8 @@
     <Content Include="App_Data\RadSpell\en-US.tdf" />
     <Content Include="App_Data\RadSpell\fr-FR.tdf" />
     <Content Include="jquery.min.map" />
+    <Content Include="Content\Bundles\images\kendoui.ttf" />
+    <Content Include="Content\Bundles\images\kendoui.woff" />
     <None Include="job_scheduling_data_2_0.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -355,79 +326,15 @@
     </Content>
     <None Include="Properties\PublishProfiles\bluesystems - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\bluesystems - Web Deploy.pubxml" />
-    <None Include="Scripts\jquery-2.0.3.intellisense.js" />
     <Content Include="Production\Stores.aspx" />
     <Content Include="Sales\PaymentTypes.aspx" />
-    <Content Include="Scripts\Bundles\jquery.js" />
-    <Content Include="Scripts\Bundles\kendoall.js" />
-    <Content Include="Scripts\Bundles\kendoaspnetmvc.js" />
-    <Content Include="Scripts\Bundles\kendoculture.js" />
-    <Content Include="Scripts\Bundles\modernizr.js" />
-    <Content Include="Scripts\Bundles\Site.js" />
     <Content Include="Scripts\GoogleAnalytics.js" />
-    <Content Include="Scripts\jquery-2.0.3.js" />
-    <Content Include="Scripts\jquery-2.0.3.min.js" />
-    <Content Include="Scripts\jquery-ui-1.8.24.js" />
-    <Content Include="Scripts\jquery-ui-1.8.24.min.js" />
-    <Content Include="Scripts\jquery.signalR-1.1.3.js" />
-    <Content Include="Scripts\jquery.signalR-1.1.3.min.js" />
-    <Content Include="Scripts\kendo.custom-2013.2.918.min.js" />
+    <Content Include="Scripts\jquery-2.1.0.min.js" />
+    <Content Include="Scripts\kendo.all.js" />
+    <Content Include="Scripts\kendo.aspnetmvc.min.js" />
+    <Content Include="Scripts\kendo.culture.en-IE.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\MyJavaScript.js" />
-    <Content Include="Scripts\WebEssentials\jquery.js" />
-    <Content Include="Scripts\WebEssentials\jquery.min.js">
-      <DependentUpon>jquery.js</DependentUpon>
-    </Content>
-    <Content Include="Scripts\WebEssentials\kendo.AllAndMvc.2013.3.1119.min.js" />
-    <Content Include="Scripts\WebEssentials\kendoall.js" />
-    <Content Include="Scripts\WebEssentials\kendoall.min.js">
-      <DependentUpon>kendoall.js</DependentUpon>
-    </Content>
-    <Content Include="Scripts\WebEssentials\kendoaspnetmvc.js" />
-    <Content Include="Scripts\WebEssentials\kendoaspnetmvc.min.js">
-      <DependentUpon>kendoaspnetmvc.js</DependentUpon>
-    </Content>
-    <Content Include="Scripts\WebEssentials\kendoculture.js" />
-    <Content Include="Scripts\WebEssentials\kendoculture.min.js">
-      <DependentUpon>kendoculture.js</DependentUpon>
-    </Content>
-    <Content Include="Scripts\WebEssentials\modernizr.js" />
-    <Content Include="Scripts\WebEssentials\modernizr.min.js">
-      <DependentUpon>modernizr.js</DependentUpon>
-    </Content>
-    <Content Include="Scripts\WebEssentials\Site.js" />
-    <Content Include="Scripts\WebEssentials\Site.min.js">
-      <DependentUpon>Site.js</DependentUpon>
-    </Content>
-    <Content Include="Scripts\WebEssentials\test.js" />
-    <Content Include="Scripts\WebEssentials\WebEssentialsJsBundle.js">
-      <DependentUpon>WebEssentialsJsBundle.js.bundle</DependentUpon>
-    </Content>
-    <Content Include="Scripts\WebEssentials\WebEssentialsJsBundle.min.js">
-      <DependentUpon>WebEssentialsJsBundle.js.bundle</DependentUpon>
-    </Content>
-    <Content Include="Scripts\WebForms\DetailsView.js" />
-    <Content Include="Scripts\WebForms\Focus.js" />
-    <Content Include="Scripts\WebForms\GridView.js" />
-    <Content Include="Scripts\WebForms\Menu.js" />
-    <Content Include="Scripts\WebForms\MenuStandards.js" />
-    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjax.js" />
-    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxApplicationServices.js" />
-    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxComponentModel.js" />
-    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxCore.js" />
-    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxGlobalization.js" />
-    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxHistory.js" />
-    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxNetwork.js" />
-    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxSerialization.js" />
-    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxTimer.js" />
-    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxWebForms.js" />
-    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxWebServices.js" />
-    <Content Include="Scripts\WebForms\SmartNav.js" />
-    <Content Include="Scripts\WebForms\TreeView.js" />
-    <Content Include="Scripts\WebForms\WebForms.js" />
-    <Content Include="Scripts\WebForms\WebParts.js" />
-    <Content Include="Scripts\WebForms\WebUIValidation.js" />
-    <Content Include="Scripts\_references.js" />
     <Content Include="Styles\MyStyleSheet.css" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config">
@@ -813,10 +720,6 @@
   <ItemGroup>
     <Content Include="SiteLogin.Master" />
     <Content Include="Site.Mobile.Master" />
-    <Content Include="Scripts\jquery-2.0.3.min.map" />
-    <Content Include="Scripts\jquery.signalR-1.1.3.min.js.map">
-      <DependentUpon>jquery.signalR-1.1.3.js</DependentUpon>
-    </Content>
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
     <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
@@ -859,28 +762,7 @@
     <Content Include="Views\Test\Index.cshtml" />
     <Content Include="Views\Recipe\Index.cshtml" />
     <Content Include="Views\SalesOrderHeader\Index.cshtml" />
-    <Content Include="Scripts\WebEssentials\jquery.min.js.map">
-      <DependentUpon>jquery.js</DependentUpon>
-    </Content>
-    <Content Include="Scripts\WebEssentials\kendoall.min.js.map">
-      <DependentUpon>kendoall.js</DependentUpon>
-    </Content>
-    <Content Include="Scripts\WebEssentials\kendoaspnetmvc.min.js.map">
-      <DependentUpon>kendoaspnetmvc.js</DependentUpon>
-    </Content>
-    <Content Include="Scripts\WebEssentials\kendoculture.min.js.map">
-      <DependentUpon>kendoculture.js</DependentUpon>
-    </Content>
-    <Content Include="Scripts\WebEssentials\modernizr.min.js.map">
-      <DependentUpon>modernizr.js</DependentUpon>
-    </Content>
-    <Content Include="Scripts\WebEssentials\Site.min.js.map">
-      <DependentUpon>Site.js</DependentUpon>
-    </Content>
-    <None Include="Scripts\WebEssentials\WebEssentialsJsBundle.js.bundle" />
-    <Content Include="Scripts\WebEssentials\WebEssentialsJsBundle.min.js.map">
-      <DependentUpon>WebEssentialsJsBundle.js.bundle</DependentUpon>
-    </Content>
+    <Content Include="Scripts\jquery-2.1.0.min.map" />
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Error\Index.cshtml" />
     <Content Include="Views\Error\InternalServerError.cshtml" />
@@ -949,6 +831,7 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

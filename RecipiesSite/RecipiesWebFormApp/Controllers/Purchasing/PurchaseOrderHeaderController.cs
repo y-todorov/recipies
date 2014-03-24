@@ -1,7 +1,5 @@
 ﻿using InventoryManagementMVC.Models.Purchasing;
 using Kendo.Mvc.UI;
-using PdfSharp.Drawing;
-using PdfSharp.Pdf;
 using RecipiesModelNS;
 using System;
 using System.Collections.Generic;
@@ -137,7 +135,7 @@ namespace InventoryManagementMVC.Controllers.Purchasing
 
 
             PurchaseOrderHeader purchaseOrder =
-                ContextFactory.GetContextPerRequest()
+                ContextFactory.Current
                     .PurchaseOrderHeaders.FirstOrDefault(p => p.PurchaseOrderId == purchaseOrderHeaderId);
 
             //ReportProcessor reportProcessor = new ReportProcessor();
@@ -172,7 +170,7 @@ namespace InventoryManagementMVC.Controllers.Purchasing
             //doc.Close();
 
             EmailTemplate defaultTemplate =
-                ContextFactory.GetContextPerRequest().EmailTemplates.FirstOrDefault(et => et.IsDefault);
+                ContextFactory.Current.EmailTemplates.FirstOrDefault(et => et.IsDefault);
             if (defaultTemplate != null)
             {
                 byte[] documentBytes = (new DownloadController()).DownloadPurchaseOrderDetailsReportAsPdf(purchaseOrderHeaderId); ;
