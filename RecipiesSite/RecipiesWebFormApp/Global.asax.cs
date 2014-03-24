@@ -39,12 +39,12 @@ namespace RecipiesWebFormApp
             AuthConfig.RegisterOpenAuth();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
-            HubConfiguration hubConfig = new HubConfiguration
-            {
-                EnableCrossDomain = true,
-                EnableDetailedErrors = true
-            };
-            RouteTable.Routes.MapHubs(hubConfig);
+            //HubConfiguration hubConfig = new HubConfiguration
+            //{
+            //    EnableCrossDomain = true,
+            //    EnableDetailedErrors = true
+            //};
+            //RouteTable.Routes.MapHubs(hubConfig);
 
             ActionsForScheduling.StartAll();
         }

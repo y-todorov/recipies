@@ -28,7 +28,7 @@ namespace RecipiesUnitTests.ChartController
         {
             chartController = new InventoryManagementMVC.Controllers.ChartController();
             request = new DataSourceRequest();
-            var dymmy = ContextFactory.GetContextPerRequest().PurchaseOrderDetails.FirstOrDefault();
+            var dymmy = ContextFactory.Current.PurchaseOrderDetails.FirstOrDefault();
             
 
         }

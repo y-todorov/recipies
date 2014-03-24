@@ -67,7 +67,7 @@ namespace RecipiesWebFormApp.Sales
                     int salesOrderId =
                         (int) editableItem.GetDataKeyValue(rgSalesOrderHeaders.MasterTableView.DataKeyNames[0]);
                     SalesOrderHeader salesOrderHeader =
-                        ContextFactory.GetContextPerRequest()
+                        ContextFactory.Current
                             .SalesOrderHeaders.FirstOrDefault(s => s.SalesOrderHeaderId == salesOrderId);
                     SalesOrderId = salesOrderHeader.SalesOrderHeaderId;
                 }

@@ -9,7 +9,7 @@ namespace RecipiesModelNS
         {
             int baseUnitMeasureId = UnitMeasureId;
             List<UnitMeasure> result =
-                ContextFactory.GetContextPerRequest()
+                ContextFactory.Current
                     .UnitMeasures.Where(
                         um => um.BaseUnitId == baseUnitMeasureId || um.UnitMeasureId == baseUnitMeasureId)
                     .ToList();

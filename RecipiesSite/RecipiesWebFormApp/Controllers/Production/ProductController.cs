@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 using InventoryManagementMVC.Models;
 using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
 using RecipiesModelNS;
+using System.Data.Entity;
 using RecipiesWebFormApp;
 using System.Web;
 using System.Web.Caching;
@@ -21,10 +23,11 @@ namespace InventoryManagementMVC.Controllers
             return View();
         }
 
-        public ActionResult Read([DataSourceRequest] DataSourceRequest request)
+        public async Task<ActionResult> Read([DataSourceRequest] DataSourceRequest request)
         {
+            
             var result = ReadBase(request, typeof (ProductViewModel), typeof (Product),
-                ContextFactory.Current.Products.ToList());
+                await ContextFactory.Current.Products.ToListAsync());
             return result;
         }
 

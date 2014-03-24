@@ -38,7 +38,7 @@ namespace RecipiesWebFormApp.Production
                 {
                     int recipeId = (int) editableItem.GetDataKeyValue(rgRecipes.MasterTableView.DataKeyNames[0]);
                     Recipe recipe =
-                        ContextFactory.GetContextPerRequest().Recipes.FirstOrDefault(r => r.RecipeId == recipeId);
+                        ContextFactory.Current.Recipes.FirstOrDefault(r => r.RecipeId == recipeId);
                     RecipeId = recipe.RecipeId;
                 }
             }
@@ -120,14 +120,14 @@ namespace RecipiesWebFormApp.Production
                 if (int.TryParse(productId, out intProductId))
                 {
                     Product product =
-                        ContextFactory.GetContextPerRequest().Products.FirstOrDefault(p => p.ProductId == intProductId);
+                        ContextFactory.Current.Products.FirstOrDefault(p => p.ProductId == intProductId);
                     if (product != null)
                     {
                         tbCost.Text = product.UnitPrice.GetValueOrDefault().ToString();
                             //.GetAveragePriceLastDays(14).ToString();
                     }
 
-                    //ProductVendor productVendor = ContextFactory.GetContextPerRequest().ProductVendors.FirstOrDefault(pv => pv.ProductId == intProductId && pv.VendorId == VendorId);
+                    //ProductVendor productVendor = ContextFactory.Current.ProductVendors.FirstOrDefault(pv => pv.ProductId == intProductId && pv.VendorId == VendorId);
 
                     //tbUnitPrice.Text = productVendor.StandardPrice.ToString();
                 }

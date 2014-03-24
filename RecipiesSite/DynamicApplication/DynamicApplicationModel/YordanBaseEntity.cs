@@ -10,8 +10,8 @@ namespace RecipiesModelNS
     {
         public virtual void Adding(DbEntityEntry e = null)
         {
-            //object att = ContextFactory.GetContextPerRequest().Set(this.GetType()).Attach(this);
-            //DbEntityEntry dbEntry = ContextFactory.GetContextPerRequest().Entry(att);
+            //object att = ContextFactory.Current.Set(this.GetType()).Attach(this);
+            //DbEntityEntry dbEntry = ContextFactory.Current.Entry(att);
             SetModifiedDateAndModifiedByUserFields();
         }
 
@@ -79,7 +79,7 @@ namespace RecipiesModelNS
             //           BindingFlags.Public);
             //    var productHistoryProperties = historyEntity.GetType().GetProperties();
 
-            //    ContextFactory.GetContextPerRequest().ProductHistories.Add((ProductHistory)historyEntity);
+            //    ContextFactory.Current.ProductHistories.Add((ProductHistory)historyEntity);
 
             //    foreach (prop field in productFields)
             //    {
