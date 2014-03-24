@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
 using System.Reflection;
+using System.Threading.Tasks;
 using System.Web.UI;
 using DevTrends.MvcDonutCaching;
 using DevTrends.MvcDonutCaching.Annotations;
