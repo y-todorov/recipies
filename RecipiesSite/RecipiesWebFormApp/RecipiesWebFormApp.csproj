@@ -788,6 +788,9 @@
     <Content Include="Scripts\kendo\js\kendo.window.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\MyJavaScript.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjax.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxWebForms.js" />
+    <Content Include="Scripts\WebUIValidation.Important.js" />
     <Content Include="Styles\MyStyleSheet.css" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config">
