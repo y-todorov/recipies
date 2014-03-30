@@ -260,7 +260,6 @@
     <Content Include="Content\Bundles\textures\stripe6.png" />
     <Content Include="Content\Bundles\textures\transparency.png" />
     <Content Include="Content\Bundles\textures\transtexture.png" />
-    <Content Include="DevTrends.MvcDonutCaching.README.txt" />
     <Content Include="ErrorPages\Error.aspx" />
     <Content Include="ErrorPages\Error404.aspx" />
     <Content Include="googled46c83e07f33d665.html" />
@@ -287,7 +286,6 @@
     <Content Include="newrelic\extensions\CoreInstrumentation.xml" />
     <Content Include="newrelic\NewRelic.Agent.Core.dll" />
     <Content Include="newrelic\NewRelic.Profiler.dll" />
-    <Content Include="packages.config" />
     <Content Include="App_Themes\DefaultTheme\DefaultSkin.skin" />
     <Content Include="Production\ProductInventories.aspx" />
     <Content Include="Production\ProductCategories.aspx" />
@@ -918,7 +916,6 @@
     <Compile Include="Extensions\GridBuilderExtension.cs" />
     <Compile Include="Extensions\MyFileResult.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
-    <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
