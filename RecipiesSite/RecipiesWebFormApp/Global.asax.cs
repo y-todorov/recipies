@@ -11,7 +11,6 @@ using Kendo.Mvc;
 using log4net;
 using RecipiesModelNS;
 using System.Diagnostics;
-using Microsoft.AspNet.SignalR;
 using System.Web.Mvc;
 using RecipiesWebFormApp.Caching;
 using System.Reflection;
