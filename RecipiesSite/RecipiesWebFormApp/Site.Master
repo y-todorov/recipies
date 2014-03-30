@@ -11,6 +11,7 @@
         <%-- tuk ne stava da se registrira signalr--%>      
         <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.0.min.js"></script>
          <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.0.min.map"></script>
+        <script src="Scripts/WebUIValidation.js"></script>
     </head>
     <body>
         <form runat="server">

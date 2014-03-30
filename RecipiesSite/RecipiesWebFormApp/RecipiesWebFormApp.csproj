@@ -773,7 +773,7 @@
     <Content Include="Scripts\MyJavaScript.js" />
     <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjax.js" />
     <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxWebForms.js" />
-    <Content Include="Scripts\WebUIValidation.Important.js" />
+    <Content Include="Scripts\WebUIValidation.js" />
     <Content Include="Styles\MyStyleSheet.css" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config">
