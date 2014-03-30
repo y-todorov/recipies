@@ -23,11 +23,11 @@ namespace InventoryManagementMVC.Controllers
             return View();
         }
 
-        public async Task<ActionResult> Read([DataSourceRequest] DataSourceRequest request)
+        public ActionResult Read([DataSourceRequest] DataSourceRequest request)
         {
             
             var result = ReadBase(request, typeof (ProductViewModel), typeof (Product),
-                await ContextFactory.Current.Products.ToListAsync());
+                ContextFactory.Current.Products.ToList());
             return result;
         }
 
