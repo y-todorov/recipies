@@ -80,9 +80,7 @@ namespace RecipiesUnitTests.SharedController
                 Telerik.Reporting.Report report = (Telerik.Reporting.Report)
                     xmlSerializer.Deserialize(ms);
                 return report;
-
-                Assert.IsNotNull(report);
-
+                
 
             }
         }

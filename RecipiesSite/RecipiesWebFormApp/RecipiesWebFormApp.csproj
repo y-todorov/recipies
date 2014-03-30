@@ -52,6 +52,9 @@
     <Reference Include="Common.Logging">
       <HintPath>..\Libs\Common.Logging.dll</HintPath>
     </Reference>
+    <Reference Include="DevTrends.MvcDonutCaching">
+      <HintPath>..\Libs\DevTrends.MvcDonutCaching.dll</HintPath>
+    </Reference>
     <Reference Include="Elmah">
       <HintPath>..\Libs\Elmah.dll</HintPath>
     </Reference>
@@ -781,10 +784,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DevTrends.MvcDonutCaching\MvcDonutCaching.csproj">
-      <Project>{854e90c7-8320-4eb6-a286-24a8ee5ebe9b}</Project>
-      <Name>MvcDonutCaching</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DynamicApplication\DynamicApplicationModel\RecipiesModel.csproj">
       <Project>{c50145e6-a244-4f1f-b41f-90d1925b4a00}</Project>
       <Name>RecipiesModel</Name>
