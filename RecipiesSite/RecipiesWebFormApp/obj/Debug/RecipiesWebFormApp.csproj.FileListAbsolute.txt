@@ -1,4 +1,3 @@
-C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\obj\Debug\RecipiesWebFormApp.csprojResolveAssemblyReference.cache
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\RecipiesWebFormApp.dll.config
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\RecipiesWebFormApp.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\RecipiesWebFormApp.pdb
@@ -43,5 +42,6 @@ C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\Helpers.pdb
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\RecipiesReports.pdb
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\YordanCustomControls.pdb
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\bin\System.Net.Http.Formatting.xml
+C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\obj\Debug\RecipiesWebFormApp.csprojResolveAssemblyReference.cache
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\obj\Debug\RecipiesWebFormApp.dll
 C:\Projects\recipies\RecipiesSite\RecipiesWebFormApp\obj\Debug\RecipiesWebFormApp.pdb

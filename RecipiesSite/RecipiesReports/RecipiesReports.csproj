@@ -36,7 +36,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="Telerik.Reporting, Version=7.2.13.1016, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\DynamicApplication\DynamicApplicationModel\OpenAccessAssemblies\Telerik.Reporting.dll</HintPath>
+      <HintPath>..\Libs\Telerik.Reporting.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
