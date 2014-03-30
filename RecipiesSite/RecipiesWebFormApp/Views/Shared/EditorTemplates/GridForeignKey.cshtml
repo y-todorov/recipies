@@ -1,9 +1,9 @@
 ﻿@model object
            
-@(
+@*@(
         Html.Kendo().ComboBoxFor(m => m)
             .BindTo(((SelectList) ViewData[ViewData.TemplateInfo.GetFullHtmlFieldName("") + "_Data"]).OrderBy(it => it.Text))
-            .DataValueField("Id")
+            //.DataValueField("Id")
             .Filter(FilterType.Contains)
             .IgnoreCase(true)
             .Placeholder("Select ...")
@@ -11,4 +11,10 @@
             .MinLength(0)
             .Animation(pab => pab.Open(eb => eb.Duration(AnimationDuration.Fast)).Close(eb => eb.Duration(AnimationDuration.Fast)))
             .DataSource(ros => ros.ServerFiltering(false))
-      )
+      )*@
+
+@(
+ Html.Kendo().DropDownListFor(m => m)
+        .OptionLabel("Please select")
+        .BindTo((SelectList)ViewData[ViewData.TemplateInfo.GetFullHtmlFieldName("") + "_Data"])
+)
